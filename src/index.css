@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&family=Roboto+Condensed:wght@300;400;700&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-size: 16px;
+  color: #4e4e3f;
+  background-color: #ececec;   
+  font-weight: 400;
+  font-family: "Open Sans",sans-serif;
+  line-height: 125%;
+}
+
+.manuale {
+  padding: 39px 30px;
+  width: 800px;
+  margin: 0 auto;
+}
+
+.manuale > h2 {
+  font-size: 29px;
+  font-weight: 500;
+  background-color: #508ccd;
+  padding: 15px;
+  text-align: center;
+  color: white;
+  margin-top: 10px;
+}
+.manuale-container {
+  background-color: white;
+  display: flex;
+  gap: 20px;
+  padding: 40px 45px;
+}
+
+div.manual-item {
+  text-align: center;
+  width: 33%;
+  cursor: pointer;
+}
+
+ .manual-item1:hover {
+  animation: pulse;
+  animation-duration: 1s; 
+} 
+
+@-webkit-keyframes pulse {
+  0% {-webkit-transform: scale(1);}
+  50% {-webkit-transform: scale(1.1);}
+  100% {-webkit-transform: scale(1);}
+}
+@-o-keyframes pulse {
+  0% {-o-transform: scale(1);}
+  50% {-o-transform: scale(1.1);}
+  100% {-o-transform: scale(1);}
+}
+@-moz-keyframes pulse {
+  0% {-moz-transform: scale(1);}
+  50% {-moz-transform: scale(1.1);}
+  100% {-moz-transform: scale(1);}
+}
+@keyframes pulse {
+  0% {transform: scale(1);}
+  50% {transform: scale(1.1);}
+  100% {transform: scale(1);}
+}
+
+.manual-item:hover {
+  -webkit-animation: pulse 1s ease 0s infinite normal;
+  -o-animation: pulse 1s ease 0s infinite normal;
+  -moz-animation: pulse 1s ease 0s infinite normal;
+  animation: pulse 1s ease 0s infinite normal;
+}
+
+.manual-item a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.manual-item img {
+  height: 150px;
+  object-fit: cover;
+  width: 150px;
+  border-radius: 50%;
+  padding: 11px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border: 1px gray solid;
+} 
+
+
+.manual-item p {
+  padding-top: 10px;
+}
