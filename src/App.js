@@ -7,6 +7,7 @@ import Subtema from './pages/Subtema';
 import TemeRom from './pages/TemeRom';
 import TemeMatem from './pages/TemeMatem';
 import TemeIstoria from './pages/TemeIstoria';
+import Diagram from './components/DiagramItem';
 
 
 function App() {
@@ -34,7 +35,7 @@ function App() {
         </Route>   
         <Route path='/subtema1'>
           <Subtema />
-        </Route>       
+        </Route>      
       </div>
       {/* <Card title="Disciplinele de absolvire a cursului gimnazial">
           <ListDiscipline list = {discipline} />

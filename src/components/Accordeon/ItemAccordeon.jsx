@@ -24,7 +24,7 @@ const ItemAccordeon = (props) => {
           <h3>{props.titlu}</h3>
         </header>
       </button>
-      {isOpen && <div>{props.children}</div>}
+      {isOpen && <>{props.children}</>}
     </section>
   );
 };

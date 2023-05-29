@@ -61,6 +61,77 @@ let temeIstoria = [
             name: "Armistițiul de la Focșani și Pacea de la București",
           },
         ],
+        diagramData : [
+          {
+            text: "Regional Director",
+            children: [
+              {
+                text: "Partnership Specialist",
+                children: [
+                  {
+                    text: "Deputy Regional Director",
+                    children: [
+                      {
+                        text: "Partnership Specialist",
+                        children: [
+                          {
+                            text: "Team",
+                            children: [],
+                          },
+                        ],
+                      },
+                      {
+                        text: "Regional Partnership Specialist",
+                        children: [
+                          {
+                            text: "Partnerships Team",
+                            children: [],
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                  {
+                    text: "Director, Policy Advisory Services, IRH Manager",
+                    children: [
+                      {
+                        text: "Policy and Programme Advisory Support Team",
+                        children: [],
+                      },
+                    ],
+                  },
+                  {
+                    text: "Operations Advisor",
+                    children: [
+                      {
+                        text: "Operations/Common Services Team",
+                        children: [],
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                text: "Senior Economist",
+                children: [
+                  {
+                    text: "Executive Associate",
+                    children: [],
+                  },
+                ],
+              },
+              {
+                text: "Team Leader, Strategy and Partnership Team",
+                children: [
+                  {
+                    text: "Strategy and Partnership Team (SAP)",
+                    children: [],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
         aplicatii: [
           { id: "1", name: "Aplicatia 1", complexity: "лёгкое" },
           { id: "2", name: "Aplicatia 2", complexity: "лёгкое" },
