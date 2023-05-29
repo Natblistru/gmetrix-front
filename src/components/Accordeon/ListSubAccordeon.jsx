@@ -1,6 +1,8 @@
 import ItemAccordeon from "./ItemAccordeon";
 import ItemList from "./ItemList";
 import ItemText from "./ItemText";
+import SimpleSlider from "../SimpleSlider";
+import Audio from "../Audio";
 
 const ListSubAccordeon = (props) => {
   const classes = " " + props.className;
@@ -12,7 +14,8 @@ const ListSubAccordeon = (props) => {
         <ItemList {...props} list={arraySubject} />
       </ItemAccordeon>
       <ItemAccordeon titlu="Studiaza interactiv" {...props}>
-        <ItemText {...props} />
+        <SimpleSlider {...props} />
+        <Audio />
       </ItemAccordeon>
       {arraySubject?.map((subj) => (
         <ItemAccordeon titlu={subj.name} {...props} key={subj.id}>

@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&family=Roboto+Condensed:wght@300;400;700&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -286,6 +287,7 @@ a, a:visited, a:hover, a:focus, .panel .text-block span[data-img], .panel .text-
   border: .0625rem solid #ccc;
   background-color: #fff;
   box-shadow: 1px 1px 16px #ccc;
+  padding-bottom: 50px;
 }
 
 .block .header, .block .accordion{
@@ -423,4 +425,29 @@ a, a:visited, a:hover, a:focus, .panel .text-block span[data-img], .panel .text-
 }
 .tree > li:before, .tree > li:after, .tree > li > code:before, .tree > li > span:before {
   outline: none;
+}
+
+/* Slider */
+.slick-slide img {
+  display: block;
+  width: 90%;
+  height: 90%;
+  object-fit: cover;
+  margin: 0 auto;
+}
+.slick-active a img {
+  border: 2px solid #474747;
+  box-sizing: border-box;
+  box-shadow: 1px 1px 16px #ccc;
+}
+.slick-prev:before,
+.slick-next:before {
+    color: #111;
+}
+
+
+.audio audio {
+  max-width: 100%;
+  width: 100%;
+  margin: 3.5em auto -2.5em;
 }
