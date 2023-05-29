@@ -1,10 +1,8 @@
 const Card = (props) => {
+    const classes = "card " + props.className; 
     return (
-        <div className="manuale">
-            <h2>{props.title}</h2>
-            <div className="manuale-container">
+        <div className={classes}>
                 {props.children}
-            </div>
         </div>
     )
 }

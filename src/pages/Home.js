@@ -1,12 +1,14 @@
-import Card from '../components/Card';
-import ListDiscipline from '../components/ListDiscipline';
-import discipline from '../data/discipline';
+import ListDiscipline from "../components/ListDiscipline";
+import Titlu from "../components/Titlu";
+import Wrapper from "../components/Wrapper";
+import discipline from "../data/discipline";
 
 const Home = () => {
-    return (
-        <Card title="Disciplinele de absolvire a cursului gimnazial">
-            <ListDiscipline list = {discipline} />
-        </Card>
-    )
-}
-export default Home; 
+  return (
+    <Wrapper>
+      <Titlu>Disciplinele de absolvire a cursului gimnazial</Titlu>
+      <ListDiscipline list={discipline} />
+    </Wrapper>
+  );
+};
+export default Home;

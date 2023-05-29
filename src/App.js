@@ -2,9 +2,12 @@ import { Route, Redirect } from 'react-router-dom'
 import "./App.css";
 import "./index.css";
 import Home from './pages/Home';
+import Tema from './pages/Tema';
+import Subtema from './pages/Subtema';
 import TemeRom from './pages/TemeRom';
 import TemeMatem from './pages/TemeMatem';
 import TemeIstoria from './pages/TemeIstoria';
+
 
 function App() {
 
@@ -25,7 +28,13 @@ function App() {
         </Route>  
         <Route path='/teme-istoria'>
           <TemeIstoria />
-        </Route>          
+        </Route>   
+        <Route path='/tema1'>
+          <Tema />
+        </Route>   
+        <Route path='/subtema1'>
+          <Subtema />
+        </Route>       
       </div>
       {/* <Card title="Disciplinele de absolvire a cursului gimnazial">
           <ListDiscipline list = {discipline} />

@@ -13,6 +13,29 @@ body {
   line-height: 125%;
 }
 
+.wrapper {
+  padding: 39px 30px;
+  width: 800px;
+  margin: 0 auto;
+} 
+
+.card {
+  box-shadow: 1px 1px 16px #ccc;
+  padding: 0 15px 15px 15px;
+}
+
+.titlu {
+  font-size: 29px;
+  font-weight: 500;
+  background-color: #508ccd;
+  padding: 15px;
+  text-align: center;
+  color: white;
+  margin-top: 10px;
+}
+.titlu-card {
+  margin: 10px -15px;
+}
 .manuale {
   padding: 39px 30px;
   width: 800px;
@@ -89,7 +112,247 @@ div.manual-item {
   border: 1px gray solid;
 } 
 
-
 .manual-item p {
   padding-top: 10px;
+}
+
+.breadcrumb {
+  list-style: none;
+  padding: 0 0 8px;
+}
+.breadcrumb > li {
+  display: inline;
+}
+.breadcrumb > li + li::before {
+  padding: 0 5px;
+  color: #ccc;
+  content: "/\00a0";
+}
+
+
+.title-box {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2em;
+}
+.title-img {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.title-box h1 {
+  font-weight: 400;
+  font-size: 1.875em;
+  line-height: 1.1;
+ }
+
+
+/*History*/
+.teme-container {
+  padding: 40px 0px 0px;
+}
+.teme-container h2 {
+  font-size: 29px;
+  font-weight: 500;
+}
+.teme-container {
+  animation: fadeInRight; /* referring directly to the animation's @keyframe declaration */
+  animation-duration: 1s; /* don't forget to set a duration! */
+}
+.topic-item h3, header h3 {
+  font-size: 1.5rem;;
+  font-weight: 400;
+}
+.program-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.progress-box {
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  padding: 0 15px;
+}
+
+.progress-box span {
+  text-align: right;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.125rem;
+}
+
+.progress {
+  width: 100px;
+  background-color: #ddd;
+  margin-bottom: 10px;
+}
+
+.bar {
+  width: 1%;
+  height: 8px;
+  background-color: #04AA6D;
+}
+.topic-list {
+  margin-top: 1.25em;
+  list-style: none;
+  counter-reset: tplc;
+  font-size: 1.563em;
+}
+.teme-container {
+  animation: fadeInRight; /* referring directly to the animation's @keyframe declaration */
+  animation-duration: 1s; /* don't forget to set a duration! */
+}
+.teme-container h3, header h3 {
+  font-size: 1.5rem;;
+  font-weight: 400;
+}
+.topic-header {
+  display: flex;
+  justify-content: space-between;
+}
+.topic-list > li.topic-item {
+  margin-top: 1.1em;
+  line-height: 1.25;
+}
+.topic-list > li {
+  margin-bottom: .5em;
+}
+.topic-header-title {
+  display: flex;
+}   
+.topic-list .num {
+  counter-increment: tplc;
+}
+.topic-list .num::before {
+  content: counter(tplc,upper-roman) ".";
+  text-align: right;
+  display: block;
+  padding-right: 0.5em;
+  min-width: 1.8em;
+}
+.subtopic-list {
+  padding-left: 2.5em;
+  margin-top: .313em;
+  font-size: .64em;
+  counter-reset: stplc;
+  list-style-type: none;
+}
+.subtopic-list li {
+  line-height: 1.5em;
+  margin-bottom: .5em;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+}
+.subtopic-header {
+  display: flex;
+}   
+.subtopic-list .num {
+  counter-increment: stplc;
+}
+.subtopic-list .num::before {
+  content: counter(stplc,decimal) ".";
+}
+.subtopic-list h4 {
+  font-size: 1.125rem;;
+  font-weight: 400;
+}
+
+a  {
+  color: #337ab7;
+  text-decoration: none;
+  background-color: transparent;
+}
+a:focus, a:hover , span[data-img]:hover, span[data-box]:hover{
+  outline: 0;
+  color: #23527c;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.menu-header .logo a {
+  display: flex;
+  background-color: #048873;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+}
+a, a:visited, a:hover, a:focus, .panel .text-block span[data-img], .panel .text-block span[data-box] {
+  color: #00aeef;
+}
+
+.block {
+  margin: 0 auto 2em;
+  border: .0625rem solid #ccc;
+  background-color: #fff;
+  box-shadow: 1px 1px 16px #ccc;
+}
+
+.block .header, .block .accordion{
+  min-height: 2em;
+  line-height: 2.5em;
+  padding: .3em 1.5em;
+  background-color: #76a900;
+  color: #fff;
+}
+
+.subjects-container, .tests-container {
+  padding: 2em 2em;
+}
+
+.subjects-container.panel {
+  padding: 0;
+}
+.subject-item, .test-item {
+  display: flex;
+  justify-content: space-between;
+  line-height: 2em;
+}
+.title-item {
+  display: flex;
+  gap: 5px;
+}
+
+.accordion {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+  transition: 0.4s;
+}
+
+
+/* accordion.active, .accordion:hover {
+  background-color: #ccc;
+} */
+
+.accordion h3:after {
+  content: '\02795'; /* Unicode character for "plus" sign (+) */
+  font-size: 13px;
+  color: #fff;;
+  float: right;
+  margin-left: 5px;
+}
+
+.accordion.active h3:after {
+  content: "\2796"; /* Unicode character for "minus" sign (-) */
+}
+.panel {
+  padding: 0 18px;
+  background-color: white;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+} 
+.hide {
+  display: none;
+}
+
+.hideImportant {
+  display: none !important;
 }
