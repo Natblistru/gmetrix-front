@@ -287,7 +287,11 @@ a, a:visited, a:hover, a:focus, .panel .text-block span[data-img], .panel .text-
   border: .0625rem solid #ccc;
   background-color: #fff;
   box-shadow: 1px 1px 16px #ccc;
-  padding-bottom: 50px;
+  padding-bottom: 0px;
+}
+
+.block.blockPB50 .accordion.active ~.container{
+  margin-bottom: -19px;
 }
 
 .block .header, .block .accordion{
@@ -400,9 +404,15 @@ a, a:visited, a:hover, a:focus, .panel .text-block span[data-img], .panel .text-
   border: solid 0.1em #666;
   border-radius: 0.2em;
   display: inline-block;
+  /* display: block; */
   margin: 0 0.2em 0.5em;
   padding: 0.2em 0.5em;
   position: relative;
+}
+
+.tree code:hover {
+  background-color: #bde0fe;
+  cursor:pointer;
 }
 /* If the tree represents DOM structure */
 /* | */
@@ -440,14 +450,13 @@ a, a:visited, a:hover, a:focus, .panel .text-block span[data-img], .panel .text-
   box-sizing: border-box;
   box-shadow: 1px 1px 16px #ccc;
 }
-.slick-prev:before,
-.slick-next:before {
-    color: #111;
+button.slick-prev::before,
+button.slick-next::before {
+    color: #111 !important;
 }
-
 
 .audio audio {
   max-width: 100%;
   width: 100%;
-  margin: 3.5em auto -2.5em;
+  margin: 3.0em auto -2.5em;
 }

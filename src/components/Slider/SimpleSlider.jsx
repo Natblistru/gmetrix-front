@@ -1,20 +1,14 @@
 import React from "react";
 import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import "./slick.css"; 
+import "./slick-theme.css";
+import "./../../index.css";
+import CustomSlide from "./CustomSlide";
+
 // import { baseUrl } from "./public/images";
 
-const img_slider = {
-    display: 'block',
-    width: '90%',
-    height: "400px",
-    objectFit: 'cover',
-    margin: '0 auto',
-  };
-export default class CenterMode extends React.Component {
-
-    
-
+ 
+export default class CustomArrows extends React.Component {
   render() {
     const settings = {
       customPaging: function(i) {
@@ -27,9 +21,13 @@ export default class CenterMode extends React.Component {
         );
       },
       dots: true,
+      arrows: false,
       dotsClass: "slick-dots slick-thumb",
       infinite: true,
-      speed: 500,
+    //   speed: 500,
+      autoplay: true,
+      autoplaySpeed: 3000,
+      pauseOnHover: true,
       slidesToShow: 1,
       slidesToScroll: 1,
       appendDots: dots => (
@@ -45,15 +43,9 @@ export default class CenterMode extends React.Component {
       <div>
         <h2></h2>
         <Slider {...settings} >
-          <div>
-            <img src={process.env.PUBLIC_URL +'/images/abstract01.jpg'} style= {img_slider}/>
-          </div>
-          <div>
-            <img src={process.env.PUBLIC_URL + '/images/abstract02.jpg'} style= {img_slider}/>
-          </div>
-          <div>
-            <img src={process.env.PUBLIC_URL + '/images/abstract03.jpg'} style= {img_slider}/>
-          </div>
+          <CustomSlide index={1} />
+          <CustomSlide index={2} />
+          <CustomSlide index={3} />
         </Slider>
       </div>
     );

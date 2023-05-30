@@ -104,7 +104,7 @@ let temeIstoria = [
                     text: "Operations Advisor",
                     children: [
                       {
-                        text: "Operations/Common Services Team",
+                        text: "Operations /Common Services Team",
                         children: [],
                       },
                     ],
