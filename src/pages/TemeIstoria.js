@@ -5,6 +5,7 @@ import Wrapper from "../components/Wrapper";
 import TitleBox from '../components/TitleBox';
 import TopicsList from '../components/TopicsList';
 import Card from '../components/Card';
+import '../index.css';
 
 const TemeIstoria = () => {
     return (

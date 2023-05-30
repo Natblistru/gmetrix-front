@@ -138,12 +138,14 @@ let temeIstoria = [
           { id: "3", name: "Aplicatia 3", complexity: "лёгкое" },
         ],
         repere: [
-          { id: "1", name: "1900 - ceva",  },
-          { id: "2", name: "1901 - altceva",  },
+          { id: "1", name: "27 august 1916 - România a intrat în război de partea Antantei", anul: "27 august 1916", eveniment: "România a intrat în război de partea Antantei" },
+          { id: "2", name: "6/19 august 1917 - bătălia de la Marasesti", anul: "6/19 august 1917", eveniment: "Bătălia de la Mărășești" },
+        
+        
         ],
         termeni: [
-          { id: "1", name: "Termen 1 - ceva",  },
-          { id: "2", name: "Termen 2 - altceva",  },
+          { id: "1", name: "Termen 1 - ceva", anul: "Termen 1", eveniment: "Definitie Termen 1"},
+          { id: "2", name: "Termen 2 - altceva", anul: "Termen 2", eveniment: "Definitie Termen 2"},
         ],
       },
       {

@@ -1,4 +1,6 @@
-// import DiagramTable from "../DiagramTable";
+import React from "react";
+import { withRouter, Link } from "react-router-dom";
+import '../../index.css';
 import ParentComponent from "../Modal/ParentComponent";
 import ItemAccordeon from "./ItemAccordeon";
 import ItemList from "./ItemList";
@@ -21,9 +23,11 @@ const ListAccordeon = (props) => {
       </ItemAccordeon>
       <ItemAccordeon titlu="Repere cronoligice" {...props} >
         <ItemList {...props} list={repereList} />
+        <Link to={{ pathname: "/flipCards", state: { list: repereList } }} className="custom-link">Exerseaza</Link>
       </ItemAccordeon>
       <ItemAccordeon titlu="Termeni-cheie" {...props} >
         <ItemList {...props} list={termeniList} />
+        <Link to={{ pathname: "/flipCards", state: { list: termeniList } }} className="custom-link">Exerseaza</Link>
       </ItemAccordeon>
       <ItemAccordeon titlu="Aplicații (teste de examen)" {...props} >
         <ItemList {...props} list={aplicatiiList} />
@@ -31,4 +35,4 @@ const ListAccordeon = (props) => {
     </div>
   );
 };
-export default ListAccordeon;
+export default withRouter(ListAccordeon);

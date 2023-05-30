@@ -1,4 +1,5 @@
-import { Route, Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch, withRouter } from "react-router-dom";
 import "./App.css";
 import "./index.css";
 import Home from './pages/Home';
@@ -8,7 +9,9 @@ import TemeRom from './pages/TemeRom';
 import TemeMatem from './pages/TemeMatem';
 import TemeIstoria from './pages/TemeIstoria';
 import Diagram from './components/DiagramItem';
+import FlipCards from './components/FlipCards/FlipCards';
 
+const FlipCardsWithRouter = withRouter(FlipCards);
 
 function App() {
 
@@ -35,11 +38,11 @@ function App() {
         </Route>   
         <Route path='/subtema1'>
           <Subtema />
-        </Route>      
+        </Route>     
+        <Route path="/flipCards">
+          <FlipCardsWithRouter />
+        </Route>
       </div>
-      {/* <Card title="Disciplinele de absolvire a cursului gimnazial">
-          <ListDiscipline list = {discipline} />
-      </Card> */}
     </div>
   );
 }

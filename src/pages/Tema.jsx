@@ -3,6 +3,7 @@ import Breadcrumb from "../components/Breadcrumb";
 import Wrapper from "../components/Wrapper";
 import TitleBox from '../components/TitleBox';
 import ListAccordeon from '../components/Accordeon/ListAccordeon';
+import '../index.css'
 
 const Tema = () => {
     return (
