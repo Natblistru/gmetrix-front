@@ -10,11 +10,12 @@ import CustomSlide from "./CustomSlide";
  
 export default class CustomArrows extends React.Component {
   render() {
+    const { images } = this.props;
     const settings = {
       customPaging: function(i) {
         return (
           <a>
-            <img src={process.env.PUBLIC_URL +`/images/abstract0${i + 1}.jpg`}  
+            <img src={process.env.PUBLIC_URL +images[i]}  
                 width="56" height="37" 
                  />
           </a>
@@ -43,9 +44,9 @@ export default class CustomArrows extends React.Component {
       <div>
         <h2></h2>
         <Slider {...settings} >
-          <CustomSlide index={1} />
-          <CustomSlide index={2} />
-          <CustomSlide index={3} />
+          {images.map((image, index) => (
+            <CustomSlide key={index} image={image} />
+          ))}
         </Slider>
       </div>
     );

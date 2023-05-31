@@ -9,9 +9,9 @@ const ProgressSteps = (props) => {
   const circlesLength = arraySubject.length;
   const clickStepHandler = (idx) => {
     setcurrentActive(idx+1);
+    props.onClick(idx);
   }
   const progressWidth = `${(currentActive - 1) / (circlesLength - 1) * 100}%`;
-  console.log(progressWidth);
     return (
         <div className="container">
         <div className="progress-container">

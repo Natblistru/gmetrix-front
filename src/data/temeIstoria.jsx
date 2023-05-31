@@ -29,16 +29,22 @@ let temeIstoria = [
                 name: "Vom afla 1",
                 id: "1",
                 raspuns: "Raspuns la ce vom afla 1",
+                audio: "/sound/audio-joiner1_31.mp3",
+                images: ["/images/abstract01.jpg", "/images/abstract02.jpg","/images/abstract03.jpg"],
               },
               {
                 name: "Vom afla 2",
                 id: "2",
                 raspuns: "Raspuns la ce vom afla 2",
+                audio: "/sound/soundsample.mp3",
+                images: ["/images/pretext1.png", "/images/21EfecteleRazboiului.png","/images/22FamiliaRegalăRazboi.png","/images/24SucceseMilitare4.png"],
               },
               {
                 name: "Vom afla 3",
                 id: "3",
                 raspuns: "Raspuns la ce vom afla 3",
+                audio: "/sound/audio-joiner1_31.mp3",
+                images: ["/images/abstract01.jpg", "/images/abstract02.jpg","/images/abstract03.jpg"],              
               },
             ],
             innerHTML:
