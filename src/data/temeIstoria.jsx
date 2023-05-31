@@ -25,9 +25,21 @@ let temeIstoria = [
               { name: "România în Primul Război Mondial", path: "/tema1" },
             ],
             vomAfla: [
-              { name: "Vom afla 1", id: "1", raspuns: "Raspuns la ce vom afla 1" },
-              { name: "Vom afla 2", id: "2", raspuns: "Raspuns la ce vom afla 2" },
-              { name: "Vom afla 3", id: "3", raspuns: "Raspuns la ce vom afla 3" },
+              {
+                name: "Vom afla 1",
+                id: "1",
+                raspuns: "Raspuns la ce vom afla 1",
+              },
+              {
+                name: "Vom afla 2",
+                id: "2",
+                raspuns: "Raspuns la ce vom afla 2",
+              },
+              {
+                name: "Vom afla 3",
+                id: "3",
+                raspuns: "Raspuns la ce vom afla 3",
+              },
             ],
             innerHTML:
               "<div><div>Primul Război Mondial, declanșat iniţial între <span data-box='1' data-img='/img/neutr1.jpg'> 2 tabere politico-militare (Puterile Centrale și Antanta)</span>, a adus schimbări esenţiale în evoluţia istorică a României și în destinul românilor care trăiau în <span data-img='/img/neutr2.jpg'>teritoriile aflate sub ocupaţie străină</span>.</div><div>&nbsp;</div><div>Situaţia statului român în raport cu acest eveniment era destul de complicată: <em>pe de o parte</em>, nefiind o ţară cu un <span data-box='1'>potenţial economic</span>, <span>politic </span> și <span>militar </span>apreciabil, nu era de așteptat ca România să joace vreun rol în acea confruntare, iar <em>pe de altă parte</em>, situarea ei într-o <span>vecinătate cu marile imperii (Austro-Ungaria, Rusia și Imperiul Otoman) </span>nu putea să o lase complet neangajată în război.</div><div>&nbsp;</div><div class='img-comp-container'><div class='img-comp-img'><img src='https://fasttrackteaching.com/ffap/Unit_7_WW1/089_Map_WW_I_color_crop_30.gif' width='670' height='400'></div><div class='img-comp-img img-comp-overlay'><img src='https://upload.wikimedia.org/wikipedia/commons/a/a4/Map_Europe_alliances_1914-ro.svg' width='670' height='400'></div></div><p style='text-align:center;line-height: 2.2;'><b>Alianțele militare în 1914(1) și 1917(2)</b></p><div class='slideshow-container'><div class='mySlides fade'><img src='https://images-cdn.bridgemanimages.com/api/1.0/image/600wm.NAM.1347420.7055475/244252.jpg'><div class='text'>Caption Text</div></div><div class='mySlides fade'><img src='https://images-cdn.bridgemanimages.com/api/1.0/image/600wm.STC.4798330.7055475/335795.jpg'><div class='text'>Caption Two</div></div><div class='mySlides fade'><img src='https://images-cdn.bridgemanimages.com/api/1.0/image/600wm.GBW.2364540.7055475/451453.jpg' ><div class='text'>Caption Three</div></div><a class='prev'>&#10094;</a><a class='next'>&#10095;</a></div><br><div id='pagination'></div><div class='audio'><audio src='/sound/audio-joiner1_31.mp3' preload='none' controls='controls'></audio></div>",
@@ -42,12 +54,24 @@ let temeIstoria = [
             ],
             teste: [
               { id: "1", name: "Выбери верное суждение", complexity: "лёгкое" },
-              { id: "2", name: "Установи верность суждения", complexity: "лёгкое" },
+              {
+                id: "2",
+                name: "Установи верность суждения",
+                complexity: "лёгкое",
+              },
               { id: "3", name: "Дополни предложение", complexity: "лёгкое" },
               { id: "4", name: "Последствия событий", complexity: "среднее" },
               { id: "5", name: "Составь предложения", complexity: "среднее" },
-              { id: "6", name: "Найди ошибочное суждение", complexity: "лёгкое" },
-              { id: "7", name: "Характеристика событий", complexity: "среднее" },
+              {
+                id: "6",
+                name: "Найди ошибочное суждение",
+                complexity: "лёгкое",
+              },
+              {
+                id: "7",
+                name: "Характеристика событий",
+                complexity: "среднее",
+              },
               { id: "8", name: "Составь текст", complexity: "сложное" },
               { id: "9", name: "Хронология событий", complexity: "среднее" },
               { id: "10", name: "Тесты", complexity: "среднее" },
@@ -61,7 +85,7 @@ let temeIstoria = [
             name: "Armistițiul de la Focșani și Pacea de la București",
           },
         ],
-        diagramData : [
+        diagramData: [
           {
             text: "Regional Director",
             children: [
@@ -138,14 +162,40 @@ let temeIstoria = [
           { id: "3", name: "Aplicatia 3", complexity: "лёгкое" },
         ],
         repere: [
-          { id: "1", name: "27 august 1916 - România a intrat în război de partea Antantei", anul: "27 august 1916", eveniment: "România a intrat în război de partea Antantei" },
-          { id: "2", name: "6/19 august 1917 - bătălia de la Marasesti", anul: "6/19 august 1917", eveniment: "Bătălia de la Mărășești" },
-        
-        
+          {
+            id: "1",
+            name: "27 august 1916 - România a intrat în război de partea Antantei",
+            anul: "27 august 1916",
+            eveniment: "România a intrat în război de partea Antantei",
+            img: "/images/abstract01.jpg",
+            detaliiPath: "/subtema1"
+          },
+          {
+            id: "2",
+            name: "6/19 august 1917 - bătălia de la Marasesti",
+            anul: "6/19 august 1917",
+            eveniment: "Bătălia de la Mărășești",
+            img: "/images/abstract02.jpg",
+            detaliiPath: "/subtema1"
+          },
         ],
         termeni: [
-          { id: "1", name: "Termen 1 - ceva", anul: "Termen 1", eveniment: "Definitie Termen 1"},
-          { id: "2", name: "Termen 2 - altceva", anul: "Termen 2", eveniment: "Definitie Termen 2"},
+          {
+            id: "1",
+            name: "Termen 1 - ceva",
+            anul: "Termen 1",
+            eveniment: "Definitie Termen 1",
+            img: "/images/abstract01.jpg",
+            detaliiPath: "/subtema1"
+          },
+          {
+            id: "2",
+            name: "Termen 2 - altceva",
+            anul: "Termen 2",
+            eveniment: "Definitie Termen 2",
+            img: "/images/abstract02.jpg",
+            detaliiPath: "/subtema1"
+          },
         ],
       },
       {

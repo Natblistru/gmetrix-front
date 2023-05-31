@@ -1,4 +1,5 @@
 import "./flipCards.css";
+import { Link } from 'react-router-dom';
 
 const FlipCard = (props) => {
     const classColor = props.textColor;
@@ -21,13 +22,15 @@ const FlipCard = (props) => {
               </div>
             </div>
             <div className="card-back">
-              <video className="video__container" autoplay muted loop>
+              {/* <video className="video__container" autoplay muted loop>
                 <source
                   className="video__media"
                   src="https://player.vimeo.com/external/370331493.sd.mp4?s=e90dcaba73c19e0e36f03406b47bbd6992dd6c1c&profile_id=139&oauth2_token_id=57447761"
                   type="video/mp4"
                 />
-              </video>
+              </video> */}
+              <img src={process.env.PUBLIC_URL +props.img} className="video__container"/>
+
             </div>
           </div>
         </div>
@@ -40,10 +43,10 @@ const FlipCard = (props) => {
             <p className="inside-page__text">
             {props.eveniment}
             </p>
-            <a href="#" className={`inside-page__btn inside-page__btn${classColor}`}>
+            <Link to={props.detaliiPath} className={`inside-page__btn inside-page__btn${classColor}`}>
             
               Vezi detalii
-            </a>
+            </Link>
           </div>
         </div>
       </div>
