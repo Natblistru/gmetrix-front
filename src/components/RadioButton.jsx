@@ -4,6 +4,7 @@ const RadioButton = ({ value, checked, onChange, correctAnswer }) => {
   const handleClick = () => {
     if (!checked) {
       onChange(value);
+
     }
   };
 

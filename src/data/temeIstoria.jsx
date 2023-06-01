@@ -83,10 +83,10 @@ let temeIstoria = [
                   {
                     id: "1",
                     answers: [
-                      "România a intrat în Primul Război Mondial în anul 1916", 
-                      "Regele României în timpul Primului Război Mondial a fost Carol I", 
-                      "România a semnat Tratatul de la Trianon, care a pus capăt participării sale în Primul Război Mondial", 
-                      "Motivul principal pentru intrarea României în Primul Război Mondial a fost dorința de a-și extinde teritoriile"
+                      {text:"România a intrat în Primul Război Mondial în anul 1916", rezolvare:"România întradevăr a intrat în Primul Război Mondial în anul 1916"}, 
+                      {text:"Regele României în timpul Primului Război Mondial a fost Carol I", rezolvare:"Regele României în timpul Primului Război Mondial nu a fost Carol I"}, 
+                      {text:"România a semnat Tratatul de la Trianon, care a pus capăt participării sale în Primul Război Mondial", rezolvare:"România a semnat Tratatul de la București, care a pus capăt participării sale în Primul Război Mondial"}, 
+                      {text:"Motivul principal pentru intrarea României în Primul Război Mondial a fost dorința de a-și extinde teritoriile", rezolvare:"Motivul principal pentru intrarea României în Primul Război Mondial a fost dorința de a susține Antanta"}
                     ],
                     correctAnswer: "România a intrat în Primul Război Mondial în anul 1916",
                   },

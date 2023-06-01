@@ -12,8 +12,7 @@ const ItemAccordeon = (props) => {
   const togglAccordion = () => {
     setIsOpen(!isOpen);
   };
-
-
+  console.log(props.correctAnswer)
   return (
     <section className={classes}>
       <button
@@ -24,7 +23,22 @@ const ItemAccordeon = (props) => {
           <h3>{props.titlu}</h3>
         </header>
       </button>
-      {isOpen && <>{props.children}</>}
+      {isOpen && (
+        <>
+          {props.correctAnswer!==null ? (
+            <div>
+              {/* Новое содержимое для correctAnswer=true */}
+              {props.additionalContent}
+              {props.children}
+            </div>
+          ) : (
+            <div>
+              {/* Старое содержимое */}
+              {props.children}
+            </div>
+          )}
+        </>
+      )}
     </section>
   );
 };

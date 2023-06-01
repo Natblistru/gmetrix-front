@@ -314,8 +314,20 @@ a:focus,
   color: #00aeef;
 }
 
+.text-block.correct {
+  background-color: #d1faf2;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.text-block.incorrect {
+  background-color: #ffcad4;
+  padding: 5px;
+  border-radius: 10px;
+}
+
 .block {
-  margin: 0 auto 2em;
+  margin: 0 auto 4em;
   border: 0.0625rem solid #ccc;
   background-color: #fff;
   box-shadow: 1px 1px 16px #ccc;
@@ -701,4 +713,28 @@ div.ns-radio-btn {
     opacity: 0;
 
   }
+}
+.answer-result {
+  padding: 2em 2em;
+  border-bottom: 1px solid gray;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.answer-result h3 {
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+.svg-sprite-vs {
+  background-repeat: no-repeat;
+  background-size: contain;
+  display: inline-block;
+  width: 2.125rem;
+  height: 2.125rem;
+}
+.svg-sprite-vs.result-perfect {
+  background-image: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2234%22%20height%3D%2234%22%3E%3Cg%3E%3Cg%3E%3Ccircle%20cx%3D%2217%22%20cy%3D%2217%22%20r%3D%2217%22%20fill%3D%22%2341ac49%22%2F%3E%3Cpath%20fill%3D%22%23fff%22%20d%3D%22m15.28%2025.52-8.91-9.38%203.89-3.7%204.96%205.22%208.47-9.18%203.95%203.64-12.36%2013.4z%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E');
+}
+.svg-sprite-vs.result-tried {
+  background-image: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2234%22%20height%3D%2234%22%3E%3Cg%3E%3Cg%3E%3Ccircle%20cx%3D%2217%22%20cy%3D%2217%22%20r%3D%2217%22%20opacity%3D%22.25%22%2F%3E%3Cpath%20fill%3D%22%23fff%22%20d%3D%22m25.22%2011.96-3.18-3.18L17%2013.82l-5.04-5.04-3.18%203.18L13.82%2017l-5.04%205.04%203.18%203.18L17%2020.18l5.04%205.04%203.18-3.18L20.18%2017l5.04-5.04z%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E');
 }
