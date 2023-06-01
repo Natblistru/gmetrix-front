@@ -83,52 +83,89 @@ let temeIstoria = [
                   {
                     id: "1",
                     answers: [
-                      {text:"România a intrat în Primul Război Mondial în anul 1916", rezolvare:"România întradevăr a intrat în Primul Război Mondial în anul 1916"}, 
-                      {text:"Regele României în timpul Primului Război Mondial a fost Carol I", rezolvare:"Regele României în timpul Primului Război Mondial nu a fost Carol I"}, 
-                      {text:"România a semnat Tratatul de la Trianon, care a pus capăt participării sale în Primul Război Mondial", rezolvare:"România a semnat Tratatul de la București, care a pus capăt participării sale în Primul Război Mondial"}, 
-                      {text:"Motivul principal pentru intrarea României în Primul Război Mondial a fost dorința de a-și extinde teritoriile", rezolvare:"Motivul principal pentru intrarea României în Primul Război Mondial a fost dorința de a susține Antanta"}
+                      {
+                        text: "România a intrat în Primul Război Mondial în anul 1916",
+                        rezolvare:
+                          "România întradevăr a intrat în Primul Război Mondial în anul 1916",
+                      },
+                      {
+                        text: "Regele României în timpul Primului Război Mondial a fost Carol I",
+                        rezolvare:
+                          "Regele României în timpul Primului Război Mondial nu a fost Carol I",
+                      },
+                      {
+                        text: "România a semnat Tratatul de la Trianon, care a pus capăt participării sale în Primul Război Mondial",
+                        rezolvare:
+                          "România a semnat Tratatul de la București, care a pus capăt participării sale în Primul Război Mondial",
+                      },
+                      {
+                        text: "Motivul principal pentru intrarea României în Primul Război Mondial a fost dorința de a-și extinde teritoriile",
+                        rezolvare:
+                          "Motivul principal pentru intrarea României în Primul Război Mondial a fost dorința de a susține Antanta",
+                      },
                     ],
-                    correctAnswer: "România a intrat în Primul Război Mondial în anul 1916",
+                    correctAnswer:
+                      "România a intrat în Primul Război Mondial în anul 1916",
                   },
                   {
                     id: "2",
                     answers: [
-                      "România a intrat în Primul Război Mondial de partea Puterilor Antantei",
-                      "România a intrat în Primul Război Mondial de partea Puterilor Centrale",
-                      "Tratatul de la București, a dus la obținerea unor noi teritorii pentru România",
-                      "Virginia Woolf",
+                      {
+                        text: "România a intrat în Primul Război Mondial de partea Puterilor Antantei",
+                        rezolvare:
+                          "România a intrat în Primul Război Mondial de partea Puterilor Antantei",
+                      },
+                      {
+                        text: "România a intrat în Primul Război Mondial de partea Puterilor Centrale",
+                        rezolvare:
+                          "România nu a intrat în Primul Război Mondial de partea Puterilor Centrale",
+                      },
+                      {
+                        text: "Tratatul de la București, a dus la obținerea unor noi teritorii pentru România",
+                        rezolvare:
+                          "Tratatul de la București, nu a dus la obținerea unor noi teritorii pentru România",
+                      },
+                      {
+                        text: "Romania nu a participat la Primul Război Mondial",
+                        rezolvare:
+                          "Romania a participat la Primul Război Mondial",
+                      },
                     ],
-                    correctAnswer: "România a intrat în Primul Război Mondial de partea Puterilor Antantei",
+                    correctAnswer:
+                      "România a intrat în Primul Război Mondial de partea Puterilor Antantei",
                   },
                   {
                     id: "3",
                     answers: [
-                      "Principala bătălie în care România a suferit pierderi semnificative în timpul războiului a fost Bătălia de la Turtucaia",
-                      "România a intrat în Primul Război Mondial în urma unei invazii surpriză a Puterilor Centrale",
-                      "România a intrat în Primul Război Mondial în anul 1914",
-                      "Motivul principal pentru intrarea României în Primul Război Mondial a fost sprijinirea Puterilor Centrale",
+                      {text: "Principala bătălie în care România a suferit pierderi semnificative în timpul războiului a fost Bătălia de la Turtucaia", rezolvare:"Principala bătălie în care România a suferit pierderi semnificative în timpul războiului a fost Bătălia de la Turtucaia"},
+                      {text: "România a intrat în Primul Război Mondial în urma unei invazii surpriză a Puterilor Centrale", rezolvare:"România a intrat în Primul Război Mondial nu în urma unei invazii surpriză a Puterilor Centrale"},
+                      {text: "România a intrat în Primul Război Mondial în anul 1914", rezolvare:"România a intrat în Primul Război Mondial în anul 1916"},
+                      {text: "Motivul principal pentru intrarea României în Primul Război Mondial a fost sprijinirea Puterilor Centrale", rezolvare:"Motivul principal pentru intrarea României în Primul Război Mondial a fost sprijinirea Antantei"},
                     ],
-                    correctAnswer: "Principala bătălie în care România a suferit pierderi semnificative în timpul războiului a fost Bătălia de la Turtucaia",
+                    correctAnswer:
+                      "Principala bătălie în care România a suferit pierderi semnificative în timpul războiului a fost Bătălia de la Turtucaia",
                   },
                   {
                     id: "4",
                     answers: [
-                      "România a câștigat o victorie importantă în Bătălia de la Mărăști în 1917",
-                      "România a intrat în Primul Război Mondial în anul 1918.",
-                      "România a semnat Tratatul de la Trianon, care a pus capăt participării sale în Primul Război Mondial.",
-                      "Motivul principal pentru intrarea României în Primul Război Mondial a fost sprijinirea Austro-Ungariei",
+                      {text: "România a câștigat o victorie importantă în Bătălia de la Mărăști în 1917", rezolvare:"România a câștigat o victorie importantă în Bătălia de la Mărăști în 1917"},
+                      {text: "România a intrat în Primul Război Mondial în anul 1918", rezolvare:"România a intrat în Primul Război Mondial în anul 1916"},
+                      {text: "România a semnat Tratatul de la Trianon, care a pus capăt participării sale în Primul Război Mondial", rezolvare:"România a semnat Tratatul de la București, care a pus capăt participării sale în Primul Război Mondial"},
+                      {text: "Motivul principal pentru intrarea României în Primul Război Mondial a fost sprijinirea Austro-Ungariei", rezolvare:"Motivul principal pentru intrarea României în Primul Război Mondial nu a fost sprijinirea Austro-Ungariei"},
                     ],
-                    correctAnswer: "România a câștigat o victorie importantă în Bătălia de la Mărăști în 1917",
+                    correctAnswer:
+                      "România a câștigat o victorie importantă în Bătălia de la Mărăști în 1917",
                   },
                   {
                     id: "5",
                     answers: [
-                      "România a obținut câștiguri teritoriale semnificative în urma Tratatului de la Trianon",
-                      "România a semnat Tratatul de la Versailles, care a pus capăt participării sale în Primul Război Mondial",
-                      "România nu a participat la Primul Război Mondial",
-                      "România a semnat un armistițiu cu Puterile Centrale în 1917",
+                      {text: "România a obținut câștiguri teritoriale semnificative în urma Tratatului de la Trianon", rezolvare:"România a obținut câștiguri teritoriale semnificative în urma Tratatului de la Trianon"},
+                      {text: "România a semnat Tratatul de la Versailles, care a pus capăt participării sale în Primul Război Mondial", rezolvare:"România a semnat Tratatul de la București, care a pus capăt participării sale în Primul Război Mondial"},
+                      {text: "România nu a participat la Primul Război Mondial", rezolvare:"România a participat la Primul Război Mondial"},
+                      {text: "România a semnat un armistițiu cu Puterile Centrale în 1917", rezolvare:"România nu a semnat un armistițiu cu Puterile Centrale în 1917"},
                     ],
-                    correctAnswer: "România a obținut câștiguri teritoriale semnificative în urma Tratatului de la Trianon",
+                    correctAnswer:
+                      "România a obținut câștiguri teritoriale semnificative în urma Tratatului de la Trianon",
                   },
                 ],
               },
