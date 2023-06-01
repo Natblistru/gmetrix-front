@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from 'react-router-dom';
 import SubTopicItem from "./SubTopicItem";
 
 const TopicItem = (props) => {
@@ -9,7 +8,7 @@ const TopicItem = (props) => {
         <div className="topic-header">
             <div className="topic-header-title">
                 <span className="num"></span>
-                <h3><Link to='/tema1'>{tema.title}</Link></h3> 
+                <h3>{tema.title}</h3>                
             </div>
             <div className="progress-box">
                 <span>0%</span>

@@ -17,6 +17,7 @@ let temeIstoria = [
           {
             id: "1",
             name: "Opțiunile politice în perioada neutralității",
+            path: "/subtema1",
             address:
               "/dis/history/class-9/primul-razboi-mondial/romania-in-primul-razboi/neutralitate",
             breadcrumb: [
@@ -30,21 +31,34 @@ let temeIstoria = [
                 id: "1",
                 raspuns: "Raspuns la ce vom afla 1",
                 audio: "/sound/audio-joiner1_31.mp3",
-                images: ["/images/abstract01.jpg", "/images/abstract02.jpg","/images/abstract03.jpg"],
+                images: [
+                  "/images/abstract01.jpg",
+                  "/images/abstract02.jpg",
+                  "/images/abstract03.jpg",
+                ],
               },
               {
                 name: "Vom afla 2",
                 id: "2",
                 raspuns: "Raspuns la ce vom afla 2",
                 audio: "/sound/soundsample.mp3",
-                images: ["/images/pretext1.png", "/images/21EfecteleRazboiului.png","/images/22FamiliaRegalăRazboi.png","/images/24SucceseMilitare4.png"],
+                images: [
+                  "/images/pretext1.png",
+                  "/images/21EfecteleRazboiului.png",
+                  "/images/22FamiliaRegalăRazboi.png",
+                  "/images/24SucceseMilitare4.png",
+                ],
               },
               {
                 name: "Vom afla 3",
                 id: "3",
                 raspuns: "Raspuns la ce vom afla 3",
                 audio: "/sound/audio-joiner1_31.mp3",
-                images: ["/images/abstract01.jpg", "/images/abstract02.jpg","/images/abstract03.jpg"],              
+                images: [
+                  "/images/abstract01.jpg",
+                  "/images/abstract02.jpg",
+                  "/images/abstract03.jpg",
+                ],
               },
             ],
             innerHTML:
@@ -59,36 +73,137 @@ let temeIstoria = [
               },
             ],
             teste: [
-              { id: "1", name: "Выбери верное суждение", complexity: "лёгкое" },
+              {
+                id: "1",
+                name: "Alege afirmația corectă",
+                complexity: "лёгкое",
+                path: "/test1",
+                cerinte: "Alege afirmația corectă",
+                quizArray: [
+                  {
+                    id: "1",
+                    answers: [
+                      "România a intrat în Primul Război Mondial în anul 1916", 
+                      "Regele României în timpul Primului Război Mondial a fost Carol I", 
+                      "România a semnat Tratatul de la Trianon, care a pus capăt participării sale în Primul Război Mondial", 
+                      "Motivul principal pentru intrarea României în Primul Război Mondial a fost dorința de a-și extinde teritoriile"
+                    ],
+                    correctAnswer: "România a intrat în Primul Război Mondial în anul 1916",
+                  },
+                  {
+                    id: "2",
+                    answers: [
+                      "România a intrat în Primul Război Mondial de partea Puterilor Antantei",
+                      "România a intrat în Primul Război Mondial de partea Puterilor Centrale",
+                      "Tratatul de la București, a dus la obținerea unor noi teritorii pentru România",
+                      "Virginia Woolf",
+                    ],
+                    correctAnswer: "România a intrat în Primul Război Mondial de partea Puterilor Antantei",
+                  },
+                  {
+                    id: "3",
+                    answers: [
+                      "Principala bătălie în care România a suferit pierderi semnificative în timpul războiului a fost Bătălia de la Turtucaia",
+                      "România a intrat în Primul Război Mondial în urma unei invazii surpriză a Puterilor Centrale",
+                      "România a intrat în Primul Război Mondial în anul 1914",
+                      "Motivul principal pentru intrarea României în Primul Război Mondial a fost sprijinirea Puterilor Centrale",
+                    ],
+                    correctAnswer: "Principala bătălie în care România a suferit pierderi semnificative în timpul războiului a fost Bătălia de la Turtucaia",
+                  },
+                  {
+                    id: "4",
+                    answers: [
+                      "România a câștigat o victorie importantă în Bătălia de la Mărăști în 1917",
+                      "România a intrat în Primul Război Mondial în anul 1918.",
+                      "România a semnat Tratatul de la Trianon, care a pus capăt participării sale în Primul Război Mondial.",
+                      "Motivul principal pentru intrarea României în Primul Război Mondial a fost sprijinirea Austro-Ungariei",
+                    ],
+                    correctAnswer: "România a câștigat o victorie importantă în Bătălia de la Mărăști în 1917",
+                  },
+                  {
+                    id: "5",
+                    answers: [
+                      "România a obținut câștiguri teritoriale semnificative în urma Tratatului de la Trianon",
+                      "România a semnat Tratatul de la Versailles, care a pus capăt participării sale în Primul Război Mondial",
+                      "România nu a participat la Primul Război Mondial",
+                      "România a semnat un armistițiu cu Puterile Centrale în 1917",
+                    ],
+                    correctAnswer: "România a obținut câștiguri teritoriale semnificative în urma Tratatului de la Trianon",
+                  },
+                ],
+              },
               {
                 id: "2",
-                name: "Установи верность суждения",
+                name: "Verifică corectitudinea afirmației",
                 complexity: "лёгкое",
+                path: "/test1",
               },
-              { id: "3", name: "Дополни предложение", complexity: "лёгкое" },
-              { id: "4", name: "Последствия событий", complexity: "среднее" },
-              { id: "5", name: "Составь предложения", complexity: "среднее" },
+              {
+                id: "3",
+                name: "Completează propoziția",
+                complexity: "лёгкое",
+                path: "/test1",
+              },
+              {
+                id: "4",
+                name: "Stabilește consecințele evenimentelor",
+                complexity: "среднее",
+                path: "/test1",
+              },
+              {
+                id: "5",
+                name: "Completează enunțurile",
+                complexity: "среднее",
+                path: "/test1",
+              },
               {
                 id: "6",
-                name: "Найди ошибочное суждение",
+                name: "Găsește afirmația greșită",
                 complexity: "лёгкое",
+                path: "/test1",
               },
               {
                 id: "7",
-                name: "Характеристика событий",
+                name: "Caracteristicile evenimentelor",
                 complexity: "среднее",
+                path: "/test1",
               },
-              { id: "8", name: "Составь текст", complexity: "сложное" },
-              { id: "9", name: "Хронология событий", complexity: "среднее" },
-              { id: "10", name: "Тесты", complexity: "среднее" },
+              {
+                id: "8",
+                name: "Elaborează un fragment de text",
+                complexity: "сложное",
+                path: "/test1",
+              },
+              {
+                id: "9",
+                name: "Succesiunea cronologică a evenimentelor",
+                complexity: "среднее",
+                path: "/test1",
+              },
+              {
+                id: "10",
+                name: "Exerciții de pregătire la tema",
+                complexity: "среднее",
+                path: "/test1",
+              },
             ],
           },
-          { id: "2", name: "Intrarea României în război" },
-          { id: "3", name: "Operațiile militare din anul 1917" },
-          { id: "4", name: "Agravarea situației pe frontul român" },
+          { id: "2", name: "Intrarea României în război", path: "/subtema1" },
+
+          {
+            id: "3",
+            name: "Operațiile militare din anul 1917",
+            path: "/subtema1",
+          },
+          {
+            id: "4",
+            name: "Agravarea situației pe frontul român",
+            path: "/subtema1",
+          },
           {
             id: "5",
             name: "Armistițiul de la Focșani și Pacea de la București",
+            path: "/subtema1",
           },
         ],
         diagramData: [
@@ -174,7 +289,7 @@ let temeIstoria = [
             anul: "27 august 1916",
             eveniment: "România a intrat în război de partea Antantei",
             img: "/images/abstract01.jpg",
-            detaliiPath: "/subtema1"
+            detaliiPath: "/subtema1",
           },
           {
             id: "2",
@@ -182,7 +297,7 @@ let temeIstoria = [
             anul: "6/19 august 1917",
             eveniment: "Bătălia de la Mărășești",
             img: "/images/abstract02.jpg",
-            detaliiPath: "/subtema1"
+            detaliiPath: "/subtema1",
           },
         ],
         termeni: [
@@ -192,7 +307,7 @@ let temeIstoria = [
             anul: "Termen 1",
             eveniment: "Definitie Termen 1",
             img: "/images/abstract01.jpg",
-            detaliiPath: "/subtema1"
+            detaliiPath: "/subtema1",
           },
           {
             id: "2",
@@ -200,7 +315,7 @@ let temeIstoria = [
             anul: "Termen 2",
             eveniment: "Definitie Termen 2",
             img: "/images/abstract02.jpg",
-            detaliiPath: "/subtema1"
+            detaliiPath: "/subtema1",
           },
         ],
       },

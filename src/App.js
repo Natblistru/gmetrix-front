@@ -8,10 +8,11 @@ import Subtema from './pages/Subtema';
 import TemeRom from './pages/TemeRom';
 import TemeMatem from './pages/TemeMatem';
 import TemeIstoria from './pages/TemeIstoria';
-import Diagram from './components/DiagramItem';
+import Test from './pages/Test';
 import FlipCards from './components/FlipCards/FlipCards';
 
 const FlipCardsWithRouter = withRouter(FlipCards);
+const TestWithRouter = withRouter(Test);
 
 function App() {
 
@@ -38,6 +39,9 @@ function App() {
         </Route>   
         <Route path='/subtema1'>
           <Subtema />
+        </Route> 
+        <Route path='/test1'>
+          <TestWithRouter />
         </Route>     
         <Route path="/flipCards">
           <FlipCardsWithRouter />

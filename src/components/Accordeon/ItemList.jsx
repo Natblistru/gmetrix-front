@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 const ItemList = (props) => {
   let listItems = props.list;
   const classes = "subjects-container " + props.className;
@@ -10,7 +10,13 @@ const ItemList = (props) => {
           <div className="title-item">
             <div className="num-item">{subtitle.id}.</div>
             <div className="name-item">
-              <Link to='/subtema1'>{subtitle.name}</Link>
+              {subtitle.path == null ? (
+                subtitle.anul == null ? (
+                  <div className="text-block">{subtitle.name}</div>
+                ) : (
+                  <div className="text-block"><strong>{subtitle.anul}</strong> - {subtitle.eveniment}</div>
+                )
+              ) : (<Link to={{ pathname: subtitle.path, state: { list: subtitle} }}>{subtitle.name}</Link>)}
             </div>
           </div>
           <div className="points">V</div>

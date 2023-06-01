@@ -7,7 +7,7 @@ const ItemAccordeon = (props) => {
     setIsOpen(!isOpen);
   };
 
-  let listItems = props.teme[0].subtitles[0].subjects;
+  // let listItems = props.teme[0].subtitles[0].subjects;
   const classes = "block " + props.className;
   const togglAccordion = () => {
     setIsOpen(!isOpen);
