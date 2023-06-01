@@ -4,21 +4,23 @@
 
 /* Main heading for card's front cover */
 .card-front__heading {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     margin-top: .25rem;
     line-height: 1.2;
   }
   
   /* Main heading for inside page */
   .inside-page__heading { 
-    padding-bottom: 1rem; 
     width: 100%;
   }
   
   /* Mixed */
   
   /* For both inside page's main heading and 'view me' text on card front cover */
-  .inside-page__heading,
+  .inside-page__heading {
+    font-size: 1.3rem;
+    font-weight: 800;
+  }
   .card-front__text-view {
     font-size: 1.3rem;
     font-weight: 800;
@@ -72,7 +74,7 @@
     border-radius: .5rem;
     font-size: 1.2rem;
     font-weight: 600;
-    margin-top: 2rem;
+    /*! margin-top: 1rem; */
     overflow: hidden;
     padding: .7rem .75rem;
     position: relative;
@@ -327,6 +329,7 @@
     height: 100%;
     text-align: center; 
     width: 100%;
+    justify-content: space-between;
   }
   
   /* Functionality ====================================*/

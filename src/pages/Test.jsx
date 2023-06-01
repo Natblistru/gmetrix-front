@@ -22,14 +22,11 @@ const Test = (props) => {
       return; // Игнорируем события клика после нажатия на кнопку
     }
     setSelectedValue(value);
-    // console.log(value)
   };
   const checkAnswer = () => {
     if (selectedValue === list.quizArray[currentIndex].correctAnswer) {
-      console.log("Corect!!!");
       setCorrectAnswer(true);
     } else {
-      console.log("Gresit!!");
       setCorrectAnswer(false);
     }
     setButtonDisabled(true);
@@ -51,7 +48,6 @@ const Test = (props) => {
   );
 
   const handleTryAgain = () => {
-    console.log(list.quizArray.length, currentIndex);
     setCurrentIndex((list.quizArray.length-1)==currentIndex? 0 : currentIndex + 1); 
     setSelectedValue("");
     setCorrectAnswer(null);
