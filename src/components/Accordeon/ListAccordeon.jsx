@@ -33,7 +33,7 @@ const ListAccordeon = (props) => {
       <ItemAccordeon titlu="Teorie" {...props} >
         <ItemList {...props} list={titleList} />
       </ItemAccordeon>
-      <ItemAccordeon titlu="Schemă recapitulativă" {...props} >
+      <ItemAccordeon titlu="Schemă recapitulativă" {...props} className="schema-recapitulativa">
          <ParentComponent className="subjects-container" list={diagramData}/>
         {/* <DiagramTable className="subjects-container" list={diagramData}/> */}
       </ItemAccordeon>

@@ -40,7 +40,8 @@ let temeIstoria = [
               {
                 name: "Principalul motiv pentru care România a intrat în război",
                 id: "2",
-                raspuns: "Eliberarea teritoriilor aflate sub stăpânire austro-ungară",
+                raspuns:
+                  "Eliberarea teritoriilor aflate sub stăpânire austro-ungară",
                 audio: "/sound/soundsample.mp3",
                 images: [
                   "/images/pretext1.png",
@@ -126,10 +127,26 @@ let temeIstoria = [
                   {
                     id: "3",
                     answers: [
-                      {text: "Principala bătălie în care România a suferit pierderi semnificative în timpul războiului a fost Bătălia de la Turtucaia", rezolvare:"Principala bătălie în care România a suferit pierderi semnificative în timpul războiului a fost Bătălia de la Turtucaia"},
-                      {text: "România a intrat în Primul Război Mondial în urma unei invazii surpriză a Puterilor Centrale", rezolvare:"România a intrat în Primul Război Mondial nu în urma unei invazii surpriză a Puterilor Centrale"},
-                      {text: "România a intrat în Primul Război Mondial în anul 1914", rezolvare:"România a intrat în Primul Război Mondial în anul 1916"},
-                      {text: "Motivul principal pentru intrarea României în Primul Război Mondial a fost sprijinirea Puterilor Centrale", rezolvare:"Motivul principal pentru intrarea României în Primul Război Mondial a fost sprijinirea Antantei"},
+                      {
+                        text: "Principala bătălie în care România a suferit pierderi semnificative în timpul războiului a fost Bătălia de la Turtucaia",
+                        rezolvare:
+                          "Principala bătălie în care România a suferit pierderi semnificative în timpul războiului a fost Bătălia de la Turtucaia",
+                      },
+                      {
+                        text: "România a intrat în Primul Război Mondial în urma unei invazii surpriză a Puterilor Centrale",
+                        rezolvare:
+                          "România a intrat în Primul Război Mondial nu în urma unei invazii surpriză a Puterilor Centrale",
+                      },
+                      {
+                        text: "România a intrat în Primul Război Mondial în anul 1914",
+                        rezolvare:
+                          "România a intrat în Primul Război Mondial în anul 1916",
+                      },
+                      {
+                        text: "Motivul principal pentru intrarea României în Primul Război Mondial a fost sprijinirea Puterilor Centrale",
+                        rezolvare:
+                          "Motivul principal pentru intrarea României în Primul Război Mondial a fost sprijinirea Antantei",
+                      },
                     ],
                     correctAnswer:
                       "Principala bătălie în care România a suferit pierderi semnificative în timpul războiului a fost Bătălia de la Turtucaia",
@@ -137,10 +154,26 @@ let temeIstoria = [
                   {
                     id: "4",
                     answers: [
-                      {text: "România a câștigat o victorie importantă în Bătălia de la Mărăști în 1917", rezolvare:"România a câștigat o victorie importantă în Bătălia de la Mărăști în 1917"},
-                      {text: "România a intrat în Primul Război Mondial în anul 1918", rezolvare:"România a intrat în Primul Război Mondial în anul 1916"},
-                      {text: "România a semnat Tratatul de la Trianon, care a pus capăt participării sale în Primul Război Mondial", rezolvare:"România a semnat Tratatul de la București, care a pus capăt participării sale în Primul Război Mondial"},
-                      {text: "Motivul principal pentru intrarea României în Primul Război Mondial a fost sprijinirea Austro-Ungariei", rezolvare:"Motivul principal pentru intrarea României în Primul Război Mondial nu a fost sprijinirea Austro-Ungariei"},
+                      {
+                        text: "România a câștigat o victorie importantă în Bătălia de la Mărăști în 1917",
+                        rezolvare:
+                          "România a câștigat o victorie importantă în Bătălia de la Mărăști în 1917",
+                      },
+                      {
+                        text: "România a intrat în Primul Război Mondial în anul 1918",
+                        rezolvare:
+                          "România a intrat în Primul Război Mondial în anul 1916",
+                      },
+                      {
+                        text: "România a semnat Tratatul de la Trianon, care a pus capăt participării sale în Primul Război Mondial",
+                        rezolvare:
+                          "România a semnat Tratatul de la București, care a pus capăt participării sale în Primul Război Mondial",
+                      },
+                      {
+                        text: "Motivul principal pentru intrarea României în Primul Război Mondial a fost sprijinirea Austro-Ungariei",
+                        rezolvare:
+                          "Motivul principal pentru intrarea României în Primul Război Mondial nu a fost sprijinirea Austro-Ungariei",
+                      },
                     ],
                     correctAnswer:
                       "România a câștigat o victorie importantă în Bătălia de la Mărăști în 1917",
@@ -148,10 +181,26 @@ let temeIstoria = [
                   {
                     id: "5",
                     answers: [
-                      {text: "România a obținut câștiguri teritoriale semnificative în urma Tratatului de la Trianon", rezolvare:"România a obținut câștiguri teritoriale semnificative în urma Tratatului de la Trianon"},
-                      {text: "România a semnat Tratatul de la Versailles, care a pus capăt participării sale în Primul Război Mondial", rezolvare:"România a semnat Tratatul de la București, care a pus capăt participării sale în Primul Război Mondial"},
-                      {text: "România nu a participat la Primul Război Mondial", rezolvare:"România a participat la Primul Război Mondial"},
-                      {text: "România a semnat un armistițiu cu Puterile Centrale în 1917", rezolvare:"România nu a semnat un armistițiu cu Puterile Centrale în 1917"},
+                      {
+                        text: "România a obținut câștiguri teritoriale semnificative în urma Tratatului de la Trianon",
+                        rezolvare:
+                          "România a obținut câștiguri teritoriale semnificative în urma Tratatului de la Trianon",
+                      },
+                      {
+                        text: "România a semnat Tratatul de la Versailles, care a pus capăt participării sale în Primul Război Mondial",
+                        rezolvare:
+                          "România a semnat Tratatul de la București, care a pus capăt participării sale în Primul Război Mondial",
+                      },
+                      {
+                        text: "România nu a participat la Primul Război Mondial",
+                        rezolvare:
+                          "România a participat la Primul Război Mondial",
+                      },
+                      {
+                        text: "România a semnat un armistițiu cu Puterile Centrale în 1917",
+                        rezolvare:
+                          "România nu a semnat un armistițiu cu Puterile Centrale în 1917",
+                      },
                     ],
                     correctAnswer:
                       "România a obținut câștiguri teritoriale semnificative în urma Tratatului de la Trianon",
@@ -234,68 +283,124 @@ let temeIstoria = [
         ],
         diagramData: [
           {
-            text: "Regional Director",
+            text: "România în Primul Război Mondial",
+            modal: "România în Primul Război Mondial",
+            image: "/images/pretext1.png",
             children: [
               {
-                text: "Partnership Specialist",
+                text: "1914: Primul Război Mondial izbucnește în Balcani",
+                modal: "La 28 iunie 1914, Arhiducele Franz Ferdinand, moștenitorul tronului austro-ungar, a fost asasinat în Sarajevo. Austro-Ungaria a declarat război Serbiei.",
+                image: "/images/pretext1.png",
                 children: [
                   {
-                    text: "Deputy Regional Director",
-                    children: [
-                      {
-                        text: "Partnership Specialist",
-                        children: [
-                          {
-                            text: "Team",
-                            children: [],
-                          },
-                        ],
-                      },
-                      {
-                        text: "Regional Partnership Specialist",
-                        children: [
-                          {
-                            text: "Partnerships Team",
-                            children: [],
-                          },
-                        ],
-                      },
-                    ],
+                    text: "România rămâne neutră",
+                    modal: "România rămâne neutră",
+                    image: "/images/pretext1.png",
+                    children: [],
                   },
                   {
-                    text: "Director, Policy Advisory Services, IRH Manager",
-                    children: [
-                      {
-                        text: "Policy and Programme Advisory Support Team",
-                        children: [],
-                      },
-                    ],
-                  },
-                  {
-                    text: "Operations Advisor",
-                    children: [
-                      {
-                        text: "Operations /Common Services Team",
-                        children: [],
-                      },
-                    ],
-                  },
-                ],
-              },
-              {
-                text: "Senior Economist",
-                children: [
-                  {
-                    text: "Executive Associate",
+                    text: "4 august 1916: alianța cu Antanta",
+                    modal: "4 august 1916: alianța cu Antanta",
+                    image: "/images/pretext1.png",
                     children: [],
                   },
                 ],
               },
               {
-                text: "Team Leader, Strategy and Partnership Team",
+                text: "15 august 1916: România intră în război",
+                modal: "15 august 1916: România intră în război",
+                image: "/images/pretext1.png",
                 children: [
                   {
-                    text: "Strategy and Partnership Team (SAP)",
+                    text: "Înfrângerea în fața armatei Puterilor Centrale",
+                    modal: "Înfrângerea în fața armatei Puterilor Centrale",
+                    image: "/images/pretext1.png",
+                    children: [
+                      {
+                        text: "23 mai 1916: ocuparea Bucureștelui",
+                        modal: "23 mai 1916: ocuparea Bucureștelui",
+                        image: "/images/pretext1.png",
+                        children: [
+                          {
+                            text: "Regele și guvernul se retrag la Iași",
+                            modal: "Regele și guvernul se retrag la Iași",
+                            image: "/images/pretext1.png",
+                            children: [
+                              {
+                                text: "2/3 din România sunt ocupate",
+                                modal: "2/3 din România sunt ocupate",
+                                image: "/images/pretext1.png",
+                                children: [],
+                              },
+                            ],
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                text: "1917: reorganizarea armaiei române",
+                modal: "1917: reorganizarea armaiei române",
+                image: "/images/pretext1.png",
+                children: [
+                  {
+                    text: "Victorii la Mărăști, Mărășești, Oituz",
+                    modal: "Victorii la Mărăști, Mărășești, Oituz",
+                    image: "/images/pretext1.png",
+                    children: [],
+                  },
+                ],
+              },
+              {
+                text: "octombrie 1917: revoluția bolșevică din Rusia",
+                modal: "octombrie 1917: revoluția bolșevică din Rusia",
+                image: "/images/pretext1.png",
+                children: [
+                  {
+                    text: "Armata țaristă se destramă",
+                    modal: "Armata țaristă se destramă",
+                    image: "/images/pretext1.png",
+                    children: [
+                      {
+                        text: "Rusia încheie armistițiu cu Puterile Centrale",
+                        modal: "Rusia încheie armistițiu cu Puterile Centrale",
+                        image: "/images/pretext1.png",
+                        children: [],
+                      },
+                    ],
+                  },
+                ],
+              },
+              {
+                text: "24 aprilie 1918: România capitulează",
+                modal: "24 aprilie 1918: România capitulează",
+                image: "/images/pretext1.png",
+                children: [
+                  {
+                    text: "Cedarea Dobrogei și Munților Carpați",
+                    modal: "Cedarea Dobrogei și Munților Carpați",
+                    image: "/images/pretext1.png",
+                    children: [],
+                  },
+                  {
+                    text: "Concesionarea petrolului, gazului și pădurilor",
+                    modal: "Concesionarea petrolului, gazului și pădurilor",
+                    image: "/images/pretext1.png",
+                    children: [],
+                  },
+                ],
+              },
+              {
+                text: "28 octombrie 1918: România reîntră în război de partea Antantei",
+                modal: "28 octombrie 1918: România reîntră în război de partea Antantei",
+                image: "/images/pretext1.png",
+                children: [
+                  {
+                    text: "29 octombrie 1918: Germania încheie armistițiu cu Antanta",
+                    modal: "29 octombrie 1918: Germania încheie armistițiu cu Antanta",
+                    image: "/images/pretext1.png",
                     children: [],
                   },
                 ],
@@ -331,7 +436,8 @@ let temeIstoria = [
             id: "1",
             name: "Neutralitate - Politica unui stat de a nu se implica în conflict militar, păstrându-și suveranitatea și independența",
             anul: "Neutralitate",
-            eveniment: "Politica unui stat de a nu se implica în conflict militar, păstrându-și suveranitatea și independența",
+            eveniment:
+              "Politica unui stat de a nu se implica în conflict militar, păstrându-și suveranitatea și independența",
             img: "/images/abstract01.jpg",
             detaliiPath: "/subtema1",
           },

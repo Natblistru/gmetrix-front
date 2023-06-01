@@ -5,14 +5,14 @@ const DiagramTable = (props) => {
 
   const classes = 'tree ' + props.className;
   let diagramData = props.list;
-  const clickDiagramItemHandler = (text) => {
-    console.log(text);
-    props.openModal(text);
+  const clickDiagramItemHandler = (modal,image) => {
+
+    props.openModal(modal,image);
  
   }
   const renderDiagramItems = (items) => {
     return items.map((item) => (
-      <DiagramItem key={item.text} text={item.text} onClick={clickDiagramItemHandler}>
+      <DiagramItem key={item.text} text={item.text} modal={item.modal} img={item.image} onClick={clickDiagramItemHandler}>
         {item.children.length > 0 && renderDiagramItems(item.children)}
       </DiagramItem>
     ));

@@ -5,10 +5,12 @@ import Modal from './Modal';
 const ParentComponent = (props) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalText, setModalText] = useState('');
+  const [modalImg, setModalImg] = useState('');
 
-  const openModal = (text) => {
+  const openModal = (text,img) => {
     setIsModalOpen(true);
     setModalText(text);
+    setModalImg(img)
   };
 
   const closeModal = () => {
@@ -19,7 +21,7 @@ const ParentComponent = (props) => {
   return (
     <div>
       <DiagramTable {...props} openModal={openModal} />
-      {isModalOpen && <Modal closeModal={closeModal} text={modalText}/>}
+      {isModalOpen && <Modal closeModal={closeModal} text={modalText} img={modalImg}/>}
     </div>
   );
 };

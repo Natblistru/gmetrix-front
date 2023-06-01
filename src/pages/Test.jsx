@@ -14,13 +14,9 @@ const Test = (props) => {
   const { list } = props.location.state;
   const [selectedValue, setSelectedValue] = useState("");
   const [correctAnswer, setCorrectAnswer] = useState(null);
-  const [buttonDisabled, setButtonDisabled] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const handleRadioButtonChange = (value) => {
-    if (buttonDisabled) {
-      return; // Игнорируем события клика после нажатия на кнопку
-    }
     setSelectedValue(value);
   };
   const checkAnswer = () => {
@@ -29,7 +25,6 @@ const Test = (props) => {
     } else {
       setCorrectAnswer(false);
     }
-    setButtonDisabled(true);
   };
   const additionalContent = (
     <div className="answer-result">
@@ -51,7 +46,6 @@ const Test = (props) => {
     setCurrentIndex((list.quizArray.length-1)==currentIndex? 0 : currentIndex + 1); 
     setSelectedValue("");
     setCorrectAnswer(null);
-    setButtonDisabled(false);
   };
   return (
     <Wrapper>
@@ -85,13 +79,14 @@ const Test = (props) => {
             );
           })}
         </ItemText>
-        <button onClick={checkAnswer} className="btn-test" disabled={buttonDisabled}>
+        {correctAnswer === null && (
+        <button onClick={checkAnswer} className="btn-test">
           Verifică răspunsul
-        </button>
+        </button>)}
       </ItemAccordeon>
 
       {correctAnswer !== null && (
-        <ItemAccordeon titlu={`Rezolvare sarcinii (${currentIndex + 1}/${list.quizArray.length}):`}>
+        <ItemAccordeon titlu={`Rezolvarea sarcinii (${currentIndex + 1}/${list.quizArray.length}):`}>
           <ItemText classNameChild="">
             {list.quizArray[currentIndex].answers.map((answer,idx) => (
               <RadioButton

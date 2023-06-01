@@ -334,6 +334,9 @@ a:focus,
   padding-bottom: 0px;
   position: relative;
 }
+.schema-recapitulativa {
+  margin: 0 -100px 4em;
+}
 
 .block.blockPB50 .accordion.active ~ .container {
   margin-bottom: -19px;
@@ -465,6 +468,7 @@ a:focus,
   margin: 0 0.2em 0.5em;
   padding: 0.2em 0.5em;
   position: relative;
+  background-color: #edf2fb;
 }
 
 .tree code:hover {
@@ -638,6 +642,11 @@ button.slick-next::before {
   -ms-user-select: none;
   user-select: none;
   margin: 0 2em 2em;
+}
+
+.btn-test.disable {
+  background: #bbd0ff;
+  cursor: not-allowed;
 }
 
 .option-input {
