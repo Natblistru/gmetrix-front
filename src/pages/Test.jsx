@@ -57,6 +57,7 @@ const Test = (props) => {
         titlu={correctAnswer === null ? `Cerințele sarcinii (${currentIndex + 1}/${list.quizArray.length}):` : `Rezultat (${currentIndex + 1}/${list.quizArray.length}):`}
         correctAnswer={correctAnswer}
         additionalContent={additionalContent}
+        open={true}
       >
         <ItemText
           classNameChild={
@@ -86,7 +87,7 @@ const Test = (props) => {
       </ItemAccordeon>
 
       {correctAnswer !== null && (
-        <ItemAccordeon titlu={`Rezolvarea sarcinii (${currentIndex + 1}/${list.quizArray.length}):`}>
+        <ItemAccordeon titlu={`Rezolvarea sarcinii (${currentIndex + 1}/${list.quizArray.length}):`} open={true}>
           <ItemText classNameChild="">
             {list.quizArray[currentIndex].answers.map((answer,idx) => (
               <RadioButton

@@ -19,24 +19,24 @@ const ListSubAccordeon = (props) => {
   };
   return (
     <div className={classes}>
-      <ItemAccordeon titlu="La aceasta lectie vom afla:" {...props}>
+      <ItemAccordeon titlu="La aceasta lectie vom afla:" {...props} open={true}>
         <ItemList {...props} list={arraySubject} />
       </ItemAccordeon>
       <ItemAccordeon
         titlu="Studiaza interactiv"
         {...props}
-        className="blockPB50"
+        className="blockPB50" open={true}
       >
         <SimpleSlider {...props} images={arraySubject[currentSubject].images} />
         <Audio path={arraySubject[currentSubject].audio} />
         <ProgressSteps list={arraySubject} onClick={clickSubjectHandler} />
       </ItemAccordeon>
       {arraySubject?.map((subj) => (
-        <ItemAccordeon titlu={subj.name} {...props} key={subj.id}>
+        <ItemAccordeon titlu={subj.name} {...props} key={subj.id} open={false}>
           <ItemText {...props}>{subj.raspuns}</ItemText>
         </ItemAccordeon>
       ))}
-      <ItemAccordeon titlu="Evaluare (teste)" {...props}>
+      <ItemAccordeon titlu="Evaluare (teste)" {...props} open={true}>
         <ItemTable {...props} list={arrayTests} />
       </ItemAccordeon>
     </div>

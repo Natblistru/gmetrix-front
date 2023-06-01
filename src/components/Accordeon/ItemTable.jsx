@@ -23,10 +23,11 @@ const TableRow = (props) => {
 const ItemTable = (props) => {
   const data = props.list;
   const classes = "table subjects-container " + props.className;
+
   return (
     <div className={classes}>
       {data.map((rowData, idx) => {
-        console.log(rowData);
+        rowData.quizArray.forEach((item)=> item.answers.sort(() => Math.random() - 0.5));
         return <TableRow rowData={rowData} ind={idx} key={rowData.id}/>;
       })}
     </div>

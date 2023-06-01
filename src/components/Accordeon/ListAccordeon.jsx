@@ -30,24 +30,24 @@ const ListAccordeon = (props) => {
 
   return (
     <div className={classes}>
-      <ItemAccordeon titlu="Teorie" {...props} >
+      <ItemAccordeon titlu="Teorie" {...props} open={true}>
         <ItemList {...props} list={titleList} />
       </ItemAccordeon>
-      <ItemAccordeon titlu="Schemă recapitulativă" {...props} className="schema-recapitulativa">
+      <ItemAccordeon titlu="Schemă recapitulativă" {...props} className="schema-recapitulativa" open={true}>
          <ParentComponent className="subjects-container" list={diagramData}/>
         {/* <DiagramTable className="subjects-container" list={diagramData}/> */}
       </ItemAccordeon>
       <div id="ani"></div>
-      <ItemAccordeon titlu="Repere cronoligice" {...props} >
+      <ItemAccordeon titlu="Repere cronoligice" {...props} open={true}>
         <ItemList {...props} list={repereList} />
         <Link to={{ pathname: "/flipCards", state: { list: repereList, anchor: "ani" } }} className="custom-link">Exerseaza</Link>
       </ItemAccordeon>
       <div id="termeni"></div>
-      <ItemAccordeon titlu="Termeni-cheie" {...props} >
+      <ItemAccordeon titlu="Termeni-cheie" {...props} open={true}>
         <ItemList {...props} list={termeniList} />
         <Link to={{ pathname: "/flipCards", state: { list: termeniList, anchor: "termeni" } }} className="custom-link">Exerseaza</Link>
       </ItemAccordeon>
-      <ItemAccordeon titlu="Aplicații (teste de examen)" {...props} >
+      <ItemAccordeon titlu="Aplicații (teste de examen)" {...props} open={true}>
         <ItemList {...props} list={aplicatiiList} />
       </ItemAccordeon>
     </div>

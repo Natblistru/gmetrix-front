@@ -212,54 +212,108 @@ let temeIstoria = [
                 name: "Verifică corectitudinea afirmației",
                 complexity: "simplu",
                 path: "/test1",
+                quizArray: [
+                  {
+                    id: "1",
+                    answers: [],
+                  },
+                ],
               },
               {
                 id: "3",
                 name: "Completează propoziția",
                 complexity: "simplu",
                 path: "/test1",
+                quizArray: [
+                  {
+                    id: "1",
+                    answers: [],
+                  },
+                ],
               },
               {
                 id: "4",
                 name: "Stabilește consecințele evenimentelor",
                 complexity: "moderat",
                 path: "/test1",
+                quizArray: [
+                  {
+                    id: "1",
+                    answers: [],
+                  },
+                ],
               },
               {
                 id: "5",
                 name: "Completează enunțurile",
                 complexity: "moderat",
                 path: "/test1",
+                quizArray: [
+                  {
+                    id: "1",
+                    answers: [],
+                  },
+                ],
               },
               {
                 id: "6",
                 name: "Găsește afirmația greșită",
                 complexity: "simplu",
                 path: "/test1",
+                quizArray: [
+                  {
+                    id: "1",
+                    answers: [],
+                  },
+                ],
               },
               {
                 id: "7",
                 name: "Caracteristicile evenimentelor",
                 complexity: "moderat",
                 path: "/test1",
+                quizArray: [
+                  {
+                    id: "1",
+                    answers: [],
+                  },
+                ],
               },
               {
                 id: "8",
                 name: "Elaborează un fragment de text",
                 complexity: "dificil",
                 path: "/test1",
+                quizArray: [
+                  {
+                    id: "1",
+                    answers: [],
+                  },
+                ],
               },
               {
                 id: "9",
                 name: "Succesiunea cronologică a evenimentelor",
                 complexity: "moderat",
                 path: "/test1",
+                quizArray: [
+                  {
+                    id: "1",
+                    answers: [],
+                  },
+                ],
               },
               {
                 id: "10",
                 name: "Exerciții de pregătire la tema",
                 complexity: "moderat",
                 path: "/test1",
+                quizArray: [
+                  {
+                    id: "1",
+                    answers: [],
+                  },
+                ],
               },
             ],
           },
@@ -289,7 +343,8 @@ let temeIstoria = [
             children: [
               {
                 text: "1914: Primul Război Mondial izbucnește în Balcani",
-                modal: "La 28 iunie 1914, Arhiducele Franz Ferdinand, moștenitorul tronului austro-ungar, a fost asasinat în Sarajevo. Austro-Ungaria a declarat război Serbiei.",
+                modal:
+                  "La 28 iunie 1914, Arhiducele Franz Ferdinand, moștenitorul tronului austro-ungar, a fost asasinat în Sarajevo. Austro-Ungaria a declarat război Serbiei.",
                 image: "/images/pretext1.png",
                 children: [
                   {
@@ -394,12 +449,14 @@ let temeIstoria = [
               },
               {
                 text: "28 octombrie 1918: România reîntră în război de partea Antantei",
-                modal: "28 octombrie 1918: România reîntră în război de partea Antantei",
+                modal:
+                  "28 octombrie 1918: România reîntră în război de partea Antantei",
                 image: "/images/pretext1.png",
                 children: [
                   {
                     text: "29 octombrie 1918: Germania încheie armistițiu cu Antanta",
-                    modal: "29 octombrie 1918: Germania încheie armistițiu cu Antanta",
+                    modal:
+                      "29 octombrie 1918: Germania încheie armistițiu cu Antanta",
                     image: "/images/pretext1.png",
                     children: [],
                   },

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 const ItemAccordeon = (props) => {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(props.open===null? true : props.open);
 
   const toggleAccordion = () => {
     setIsOpen(!isOpen);
@@ -12,7 +12,6 @@ const ItemAccordeon = (props) => {
   const togglAccordion = () => {
     setIsOpen(!isOpen);
   };
-  console.log(props.correctAnswer)
   return (
     <section className={classes}>
       <button
