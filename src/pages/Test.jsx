@@ -74,7 +74,7 @@ const Test = (props) => {
                 key={idx}
                 value={answer.text}
                 checked={selectedValue === answer.text}
-                onChange={handleRadioButtonChange}
+                onChange={correctAnswer === null? handleRadioButtonChange : () => {}}
                 correctAnswer={list.quizArray[currentIndex].correctAnswer}
               />
             );
