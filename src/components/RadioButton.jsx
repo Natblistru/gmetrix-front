@@ -10,7 +10,7 @@ const RadioButton = ({ value, checked, onChange, correctAnswer }) => {
 
   return (
     <div className={`ns-radio-btn ${checked ? 'checkedRadio' : ''}`} onClick={handleClick}>
-      <input type="radio" value={value} checked={checked} onChange={() => {}} className="option-input"/>
+      <input type="radio" value={value} checked={checked} onChange={() => {}} className="option-input radio"/>
       <span>{value}</span>
      </div>
   );

@@ -662,7 +662,6 @@ button.slick-next::before {
   transition: all 0.15s ease-out 0s;
   /*! background: #cbd1d8; */
   border: 2px solid #76a900;
-  border-radius: 50%;
   color: #fff;
   cursor: pointer;
   display: inline-block;
@@ -671,6 +670,10 @@ button.slick-next::before {
   position: relative;
   z-index: 1000;
 }
+.option-input.radio {
+  border-radius: 50%;
+}
+
 .option-input:hover {
   background: #9faab7;
 }
@@ -704,9 +707,7 @@ button.slick-next::before {
 .option-input.radio {
   border-radius: 50%;
 }
-.option-input.radio::after {
-  border-radius: 50%;
-}
+
 div.ns-radio-btn {
   line-height: 1.5;
  }

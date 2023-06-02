@@ -68,6 +68,7 @@ let temeIstoria = [
                 name: "Alege afirmația corectă",
                 complexity: "simplu",
                 path: "/test1",
+                type: "quiz",
                 cerinte: "Alege afirmația corectă",
                 quizArray: [
                   {
@@ -209,15 +210,42 @@ let temeIstoria = [
               },
               {
                 id: "2",
-                name: "Verifică corectitudinea afirmației",
+                name: "Verifică corectitudinea afirmațiilor",
                 complexity: "simplu",
                 path: "/test1",
+                type: "check",
                 quizArray: [
                   {
                     id: "1",
-                    answers: [],
+                    answers: [
+                      {
+                        text: "România a intrat în Primul Război Mondial în anul 1916",
+                        correct: true,
+                        rezolvare:
+                          "România a intrat în Primul Război Mondial în anul 1916",
+                      },
+                      {
+                        text: "Regele României în timpul Primului Război Mondial a fost Carol I",
+                        correct: false,
+                        rezolvare:
+                          "Regele României în timpul Primului Război Mondial nu a fost Carol I",
+                      },
+                      {
+                        text: "România a semnat Tratatul de la Trianon, care a pus capăt participării sale în Primul Război Mondial",
+                        correct: true,
+                        rezolvare:
+                          "România a semnat Tratatul de la Trianon, care a pus capăt participării sale în Primul Război Mondial",
+                      },
+                      {
+                        text: "Motivul principal pentru intrarea României în Primul Război Mondial a fost dorința de a-și extinde teritoriile",
+                        correct: false,
+                        rezolvare:
+                          "Motivul principal pentru intrarea României în Primul Război Mondial a fost dorința de a susține Antanta",
+                      },
+                    ],
+                    correctAnswer: "România a intrat în Primul Război Mondial în anul 1916",
                   },
-                ],
+                ]
               },
               {
                 id: "3",
@@ -227,9 +255,14 @@ let temeIstoria = [
                 quizArray: [
                   {
                     id: "1",
-                    answers: [],
-                  },
-                ],
+                    answers: [
+                      {
+                        id: "1",
+                        answers: [],
+                      },
+                    ],
+                  }
+                ]
               },
               {
                 id: "4",

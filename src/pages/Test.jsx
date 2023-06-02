@@ -4,7 +4,8 @@ import temeIstoriArray from "../data/temeIstoria";
 import Breadcrumb from "../components/Breadcrumb";
 import Wrapper from "../components/Wrapper";
 import TitleBox from "../components/TitleBox";
-import TestQuiz from  "../components/Teste/TestQuiz"
+import TestQuiz from  "../components/Teste/TestQuiz";
+import TestCheck from  "../components/Teste/TestCheck";
 import "../index.css";
 
 const TestWrapper = (props) => {
@@ -41,14 +42,26 @@ const TestWrapper = (props) => {
         list={temeIstoriArray[0].subtitles[0].subjects[0].breadcrumb}
       />
       <TitleBox className="teme-container">{list.name}</TitleBox>
-      <TestQuiz
-        list={list}
-        currentIndex={currentIndex}
-        correctAnswer={correctAnswer}
-        setCorrectAnswer={setCorrectAnswer}
-        additionalContent={additionalContent}
-        handleTryAgain={handleTryAgain}
-      />
+      {list.type === "quiz" && (
+        <TestQuiz
+          list={list}
+          currentIndex={currentIndex}
+          correctAnswer={correctAnswer}
+          setCorrectAnswer={setCorrectAnswer}
+          additionalContent={additionalContent}
+          handleTryAgain={handleTryAgain}
+        />
+      )}
+      {list.type === "check" && (
+        <TestCheck
+          list={list}
+          currentIndex={currentIndex}
+          correctAnswer={correctAnswer}
+          setCorrectAnswer={setCorrectAnswer}
+          additionalContent={additionalContent}
+          handleTryAgain={handleTryAgain}
+        />
+      )}      
     </Wrapper>
   );
 };

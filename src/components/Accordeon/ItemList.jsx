@@ -5,8 +5,8 @@ const ItemList = (props) => {
   const classes = "subjects-container " + props.className;
   return (
     <div className={classes}>
-      {listItems?.map((subtitle) => (
-        <div key={subtitle.id} className="subject-item">
+      {listItems?.map((subtitle,idx) => (
+        <div key={idx} className="subject-item">
           <div className="title-item">
             <div className="num-item">{subtitle.id}.</div>
             <div className="name-item">
