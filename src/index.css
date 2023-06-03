@@ -772,3 +772,20 @@ div.ns-radio-btn {
   padding-left: 17px;
   font-size: 90%;
 }
+.wrapperChrono {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.cardChrono {
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  margin: 10px;
+  cursor: grab;
+  width: 100%;
+  padding: 15px;
+  box-shadow: 1px 1px 16px #ccc;
+}

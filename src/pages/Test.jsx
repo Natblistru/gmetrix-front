@@ -6,6 +6,7 @@ import Wrapper from "../components/Wrapper";
 import TitleBox from "../components/TitleBox";
 import TestQuiz from  "../components/Teste/TestQuiz";
 import TestCheck from  "../components/Teste/TestCheck";
+import TestCardChrono from "../components/Teste/TestCardChrono";
 import "../index.css";
 
 const TestWrapper = (props) => {
@@ -61,7 +62,17 @@ const TestWrapper = (props) => {
           additionalContent={additionalContent}
           handleTryAgain={handleTryAgain}
         />
-      )}      
+      )}  
+      {list.type === "chrono" && (
+        <TestCardChrono
+          list={list}
+          currentIndex={currentIndex}
+          correctAnswer={correctAnswer}
+          setCorrectAnswer={setCorrectAnswer}
+          additionalContent={additionalContent}
+          handleTryAgain={handleTryAgain}
+        />
+      )}     
     </Wrapper>
   );
 };

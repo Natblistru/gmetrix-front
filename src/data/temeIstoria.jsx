@@ -328,11 +328,23 @@ let temeIstoria = [
                 id: "9",
                 name: "Succesiunea cronologică a evenimentelor",
                 complexity: "moderat",
+                type: "chrono",
                 path: "/test1",
                 quizArray: [
                   {
                     id: "1",
-                    answers: [],
+                    answers: [
+                      { id: "1", text: "România a intrat în Primul Război Mondial" },
+                      { id: "2", text: "România a semnat Tratatul de la București" },
+                      { id: "3", text: "România a câștigat o victorie importantă în Bătălia de la Mărăști" },
+                      { id: "4", text: "Ocuparea Bucureștelui" },
+                    ],
+                    correctAnswer:[
+                      { id: "1", text: "România a intrat în Primul Război Mondial", anul: "1916" },
+                      { id: "2", text: "Ocuparea Bucureștelui", anul: "23 mai 1916"},
+                      { id: "3", text: "România a câștigat o victorie importantă în Bătălia de la Mărăști", anul: "1917" },
+                      { id: "4", text:  "România a semnat Tratatul de la București", anul: "24 aprilie 1918"},
+                    ],
                   },
                 ],
               },

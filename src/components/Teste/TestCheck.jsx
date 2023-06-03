@@ -22,7 +22,6 @@ const TestCheck = ({
     } else {
       updatedValues.push(value);
     }
-    console.log(updatedValues);
     setSelectedValues(updatedValues);
   };
 
