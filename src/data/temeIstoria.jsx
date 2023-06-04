@@ -217,6 +217,7 @@ let temeIstoria = [
                 quizArray: [
                   {
                     id: "1",
+                    cerinte: "Persoana reprezentată în imagine:",
                     answers: [
                       {
                         text: "România a intrat în Primul Război Mondial în anul 1916",

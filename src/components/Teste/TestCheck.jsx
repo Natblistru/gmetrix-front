@@ -3,6 +3,7 @@ import CheckBox from "../CheckBox";
 
 import ItemAccordeon from "../Accordeon/ItemAccordeon";
 import ItemText from "../Accordeon/ItemText";
+import Puzzle from "../Puzzle";
 
 const TestCheck = ({
   list,
@@ -59,6 +60,8 @@ const TestCheck = ({
               : " incorrect"
           }
         >
+          <p>{list.quizArray[currentIndex].cerinte}</p>
+          <Puzzle />
           {list.quizArray[currentIndex].answers.map((answer, idx) => {
             return (
               <CheckBox
