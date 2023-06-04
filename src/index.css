@@ -789,3 +789,16 @@ div.ns-radio-btn {
   padding: 15px;
   box-shadow: 1px 1px 16px #ccc;
 }
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+}
+.nav-link {
+  text-align: center;
+  cursor: pointer;
+}
+.nav-link.invizible{
+  text-align: center;
+  cursor: pointer;
+  visibility: hidden;
+}

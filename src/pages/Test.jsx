@@ -7,7 +7,9 @@ import TitleBox from "../components/TitleBox";
 import TestQuiz from  "../components/Teste/TestQuiz";
 import TestCheck from  "../components/Teste/TestCheck";
 import TestCardChrono from "../components/Teste/TestCardChrono";
+import ListNavigatie from "../components/ListNavigatie";
 import "../index.css";
+
 
 const TestWrapper = (props) => {
   const { list } = props.location.state;
@@ -72,7 +74,8 @@ const TestWrapper = (props) => {
           additionalContent={additionalContent}
           handleTryAgain={handleTryAgain}
         />
-      )}     
+      )}
+      <ListNavigatie list={list}/>     
     </Wrapper>
   );
 };
