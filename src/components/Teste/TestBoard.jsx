@@ -90,16 +90,26 @@ const TestBoard = ({
   // };
 
   const checkAnswer = () => {
-    const selValues = Object.values(columns)
-      .filter(column => column.name === list.coloanaRaspuns)
-      .map(column => column.items.map(item => item.content))
-      .flat().sort();
-    setSelectedValues(selValues)
+    let selectedValuesString="";
+    let correctValuesString="";
     const correctValues = list.quizArray[currentIndex].correctAnswer.map(
       (answer) => answer.text
     );
-    const selectedValuesString = selValues.join(",");
-    const correctValuesString = correctValues.sort().join(","); 
+    let selValues = Object.values(columns)
+      .filter(column => column.name === list.coloanaRaspuns)
+      .map(column => column.items.map(item => item.content))
+      .flat();
+    if(list.type!=="chrono" && list.type!=="chronoDuble") {
+      selectedValuesString = selValues.sort().join(",");
+      correctValuesString = correctValues.sort().join(","); 
+    } else {
+      selectedValuesString = selValues.join(",");
+      correctValuesString = correctValues.join(",");       
+    }
+    setSelectedValues(selValues)
+
+    // selectedValuesString = selValues.join(",");
+    // correctValuesString = correctValues.sort().join(","); 
     setCorrectAnswer(selectedValuesString === correctValuesString);
     setIsDragDisabled(true);
   };
@@ -162,6 +172,7 @@ const TestBoard = ({
               index={index}
               column={column}
               isDragDisabled={isDragDisabled}
+              typeList={list.type}
               style={{
                 display: "flex",
                 flexDirection: "column",

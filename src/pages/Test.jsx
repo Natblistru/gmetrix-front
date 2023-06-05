@@ -65,17 +65,7 @@ const TestWrapper = (props) => {
           handleTryAgain={handleTryAgain}
         />
       )}  
-      {list.type === "chrono" && (
-        <TestCardChrono
-          list={list}
-          currentIndex={currentIndex}
-          correctAnswer={correctAnswer}
-          setCorrectAnswer={setCorrectAnswer}
-          additionalContent={additionalContent}
-          handleTryAgain={handleTryAgain}
-        />
-      )}
-      {(list.type === "cauze" || list.type === "consecinte" || list.type === "caracteristica") && (
+      {(list.type === "cauze" || list.type === "consecinte" || list.type === "caracteristica" || list.type === "chrono"|| list.type === "chronoDuble") && (
         <TestBoard
           list={list}
           currentIndex={currentIndex}

@@ -3,9 +3,9 @@ import AllTasks from "./AllTasks";
 import { Droppable } from "react-beautiful-dnd";
 import "../../index.css"
 
-const Column = React.memo(({ tasks, column, columnId, isDragDisabled }) => {
+const Column = React.memo(({ tasks, column, columnId, isDragDisabled, typeList }) => {
   return (
-    <div className="column is-marginless">
+    <div className={`column ${typeList==="chrono"? 'one' : ''}`}>
       <div className="card card-radius ">
         
         <div className="card-content">
@@ -24,7 +24,10 @@ const Column = React.memo(({ tasks, column, columnId, isDragDisabled }) => {
                   padding: 4,
                   flex: 1,
                   minWidth: 300,
-                  width: 300,
+                  width: typeList==="chrono"
+                     ? "100%"
+                     : "300px",
+                  // width: 300,
                   minHeight: 500
                 }}
               >

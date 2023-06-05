@@ -774,6 +774,9 @@ div.ns-radio-btn {
   display: flex;
   flex-direction: column;
 }
+.column.one {
+  width:100%;
+}
 .cursiv {
   padding-left: 17px;
   font-size: 90%;
