@@ -244,7 +244,7 @@ let temeIstoria = [
                           "Motivul principal pentru intrarea României în Primul Război Mondial a fost dorința de a susține Antanta",
                       },
                     ],
-                    correctAnswer: "România a intrat în Primul Război Mondial în anul 1916",
+                    correctAnswer: "",
                   },
                 ]
               },
@@ -267,13 +267,42 @@ let temeIstoria = [
               },
               {
                 id: "4",
-                name: "Stabilește consecințele evenimentelor",
+                name: "Stabilește cauzele evenimentelor",
                 complexity: "moderat",
+                type: "cauze",
                 path: "/test1",
+                coloane: ["Lista variantelor","Cauzele"],
+                coloanaRaspuns: "Cauzele",
                 quizArray: [
                   {
                     id: "1",
-                    answers: [],
+                    cerinte: "Din lista prezentată selectați cauzele I Război Mondial:",
+                    answers: [
+                      { id: "1", text: "Lupta pentru reîmpărțirea lumii" },
+                      { id: "2", text: "Conflictele politice între marile puteri: Germania, Franța, Marea Britanie, Austro-Ungaria și Rusia" },
+                      { id: "3", text: "Dezvoltarea economică inegală a marilor puteri de la sf. sec. XIX - începutul sec. XX" },
+                      { id: "4", text: "Creșterea rasismului și naționalismului în formele sale extreme" },
+                    ],
+                    correctAnswer:[
+                      { id: "1", text: "Lupta pentru reîmpărțirea lumii", anul: "1916" },
+                      { id: "2", text: "Conflictele politice între marile puteri: Germania, Franța, Marea Britanie, Austro-Ungaria și Rusia", anul: "23 mai 1916"},
+                      { id: "3", text: "Dezvoltarea economică inegală a marilor puteri de la sf. sec. XIX - începutul sec. XX", anul: "1917" },
+                    ],
+                  },
+                  {
+                    id: "2",
+                    cerinte: "Din lista prezentată selectați cauzele I Război Mondial:",
+                    answers: [
+                      { id: "1", text: "Lupta pentru reîmpărțirea lumii" },
+                      { id: "2", text: "Conflictele politice între marile puteri: Germania, Franța, Marea Britanie, Austro-Ungaria și Rusia" },
+                      { id: "3", text: "Dezvoltarea economică inegală a marilor puteri de la sf. sec. XIX - începutul sec. XX" },
+                      { id: "4", text: "Creșterea rasismului și naționalismului în formele sale extreme" },
+                    ],
+                    correctAnswer:[
+                      { id: "1", text: "Lupta pentru reîmpărțirea lumii", anul: "1916" },
+                      { id: "2", text: "Conflictele politice între marile puteri: Germania, Franța, Marea Britanie, Austro-Ungaria și Rusia", anul: "23 mai 1916"},
+                      { id: "3", text: "Dezvoltarea economică inegală a marilor puteri de la sf. sec. XIX - începutul sec. XX", anul: "1917" },
+                    ],
                   },
                 ],
               },

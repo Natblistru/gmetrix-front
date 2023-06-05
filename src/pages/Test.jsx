@@ -8,6 +8,7 @@ import TestQuiz from  "../components/Teste/TestQuiz";
 import TestCheck from  "../components/Teste/TestCheck";
 import TestCardChrono from "../components/Teste/TestCardChrono";
 import ListNavigatie from "../components/ListNavigatie";
+import TestBoard from "../components/Teste/TestBoard"
 import "../index.css";
 
 
@@ -15,7 +16,7 @@ const TestWrapper = (props) => {
   const { list } = props.location.state;
   const [correctAnswer, setCorrectAnswer] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
-
+console.log("test - ", correctAnswer);
   const additionalContent = (
     <div className="answer-result">
       <div
@@ -75,7 +76,18 @@ const TestWrapper = (props) => {
           handleTryAgain={handleTryAgain}
         />
       )}
-      <ListNavigatie list={list}/>     
+      {list.type === "cauze" && (
+        <TestBoard
+          list={list}
+          currentIndex={currentIndex}
+          correctAnswer={correctAnswer}
+          setCorrectAnswer={setCorrectAnswer}
+          additionalContent={additionalContent}
+          handleTryAgain={handleTryAgain}
+          DragDisable={false}
+        />
+      )}
+      <ListNavigatie list={list}  correctAnswer={correctAnswer} setCorrectAnswer={setCorrectAnswer}/>     
     </Wrapper>
   );
 };

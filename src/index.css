@@ -169,6 +169,12 @@ div.manual-item {
   font-size: 1.875em;
   line-height: 1.1;
 }
+.title-card {
+  padding: 10px;
+  text-align: center;
+  font-weight: 700;
+  
+}
 
 /*History*/
 .teme-container {
