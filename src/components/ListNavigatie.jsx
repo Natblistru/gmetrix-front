@@ -19,7 +19,7 @@ const ListNavigatie = (props) => {
             <p>Sarcina precedentă</p>
           </Link>
         </div>
-        <div className={`nav-link ${ultimul? 'invizible' : ''}`}>
+        <div className={`nav-link ${ultimul? 'invizible' : ''}`} onClick={NavigateHandle}>
         <Link to={{ pathname: props.list.path, state: { list: testUrmator, correctAnswer:null} }}>
             <img src={process.env.PUBLIC_URL + "/images/navigation-right.png"} alt="" />
             <p>Sarcina următoare</p>
