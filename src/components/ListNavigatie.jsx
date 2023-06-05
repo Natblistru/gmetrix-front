@@ -14,13 +14,13 @@ const ListNavigatie = (props) => {
   return (
     <div className="nav-container">
         <div className={`nav-link ${primul ? 'invizible' : ''}`} onClick={NavigateHandle}>
-          <Link to={{ pathname: props.list.path, state: { list: testPrecedent} }}>
+          <Link to={{ pathname: props.list.path, state: { list: testPrecedent, correctAnswer:null} }}>
             <img src={process.env.PUBLIC_URL + "/images/navigation-left.png"} alt="" />
             <p>Sarcina precedentă</p>
           </Link>
         </div>
         <div className={`nav-link ${ultimul? 'invizible' : ''}`}>
-        <Link to={{ pathname: props.list.path, state: { list: testUrmator} }}>
+        <Link to={{ pathname: props.list.path, state: { list: testUrmator, correctAnswer:null} }}>
             <img src={process.env.PUBLIC_URL + "/images/navigation-right.png"} alt="" />
             <p>Sarcina următoare</p>
           </Link>

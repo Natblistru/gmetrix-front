@@ -6,7 +6,6 @@ import Wrapper from "../components/Wrapper";
 import TitleBox from "../components/TitleBox";
 import TestQuiz from  "../components/Teste/TestQuiz";
 import TestCheck from  "../components/Teste/TestCheck";
-import TestCardChrono from "../components/Teste/TestCardChrono";
 import ListNavigatie from "../components/ListNavigatie";
 import TestBoard from "../components/Teste/TestBoard"
 import "../index.css";
@@ -16,6 +15,7 @@ const TestWrapper = (props) => {
   const { list } = props.location.state;
   const [correctAnswer, setCorrectAnswer] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
+  console.log(correctAnswer);
   const additionalContent = (
     <div className="answer-result">
       <div
