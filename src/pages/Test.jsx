@@ -75,7 +75,7 @@ const TestWrapper = (props) => {
           handleTryAgain={handleTryAgain}
         />
       )}
-      {(list.type === "cauze" || list.type === "consecinte") && (
+      {(list.type === "cauze" || list.type === "consecinte" || list.type === "caracteristica") && (
         <TestBoard
           list={list}
           currentIndex={currentIndex}
