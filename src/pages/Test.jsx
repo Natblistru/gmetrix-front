@@ -16,7 +16,6 @@ const TestWrapper = (props) => {
   const { list } = props.location.state;
   const [correctAnswer, setCorrectAnswer] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
-console.log("test - ", correctAnswer);
   const additionalContent = (
     <div className="answer-result">
       <div
@@ -76,7 +75,7 @@ console.log("test - ", correctAnswer);
           handleTryAgain={handleTryAgain}
         />
       )}
-      {list.type === "cauze" && (
+      {(list.type === "cauze" || list.type === "consecinte") && (
         <TestBoard
           list={list}
           currentIndex={currentIndex}

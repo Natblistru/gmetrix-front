@@ -308,13 +308,42 @@ let temeIstoria = [
               },
               {
                 id: "5",
-                name: "Completează enunțurile",
+                name: "Stabilește consecințele evenimentelor",
                 complexity: "moderat",
+                type: "consecinte",
                 path: "/test1",
+                coloane: ["Lista variantelor","Consecintele"],
+                coloanaRaspuns: "Consecintele",
                 quizArray: [
                   {
                     id: "1",
-                    answers: [],
+                    cerinte: "Din lista prezentată selectați consecințele I Război Mondial:",
+                    answers: [
+                      { id: "1", text: "Lupta pentru reîmpărțirea lumii" },
+                      { id: "2", text: "Conflictele politice între marile puteri: Germania, Franța, Marea Britanie, Austro-Ungaria și Rusia" },
+                      { id: "3", text: "Dezvoltarea economică inegală a marilor puteri de la sf. sec. XIX - începutul sec. XX" },
+                      { id: "4", text: "Creșterea rasismului și naționalismului în formele sale extreme" },
+                    ],
+                    correctAnswer:[
+                      { id: "1", text: "Lupta pentru reîmpărțirea lumii", anul: "1916" },
+                      { id: "2", text: "Conflictele politice între marile puteri: Germania, Franța, Marea Britanie, Austro-Ungaria și Rusia", anul: "23 mai 1916"},
+                      { id: "3", text: "Dezvoltarea economică inegală a marilor puteri de la sf. sec. XIX - începutul sec. XX", anul: "1917" },
+                    ],
+                  },
+                  {
+                    id: "2",
+                    cerinte: "Din lista prezentată selectați consecințele I Război Mondial:",
+                    answers: [
+                      { id: "1", text: "Lupta pentru reîmpărțirea lumii" },
+                      { id: "2", text: "Conflictele politice între marile puteri: Germania, Franța, Marea Britanie, Austro-Ungaria și Rusia" },
+                      { id: "3", text: "Dezvoltarea economică inegală a marilor puteri de la sf. sec. XIX - începutul sec. XX" },
+                      { id: "4", text: "Creșterea rasismului și naționalismului în formele sale extreme" },
+                    ],
+                    correctAnswer:[
+                      { id: "1", text: "Lupta pentru reîmpărțirea lumii", anul: "1916" },
+                      { id: "2", text: "Conflictele politice între marile puteri: Germania, Franța, Marea Britanie, Austro-Ungaria și Rusia", anul: "23 mai 1916"},
+                      { id: "3", text: "Dezvoltarea economică inegală a marilor puteri de la sf. sec. XIX - începutul sec. XX", anul: "1917" },
+                    ],
                   },
                 ],
               },
