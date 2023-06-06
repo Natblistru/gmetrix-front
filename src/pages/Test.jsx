@@ -1,21 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { withRouter } from "react-router-dom";
 import temeIstoriArray from "../data/temeIstoria";
 import Breadcrumb from "../components/Breadcrumb";
 import Wrapper from "../components/Wrapper";
 import TitleBox from "../components/TitleBox";
-import TestQuiz from  "../components/Teste/TestQuiz";
-import TestCheck from  "../components/Teste/TestCheck";
+import TestQuiz from "../components/Teste/TestQuiz";
+import TestCheck from "../components/Teste/TestCheck";
 import ListNavigatie from "../components/ListNavigatie";
-import TestBoard from "../components/Teste/TestBoard"
+import TestBoard from "../components/Teste/TestBoard";
 import "../index.css";
-
 
 const TestWrapper = (props) => {
   const { list } = props.location.state;
   const [correctAnswer, setCorrectAnswer] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
-  console.log(correctAnswer);
+  const testBoardRef = useRef(null);
   const additionalContent = (
     <div className="answer-result">
       <div
@@ -34,11 +33,17 @@ const TestWrapper = (props) => {
 
   const handleTryAgain = () => {
     setCurrentIndex(
-      (list.quizArray.length - 1) === currentIndex ? 0 : currentIndex + 1
+      list.quizArray.length - 1 === currentIndex ? 0 : currentIndex + 1
     );
     setCorrectAnswer(null);
   };
 
+  const handleClearTestBoard = (testId) => {
+    if (testBoardRef.current && testBoardRef.current.handleTryAgainClear) {
+      // console.log("testBoardRef",testBoardRef.current);
+      testBoardRef.current.handleTryAgainClear(testId);
+    }
+  };
   return (
     <Wrapper>
       <Breadcrumb
@@ -64,8 +69,12 @@ const TestWrapper = (props) => {
           additionalContent={additionalContent}
           handleTryAgain={handleTryAgain}
         />
-      )}  
-      {(list.type === "cauze" || list.type === "consecinte" || list.type === "caracteristica" || list.type === "chrono"|| list.type === "chronoDuble") && (
+      )}
+      {(list.type === "cauze" ||
+        list.type === "consecinte" ||
+        list.type === "caracteristica" ||
+        list.type === "chrono" ||
+        list.type === "chronoDuble") && (
         <TestBoard
           list={list}
           currentIndex={currentIndex}
@@ -74,9 +83,15 @@ const TestWrapper = (props) => {
           additionalContent={additionalContent}
           handleTryAgain={handleTryAgain}
           DragDisable={false}
+          ref={testBoardRef}
         />
       )}
-      <ListNavigatie list={list}  correctAnswer={correctAnswer} setCorrectAnswer={setCorrectAnswer}/>     
+      <ListNavigatie
+        list={list}
+        correctAnswer={correctAnswer}
+        setCorrectAnswer={setCorrectAnswer}
+        handleClearTestBoard={handleClearTestBoard}
+      />
     </Wrapper>
   );
 };

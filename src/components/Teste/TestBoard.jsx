@@ -1,95 +1,92 @@
-import React, { useState } from "react";
+import React, { useState, forwardRef, useImperativeHandle } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
 import Column from "../DragAndDrop/Column";
-// import DrgDrpContext from "./provider/DragDropProvider";
 import { v4 as uuidv4 } from "uuid";
+import temeIstoriArray from "../../data/temeIstoria";
+import getColumnsFromBackend from "../../utils/getColumnsFromBackend";
+
+
 
 import ItemAccordeon from "../Accordeon/ItemAccordeon";
 import ItemText from "../Accordeon/ItemText";
 
-const TestBoard = ({
-  list,
-  currentIndex,
-  correctAnswer,
-  setCorrectAnswer,
-  additionalContent,
-  handleTryAgain,
-  DragDisable
-}) => {
-  const [selectedValues, setSelectedValues] = useState([]);
+const TestBoard = forwardRef(
+  (
+    {
+      list,
+      currentIndex,
+      correctAnswer,
+      setCorrectAnswer,
+      additionalContent,
+      handleTryAgain,
+      DragDisable
+    },
+    ref
+  ) => {
+    const [selectedValues, setSelectedValues] = useState([]);
+    const [data, setData] = useState([]);
+    const [isDragDisabled, setIsDragDisabled] = useState(DragDisable);
 
-  const [data, setData] = useState([]);
-  const [isDragDisabled, setIsDragDisabled] = useState(DragDisable);
+    const itemsFromBackend = [];
+    list.quizArray[currentIndex].answers.forEach((answer) => {
+      itemsFromBackend.push({ id: uuidv4(), content: answer.text });
+    });
 
-  const itemsFromBackend=[];
-  list.quizArray[currentIndex].answers.forEach((answer) => {
-    itemsFromBackend.push({ id: uuidv4(), content: answer.text });
-  });
-
-  const columnsFromBackend = list.coloane.reduce(
-    (columns, name) => {
+    const columnsFromBackend = list.coloane.reduce((columns, name) => {
       columns[uuidv4()] = {
         name: name,
         items: []
       };
       return columns;
-    },
-    {}
-  );
-  const columnIds = Object.keys(columnsFromBackend);
-  columnsFromBackend[columnIds[0]].items = itemsFromBackend;
-  const [columns, setColumns] = useState(columnsFromBackend);
+    }, {});
 
-  const onDragEnd = (result, columns, setColumns) => {
-    if (!result.destination) return;
-    const { source, destination } = result;
+    const columnIds = Object.keys(columnsFromBackend);
+    columnsFromBackend[columnIds[0]].items = itemsFromBackend;
+    const [columns, setColumns] = useState(columnsFromBackend);
 
-    if (source.droppableId !== destination.droppableId) {
-      const sourceColumn = columns[source.droppableId];
-      const destColumn = columns[destination.droppableId];
-      const sourceItems = [...sourceColumn.items];
-      const destItems = [...destColumn.items];
-      const [removed] = sourceItems.splice(source.index, 1);
-      destItems.splice(destination.index, 0, removed);
-      setColumns({
-        ...columns,
-        [source.droppableId]: {
-          ...sourceColumn,
-          items: sourceItems,
-        },
-        [destination.droppableId]: {
-          ...destColumn,
-          items: destItems,
-        },
-      });
-    } else {
-      const column = columns[source.droppableId];
+    // let cc = getColumnsFromBackend(list.id);
+    // console.log("cc",cc);
 
-      const copiedItems = [...column.items];
-      const [removed] = copiedItems.splice(source.index, 1);
-      copiedItems.splice(destination.index, 0, removed);
-      setColumns({
-        ...columns,
-        [source.droppableId]: {
-          ...column,
-          items: copiedItems,
-        },
-      });
-    }
-  };
 
-  // const handleCheckBoxChange = (value) => {
-  //   const updatedValues = [...selectedValues];
-  //   if (updatedValues.includes(value)) {
-  //     const index = updatedValues.indexOf(value);
-  //     updatedValues.splice(index, 1);
-  //   } else {
-  //     updatedValues.push(value);
-  //   }
-  //   setSelectedValues(updatedValues);
-  // };
+    const onDragEnd = (result, columns, setColumns) => {
+      if (!result.destination) return;
+      const { source, destination } = result;
 
-  const checkAnswer = () => {
+      if (source.droppableId !== destination.droppableId) {
+        const sourceColumn = columns[source.droppableId];
+        const destColumn = columns[destination.droppableId];
+        const sourceItems = [...sourceColumn.items];
+        const destItems = [...destColumn.items];
+        const [removed] = sourceItems.splice(source.index, 1);
+        destItems.splice(destination.index, 0, removed);
+        setColumns({
+          ...columns,
+          [source.droppableId]: {
+            ...sourceColumn,
+            items: sourceItems
+          },
+          [destination.droppableId]: {
+            ...destColumn,
+            items: destItems
+          }
+        });
+      } else {
+        const column = columns[source.droppableId];
+
+        const copiedItems = [...column.items];
+        const [removed] = copiedItems.splice(source.index, 1);
+        copiedItems.splice(destination.index, 0, removed);
+        setColumns({
+          ...columns,
+          [source.droppableId]: {
+            ...column,
+            items: copiedItems
+          }
+        });
+      }
+    };
+
+    const checkAnswer = () => {
     let selectedValuesString="";
     let correctValuesString="";
     const correctValues = list.quizArray[currentIndex].correctAnswer.map(
@@ -114,14 +111,17 @@ const TestBoard = ({
     setIsDragDisabled(true);
   };
 
-  const handleTryAgainClear = () => {
+  const handleTryAgainClear = (testId) => {
     setSelectedValues([]); 
     setCorrectAnswer(null);
     setIsDragDisabled(false);
-    setColumns(columnsFromBackend);
+    // console.log(columnsFromBackend);
+    setColumns(getColumnsFromBackend(testId));
     handleTryAgain();
   };
-
+  useImperativeHandle(ref, () => ({
+    handleTryAgainClear: handleTryAgainClear
+  }));
 
   return (
 
@@ -209,7 +209,8 @@ const TestBoard = ({
         </ItemAccordeon>
       )}
     </>
-  );
-};
+    );
+  }
+);
 
 export default TestBoard;

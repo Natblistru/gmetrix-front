@@ -69,6 +69,7 @@ let temeIstoria = [
                 complexity: "simplu",
                 path: "/test1",
                 type: "quiz",
+                coloane: [],
                 cerinte: "Alege afirmația corectă",
                 quizArray: [
                   {
@@ -97,7 +98,7 @@ let temeIstoria = [
                     ],
                     correctAnswer:
                       "România a intrat în Primul Război Mondial în anul 1916",
-                  },
+                  },                  
                   {
                     id: "2",
                     answers: [
@@ -210,63 +211,6 @@ let temeIstoria = [
               },
               {
                 id: "2",
-                name: "Verifică corectitudinea afirmațiilor",
-                complexity: "simplu",
-                path: "/test1",
-                type: "check",
-                quizArray: [
-                  {
-                    id: "1",
-                    cerinte: "Persoana reprezentată în imagine:",
-                    answers: [
-                      {
-                        text: "România a intrat în Primul Război Mondial în anul 1916",
-                        correct: true,
-                        rezolvare:
-                          "România a intrat în Primul Război Mondial în anul 1916",
-                      },
-                      {
-                        text: "Regele României în timpul Primului Război Mondial a fost Carol I",
-                        correct: false,
-                        rezolvare:
-                          "Regele României în timpul Primului Război Mondial nu a fost Carol I",
-                      },
-                      {
-                        text: "România a semnat Tratatul de la Trianon, care a pus capăt participării sale în Primul Război Mondial",
-                        correct: true,
-                        rezolvare:
-                          "România a semnat Tratatul de la Trianon, care a pus capăt participării sale în Primul Război Mondial",
-                      },
-                      {
-                        text: "Motivul principal pentru intrarea României în Primul Război Mondial a fost dorința de a-și extinde teritoriile",
-                        correct: false,
-                        rezolvare:
-                          "Motivul principal pentru intrarea României în Primul Război Mondial a fost dorința de a susține Antanta",
-                      },
-                    ],
-                    correctAnswer: "",
-                  },
-                ]
-              },
-              {
-                id: "3",
-                name: "Completează propoziția",
-                complexity: "simplu",
-                path: "/test1",
-                quizArray: [
-                  {
-                    id: "1",
-                    answers: [
-                      {
-                        id: "1",
-                        answers: [],
-                      },
-                    ],
-                  }
-                ]
-              },
-              {
-                id: "4",
                 name: "Stabilește cauzele evenimentelor",
                 complexity: "moderat",
                 type: "cauze",
@@ -305,9 +249,9 @@ let temeIstoria = [
                     ],
                   },
                 ],
-              },
+              }, 
               {
-                id: "5",
+                id: "3",
                 name: "Stabilește consecințele evenimentelor",
                 complexity: "moderat",
                 type: "consecinte",
@@ -346,21 +290,95 @@ let temeIstoria = [
                     ],
                   },
                 ],
-              },
+              },             
+              
+
               {
-                id: "6",
-                name: "Găsește afirmația greșită",
+                id: "4",
+                name: "Verifică corectitudinea afirmațiilor",
                 complexity: "simplu",
                 path: "/test1",
+                coloane: [],
+                type: "check",
                 quizArray: [
                   {
                     id: "1",
-                    answers: [],
+                    cerinte: "Persoana reprezentată în imagine:",
+                    answers: [
+                      {
+                        text: "România a intrat în Primul Război Mondial în anul 1916",
+                        correct: true,
+                        rezolvare:
+                          "România a intrat în Primul Război Mondial în anul 1916",
+                      },
+                      {
+                        text: "Regele României în timpul Primului Război Mondial a fost Carol I",
+                        correct: false,
+                        rezolvare:
+                          "Regele României în timpul Primului Război Mondial nu a fost Carol I",
+                      },
+                      {
+                        text: "România a semnat Tratatul de la Trianon, care a pus capăt participării sale în Primul Război Mondial",
+                        correct: true,
+                        rezolvare:
+                          "România a semnat Tratatul de la Trianon, care a pus capăt participării sale în Primul Război Mondial",
+                      },
+                      {
+                        text: "Motivul principal pentru intrarea României în Primul Război Mondial a fost dorința de a-și extinde teritoriile",
+                        correct: false,
+                        rezolvare:
+                          "Motivul principal pentru intrarea României în Primul Război Mondial a fost dorința de a susține Antanta",
+                      },
+                    ],
+                    correctAnswer: "",
                   },
+                ]
+              },
+
+
+              {
+                id: "5",
+                name: "Grupează elementele",
+                complexity: "simplu",
+                path: "/test1",
+                coloane: ["Elementele","Grupa1","Grupa2"],
+                coloanaRaspuns: "Grupa2",
+                quizArray: [                  {
+                  id: "1",
+                  answers: [
+                    { id: "1", text: "România a intrat în Primul Război Mondial" },
+                    { id: "2", text: "România a semnat Tratatul de la București" },
+                    { id: "3", text: "România a câștigat o victorie importantă în Bătălia de la Mărăști" },
+                    { id: "4", text: "Ocuparea Bucureștelui" },
+                    { id: "5", text: "România a semnat Tratatul de la Versailles, care a pus capăt participării sale în Primul Război Mondial" },
+                  ],
+                  correctAnswer:[
+                    { id: "1", text: "România a intrat în Primul Război Mondial", anul: "1916" },
+                    { id: "2", text: "Ocuparea Bucureștelui", anul: "23 mai 1916"},
+                    { id: "3", text: "România a câștigat o victorie importantă în Bătălia de la Mărăști", anul: "1917" },
+                    { id: "4", text:  "România a semnat Tratatul de la București", anul: "24 aprilie 1918"},
+                  ],
+                },
+                {
+                  id: "2",
+                  answers: [
+                    { id: "1", text: "România a intrat în Primul Război Mondial" },
+                    { id: "2", text: "România a semnat Tratatul de la București" },
+                    { id: "3", text: "România a câștigat o victorie importantă în Bătălia de la Mărăști" },
+                    { id: "4", text: "Ocuparea Bucureștelui" },
+                    { id: "5", text: "România a semnat Tratatul de la Versailles, care a pus capăt participării sale în Primul Război Mondial" },
+                  ],
+                  correctAnswer:[
+                    { id: "1", text: "România a intrat în Primul Război Mondial", anul: "1916" },
+                    { id: "2", text: "Ocuparea Bucureștelui", anul: "23 mai 1916"},
+                    { id: "3", text: "România a câștigat o victorie importantă în Bătălia de la Mărăști", anul: "1917" },
+                    { id: "4", text:  "România a semnat Tratatul de la București", anul: "24 aprilie 1918"},
+                  ],
+                },
                 ],
               },
               {
-                id: "7",
+                id: "6",
                 name: "Caracteristicile evenimentelor",
                 complexity: "moderat",
                 type: "caracteristica",
@@ -401,6 +419,24 @@ let temeIstoria = [
                 ],
               },
               {
+                id: "7",
+                name: "Completează propoziția",
+                complexity: "simplu",
+                coloane: [],
+                path: "/test1",
+                quizArray: [
+                  {
+                    id: "1",
+                    answers: [
+                      {
+                        id: "1",
+                        answers: [],
+                      },
+                    ],
+                  }
+                ]
+              },              
+              {
                 id: "8",
                 name: "Elaborează un fragment de text",
                 complexity: "dificil",
@@ -411,6 +447,22 @@ let temeIstoria = [
                 quizArray: [
                   {
                     id: "1",
+                    answers: [
+                      { id: "1", text: "România a intrat în Primul Război Mondial" },
+                      { id: "2", text: "România a semnat Tratatul de la București" },
+                      { id: "3", text: "România a câștigat o victorie importantă în Bătălia de la Mărăști" },
+                      { id: "4", text: "Ocuparea Bucureștelui" },
+                      { id: "5", text: "România a semnat Tratatul de la Versailles, care a pus capăt participării sale în Primul Război Mondial" },
+                    ],
+                    correctAnswer:[
+                      { id: "1", text: "România a intrat în Primul Război Mondial", anul: "1916" },
+                      { id: "2", text: "Ocuparea Bucureștelui", anul: "23 mai 1916"},
+                      { id: "3", text: "România a câștigat o victorie importantă în Bătălia de la Mărăști", anul: "1917" },
+                      { id: "4", text:  "România a semnat Tratatul de la București", anul: "24 aprilie 1918"},
+                    ],
+                  },
+                  {
+                    id: "2",
                     answers: [
                       { id: "1", text: "România a intrat în Primul Război Mondial" },
                       { id: "2", text: "România a semnat Tratatul de la București" },
@@ -451,12 +503,28 @@ let temeIstoria = [
                       { id: "4", text:  "România a semnat Tratatul de la București", anul: "24 aprilie 1918"},
                     ],
                   },
+                  {
+                    id: "2",
+                    answers: [
+                      { id: "1", text: "România a intrat în Primul Război Mondial" },
+                      { id: "2", text: "România a semnat Tratatul de la București" },
+                      { id: "3", text: "România a câștigat o victorie importantă în Bătălia de la Mărăști" },
+                      { id: "4", text: "Ocuparea Bucureștelui" },
+                    ],
+                    correctAnswer:[
+                      { id: "1", text: "România a intrat în Primul Război Mondial", anul: "1916" },
+                      { id: "2", text: "Ocuparea Bucureștelui", anul: "23 mai 1916"},
+                      { id: "3", text: "România a câștigat o victorie importantă în Bătălia de la Mărăști", anul: "1917" },
+                      { id: "4", text:  "România a semnat Tratatul de la București", anul: "24 aprilie 1918"},
+                    ],
+                  },
                 ],
               },
               {
                 id: "10",
-                name: "Exerciții de pregătire la tema",
+                name: "Test de totalizare",
                 complexity: "moderat",
+                coloane: [],
                 path: "/test1",
                 quizArray: [
                   {
