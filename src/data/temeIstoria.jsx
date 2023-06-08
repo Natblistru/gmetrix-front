@@ -235,17 +235,17 @@ let temeIstoria = [
                   },
                   {
                     id: "2",
-                    cerinte: "Din lista prezentată selectați cauzele I Război Mondial:",
+                    cerinte: "Din lista prezentată selectați cauzele neutralității României la începutil I Război Mondial:",
                     answers: [
-                      { id: "1", text: "Lupta pentru reîmpărțirea lumii" },
-                      { id: "2", text: "Conflictele politice între marile puteri: Germania, Franța, Marea Britanie, Austro-Ungaria și Rusia" },
+                      { id: "1", text: "România a semnat un tratat de neutralitate" },
+                      { id: "2", text: "Politica de echilibru a României care se afla la granița dintre două imperii puternice, Rusia și Austro-Ungaria" },
                       { id: "3", text: "Dezvoltarea economică inegală a marilor puteri de la sf. sec. XIX - începutul sec. XX" },
-                      { id: "4", text: "Creșterea rasismului și naționalismului în formele sale extreme" },
+                      { id: "4", text: "Absența unor alianțe clare care să-i ofere Romaniei protecție în război" },
                     ],
                     correctAnswer:[
-                      { id: "1", text: "Lupta pentru reîmpărțirea lumii", anul: "1916" },
-                      { id: "2", text: "Conflictele politice între marile puteri: Germania, Franța, Marea Britanie, Austro-Ungaria și Rusia", anul: "23 mai 1916"},
-                      { id: "3", text: "Dezvoltarea economică inegală a marilor puteri de la sf. sec. XIX - începutul sec. XX", anul: "1917" },
+                      { id: "1", text: "Dezvoltarea relativ slabă a României din punct de vedere economic și militar", anul: "1916" },
+                      { id: "2", text: "Politica de echilibru a României care se afla la granița dintre două imperii puternice, Rusia și Austro-Ungaria", anul: "23 mai 1916"},
+                      { id: "3", text: "Absența unor alianțe clare care să-i ofere Romaniei protecție în război", anul: "1917" },
                     ],
                   },
                 ],
@@ -276,15 +276,15 @@ let temeIstoria = [
                   },
                   {
                     id: "2",
-                    cerinte: "Din lista prezentată selectați consecințele I Război Mondial:",
+                    cerinte: "Din lista prezentată selectați consecințele intrării Romaniei în I Război Mondial:",
                     answers: [
-                      { id: "1", text: "Lupta pentru reîmpărțirea lumii" },
+                      { id: "1", text: "Obținerea teritoriilor din Austro-Ungaria locuite de români" },
                       { id: "2", text: "Conflictele politice între marile puteri: Germania, Franța, Marea Britanie, Austro-Ungaria și Rusia" },
                       { id: "3", text: "Dezvoltarea economică inegală a marilor puteri de la sf. sec. XIX - începutul sec. XX" },
                       { id: "4", text: "Creșterea rasismului și naționalismului în formele sale extreme" },
                     ],
                     correctAnswer:[
-                      { id: "1", text: "Lupta pentru reîmpărțirea lumii", anul: "1916" },
+                      { id: "1", text: "Obținerea teritoriilor din Austro-Ungaria locuite de români", anul: "1916" },
                       { id: "2", text: "Conflictele politice între marile puteri: Germania, Franța, Marea Britanie, Austro-Ungaria și Rusia", anul: "23 mai 1916"},
                       { id: "3", text: "Dezvoltarea economică inegală a marilor puteri de la sf. sec. XIX - începutul sec. XX", anul: "1917" },
                     ],
@@ -332,6 +332,37 @@ let temeIstoria = [
                     ],
                     correctAnswer: "",
                   },
+                  {
+                    id: "2",
+                    cerinte: "Persoana reprezentată în imagine:",
+                    answers: [
+                      {
+                        text: "România a intrat în Primul Război Mondial în anul 1916",
+                        correct: true,
+                        rezolvare:
+                          "România a intrat în Primul Război Mondial în anul 1916",
+                      },
+                      {
+                        text: "Regele României în timpul Primului Război Mondial a fost Carol I",
+                        correct: false,
+                        rezolvare:
+                          "Regele României în timpul Primului Război Mondial nu a fost Carol I",
+                      },
+                      {
+                        text: "România a semnat Tratatul de la Trianon, care a pus capăt participării sale în Primul Război Mondial",
+                        correct: true,
+                        rezolvare:
+                          "România a semnat Tratatul de la Trianon, care a pus capăt participării sale în Primul Război Mondial",
+                      },
+                      {
+                        text: "Motivul principal pentru intrarea României în Primul Război Mondial a fost dorința de a-și extinde teritoriile",
+                        correct: false,
+                        rezolvare:
+                          "Motivul principal pentru intrarea României în Primul Război Mondial a fost dorința de a susține Antanta",
+                      },
+                    ],
+                    correctAnswer: "",
+                  },
                 ]
               },
 
@@ -341,9 +372,11 @@ let temeIstoria = [
                 name: "Grupează elementele",
                 complexity: "simplu",
                 path: "/test1",
-                coloane: ["Elementele","Grupa1","Grupa2"],
+                type: "caracteristica",
+                coloane: ["Elementele","Grupa2"],
                 coloanaRaspuns: "Grupa2",
-                quizArray: [                  {
+                quizArray: [ 
+                {
                   id: "1",
                   answers: [
                     { id: "1", text: "România a intrat în Primul Război Mondial" },
@@ -526,12 +559,40 @@ let temeIstoria = [
                 complexity: "moderat",
                 coloane: [],
                 path: "/test1",
+                type: "check",
                 quizArray: [
                   {
                     id: "1",
-                    answers: [],
+                    cerinte: "Persoana reprezentată în imagine:",
+                    answers: [
+                      {
+                        text: "România a intrat în Primul Război Mondial în anul 1916",
+                        correct: true,
+                        rezolvare:
+                          "România a intrat în Primul Război Mondial în anul 1916",
+                      },
+                      {
+                        text: "Regele României în timpul Primului Război Mondial a fost Carol I",
+                        correct: false,
+                        rezolvare:
+                          "Regele României în timpul Primului Război Mondial nu a fost Carol I",
+                      },
+                      {
+                        text: "România a semnat Tratatul de la Trianon, care a pus capăt participării sale în Primul Război Mondial",
+                        correct: true,
+                        rezolvare:
+                          "România a semnat Tratatul de la Trianon, care a pus capăt participării sale în Primul Război Mondial",
+                      },
+                      {
+                        text: "Motivul principal pentru intrarea României în Primul Război Mondial a fost dorința de a-și extinde teritoriile",
+                        correct: false,
+                        rezolvare:
+                          "Motivul principal pentru intrarea României în Primul Război Mondial a fost dorința de a susține Antanta",
+                      },
+                    ],
+                    correctAnswer: "",
                   },
-                ],
+                ]
               },
             ],
           },

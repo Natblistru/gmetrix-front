@@ -34,7 +34,7 @@ const TestCheck = ({
     const correctValuesString = correctValues.sort().join(","); 
     setCorrectAnswer(selectedValuesString === correctValuesString);
   };
-  const handleTryAgainClear = () => {
+  const handleTryAgainClearCheck = () => {
     setSelectedValues([]); 
     handleTryAgain();
   };
@@ -96,7 +96,7 @@ const TestCheck = ({
               />
             ))}
           </ItemText>
-          <button onClick={handleTryAgainClear} className="btn-test">
+          <button onClick={handleTryAgainClearCheck} className="btn-test">
             Încearcă din nou!
           </button>
         </ItemAccordeon>

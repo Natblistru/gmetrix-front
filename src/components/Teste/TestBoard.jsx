@@ -112,10 +112,10 @@ const TestBoard = forwardRef(
   };
 
   const handleTryAgainClear = (testId) => {
+    console.log("handleTryAgainClear testId",testId);    
     setSelectedValues([]); 
     setCorrectAnswer(null);
     setIsDragDisabled(false);
-    // console.log(columnsFromBackend);
     setColumns(getColumnsFromBackend(testId));
     handleTryAgain();
   };
@@ -203,7 +203,7 @@ const TestBoard = forwardRef(
               <div className="cardChrono" key={idx}>{answer.text}</div>
             ))}
           </ItemText>
-          <button onClick={handleTryAgainClear} className="btn-test">
+          <button onClick={()=> handleTryAgainClear(list.id)} className="btn-test">
             Încearcă din nou!
           </button>
         </ItemAccordeon>

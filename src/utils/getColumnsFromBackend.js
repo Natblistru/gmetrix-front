@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 
 const getColumnsFromBackend = (testID) => {
   let columnsFromBackendNext = null;
-  
+  console.log(testID);
   temeIstoriArray[0].subtitles[0].subjects[0].teste.forEach(test => {
     if(test.id==testID&&test.coloane.length) {
 
