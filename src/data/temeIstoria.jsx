@@ -372,18 +372,18 @@ let temeIstoria = [
                 name: "Grupează elementele",
                 complexity: "simplu",
                 path: "/test1",
-                type: "caracteristica",
-                coloane: ["Elementele","Grupa2"],
-                coloanaRaspuns: "Grupa2",
+                type: "group",
+                coloane: ["Tarile","Puterile centrale","Antanta"],
+                coloanaRaspuns: "Antanta",
                 quizArray: [ 
                 {
                   id: "1",
                   answers: [
-                    { id: "1", text: "România a intrat în Primul Război Mondial" },
-                    { id: "2", text: "România a semnat Tratatul de la București" },
-                    { id: "3", text: "România a câștigat o victorie importantă în Bătălia de la Mărăști" },
-                    { id: "4", text: "Ocuparea Bucureștelui" },
-                    { id: "5", text: "România a semnat Tratatul de la Versailles, care a pus capăt participării sale în Primul Război Mondial" },
+                    { id: "1", text: "Germania" },
+                    { id: "2", text: "Austro-Ungaria" },
+                    { id: "3", text: "Franța" },
+                    { id: "4", text: "Imperiul Otoman" },
+                    { id: "5", text: "Bulgaria" },
                   ],
                   correctAnswer:[
                     { id: "1", text: "România a intrat în Primul Război Mondial", anul: "1916" },

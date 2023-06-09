@@ -86,7 +86,8 @@ const TestWrapper = (props) => {
         currentList.type === "consecinte" ||
         currentList.type === "caracteristica" ||
         currentList.type === "chrono" ||
-        currentList.type === "chronoDuble") && (
+        currentList.type === "chronoDuble" ||
+        currentList.type === "group") && (
         <TestBoard
           list={currentList}
           currentIndex={currentIndex}

@@ -5,7 +5,7 @@ import "../../index.css"
 
 const Column = React.memo(({ tasks, column, columnId, isDragDisabled, typeList }) => {
   return (
-    <div className={`column ${typeList==="chrono"? 'one' : ''}`}>
+    <div className={`column ${typeList==="chrono"? 'one' : typeList==="group"? 'three' :''}`}>
       <div className="card card-radius ">
         
         <div className="card-content">
@@ -23,9 +23,11 @@ const Column = React.memo(({ tasks, column, columnId, isDragDisabled, typeList }
                   //   : "lightgrey",
                   padding: 4,
                   flex: 1,
-                  minWidth: 300,
+                  minWidth: typeList==="group"? "190px" :"300px",
                   width: typeList==="chrono"
                      ? "100%"
+                     : typeList==="group"
+                     ? "190px" 
                      : "300px",
                   // width: 300,
                   minHeight: 500
