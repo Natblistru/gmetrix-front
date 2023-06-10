@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./Error.css"
 
 const Error = () => {
@@ -19,8 +20,8 @@ const Error = () => {
         </div>
         <h1>Page not Found</h1>
         <p>
-          This page doesn't exist on our site. Go back to the{" "}
-          <a href="">Home Page.</a>{" "}
+          This page doesn't exist on our site. Go back to the
+          <Link to="/home"> Home Page.</Link>
         </p>
       </div>
     </div>
