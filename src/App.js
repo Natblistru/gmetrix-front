@@ -20,7 +20,7 @@ function App() {
   return (
     <div className="App">
       <div>
-        <Route path='/' exact>
+        {/* <Route path='/' exact>
           <Redirect to='/home' />
         </Route>
         <Route path='/home'>
@@ -49,7 +49,19 @@ function App() {
         </Route>
          <Route path="*">
           <Error />
-        </Route>
+        </Route> */}
+    <Switch>
+      <Route path='/home' component={Home} />
+      <Route path='/teme-romana' component={TemeRom} />
+      <Route path='/teme-matem' component={TemeMatem} />
+      <Route path='/teme-istoria' component={TemeIstoria} />
+      <Route path='/tema1' component={Tema} />
+      <Route path='/subtema1' component={Subtema} />
+      <Route path='/test1' component={TestWithRouter} />
+      <Route path='/flipCards' component={FlipCardsWithRouter} />
+      <Route exact path='/' render={() => <Redirect to='/home' />} />
+      <Route component={Error} />
+    </Switch>
       </div>
     </div>
   );
