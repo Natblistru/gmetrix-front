@@ -10,6 +10,7 @@ import TemeMatem from './pages/TemeMatem';
 import TemeIstoria from './pages/TemeIstoria';
 import Test from './pages/Test';
 import FlipCards from './components/FlipCards/FlipCards';
+import Error from './components/Error'
 
 const FlipCardsWithRouter = withRouter(FlipCards);
 const TestWithRouter = withRouter(Test);
@@ -45,6 +46,9 @@ function App() {
         </Route>     
         <Route path="/flipCards">
           <FlipCardsWithRouter />
+        </Route>
+         <Route path="*">
+          <Error />
         </Route>
       </div>
     </div>

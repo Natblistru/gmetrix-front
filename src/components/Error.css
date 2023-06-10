@@ -1,0 +1,317 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  background: #f5f5f5 ;
+}
+/*Error page Style Start*/
+
+.error-page-container {
+  width: 100%;
+  height: 100vh;
+  display: table;
+}
+.error-page-content {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+.error-page-content h1,.error-page-content p  {
+  /* width: 100%; */
+  /* float: left; */
+  margin-top: 40px;
+}
+.error-page-content a {
+  color: #0078d7;
+}
+
+.error-page-content a:hover {
+  color: #0078d7;
+}
+
+#speech-bubble {
+  width: 180px;
+  height: 180px;
+  background: #fff;
+  position: relative;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  margin: -65px auto 0;
+  font-size: 70px;
+  line-height: 180px;
+  color: #0078d7;
+  font-weight: 700;
+  -webkit-box-shadow: 0px 10px 50px -1px rgba(0, 0, 0, 0.08);
+  -moz-box-shadow: 0px 10px 50px -1px rgba(0, 0, 0, 0.08);
+  box-shadow: 0px 10px 50px -1px rgba(0, 0, 0, 0.08);
+}
+
+#speech-bubble:before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-top: 0px solid transparent;
+  border-right: 54px solid #fff;
+  border-bottom: 54px solid transparent;
+  margin: 89px 0 0 37px;
+  left: 0;
+  bottom: -34px;
+  border-bottom-right-radius: 8px;
+  transform: rotate(-4deg);
+}
+
+.bounce {
+ /*  -moz-animation: bounce 2s infinite;
+  -webkit-animation: bounce 2s infinite;
+  animation: bounce 2s infinite; */
+}
+
+@-moz-keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+
+      -moz-transform: translateY(0);
+
+      transform: translateY(0);
+  }
+
+  40% {
+
+      -moz-transform: translateY(-30px);
+
+      transform: translateY(-30px);
+  }
+
+  60% {
+
+      -moz-transform: translateY(-15px);
+
+      transform: translateY(-15px);
+  }
+}
+
+
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+      -moz-transform: translateY(0);
+      -ms-transform: translateY(0);
+      -webkit-transform: translateY(0);
+      transform: translateY(0);
+  }
+  40% {
+      -moz-transform: translateY(-30px);
+       -ms-transform: translateY(-30px);
+      -webkit-transform: translateY(-30px);
+      transform: translateY(-30px);
+  }
+
+  60% {
+      -moz-transform: translateY(-15px);
+      -ms-transform: translateY(-15px);
+      -webkit-transform: translateY(-15px);
+      transform: translateY(-15px);
+  }
+}
+
+
+/*Error page Style End*/
+.emoji__face,
+.emoji__eyebrows,
+.emoji__eyes,
+.emoji__mouth
+{
+  position: absolute;
+}
+
+.emoji__face:before,
+.emoji__face:after,
+.emoji__eyebrows:before,
+.emoji__eyebrows:after,
+.emoji__eyes:before,
+.emoji__eyes:after,
+.emoji__mouth:before,
+.emoji__mouth:after
+{
+  position: absolute;
+  content: '';
+}
+.emoji {
+ width: 80px;
+  height: 80px;
+  background: #FFDA6A;
+  border-radius: 50%;
+  position: relative;
+  margin-top: 50px;
+  display: inline-block;
+  /* float: left; */
+}
+.emoji--sad .emoji__face {
+  -webkit-animation: sad-face 2s ease-in infinite;
+  animation: sad-face 2s ease-in infinite;
+}
+.emoji--sad .emoji__eyebrows {
+  left: calc(50% - 3px);
+  top: 20px;
+  height: 0px;
+  width: 34px;
+  border-radius: 50%;
+  background: transparent;
+  -webkit-box-shadow: -40px 9px 0 0 #000000, -25px 0 0 0 #000000, 25px 0 0 0 #000000, 40px 9px 0 0 #000000;
+  box-shadow: -40px 9px 0 0 #000000, -25px 0 0 0 #000000, 25px 0 0 0 #000000, 40px 9px 0 0 #000000;
+}
+.emoji--sad .emoji__eyebrows:before {
+  margin-left: -30px;
+  -webkit-transform: rotate(-30deg);
+  transform: rotate(-30deg);
+}
+.emoji--sad .emoji__eyebrows:before, .emoji--sad .emoji__eyebrows:after {
+  width: 30px;
+  height: 20px;
+  border: 6px solid #000000;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  border-radius: 50%;
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  top: 2px;
+  left: calc(50% - 15px);
+}
+.emoji--sad .emoji__eyes {
+  width: 12px;
+  height: 12px;
+  left: calc(50% - 7px);
+  top: 36px;
+  border-radius: 50%;
+  background: transparent;
+  box-shadow: 16px 0 0 0 #000000, -16px 0 0 0 #000000;
+}
+.emoji--sad .emoji__eyes:after {
+  background: #548DFF;
+  width: 12px;
+  height: 12px;
+  margin-left: 6px;
+  border-radius: 0 100% 40% 50% / 0 50% 40% 100%;
+  -webkit-transform-origin: 0% 0%;
+  transform-origin: 0% 0%;
+  -webkit-animation: tear-drop 2s ease-in infinite;
+  animation: tear-drop 2s ease-in infinite;
+}
+.emoji--sad .emoji__mouth {
+  width: 35px;
+  height: 26px;
+  left: calc(50% - 17px);
+  top: 106px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  border: 6px solid #000000;
+  border-radius: 50%;
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  background: transparent;
+  -webkit-animation: sad-mouth 2s ease-in infinite;
+  animation: sad-mouth 2s ease-in infinite;
+  margin-top: -26px;
+}
+.emoji--sad .emoji__mouth:after {
+ width: 6px;
+  height: 6px;
+  background: transparent;
+  border-radius: 50%;
+  top: -2px;
+  left: calc(50% - 7px);
+  box-shadow: -8px 0 0 0 #000000, 15px 0 0 0 #000000;
+}
+.emoji--sad .emoji__eyebrows:after {
+  margin-left: 3px;
+  transform: rotate(19deg);
+}
+.emoji__face {
+  width: inherit;
+  height: inherit;
+}
+
+@keyframes sad-face {
+  25%,
+  35% {
+      top: -5px;
+  }
+  55%,
+  95% {
+      top: 5px;
+  }
+  100%,
+  0% {
+      top: 0;
+  }
+}
+
+
+@keyframes tear-drop {
+  0%,
+  100% {
+      display: block;
+      left: 35px;
+      top: 15px;
+      -webkit-transform: rotate(45deg) scale(0);
+      transform: rotate(45deg) scale(0);
+  }
+  25% {
+      display: block;
+      left: 35px;
+      -webkit-transform: rotate(45deg) scale(2);
+      transform: rotate(45deg) scale(2);
+  }
+  49.9% {
+      display: block;
+      left: 35px;
+      top: 65px;
+      -webkit-transform: rotate(45deg) scale(0);
+      transform: rotate(45deg) scale(0);
+  }
+  50% {
+      display: block;
+      left: -35px;
+      top: 15px;
+      -webkit-transform: rotate(45deg) scale(0);
+      transform: rotate(45deg) scale(0);
+  }
+  75% {
+      display: block;
+      left: -35px;
+      -webkit-transform: rotate(45deg) scale(2);
+      transform: rotate(45deg) scale(2);
+  }
+  99.9% {
+      display: block;
+      left: -35px;
+      top: 65px;
+      -webkit-transform: rotate(45deg) scale(0);
+      transform: rotate(45deg) scale(0);
+  }
+}
+@keyframes sad-mouth {
+  25%,
+  35% {
+      -webkit-transform: scale(0.85);
+      transform: scale(0.85);
+      top: 70px;
+  }
+  55%,
+  100%,
+  0% {
+      -webkit-transform: scale(1);
+      transform: scale(1);
+      top: 80px;
+  }
+}
