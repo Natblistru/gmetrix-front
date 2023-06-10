@@ -112,7 +112,7 @@ const TestBoard = forwardRef(
   };
 
   const handleTryAgainClear = (testId) => {
-    console.log("handleTryAgainClear testId",testId);    
+    // console.log("handleTryAgainClear testId",testId);    
     setSelectedValues([]); 
     setCorrectAnswer(null);
     setIsDragDisabled(false);

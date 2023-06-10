@@ -12,14 +12,16 @@ const FlipCards = (props) => {
   const handleSwitchChange = () => {
     setIsChecked(!isChecked);
   };
-  const { list, anchor } = props.location.state;
+  const { list, anchor, item } = props.location.state;
+  console.log(list);
   let counter = -1;
   const arrayColor = ["--city", "--ski", "--beach", "--camping"];
   return (
     <div style={{ background: 'linear-gradient( to bottom right, #eee8dd, #e3d9c6 )'}}>
 
       <div className="nav">
-          <Link to={`/tema1#${anchor}`} className="custom-link_7"><span>Înapoi</span></Link>
+          <Link to={`${item.addressDisciplina}${item.address}#${anchor}`} className="custom-link_7"><span>Înapoi</span></Link>
+          {/* <Link to={`${item.addressDisciplina}${item.address}`}></Link> */}
           <Switch label="Definitie" onChange={handleSwitchChange}/>
       </div>
       <main className="main">

@@ -7,7 +7,7 @@ let temeIstoria = [
     subtitles: [
       {
         name: "România în Primul Război Mondial",
-        addressDisciplina: "/istoria",        
+        addressDisciplina: "/istoria",
         address: "/romania-in-primul-razboi",
         breadcrumb: [
           { name: "Discipline", path: "/" },
@@ -23,7 +23,7 @@ let temeIstoria = [
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
-              { name: "România în Primul Război Mondial", path: "/tema1" },
+              { name: "România în Primul Război Mondial", path: "/istoria/romania-in-primul-razboi" },
             ],
             vomAfla: [
               {
@@ -98,7 +98,7 @@ let temeIstoria = [
                     ],
                     correctAnswer:
                       "România a intrat în Primul Război Mondial în anul 1916",
-                  },                  
+                  },
                   {
                     id: "2",
                     answers: [
@@ -215,83 +215,169 @@ let temeIstoria = [
                 complexity: "moderat",
                 type: "cauze",
                 path: "/test1",
-                coloane: ["Lista variantelor","Cauzele"],
+                coloane: ["Lista variantelor", "Cauzele"],
                 coloanaRaspuns: "Cauzele",
                 quizArray: [
                   {
                     id: "1",
-                    cerinte: "Din lista prezentată selectați cauzele I Război Mondial:",
+                    cerinte:
+                      "Din lista prezentată selectați cauzele I Război Mondial:",
                     answers: [
                       { id: "1", text: "Lupta pentru reîmpărțirea lumii" },
-                      { id: "2", text: "Conflictele politice între marile puteri: Germania, Franța, Marea Britanie, Austro-Ungaria și Rusia" },
-                      { id: "3", text: "Dezvoltarea economică inegală a marilor puteri de la sf. sec. XIX - începutul sec. XX" },
-                      { id: "4", text: "Creșterea rasismului și naționalismului în formele sale extreme" },
+                      {
+                        id: "2",
+                        text: "Conflictele politice între marile puteri: Germania, Franța, Marea Britanie, Austro-Ungaria și Rusia",
+                      },
+                      {
+                        id: "3",
+                        text: "Dezvoltarea economică inegală a marilor puteri de la sf. sec. XIX - începutul sec. XX",
+                      },
+                      {
+                        id: "4",
+                        text: "Creșterea rasismului și naționalismului în formele sale extreme",
+                      },
                     ],
-                    correctAnswer:[
-                      { id: "1", text: "Lupta pentru reîmpărțirea lumii", anul: "1916" },
-                      { id: "2", text: "Conflictele politice între marile puteri: Germania, Franța, Marea Britanie, Austro-Ungaria și Rusia", anul: "23 mai 1916"},
-                      { id: "3", text: "Dezvoltarea economică inegală a marilor puteri de la sf. sec. XIX - începutul sec. XX", anul: "1917" },
+                    correctAnswer: [
+                      {
+                        id: "1",
+                        text: "Lupta pentru reîmpărțirea lumii",
+                        anul: "1916",
+                      },
+                      {
+                        id: "2",
+                        text: "Conflictele politice între marile puteri: Germania, Franța, Marea Britanie, Austro-Ungaria și Rusia",
+                        anul: "23 mai 1916",
+                      },
+                      {
+                        id: "3",
+                        text: "Dezvoltarea economică inegală a marilor puteri de la sf. sec. XIX - începutul sec. XX",
+                        anul: "1917",
+                      },
                     ],
                   },
                   {
                     id: "2",
-                    cerinte: "Din lista prezentată selectați cauzele neutralității României la începutil I Război Mondial:",
+                    cerinte:
+                      "Din lista prezentată selectați cauzele neutralității României la începutil I Război Mondial:",
                     answers: [
-                      { id: "1", text: "România a semnat un tratat de neutralitate" },
-                      { id: "2", text: "Politica de echilibru a României care se afla la granița dintre două imperii puternice, Rusia și Austro-Ungaria" },
-                      { id: "3", text: "Dezvoltarea economică inegală a marilor puteri de la sf. sec. XIX - începutul sec. XX" },
-                      { id: "4", text: "Absența unor alianțe clare care să-i ofere Romaniei protecție în război" },
+                      {
+                        id: "1",
+                        text: "România a semnat un tratat de neutralitate",
+                      },
+                      {
+                        id: "2",
+                        text: "Politica de echilibru a României care se afla la granița dintre două imperii puternice, Rusia și Austro-Ungaria",
+                      },
+                      {
+                        id: "3",
+                        text: "Dezvoltarea economică inegală a marilor puteri de la sf. sec. XIX - începutul sec. XX",
+                      },
+                      {
+                        id: "4",
+                        text: "Absența unor alianțe clare care să-i ofere Romaniei protecție în război",
+                      },
                     ],
-                    correctAnswer:[
-                      { id: "1", text: "Dezvoltarea relativ slabă a României din punct de vedere economic și militar", anul: "1916" },
-                      { id: "2", text: "Politica de echilibru a României care se afla la granița dintre două imperii puternice, Rusia și Austro-Ungaria", anul: "23 mai 1916"},
-                      { id: "3", text: "Absența unor alianțe clare care să-i ofere Romaniei protecție în război", anul: "1917" },
+                    correctAnswer: [
+                      {
+                        id: "1",
+                        text: "Dezvoltarea relativ slabă a României din punct de vedere economic și militar",
+                        anul: "1916",
+                      },
+                      {
+                        id: "2",
+                        text: "Politica de echilibru a României care se afla la granița dintre două imperii puternice, Rusia și Austro-Ungaria",
+                        anul: "23 mai 1916",
+                      },
+                      {
+                        id: "3",
+                        text: "Absența unor alianțe clare care să-i ofere Romaniei protecție în război",
+                        anul: "1917",
+                      },
                     ],
                   },
                 ],
-              }, 
+              },
               {
                 id: "3",
                 name: "Stabilește consecințele evenimentelor",
                 complexity: "moderat",
                 type: "consecinte",
                 path: "/test1",
-                coloane: ["Lista variantelor","Consecintele"],
+                coloane: ["Lista variantelor", "Consecintele"],
                 coloanaRaspuns: "Consecintele",
                 quizArray: [
                   {
                     id: "1",
-                    cerinte: "Din lista prezentată selectați consecințele I Război Mondial:",
+                    cerinte:
+                      "Din lista prezentată selectați consecințele I Război Mondial:",
                     answers: [
                       { id: "1", text: "Pierderi umane masive" },
                       { id: "2", text: "Schimbări teritoriale și politice" },
-                      { id: "3", text: "Tratatul de la Versailles și instabilitatea postbelică" },
-                      { id: "4", text: "Formarea Organizației Națiunilor Unite (ONU)" },
+                      {
+                        id: "3",
+                        text: "Tratatul de la Versailles și instabilitatea postbelică",
+                      },
+                      {
+                        id: "4",
+                        text: "Formarea Organizației Națiunilor Unite (ONU)",
+                      },
                     ],
-                    correctAnswer:[
+                    correctAnswer: [
                       { id: "1", text: "Pierderi umane masive", anul: "1916" },
-                      { id: "2", text: "Schimbări teritoriale și politice", anul: "23 mai 1916"},
-                      { id: "3", text: "Tratatul de la Versailles și instabilitatea postbelică", anul: "1917" },
+                      {
+                        id: "2",
+                        text: "Schimbări teritoriale și politice",
+                        anul: "23 mai 1916",
+                      },
+                      {
+                        id: "3",
+                        text: "Tratatul de la Versailles și instabilitatea postbelică",
+                        anul: "1917",
+                      },
                     ],
                   },
                   {
                     id: "2",
-                    cerinte: "Din lista prezentată selectați consecințele intrării Romaniei în I Război Mondial:",
+                    cerinte:
+                      "Din lista prezentată selectați consecințele intrării Romaniei în I Război Mondial:",
                     answers: [
-                      { id: "1", text: "Obținerea teritoriilor din Austro-Ungaria locuite de români" },
-                      { id: "2", text: "Conflictele politice între marile puteri: Germania, Franța, Marea Britanie, Austro-Ungaria și Rusia" },
-                      { id: "3", text: "Dezvoltarea economică inegală a marilor puteri de la sf. sec. XIX - începutul sec. XX" },
-                      { id: "4", text: "Creșterea rasismului și naționalismului în formele sale extreme" },
+                      {
+                        id: "1",
+                        text: "Obținerea teritoriilor din Austro-Ungaria locuite de români",
+                      },
+                      {
+                        id: "2",
+                        text: "Conflictele politice între marile puteri: Germania, Franța, Marea Britanie, Austro-Ungaria și Rusia",
+                      },
+                      {
+                        id: "3",
+                        text: "Dezvoltarea economică inegală a marilor puteri de la sf. sec. XIX - începutul sec. XX",
+                      },
+                      {
+                        id: "4",
+                        text: "Creșterea rasismului și naționalismului în formele sale extreme",
+                      },
                     ],
-                    correctAnswer:[
-                      { id: "1", text: "Obținerea teritoriilor din Austro-Ungaria locuite de români", anul: "1916" },
-                      { id: "2", text: "Conflictele politice între marile puteri: Germania, Franța, Marea Britanie, Austro-Ungaria și Rusia", anul: "23 mai 1916"},
-                      { id: "3", text: "Dezvoltarea economică inegală a marilor puteri de la sf. sec. XIX - începutul sec. XX", anul: "1917" },
+                    correctAnswer: [
+                      {
+                        id: "1",
+                        text: "Obținerea teritoriilor din Austro-Ungaria locuite de români",
+                        anul: "1916",
+                      },
+                      {
+                        id: "2",
+                        text: "Conflictele politice între marile puteri: Germania, Franța, Marea Britanie, Austro-Ungaria și Rusia",
+                        anul: "23 mai 1916",
+                      },
+                      {
+                        id: "3",
+                        text: "Dezvoltarea economică inegală a marilor puteri de la sf. sec. XIX - începutul sec. XX",
+                        anul: "1917",
+                      },
                     ],
                   },
                 ],
-              },             
-              
+              },
 
               {
                 id: "4",
@@ -363,9 +449,8 @@ let temeIstoria = [
                     ],
                     correctAnswer: "",
                   },
-                ]
+                ],
               },
-
 
               {
                 id: "5",
@@ -373,41 +458,85 @@ let temeIstoria = [
                 complexity: "simplu",
                 path: "/test1",
                 type: "group",
-                coloane: ["Tarile","Puterile centrale","Antanta"],
+                coloane: ["Tarile", "Puterile centrale", "Antanta"],
                 coloanaRaspuns: "Antanta",
-                quizArray: [ 
-                {
-                  id: "1",
-                  answers: [
-                    { id: "1", text: "Germania" },
-                    { id: "2", text: "Austro-Ungaria" },
-                    { id: "3", text: "Franța" },
-                    { id: "4", text: "Imperiul Otoman" },
-                    { id: "5", text: "Bulgaria" },
-                  ],
-                  correctAnswer:[
-                    { id: "1", text: "România a intrat în Primul Război Mondial", anul: "1916" },
-                    { id: "2", text: "Ocuparea Bucureștelui", anul: "23 mai 1916"},
-                    { id: "3", text: "România a câștigat o victorie importantă în Bătălia de la Mărăști", anul: "1917" },
-                    { id: "4", text:  "România a semnat Tratatul de la București", anul: "24 aprilie 1918"},
-                  ],
-                },
-                {
-                  id: "2",
-                  answers: [
-                    { id: "1", text: "România a intrat în Primul Război Mondial" },
-                    { id: "2", text: "România a semnat Tratatul de la București" },
-                    { id: "3", text: "România a câștigat o victorie importantă în Bătălia de la Mărăști" },
-                    { id: "4", text: "Ocuparea Bucureștelui" },
-                    { id: "5", text: "România a semnat Tratatul de la Versailles, care a pus capăt participării sale în Primul Război Mondial" },
-                  ],
-                  correctAnswer:[
-                    { id: "1", text: "România a intrat în Primul Război Mondial", anul: "1916" },
-                    { id: "2", text: "Ocuparea Bucureștelui", anul: "23 mai 1916"},
-                    { id: "3", text: "România a câștigat o victorie importantă în Bătălia de la Mărăști", anul: "1917" },
-                    { id: "4", text:  "România a semnat Tratatul de la București", anul: "24 aprilie 1918"},
-                  ],
-                },
+                quizArray: [
+                  {
+                    id: "1",
+                    answers: [
+                      { id: "1", text: "Germania" },
+                      { id: "2", text: "Austro-Ungaria" },
+                      { id: "3", text: "Franța" },
+                      { id: "4", text: "Imperiul Otoman" },
+                      { id: "5", text: "Bulgaria" },
+                    ],
+                    correctAnswer: [
+                      {
+                        id: "1",
+                        text: "România a intrat în Primul Război Mondial",
+                        anul: "1916",
+                      },
+                      {
+                        id: "2",
+                        text: "Ocuparea Bucureștelui",
+                        anul: "23 mai 1916",
+                      },
+                      {
+                        id: "3",
+                        text: "România a câștigat o victorie importantă în Bătălia de la Mărăști",
+                        anul: "1917",
+                      },
+                      {
+                        id: "4",
+                        text: "România a semnat Tratatul de la București",
+                        anul: "24 aprilie 1918",
+                      },
+                    ],
+                  },
+                  {
+                    id: "2",
+                    answers: [
+                      {
+                        id: "1",
+                        text: "România a intrat în Primul Război Mondial",
+                      },
+                      {
+                        id: "2",
+                        text: "România a semnat Tratatul de la București",
+                      },
+                      {
+                        id: "3",
+                        text: "România a câștigat o victorie importantă în Bătălia de la Mărăști",
+                      },
+                      { id: "4", text: "Ocuparea Bucureștelui" },
+                      {
+                        id: "5",
+                        text: "România a semnat Tratatul de la Versailles, care a pus capăt participării sale în Primul Război Mondial",
+                      },
+                    ],
+                    correctAnswer: [
+                      {
+                        id: "1",
+                        text: "România a intrat în Primul Război Mondial",
+                        anul: "1916",
+                      },
+                      {
+                        id: "2",
+                        text: "Ocuparea Bucureștelui",
+                        anul: "23 mai 1916",
+                      },
+                      {
+                        id: "3",
+                        text: "România a câștigat o victorie importantă în Bătălia de la Mărăști",
+                        anul: "1917",
+                      },
+                      {
+                        id: "4",
+                        text: "România a semnat Tratatul de la București",
+                        anul: "24 aprilie 1918",
+                      },
+                    ],
+                  },
                 ],
               },
               {
@@ -416,37 +545,81 @@ let temeIstoria = [
                 complexity: "moderat",
                 type: "caracteristica",
                 path: "/test1",
-                coloane: ["Lista variantelor","Caracteristicile"],
+                coloane: ["Lista variantelor", "Caracteristicile"],
                 coloanaRaspuns: "Caracteristicile",
                 quizArray: [
                   {
                     id: "1",
-                    cerinte: "Din lista prezentată selectați caracteristicile I Război Mondial:",
+                    cerinte:
+                      "Din lista prezentată selectați caracteristicile I Război Mondial:",
                     answers: [
                       { id: "1", text: "Lupta pentru reîmpărțirea lumii" },
-                      { id: "2", text: "Conflictele politice între marile puteri: Germania, Franța, Marea Britanie, Austro-Ungaria și Rusia" },
-                      { id: "3", text: "Dezvoltarea economică inegală a marilor puteri de la sf. sec. XIX - începutul sec. XX" },
-                      { id: "4", text: "Creșterea rasismului și naționalismului în formele sale extreme" },
+                      {
+                        id: "2",
+                        text: "Conflictele politice între marile puteri: Germania, Franța, Marea Britanie, Austro-Ungaria și Rusia",
+                      },
+                      {
+                        id: "3",
+                        text: "Dezvoltarea economică inegală a marilor puteri de la sf. sec. XIX - începutul sec. XX",
+                      },
+                      {
+                        id: "4",
+                        text: "Creșterea rasismului și naționalismului în formele sale extreme",
+                      },
                     ],
-                    correctAnswer:[
-                      { id: "1", text: "Lupta pentru reîmpărțirea lumii", anul: "1916" },
-                      { id: "2", text: "Conflictele politice între marile puteri: Germania, Franța, Marea Britanie, Austro-Ungaria și Rusia", anul: "23 mai 1916"},
-                      { id: "3", text: "Dezvoltarea economică inegală a marilor puteri de la sf. sec. XIX - începutul sec. XX", anul: "1917" },
+                    correctAnswer: [
+                      {
+                        id: "1",
+                        text: "Lupta pentru reîmpărțirea lumii",
+                        anul: "1916",
+                      },
+                      {
+                        id: "2",
+                        text: "Conflictele politice între marile puteri: Germania, Franța, Marea Britanie, Austro-Ungaria și Rusia",
+                        anul: "23 mai 1916",
+                      },
+                      {
+                        id: "3",
+                        text: "Dezvoltarea economică inegală a marilor puteri de la sf. sec. XIX - începutul sec. XX",
+                        anul: "1917",
+                      },
                     ],
                   },
                   {
                     id: "2",
-                    cerinte: "Din lista prezentată selectați caracteristicile I Război Mondial:",
+                    cerinte:
+                      "Din lista prezentată selectați caracteristicile I Război Mondial:",
                     answers: [
                       { id: "1", text: "Lupta pentru reîmpărțirea lumii" },
-                      { id: "2", text: "Conflictele politice între marile puteri: Germania, Franța, Marea Britanie, Austro-Ungaria și Rusia" },
-                      { id: "3", text: "Dezvoltarea economică inegală a marilor puteri de la sf. sec. XIX - începutul sec. XX" },
-                      { id: "4", text: "Creșterea rasismului și naționalismului în formele sale extreme" },
+                      {
+                        id: "2",
+                        text: "Conflictele politice între marile puteri: Germania, Franța, Marea Britanie, Austro-Ungaria și Rusia",
+                      },
+                      {
+                        id: "3",
+                        text: "Dezvoltarea economică inegală a marilor puteri de la sf. sec. XIX - începutul sec. XX",
+                      },
+                      {
+                        id: "4",
+                        text: "Creșterea rasismului și naționalismului în formele sale extreme",
+                      },
                     ],
-                    correctAnswer:[
-                      { id: "1", text: "Lupta pentru reîmpărțirea lumii", anul: "1916" },
-                      { id: "2", text: "Conflictele politice între marile puteri: Germania, Franța, Marea Britanie, Austro-Ungaria și Rusia", anul: "23 mai 1916"},
-                      { id: "3", text: "Dezvoltarea economică inegală a marilor puteri de la sf. sec. XIX - începutul sec. XX", anul: "1917" },
+                    correctAnswer: [
+                      {
+                        id: "1",
+                        text: "Lupta pentru reîmpărțirea lumii",
+                        anul: "1916",
+                      },
+                      {
+                        id: "2",
+                        text: "Conflictele politice între marile puteri: Germania, Franța, Marea Britanie, Austro-Ungaria și Rusia",
+                        anul: "23 mai 1916",
+                      },
+                      {
+                        id: "3",
+                        text: "Dezvoltarea economică inegală a marilor puteri de la sf. sec. XIX - începutul sec. XX",
+                        anul: "1917",
+                      },
                     ],
                   },
                 ],
@@ -466,48 +639,104 @@ let temeIstoria = [
                         answers: [],
                       },
                     ],
-                  }
-                ]
-              },              
+                  },
+                ],
+              },
               {
                 id: "8",
                 name: "Elaborează un fragment de text",
                 complexity: "dificil",
                 type: "chronoDuble",
                 path: "/test1",
-                coloane: ["Evenimentele","Text in ordine cronoligică"],
+                coloane: ["Evenimentele", "Text in ordine cronoligică"],
                 coloanaRaspuns: "Text in ordine cronoligică",
                 quizArray: [
                   {
                     id: "1",
                     answers: [
-                      { id: "1", text: "România a intrat în Primul Război Mondial" },
-                      { id: "2", text: "România a semnat Tratatul de la București" },
-                      { id: "3", text: "România a câștigat o victorie importantă în Bătălia de la Mărăști" },
+                      {
+                        id: "1",
+                        text: "România a intrat în Primul Război Mondial",
+                      },
+                      {
+                        id: "2",
+                        text: "România a semnat Tratatul de la București",
+                      },
+                      {
+                        id: "3",
+                        text: "România a câștigat o victorie importantă în Bătălia de la Mărăști",
+                      },
                       { id: "4", text: "Ocuparea Bucureștelui" },
-                      { id: "5", text: "România a semnat Tratatul de la Versailles, care a pus capăt participării sale în Primul Război Mondial" },
+                      {
+                        id: "5",
+                        text: "România a semnat Tratatul de la Versailles, care a pus capăt participării sale în Primul Război Mondial",
+                      },
                     ],
-                    correctAnswer:[
-                      { id: "1", text: "România a intrat în Primul Război Mondial", anul: "1916" },
-                      { id: "2", text: "Ocuparea Bucureștelui", anul: "23 mai 1916"},
-                      { id: "3", text: "România a câștigat o victorie importantă în Bătălia de la Mărăști", anul: "1917" },
-                      { id: "4", text:  "România a semnat Tratatul de la București", anul: "24 aprilie 1918"},
+                    correctAnswer: [
+                      {
+                        id: "1",
+                        text: "România a intrat în Primul Război Mondial",
+                        anul: "1916",
+                      },
+                      {
+                        id: "2",
+                        text: "Ocuparea Bucureștelui",
+                        anul: "23 mai 1916",
+                      },
+                      {
+                        id: "3",
+                        text: "România a câștigat o victorie importantă în Bătălia de la Mărăști",
+                        anul: "1917",
+                      },
+                      {
+                        id: "4",
+                        text: "România a semnat Tratatul de la București",
+                        anul: "24 aprilie 1918",
+                      },
                     ],
                   },
                   {
                     id: "2",
                     answers: [
-                      { id: "1", text: "România a intrat în Primul Război Mondial" },
-                      { id: "2", text: "România a semnat Tratatul de la București" },
-                      { id: "3", text: "România a câștigat o victorie importantă în Bătălia de la Mărăști" },
+                      {
+                        id: "1",
+                        text: "România a intrat în Primul Război Mondial",
+                      },
+                      {
+                        id: "2",
+                        text: "România a semnat Tratatul de la București",
+                      },
+                      {
+                        id: "3",
+                        text: "România a câștigat o victorie importantă în Bătălia de la Mărăști",
+                      },
                       { id: "4", text: "Ocuparea Bucureștelui" },
-                      { id: "5", text: "România a semnat Tratatul de la Versailles, care a pus capăt participării sale în Primul Război Mondial" },
+                      {
+                        id: "5",
+                        text: "România a semnat Tratatul de la Versailles, care a pus capăt participării sale în Primul Război Mondial",
+                      },
                     ],
-                    correctAnswer:[
-                      { id: "1", text: "România a intrat în Primul Război Mondial", anul: "1916" },
-                      { id: "2", text: "Ocuparea Bucureștelui", anul: "23 mai 1916"},
-                      { id: "3", text: "România a câștigat o victorie importantă în Bătălia de la Mărăști", anul: "1917" },
-                      { id: "4", text:  "România a semnat Tratatul de la București", anul: "24 aprilie 1918"},
+                    correctAnswer: [
+                      {
+                        id: "1",
+                        text: "România a intrat în Primul Război Mondial",
+                        anul: "1916",
+                      },
+                      {
+                        id: "2",
+                        text: "Ocuparea Bucureștelui",
+                        anul: "23 mai 1916",
+                      },
+                      {
+                        id: "3",
+                        text: "România a câștigat o victorie importantă în Bătălia de la Mărăști",
+                        anul: "1917",
+                      },
+                      {
+                        id: "4",
+                        text: "România a semnat Tratatul de la București",
+                        anul: "24 aprilie 1918",
+                      },
                     ],
                   },
                 ],
@@ -524,31 +753,81 @@ let temeIstoria = [
                   {
                     id: "1",
                     answers: [
-                      { id: "1", text: "România a intrat în Primul Război Mondial" },
-                      { id: "2", text: "România a semnat Tratatul de la București" },
-                      { id: "3", text: "România a câștigat o victorie importantă în Bătălia de la Mărăști" },
+                      {
+                        id: "1",
+                        text: "România a intrat în Primul Război Mondial",
+                      },
+                      {
+                        id: "2",
+                        text: "România a semnat Tratatul de la București",
+                      },
+                      {
+                        id: "3",
+                        text: "România a câștigat o victorie importantă în Bătălia de la Mărăști",
+                      },
                       { id: "4", text: "Ocuparea Bucureștelui" },
                     ],
-                    correctAnswer:[
-                      { id: "1", text: "România a intrat în Primul Război Mondial", anul: "1916" },
-                      { id: "2", text: "Ocuparea Bucureștelui", anul: "23 mai 1916"},
-                      { id: "3", text: "România a câștigat o victorie importantă în Bătălia de la Mărăști", anul: "1917" },
-                      { id: "4", text:  "România a semnat Tratatul de la București", anul: "24 aprilie 1918"},
+                    correctAnswer: [
+                      {
+                        id: "1",
+                        text: "România a intrat în Primul Război Mondial",
+                        anul: "1916",
+                      },
+                      {
+                        id: "2",
+                        text: "Ocuparea Bucureștelui",
+                        anul: "23 mai 1916",
+                      },
+                      {
+                        id: "3",
+                        text: "România a câștigat o victorie importantă în Bătălia de la Mărăști",
+                        anul: "1917",
+                      },
+                      {
+                        id: "4",
+                        text: "România a semnat Tratatul de la București",
+                        anul: "24 aprilie 1918",
+                      },
                     ],
                   },
                   {
                     id: "2",
                     answers: [
-                      { id: "1", text: "România a intrat în Primul Război Mondial" },
-                      { id: "2", text: "România a semnat Tratatul de la București" },
-                      { id: "3", text: "România a câștigat o victorie importantă în Bătălia de la Mărăști" },
+                      {
+                        id: "1",
+                        text: "România a intrat în Primul Război Mondial",
+                      },
+                      {
+                        id: "2",
+                        text: "România a semnat Tratatul de la București",
+                      },
+                      {
+                        id: "3",
+                        text: "România a câștigat o victorie importantă în Bătălia de la Mărăști",
+                      },
                       { id: "4", text: "Ocuparea Bucureștelui" },
                     ],
-                    correctAnswer:[
-                      { id: "1", text: "România a intrat în Primul Război Mondial", anul: "1916" },
-                      { id: "2", text: "Ocuparea Bucureștelui", anul: "23 mai 1916"},
-                      { id: "3", text: "România a câștigat o victorie importantă în Bătălia de la Mărăști", anul: "1917" },
-                      { id: "4", text:  "România a semnat Tratatul de la București", anul: "24 aprilie 1918"},
+                    correctAnswer: [
+                      {
+                        id: "1",
+                        text: "România a intrat în Primul Război Mondial",
+                        anul: "1916",
+                      },
+                      {
+                        id: "2",
+                        text: "Ocuparea Bucureștelui",
+                        anul: "23 mai 1916",
+                      },
+                      {
+                        id: "3",
+                        text: "România a câștigat o victorie importantă în Bătălia de la Mărăști",
+                        anul: "1917",
+                      },
+                      {
+                        id: "4",
+                        text: "România a semnat Tratatul de la București",
+                        anul: "24 aprilie 1918",
+                      },
                     ],
                   },
                 ],
@@ -592,7 +871,7 @@ let temeIstoria = [
                     ],
                     correctAnswer: "",
                   },
-                ]
+                ],
               },
             ],
           },
@@ -791,15 +1070,28 @@ let temeIstoria = [
         name: "Mișcarea națională a românilor din Basarabia și teritoriile din stânga Nistrului",
         addressDisciplina: "/istoria",
         address: "/mișcarea-națională-a-românilor",
+        breadcrumb: [
+          { name: "Discipline", path: "/" },
+          { name: "Istoria", path: "/istoria" },
+        ],
       },
       {
         name: "Formarea Statului Național Unitar Român. Recunoașterea Marii Uniri de la 1918",
         addressDisciplina: "/istoria",
-        address: "/romania-in-primul-razboi",
+        address: "/formarea-statului-national-unitar-roman",
+        breadcrumb: [
+          { name: "Discipline", path: "/" },
+          { name: "Istoria", path: "/istoria" },
+        ],
       },
-      { name: "Conferinţa de Pace de la Paris. Sistemul de la Versailles",
-      addressDisciplina: "/istoria",  
-      address: "/romania-in-primul-razboi", 
+      {
+        name: "Conferinţa de Pace de la Paris. Sistemul de la Versailles",
+        addressDisciplina: "/istoria",
+        address: "/conferinta-de-pace-de-la-paris",
+        breadcrumb: [
+          { name: "Discipline", path: "/" },
+          { name: "Istoria", path: "/istoria" },
+        ],
       },
     ],
   },
@@ -809,13 +1101,69 @@ let temeIstoria = [
     disciplina: "Istoria",
     ciclul: "Ciclul gimnazial",
     subtitles: [
-      { name: "SUA în perioada interbelică", addressDisciplina: "/istoria", address: "/romania-in-primul-razboi", },
-      { name: "Europa de Vest în perioada interbelică", addressDisciplina: "/istoria", address: "/romania-in-primul-razboi", },
-      { name: "România în perioada interbelică", addressDisciplina: "/istoria", address: "/romania-in-primul-razboi", },
-      { name: "Basarabia în cadrul României Mari (1918-1940)", addressDisciplina: "/istoria", address: "/romania-in-primul-razboi", },
-      { name: "RASSM (1924-1940). Politica expansionistă a URSS", addressDisciplina: "/istoria", address: "/romania-in-primul-razboi", },
-      { name: "Cultura și știința în perioada interbelică", addressDisciplina: "/istoria", address: "/romania-in-primul-razboi", },
-      { name: "Cultura românească în 1918-40", addressDisciplina: "/istoria", address: "/romania-in-primul-razboi", },
+      {
+        name: "SUA în perioada interbelică",
+        addressDisciplina: "/istoria",
+        address: "/sua-in-perioada-interbelica",
+        breadcrumb: [
+          { name: "Discipline", path: "/" },
+          { name: "Istoria", path: "/istoria" },
+        ],
+      },
+      {
+        name: "Europa de Vest în perioada interbelică",
+        addressDisciplina: "/istoria",
+        address: "/europa-de-vest-in-perioada-interbelica",
+        breadcrumb: [
+          { name: "Discipline", path: "/" },
+          { name: "Istoria", path: "/istoria" },
+        ],
+      },
+      {
+        name: "România în perioada interbelică",
+        addressDisciplina: "/istoria",
+        address: "/romania-in-perioada-interbelica",
+        breadcrumb: [
+          { name: "Discipline", path: "/" },
+          { name: "Istoria", path: "/istoria" },
+        ],
+      },
+      {
+        name: "Basarabia în cadrul României Mari (1918-1940)",
+        addressDisciplina: "/istoria",
+        address: "/basarabia-in-cadrul-romaniei-mari",
+        breadcrumb: [
+          { name: "Discipline", path: "/" },
+          { name: "Istoria", path: "/istoria" },
+        ],
+      },
+      {
+        name: "RASSM (1924-1940). Politica expansionistă a URSS",
+        addressDisciplina: "/istoria",
+        address: "/rassm",
+        breadcrumb: [
+          { name: "Discipline", path: "/" },
+          { name: "Istoria", path: "/istoria" },
+        ],
+      },
+      {
+        name: "Cultura și știința în perioada interbelică",
+        addressDisciplina: "/istoria",
+        address: "/cultura-in-perioada-interbelica",
+        breadcrumb: [
+          { name: "Discipline", path: "/" },
+          { name: "Istoria", path: "/istoria" },
+        ],
+      },
+      {
+        name: "Cultura românească în 1918-40",
+        addressDisciplina: "/istoria",
+        address: "/cultura-romaneasca-interbelica",
+        breadcrumb: [
+          { name: "Discipline", path: "/" },
+          { name: "Istoria", path: "/istoria" },
+        ],
+      },
     ],
   },
   {
@@ -824,12 +1172,42 @@ let temeIstoria = [
     disciplina: "Istoria",
     ciclul: "Ciclul gimnazial",
     subtitles: [
-      { name: "Alianțe și tratate politico-militare în perioada interbelică", addressDisciplina: "/istoria", address: "/romania-in-primul-razboi", },
       {
-        name: "Relațiie sovieto-romane(1948-1940). Consecintele pactului Molotov-Ribbentrop", addressDisciplina: "/istoria", address: "/romania-in-primul-razboi",
+        name: "Alianțe și tratate politico-militare în perioada interbelică",
+        addressDisciplina: "/istoria",
+        address: "/aliante-in-perioada-interbelica",
+        breadcrumb: [
+          { name: "Discipline", path: "/" },
+          { name: "Istoria", path: "/istoria" },
+        ],
       },
-      { name: "Pierderile teritoriale ale României în vara anului 1940", addressDisciplina: "/istoria", address: "/romania-in-primul-razboi", },
-      { name: "Formarea RSSM și instaurarea regimului comunist", addressDisciplina: "/istoria", address: "/romania-in-primul-razboi", },
+      {
+        name: "Relațiie sovieto-romane(1948-1940). Consecintele pactului Molotov-Ribbentrop",
+        addressDisciplina: "/istoria",
+        address: "/relatiie-sovieto-romane",
+        breadcrumb: [
+          { name: "Discipline", path: "/" },
+          { name: "Istoria", path: "/istoria" },
+        ],
+      },
+      {
+        name: "Pierderile teritoriale ale României în vara anului 1940",
+        addressDisciplina: "/istoria",
+        address: "/pierderile-teritoriale-ale-romaniei",
+        breadcrumb: [
+          { name: "Discipline", path: "/" },
+          { name: "Istoria", path: "/istoria" },
+        ],
+      },
+      {
+        name: "Formarea RSSM și instaurarea regimului comunist",
+        addressDisciplina: "/istoria",
+        address: "/formarea-rssm",
+        breadcrumb: [
+          { name: "Discipline", path: "/" },
+          { name: "Istoria", path: "/istoria" },
+        ],
+      },
     ],
   },
   {
@@ -838,10 +1216,42 @@ let temeIstoria = [
     disciplina: "Istoria",
     ciclul: "Ciclul gimnazial",
     subtitles: [
-      { name: "Al Doilea Război Mondial 1939-1945", addressDisciplina: "/istoria", address: "/romania-in-primul-razboi", },
-      { name: "Spațiul românesc între 1941 şi 1944", addressDisciplina: "/istoria", address: "/romania-in-primul-razboi", },
-      { name: "Crime de război. Holocaust", addressDisciplina: "/istoria", address: "/romania-in-primul-razboi", },
-      { name: "Consecințele celui de-al Doilea Război Mondial", addressDisciplina: "/istoria", address: "/romania-in-primul-razboi", },
+      {
+        name: "Al Doilea Război Mondial 1939-1945",
+        addressDisciplina: "/istoria",
+        address: "/al-doilea-razboi-mondial",
+        breadcrumb: [
+          { name: "Discipline", path: "/" },
+          { name: "Istoria", path: "/istoria" },
+        ],
+      },
+      {
+        name: "Spațiul românesc între 1941 şi 1944",
+        addressDisciplina: "/istoria",
+        address: "/romania-in-al-doilea-razboi-mondial",
+        breadcrumb: [
+          { name: "Discipline", path: "/" },
+          { name: "Istoria", path: "/istoria" },
+        ],
+      },
+      {
+        name: "Crime de război. Holocaust",
+        addressDisciplina: "/istoria",
+        address: "/holocaust",
+        breadcrumb: [
+          { name: "Discipline", path: "/" },
+          { name: "Istoria", path: "/istoria" },
+        ],
+      },
+      {
+        name: "Consecințele celui de-al Doilea Război Mondial",
+        addressDisciplina: "/istoria",
+        address: "/consecintele-celui-de-al-doilea-razboi-mondial",
+        breadcrumb: [
+          { name: "Discipline", path: "/" },
+          { name: "Istoria", path: "/istoria" },
+        ],
+      },
     ],
   },
   {
@@ -851,11 +1261,41 @@ let temeIstoria = [
     ciclul: "Ciclul gimnazial",
     subtitles: [
       {
-        name: "Relațiile internaționale în perioada 1945 –1991. Constituirea ONU", addressDisciplina: "/istoria", address: "/romania-in-primul-razboi",
+        name: "Relațiile internaționale în perioada 1945-1991. Constituirea ONU",
+        addressDisciplina: "/istoria",
+        address: "/constituirea-onu",
+        breadcrumb: [
+          { name: "Discipline", path: "/" },
+          { name: "Istoria", path: "/istoria" },
+        ],
       },
-      { name: "Uniunea Sovietică în perioada postbelică", addressDisciplina: "/istoria", address: "/romania-in-primul-razboi", },
-      { name: "RSSM. Economie şi societate (1944-1985)", addressDisciplina: "/istoria", address: "/romania-in-primul-razboi", },
-      { name: "Foametea, represiile și deportările staliniste din RSSM", addressDisciplina: "/istoria", address: "/romania-in-primul-razboi", },
+      {
+        name: "Uniunea Sovietică în perioada postbelică",
+        addressDisciplina: "/istoria",
+        address: "/uniunea-sovietica-in-perioada-postbelica",
+        breadcrumb: [
+          { name: "Discipline", path: "/" },
+          { name: "Istoria", path: "/istoria" },
+        ],
+      },
+      {
+        name: "RSSM. Economie şi societate (1944-1985)",
+        addressDisciplina: "/istoria",
+        address: "/rssm",
+        breadcrumb: [
+          { name: "Discipline", path: "/" },
+          { name: "Istoria", path: "/istoria" },
+        ],
+      },
+      {
+        name: "Foametea, represiile și deportările staliniste din RSSM",
+        addressDisciplina: "/istoria",
+        address: "/deportarile-staliniste-din-rssm",
+        breadcrumb: [
+          { name: "Discipline", path: "/" },
+          { name: "Istoria", path: "/istoria" },
+        ],
+      },
     ],
   },
   {
@@ -865,9 +1305,23 @@ let temeIstoria = [
     ciclul: "Ciclul gimnazial",
     subtitles: [
       {
-        name: "RSSM între 1985 –1991. Proclamarea independenței Republicii Moldova", addressDisciplina: "/istoria", address: "/romania-in-primul-razboi",
+        name: "RSSM între 1985-1991. Proclamarea independenței Republicii Moldova",
+        addressDisciplina: "/istoria",
+        address: "/proclamarea-independentei-republicii-moldova",
+        breadcrumb: [
+          { name: "Discipline", path: "/" },
+          { name: "Istoria", path: "/istoria" },
+        ],
       },
-      { name: "Războiul de pe Nistru", addressDisciplina: "/istoria", address: "/romania-in-primul-razboi", },
+      {
+        name: "Războiul de pe Nistru",
+        addressDisciplina: "/istoria",
+        address: "/razboiul-de-pe-nistru",
+        breadcrumb: [
+          { name: "Discipline", path: "/" },
+          { name: "Istoria", path: "/istoria" },
+        ],
+      },
     ],
   },
   {
@@ -876,9 +1330,33 @@ let temeIstoria = [
     disciplina: "Istoria",
     ciclul: "Ciclul gimnazial",
     subtitles: [
-      { name: "Cultura și știința în RSSM (1944–1991)", addressDisciplina: "/istoria", address: "/romania-in-primul-razboi", },
-      { name: "Evoluția culturii în Republica Moldova", addressDisciplina: "/istoria", address: "/romania-in-primul-razboi", },
-      { name: "Cultura și știința universală în Epoca Contemporană", addressDisciplina: "/istoria", address: "/romania-in-primul-razboi", },
+      {
+        name: "Cultura și știința în RSSM (1944-1991)",
+        addressDisciplina: "/istoria",
+        address: "/cultura-si-stiinta-in-rssm",
+        breadcrumb: [
+          { name: "Discipline", path: "/" },
+          { name: "Istoria", path: "/istoria" },
+        ],
+      },
+      {
+        name: "Evoluția culturii în Republica Moldova",
+        addressDisciplina: "/istoria",
+        address: "/evolutia-culturii-in-republica-moldova",
+        breadcrumb: [
+          { name: "Discipline", path: "/" },
+          { name: "Istoria", path: "/istoria" },
+        ],
+      },
+      {
+        name: "Cultura și știința universală în Epoca Contemporană",
+        addressDisciplina: "/istoria",
+        address: "/cultura-si-stiinta-in-epoca-contemporana",
+        breadcrumb: [
+          { name: "Discipline", path: "/" },
+          { name: "Istoria", path: "/istoria" },
+        ],
+      },
     ],
   },
 ];

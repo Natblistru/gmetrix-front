@@ -11,7 +11,7 @@ const DiagramTable = (props) => {
  
   }
   const renderDiagramItems = (items) => {
-    return items.map((item) => (
+    return items?.map((item) => (
       <DiagramItem key={item.text} text={item.text} modal={item.modal} img={item.image} onClick={clickDiagramItemHandler}>
         {item.children.length > 0 && renderDiagramItems(item.children)}
       </DiagramItem>

@@ -39,13 +39,13 @@ const TestWrapper = (props) => {
   );
 
   const handleTryAgain = () => {
-    console.log("handleTryAgain currInd",currInd);
+    // console.log("handleTryAgain currInd",currInd);
     // if(currInd!==undefined) setCurrentIndex(currInd) 
     // else 
     setCurrentIndex(
       currentList.quizArray.length - 1 === currentIndex ? 0 : currentIndex + 1
     );
-    console.log("currentIndex din Test(handleTryAgain) ",currentIndex);
+    // console.log("currentIndex din Test(handleTryAgain) ",currentIndex);
     setCorrectAnswer(null);
   };
 

@@ -22,11 +22,11 @@ const ListAccordeon = (props) => {
   }, [props.location.hash]);
 
   const classes = " " + props.className;
-  let titleList = props.teme[0].subtitles[0].subjects;
-  let repereList = props.teme[0].subtitles[0].repere;
-  let aplicatiiList = props.teme[0].subtitles[0].aplicatii;
-  let termeniList = props.teme[0].subtitles[0].termeni;
-  let diagramData = props.teme[0].subtitles[0].diagramData;
+  let titleList = props.teme.subjects;
+  let repereList = props.teme.repere;
+  let aplicatiiList = props.teme.aplicatii;
+  let termeniList = props.teme.termeni;
+  let diagramData = props.teme.diagramData;
 
   return (
     <div className={classes}>
@@ -40,12 +40,14 @@ const ListAccordeon = (props) => {
       <div id="ani"></div>
       <ItemAccordeon titlu="Repere cronoligice" {...props} open={true}>
         <ItemList {...props} list={repereList} />
-        <Link to={{ pathname: "/flipCards", state: { list: repereList, anchor: "ani" } }} className="custom-link">Exerseaza</Link>
+        <Link to={{ pathname: props.teme.addressDisciplina + props.teme.address+"/flipCards/ani", state: { list: repereList, anchor: "ani", item: props.teme } }} className="custom-link">Exerseaza</Link>
+        {/* <Link to={{ pathname: props.teme.addressDisciplina + props.teme.address+"/flipCards", state: { list: termeniList, anchor: "termeni", item: props.teme} }} className="custom-link">Exerseaza</Link>      */}
       </ItemAccordeon>
       <div id="termeni"></div>
       <ItemAccordeon titlu="Termeni-cheie" {...props} open={true}>
+        {console.log(props.teme.addressDisciplina + props.teme.address)}
         <ItemList {...props} list={termeniList} />
-        <Link to={{ pathname: "/flipCards", state: { list: termeniList, anchor: "termeni" } }} className="custom-link">Exerseaza</Link>
+        <Link to={{ pathname: props.teme.addressDisciplina + props.teme.address+"/flipCards/termeni", state: { list: termeniList, anchor: "termeni", item: props.teme} }} className="custom-link">Exerseaza</Link>
       </ItemAccordeon>
       <ItemAccordeon titlu="Aplicații (teste de examen)" {...props} open={true}>
         <ItemList {...props} list={aplicatiiList} />

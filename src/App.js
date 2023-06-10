@@ -52,6 +52,8 @@ function App() {
         </Route> */}
     <Switch>
       <Route exact path="/" render={() => <Redirect to="/home" />} />
+      <Route path='/istoria/:address/flipCards/ani' component={FlipCardsWithRouter} />
+      <Route path='/istoria/:address/flipCards/termeni' component={FlipCardsWithRouter} />
       <Route path="/istoria/:address" component={Tema} />
       <Route exact path='/home' component={Home} />
       <Route path='/romana' component={TemeRom} />
@@ -60,7 +62,7 @@ function App() {
       <Route path='/tema1' component={Tema} />
       <Route path='/subtema1' component={Subtema} />
       <Route path='/test1' component={TestWithRouter} />
-      <Route path='/flipCards' component={FlipCardsWithRouter} />
+ 
 
       <Route component={Error} />
     </Switch>
