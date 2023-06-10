@@ -51,15 +51,17 @@ function App() {
           <Error />
         </Route> */}
     <Switch>
-      <Route path='/home' component={Home} />
-      <Route path='/teme-romana' component={TemeRom} />
-      <Route path='/teme-matem' component={TemeMatem} />
-      <Route path='/teme-istoria' component={TemeIstoria} />
+      <Route exact path="/" render={() => <Redirect to="/home" />} />
+      <Route path="/istoria/:address" component={Tema} />
+      <Route exact path='/home' component={Home} />
+      <Route path='/romana' component={TemeRom} />
+      <Route path='/matem' component={TemeMatem} />
+      <Route path='/istoria' component={TemeIstoria} />
       <Route path='/tema1' component={Tema} />
       <Route path='/subtema1' component={Subtema} />
       <Route path='/test1' component={TestWithRouter} />
       <Route path='/flipCards' component={FlipCardsWithRouter} />
-      <Route exact path='/' render={() => <Redirect to='/home' />} />
+
       <Route component={Error} />
     </Switch>
       </div>

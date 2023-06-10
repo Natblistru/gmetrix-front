@@ -7,11 +7,11 @@ let temeIstoria = [
     subtitles: [
       {
         name: "România în Primul Război Mondial",
-        address:
-          "/dis/history/class-9/primul-razboi-mondial/romania-in-primul-razboi",
+        addressDisciplina: "/istoria",        
+        address: "/romania-in-primul-razboi",
         breadcrumb: [
           { name: "Discipline", path: "/" },
-          { name: "Istoria", path: "/teme-istoria" },
+          { name: "Istoria", path: "/istoria" },
         ],
         subjects: [
           {
@@ -22,7 +22,7 @@ let temeIstoria = [
               "/dis/history/class-9/primul-razboi-mondial/romania-in-primul-razboi/neutralitate",
             breadcrumb: [
               { name: "Discipline", path: "/" },
-              { name: "Istoria", path: "/teme-istoria" },
+              { name: "Istoria", path: "/istoria" },
               { name: "România în Primul Război Mondial", path: "/tema1" },
             ],
             vomAfla: [
@@ -789,11 +789,18 @@ let temeIstoria = [
       },
       {
         name: "Mișcarea națională a românilor din Basarabia și teritoriile din stânga Nistrului",
+        addressDisciplina: "/istoria",
+        address: "/mișcarea-națională-a-românilor",
       },
       {
         name: "Formarea Statului Național Unitar Român. Recunoașterea Marii Uniri de la 1918",
+        addressDisciplina: "/istoria",
+        address: "/romania-in-primul-razboi",
       },
-      { name: "Conferinţa de Pace de la Paris. Sistemul de la Versailles" },
+      { name: "Conferinţa de Pace de la Paris. Sistemul de la Versailles",
+      addressDisciplina: "/istoria",  
+      address: "/romania-in-primul-razboi", 
+      },
     ],
   },
   {
@@ -802,13 +809,13 @@ let temeIstoria = [
     disciplina: "Istoria",
     ciclul: "Ciclul gimnazial",
     subtitles: [
-      { name: "SUA în perioada interbelică" },
-      { name: "Europa de Vest în perioada interbelică" },
-      { name: "România în perioada interbelică" },
-      { name: "Basarabia în cadrul României Mari (1918-1940)" },
-      { name: "RASSM (1924-1940). Politica expansionistă a URSS" },
-      { name: "Cultura și știința în perioada interbelică" },
-      { name: "Cultura românească în 1918-40" },
+      { name: "SUA în perioada interbelică", addressDisciplina: "/istoria", address: "/romania-in-primul-razboi", },
+      { name: "Europa de Vest în perioada interbelică", addressDisciplina: "/istoria", address: "/romania-in-primul-razboi", },
+      { name: "România în perioada interbelică", addressDisciplina: "/istoria", address: "/romania-in-primul-razboi", },
+      { name: "Basarabia în cadrul României Mari (1918-1940)", addressDisciplina: "/istoria", address: "/romania-in-primul-razboi", },
+      { name: "RASSM (1924-1940). Politica expansionistă a URSS", addressDisciplina: "/istoria", address: "/romania-in-primul-razboi", },
+      { name: "Cultura și știința în perioada interbelică", addressDisciplina: "/istoria", address: "/romania-in-primul-razboi", },
+      { name: "Cultura românească în 1918-40", addressDisciplina: "/istoria", address: "/romania-in-primul-razboi", },
     ],
   },
   {
@@ -817,12 +824,12 @@ let temeIstoria = [
     disciplina: "Istoria",
     ciclul: "Ciclul gimnazial",
     subtitles: [
-      { name: "Alianțe și tratate politico-militare în perioada interbelică" },
+      { name: "Alianțe și tratate politico-militare în perioada interbelică", addressDisciplina: "/istoria", address: "/romania-in-primul-razboi", },
       {
-        name: "Relațiie sovieto-romane(1948-1940). Consecintele pactului Molotov-Ribbentrop",
+        name: "Relațiie sovieto-romane(1948-1940). Consecintele pactului Molotov-Ribbentrop", addressDisciplina: "/istoria", address: "/romania-in-primul-razboi",
       },
-      { name: "Pierderile teritoriale ale României în vara anului 1940" },
-      { name: "Formarea RSSM și instaurarea regimului comunist" },
+      { name: "Pierderile teritoriale ale României în vara anului 1940", addressDisciplina: "/istoria", address: "/romania-in-primul-razboi", },
+      { name: "Formarea RSSM și instaurarea regimului comunist", addressDisciplina: "/istoria", address: "/romania-in-primul-razboi", },
     ],
   },
   {
@@ -831,10 +838,10 @@ let temeIstoria = [
     disciplina: "Istoria",
     ciclul: "Ciclul gimnazial",
     subtitles: [
-      { name: "Al Doilea Război Mondial 1939-1945" },
-      { name: "Spațiul românesc între 1941 şi 1944" },
-      { name: "Crime de război. Holocaust" },
-      { name: "Consecințele celui de-al Doilea Război Mondial" },
+      { name: "Al Doilea Război Mondial 1939-1945", addressDisciplina: "/istoria", address: "/romania-in-primul-razboi", },
+      { name: "Spațiul românesc între 1941 şi 1944", addressDisciplina: "/istoria", address: "/romania-in-primul-razboi", },
+      { name: "Crime de război. Holocaust", addressDisciplina: "/istoria", address: "/romania-in-primul-razboi", },
+      { name: "Consecințele celui de-al Doilea Război Mondial", addressDisciplina: "/istoria", address: "/romania-in-primul-razboi", },
     ],
   },
   {
@@ -844,11 +851,11 @@ let temeIstoria = [
     ciclul: "Ciclul gimnazial",
     subtitles: [
       {
-        name: "Relațiile internaționale în perioada 1945 –1991. Constituirea ONU",
+        name: "Relațiile internaționale în perioada 1945 –1991. Constituirea ONU", addressDisciplina: "/istoria", address: "/romania-in-primul-razboi",
       },
-      { name: "Uniunea Sovietică în perioada postbelică" },
-      { name: "RSSM. Economie şi societate (1944-1985)" },
-      { name: "Foametea, represiile și deportările staliniste din RSSM" },
+      { name: "Uniunea Sovietică în perioada postbelică", addressDisciplina: "/istoria", address: "/romania-in-primul-razboi", },
+      { name: "RSSM. Economie şi societate (1944-1985)", addressDisciplina: "/istoria", address: "/romania-in-primul-razboi", },
+      { name: "Foametea, represiile și deportările staliniste din RSSM", addressDisciplina: "/istoria", address: "/romania-in-primul-razboi", },
     ],
   },
   {
@@ -858,9 +865,9 @@ let temeIstoria = [
     ciclul: "Ciclul gimnazial",
     subtitles: [
       {
-        name: "RSSM între 1985 –1991. Proclamarea independenței Republicii Moldova",
+        name: "RSSM între 1985 –1991. Proclamarea independenței Republicii Moldova", addressDisciplina: "/istoria", address: "/romania-in-primul-razboi",
       },
-      { name: "Războiul de pe Nistru" },
+      { name: "Războiul de pe Nistru", addressDisciplina: "/istoria", address: "/romania-in-primul-razboi", },
     ],
   },
   {
@@ -869,9 +876,9 @@ let temeIstoria = [
     disciplina: "Istoria",
     ciclul: "Ciclul gimnazial",
     subtitles: [
-      { name: "Cultura și știința în RSSM (1944–1991)" },
-      { name: "Evoluția culturii în Republica Moldova" },
-      { name: "Cultura și știința universală în Epoca Contemporană" },
+      { name: "Cultura și știința în RSSM (1944–1991)", addressDisciplina: "/istoria", address: "/romania-in-primul-razboi", },
+      { name: "Evoluția culturii în Republica Moldova", addressDisciplina: "/istoria", address: "/romania-in-primul-razboi", },
+      { name: "Cultura și știința universală în Epoca Contemporană", addressDisciplina: "/istoria", address: "/romania-in-primul-razboi", },
     ],
   },
 ];

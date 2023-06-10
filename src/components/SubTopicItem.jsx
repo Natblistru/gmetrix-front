@@ -7,8 +7,8 @@ const SubTopicItem = (props) => {
         <div className="subtopic-header">
             <span className="num"></span>
             <h4>
-                {/* <a href={subtitle.address}>{subtitle.name}</a> */}
-                <Link to='/tema1'>{subtitle.name}</Link>
+                {/* <Link to='/tema1'>{subtitle.name}</Link> */}
+                <Link to={`${subtitle.addressDisciplina}${subtitle.address}`}>{subtitle.name}</Link>                
             </h4>
         </div>
         <div className="progress-box">
