@@ -23,7 +23,10 @@ let temeIstoria = [
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
-              { name: "România în Primul Război Mondial", path: "/istoria/romania-in-primul-razboi" },
+              {
+                name: "România în Primul Război Mondial",
+                path: "/istoria/romania-in-primul-razboi",
+              },
             ],
             vomAfla: [
               {
@@ -1074,6 +1077,34 @@ let temeIstoria = [
           { name: "Discipline", path: "/" },
           { name: "Istoria", path: "/istoria" },
         ],
+        subjects: [
+          {
+            id: "1",
+            name: "Revigorarea luptei pentru autonomia Basarabiei din primăvara anului 1917",
+            path: "/subtema1",
+            breadcrumb: [
+              { name: "Discipline", path: "/" },
+              { name: "Istoria", path: "/istoria" },
+              {
+                name: "Mișcarea națională a românilor",
+                path: "/istoria/mișcarea-națională-a-românilor",
+              },
+            ],
+          },
+          {
+            id: "2",
+            name: "Evoluția mișcării naționale în vara anului 1917",
+            path: "/subtema1",
+            breadcrumb: [
+              { name: "Discipline", path: "/" },
+              { name: "Istoria", path: "/istoria" },
+              {
+                name: "Mișcarea națională a românilor",
+                path: "/istoria/mișcarea-națională-a-românilor",
+              },
+            ],
+          },
+        ],
       },
       {
         name: "Formarea Statului Național Unitar Român. Recunoașterea Marii Uniri de la 1918",
@@ -1083,6 +1114,34 @@ let temeIstoria = [
           { name: "Discipline", path: "/" },
           { name: "Istoria", path: "/istoria" },
         ],
+        subjects: [
+          {
+            id: "1",
+            name: "Republica Democratică Moldovenească în lupta cu anarhia",
+            path: "/subtema1",
+            breadcrumb: [
+              { name: "Discipline", path: "/" },
+              { name: "Istoria", path: "/istoria" },
+              {
+                name: "Formarea Statului Național Unitar Român",
+                path: "/istoria/formarea-statului-national-unitar-roman",
+              },
+            ],
+          },
+          {
+            id: "2",
+            name: "Declararea de independență a Republicii Democratice Moldovenești",
+            path: "/subtema1",
+            breadcrumb: [
+              { name: "Discipline", path: "/" },
+              { name: "Istoria", path: "/istoria" },
+              {
+                name: "Formarea Statului Național Unitar Român",
+                path: "/istoria/formarea-statului-national-unitar-roman",
+              },
+            ],
+          },
+        ],
       },
       {
         name: "Conferinţa de Pace de la Paris. Sistemul de la Versailles",
@@ -1091,6 +1150,34 @@ let temeIstoria = [
         breadcrumb: [
           { name: "Discipline", path: "/" },
           { name: "Istoria", path: "/istoria" },
+        ],
+        subjects: [
+          {
+            id: "1",
+            name: "Conferința de Pace de la Paris (1919-1920)",
+            path: "/subtema1",
+            breadcrumb: [
+              { name: "Discipline", path: "/" },
+              { name: "Istoria", path: "/istoria" },
+              {
+                name: "Conferinţa de Pace de la Paris. Sistemul de la Versailles",
+                path: "/istoria/conferinta-de-pace-de-la-paris",
+              },
+            ],
+          },
+          {
+            id: "2",
+            name: "Tratatul de la Saint-Germain",
+            path: "/subtema1",
+            breadcrumb: [
+              { name: "Discipline", path: "/" },
+              { name: "Istoria", path: "/istoria" },
+              {
+                name: "Conferinţa de Pace de la Paris. Sistemul de la Versailles",
+                path: "/istoria/conferinta-de-pace-de-la-paris",
+              },
+            ],
+          },
         ],
       },
     ],
@@ -1109,6 +1196,34 @@ let temeIstoria = [
           { name: "Discipline", path: "/" },
           { name: "Istoria", path: "/istoria" },
         ],
+        subjects: [
+          {
+            id: "1",
+            name: "SUA după Primul Război Mondial",
+            path: "/subtema1",
+            breadcrumb: [
+              { name: "Discipline", path: "/" },
+              { name: "Istoria", path: "/istoria" },
+              {
+                name: "SUA în perioada interbelică",
+                path: "/istoria/sua-in-perioada-interbelica",
+              },
+            ],
+          },
+          {
+            id: "2",
+            name: "Marea criză economică și consecințele ei",
+            path: "/subtema1",
+            breadcrumb: [
+              { name: "Discipline", path: "/" },
+              { name: "Istoria", path: "/istoria" },
+              {
+                name: "SUA în perioada interbelică",
+                path: "/istoria/sua-in-perioada-interbelica",
+              },
+            ],
+          },
+        ],
       },
       {
         name: "Europa de Vest în perioada interbelică",
@@ -1117,6 +1232,34 @@ let temeIstoria = [
         breadcrumb: [
           { name: "Discipline", path: "/" },
           { name: "Istoria", path: "/istoria" },
+        ],
+        subjects: [
+          {
+            id: "1",
+            name: "Viața politică în Marea Britanie în anii 20-30 ai secolului XX-lea",
+            path: "/subtema1",
+            breadcrumb: [
+              { name: "Discipline", path: "/" },
+              { name: "Istoria", path: "/istoria" },
+              {
+                name: "Europa de Vest în perioada interbelică",
+                path: "/istoria/europa-de-vest-in-perioada-interbelica",
+              },
+            ],
+          },
+          {
+            id: "2",
+            name: "Rivalitatea pentru putere dintre partidele politice în Franța",
+            path: "/subtema1",
+            breadcrumb: [
+              { name: "Discipline", path: "/" },
+              { name: "Istoria", path: "/istoria" },
+              {
+                name: "Europa de Vest în perioada interbelică",
+                path: "/istoria/europa-de-vest-in-perioada-interbelica",
+              },
+            ],
+          },
         ],
       },
       {
@@ -1127,6 +1270,34 @@ let temeIstoria = [
           { name: "Discipline", path: "/" },
           { name: "Istoria", path: "/istoria" },
         ],
+        subjects: [
+          {
+            id: "1",
+            name: "Dezvoltarea economiei României în anii 1918-1940",
+            path: "/subtema1",
+            breadcrumb: [
+              { name: "Discipline", path: "/" },
+              { name: "Istoria", path: "/istoria" },
+              {
+                name: "România în perioada interbelică",
+                path: "/istoria/romania-in-perioada-interbelica",
+              },
+            ],
+          },
+          {
+            id: "2",
+            name: "Minoritățile etnice în România",
+            path: "/subtema1",
+            breadcrumb: [
+              { name: "Discipline", path: "/" },
+              { name: "Istoria", path: "/istoria" },
+              {
+                name: "România în perioada interbelică",
+                path: "/istoria/romania-in-perioada-interbelica",
+              },
+            ],
+          },
+        ],
       },
       {
         name: "Basarabia în cadrul României Mari (1918-1940)",
@@ -1135,6 +1306,34 @@ let temeIstoria = [
         breadcrumb: [
           { name: "Discipline", path: "/" },
           { name: "Istoria", path: "/istoria" },
+        ],
+        subjects: [
+          {
+            id: "1",
+            name: "Specificul dezvoltării social-economice a Basarabiei",
+            path: "/subtema1",
+            breadcrumb: [
+              { name: "Discipline", path: "/" },
+              { name: "Istoria", path: "/istoria" },
+              {
+                name: "Basarabia în cadrul României Mari",
+                path: "/istoria/basarabia-in-cadrul-romaniei-mari",
+              },
+            ],
+          },
+          {
+            id: "2",
+            name: "Minoritățile etnice în Basarabia",
+            path: "/subtema1",
+            breadcrumb: [
+              { name: "Discipline", path: "/" },
+              { name: "Istoria", path: "/istoria" },
+              {
+                name: "Basarabia în cadrul României Mari",
+                path: "/istoria/basarabia-in-cadrul-romaniei-mari",
+              },
+            ],
+          },
         ],
       },
       {
@@ -1145,6 +1344,34 @@ let temeIstoria = [
           { name: "Discipline", path: "/" },
           { name: "Istoria", path: "/istoria" },
         ],
+        subjects: [
+          {
+            id: "1",
+            name: "Formarea RASSM",
+            path: "/subtema1",
+            breadcrumb: [
+              { name: "Discipline", path: "/" },
+              { name: "Istoria", path: "/istoria" },
+              {
+                name: "RASSM (1924-1940)",
+                path: "/istoria/rassm",
+              },
+            ],
+          },
+          {
+            id: "2",
+            name: "Represiunile staliniste",
+            path: "/subtema1",
+            breadcrumb: [
+              { name: "Discipline", path: "/" },
+              { name: "Istoria", path: "/istoria" },
+              {
+                name: "RASSM (1924-1940)",
+                path: "/istoria/rassm",
+              },
+            ],
+          },
+        ],
       },
       {
         name: "Cultura și știința în perioada interbelică",
@@ -1154,6 +1381,34 @@ let temeIstoria = [
           { name: "Discipline", path: "/" },
           { name: "Istoria", path: "/istoria" },
         ],
+        subjects: [
+          {
+            id: "1",
+            name: "Manifestările suprarealismului",
+            path: "/subtema1",
+            breadcrumb: [
+              { name: "Discipline", path: "/" },
+              { name: "Istoria", path: "/istoria" },
+              {
+                name: "Cultura și știința în perioada interbelică",
+                path: "/istoria/cultura-in-perioada-interbelica",
+              },
+            ],
+          },
+          {
+            id: "2",
+            name: "Descoperiri științifice",
+            path: "/subtema1",
+            breadcrumb: [
+              { name: "Discipline", path: "/" },
+              { name: "Istoria", path: "/istoria" },
+              {
+                name: "Cultura și știința în perioada interbelică",
+                path: "/istoria/cultura-in-perioada-interbelica",
+              },
+            ],
+          },
+        ],
       },
       {
         name: "Cultura românească în 1918-40",
@@ -1162,6 +1417,34 @@ let temeIstoria = [
         breadcrumb: [
           { name: "Discipline", path: "/" },
           { name: "Istoria", path: "/istoria" },
+        ],
+        subjects: [
+          {
+            id: "1",
+            name: "Învățământul și știința",
+            path: "/subtema1",
+            breadcrumb: [
+              { name: "Discipline", path: "/" },
+              { name: "Istoria", path: "/istoria" },
+              {
+                name: "Cultura românească interbelică",
+                path: "/istoria/cultura-romaneasca-interbelica",
+              },
+            ],
+          },
+          {
+            id: "2",
+            name: "Literatura și arta",
+            path: "/subtema1",
+            breadcrumb: [
+              { name: "Discipline", path: "/" },
+              { name: "Istoria", path: "/istoria" },
+              {
+                name: "Cultura românească interbelică",
+                path: "/istoria/cultura-romaneasca-interbelica",
+              },
+            ],
+          },
         ],
       },
     ],
@@ -1180,14 +1463,70 @@ let temeIstoria = [
           { name: "Discipline", path: "/" },
           { name: "Istoria", path: "/istoria" },
         ],
+        subjects: [
+          {
+            id: "1",
+            name: "Expansiunea Germaniei",
+            path: "/subtema1",
+            breadcrumb: [
+              { name: "Discipline", path: "/" },
+              { name: "Istoria", path: "/istoria" },
+              {
+                name: "Alianțe în perioada interbelică",
+                path: "/istoria/aliante-in-perioada-interbelica",
+              },
+            ],
+          },
+          {
+            id: "2",
+            name: "Agresiunea italiană în Etiopia",
+            path: "/subtema1",
+            breadcrumb: [
+              { name: "Discipline", path: "/" },
+              { name: "Istoria", path: "/istoria" },
+              {
+                name: "Alianțe în perioada interbelică",
+                path: "/istoria/aliante-in-perioada-interbelica",
+              },
+            ],
+          },
+        ],
       },
       {
-        name: "Relațiie sovieto-romane(1948-1940). Consecintele pactului Molotov-Ribbentrop",
+        name: "Relațiie sovieto-române(1918-1940). Consecintele pactului Molotov-Ribbentrop",
         addressDisciplina: "/istoria",
         address: "/relatiie-sovieto-romane",
         breadcrumb: [
           { name: "Discipline", path: "/" },
           { name: "Istoria", path: "/istoria" },
+        ],
+        subjects: [
+          {
+            id: "1",
+            name: "Problema basarabeană în relațiile româno-sovietice în anul 1924",
+            path: "/subtema1",
+            breadcrumb: [
+              { name: "Discipline", path: "/" },
+              { name: "Istoria", path: "/istoria" },
+              {
+                name: "Relațiie sovieto-române(1918-1940)",
+                path: "/istoria/relatiie-sovieto-romane",
+              },
+            ],
+          },
+          {
+            id: "2",
+            name: "Tezaurul României aflat la Moscova",
+            path: "/subtema1",
+            breadcrumb: [
+              { name: "Discipline", path: "/" },
+              { name: "Istoria", path: "/istoria" },
+              {
+                name: "Relațiie sovieto-române(1918-1940)",
+                path: "/istoria/relatiie-sovieto-romane",
+              },
+            ],
+          },
         ],
       },
       {
@@ -1198,6 +1537,34 @@ let temeIstoria = [
           { name: "Discipline", path: "/" },
           { name: "Istoria", path: "/istoria" },
         ],
+        subjects: [
+          {
+            id: "1",
+            name: "Raptul Basarabiei",
+            path: "/subtema1",
+            breadcrumb: [
+              { name: "Discipline", path: "/" },
+              { name: "Istoria", path: "/istoria" },
+              {
+                name: "Pierderile teritoriale ale României din 1940",
+                path: "/istoria/pierderile-teritoriale-ale-romaniei",
+              },
+            ],
+          },
+          {
+            id: "2",
+            name: "Raptul Bucovinei de Nord",
+            path: "/subtema1",
+            breadcrumb: [
+              { name: "Discipline", path: "/" },
+              { name: "Istoria", path: "/istoria" },
+              {
+                name: "Pierderile teritoriale ale României din 1940",
+                path: "/istoria/pierderile-teritoriale-ale-romaniei",
+              },
+            ],
+          },
+        ],
       },
       {
         name: "Formarea RSSM și instaurarea regimului comunist",
@@ -1206,6 +1573,34 @@ let temeIstoria = [
         breadcrumb: [
           { name: "Discipline", path: "/" },
           { name: "Istoria", path: "/istoria" },
+        ],
+        subjects: [
+          {
+            id: "1",
+            name: "Crearea RSSM și politica de ocupație sovietică",
+            path: "/subtema1",
+            breadcrumb: [
+              { name: "Discipline", path: "/" },
+              { name: "Istoria", path: "/istoria" },
+              {
+                name: "Formarea RSSM",
+                path: "/istoria/formarea-rssm",
+              },
+            ],
+          },
+          {
+            id: "2",
+            name: "Dictatul de la Viena și Tratatul de la Craiova",
+            path: "/subtema1",
+            breadcrumb: [
+              { name: "Discipline", path: "/" },
+              { name: "Istoria", path: "/istoria" },
+              {
+                name: "Formarea RSSM",
+                path: "/istoria/formarea-rssm",
+              },
+            ],
+          },
         ],
       },
     ],
@@ -1224,6 +1619,34 @@ let temeIstoria = [
           { name: "Discipline", path: "/" },
           { name: "Istoria", path: "/istoria" },
         ],
+        subjects: [
+          {
+            id: "1",
+            name: "Cauzele și izbucnirea războiului",
+            path: "/subtema1",
+            breadcrumb: [
+              { name: "Discipline", path: "/" },
+              { name: "Istoria", path: "/istoria" },
+              {
+                name: "Al Doilea Război Mondial 1939-1945",
+                path: "/istoria/al-doilea-razboi-mondial",
+              },
+            ],
+          },
+          {
+            id: "2",
+            name: "Invazia germană aspura URSS",
+            path: "/subtema1",
+            breadcrumb: [
+              { name: "Discipline", path: "/" },
+              { name: "Istoria", path: "/istoria" },
+              {
+                name: "Al Doilea Război Mondial 1939-1945",
+                path: "/istoria/al-doilea-razboi-mondial",
+              },
+            ],
+          },
+        ],
       },
       {
         name: "Spațiul românesc între 1941 şi 1944",
@@ -1232,6 +1655,34 @@ let temeIstoria = [
         breadcrumb: [
           { name: "Discipline", path: "/" },
           { name: "Istoria", path: "/istoria" },
+        ],
+        subjects: [
+          {
+            id: "1",
+            name: "Regimul politic în România (1940-1944)",
+            path: "/subtema1",
+            breadcrumb: [
+              { name: "Discipline", path: "/" },
+              { name: "Istoria", path: "/istoria" },
+              {
+                name: "Spațiul românesc între 1941 şi 1944",
+                path: "/istoria/romania-in-al-doilea-razboi-mondial",
+              },
+            ],
+          },
+          {
+            id: "2",
+            name: "Angajarea României în război",
+            path: "/subtema1",
+            breadcrumb: [
+              { name: "Discipline", path: "/" },
+              { name: "Istoria", path: "/istoria" },
+              {
+                name: "Spațiul românesc între 1941 şi 1944",
+                path: "/istoria/romania-in-al-doilea-razboi-mondial",
+              },
+            ],
+          },
         ],
       },
       {
@@ -1242,6 +1693,34 @@ let temeIstoria = [
           { name: "Discipline", path: "/" },
           { name: "Istoria", path: "/istoria" },
         ],
+        subjects: [
+          {
+            id: "1",
+            name: "Reinstaurarea regimului totalitar comunist",
+            path: "/subtema1",
+            breadcrumb: [
+              { name: "Discipline", path: "/" },
+              { name: "Istoria", path: "/istoria" },
+              {
+                name: "Crime de război. Holocaust",
+                path: "/istoria/holocaust",
+              },
+            ],
+          },
+          {
+            id: "2",
+            name: "Politica față de evrei și romi",
+            path: "/subtema1",
+            breadcrumb: [
+              { name: "Discipline", path: "/" },
+              { name: "Istoria", path: "/istoria" },
+              {
+                name: "Crime de război. Holocaust",
+                path: "/istoria/holocaust",
+              },
+            ],
+          },
+        ],
       },
       {
         name: "Consecințele celui de-al Doilea Război Mondial",
@@ -1250,6 +1729,34 @@ let temeIstoria = [
         breadcrumb: [
           { name: "Discipline", path: "/" },
           { name: "Istoria", path: "/istoria" },
+        ],
+        subjects: [
+          {
+            id: "1",
+            name: "Reconstrucția postbelică și noile ordini mondiale",
+            path: "/subtema1",
+            breadcrumb: [
+              { name: "Discipline", path: "/" },
+              { name: "Istoria", path: "/istoria" },
+              {
+                name: "Consecințele celui de-al Doilea Război Mondial",
+                path: "/istoria/consecintele-celui-de-al-doilea-razboi-mondial",
+              },
+            ],
+          },
+          {
+            id: "2",
+            name: "Impactul asupra societății și schimbările geopolitice",
+            path: "/subtema1",
+            breadcrumb: [
+              { name: "Discipline", path: "/" },
+              { name: "Istoria", path: "/istoria" },
+              {
+                name: "Consecințele celui de-al Doilea Război Mondial",
+                path: "/istoria/consecintele-celui-de-al-doilea-razboi-mondial",
+              },
+            ],
+          },
         ],
       },
     ],
@@ -1268,6 +1775,34 @@ let temeIstoria = [
           { name: "Discipline", path: "/" },
           { name: "Istoria", path: "/istoria" },
         ],
+        subjects: [
+          {
+            id: "1",
+            name: "Organizația Națiunilor Unite",
+            path: "/subtema1",
+            breadcrumb: [
+              { name: "Discipline", path: "/" },
+              { name: "Istoria", path: "/istoria" },
+              {
+                name: "Relațiile internaționale în perioada 1945-1991",
+                path: "/istoria/constituirea-onu",
+              },
+            ],
+          },
+          {
+            id: "2",
+            name: "Începutul Războiului Rece",
+            path: "/subtema1",
+            breadcrumb: [
+              { name: "Discipline", path: "/" },
+              { name: "Istoria", path: "/istoria" },
+              {
+                name: "Relațiile internaționale în perioada 1945-1991",
+                path: "/istoria/constituirea-onu",
+              },
+            ],
+          },
+        ],
       },
       {
         name: "Uniunea Sovietică în perioada postbelică",
@@ -1276,6 +1811,34 @@ let temeIstoria = [
         breadcrumb: [
           { name: "Discipline", path: "/" },
           { name: "Istoria", path: "/istoria" },
+        ],
+        subjects: [
+          {
+            id: "1",
+            name: "Viața politică în URSS",
+            path: "/subtema1",
+            breadcrumb: [
+              { name: "Discipline", path: "/" },
+              { name: "Istoria", path: "/istoria" },
+              {
+                name: "Uniunea Sovietică în perioada postbelică",
+                path: "/istoria/uniunea-sovietica-in-perioada-postbelica",
+              },
+            ],
+          },
+          {
+            id: "2",
+            name: "Economia sovietică",
+            path: "/subtema1",
+            breadcrumb: [
+              { name: "Discipline", path: "/" },
+              { name: "Istoria", path: "/istoria" },
+              {
+                name: "Uniunea Sovietică în perioada postbelică",
+                path: "/istoria/uniunea-sovietica-in-perioada-postbelica",
+              },
+            ],
+          },
         ],
       },
       {
@@ -1286,6 +1849,34 @@ let temeIstoria = [
           { name: "Discipline", path: "/" },
           { name: "Istoria", path: "/istoria" },
         ],
+        subjects: [
+          {
+            id: "1",
+            name: "Monopolul partidului",
+            path: "/subtema1",
+            breadcrumb: [
+              { name: "Discipline", path: "/" },
+              { name: "Istoria", path: "/istoria" },
+              {
+                name: "RSSM. Economie şi societate (1944-1985)",
+                path: "/istoria/rssm",
+              },
+            ],
+          },
+          {
+            id: "2",
+            name: "Politica economică promovată în RSSM",
+            path: "/subtema1",
+            breadcrumb: [
+              { name: "Discipline", path: "/" },
+              { name: "Istoria", path: "/istoria" },
+              {
+                name: "RSSM. Economie şi societate (1944-1985)",
+                path: "/istoria/rssm",
+              },
+            ],
+          },
+        ],
       },
       {
         name: "Foametea, represiile și deportările staliniste din RSSM",
@@ -1294,6 +1885,34 @@ let temeIstoria = [
         breadcrumb: [
           { name: "Discipline", path: "/" },
           { name: "Istoria", path: "/istoria" },
+        ],
+        subjects: [
+          {
+            id: "1",
+            name: "Foametea din anii 1946-1947",
+            path: "/subtema1",
+            breadcrumb: [
+              { name: "Discipline", path: "/" },
+              { name: "Istoria", path: "/istoria" },
+              {
+                name: "Foametea, represiile și deportările staliniste din RSSM",
+                path: "/istoria/deportarile-staliniste-din-rssm",
+              },
+            ],
+          },
+          {
+            id: "2",
+            name: "Colectivizarea forțată",
+            path: "/subtema1",
+            breadcrumb: [
+              { name: "Discipline", path: "/" },
+              { name: "Istoria", path: "/istoria" },
+              {
+                name: "Foametea, represiile și deportările staliniste din RSSM",
+                path: "/istoria/deportarile-staliniste-din-rssm",
+              },
+            ],
+          },
         ],
       },
     ],
@@ -1312,6 +1931,34 @@ let temeIstoria = [
           { name: "Discipline", path: "/" },
           { name: "Istoria", path: "/istoria" },
         ],
+        subjects: [
+          {
+            id: "1",
+            name: "Transformări politice și economice în RSSM între 1985-1991",
+            path: "/subtema1",
+            breadcrumb: [
+              { name: "Discipline", path: "/" },
+              { name: "Istoria", path: "/istoria" },
+              {
+                name: "RSSM între 1985-1991",
+                path: "/istoria/proclamarea-independentei-republicii-moldova",
+              },
+            ],
+          },
+          {
+            id: "2",
+            name: "Proclamarea independenței Republicii Moldova",
+            path: "/subtema1",
+            breadcrumb: [
+              { name: "Discipline", path: "/" },
+              { name: "Istoria", path: "/istoria" },
+              {
+                name: "RSSM între 1985-1991",
+                path: "/istoria/proclamarea-independentei-republicii-moldova",
+              },
+            ],
+          },
+        ],
       },
       {
         name: "Războiul de pe Nistru",
@@ -1320,6 +1967,34 @@ let temeIstoria = [
         breadcrumb: [
           { name: "Discipline", path: "/" },
           { name: "Istoria", path: "/istoria" },
+        ],
+        subjects: [
+          {
+            id: "1",
+            name: "Originile conflictului",
+            path: "/subtema1",
+            breadcrumb: [
+              { name: "Discipline", path: "/" },
+              { name: "Istoria", path: "/istoria" },
+              {
+                name: "Războiul de pe Nistru",
+                path: "/istoria/razboiul-de-pe-nistru",
+              },
+            ],
+          },
+          {
+            id: "2",
+            name: "Formarea autoproclamatei RSSMN",
+            path: "/subtema1",
+            breadcrumb: [
+              { name: "Discipline", path: "/" },
+              { name: "Istoria", path: "/istoria" },
+              {
+                name: "Războiul de pe Nistru",
+                path: "/istoria/razboiul-de-pe-nistru",
+              },
+            ],
+          },
         ],
       },
     ],
@@ -1338,6 +2013,34 @@ let temeIstoria = [
           { name: "Discipline", path: "/" },
           { name: "Istoria", path: "/istoria" },
         ],
+        subjects: [
+          {
+            id: "1",
+            name: "Politica de ideologizare a vieții culturale",
+            path: "/subtema1",
+            breadcrumb: [
+              { name: "Discipline", path: "/" },
+              { name: "Istoria", path: "/istoria" },
+              {
+                name: "Cultura și știința în RSSM (1944-1991)",
+                path: "/istoria/cultura-si-stiinta-in-rssm",
+              },
+            ],
+          },
+          {
+            id: "2",
+            name: "Invățământul și știința",
+            path: "/subtema1",
+            breadcrumb: [
+              { name: "Discipline", path: "/" },
+              { name: "Istoria", path: "/istoria" },
+              {
+                name: "Cultura și știința în RSSM (1944-1991)",
+                path: "/istoria/cultura-si-stiinta-in-rssm",
+              },
+            ],
+          },
+        ],
       },
       {
         name: "Evoluția culturii în Republica Moldova",
@@ -1347,6 +2050,34 @@ let temeIstoria = [
           { name: "Discipline", path: "/" },
           { name: "Istoria", path: "/istoria" },
         ],
+        subjects: [
+          {
+            id: "1",
+            name: "Influente și schimbări în cultura Republicii Moldova",
+            path: "/subtema1",
+            breadcrumb: [
+              { name: "Discipline", path: "/" },
+              { name: "Istoria", path: "/istoria" },
+              {
+                name: "Evoluția culturii în Republica Moldova",
+                path: "/istoria/evolutia-culturii-in-republica-moldova",
+              },
+            ],
+          },
+          {
+            id: "2",
+            name: "Patrimoniu cultural și diversitatea culturală în Republica Moldova",
+            path: "/subtema1",
+            breadcrumb: [
+              { name: "Discipline", path: "/" },
+              { name: "Istoria", path: "/istoria" },
+              {
+                name: "Evoluția culturii în Republica Moldova",
+                path: "/istoria/evolutia-culturii-in-republica-moldova",
+              },
+            ],
+          },
+        ],
       },
       {
         name: "Cultura și știința universală în Epoca Contemporană",
@@ -1355,6 +2086,34 @@ let temeIstoria = [
         breadcrumb: [
           { name: "Discipline", path: "/" },
           { name: "Istoria", path: "/istoria" },
+        ],
+        subjects: [
+          {
+            id: "1",
+            name: "Cucerirea spațiului cosmic",
+            path: "/subtema1",
+            breadcrumb: [
+              { name: "Discipline", path: "/" },
+              { name: "Istoria", path: "/istoria" },
+              {
+                name: "Cultura și știința universală în Epoca Contemporană",
+                path: "/istoria/cultura-si-stiinta-in-epoca-contemporana",
+              },
+            ],
+          },
+          {
+            id: "2",
+            name: "Arta și industria cinematografică",
+            path: "/subtema1",
+            breadcrumb: [
+              { name: "Discipline", path: "/" },
+              { name: "Istoria", path: "/istoria" },
+              {
+                name: "Cultura și știința universală în Epoca Contemporană",
+                path: "/istoria/cultura-si-stiinta-in-epoca-contemporana",
+              },
+            ],
+          },
         ],
       },
     ],
