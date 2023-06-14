@@ -18,6 +18,9 @@ let temeIstoria = [
             id: "1",
             name: "Opțiunile politice în perioada neutralității",
             path: "/subtema1",
+            addressDisciplina: "/istoria",
+            addressSubtitle: "/romania-in-primul-razboi",
+            addressSubject: "/optiuni-politice-in-perioada-neutralitatii",
             address:
               "/dis/history/class-9/primul-razboi-mondial/romania-in-primul-razboi/neutralitate",
             breadcrumb: [
@@ -55,14 +58,14 @@ let temeIstoria = [
               },
             ],
             innerHTML:
-              "<div><div>Primul Război Mondial, declanșat iniţial între <span data-box='1' data-img='/img/neutr1.jpg'> 2 tabere politico-militare (Puterile Centrale și Antanta)</span>, a adus schimbări esenţiale în evoluţia istorică a României și în destinul românilor care trăiau în <span data-img='/img/neutr2.jpg'>teritoriile aflate sub ocupaţie străină</span>.</div><div>&nbsp;</div><div>Situaţia statului român în raport cu acest eveniment era destul de complicată: <em>pe de o parte</em>, nefiind o ţară cu un <span data-box='1'>potenţial economic</span>, <span>politic </span> și <span>militar </span>apreciabil, nu era de așteptat ca România să joace vreun rol în acea confruntare, iar <em>pe de altă parte</em>, situarea ei într-o <span>vecinătate cu marile imperii (Austro-Ungaria, Rusia și Imperiul Otoman) </span>nu putea să o lase complet neangajată în război.</div><div>&nbsp;</div><div class='img-comp-container'><div class='img-comp-img'><img src='https://fasttrackteaching.com/ffap/Unit_7_WW1/089_Map_WW_I_color_crop_30.gif' width='670' height='400'></div><div class='img-comp-img img-comp-overlay'><img src='https://upload.wikimedia.org/wikipedia/commons/a/a4/Map_Europe_alliances_1914-ro.svg' width='670' height='400'></div></div><p style='text-align:center;line-height: 2.2;'><b>Alianțele militare în 1914(1) și 1917(2)</b></p><div class='slideshow-container'><div class='mySlides fade'><img src='https://images-cdn.bridgemanimages.com/api/1.0/image/600wm.NAM.1347420.7055475/244252.jpg'><div class='text'>Caption Text</div></div><div class='mySlides fade'><img src='https://images-cdn.bridgemanimages.com/api/1.0/image/600wm.STC.4798330.7055475/335795.jpg'><div class='text'>Caption Two</div></div><div class='mySlides fade'><img src='https://images-cdn.bridgemanimages.com/api/1.0/image/600wm.GBW.2364540.7055475/451453.jpg' ><div class='text'>Caption Three</div></div><a class='prev'>&#10094;</a><a class='next'>&#10095;</a></div><br><div id='pagination'></div><div class='audio'><audio src='/sound/audio-joiner1_31.mp3' preload='none' controls='controls'></audio></div>",
+              "",
             note: [
               {
                 id: "1",
                 headerInnerHTML:
                   "<span>Puterile Centrale și Antanta – 2 blocurile politico-militare</span> din Europa din 1914:",
                 bodyInnerHTML:
-                  "<div><ul><li><b>Tripla Înțelegere (Puterile Centrale)</b>, formată din Germania, Austro-Ungaria și Italia</li><li><b>Tripla Alianță (Antanta)</b>, alcătuită din Marea Britanie, Franța și Rusia.</li></ul>Aceste 2 două blocuri s-au format în urma concurenței apărute între marile puteri europene în următoarele domenii:<ul><li><span class='light-shadow'>Controlul asupra coloniilor și a piețelor mondiale</span> pentru materii prime și produse finite.</li><li><span class='light-shadow'>Competiția pentru supremația navală</span>, cu accent pe dezvoltarea de nave de război, submarine și tehnologii de navigație.</li><li><span class='light-shadow'>Confruntarea pentru puterea militară</span>, cu accent pe dezvoltarea de noi arme și tehnologii de război.</li><li>Lupta pentru <span class='light-shadow'>influență politică și economică</span> în Europa și în afara ei, prin intermediul alianțelor și acordurilor diplomatice.</li><li><span class='light-shadow'>Diferențe ideologice, culturale și etnice</span> între statele europene, care au dus la tensiuni și la formarea de alianțe împotriva altor grupuri de state.</li></ul></div>",
+                  "",
               },
             ],
             teste: [
@@ -878,22 +881,70 @@ let temeIstoria = [
               },
             ],
           },
-          { id: "2", name: "Intrarea României în război", path: "/subtema1" },
+          {
+            id: "2",
+            name: "Intrarea României în război",
+            path: "/subtema1",
+            addressDisciplina: "/istoria",
+            addressSubtitle: "/romania-in-primul-razboi",
+            addressSubject: "/intrarea-romaniei-in-razboi",
+            breadcrumb: [
+              { name: "Discipline", path: "/" },
+              { name: "Istoria", path: "/istoria" },
+              {
+                name: "România în Primul Război Mondial",
+                path: "/istoria/romania-in-primul-razboi",
+              },
+            ],
+          },
 
           {
             id: "3",
             name: "Operațiile militare din anul 1917",
             path: "/subtema1",
+            addressDisciplina: "/istoria",
+            addressSubtitle: "/romania-in-primul-razboi",
+            addressSubject: "/operațiile-militare-din-anul-1917",
+            breadcrumb: [
+              { name: "Discipline", path: "/" },
+              { name: "Istoria", path: "/istoria" },
+              {
+                name: "România în Primul Război Mondial",
+                path: "/istoria/romania-in-primul-razboi",
+              },
+            ],
           },
           {
             id: "4",
             name: "Agravarea situației pe frontul român",
             path: "/subtema1",
+            addressDisciplina: "/istoria",
+            addressSubtitle: "/romania-in-primul-razboi",
+            addressSubject: "/agravarea-situatiei-pe-frontul-roman", 
+            breadcrumb: [
+              { name: "Discipline", path: "/" },
+              { name: "Istoria", path: "/istoria" },
+              {
+                name: "România în Primul Război Mondial",
+                path: "/istoria/romania-in-primul-razboi",
+              },
+            ],           
           },
           {
             id: "5",
             name: "Armistițiul de la Focșani și Pacea de la București",
             path: "/subtema1",
+            addressDisciplina: "/istoria",
+            addressSubtitle: "/romania-in-primul-razboi",
+            addressSubject: "/pacea-de-la-bucuresti",  
+            breadcrumb: [
+              { name: "Discipline", path: "/" },
+              { name: "Istoria", path: "/istoria" },
+              {
+                name: "România în Primul Război Mondial",
+                path: "/istoria/romania-in-primul-razboi",
+              },
+            ],           
           },
         ],
         diagramData: [

@@ -52,10 +52,12 @@ function App() {
         </Route> */}
     <Switch>
       <Route exact path="/" render={() => <Redirect to="/home" />} />
+
       <Route path='/istoria/:address/flipCards/ani' component={FlipCardsWithRouter} />
       <Route path='/istoria/:address/flipCards/termeni' component={FlipCardsWithRouter} />
+      <Route path="/istoria/:address/:address1" component={Subtema} /> 
       <Route path="/istoria/:address" component={Tema} />
-      <Route exact path='/home' component={Home} />
+     <Route exact path='/home' component={Home} />
       <Route path='/romana' component={TemeRom} />
       <Route path='/matem' component={TemeMatem} />
       <Route path='/istoria' component={TemeIstoria} />

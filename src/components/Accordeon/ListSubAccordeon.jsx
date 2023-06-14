@@ -11,12 +11,18 @@ const ListSubAccordeon = (props) => {
   const [currentSubject, setCurrentSubject] = useState(0);
 
   const classes = " " + props.className;
-  let arraySubject = props.teme[0].subtitles[0].subjects[0].vomAfla;
-  let arrayTests = props.teme[0].subtitles[0].subjects[0].teste;
-
+  // let arraySubject = props.teme[0].subtitles[0].subjects[0].vomAfla;
+  // let arrayTests = props.teme[0].subtitles[0].subjects[0].teste;
+  let arraySubject = props.subtema.vomAfla;
+  let arrayTests = props.subtema.teste;
+  console.log(props.subtema);
   const clickSubjectHandler = (idx) => {
     setCurrentSubject(idx);
   };
+
+  if (!arraySubject || !arrayTests) {
+    return null; // Возвращаем null или другой компонент-заглушку
+  }
   return (
     <div className={classes}>
       <ItemAccordeon titlu="La aceasta lectie vom afla:" {...props} open={true}>
