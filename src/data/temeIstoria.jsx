@@ -79,6 +79,18 @@ let temeIstoria = [
                 addressTestSubject: "/optiuni-politice-in-perioada-neutralitatii",
                 addressTest: "/alege-afirmatia-corecta",
                 addressTestId: "/optiuni-politice-in-perioada-neutralitatii/alege-afirmatia-corecta",
+                breadcrumb: [
+                  { name: "Discipline", path: "/" },
+                  { name: "Istoria", path: "/istoria" },
+                  {
+                    name: "România în Primul Război Mondial",
+                    path: "/istoria/romania-in-primul-razboi",
+                  },
+                  {
+                    name: "Opțiunile politice în perioada neutralității",
+                    path: "/istoria/romania-in-primul-razboi/optiuni-politice-in-perioada-neutralitatii",
+                  },
+                ],
                 type: "quiz",
                 coloane: [],
                 cerinte: "Alege afirmația corectă",
@@ -231,6 +243,18 @@ let temeIstoria = [
                 addressTestSubject: "/optiuni-politice-in-perioada-neutralitatii",
                 addressTest: "/stabileste-cauzele",
                 addressTestId: "/optiuni-politice-in-perioada-neutralitatii/stabileste-cauzele",
+                breadcrumb: [
+                  { name: "Discipline", path: "/" },
+                  { name: "Istoria", path: "/istoria" },
+                  {
+                    name: "România în Primul Război Mondial",
+                    path: "/istoria/romania-in-primul-razboi",
+                  },
+                  {
+                    name: "Opțiunile politice în perioada neutralității",
+                    path: "/istoria/romania-in-primul-razboi/optiuni-politice-in-perioada-neutralitatii",
+                  },
+                ],
                 coloane: ["Lista variantelor", "Cauzele"],
                 coloanaRaspuns: "Cauzele",
                 quizArray: [
@@ -324,6 +348,18 @@ let temeIstoria = [
                 addressTestSubject: "/optiuni-politice-in-perioada-neutralitatii",
                 addressTest: "/stabileste-consecintele",
                 addressTestId: "/optiuni-politice-in-perioada-neutralitatii/stabileste-consecintele",
+                breadcrumb: [
+                  { name: "Discipline", path: "/" },
+                  { name: "Istoria", path: "/istoria" },
+                  {
+                    name: "România în Primul Război Mondial",
+                    path: "/istoria/romania-in-primul-razboi",
+                  },
+                  {
+                    name: "Opțiunile politice în perioada neutralității",
+                    path: "/istoria/romania-in-primul-razboi/optiuni-politice-in-perioada-neutralitatii",
+                  },
+                ],
                 coloane: ["Lista variantelor", "Consecintele"],
                 coloanaRaspuns: "Consecintele",
                 quizArray: [
@@ -410,6 +446,18 @@ let temeIstoria = [
                 addressTestSubject: "/optiuni-politice-in-perioada-neutralitatii",
                 addressTest: "/verifica-corectitudinea",
                 addressTestId: "/optiuni-politice-in-perioada-neutralitatii/verifica-corectitudinea",
+                breadcrumb: [
+                  { name: "Discipline", path: "/" },
+                  { name: "Istoria", path: "/istoria" },
+                  {
+                    name: "România în Primul Război Mondial",
+                    path: "/istoria/romania-in-primul-razboi",
+                  },
+                  {
+                    name: "Opțiunile politice în perioada neutralității",
+                    path: "/istoria/romania-in-primul-razboi/optiuni-politice-in-perioada-neutralitatii",
+                  },
+                ],
                 coloane: [],
                 type: "check",
                 quizArray: [
@@ -488,7 +536,18 @@ let temeIstoria = [
                 addressTestSubject: "/optiuni-politice-in-perioada-neutralitatii",
                 addressTest: "/grupeaza-elementele",
                 addressTestId: "/optiuni-politice-in-perioada-neutralitatii/grupeaza-elementele", 
-
+                breadcrumb: [
+                  { name: "Discipline", path: "/" },
+                  { name: "Istoria", path: "/istoria" },
+                  {
+                    name: "România în Primul Război Mondial",
+                    path: "/istoria/romania-in-primul-razboi",
+                  },
+                  {
+                    name: "Opțiunile politice în perioada neutralității",
+                    path: "/istoria/romania-in-primul-razboi/optiuni-politice-in-perioada-neutralitatii",
+                  },
+                ],
                 type: "group",
                 coloane: ["Tarile", "Puterile centrale", "Antanta"],
                 coloanaRaspuns: "Antanta",
@@ -582,6 +641,18 @@ let temeIstoria = [
                 addressTestSubject: "/optiuni-politice-in-perioada-neutralitatii",
                 addressTest: "/caracteristicile-evenimentelor",
                 addressTestId: "/optiuni-politice-in-perioada-neutralitatii/caracteristicile-evenimentelor", 
+                breadcrumb: [
+                  { name: "Discipline", path: "/" },
+                  { name: "Istoria", path: "/istoria" },
+                  {
+                    name: "România în Primul Război Mondial",
+                    path: "/istoria/romania-in-primul-razboi",
+                  },
+                  {
+                    name: "Opțiunile politice în perioada neutralității",
+                    path: "/istoria/romania-in-primul-razboi/optiuni-politice-in-perioada-neutralitatii",
+                  },
+                ],
                 coloane: ["Lista variantelor", "Caracteristicile"],
                 coloanaRaspuns: "Caracteristicile",
                 quizArray: [
@@ -672,6 +743,18 @@ let temeIstoria = [
                 addressTestSubject: "/optiuni-politice-in-perioada-neutralitatii",
                 addressTest: "/completeaza-propozitia",
                 addressTestId: "/optiuni-politice-in-perioada-neutralitatii/completeaza-propozitia",   
+                breadcrumb: [
+                  { name: "Discipline", path: "/" },
+                  { name: "Istoria", path: "/istoria" },
+                  {
+                    name: "România în Primul Război Mondial",
+                    path: "/istoria/romania-in-primul-razboi",
+                  },
+                  {
+                    name: "Opțiunile politice în perioada neutralității",
+                    path: "/istoria/romania-in-primul-razboi/optiuni-politice-in-perioada-neutralitatii",
+                  },
+                ],
                 quizArray: [
                   {
                     id: "1",
@@ -695,6 +778,18 @@ let temeIstoria = [
                 addressTestSubject: "/optiuni-politice-in-perioada-neutralitatii",
                 addressTest: "/elaboreaza-text",  
                 addressTestId: "/optiuni-politice-in-perioada-neutralitatii/elaboreaza-text",             
+                breadcrumb: [
+                  { name: "Discipline", path: "/" },
+                  { name: "Istoria", path: "/istoria" },
+                  {
+                    name: "România în Primul Război Mondial",
+                    path: "/istoria/romania-in-primul-razboi",
+                  },
+                  {
+                    name: "Opțiunile politice în perioada neutralității",
+                    path: "/istoria/romania-in-primul-razboi/optiuni-politice-in-perioada-neutralitatii",
+                  },
+                ],
                 coloane: ["Evenimentele", "Text in ordine cronoligică"],
                 coloanaRaspuns: "Text in ordine cronoligică",
                 quizArray: [
@@ -799,6 +894,18 @@ let temeIstoria = [
                 addressTestSubject: "/optiuni-politice-in-perioada-neutralitatii",
                 addressTest: "/succesiunea-cronologica",
                 addressTestId: "/optiuni-politice-in-perioada-neutralitatii/succesiunea-cronologica",
+                breadcrumb: [
+                  { name: "Discipline", path: "/" },
+                  { name: "Istoria", path: "/istoria" },
+                  {
+                    name: "România în Primul Război Mondial",
+                    path: "/istoria/romania-in-primul-razboi",
+                  },
+                  {
+                    name: "Opțiunile politice în perioada neutralității",
+                    path: "/istoria/romania-in-primul-razboi/optiuni-politice-in-perioada-neutralitatii",
+                  },
+                ],
                 coloane: ["Evenimentele"],
                 coloanaRaspuns: "Evenimentele",
                 quizArray: [
@@ -895,6 +1002,18 @@ let temeIstoria = [
                 addressTestSubject: "/optiuni-politice-in-perioada-neutralitatii",
                 addressTest: "/test-de-totalizare",
                 addressTestId: "/optiuni-politice-in-perioada-neutralitatii/test-de-totalizare",
+                breadcrumb: [
+                  { name: "Discipline", path: "/" },
+                  { name: "Istoria", path: "/istoria" },
+                  {
+                    name: "România în Primul Război Mondial",
+                    path: "/istoria/romania-in-primul-razboi",
+                  },
+                  {
+                    name: "Opțiunile politice în perioada neutralității",
+                    path: "/istoria/romania-in-primul-razboi/optiuni-politice-in-perioada-neutralitatii",
+                  },
+                ],
                 type: "check",
                 quizArray: [
                   {
