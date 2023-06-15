@@ -6,11 +6,12 @@ const TableRow = (props) => {
   const rowData = props.rowData;
   const idx = props.ind;
   const classes = "row " + props.className;
+  const dynamicPath = `${rowData.addressTestDisciplina}${rowData.addressTestSubtitle}${rowData.addressTestSubject}${rowData.addressTest}/1`;
   return (
     <div className={classes}>
       <div className="column">
         <div>
-            <span>{idx + 1}. </span><Link to={{ pathname: rowData.path, state: { list: rowData} }}> {rowData.name}</Link>
+            <span>{idx + 1}. </span><Link to={dynamicPath}> {rowData.name}</Link>        
         </div>
         
         <div className="cursiv"><em>Complexitatea: {rowData.complexity}</em></div>

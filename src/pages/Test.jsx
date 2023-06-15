@@ -1,5 +1,5 @@
-import React, { useState, useRef } from "react";
-import { withRouter } from "react-router-dom";
+import React, { useState, useRef, useEffect } from "react";
+import { withRouter, useParams, useHistory } from "react-router-dom";
 import temeIstoriArray from "../data/temeIstoria";
 import Breadcrumb from "../components/Breadcrumb";
 import Wrapper from "../components/Wrapper";
@@ -11,12 +11,41 @@ import TestBoard from "../components/Teste/TestBoard";
 import "../index.css";
 
 const TestWrapper = (props) => {
-
-  const { list, correctAns, currInd } = props.location.state;
-// console.log("correctAns ", correctAns);
-   const [correctAnswer, setCorrectAnswer] = useState(null);
+  const { address1, addressTest, idTest } = useParams();
+  const [currentList, setCurrentList] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [currentList, setCurrentList] = useState(list);
+  const history = useHistory();
+
+  function findObjectWithAddress(obj) {
+    for (let key in obj) {
+      if (typeof obj[key] === "object") {
+        const found = findObjectWithAddress(obj[key]);
+        if (found) {
+          return found;
+        }
+      } else if (
+        key === "addressTestId" &&
+        obj[key] === "/" + address1 + "/" + addressTest
+      ) {
+        return obj;
+      }
+    }
+    return null;
+  }
+
+  useEffect(() => {
+    const foundItem = findObjectWithAddress(temeIstoriArray);
+    if (foundItem) {
+      setCurrentList(foundItem);
+      setCurrentIndex(idTest-1);
+    } else {
+      history.push("/error");
+    }
+  }, []);
+
+  // console.log("correctAns ", correctAns);
+  const [correctAnswer, setCorrectAnswer] = useState(null);
+
   // if(currInd!==undefined) setCurrentIndex(currInd);
   const testBoardRef = useRef(null);
 
@@ -40,8 +69,8 @@ const TestWrapper = (props) => {
 
   const handleTryAgain = () => {
     // console.log("handleTryAgain currInd",currInd);
-    // if(currInd!==undefined) setCurrentIndex(currInd) 
-    // else 
+    // if(currInd!==undefined) setCurrentIndex(currInd)
+    // else
     setCurrentIndex(
       currentList.quizArray.length - 1 === currentIndex ? 0 : currentIndex + 1
     );
@@ -58,55 +87,59 @@ const TestWrapper = (props) => {
   };
   return (
     <Wrapper>
-      <Breadcrumb
-        list={temeIstoriArray[0].subtitles[0].subjects[0].breadcrumb}
-      />
-      <TitleBox className="teme-container">{currentList.name}</TitleBox>
-      {currentList.type === "quiz" && (
-        <TestQuiz
-          list={currentList}
-          currentIndex={currentIndex}
-          correctAnswer={correctAnswer}
-          setCorrectAnswer={setCorrectAnswer}
-          additionalContent={additionalContent}
-          handleTryAgain={handleTryAgain}
-        />
+      {currentList && (
+        <>
+          <Breadcrumb
+            list={temeIstoriArray[0].subtitles[0].subjects[0].breadcrumb}
+          />
+          <TitleBox className="teme-container">{currentList.name}</TitleBox>
+          {currentList.type === "quiz" && (
+            <TestQuiz
+              list={currentList}
+              currentIndex={currentIndex}
+              correctAnswer={correctAnswer}
+              setCorrectAnswer={setCorrectAnswer}
+              additionalContent={additionalContent}
+              handleTryAgain={handleTryAgain}
+            />
+          )}
+          {currentList.type === "check" && (
+            <TestCheck
+              list={currentList}
+              currentIndex={currentIndex}
+              correctAnswer={correctAnswer}
+              setCorrectAnswer={setCorrectAnswer}
+              additionalContent={additionalContent}
+              handleTryAgain={handleTryAgain}
+            />
+          )}
+          {(currentList.type === "cauze" ||
+            currentList.type === "consecinte" ||
+            currentList.type === "caracteristica" ||
+            currentList.type === "chrono" ||
+            currentList.type === "chronoDuble" ||
+            currentList.type === "group") && (
+            <TestBoard
+              list={currentList}
+              currentIndex={currentIndex}
+              correctAnswer={correctAnswer}
+              setCorrectAnswer={setCorrectAnswer}
+              additionalContent={additionalContent}
+              handleTryAgain={handleTryAgain}
+              DragDisable={false}
+              ref={testBoardRef}
+            />
+          )}
+          <ListNavigatie
+            list={currentList}
+            setCurrentList={setCurrentList}
+            correctAnswer={correctAnswer}
+            setCorrectAnswer={setCorrectAnswer}
+            setCurrentIndex={setCurrentIndex}
+            handleClearTestBoard={handleClearTestBoard}
+          />
+        </>
       )}
-      {currentList.type === "check" && (
-        <TestCheck
-          list={currentList}
-          currentIndex={currentIndex}
-          correctAnswer={correctAnswer}
-          setCorrectAnswer={setCorrectAnswer}
-          additionalContent={additionalContent}
-          handleTryAgain={handleTryAgain}
-        />
-      )}
-      {(currentList.type === "cauze" ||
-        currentList.type === "consecinte" ||
-        currentList.type === "caracteristica" ||
-        currentList.type === "chrono" ||
-        currentList.type === "chronoDuble" ||
-        currentList.type === "group") && (
-        <TestBoard
-          list={currentList}
-          currentIndex={currentIndex}
-          correctAnswer={correctAnswer}
-          setCorrectAnswer={setCorrectAnswer}
-          additionalContent={additionalContent}
-          handleTryAgain={handleTryAgain}
-          DragDisable={false}
-          ref={testBoardRef}
-        />
-      )}
-      <ListNavigatie
-        list={currentList}
-        setCurrentList={setCurrentList}
-        correctAnswer={correctAnswer}
-        setCorrectAnswer={setCorrectAnswer}
-        setCurrentIndex={setCurrentIndex}
-        handleClearTestBoard={handleClearTestBoard}
-      />
     </Wrapper>
   );
 };
