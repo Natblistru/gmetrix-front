@@ -12,6 +12,7 @@ import "../index.css";
 
 const TestWrapper = (props) => {
   const { address1, addressTest, idTest } = useParams();
+  console.log(addressTest);
   const [currentList, setCurrentList] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const history = useHistory();
@@ -37,11 +38,12 @@ const TestWrapper = (props) => {
     const foundItem = findObjectWithAddress(temeIstoriArray);
     if (foundItem) {
       setCurrentList(foundItem);
-      setCurrentIndex(idTest-1);
-    } else {
+      setCurrentIndex(0);
+      setCorrectAnswer(null);
+     } else {
       history.push("/error");
     }
-  }, []);
+  }, [addressTest]);
 
   // console.log("correctAns ", correctAns);
   const [correctAnswer, setCorrectAnswer] = useState(null);

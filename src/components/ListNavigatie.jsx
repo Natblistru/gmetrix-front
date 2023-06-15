@@ -22,18 +22,33 @@ const ListNavigatie = (props) => {
     handleClearTestBoard(testData.id);
     // Здесь вы можете выполнить дополнительные действия перед переходом, если это необходимо
   };
-  const testUrmator = temeIstoriArray[0].subtitles[0].subjects[0].teste[list.id];
-  const testPrecedent = temeIstoriArray[0].subtitles[0].subjects[0].teste[list.id-2]; 
+  let dynamicPathTestPrecedent = "";
+  let dynamicPathTestUrmator = "";
+  let testPrecedent = list;
+  let testUrmator = list;
+  if (!primul) {
+    testPrecedent = temeIstoriArray[0].subtitles[0].subjects[0].teste[list.id-2]; 
+    dynamicPathTestPrecedent = `${testPrecedent.addressTestDisciplina}${testPrecedent.addressTestSubtitle}${testPrecedent.addressTestSubject}${testPrecedent.addressTest}/1`;
+  }
+  if(!ultimul) {
+    testUrmator = temeIstoriArray[0].subtitles[0].subjects[0].teste[list.id];
+    dynamicPathTestUrmator = `${testUrmator.addressTestDisciplina}${testUrmator.addressTestSubtitle}${testUrmator.addressTestSubject}${testUrmator.addressTest}/1`;
+  }
+
+
+  console.log("dynamicPathTestUrmator",dynamicPathTestUrmator);
   return (
     <div className="nav-container">
         <div className={`nav-link ${primul ? 'invizible' : ''}`} >
-          <Link to={{ pathname: list.path, state: { list: testPrecedent, correctAns:null, currInd:0} }} onClick={() => navigateToTest(testPrecedent)}>
+        {/* <Link to={{ pathname: list.path, state: { list: testPrecedent, correctAns:null, currInd:0} }} onClick={() => navigateToTest(testPrecedent)}> */}
+          <Link to={dynamicPathTestPrecedent} onClick={() => handleClearTestBoard(testPrecedent.id)}>
             <img src={process.env.PUBLIC_URL + "/images/navigation-left.png"} alt="" />
             <p>Sarcina precedentă</p>
           </Link>
         </div>
         <div className={`nav-link ${ultimul? 'invizible' : ''}`} >
-        <Link to={{ pathname: list.path, state: { list: testUrmator, correctAns:null, currInd:0} }} onClick={() => navigateToTest(testUrmator)}>
+          {/* <Link to={{ pathname: list.path, state: { list: testUrmator, correctAns:null, currInd:0} }} onClick={() => navigateToTest(testUrmator)}> */}
+          <Link to={dynamicPathTestUrmator} onClick={() => handleClearTestBoard(testUrmator.id)} >        
             <img src={process.env.PUBLIC_URL + "/images/navigation-right.png"} alt="" />
             <p>Sarcina următoare</p>
           </Link>

@@ -123,7 +123,7 @@ const TestBoard = forwardRef(
     handleTryAgainClear: handleTryAgainClear
   }));
 
-  return (
+  return columns && (
 
     <>
       <ItemAccordeon
@@ -160,6 +160,7 @@ const TestBoard = forwardRef(
         height: "100%",
       }}
     >
+      {console.log("columns",columns)}
       <DragDropContext
         onDragEnd={(result) => onDragEnd(result, columns, setColumns)}
       >
