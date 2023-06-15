@@ -24,7 +24,7 @@ const ItemList = (props) => {
                     </div>
                   )
                 ) : (
-                  <Link to={{ pathname: dynamicPath, state: { list: subtitle } }}>
+                  <Link to={dynamicPath}>
                     {subtitle.name}
                   </Link>
                 )}

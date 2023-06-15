@@ -1133,6 +1133,9 @@ let temeIstoria = [
             id: "1",
             name: "Revigorarea luptei pentru autonomia Basarabiei din primăvara anului 1917",
             path: "/subtema1",
+            addressDisciplina: "/istoria",
+            addressSubtitle: "/mișcarea-națională-a-românilor",
+            addressSubject: "/revigorarea-luptei-pentru-autonomia-basarabiei",
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -1146,6 +1149,9 @@ let temeIstoria = [
             id: "2",
             name: "Evoluția mișcării naționale în vara anului 1917",
             path: "/subtema1",
+            addressDisciplina: "/istoria",
+            addressSubtitle: "/mișcarea-națională-a-românilor",
+            addressSubject: "/evolutia-miscarii-nationale",
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -1170,6 +1176,9 @@ let temeIstoria = [
             id: "1",
             name: "Republica Democratică Moldovenească în lupta cu anarhia",
             path: "/subtema1",
+            addressDisciplina: "/istoria",
+            addressSubtitle: "/formarea-statului-national-unitar-roman",
+            addressSubject: "/republica-democratica-moldoveneasca-in-lupta-cu-anarhia",
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -1183,6 +1192,9 @@ let temeIstoria = [
             id: "2",
             name: "Declararea de independență a Republicii Democratice Moldovenești",
             path: "/subtema1",
+            addressDisciplina: "/istoria",
+            addressSubtitle: "/formarea-statului-national-unitar-roman",
+            addressSubject: "/independenta-republicii-democratice-moldovenesti",
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -1207,6 +1219,9 @@ let temeIstoria = [
             id: "1",
             name: "Conferința de Pace de la Paris (1919-1920)",
             path: "/subtema1",
+            addressDisciplina: "/istoria",
+            addressSubtitle: "/conferinta-de-pace-de-la-paris",
+            addressSubject: "/conferinta-de-pace-de-la-paris-din-1919-1920",
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -1220,6 +1235,9 @@ let temeIstoria = [
             id: "2",
             name: "Tratatul de la Saint-Germain",
             path: "/subtema1",
+            addressDisciplina: "/istoria",
+            addressSubtitle: "/conferinta-de-pace-de-la-paris",
+            addressSubject: "/tratatul-de-la-saint-germain",
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -1252,6 +1270,9 @@ let temeIstoria = [
             id: "1",
             name: "SUA după Primul Război Mondial",
             path: "/subtema1",
+            addressDisciplina: "/istoria",
+            addressSubtitle: "/sua-in-perioada-interbelica",
+            addressSubject: "/sua-dupa-primul-razboi-mondial",           
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -1265,6 +1286,9 @@ let temeIstoria = [
             id: "2",
             name: "Marea criză economică și consecințele ei",
             path: "/subtema1",
+            addressDisciplina: "/istoria",
+            addressSubtitle: "/sua-in-perioada-interbelica",
+            addressSubject: "/marea-criza-economica",
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -1289,6 +1313,9 @@ let temeIstoria = [
             id: "1",
             name: "Viața politică în Marea Britanie în anii 20-30 ai secolului XX-lea",
             path: "/subtema1",
+            addressDisciplina: "/istoria",
+            addressSubtitle: "/europa-de-vest-in-perioada-interbelica",
+            addressSubject: "/viata-politica-in-marea-britanie",
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -1302,6 +1329,9 @@ let temeIstoria = [
             id: "2",
             name: "Rivalitatea pentru putere dintre partidele politice în Franța",
             path: "/subtema1",
+            addressDisciplina: "/istoria",
+            addressSubtitle: "/europa-de-vest-in-perioada-interbelica",
+            addressSubject: "/viata-politica-in-franta",
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -1326,6 +1356,9 @@ let temeIstoria = [
             id: "1",
             name: "Dezvoltarea economiei României în anii 1918-1940",
             path: "/subtema1",
+            addressDisciplina: "/istoria",
+            addressSubtitle: "/romania-in-perioada-interbelica",
+            addressSubject: "/dezvoltarea-economiei-româniei",           
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -1339,6 +1372,9 @@ let temeIstoria = [
             id: "2",
             name: "Minoritățile etnice în România",
             path: "/subtema1",
+            addressDisciplina: "/istoria",
+            addressSubtitle: "/romania-in-perioada-interbelica",
+            addressSubject: "/minoritatile-etnice-in-romania", 
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -1363,6 +1399,9 @@ let temeIstoria = [
             id: "1",
             name: "Specificul dezvoltării social-economice a Basarabiei",
             path: "/subtema1",
+            addressDisciplina: "/istoria",
+            addressSubtitle: "/basarabia-in-cadrul-romaniei-mari",
+            addressSubject: "/dezvoltarea-social-economica-a-basarabiei",
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -1376,6 +1415,9 @@ let temeIstoria = [
             id: "2",
             name: "Minoritățile etnice în Basarabia",
             path: "/subtema1",
+            addressDisciplina: "/istoria",
+            addressSubtitle: "/basarabia-in-cadrul-romaniei-mari",
+            addressSubject: "/minoritatile-etnice-in-basarabia",
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -1400,6 +1442,9 @@ let temeIstoria = [
             id: "1",
             name: "Formarea RASSM",
             path: "/subtema1",
+            addressDisciplina: "/istoria",
+            addressSubtitle: "/rassm",
+            addressSubject: "/formarea-rassm",
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -1413,6 +1458,9 @@ let temeIstoria = [
             id: "2",
             name: "Represiunile staliniste",
             path: "/subtema1",
+            addressDisciplina: "/istoria",
+            addressSubtitle: "/rassm",
+            addressSubject: "/represiunile-staliniste",
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -1437,6 +1485,9 @@ let temeIstoria = [
             id: "1",
             name: "Manifestările suprarealismului",
             path: "/subtema1",
+            addressDisciplina: "/istoria",
+            addressSubtitle: "/cultura-si-stiinta-in-perioada-interbelica",
+            addressSubject: "/manifestările-suprarealismului",           
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -1450,6 +1501,9 @@ let temeIstoria = [
             id: "2",
             name: "Descoperiri științifice",
             path: "/subtema1",
+            addressDisciplina: "/istoria",
+            addressSubtitle: "/cultura-si-stiinta-in-perioada-interbelica",
+            addressSubject: "/descoperiri-stiintifice",  
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -1474,6 +1528,9 @@ let temeIstoria = [
             id: "1",
             name: "Învățământul și știința",
             path: "/subtema1",
+            addressDisciplina: "/istoria",
+            addressSubtitle: "/cultura-romaneasca-interbelica",
+            addressSubject: "/invatamantul-si-stiinta-in-romania-interbelica",            
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -1487,6 +1544,9 @@ let temeIstoria = [
             id: "2",
             name: "Literatura și arta",
             path: "/subtema1",
+            addressDisciplina: "/istoria",
+            addressSubtitle: "/cultura-romaneasca-interbelica",
+            addressSubject: "/literatura-si-arta", 
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -1516,9 +1576,12 @@ let temeIstoria = [
         ],
         subjects: [
           {
-            id: "1",
+            id: "1",      
             name: "Expansiunea Germaniei",
             path: "/subtema1",
+            addressDisciplina: "/istoria",
+            addressSubtitle: "/aliante-in-perioada-interbelica",
+            addressSubject: "/expansiunea-germaniei",             
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -1532,6 +1595,9 @@ let temeIstoria = [
             id: "2",
             name: "Agresiunea italiană în Etiopia",
             path: "/subtema1",
+            addressDisciplina: "/istoria",
+            addressSubtitle: "/aliante-in-perioada-interbelica",
+            addressSubject: "/agresiunea-italiana-in-etiopia", 
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -1556,6 +1622,9 @@ let temeIstoria = [
             id: "1",
             name: "Problema basarabeană în relațiile româno-sovietice în anul 1924",
             path: "/subtema1",
+            addressDisciplina: "/istoria",
+            addressSubtitle: "/relatiie-sovieto-romane",
+            addressSubject: "/problema-basarabeana",            
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -1569,6 +1638,9 @@ let temeIstoria = [
             id: "2",
             name: "Tezaurul României aflat la Moscova",
             path: "/subtema1",
+            addressDisciplina: "/istoria",
+            addressSubtitle: "/relatiie-sovieto-romane",
+            addressSubject: "/tezaurul-romaniei",  
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -1593,6 +1665,9 @@ let temeIstoria = [
             id: "1",
             name: "Raptul Basarabiei",
             path: "/subtema1",
+            addressDisciplina: "/istoria",
+            addressSubtitle: "/pierderile-teritoriale-ale-romaniei",
+            addressSubject: "/raptul-basarabiei",            
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -1606,6 +1681,9 @@ let temeIstoria = [
             id: "2",
             name: "Raptul Bucovinei de Nord",
             path: "/subtema1",
+            addressDisciplina: "/istoria",
+            addressSubtitle: "/pierderile-teritoriale-ale-romaniei",
+            addressSubject: "/raptul-bucovinei-de-nord",  
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -1630,6 +1708,9 @@ let temeIstoria = [
             id: "1",
             name: "Crearea RSSM și politica de ocupație sovietică",
             path: "/subtema1",
+            addressDisciplina: "/istoria",
+            addressSubtitle: "/formarea-rssm",
+            addressSubject: "/crearea-rssm",
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -1643,6 +1724,9 @@ let temeIstoria = [
             id: "2",
             name: "Dictatul de la Viena și Tratatul de la Craiova",
             path: "/subtema1",
+            addressDisciplina: "/istoria",
+            addressSubtitle: "/formarea-rssm",
+            addressSubject: "/dictatul-de-la-viena",
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -1675,6 +1759,9 @@ let temeIstoria = [
             id: "1",
             name: "Cauzele și izbucnirea războiului",
             path: "/subtema1",
+            addressDisciplina: "/istoria",
+            addressSubtitle: "/al-doilea-razboi-mondial",
+            addressSubject: "/cauzele-si-izbucnirea-razboiului",            
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -1688,6 +1775,9 @@ let temeIstoria = [
             id: "2",
             name: "Invazia germană aspura URSS",
             path: "/subtema1",
+            addressDisciplina: "/istoria",
+            addressSubtitle: "/al-doilea-razboi-mondial",
+            addressSubject: "/invazia-germana-aspura-urss",  
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -1712,6 +1802,9 @@ let temeIstoria = [
             id: "1",
             name: "Regimul politic în România (1940-1944)",
             path: "/subtema1",
+            addressDisciplina: "/istoria",
+            addressSubtitle: "/romania-in-al-doilea-razboi-mondial",
+            addressSubject: "/regimul-politic-in-romania",            
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -1725,6 +1818,9 @@ let temeIstoria = [
             id: "2",
             name: "Angajarea României în război",
             path: "/subtema1",
+            addressDisciplina: "/istoria",
+            addressSubtitle: "/romania-in-al-doilea-razboi-mondial",
+            addressSubject: "/angajarea-româniei-in-razboi", 
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -1749,6 +1845,9 @@ let temeIstoria = [
             id: "1",
             name: "Reinstaurarea regimului totalitar comunist",
             path: "/subtema1",
+            addressDisciplina: "/istoria",
+            addressSubtitle: "/holocaust",
+            addressSubject: "/reinstaurarea-regimului-totalitar-comunist",           
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -1762,6 +1861,9 @@ let temeIstoria = [
             id: "2",
             name: "Politica față de evrei și romi",
             path: "/subtema1",
+            addressDisciplina: "/istoria",
+            addressSubtitle: "/holocaust",
+            addressSubject: "/politica-fata-de-evrei-si-romi", 
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -1786,6 +1888,9 @@ let temeIstoria = [
             id: "1",
             name: "Reconstrucția postbelică și noile ordini mondiale",
             path: "/subtema1",
+            addressDisciplina: "/istoria",
+            addressSubtitle: "/consecintele-celui-de-al-doilea-razboi-mondial",
+            addressSubject: "/reconstructia-postbelica",           
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -1799,6 +1904,9 @@ let temeIstoria = [
             id: "2",
             name: "Impactul asupra societății și schimbările geopolitice",
             path: "/subtema1",
+            addressDisciplina: "/istoria",
+            addressSubtitle: "/consecintele-celui-de-al-doilea-razboi-mondial",
+            addressSubject: "/impactul-asupra-societatii",
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -1831,6 +1939,9 @@ let temeIstoria = [
             id: "1",
             name: "Organizația Națiunilor Unite",
             path: "/subtema1",
+            addressDisciplina: "/istoria",
+            addressSubtitle: "/constituirea-onu",
+            addressSubject: "/organizatia-natiunilor-unite",           
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -1844,6 +1955,9 @@ let temeIstoria = [
             id: "2",
             name: "Începutul Războiului Rece",
             path: "/subtema1",
+            addressDisciplina: "/istoria",
+            addressSubtitle: "/constituirea-onu",
+            addressSubject: "/inceputul-razboiului-rece",   
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -1868,6 +1982,9 @@ let temeIstoria = [
             id: "1",
             name: "Viața politică în URSS",
             path: "/subtema1",
+            addressDisciplina: "/istoria",
+            addressSubtitle: "/uniunea-sovietica-in-perioada-postbelica",
+            addressSubject: "/viata-politica-in-urss",           
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -1881,6 +1998,9 @@ let temeIstoria = [
             id: "2",
             name: "Economia sovietică",
             path: "/subtema1",
+            addressDisciplina: "/istoria",
+            addressSubtitle: "/uniunea-sovietica-in-perioada-postbelica",
+            addressSubject: "/economia-sovietica",  
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -1905,6 +2025,9 @@ let temeIstoria = [
             id: "1",
             name: "Monopolul partidului",
             path: "/subtema1",
+            addressDisciplina: "/istoria",
+            addressSubtitle: "/rssm",
+            addressSubject: "/monopolul-partidului",            
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -1918,6 +2041,9 @@ let temeIstoria = [
             id: "2",
             name: "Politica economică promovată în RSSM",
             path: "/subtema1",
+            addressDisciplina: "/istoria",
+            addressSubtitle: "/rssm",
+            addressSubject: "/politica-economica-in-rssm", 
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -1942,6 +2068,9 @@ let temeIstoria = [
             id: "1",
             name: "Foametea din anii 1946-1947",
             path: "/subtema1",
+            addressDisciplina: "/istoria",
+            addressSubtitle: "/deportarile-staliniste-din-rssm",
+            addressSubject: "/foametea-din-anii-1946-1947",            
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -1955,6 +2084,9 @@ let temeIstoria = [
             id: "2",
             name: "Colectivizarea forțată",
             path: "/subtema1",
+            addressDisciplina: "/istoria",
+            addressSubtitle: "/deportarile-staliniste-din-rssm",
+            addressSubject: "/colectivizarea-fortata", 
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -1987,6 +2119,9 @@ let temeIstoria = [
             id: "1",
             name: "Transformări politice și economice în RSSM între 1985-1991",
             path: "/subtema1",
+            addressDisciplina: "/istoria",
+            addressSubtitle: "/proclamarea-independentei-republicii-moldova",
+            addressSubject: "/transformari-politice-si-economice",           
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -2000,6 +2135,9 @@ let temeIstoria = [
             id: "2",
             name: "Proclamarea independenței Republicii Moldova",
             path: "/subtema1",
+            addressDisciplina: "/istoria",
+            addressSubtitle: "/proclamarea-independentei-republicii-moldova",
+            addressSubject: "/proclamarea-independentei-rm", 
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -2024,6 +2162,9 @@ let temeIstoria = [
             id: "1",
             name: "Originile conflictului",
             path: "/subtema1",
+            addressDisciplina: "/istoria",
+            addressSubtitle: "/razboiul-de-pe-nistru",
+            addressSubject: "/originile-conflictului",            
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -2037,6 +2178,9 @@ let temeIstoria = [
             id: "2",
             name: "Formarea autoproclamatei RSSMN",
             path: "/subtema1",
+            addressDisciplina: "/istoria",
+            addressSubtitle: "/razboiul-de-pe-nistru",
+            addressSubject: "/formarea-autoproclamatei-rssmn", 
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -2069,6 +2213,9 @@ let temeIstoria = [
             id: "1",
             name: "Politica de ideologizare a vieții culturale",
             path: "/subtema1",
+            addressDisciplina: "/istoria",
+            addressSubtitle: "/cultura-si-stiinta-in-rssm",
+            addressSubject: "/ideologizarea-vietii-culturale",
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -2082,6 +2229,9 @@ let temeIstoria = [
             id: "2",
             name: "Invățământul și știința",
             path: "/subtema1",
+            addressDisciplina: "/istoria",
+            addressSubtitle: "/cultura-si-stiinta-in-rssm",
+            addressSubject: "/invatamantul-si-stiinta-in-rssm",
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -2106,6 +2256,9 @@ let temeIstoria = [
             id: "1",
             name: "Influente și schimbări în cultura Republicii Moldova",
             path: "/subtema1",
+            addressDisciplina: "/istoria",
+            addressSubtitle: "/evolutia-culturii-in-republica-moldova",
+            addressSubject: "/influente-si-schimbari",
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -2119,6 +2272,9 @@ let temeIstoria = [
             id: "2",
             name: "Patrimoniu cultural și diversitatea culturală în Republica Moldova",
             path: "/subtema1",
+            addressDisciplina: "/istoria",
+            addressSubtitle: "/evolutia-culturii-in-republica-moldova",
+            addressSubject: "/patrimoniu-cultural",
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -2143,6 +2299,9 @@ let temeIstoria = [
             id: "1",
             name: "Cucerirea spațiului cosmic",
             path: "/subtema1",
+            addressDisciplina: "/istoria",
+            addressSubtitle: "/ultura-si-stiinta-in-epoca-contemporana",
+            addressSubject: "/cucerirea-spațiului-cosmic",
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -2156,6 +2315,9 @@ let temeIstoria = [
             id: "2",
             name: "Arta și industria cinematografică",
             path: "/subtema1",
+            addressDisciplina: "/istoria",
+            addressSubtitle: "/ultura-si-stiinta-in-epoca-contemporana",
+            addressSubject: "/arta-si-industria-cinematografica",
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
