@@ -9,6 +9,7 @@ import TemeRom from './pages/TemeRom';
 import TemeMatem from './pages/TemeMatem';
 import TemeIstoria from './pages/TemeIstoria';
 import Test from './pages/Test';
+import TestWords from './components/Teste/TestWords.jsx'
 import FlipCards from './components/FlipCards/FlipCards';
 import Error from './components/Error'
 
@@ -62,6 +63,7 @@ function App() {
       <Route path='/romana' component={TemeRom} />
       <Route path='/matem' component={TemeMatem} />
       <Route path='/istoria' component={TemeIstoria} />
+      <Route path='/word' component={TestWords} />
       <Route path='/tema1' component={Tema} />
       <Route path='/subtema1' component={Subtema} />
       <Route path='/test1' component={TestWithRouter} />
