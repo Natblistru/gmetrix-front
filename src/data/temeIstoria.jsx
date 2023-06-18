@@ -762,8 +762,8 @@ let temeIstoria = [
                     answers: [
                       {
                         // id: "1",
-                        text: "1. Europa Centrală era dominată de 2 state:;<brown>; fox ;<jumped>; over the ;<dog>",
-                        rezolvare: "1. Europa Centrală era dominată de 2 state brown fox jumped over the dog",
+                        text: "În perioada ;<1914>;-;<1916>; România a fost ;<neutră>;, deși avea un tratat de alianță cu ;<Tripla Alianță>;. Au existat dezbateri în țară privind participarea la război, iar în cele din urmă, pe ;<4 august 1916>;, România a semnat un tratat de alianță cu ;<Antanta>;, care prevedea eliberarea ;<Transilvaniei>; și realizarea unității naționale.",
+                        rezolvare: "În perioada 1914-1916, România a fost neutră, deși avea un tratat de alianță cu Tripla Alianță. Au existat dezbateri în țară privind participarea la război, iar în cele din urmă, pe 4 august 1916, România a semnat un tratat de alianță cu Antanta, care prevedea eliberarea Transilvaniei și realizarea unității naționale.",
                       },
                     ],
                   },

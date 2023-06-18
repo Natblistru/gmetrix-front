@@ -15,7 +15,7 @@ const Droppable = ({ bgcolor, children, groupName, ndx, onDrop }) => {
 
   const handleDragLeave = e => {
     e.preventDefault();
-    setDropBgColor('white');
+    setDropBgColor('#337ab7');
   };
 
   return (

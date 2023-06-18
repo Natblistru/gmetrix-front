@@ -21,6 +21,7 @@ const TestWords = ({
   const text = list.quizArray[currentIndex].answers[0].text;
 
   useEffect(() => {
+    setShowResults(false);
     setAnswers(getAnswers(text));
     setSentence(getSentence(text));
   }, [text]);
