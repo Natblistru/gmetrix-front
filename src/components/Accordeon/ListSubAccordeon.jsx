@@ -15,7 +15,7 @@ const ListSubAccordeon = (props) => {
   // let arrayTests = props.teme[0].subtitles[0].subjects[0].teste;
   let arraySubject = props.subtema.vomAfla;
   let arrayTests = props.subtema.teste;
-  console.log(props.subtema);
+  // console.log(props.subtema);
   const clickSubjectHandler = (idx) => {
     setCurrentSubject(idx);
   };

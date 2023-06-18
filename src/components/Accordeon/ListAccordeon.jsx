@@ -45,7 +45,7 @@ const ListAccordeon = (props) => {
       </ItemAccordeon>
       <div id="termeni"></div>
       <ItemAccordeon titlu="Termeni-cheie" {...props} open={true}>
-        {console.log(props.teme.addressDisciplina + props.teme.address)}
+        {/* {console.log(props.teme.addressDisciplina + props.teme.address)} */}
         <ItemList {...props} list={termeniList} />
         <Link to={{ pathname: props.teme.addressDisciplina + props.teme.address+"/flipCards/termeni", state: { list: termeniList, anchor: "termeni", item: props.teme} }} className="custom-link">Exerseaza</Link>
       </ItemAccordeon>

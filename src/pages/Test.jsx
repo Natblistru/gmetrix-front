@@ -8,11 +8,12 @@ import TestQuiz from "../components/Teste/TestQuiz";
 import TestCheck from "../components/Teste/TestCheck";
 import ListNavigatie from "../components/ListNavigatie";
 import TestBoard from "../components/Teste/TestBoard";
+import TestWords from "../components/Teste/TestWords"
 import "../index.css";
 
 const TestWrapper = (props) => {
   const { address1, addressTest, idTest } = useParams();
-  console.log(addressTest);
+  // console.log(addressTest);
   const [currentList, setCurrentList] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const history = useHistory();
@@ -94,7 +95,7 @@ const TestWrapper = (props) => {
           <Breadcrumb
             list={currentList.breadcrumb}
           />
-          {console.log("currentList.breadcrumb", currentList.breadcrumb)}
+          {/* {console.log("currentList.breadcrumb", currentList.breadcrumb)} */}
           <TitleBox className="teme-container">{currentList.name}</TitleBox>
           {currentList.type === "quiz" && (
             <TestQuiz
@@ -108,6 +109,16 @@ const TestWrapper = (props) => {
           )}
           {currentList.type === "check" && (
             <TestCheck
+              list={currentList}
+              currentIndex={currentIndex}
+              correctAnswer={correctAnswer}
+              setCorrectAnswer={setCorrectAnswer}
+              additionalContent={additionalContent}
+              handleTryAgain={handleTryAgain}
+            />
+          )}
+          {currentList.type === "words" && (
+            <TestWords
               list={currentList}
               currentIndex={currentIndex}
               correctAnswer={correctAnswer}

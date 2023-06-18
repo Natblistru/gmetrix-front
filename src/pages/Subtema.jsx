@@ -9,7 +9,7 @@ import ListSubAccordeon from "../components/Accordeon/ListSubAccordeon";
 const Subtema = () => {
   const { address1 } = useParams();
   const [item, setItem] = useState(null);
-  console.log("address1", address1);
+  // console.log("address1", address1);
   const history = useHistory();
 
   function findObjectWithAddress(obj) {

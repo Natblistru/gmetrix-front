@@ -13,7 +13,6 @@ const FlipCards = (props) => {
     setIsChecked(!isChecked);
   };
   const { list, anchor, item } = props.location.state;
-  console.log(list);
   let counter = -1;
   const arrayColor = ["--city", "--ski", "--beach", "--camping"];
   return (

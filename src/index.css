@@ -818,7 +818,7 @@ div.ns-radio-btn {
 .app-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  /* align-items: center; */
 }
 .primary-button {
   color: #fff;
@@ -830,18 +830,29 @@ div.ns-radio-btn {
   line-height: 1.5em;
 }
 .block-styled {
-margin: 1em auto;
+margin: 1em 0;
 }
 .word-box {
-  background-color: 'white';
-  margin: 0.5em;
+  background-color: #337ab7;
+  margin: 0 0.9em;
   padding: 0.25em 0.5em;
   cursor: pointer;
   min-width: 1em;
-  border-bottom: 1px solid black;
+  display: inline-flex;
+  width: 99px;
+  height: 19px;
+  position: relative;
+  height: 40px;
+  vertical-align: middle;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+.word-box-inline {
+  display: inline-block; 
 }
 
 .word-wrapper {
-  display: flex;
-  justify-content: center;
+  /* display: flex; */
+  /* justify-content: center; */
 }

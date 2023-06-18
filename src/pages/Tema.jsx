@@ -10,7 +10,7 @@ import "../index.css";
 const Tema = () => {
   const { address } = useParams();
   const [item, setItem] = useState(null);
-  console.log("address", address);
+  // console.log("address", address);
   const history = useHistory();
 
   function findObjectWithAddress(obj) {

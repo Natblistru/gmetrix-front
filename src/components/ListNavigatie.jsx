@@ -36,7 +36,7 @@ const ListNavigatie = (props) => {
   }
 
 
-  console.log("dynamicPathTestUrmator",dynamicPathTestUrmator);
+  // console.log("dynamicPathTestUrmator",dynamicPathTestUrmator);
   return (
     <div className="nav-container">
         <div className={`nav-link ${primul ? 'invizible' : ''}`} >

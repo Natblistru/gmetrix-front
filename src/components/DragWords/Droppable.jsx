@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 
 const Droppable = ({ bgcolor, children, groupName, ndx, onDrop }) => {
-  const [dropBgColor, setDropBgColor] = useState('white');
+  const [dropBgColor, setDropBgColor] = useState('#337ab7');
 
   const handleDrop = e => {
     onDrop(e, groupName);
-    setDropBgColor('white');
+    setDropBgColor('#337ab7');
   };
 
   const handleDragOver = e => {

@@ -737,6 +737,7 @@ let temeIstoria = [
                 name: "Completează propoziția",
                 complexity: "simplu",
                 coloane: [],
+                type: "words",
                 path: "/test1",
                 addressTestDisciplina: "/istoria",
                 addressTestSubtitle: "/romania-in-primul-razboi",
@@ -760,11 +761,32 @@ let temeIstoria = [
                     id: "1",
                     answers: [
                       {
-                        id: "1",
-                        answers: [],
+                        // id: "1",
+                        text: "1. Europa Centrală era dominată de 2 state:;<brown>; fox ;<jumped>; over the ;<dog>",
+                        rezolvare: "1. Europa Centrală era dominată de 2 state brown fox jumped over the dog",
                       },
                     ],
                   },
+                  {
+                    id: "2",
+                    answers: [
+                      {
+                        // id: "1",
+                        text: "2. Europa de Vest era dominată de 2 state:;<brown>; fox ;<jumped>; over the ;<dog>",
+                        rezolvare: "2. Europa de Vest era dominată de 2 state brown fox jumped over the dog",
+                      },
+                    ],
+                  },
+                  // {
+                  //   id: "1",
+                  //   text: "1. Europa Centrală era dominată de 2 state:;<brown>; fox ;<jumped>; over the ;<dog>",
+                  //   rezolvare: "1. Europa Centrală era dominată de 2 state brown fox jumped over the dog",
+                  // },
+                  // {
+                  //   id: "2",
+                  //   text: "1. Europa de Vest era dominată de 2 state:;<brown>; fox ;<jumped>; over the ;<dog>",
+                  //   rezolvare: "1. Europa Vest era dominată de 2 state brown fox jumped over the dog",
+                  // },
                 ],
               },
               {

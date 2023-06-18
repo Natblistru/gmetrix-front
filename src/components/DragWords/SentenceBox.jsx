@@ -7,14 +7,20 @@ const SentenceBox = ({ marked, onDrop, sentence }) => {
   };
 
   const renderSentence = () => {
+    let correctAnswer = true;
     return sentence.map((w, i) => {
+      // console.log(w.text,w.id,w.displayed,w.placed);
       if (w.type === 'word') {
-        return <div className="word-box" data-testid={'word'} key={i}>{w.text}</div>;
+
+        return <div className="word-box-inline" data-testid={'word'} key={i}>{w.text}</div>;
       }
       
       let bgcolor;
       if (marked) {
         bgcolor = w.text === w.displayed ? 'lightgreen' : '#F77';
+        if (w.text !== w.displayed) {
+          correctAnswer = false;
+        }
       }
 
       return (
@@ -33,7 +39,7 @@ const SentenceBox = ({ marked, onDrop, sentence }) => {
 
   return (
     <div className="block-styled">
-      Fill in the blanks with the words below
+      {/* <p>Completați spațiile libere cu cuvintele de mai jos</p> */}
       <div className="word-wrapper">
         {renderSentence()}
       </div>
