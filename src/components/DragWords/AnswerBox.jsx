@@ -20,9 +20,9 @@ const AnswerBox = ({ answers }) => {
   ));
 
   return (
-    <div className="block-styled">
-      Answers
-      <div className="word-wrapper">{renderedAnswers}</div>
+    <div className="block-styled-answers">
+      <p>Variante de răspuns:</p>
+      <div className="word-wrapper-answers">{renderedAnswers}</div>
     </div>
   );
 };

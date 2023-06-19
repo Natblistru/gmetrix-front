@@ -91,8 +91,7 @@ const TestWords = ({
               onDrop={onDrop}
               sentence={sentence}
             />
-            <AnswerBox answers={answers} />
-            <div></div>
+            {correctAnswer === null && <AnswerBox answers={answers} />}
           </div>
         </ItemText>
         {correctAnswer === null && (

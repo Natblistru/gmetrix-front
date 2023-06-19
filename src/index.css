@@ -832,14 +832,22 @@ div.ns-radio-btn {
 .block-styled {
 margin: 1em 0;
 }
+.block-styled-answers {
+  margin: 1em -32px;
+  padding: 0 32px 1em;
+  background-color: #e7ecef;
+}
+  .block-styled-answers p{
+  line-height: 2.5em;
+}
 .word-box {
   background-color: #337ab7;
-  margin: 0 0.9em;
-  padding: 0.25em 0.5em;
+  margin: 0.1em 0.5em;
+  padding: 0.4em 0.5em;
   cursor: pointer;
   min-width: 1em;
   display: inline-flex;
-  width: 99px;
+  min-width: 99px;
   height: 19px;
   position: relative;
   height: 40px;
@@ -852,7 +860,12 @@ margin: 1em 0;
   display: inline-block; 
 }
 
-.word-wrapper {
-  /* display: flex; */
-  /* justify-content: center; */
+.word-wrapper-answers {
+  display: flex;
+  gap:10px;
+  flex-wrap: wrap;
+
+}
+.word-wrapper-answers .word-box {
+  margin: 0;
 }
