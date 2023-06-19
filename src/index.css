@@ -833,7 +833,7 @@ div.ns-radio-btn {
 margin: 1em 0;
 }
 .block-styled-answers {
-  margin: 1em -32px;
+  margin: 1em -32px 0px;
   padding: 0 32px 1em;
   background-color: #e7ecef;
 }

@@ -160,7 +160,7 @@ const TestBoard = forwardRef(
         height: "100%",
       }}
     >
-      {console.log("columns",columns)}
+      {/* {console.log("columns",columns)} */}
       <DragDropContext
         onDragEnd={(result) => onDragEnd(result, columns, setColumns)}
       >

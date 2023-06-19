@@ -5,6 +5,19 @@ import { getSentence, getAnswers } from "../DragWords/TextConverter";
 import ItemAccordeon from "../Accordeon/ItemAccordeon";
 import ItemText from "../Accordeon/ItemText";
 
+function shuffleArray(pieces) {
+  const shuffled = [...pieces];
+
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    let j = Math.floor(Math.random() * (i + 1));
+    let tmp = shuffled[i];
+    shuffled[i] = shuffled[j];
+    shuffled[j] = tmp;
+  }
+
+  return shuffled;
+}
+
 const TestWords = ({
   list,
   currentIndex,
@@ -19,13 +32,13 @@ const TestWords = ({
   const [sentence, setSentence] = useState([]);
 
   const text = list.quizArray[currentIndex].answers[0].text;
-
+  const textAdd = list.quizArray[currentIndex].answers[0].textAdditional;
   useEffect(() => {
     setShowResults(false);
-    setAnswers(getAnswers(text));
+    setAnswers(shuffleArray(getAnswers(text).concat(textAdd)));
     setSentence(getSentence(text));
   }, [text]);
-
+console.log(answers);
   const onDrop = (ev, dropId) => {
     const text = ev.dataTransfer.getData("text/plain");
     const updatedSentence = sentence.map((w) => {

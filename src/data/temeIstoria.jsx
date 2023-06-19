@@ -763,6 +763,7 @@ let temeIstoria = [
                       {
                         // id: "1",
                         text: "În perioada ;<1914>;-;<1916>; România a fost ;<neutră>;, deși avea un tratat de alianță cu ;<Tripla Alianță>;. Au existat dezbateri în țară privind participarea la război, iar în cele din urmă, pe ;<4 august 1916>;, România a semnat un tratat de alianță cu ;<Antanta>;, care prevedea eliberarea ;<Transilvaniei>; și realizarea unității naționale.",
+                        textAdditional: ["1918", "1919"],
                         rezolvare: "În perioada 1914-1916, România a fost neutră, deși avea un tratat de alianță cu Tripla Alianță. Au existat dezbateri în țară privind participarea la război, iar în cele din urmă, pe 4 august 1916, România a semnat un tratat de alianță cu Antanta, care prevedea eliberarea Transilvaniei și realizarea unității naționale.",
                       },
                     ],
@@ -773,6 +774,7 @@ let temeIstoria = [
                       {
                         // id: "1",
                         text: "2. Europa de Vest era dominată de 2 state:;<brown>; fox ;<jumped>; over the ;<dog>",
+                        textAdditional: ["1918", "1919"],
                         rezolvare: "2. Europa de Vest era dominată de 2 state brown fox jumped over the dog",
                       },
                     ],
