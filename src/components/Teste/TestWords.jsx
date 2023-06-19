@@ -96,8 +96,6 @@ console.log(answers);
           }
         >
           <div className="app-container">
-            {/* <h2 className='header'>Word Game</h2>
-              <QuestionBox onStart={onStart} questionChange={questionChange} /> */}
             <p>Completați spațiile libere cu cuvintele de mai jos:</p>
             <SentenceBox
               marked={showResults}
@@ -122,17 +120,6 @@ console.log(answers);
         >
           <ItemText classNameChild="">
             {list.quizArray[currentIndex].answers[0].rezolvare}
-            {/* {list.quizArray[currentIndex].answers.map((answer, idx) => (
-              <RadioButton
-                key={idx}
-                value={answer.rezolvare}
-                checked={
-                  answer.text === list.quizArray[currentIndex].correctAnswer
-                }
-                onChange={() => {}}
-                correctAnswer={list.quizArray[currentIndex].correctAnswer}
-              />
-            ))} */}
           </ItemText>
           <button onClick={handleTryAgain} className="btn-test">
             Încearcă din nou!

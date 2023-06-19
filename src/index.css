@@ -841,11 +841,11 @@ margin: 1em 0;
   line-height: 2.5em;
 }
 .word-box {
-  background-color: #337ab7;
   margin: 0.1em 0.5em;
   padding: 0.4em 0.5em;
   cursor: pointer;
   min-width: 1em;
+  border-radius: 2px;
   display: inline-flex;
   min-width: 99px;
   height: 19px;
@@ -855,6 +855,7 @@ margin: 1em 0;
   align-items: center;
   justify-content: center;
   color: white;
+  border: 2px dotted rgba(0, 180, 216, 0.7);
 }
 .word-box-inline {
   display: inline-block; 
@@ -868,4 +869,7 @@ margin: 1em 0;
 }
 .word-wrapper-answers .word-box {
   margin: 0;
+  background-color: #00b4d8;
+  border: none;
+  box-shadow : 0 2px 5px #ccc;
 }

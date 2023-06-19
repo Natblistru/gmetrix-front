@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 
 const Droppable = ({ bgcolor, children, groupName, ndx, onDrop }) => {
-  const [dropBgColor, setDropBgColor] = useState('#337ab7');
+  // const [dropBgColor, setDropBgColor] = useState('#337ab7');
+  const [dropBgColor, setDropBgColor] = useState('white');
 
   const handleDrop = e => {
     onDrop(e, groupName);
-    setDropBgColor('#337ab7');
+    setDropBgColor('#00b4d8');
   };
 
   const handleDragOver = e => {
@@ -15,7 +16,8 @@ const Droppable = ({ bgcolor, children, groupName, ndx, onDrop }) => {
 
   const handleDragLeave = e => {
     e.preventDefault();
-    setDropBgColor('#337ab7');
+    setDropBgColor('#00b4d8');
+    // setDropBgColor('white');
   };
 
   return (

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Draggable = ({ bgcolor, name, onDragStart }) => {
+const Draggable = ({ bgcolor, name, onDragStart}) => {
   const handleDragStart = e => {
     onDragStart(e, name);
   };

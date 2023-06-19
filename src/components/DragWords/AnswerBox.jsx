@@ -12,7 +12,7 @@ const AnswerBox = ({ answers }) => {
   const renderedAnswers = answers.map(a => (
     <Draggable
       // bgcolor='rgba(255,255,255,0)'
-      bgcolor='rgb(51, 122, 183)'
+      bgcolor='#00b4d8'
       key={a}
       name={a}
       onDragStart={handleDragStart}
