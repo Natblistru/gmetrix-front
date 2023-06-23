@@ -873,3 +873,11 @@ margin: 1em 0;
   border: none;
   box-shadow : 0 2px 5px #ccc;
 }
+.nav-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5px;
+  margin: 0 5px;
+  line-height: 3.5;
+}
