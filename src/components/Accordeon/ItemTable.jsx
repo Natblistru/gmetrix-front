@@ -7,6 +7,7 @@ const TableRow = (props) => {
   const idx = props.ind;
   const classes = "row " + props.className;
   const dynamicPath = `${rowData.addressTestDisciplina}${rowData.addressTestSubtitle}${rowData.addressTestSubject}${rowData.addressTest}/1`;
+  console.log(dynamicPath)
   return (
     <div className={classes}>
       <div className="column">

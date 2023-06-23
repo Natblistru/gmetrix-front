@@ -10,6 +10,7 @@ import TemeMatem from './pages/TemeMatem';
 import TemeIstoria from './pages/TemeIstoria';
 import Test from './pages/Test';
 import TestWords from './components/Teste/TestWords.jsx'
+import TestGeneralizator from './components/Teste/TestGeneralizator';
 import FlipCards from './components/FlipCards/FlipCards';
 import Error from './components/Error'
 
@@ -66,7 +67,7 @@ function App() {
       <Route path='/word' component={TestWords} />
       <Route path='/tema1' component={Tema} />
       <Route path='/subtema1' component={Subtema} />
-      <Route path='/test1' component={TestWithRouter} />
+      <Route path='/test1' component={TestGeneralizator} />
  
 
       <Route component={Error} />

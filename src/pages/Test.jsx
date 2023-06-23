@@ -9,6 +9,7 @@ import TestCheck from "../components/Teste/TestCheck";
 import ListNavigatie from "../components/ListNavigatie";
 import TestBoard from "../components/Teste/TestBoard";
 import TestWords from "../components/Teste/TestWords"
+import TestGeneralizator from "../components/Teste/TestGeneralizator";
 import "../index.css";
 
 const TestWrapper = (props) => {
@@ -119,6 +120,16 @@ const TestWrapper = (props) => {
           )}
           {currentList.type === "words" && (
             <TestWords
+              list={currentList}
+              currentIndex={currentIndex}
+              correctAnswer={correctAnswer}
+              setCorrectAnswer={setCorrectAnswer}
+              additionalContent={additionalContent}
+              handleTryAgain={handleTryAgain}
+            />
+          )}
+          {currentList.type === "testGeneralizator" && (
+            <TestGeneralizator
               list={currentList}
               currentIndex={currentIndex}
               correctAnswer={correctAnswer}

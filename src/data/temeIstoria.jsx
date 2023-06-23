@@ -57,15 +57,13 @@ let temeIstoria = [
                 ],
               },
             ],
-            innerHTML:
-              "",
+            innerHTML: "",
             note: [
               {
                 id: "1",
                 headerInnerHTML:
                   "<span>Puterile Centrale și Antanta – 2 blocurile politico-militare</span> din Europa din 1914:",
-                bodyInnerHTML:
-                  "",
+                bodyInnerHTML: "",
               },
             ],
             teste: [
@@ -76,9 +74,11 @@ let temeIstoria = [
                 path: "/test1",
                 addressTestDisciplina: "/istoria",
                 addressTestSubtitle: "/romania-in-primul-razboi",
-                addressTestSubject: "/optiuni-politice-in-perioada-neutralitatii",
+                addressTestSubject:
+                  "/optiuni-politice-in-perioada-neutralitatii",
                 addressTest: "/alege-afirmatia-corecta",
-                addressTestId: "/optiuni-politice-in-perioada-neutralitatii/alege-afirmatia-corecta",
+                addressTestId:
+                  "/optiuni-politice-in-perioada-neutralitatii/alege-afirmatia-corecta",
                 breadcrumb: [
                   { name: "Discipline", path: "/" },
                   { name: "Istoria", path: "/istoria" },
@@ -240,9 +240,11 @@ let temeIstoria = [
                 path: "/test1",
                 addressTestDisciplina: "/istoria",
                 addressTestSubtitle: "/romania-in-primul-razboi",
-                addressTestSubject: "/optiuni-politice-in-perioada-neutralitatii",
+                addressTestSubject:
+                  "/optiuni-politice-in-perioada-neutralitatii",
                 addressTest: "/stabileste-cauzele",
-                addressTestId: "/optiuni-politice-in-perioada-neutralitatii/stabileste-cauzele",
+                addressTestId:
+                  "/optiuni-politice-in-perioada-neutralitatii/stabileste-cauzele",
                 breadcrumb: [
                   { name: "Discipline", path: "/" },
                   { name: "Istoria", path: "/istoria" },
@@ -345,9 +347,11 @@ let temeIstoria = [
                 path: "/test1",
                 addressTestDisciplina: "/istoria",
                 addressTestSubtitle: "/romania-in-primul-razboi",
-                addressTestSubject: "/optiuni-politice-in-perioada-neutralitatii",
+                addressTestSubject:
+                  "/optiuni-politice-in-perioada-neutralitatii",
                 addressTest: "/stabileste-consecintele",
-                addressTestId: "/optiuni-politice-in-perioada-neutralitatii/stabileste-consecintele",
+                addressTestId:
+                  "/optiuni-politice-in-perioada-neutralitatii/stabileste-consecintele",
                 breadcrumb: [
                   { name: "Discipline", path: "/" },
                   { name: "Istoria", path: "/istoria" },
@@ -443,9 +447,11 @@ let temeIstoria = [
                 path: "/test1",
                 addressTestDisciplina: "/istoria",
                 addressTestSubtitle: "/romania-in-primul-razboi",
-                addressTestSubject: "/optiuni-politice-in-perioada-neutralitatii",
+                addressTestSubject:
+                  "/optiuni-politice-in-perioada-neutralitatii",
                 addressTest: "/verifica-corectitudinea",
-                addressTestId: "/optiuni-politice-in-perioada-neutralitatii/verifica-corectitudinea",
+                addressTestId:
+                  "/optiuni-politice-in-perioada-neutralitatii/verifica-corectitudinea",
                 breadcrumb: [
                   { name: "Discipline", path: "/" },
                   { name: "Istoria", path: "/istoria" },
@@ -533,9 +539,11 @@ let temeIstoria = [
                 path: "/test1",
                 addressTestDisciplina: "/istoria",
                 addressTestSubtitle: "/romania-in-primul-razboi",
-                addressTestSubject: "/optiuni-politice-in-perioada-neutralitatii",
+                addressTestSubject:
+                  "/optiuni-politice-in-perioada-neutralitatii",
                 addressTest: "/grupeaza-elementele",
-                addressTestId: "/optiuni-politice-in-perioada-neutralitatii/grupeaza-elementele", 
+                addressTestId:
+                  "/optiuni-politice-in-perioada-neutralitatii/grupeaza-elementele",
                 breadcrumb: [
                   { name: "Discipline", path: "/" },
                   { name: "Istoria", path: "/istoria" },
@@ -638,9 +646,11 @@ let temeIstoria = [
                 path: "/test1",
                 addressTestDisciplina: "/istoria",
                 addressTestSubtitle: "/romania-in-primul-razboi",
-                addressTestSubject: "/optiuni-politice-in-perioada-neutralitatii",
+                addressTestSubject:
+                  "/optiuni-politice-in-perioada-neutralitatii",
                 addressTest: "/caracteristicile-evenimentelor",
-                addressTestId: "/optiuni-politice-in-perioada-neutralitatii/caracteristicile-evenimentelor", 
+                addressTestId:
+                  "/optiuni-politice-in-perioada-neutralitatii/caracteristicile-evenimentelor",
                 breadcrumb: [
                   { name: "Discipline", path: "/" },
                   { name: "Istoria", path: "/istoria" },
@@ -741,9 +751,11 @@ let temeIstoria = [
                 path: "/test1",
                 addressTestDisciplina: "/istoria",
                 addressTestSubtitle: "/romania-in-primul-razboi",
-                addressTestSubject: "/optiuni-politice-in-perioada-neutralitatii",
+                addressTestSubject:
+                  "/optiuni-politice-in-perioada-neutralitatii",
                 addressTest: "/completeaza-propozitia",
-                addressTestId: "/optiuni-politice-in-perioada-neutralitatii/completeaza-propozitia",   
+                addressTestId:
+                  "/optiuni-politice-in-perioada-neutralitatii/completeaza-propozitia",
                 breadcrumb: [
                   { name: "Discipline", path: "/" },
                   { name: "Istoria", path: "/istoria" },
@@ -764,7 +776,8 @@ let temeIstoria = [
                         // id: "1",
                         text: "În perioada ;<1914>;-;<1916>; România a fost ;<neutră>;, deși avea un tratat de alianță cu ;<Tripla Alianță>;. Au existat dezbateri în țară privind participarea la război, iar în cele din urmă, pe ;<4 august 1916>;, România a semnat un tratat de alianță cu ;<Antanta>;, care prevedea eliberarea ;<Transilvaniei>; și realizarea unității naționale.",
                         textAdditional: ["1918", "1919"],
-                        rezolvare: "În perioada 1914-1916, România a fost neutră, deși avea un tratat de alianță cu Tripla Alianță. Au existat dezbateri în țară privind participarea la război, iar în cele din urmă, pe 4 august 1916, România a semnat un tratat de alianță cu Antanta, care prevedea eliberarea Transilvaniei și realizarea unității naționale.",
+                        rezolvare:
+                          "În perioada 1914-1916, România a fost neutră, deși avea un tratat de alianță cu Tripla Alianță. Au existat dezbateri în țară privind participarea la război, iar în cele din urmă, pe 4 august 1916, România a semnat un tratat de alianță cu Antanta, care prevedea eliberarea Transilvaniei și realizarea unității naționale.",
                       },
                     ],
                   },
@@ -775,7 +788,8 @@ let temeIstoria = [
                         // id: "1",
                         text: "2. Europa de Vest era dominată de 2 state:;<brown>; fox ;<jumped>; over the ;<dog>",
                         textAdditional: ["1918", "1919"],
-                        rezolvare: "2. Europa de Vest era dominată de 2 state brown fox jumped over the dog",
+                        rezolvare:
+                          "2. Europa de Vest era dominată de 2 state brown fox jumped over the dog",
                       },
                     ],
                   },
@@ -799,9 +813,11 @@ let temeIstoria = [
                 path: "/test1",
                 addressTestDisciplina: "/istoria",
                 addressTestSubtitle: "/romania-in-primul-razboi",
-                addressTestSubject: "/optiuni-politice-in-perioada-neutralitatii",
-                addressTest: "/elaboreaza-text",  
-                addressTestId: "/optiuni-politice-in-perioada-neutralitatii/elaboreaza-text",             
+                addressTestSubject:
+                  "/optiuni-politice-in-perioada-neutralitatii",
+                addressTest: "/elaboreaza-text",
+                addressTestId:
+                  "/optiuni-politice-in-perioada-neutralitatii/elaboreaza-text",
                 breadcrumb: [
                   { name: "Discipline", path: "/" },
                   { name: "Istoria", path: "/istoria" },
@@ -915,9 +931,11 @@ let temeIstoria = [
                 path: "/test1",
                 addressTestDisciplina: "/istoria",
                 addressTestSubtitle: "/romania-in-primul-razboi",
-                addressTestSubject: "/optiuni-politice-in-perioada-neutralitatii",
+                addressTestSubject:
+                  "/optiuni-politice-in-perioada-neutralitatii",
                 addressTest: "/succesiunea-cronologica",
-                addressTestId: "/optiuni-politice-in-perioada-neutralitatii/succesiunea-cronologica",
+                addressTestId:
+                  "/optiuni-politice-in-perioada-neutralitatii/succesiunea-cronologica",
                 breadcrumb: [
                   { name: "Discipline", path: "/" },
                   { name: "Istoria", path: "/istoria" },
@@ -1023,9 +1041,11 @@ let temeIstoria = [
                 path: "/test1",
                 addressTestDisciplina: "/istoria",
                 addressTestSubtitle: "/romania-in-primul-razboi",
-                addressTestSubject: "/optiuni-politice-in-perioada-neutralitatii",
+                addressTestSubject:
+                  "/optiuni-politice-in-perioada-neutralitatii",
                 addressTest: "/test-de-totalizare",
-                addressTestId: "/optiuni-politice-in-perioada-neutralitatii/test-de-totalizare",
+                addressTestId:
+                  "/optiuni-politice-in-perioada-neutralitatii/test-de-totalizare",
                 breadcrumb: [
                   { name: "Discipline", path: "/" },
                   { name: "Istoria", path: "/istoria" },
@@ -1038,10 +1058,23 @@ let temeIstoria = [
                     path: "/istoria/romania-in-primul-razboi/optiuni-politice-in-perioada-neutralitatii",
                   },
                 ],
-                type: "check",
+                type: "testGeneralizator",
                 quizArray: [
                   {
                     id: "1",
+                    listaSarcini: [
+                      {
+                        id: "1",
+                        name: "Bifează afirmațiile corecte",
+                        path: "/test1",
+                        addressTestDisciplina: "/istoria",
+                        addressTestSubtitle: "/romania-in-primul-razboi",
+                        addressTestSubject: "/optiuni-politice-in-perioada-neutralitatii",
+                      },
+                      { id: "2", name: "Consecințele evenimentelor" },
+                      { id: "3", name: "Compune propoziții" },
+                      { id: "4", name: "Cronologia evenimentelor" },
+                    ],
                     cerinte: "Persoana reprezentată în imagine:",
                     answers: [
                       {
@@ -1114,7 +1147,7 @@ let temeIstoria = [
             path: "/subtema1",
             addressDisciplina: "/istoria",
             addressSubtitle: "/romania-in-primul-razboi",
-            addressSubject: "/agravarea-situatiei-pe-frontul-roman", 
+            addressSubject: "/agravarea-situatiei-pe-frontul-roman",
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -1122,7 +1155,7 @@ let temeIstoria = [
                 name: "România în Primul Război Mondial",
                 path: "/istoria/romania-in-primul-razboi",
               },
-            ],           
+            ],
           },
           {
             id: "5",
@@ -1130,7 +1163,7 @@ let temeIstoria = [
             path: "/subtema1",
             addressDisciplina: "/istoria",
             addressSubtitle: "/romania-in-primul-razboi",
-            addressSubject: "/pacea-de-la-bucuresti",  
+            addressSubject: "/pacea-de-la-bucuresti",
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -1138,7 +1171,7 @@ let temeIstoria = [
                 name: "România în Primul Război Mondial",
                 path: "/istoria/romania-in-primul-razboi",
               },
-            ],           
+            ],
           },
         ],
         diagramData: [
@@ -1372,7 +1405,8 @@ let temeIstoria = [
             path: "/subtema1",
             addressDisciplina: "/istoria",
             addressSubtitle: "/formarea-statului-national-unitar-roman",
-            addressSubject: "/republica-democratica-moldoveneasca-in-lupta-cu-anarhia",
+            addressSubject:
+              "/republica-democratica-moldoveneasca-in-lupta-cu-anarhia",
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -1466,7 +1500,7 @@ let temeIstoria = [
             path: "/subtema1",
             addressDisciplina: "/istoria",
             addressSubtitle: "/sua-in-perioada-interbelica",
-            addressSubject: "/sua-dupa-primul-razboi-mondial",           
+            addressSubject: "/sua-dupa-primul-razboi-mondial",
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -1552,7 +1586,7 @@ let temeIstoria = [
             path: "/subtema1",
             addressDisciplina: "/istoria",
             addressSubtitle: "/romania-in-perioada-interbelica",
-            addressSubject: "/dezvoltarea-economiei-româniei",           
+            addressSubject: "/dezvoltarea-economiei-româniei",
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -1568,7 +1602,7 @@ let temeIstoria = [
             path: "/subtema1",
             addressDisciplina: "/istoria",
             addressSubtitle: "/romania-in-perioada-interbelica",
-            addressSubject: "/minoritatile-etnice-in-romania", 
+            addressSubject: "/minoritatile-etnice-in-romania",
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -1681,7 +1715,7 @@ let temeIstoria = [
             path: "/subtema1",
             addressDisciplina: "/istoria",
             addressSubtitle: "/cultura-si-stiinta-in-perioada-interbelica",
-            addressSubject: "/manifestările-suprarealismului",           
+            addressSubject: "/manifestările-suprarealismului",
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -1697,7 +1731,7 @@ let temeIstoria = [
             path: "/subtema1",
             addressDisciplina: "/istoria",
             addressSubtitle: "/cultura-si-stiinta-in-perioada-interbelica",
-            addressSubject: "/descoperiri-stiintifice",  
+            addressSubject: "/descoperiri-stiintifice",
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -1724,7 +1758,7 @@ let temeIstoria = [
             path: "/subtema1",
             addressDisciplina: "/istoria",
             addressSubtitle: "/cultura-romaneasca-interbelica",
-            addressSubject: "/invatamantul-si-stiinta-in-romania-interbelica",            
+            addressSubject: "/invatamantul-si-stiinta-in-romania-interbelica",
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -1740,7 +1774,7 @@ let temeIstoria = [
             path: "/subtema1",
             addressDisciplina: "/istoria",
             addressSubtitle: "/cultura-romaneasca-interbelica",
-            addressSubject: "/literatura-si-arta", 
+            addressSubject: "/literatura-si-arta",
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -1770,12 +1804,12 @@ let temeIstoria = [
         ],
         subjects: [
           {
-            id: "1",      
+            id: "1",
             name: "Expansiunea Germaniei",
             path: "/subtema1",
             addressDisciplina: "/istoria",
             addressSubtitle: "/aliante-in-perioada-interbelica",
-            addressSubject: "/expansiunea-germaniei",             
+            addressSubject: "/expansiunea-germaniei",
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -1791,7 +1825,7 @@ let temeIstoria = [
             path: "/subtema1",
             addressDisciplina: "/istoria",
             addressSubtitle: "/aliante-in-perioada-interbelica",
-            addressSubject: "/agresiunea-italiana-in-etiopia", 
+            addressSubject: "/agresiunea-italiana-in-etiopia",
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -1818,7 +1852,7 @@ let temeIstoria = [
             path: "/subtema1",
             addressDisciplina: "/istoria",
             addressSubtitle: "/relatiie-sovieto-romane",
-            addressSubject: "/problema-basarabeana",            
+            addressSubject: "/problema-basarabeana",
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -1834,7 +1868,7 @@ let temeIstoria = [
             path: "/subtema1",
             addressDisciplina: "/istoria",
             addressSubtitle: "/relatiie-sovieto-romane",
-            addressSubject: "/tezaurul-romaniei",  
+            addressSubject: "/tezaurul-romaniei",
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -1861,7 +1895,7 @@ let temeIstoria = [
             path: "/subtema1",
             addressDisciplina: "/istoria",
             addressSubtitle: "/pierderile-teritoriale-ale-romaniei",
-            addressSubject: "/raptul-basarabiei",            
+            addressSubject: "/raptul-basarabiei",
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -1877,7 +1911,7 @@ let temeIstoria = [
             path: "/subtema1",
             addressDisciplina: "/istoria",
             addressSubtitle: "/pierderile-teritoriale-ale-romaniei",
-            addressSubject: "/raptul-bucovinei-de-nord",  
+            addressSubject: "/raptul-bucovinei-de-nord",
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -1955,7 +1989,7 @@ let temeIstoria = [
             path: "/subtema1",
             addressDisciplina: "/istoria",
             addressSubtitle: "/al-doilea-razboi-mondial",
-            addressSubject: "/cauzele-si-izbucnirea-razboiului",            
+            addressSubject: "/cauzele-si-izbucnirea-razboiului",
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -1971,7 +2005,7 @@ let temeIstoria = [
             path: "/subtema1",
             addressDisciplina: "/istoria",
             addressSubtitle: "/al-doilea-razboi-mondial",
-            addressSubject: "/invazia-germana-aspura-urss",  
+            addressSubject: "/invazia-germana-aspura-urss",
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -1998,7 +2032,7 @@ let temeIstoria = [
             path: "/subtema1",
             addressDisciplina: "/istoria",
             addressSubtitle: "/romania-in-al-doilea-razboi-mondial",
-            addressSubject: "/regimul-politic-in-romania",            
+            addressSubject: "/regimul-politic-in-romania",
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -2014,7 +2048,7 @@ let temeIstoria = [
             path: "/subtema1",
             addressDisciplina: "/istoria",
             addressSubtitle: "/romania-in-al-doilea-razboi-mondial",
-            addressSubject: "/angajarea-româniei-in-razboi", 
+            addressSubject: "/angajarea-româniei-in-razboi",
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -2041,7 +2075,7 @@ let temeIstoria = [
             path: "/subtema1",
             addressDisciplina: "/istoria",
             addressSubtitle: "/holocaust",
-            addressSubject: "/reinstaurarea-regimului-totalitar-comunist",           
+            addressSubject: "/reinstaurarea-regimului-totalitar-comunist",
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -2057,7 +2091,7 @@ let temeIstoria = [
             path: "/subtema1",
             addressDisciplina: "/istoria",
             addressSubtitle: "/holocaust",
-            addressSubject: "/politica-fata-de-evrei-si-romi", 
+            addressSubject: "/politica-fata-de-evrei-si-romi",
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -2084,7 +2118,7 @@ let temeIstoria = [
             path: "/subtema1",
             addressDisciplina: "/istoria",
             addressSubtitle: "/consecintele-celui-de-al-doilea-razboi-mondial",
-            addressSubject: "/reconstructia-postbelica",           
+            addressSubject: "/reconstructia-postbelica",
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -2135,7 +2169,7 @@ let temeIstoria = [
             path: "/subtema1",
             addressDisciplina: "/istoria",
             addressSubtitle: "/constituirea-onu",
-            addressSubject: "/organizatia-natiunilor-unite",           
+            addressSubject: "/organizatia-natiunilor-unite",
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -2151,7 +2185,7 @@ let temeIstoria = [
             path: "/subtema1",
             addressDisciplina: "/istoria",
             addressSubtitle: "/constituirea-onu",
-            addressSubject: "/inceputul-razboiului-rece",   
+            addressSubject: "/inceputul-razboiului-rece",
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -2178,7 +2212,7 @@ let temeIstoria = [
             path: "/subtema1",
             addressDisciplina: "/istoria",
             addressSubtitle: "/uniunea-sovietica-in-perioada-postbelica",
-            addressSubject: "/viata-politica-in-urss",           
+            addressSubject: "/viata-politica-in-urss",
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -2194,7 +2228,7 @@ let temeIstoria = [
             path: "/subtema1",
             addressDisciplina: "/istoria",
             addressSubtitle: "/uniunea-sovietica-in-perioada-postbelica",
-            addressSubject: "/economia-sovietica",  
+            addressSubject: "/economia-sovietica",
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -2221,7 +2255,7 @@ let temeIstoria = [
             path: "/subtema1",
             addressDisciplina: "/istoria",
             addressSubtitle: "/rssm",
-            addressSubject: "/monopolul-partidului",            
+            addressSubject: "/monopolul-partidului",
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -2237,7 +2271,7 @@ let temeIstoria = [
             path: "/subtema1",
             addressDisciplina: "/istoria",
             addressSubtitle: "/rssm",
-            addressSubject: "/politica-economica-in-rssm", 
+            addressSubject: "/politica-economica-in-rssm",
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -2264,7 +2298,7 @@ let temeIstoria = [
             path: "/subtema1",
             addressDisciplina: "/istoria",
             addressSubtitle: "/deportarile-staliniste-din-rssm",
-            addressSubject: "/foametea-din-anii-1946-1947",            
+            addressSubject: "/foametea-din-anii-1946-1947",
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -2280,7 +2314,7 @@ let temeIstoria = [
             path: "/subtema1",
             addressDisciplina: "/istoria",
             addressSubtitle: "/deportarile-staliniste-din-rssm",
-            addressSubject: "/colectivizarea-fortata", 
+            addressSubject: "/colectivizarea-fortata",
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -2315,7 +2349,7 @@ let temeIstoria = [
             path: "/subtema1",
             addressDisciplina: "/istoria",
             addressSubtitle: "/proclamarea-independentei-republicii-moldova",
-            addressSubject: "/transformari-politice-si-economice",           
+            addressSubject: "/transformari-politice-si-economice",
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -2331,7 +2365,7 @@ let temeIstoria = [
             path: "/subtema1",
             addressDisciplina: "/istoria",
             addressSubtitle: "/proclamarea-independentei-republicii-moldova",
-            addressSubject: "/proclamarea-independentei-rm", 
+            addressSubject: "/proclamarea-independentei-rm",
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -2358,7 +2392,7 @@ let temeIstoria = [
             path: "/subtema1",
             addressDisciplina: "/istoria",
             addressSubtitle: "/razboiul-de-pe-nistru",
-            addressSubject: "/originile-conflictului",            
+            addressSubject: "/originile-conflictului",
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
@@ -2374,7 +2408,7 @@ let temeIstoria = [
             path: "/subtema1",
             addressDisciplina: "/istoria",
             addressSubtitle: "/razboiul-de-pe-nistru",
-            addressSubject: "/formarea-autoproclamatei-rssmn", 
+            addressSubject: "/formarea-autoproclamatei-rssmn",
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Istoria", path: "/istoria" },
