@@ -20,39 +20,41 @@ const HeaderInit = () => {
   );
 };
 
-const Header = ({ activeButton, handleClick }) => {
+const Header = ({ activeButton, handleClick, response }) => {
   return (
     <div className="nav-header">
       <div className="nav-header">
         <button
           className="circle"
-          style={{ backgroundColor: activeButton == 1 ? "#76a900" : "#fff" }}
+          style={{ backgroundColor: activeButton == 1 ? "#76a900" : response[0]==1? "#e9ecef" : "#fff" }}
           onClick={() => handleClick(1)}
         >
           1
         </button>
         <button
           className="circle"
-          style={{ backgroundColor: activeButton == 2 ? "#76a900" : "#fff" }}
+          style={{ backgroundColor: activeButton == 2 ? "#76a900" : response[1]==1? "#e9ecef" : "#fff" }}
           onClick={() => handleClick(2)}
         >
           2
         </button>
         <button
           className="circle"
-          style={{ backgroundColor: activeButton == 3 ? "#76a900" : "#fff" }}
+          style={{ backgroundColor: activeButton == 3 ? "#76a900" : response[2]==1? "#e9ecef": "#fff" }}
           onClick={() => handleClick(3)}
         >
           3
         </button>
         <button
           className="circle"
-          style={{ backgroundColor: activeButton == 4 ? "#76a900" : "#fff" }}
+          style={{ backgroundColor: activeButton == 4 ? "#76a900" : response[3]==1? "#e9ecef": "#fff" }}
           onClick={() => handleClick(4)}
         >
           4
         </button>
-        {activeButton !== null && <a onClick={() => handleClick(null)}>Lista de sarcini</a> }
+        {activeButton !== null && (
+          <a onClick={() => handleClick(null)}>Lista de sarcini</a>
+        )}
       </div>
       <div>00:05:00</div>
     </div>
@@ -74,12 +76,30 @@ const TestGeneralizator = ({
   // const [correctAnswer, setCorrectAnswer] = useState(null);
   const [activeButton, setActiveButton] = useState(null);
   const [start, setStart] = useState(null);
+  const [response, setResponse] = useState([0, 0, 0, 0]);
+  const [modified, setModified] = useState([0, 0, 0, 0]);
+
+  const handleModified = () => {
+    const updatedModified = [...modified];
+    updatedModified[activeButton - 1] = 1;
+    // console.log("ceva");
+    setModified(updatedModified);
+    // console.log(response);
+  };
+  const handleSaved = () => {
+    const updatedModified = [...modified];
+    updatedModified[activeButton - 1] = 0;
+    // console.log("ceva");
+    setModified(updatedModified);
+  };
 
   const handleClick = (buttonId) => {
     setActiveButton(buttonId);
   };
 
   const handleCheckBoxChange = (value) => {
+    // console.log(value==null);
+    if (value !== null) handleModified();
     const updatedValues = [...selectedValues];
     if (updatedValues.includes(value)) {
       const index = updatedValues.indexOf(value);
@@ -101,7 +121,22 @@ const TestGeneralizator = ({
     setActiveButton(1);
   };
 
-  const handleAnswer = () => {};
+  const handleAnswer = () => {
+    const updatedResponse = [...response];
+    updatedResponse[activeButton - 1] = 1;
+
+    setResponse(updatedResponse);
+    // console.log(response);
+    const updatedModified = [...modified];
+    updatedModified[activeButton - 1] = 0;
+    // console.log("ceva");
+    setModified(updatedModified);
+  };
+  useEffect(() => {
+    if (activeButton != response.length && activeButton !== null)
+      setActiveButton(activeButton + 1);
+  }, [response]);
+
   const handleContinue = () => {};
   const handleFinish = () => {};
 
@@ -112,7 +147,11 @@ const TestGeneralizator = ({
   const handleStart = () => {
     setStart(true);
     setActiveButton(1);
-  }; /*  Test[1]  */
+  };
+
+  /*  Test[0]  */
+
+  /*  Test[1]  */
   const text1 = list.quizArray[currentIndex].listaSarcini[1].answers[0].text;
   const textAdd1 =
     list.quizArray[currentIndex].listaSarcini[1].answers[0].textAdditional;
@@ -125,6 +164,7 @@ const TestGeneralizator = ({
   }, [text1]);
   const onDrop1 = (ev, dropId) => {
     const text = ev.dataTransfer.getData("text/plain");
+    handleModified();
     const updatedSentence = sentence1.map((w) => {
       if (w.id === dropId) {
         return { ...w, placed: true, displayed: text };
@@ -147,6 +187,7 @@ const TestGeneralizator = ({
   }, [text2]);
   const onDrop2 = (ev, dropId) => {
     const text = ev.dataTransfer.getData("text/plain");
+    handleModified();
     const updatedSentence = sentence2.map((w) => {
       if (w.id === dropId) {
         return { ...w, placed: true, displayed: text };
@@ -169,6 +210,7 @@ const TestGeneralizator = ({
   }, [text3]);
   const onDrop3 = (ev, dropId) => {
     const text = ev.dataTransfer.getData("text/plain");
+    handleModified();
     const updatedSentence = sentence3.map((w) => {
       if (w.id === dropId) {
         return { ...w, placed: true, displayed: text };
@@ -182,7 +224,7 @@ const TestGeneralizator = ({
     <>
       {!start && <HeaderInit />}
       {start && (
-        <Header activeButton={activeButton} handleClick={handleClick} />
+        <Header activeButton={activeButton} handleClick={handleClick} response={response}/>
       )}
       <ItemAccordeon
         titlu={activeButton ? `Cerințele sarcinii:` : `Lista de sarcini`}
@@ -211,85 +253,190 @@ const TestGeneralizator = ({
           </div>
         )}
         {activeButton == 1 && (
-          <ItemText
-            classNameChild={
-              correctAnswer === null
-                ? ""
-                : correctAnswer
-                ? " correct"
-                : " incorrect"
-            }
-          >
-            <p>{list.quizArray[currentIndex].listaSarcini[0].sarcina} 1</p>
-            {list.quizArray[currentIndex].listaSarcini[0].answers.map(
-              (answer, idx) => {
-                return (
-                  <CheckBox
-                    key={idx}
-                    value={answer.text}
-                    checked={selectedValues.includes(answer.text)}
-                    onChange={
-                      correctAnswer === null ? handleCheckBoxChange : () => {}
-                    }
-                  />
-                );
+          <>
+            <ItemText
+              classNameChild={
+                correctAnswer === null
+                  ? ""
+                  : correctAnswer
+                  ? " correct"
+                  : " incorrect"
               }
+            >
+              <p>{list.quizArray[currentIndex].listaSarcini[0].sarcina} 1</p>
+              {list.quizArray[currentIndex].listaSarcini[0].answers.map(
+                (answer, idx) => {
+                  return (
+                    <CheckBox
+                      key={idx}
+                      value={answer.text}
+                      checked={selectedValues.includes(answer.text)}
+                      onChange={
+                        correctAnswer === null ? handleCheckBoxChange : () => {}
+                      }
+                    />
+                  );
+                }
+              )}
+            </ItemText>
+            {response[0] == 0 && (
+              <button onClick={handleAnswer} className="btn-test">
+                Raspunde
+              </button>
             )}
-          </ItemText>
+            {response[0] == 1 && (
+              <>
+                <button
+                  onClick={handleSaved}
+                  className={`btn-test ${modified[0] === 0 ? "disable" : ""}`}
+                  style={{ margin: "0 5px 2em 2em" }}
+                >
+                  Salvează
+                </button>
+                <button
+                  className={`btn-test ${modified[0] === 0 ? "disable" : ""}`}
+                  style={{ margin: "0 0 2em" }}
+                >
+                  Renunță
+                </button>
+              </>
+            )}
+          </>
         )}
+
         {activeButton == 2 && (
-          <ItemText
-            classNameChild={
-              correctAnswer === null
-                ? ""
-                : correctAnswer
-                ? " correct"
-                : " incorrect"
-            }
-          >
-            <p>{list.quizArray[currentIndex].listaSarcini[1].sarcina} 2</p>
-            <SentenceBox marked={false} onDrop={onDrop1} sentence={sentence1} />
-            <AnswerBox answers={answers1} />
-          </ItemText>
+          <>
+            <ItemText
+              classNameChild={
+                correctAnswer === null
+                  ? ""
+                  : correctAnswer
+                  ? " correct"
+                  : " incorrect"
+              }
+            >
+              <p>{list.quizArray[currentIndex].listaSarcini[1].sarcina} 2</p>
+              <SentenceBox
+                marked={false}
+                onDrop={onDrop1}
+                sentence={sentence1}
+              />
+              <AnswerBox answers={answers1} />
+            </ItemText>
+            {response[1] == 0 && (
+              <button onClick={handleAnswer} className="btn-test">
+                Raspunde
+              </button>
+            )}
+            {response[1] == 1 && (
+              <>
+                <button
+                  onClick={handleSaved}
+                  className={`btn-test ${modified[1] === 0 ? "disable" : ""}`}
+                  style={{ margin: "0 5px 2em 2em" }}
+                >
+                  Salvează
+                </button>
+                <button
+                  className={`btn-test ${modified[1] === 0 ? "disable" : ""}`}
+                  style={{ margin: "0 0 2em" }}
+                >
+                  Renunță
+                </button>
+              </>
+            )}
+          </>
         )}
+
         {activeButton == 3 && (
-          <ItemText
-            classNameChild={
-              correctAnswer === null
-                ? ""
-                : correctAnswer
-                ? " correct"
-                : " incorrect"
-            }
-          >
-            <p>{list.quizArray[currentIndex].listaSarcini[2].sarcina} 3</p>
-            <SentenceBox marked={false} onDrop={onDrop2} sentence={sentence2} />
-            <AnswerBox answers={answers2} />
-          </ItemText>
+          <>
+            <ItemText
+              classNameChild={
+                correctAnswer === null
+                  ? ""
+                  : correctAnswer
+                  ? " correct"
+                  : " incorrect"
+              }
+            >
+              <p>{list.quizArray[currentIndex].listaSarcini[2].sarcina} 3</p>
+              <SentenceBox
+                marked={false}
+                onDrop={onDrop2}
+                sentence={sentence2}
+              />
+              <AnswerBox answers={answers2} />
+            </ItemText>
+            {response[2] == 0 && (
+              <button onClick={handleAnswer} className="btn-test">
+                Raspunde
+              </button>
+            )}
+            {response[2] == 1 && (
+              <>
+                <button
+                  onClick={handleSaved}
+                  className={`btn-test ${modified[2] === 0 ? "disable" : ""}`}
+                  style={{ margin: "0 5px 2em 2em" }}
+                >
+                  Salvează
+                </button>
+                <button
+                  className={`btn-test ${modified[2] === 0 ? "disable" : ""}`}
+                  style={{ margin: "0 0 2em" }}
+                >
+                  Renunță
+                </button>
+              </>
+            )}
+          </>
         )}
         {activeButton == 4 && (
-          <ItemText
-            classNameChild={
-              correctAnswer === null
-                ? ""
-                : correctAnswer
-                ? " correct"
-                : " incorrect"
-            }
-          >
-            <p>{list.quizArray[currentIndex].listaSarcini[3].sarcina} 4</p>
-            <SentenceBox marked={false} onDrop={onDrop3} sentence={sentence3} />
-            <AnswerBox answers={answers3} />
-          </ItemText>
+          <>
+            <ItemText
+              classNameChild={
+                correctAnswer === null
+                  ? ""
+                  : correctAnswer
+                  ? " correct"
+                  : " incorrect"
+              }
+            >
+              <p>{list.quizArray[currentIndex].listaSarcini[3].sarcina} 4</p>
+              <SentenceBox
+                marked={false}
+                onDrop={onDrop3}
+                sentence={sentence3}
+              />
+              <AnswerBox answers={answers3} />
+            </ItemText>
+            {response[3] == 0 && (
+              <button onClick={handleAnswer} className="btn-test">
+                Raspunde
+              </button>
+            )}
+            {response[3] == 1 && (
+              <>
+                <button
+                  onClick={handleSaved}
+                  className={`btn-test ${modified[3] === 0 ? "disable" : ""}`}
+                  style={{ margin: "0 5px 2em 2em" }}
+                >
+                  Salvează
+                </button>
+                <button
+                  className={`btn-test ${modified[3] === 0 ? "disable" : ""}`}
+                  style={{ margin: "0 0 2em" }}
+                >
+                  Renunță
+                </button>
+              </>
+            )}
+          </>
         )}
         {start === null && (
           <button onClick={handleStart} className="btn-test">
             Incepe testul
-          </button>
-        )}
-        {activeButton !== null && (
-          <button onClick={handleAnswer} className="btn-test">
-            Raspunde
           </button>
         )}
         {activeButton === null && start !== null && (
@@ -297,7 +444,11 @@ const TestGeneralizator = ({
             <button onClick={handleContinue} className="btn-test">
               Continue testul
             </button>
-            <button onClick={handleFinish} className="btn-test"  style={{margin: "0 0 2em" }}>
+            <button
+              onClick={handleFinish}
+              className="btn-test"
+              style={{ margin: "0 0 2em" }}
+            >
               Finisează testul
             </button>
           </>

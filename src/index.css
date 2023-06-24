@@ -5,6 +5,10 @@
   padding: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-size: 16px;
   color: #4e4e3f;
@@ -651,8 +655,11 @@ button.slick-next::before {
 }
 
 .btn-test.disable {
-  background: #bbd0ff;
+  /* background: #bbd0ff; */
   cursor: not-allowed;
+  background-color: #d6d6d6 !important;
+  color: gray !important;
+
 }
 
 .option-input {
