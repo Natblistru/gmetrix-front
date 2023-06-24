@@ -5,7 +5,7 @@ import { getSentence, getAnswers } from "../DragWords/TextConverter";
 import ItemAccordeon from "../Accordeon/ItemAccordeon";
 import ItemText from "../Accordeon/ItemText";
 
-function shuffleArray(pieces) {
+export function shuffleArray(pieces) {
   const shuffled = [...pieces];
 
   for (let i = shuffled.length - 1; i > 0; i--) {

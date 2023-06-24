@@ -1066,43 +1066,104 @@ let temeIstoria = [
                       {
                         id: "1",
                         name: "Bifează afirmațiile corecte",
-                        path: "/test1",
-                        addressTestDisciplina: "/istoria",
-                        addressTestSubtitle: "/romania-in-primul-razboi",
-                        addressTestSubject: "/optiuni-politice-in-perioada-neutralitatii",
+                        sarcina: "Bifează afirmațiile corecte:",
+                        answers: [
+                          {
+                            text: "România a intrat în Primul Război Mondial în anul 1916",
+                            correct: true,
+                            rezolvare:
+                              "România a intrat în Primul Război Mondial în anul 1916",
+                          },
+                          {
+                            text: "Regele României în timpul Primului Război Mondial a fost Carol I",
+                            correct: false,
+                            rezolvare:
+                              "Regele României în timpul Primului Război Mondial nu a fost Carol I",
+                          },
+                          {
+                            text: "România a semnat Tratatul de la Trianon, care a pus capăt participării sale în Primul Război Mondial",
+                            correct: true,
+                            rezolvare:
+                              "România a semnat Tratatul de la Trianon, care a pus capăt participării sale în Primul Război Mondial",
+                          },
+                          {
+                            text: "Motivul principal pentru intrarea României în Primul Război Mondial a fost dorința de a-și extinde teritoriile",
+                            correct: false,
+                            rezolvare:
+                              "Motivul principal pentru intrarea României în Primul Război Mondial a fost dorința de a susține Antanta",
+                          },
+                        ],
                       },
-                      { id: "2", name: "Consecințele evenimentelor" },
-                      { id: "3", name: "Compune propoziții" },
-                      { id: "4", name: "Cronologia evenimentelor" },
+                      {
+                        id: "2",
+                        name: "Consecințele evenimentelor",
+                        sarcina:
+                          "Cum crezi care sunt consecintele corecte ale evenimentului:",
+                        answers: [
+                          {
+                            text: "În perioada ;<1914>;-;<1916>; România a fost ;<neutră>;, deși avea un tratat de alianță cu ;<Tripla Alianță>;. Au existat dezbateri în țară privind participarea la război, iar în cele din urmă, pe ;<4 august 1916>;, România a semnat un tratat de alianță cu ;<Antanta>;, care prevedea eliberarea ;<Transilvaniei>; și realizarea unității naționale.",
+                            textAdditional: ["1918", "1919"],
+                            rezolvare:
+                              "În perioada 1914-1916, România a fost neutră, deși avea un tratat de alianță cu Tripla Alianță. Au existat dezbateri în țară privind participarea la război, iar în cele din urmă, pe 4 august 1916, România a semnat un tratat de alianță cu Antanta, care prevedea eliberarea Transilvaniei și realizarea unității naționale.",
+                          },
+                        ],
+                      },
+                      {
+                        id: "3",
+                        name: "Compune propoziții",
+                        sarcina: "Completează spațiile libere din propoziții:",
+                        answers: [
+                          {
+                            text: "În perioada ;<1914>;-;<1916>; România a fost ;<neutră>;, deși avea un tratat de alianță cu ;<Tripla Alianță>;. Au existat dezbateri în țară privind participarea la război, iar în cele din urmă, pe ;<4 august 1916>;, România a semnat un tratat de alianță cu ;<Antanta>;, care prevedea eliberarea ;<Transilvaniei>; și realizarea unității naționale.",
+                            textAdditional: ["1918", "1919"],
+                            rezolvare:
+                              "În perioada 1914-1916, România a fost neutră, deși avea un tratat de alianță cu Tripla Alianță. Au existat dezbateri în țară privind participarea la război, iar în cele din urmă, pe 4 august 1916, România a semnat un tratat de alianță cu Antanta, care prevedea eliberarea Transilvaniei și realizarea unității naționale.",
+                          },
+                        ],
+                      },
+                      {
+                        id: "4",
+                        name: "Cronologia evenimentelor",
+                        sarcina:
+                          "Aranjează evenimentele istorice în ordine cronologică:",
+                          answers: [
+                            {
+                              text: "În perioada ;<1914>;-;<1916>; România a fost ;<neutră>;, deși avea un tratat de alianță cu ;<Tripla Alianță>;. Au existat dezbateri în țară privind participarea la război, iar în cele din urmă, pe ;<4 august 1916>;, România a semnat un tratat de alianță cu ;<Antanta>;, care prevedea eliberarea ;<Transilvaniei>; și realizarea unității naționale.",
+                              textAdditional: ["1918", "1919"],
+                              rezolvare:
+                                "În perioada 1914-1916, România a fost neutră, deși avea un tratat de alianță cu Tripla Alianță. Au existat dezbateri în țară privind participarea la război, iar în cele din urmă, pe 4 august 1916, România a semnat un tratat de alianță cu Antanta, care prevedea eliberarea Transilvaniei și realizarea unității naționale.",
+                            },
+                          ],
+                      },
                     ],
-                    cerinte: "Persoana reprezentată în imagine:",
-                    answers: [
-                      {
-                        text: "România a intrat în Primul Război Mondial în anul 1916",
-                        correct: true,
-                        rezolvare:
-                          "România a intrat în Primul Război Mondial în anul 1916",
-                      },
-                      {
-                        text: "Regele României în timpul Primului Război Mondial a fost Carol I",
-                        correct: false,
-                        rezolvare:
-                          "Regele României în timpul Primului Război Mondial nu a fost Carol I",
-                      },
-                      {
-                        text: "România a semnat Tratatul de la Trianon, care a pus capăt participării sale în Primul Război Mondial",
-                        correct: true,
-                        rezolvare:
-                          "România a semnat Tratatul de la Trianon, care a pus capăt participării sale în Primul Război Mondial",
-                      },
-                      {
-                        text: "Motivul principal pentru intrarea României în Primul Război Mondial a fost dorința de a-și extinde teritoriile",
-                        correct: false,
-                        rezolvare:
-                          "Motivul principal pentru intrarea României în Primul Război Mondial a fost dorința de a susține Antanta",
-                      },
-                    ],
-                    correctAnswer: "",
+                    // cerinte: "Persoana reprezentată în imagine:",
+                    // answers: [
+                    //   {
+                    //     text: "România a intrat în Primul Război Mondial în anul 1916",
+                    //     correct: true,
+                    //     rezolvare:
+                    //       "România a intrat în Primul Război Mondial în anul 1916",
+                    //   },
+                    //   {
+                    //     text: "Regele României în timpul Primului Război Mondial a fost Carol I",
+                    //     correct: false,
+                    //     rezolvare:
+                    //       "Regele României în timpul Primului Război Mondial nu a fost Carol I",
+                    //   },
+                    //   {
+                    //     text: "România a semnat Tratatul de la Trianon, care a pus capăt participării sale în Primul Război Mondial",
+                    //     correct: true,
+                    //     rezolvare:
+                    //       "România a semnat Tratatul de la Trianon, care a pus capăt participării sale în Primul Război Mondial",
+                    //   },
+                    //   {
+                    //     text: "Motivul principal pentru intrarea României în Primul Război Mondial a fost dorința de a-și extinde teritoriile",
+                    //     correct: false,
+                    //     rezolvare:
+                    //       "Motivul principal pentru intrarea României în Primul Război Mondial a fost dorința de a susține Antanta",
+                    //   },
+                    // ],
+                    // correctAnswer: "",
                   },
                 ],
               },

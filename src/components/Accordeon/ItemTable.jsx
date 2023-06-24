@@ -28,7 +28,7 @@ const ItemTable = (props) => {
   return (
     <div className={classes}>
       {data.map((rowData, idx) => {
-        rowData.quizArray.forEach((item)=> item.answers.sort(() => Math.random() - 0.5));
+        rowData.quizArray.forEach((item)=> item.answers?.sort(() => Math.random() - 0.5));
         return <TableRow rowData={rowData} ind={idx} key={idx}/>;
       })}
     </div>

@@ -1,8 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import temeIstoriArray from "../../data/temeIstoria";
 
 import ItemAccordeon from "../Accordeon/ItemAccordeon";
+import CheckBox from "../CheckBox"
+import SentenceBox from "../DragWords/SentenceBox"
+import AnswerBox from "../DragWords/AnswerBox"
 import ItemText from "../Accordeon/ItemText";
+import { getSentence, getAnswers } from "../DragWords/TextConverter";
+import { shuffleArray } from "./TestWords"
 import ItemList from "../Accordeon/ItemList";
 
 const HeaderInit = () => {
@@ -66,13 +71,13 @@ const TestGeneralizator = ({
 }) => {
   const [selectedValues, setSelectedValues] = useState([]);
   // const [showHeader, setShowHeader] = useState(false);
+  // const [correctAnswer, setCorrectAnswer] = useState(null);
   const [activeButton, setActiveButton] = useState(null);
+  const [start, setStart] = useState(null);
 
   const handleClick = (buttonId) => {
     setActiveButton(buttonId);
   };
-
-  // const [correctAnswer, setCorrectAnswer] = useState(null);
 
   const handleCheckBoxChange = (value) => {
     const updatedValues = [...selectedValues];
@@ -99,57 +104,190 @@ const TestGeneralizator = ({
     setSelectedValues([]);
     handleTryAgain();
   };
+  const handleStart = () => {
+    setStart(true);
+  };
+  /*  Test[1]  */ 
+  const text1 = list.quizArray[currentIndex].listaSarcini[1].answers[0].text;
+  const textAdd1 = list.quizArray[currentIndex].listaSarcini[1].answers[0].textAdditional;
+  const [answers1, setAnswers1] = useState([]);
+  const [sentence1, setSentence1] = useState([]);
+
+  useEffect(() => {
+    setAnswers1(shuffleArray(getAnswers(text1).concat(textAdd1)));
+    setSentence1(getSentence(text1));
+  }, [text1]);
+  const onDrop1 = (ev, dropId) => {
+    const text = ev.dataTransfer.getData("text/plain");
+    const updatedSentence = sentence1.map((w) => {
+      if (w.id === dropId) {
+        return { ...w, placed: true, displayed: text };
+      }
+      return w;
+    });
+    setSentence1(updatedSentence);
+  };
+
+    /*  Test[2]  */ 
+    const text2 = list.quizArray[currentIndex].listaSarcini[2].answers[0].text;
+    const textAdd2 = list.quizArray[currentIndex].listaSarcini[2].answers[0].textAdditional;
+    const [answers2, setAnswers2] = useState([]);
+    const [sentence2, setSentence2] = useState([]);
+  
+    useEffect(() => {
+      setAnswers2(shuffleArray(getAnswers(text2).concat(textAdd2)));
+      setSentence2(getSentence(text2));
+    }, [text2]);
+    const onDrop2 = (ev, dropId) => {
+      const text = ev.dataTransfer.getData("text/plain");
+      const updatedSentence = sentence2.map((w) => {
+        if (w.id === dropId) {
+          return { ...w, placed: true, displayed: text };
+        }
+        return w;
+      });
+      setSentence2(updatedSentence);
+    };
+
+        /*  Test[3]  */ 
+        const text3 = list.quizArray[currentIndex].listaSarcini[3].answers[0].text;
+        const textAdd3 = list.quizArray[currentIndex].listaSarcini[3].answers[0].textAdditional;
+        const [answers3, setAnswers3] = useState([]);
+        const [sentence3, setSentence3] = useState([]);
+      
+        useEffect(() => {
+          setAnswers3(shuffleArray(getAnswers(text3).concat(textAdd3)));
+          setSentence3(getSentence(text3));
+        }, [text3]);
+        const onDrop3 = (ev, dropId) => {
+          const text = ev.dataTransfer.getData("text/plain");
+          const updatedSentence = sentence3.map((w) => {
+            if (w.id === dropId) {
+              return { ...w, placed: true, displayed: text };
+            }
+            return w;
+          });
+          setSentence3(updatedSentence);
+        };
 
   return (
     <>
       {!activeButton && <HeaderInit />}
-      {console.log(activeButton)}
       {activeButton && (
         <Header activeButton={activeButton} handleClick={handleClick} />
       )}
-      <ItemAccordeon titlu="Lista de sarcini" open={true}>
-        <div className="subjects-container ">
-          {list.quizArray[currentIndex].listaSarcini?.map((subtitle, idx) => {
-            return (
-              <div key={idx} className="subject-item">
-                <div className="title-item">
-                  <div className="num-item">{subtitle.id}.</div>
-                  <div className="name-item" onClick={() => handleClick(subtitle.id)}>{subtitle.name}</div>
+      <ItemAccordeon
+        titlu={activeButton ? `Cerințele sarcinii:` : `Lista de sarcini`}
+        open={true}
+      >
+        {activeButton === null && (
+          <div className="subjects-container ">
+            {list.quizArray[currentIndex].listaSarcini?.map((subtitle, idx) => {
+              return (
+                <div key={idx} className="subject-item">
+                  <div className="title-item">
+                    <div className="num-item">{subtitle.id}.</div>
+                    <div
+                      className="name-item"
+                      onClick={start !== null ? () => handleClick(subtitle.id) : null}
+                    >
+                      {subtitle.name}
+                    </div>
+                  </div>
+                  <div className="points">V</div>
                 </div>
-                <div className="points">V</div>
-              </div>
-            );
-          })}
-        </div>
-
-        {correctAnswer === null && (
-          <button onClick={checkAnswer} className="btn-test">
+              );
+            })}
+          </div>
+        )}
+        {activeButton == 1 && (
+          <ItemText
+            classNameChild={
+              correctAnswer === null
+                ? ""
+                : correctAnswer
+                ? " correct"
+                : " incorrect"
+            }
+          > 
+             <p>{list.quizArray[currentIndex].listaSarcini[0].sarcina} 1</p>
+            {list.quizArray[currentIndex].listaSarcini[0].answers.map((answer, idx) => {
+              return (
+                <CheckBox
+                  key={idx}
+                  value={answer.text}
+                  checked={selectedValues.includes(answer.text)}
+                  onChange={
+                    correctAnswer === null ? handleCheckBoxChange : () => {}
+                  }
+                />
+              );
+            })} 
+          </ItemText>
+        )}
+        {activeButton == 2 && (
+          <ItemText
+            classNameChild={
+              correctAnswer === null
+                ? ""
+                : correctAnswer
+                ? " correct"
+                : " incorrect"
+            }
+          > 
+             <p>{list.quizArray[currentIndex].listaSarcini[1].sarcina} 2</p>
+             <SentenceBox
+              marked={false}
+              onDrop={onDrop1}
+              sentence={sentence1}
+            />
+            <AnswerBox answers={answers1} />
+          </ItemText>
+        )}
+        {activeButton == 3 && (
+          <ItemText
+            classNameChild={
+              correctAnswer === null
+                ? ""
+                : correctAnswer
+                ? " correct"
+                : " incorrect"
+            }
+          > 
+             <p>{list.quizArray[currentIndex].listaSarcini[2].sarcina} 3</p>
+             <SentenceBox
+              marked={false}
+              onDrop={onDrop2}
+              sentence={sentence2}
+            />
+            <AnswerBox answers={answers2} />
+          </ItemText>
+        )}
+        {activeButton == 4 && (
+          <ItemText
+            classNameChild={
+              correctAnswer === null
+                ? ""
+                : correctAnswer
+                ? " correct"
+                : " incorrect"
+            }
+          > 
+             <p>{list.quizArray[currentIndex].listaSarcini[3].sarcina} 4</p>
+             <SentenceBox
+              marked={false}
+              onDrop={onDrop3}
+              sentence={sentence3}
+            />
+            <AnswerBox answers={answers3} />
+          </ItemText>
+        )}
+        {start === null && (
+          <button onClick={handleStart} className="btn-test">
             Incepe testul
           </button>
         )}
       </ItemAccordeon>
-      {correctAnswer !== null && (
-        <ItemAccordeon
-          titlu={`Rezolvarea sarcinii (${currentIndex + 1}/${
-            list.quizArray.length
-          }):`}
-          open={true}
-        >
-          <ItemText classNameChild="">
-            {/* {list.quizArray[currentIndex].answers.map((answer, idx) => (
-              <CheckBox
-                key={idx}
-                value={answer.rezolvare}
-                checked={answer.correct}
-                onChange={() => {}}
-              />
-            ))} */}
-          </ItemText>
-          <button onClick={handleTryAgainClearCheck} className="btn-test">
-            Încearcă din nou!
-          </button>
-        </ItemAccordeon>
-      )}
     </>
   );
 };
