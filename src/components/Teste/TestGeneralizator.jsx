@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import temeIstoriArray from "../../data/temeIstoria";
 
 import ItemAccordeon from "../Accordeon/ItemAccordeon";
-import CheckBox from "../CheckBox"
-import SentenceBox from "../DragWords/SentenceBox"
-import AnswerBox from "../DragWords/AnswerBox"
+import CheckBox from "../CheckBox";
+import SentenceBox from "../DragWords/SentenceBox";
+import AnswerBox from "../DragWords/AnswerBox";
 import ItemText from "../Accordeon/ItemText";
 import { getSentence, getAnswers } from "../DragWords/TextConverter";
-import { shuffleArray } from "./TestWords"
+import { shuffleArray } from "./TestWords";
 import ItemList from "../Accordeon/ItemList";
 
 const HeaderInit = () => {
@@ -52,9 +52,9 @@ const Header = ({ activeButton, handleClick }) => {
         >
           4
         </button>
-        <a onClick={() => handleClick(null)}>Lista de sarcini</a>
+        {activeButton !== null && <a onClick={() => handleClick(null)}>Lista de sarcini</a> }
       </div>
-      <div>Timp recomandat: 00:05:00</div>
+      <div>00:05:00</div>
     </div>
   );
 };
@@ -100,16 +100,22 @@ const TestGeneralizator = ({
     // setShowHeader(true);
     setActiveButton(1);
   };
+
+  const handleAnswer = () => {};
+  const handleContinue = () => {};
+  const handleFinish = () => {};
+
   const handleTryAgainClearCheck = () => {
     setSelectedValues([]);
     handleTryAgain();
   };
   const handleStart = () => {
     setStart(true);
-  };
-  /*  Test[1]  */ 
+    setActiveButton(1);
+  }; /*  Test[1]  */
   const text1 = list.quizArray[currentIndex].listaSarcini[1].answers[0].text;
-  const textAdd1 = list.quizArray[currentIndex].listaSarcini[1].answers[0].textAdditional;
+  const textAdd1 =
+    list.quizArray[currentIndex].listaSarcini[1].answers[0].textAdditional;
   const [answers1, setAnswers1] = useState([]);
   const [sentence1, setSentence1] = useState([]);
 
@@ -128,52 +134,54 @@ const TestGeneralizator = ({
     setSentence1(updatedSentence);
   };
 
-    /*  Test[2]  */ 
-    const text2 = list.quizArray[currentIndex].listaSarcini[2].answers[0].text;
-    const textAdd2 = list.quizArray[currentIndex].listaSarcini[2].answers[0].textAdditional;
-    const [answers2, setAnswers2] = useState([]);
-    const [sentence2, setSentence2] = useState([]);
-  
-    useEffect(() => {
-      setAnswers2(shuffleArray(getAnswers(text2).concat(textAdd2)));
-      setSentence2(getSentence(text2));
-    }, [text2]);
-    const onDrop2 = (ev, dropId) => {
-      const text = ev.dataTransfer.getData("text/plain");
-      const updatedSentence = sentence2.map((w) => {
-        if (w.id === dropId) {
-          return { ...w, placed: true, displayed: text };
-        }
-        return w;
-      });
-      setSentence2(updatedSentence);
-    };
+  /*  Test[2]  */
+  const text2 = list.quizArray[currentIndex].listaSarcini[2].answers[0].text;
+  const textAdd2 =
+    list.quizArray[currentIndex].listaSarcini[2].answers[0].textAdditional;
+  const [answers2, setAnswers2] = useState([]);
+  const [sentence2, setSentence2] = useState([]);
 
-        /*  Test[3]  */ 
-        const text3 = list.quizArray[currentIndex].listaSarcini[3].answers[0].text;
-        const textAdd3 = list.quizArray[currentIndex].listaSarcini[3].answers[0].textAdditional;
-        const [answers3, setAnswers3] = useState([]);
-        const [sentence3, setSentence3] = useState([]);
-      
-        useEffect(() => {
-          setAnswers3(shuffleArray(getAnswers(text3).concat(textAdd3)));
-          setSentence3(getSentence(text3));
-        }, [text3]);
-        const onDrop3 = (ev, dropId) => {
-          const text = ev.dataTransfer.getData("text/plain");
-          const updatedSentence = sentence3.map((w) => {
-            if (w.id === dropId) {
-              return { ...w, placed: true, displayed: text };
-            }
-            return w;
-          });
-          setSentence3(updatedSentence);
-        };
+  useEffect(() => {
+    setAnswers2(shuffleArray(getAnswers(text2).concat(textAdd2)));
+    setSentence2(getSentence(text2));
+  }, [text2]);
+  const onDrop2 = (ev, dropId) => {
+    const text = ev.dataTransfer.getData("text/plain");
+    const updatedSentence = sentence2.map((w) => {
+      if (w.id === dropId) {
+        return { ...w, placed: true, displayed: text };
+      }
+      return w;
+    });
+    setSentence2(updatedSentence);
+  };
+
+  /*  Test[3]  */
+  const text3 = list.quizArray[currentIndex].listaSarcini[3].answers[0].text;
+  const textAdd3 =
+    list.quizArray[currentIndex].listaSarcini[3].answers[0].textAdditional;
+  const [answers3, setAnswers3] = useState([]);
+  const [sentence3, setSentence3] = useState([]);
+
+  useEffect(() => {
+    setAnswers3(shuffleArray(getAnswers(text3).concat(textAdd3)));
+    setSentence3(getSentence(text3));
+  }, [text3]);
+  const onDrop3 = (ev, dropId) => {
+    const text = ev.dataTransfer.getData("text/plain");
+    const updatedSentence = sentence3.map((w) => {
+      if (w.id === dropId) {
+        return { ...w, placed: true, displayed: text };
+      }
+      return w;
+    });
+    setSentence3(updatedSentence);
+  };
 
   return (
     <>
-      {!activeButton && <HeaderInit />}
-      {activeButton && (
+      {!start && <HeaderInit />}
+      {start && (
         <Header activeButton={activeButton} handleClick={handleClick} />
       )}
       <ItemAccordeon
@@ -189,7 +197,9 @@ const TestGeneralizator = ({
                     <div className="num-item">{subtitle.id}.</div>
                     <div
                       className="name-item"
-                      onClick={start !== null ? () => handleClick(subtitle.id) : null}
+                      onClick={
+                        start !== null ? () => handleClick(subtitle.id) : null
+                      }
                     >
                       {subtitle.name}
                     </div>
@@ -209,20 +219,22 @@ const TestGeneralizator = ({
                 ? " correct"
                 : " incorrect"
             }
-          > 
-             <p>{list.quizArray[currentIndex].listaSarcini[0].sarcina} 1</p>
-            {list.quizArray[currentIndex].listaSarcini[0].answers.map((answer, idx) => {
-              return (
-                <CheckBox
-                  key={idx}
-                  value={answer.text}
-                  checked={selectedValues.includes(answer.text)}
-                  onChange={
-                    correctAnswer === null ? handleCheckBoxChange : () => {}
-                  }
-                />
-              );
-            })} 
+          >
+            <p>{list.quizArray[currentIndex].listaSarcini[0].sarcina} 1</p>
+            {list.quizArray[currentIndex].listaSarcini[0].answers.map(
+              (answer, idx) => {
+                return (
+                  <CheckBox
+                    key={idx}
+                    value={answer.text}
+                    checked={selectedValues.includes(answer.text)}
+                    onChange={
+                      correctAnswer === null ? handleCheckBoxChange : () => {}
+                    }
+                  />
+                );
+              }
+            )}
           </ItemText>
         )}
         {activeButton == 2 && (
@@ -234,13 +246,9 @@ const TestGeneralizator = ({
                 ? " correct"
                 : " incorrect"
             }
-          > 
-             <p>{list.quizArray[currentIndex].listaSarcini[1].sarcina} 2</p>
-             <SentenceBox
-              marked={false}
-              onDrop={onDrop1}
-              sentence={sentence1}
-            />
+          >
+            <p>{list.quizArray[currentIndex].listaSarcini[1].sarcina} 2</p>
+            <SentenceBox marked={false} onDrop={onDrop1} sentence={sentence1} />
             <AnswerBox answers={answers1} />
           </ItemText>
         )}
@@ -253,13 +261,9 @@ const TestGeneralizator = ({
                 ? " correct"
                 : " incorrect"
             }
-          > 
-             <p>{list.quizArray[currentIndex].listaSarcini[2].sarcina} 3</p>
-             <SentenceBox
-              marked={false}
-              onDrop={onDrop2}
-              sentence={sentence2}
-            />
+          >
+            <p>{list.quizArray[currentIndex].listaSarcini[2].sarcina} 3</p>
+            <SentenceBox marked={false} onDrop={onDrop2} sentence={sentence2} />
             <AnswerBox answers={answers2} />
           </ItemText>
         )}
@@ -272,13 +276,9 @@ const TestGeneralizator = ({
                 ? " correct"
                 : " incorrect"
             }
-          > 
-             <p>{list.quizArray[currentIndex].listaSarcini[3].sarcina} 4</p>
-             <SentenceBox
-              marked={false}
-              onDrop={onDrop3}
-              sentence={sentence3}
-            />
+          >
+            <p>{list.quizArray[currentIndex].listaSarcini[3].sarcina} 4</p>
+            <SentenceBox marked={false} onDrop={onDrop3} sentence={sentence3} />
             <AnswerBox answers={answers3} />
           </ItemText>
         )}
@@ -286,6 +286,21 @@ const TestGeneralizator = ({
           <button onClick={handleStart} className="btn-test">
             Incepe testul
           </button>
+        )}
+        {activeButton !== null && (
+          <button onClick={handleAnswer} className="btn-test">
+            Raspunde
+          </button>
+        )}
+        {activeButton === null && start !== null && (
+          <>
+            <button onClick={handleContinue} className="btn-test">
+              Continue testul
+            </button>
+            <button onClick={handleFinish} className="btn-test"  style={{margin: "0 0 2em" }}>
+              Finisează testul
+            </button>
+          </>
         )}
       </ItemAccordeon>
     </>
