@@ -78,6 +78,7 @@ const TestGeneralizator = ({
   const [start, setStart] = useState(null);
   const [response, setResponse] = useState([0, 0, 0, 0]);
   const [modified, setModified] = useState([0, 0, 0, 0]);
+  const [hovered, setHovered] = useState(false);
 
   const handleModified = () => {
     const updatedModified = [...modified];
@@ -147,6 +148,13 @@ const TestGeneralizator = ({
   const handleStart = () => {
     setStart(true);
     setActiveButton(1);
+  };
+  const handleMouseEnter = () => {
+    setHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setHovered(false);
   };
 
   /*  Test[0]  */
@@ -289,7 +297,9 @@ const TestGeneralizator = ({
                 <button
                   onClick={handleSaved}
                   className={`btn-test ${modified[0] === 0 ? "disable" : ""}`}
-                  style={{ margin: "0 5px 2em 2em" }}
+                  style={{ margin: "0 5px 2em 2em", background: hovered ? '#ca5310' : '#ff6b35' }}
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
                 >
                   Salvează
                 </button>
@@ -333,7 +343,9 @@ const TestGeneralizator = ({
                 <button
                   onClick={handleSaved}
                   className={`btn-test ${modified[1] === 0 ? "disable" : ""}`}
-                  style={{ margin: "0 5px 2em 2em" }}
+                  style={{ margin: "0 5px 2em 2em", background: hovered ? '#ca5310' : '#ff6b35' }}
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
                 >
                   Salvează
                 </button>
@@ -377,7 +389,9 @@ const TestGeneralizator = ({
                 <button
                   onClick={handleSaved}
                   className={`btn-test ${modified[2] === 0 ? "disable" : ""}`}
-                  style={{ margin: "0 5px 2em 2em" }}
+                  style={{ margin: "0 5px 2em 2em", background: hovered ? '#ca5310' : '#ff6b35' }}
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
                 >
                   Salvează
                 </button>
@@ -420,7 +434,9 @@ const TestGeneralizator = ({
                 <button
                   onClick={handleSaved}
                   className={`btn-test ${modified[3] === 0 ? "disable" : ""}`}
-                  style={{ margin: "0 5px 2em 2em" }}
+                  style={{ margin: "0 5px 2em 2em", background: hovered ? '#ca5310' : '#ff6b35' }}
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
                 >
                   Salvează
                 </button>

@@ -625,7 +625,7 @@ button.slick-next::before {
 }
 
 .btn-test {
-  background: #0582ca;
+  background: #33a1fd;
   color: #fff;
   border-radius: 10px;
   -webkit-text-shadow: none;
@@ -652,6 +652,9 @@ button.slick-next::before {
   -ms-user-select: none;
   user-select: none;
   margin: 0 2em 2em;
+}
+.btn-test:hover {
+  background: #0582ca;
 }
 
 .btn-test.disable {
