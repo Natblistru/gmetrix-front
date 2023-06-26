@@ -21,6 +21,8 @@ const SentenceBox = ({ marked, onDrop, sentence }) => {
         if (w.text !== w.displayed) {
           correctAnswer = false;
         }
+      } else if(!marked && w.displayed !== "") {
+        bgcolor =  '#00b4d8' ;
       }
 
       return (

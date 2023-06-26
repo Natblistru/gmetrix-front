@@ -76,6 +76,7 @@ const TestGeneralizator = ({
   // const [correctAnswer, setCorrectAnswer] = useState(null);
   const [activeButton, setActiveButton] = useState(null);
   const [start, setStart] = useState(null);
+  const [marked, setMarked] = useState(false);
   const [response, setResponse] = useState([0, 0, 0, 0]);
   const [modified, setModified] = useState([0, 0, 0, 0]);
   const initValues = list.quizArray[currentIndex].listaSarcini[0].answers.map(answer => false);
@@ -100,7 +101,7 @@ const TestGeneralizator = ({
   };
 
   const handleCheckBoxChange = (value,idx) => {
-    console.log("raspuns primit");
+    // console.log("raspuns primit");
     const updatedResponse = [...response];
     updatedResponse[activeButton - 1] = 1;
 
@@ -138,8 +139,8 @@ const TestGeneralizator = ({
   };
 
   useEffect(() => {
-    //console.log(correctAnswer);
-  }, [correctAnswer]);
+
+  }, []);
 
   const handleAnswer = () => {
     // const updatedResponse = [...response];
@@ -158,7 +159,6 @@ const TestGeneralizator = ({
   }, [response]);
 
   const checkTestWords = (propozitie,raspuns,n) => {
-    console.log("sentence1", propozitie);
     const totalResult = propozitie.reduce((sum, obj) => {
       if (obj.type === "answer" && obj.text === obj.displayed) {
         return sum + 1;
@@ -167,9 +167,9 @@ const TestGeneralizator = ({
       }
     }, 0);
     const totalResponse = raspuns.length - list.quizArray[currentIndex].listaSarcini[n].answers[0].textAdditional.length;
-    console.log("totalResult", totalResult);
+    // console.log("totalResult", totalResult);
     const points = totalResult * 10/ totalResponse;
-    console.log("points", points);
+    // console.log("points", points);
   };
 
   const handleFinish = () => {
@@ -177,6 +177,7 @@ const TestGeneralizator = ({
     checkTestWords(sentence1,answers1,1);
     checkTestWords(sentence2,answers2,2);
     checkTestWords(sentence3,answers3,3);
+    setMarked(true);
   };
 
   const handleTryAgainClearCheck = () => {
@@ -194,15 +195,15 @@ const TestGeneralizator = ({
   const text1 = list.quizArray[currentIndex].listaSarcini[1].answers[0].text;
   const textAdd1 =
     list.quizArray[currentIndex].listaSarcini[1].answers[0].textAdditional;
-  const [answers1, setAnswers1] = useState([]);
-  const [sentence1, setSentence1] = useState([]);
+    const [answers1, setAnswers1] = useState([]);
+    const [sentence1, setSentence1] = useState([]);
 
   useEffect(() => {
     setAnswers1(shuffleArray(getAnswers(text1).concat(textAdd1)));
     setSentence1(getSentence(text1));
   }, [text1]);
   const onDrop1 = (ev, dropId) => {
-    console.log("raspuns primit");
+    // console.log("raspuns primit");
     const updatedResponse = [...response];
     updatedResponse[activeButton - 1] = 1;
     setResponse(updatedResponse);
@@ -230,7 +231,7 @@ const TestGeneralizator = ({
     setSentence2(getSentence(text2));
   }, [text2]);
   const onDrop2 = (ev, dropId) => {
-    console.log("raspuns primit");
+    // console.log("raspuns primit");
     const updatedResponse = [...response];
     updatedResponse[activeButton - 1] = 1;
     setResponse(updatedResponse);
@@ -258,7 +259,7 @@ const TestGeneralizator = ({
     setSentence3(getSentence(text3));
   }, [text3]);
   const onDrop3 = (ev, dropId) => {
-    console.log("raspuns primit");
+    // console.log("raspuns primit");
     const updatedResponse = [...response];
     updatedResponse[activeButton - 1] = 1;
     setResponse(updatedResponse);
@@ -348,7 +349,7 @@ const TestGeneralizator = ({
             >
               <p>{list.quizArray[currentIndex].listaSarcini[1].sarcina} 2</p>
               <SentenceBox
-                marked={false}
+                marked={marked}
                 onDrop={onDrop1}
                 sentence={sentence1}
               />
@@ -370,7 +371,7 @@ const TestGeneralizator = ({
             >
               <p>{list.quizArray[currentIndex].listaSarcini[2].sarcina} 3</p>
               <SentenceBox
-                marked={false}
+                marked={marked}
                 onDrop={onDrop2}
                 sentence={sentence2}
               />
@@ -391,7 +392,7 @@ const TestGeneralizator = ({
             >
               <p>{list.quizArray[currentIndex].listaSarcini[3].sarcina} 4</p>
               <SentenceBox
-                marked={false}
+                marked={marked}
                 onDrop={onDrop3}
                 sentence={sentence3}
               />

@@ -15,7 +15,7 @@ const ItemList = (props) => {
             <div className="title-item">
               <div className="num-item">{subtitle.id}.</div>
               <div className="name-item">
-                {console.log(subtitle, dynamicPath)}
+                {/* {console.log(subtitle, dynamicPath)} */}
                 {subtitle.path == null ? (
                   subtitle.anul == null ? (
                     <div className="text-block">{subtitle.name}</div>
