@@ -1065,6 +1065,7 @@ let temeIstoria = [
                     listaSarcini: [
                       {
                         id: "1",
+                        type: "check",
                         name: "Bifează afirmațiile corecte",
                         sarcina: "Bifează afirmațiile corecte:",
                         answers: [
@@ -1097,6 +1098,7 @@ let temeIstoria = [
                       {
                         id: "2",
                         name: "Consecințele evenimentelor",
+                        type: "words",
                         sarcina:
                           "Cum crezi care sunt consecintele corecte ale evenimentului:",
                         answers: [
@@ -1111,6 +1113,7 @@ let temeIstoria = [
                       {
                         id: "3",
                         name: "Compune propoziții",
+                        type: "words",
                         sarcina: "Completează spațiile libere din propoziții:",
                         answers: [
                           {
@@ -1124,6 +1127,7 @@ let temeIstoria = [
                       {
                         id: "4",
                         name: "Cronologia evenimentelor",
+                        type: "words",
                         sarcina:
                           "Aranjează evenimentele istorice în ordine cronologică:",
                           answers: [

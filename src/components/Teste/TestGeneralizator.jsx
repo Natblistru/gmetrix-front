@@ -26,28 +26,56 @@ const Header = ({ activeButton, handleClick, response }) => {
       <div className="nav-header">
         <button
           className="circle"
-          style={{ backgroundColor: activeButton == 1 ? "#76a900" : response[0]==1? "#e9ecef" : "#fff" }}
+          style={{
+            backgroundColor:
+              activeButton == 1
+                ? "#76a900"
+                : response[0] == 1
+                ? "#e9ecef"
+                : "#fff",
+          }}
           onClick={() => handleClick(1)}
         >
           1
         </button>
         <button
           className="circle"
-          style={{ backgroundColor: activeButton == 2 ? "#76a900" : response[1]==1? "#e9ecef" : "#fff" }}
+          style={{
+            backgroundColor:
+              activeButton == 2
+                ? "#76a900"
+                : response[1] == 1
+                ? "#e9ecef"
+                : "#fff",
+          }}
           onClick={() => handleClick(2)}
         >
           2
         </button>
         <button
           className="circle"
-          style={{ backgroundColor: activeButton == 3 ? "#76a900" : response[2]==1? "#e9ecef": "#fff" }}
+          style={{
+            backgroundColor:
+              activeButton == 3
+                ? "#76a900"
+                : response[2] == 1
+                ? "#e9ecef"
+                : "#fff",
+          }}
           onClick={() => handleClick(3)}
         >
           3
         </button>
         <button
           className="circle"
-          style={{ backgroundColor: activeButton == 4 ? "#76a900" : response[3]==1? "#e9ecef": "#fff" }}
+          style={{
+            backgroundColor:
+              activeButton == 4
+                ? "#76a900"
+                : response[3] == 1
+                ? "#e9ecef"
+                : "#fff",
+          }}
           onClick={() => handleClick(4)}
         >
           4
@@ -79,8 +107,11 @@ const TestGeneralizator = ({
   const [marked, setMarked] = useState(false);
   const [response, setResponse] = useState([0, 0, 0, 0]);
   const [modified, setModified] = useState([0, 0, 0, 0]);
-  const initValues = list.quizArray[currentIndex].listaSarcini[0].answers.map(answer => false);
-  const [userAnswerCheck, setUserAnswerCheck] = useState(initValues); 
+  const [results, setResults] = useState([0, 0, 0, 0]);
+  const initValues = list.quizArray[currentIndex].listaSarcini[0].answers.map(
+    (answer) => false
+  );
+  const [userAnswerCheck, setUserAnswerCheck] = useState(initValues);
 
   const handleModified = () => {
     const updatedModified = [...modified];
@@ -100,11 +131,10 @@ const TestGeneralizator = ({
     setActiveButton(buttonId);
   };
 
-  const handleCheckBoxChange = (value,idx) => {
+  const handleCheckBoxChange = (value, idx) => {
     // console.log("raspuns primit");
     const updatedResponse = [...response];
     updatedResponse[activeButton - 1] = 1;
-
     setResponse(updatedResponse);
     if (value !== null) handleModified();
     const newInitValues = [...userAnswerCheck];
@@ -121,8 +151,14 @@ const TestGeneralizator = ({
     setUserAnswerCheck(newInitValues);
   };
 
-  const checkAnswer = () => {
-    const correctValuesArray = list.quizArray[currentIndex].listaSarcini[0].answers.map(answer => answer.correct);
+  const totalPoint= (n) => {
+    if(list.quizArray[currentIndex].listaSarcini[n].type=="check") return list.quizArray[currentIndex].listaSarcini[n].answers.length;
+    if(list.quizArray[currentIndex].listaSarcini[n].type=="words") return getAnswers(list.quizArray[currentIndex].listaSarcini[n].answers[0].text).length;
+  }
+  const checkAnswer = (updatedResults ) => {
+    const correctValuesArray = list.quizArray[
+      currentIndex
+    ].listaSarcini[0].answers.map((answer) => answer.correct);
     const correctValues = list.quizArray[currentIndex].listaSarcini[0].answers
       .filter((answer) => answer.correct)
       .map((answer) => answer.text);
@@ -135,12 +171,12 @@ const TestGeneralizator = ({
       const result = value === correctValuesArray[index] ? 1 : 0;
       return sum + result;
     }, 0);
-  //  console.log("totalResult",totalResult);
+    updatedResults[0] = totalResult;
+    setResults(updatedResults);
+    //  console.log("totalResult",totalResult);
   };
 
-  useEffect(() => {
-
-  }, []);
+  useEffect(() => {}, []);
 
   const handleAnswer = () => {
     // const updatedResponse = [...response];
@@ -158,7 +194,7 @@ const TestGeneralizator = ({
     //   setActiveButton(activeButton + 1);
   }, [response]);
 
-  const checkTestWords = (propozitie,raspuns,n) => {
+  const checkTestWords = (propozitie, raspuns, n, updatedResults) => {
     const totalResult = propozitie.reduce((sum, obj) => {
       if (obj.type === "answer" && obj.text === obj.displayed) {
         return sum + 1;
@@ -166,17 +202,24 @@ const TestGeneralizator = ({
         return sum;
       }
     }, 0);
-    const totalResponse = raspuns.length - list.quizArray[currentIndex].listaSarcini[n].answers[0].textAdditional.length;
+    const totalResponse =
+      raspuns.length -
+      list.quizArray[currentIndex].listaSarcini[n].answers[0].textAdditional
+        .length;
     // console.log("totalResult", totalResult);
-    const points = totalResult * 10/ totalResponse;
+    const points = (totalResult * 10) / totalResponse;
+
+    updatedResults[n] = totalResult;
+    setResults(updatedResults);
     // console.log("points", points);
   };
 
   const handleFinish = () => {
-    checkAnswer();
-    checkTestWords(sentence1,answers1,1);
-    checkTestWords(sentence2,answers2,2);
-    checkTestWords(sentence3,answers3,3);
+    const updatedResults = [...results];
+    checkAnswer(updatedResults );
+    checkTestWords(sentence1, answers1, 1, updatedResults );
+    checkTestWords(sentence2, answers2, 2, updatedResults );
+    checkTestWords(sentence3, answers3, 3, updatedResults );
     setMarked(true);
   };
 
@@ -195,8 +238,8 @@ const TestGeneralizator = ({
   const text1 = list.quizArray[currentIndex].listaSarcini[1].answers[0].text;
   const textAdd1 =
     list.quizArray[currentIndex].listaSarcini[1].answers[0].textAdditional;
-    const [answers1, setAnswers1] = useState([]);
-    const [sentence1, setSentence1] = useState([]);
+  const [answers1, setAnswers1] = useState([]);
+  const [sentence1, setSentence1] = useState([]);
 
   useEffect(() => {
     setAnswers1(shuffleArray(getAnswers(text1).concat(textAdd1)));
@@ -278,7 +321,11 @@ const TestGeneralizator = ({
     <>
       {!start && <HeaderInit />}
       {start && (
-        <Header activeButton={activeButton} handleClick={handleClick} response={response}/>
+        <Header
+          activeButton={activeButton}
+          handleClick={handleClick}
+          response={response}
+        />
       )}
       <ItemAccordeon
         titlu={activeButton ? `Cerințele sarcinii:` : `Lista de sarcini`}
@@ -300,7 +347,13 @@ const TestGeneralizator = ({
                       {subtitle.name}
                     </div>
                   </div>
-                  <div className="points">V</div>
+                  <div className="points">
+                    {console.log("results[idx]",results)}
+                    {activeButton === null && start === null && marked === false && <span>{totalPoint(idx)} p.</span>}
+                    {start === true && marked === false && response[idx] == 1 && <span>Răspuns primit   ? / {totalPoint(idx)} p.</span>}
+                    {start === true && marked === false && response[idx] == 0 && <span>Lipsa răspuns {totalPoint(idx)} p.</span>}                    
+                    {start === true && marked === true && <span>{results[idx]} / {totalPoint(idx)} p.</span>}                    
+                  </div>
                 </div>
               );
             })}
@@ -326,7 +379,9 @@ const TestGeneralizator = ({
                       value={answer.text}
                       checked={selectedValues.includes(answer.text)}
                       onChange={
-                        correctAnswer === null ? () => handleCheckBoxChange(answer.text, idx) : () => {}
+                        correctAnswer === null
+                          ? () => handleCheckBoxChange(answer.text, idx)
+                          : () => {}
                       }
                     />
                   );
@@ -353,7 +408,8 @@ const TestGeneralizator = ({
                 onDrop={onDrop1}
                 sentence={sentence1}
               />
-              <AnswerBox answers={answers1} />
+              {marked === false && <AnswerBox answers={answers1} />}
+              {/* <AnswerBox answers={answers1} /> */}
             </ItemText>
           </>
         )}
@@ -375,7 +431,8 @@ const TestGeneralizator = ({
                 onDrop={onDrop2}
                 sentence={sentence2}
               />
-              <AnswerBox answers={answers2} />
+              {marked === false && <AnswerBox answers={answers2} />}
+              {/* <AnswerBox answers={answers2} /> */}
             </ItemText>
           </>
         )}
@@ -396,7 +453,8 @@ const TestGeneralizator = ({
                 onDrop={onDrop3}
                 sentence={sentence3}
               />
-              <AnswerBox answers={answers3} />
+              {marked === false && <AnswerBox answers={answers3} />}
+              {/* <AnswerBox answers={answers3} /> */}
             </ItemText>
           </>
         )}
@@ -407,10 +465,7 @@ const TestGeneralizator = ({
         )}
         {activeButton === null && start !== null && (
           <>
-            <button
-              onClick={handleFinish}
-              className="btn-test"
-            >
+            <button onClick={handleFinish} className="btn-test">
               Finisează testul
             </button>
           </>
