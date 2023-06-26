@@ -8,7 +8,7 @@ import TestQuiz from "../components/Teste/TestQuiz";
 import TestCheck from "../components/Teste/TestCheck";
 import ListNavigatie from "../components/ListNavigatie";
 import TestBoard from "../components/Teste/TestBoard";
-import TestWords from "../components/Teste/TestWords"
+import TestWords from "../components/Teste/TestWords";
 import TestGeneralizator from "../components/Teste/TestGeneralizator";
 import "../index.css";
 
@@ -42,7 +42,7 @@ const TestWrapper = (props) => {
       setCurrentList(foundItem);
       setCurrentIndex(0);
       setCorrectAnswer(null);
-     } else {
+    } else {
       history.push("/error");
     }
   }, [addressTest]);
@@ -75,11 +75,17 @@ const TestWrapper = (props) => {
     // console.log("handleTryAgain currInd",currInd);
     // if(currInd!==undefined) setCurrentIndex(currInd)
     // else
-    setCurrentIndex(
-      currentList.quizArray.length - 1 === currentIndex ? 0 : currentIndex + 1
-    );
-    // console.log("currentIndex din Test(handleTryAgain) ",currentIndex);
-    setCorrectAnswer(null);
+    if (currentList.type === "testGeneralizator") {
+      setCurrentIndex(
+        currentList.quizArray.length - 1 === currentIndex ? 0 : currentIndex + 1
+      );
+    } else {
+      setCurrentIndex(
+        currentList.quizArray.length - 1 === currentIndex ? 0 : currentIndex + 1
+      );
+      // console.log("currentIndex din Test(handleTryAgain) ",currentIndex);
+      setCorrectAnswer(null);
+    }
   };
 
   const handleClearTestBoard = (testId) => {
@@ -93,9 +99,7 @@ const TestWrapper = (props) => {
     <Wrapper>
       {currentList && (
         <>
-          <Breadcrumb
-            list={currentList.breadcrumb}
-          />
+          <Breadcrumb list={currentList.breadcrumb} />
           {/* {console.log("currentList.breadcrumb", currentList.breadcrumb)} */}
           <TitleBox className="teme-container">{currentList.name}</TitleBox>
           {currentList.type === "quiz" && (

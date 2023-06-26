@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import temeIstoriArray from "../../data/temeIstoria";
 
 import ItemAccordeon from "../Accordeon/ItemAccordeon";
 import CheckBox from "../CheckBox";
@@ -9,7 +8,6 @@ import ItemText from "../Accordeon/ItemText";
 import Timer from "../Timer";
 import { getSentence, getAnswers } from "../DragWords/TextConverter";
 import { shuffleArray } from "./TestWords";
-import ItemList from "../Accordeon/ItemList";
 
 const HeaderInit = () => {
   return (
@@ -26,9 +24,8 @@ const Header = ({
   handleClick,
   response,
   handleFinish,
-  timerFinished
+  timerFinished,
 }) => {
-
   return (
     <div className="nav-header">
       <div className="nav-header">
@@ -98,14 +95,13 @@ const Header = ({
           initialTime={300}
           isFinished={timerFinished}
         />
-
       </div>
     </div>
   );
 };
 
 // let list = temeIstoriArray[0].subtitles[0].subjects[0].teste[9];
-let currentIndex = 0;
+//let currentIndex = 0;
 const TestGeneralizator = ({
   list,
   currentIndex,
@@ -128,25 +124,18 @@ const TestGeneralizator = ({
     (answer) => false
   );
   const [userAnswerCheck, setUserAnswerCheck] = useState(initValues);
+  console.log(currentIndex);
+
   const handleModified = () => {
     const updatedModified = [...modified];
     updatedModified[activeButton - 1] = 1;
     setModified(updatedModified);
-    // console.log(response);
   };
-  const handleSaved = () => {
-    const updatedModified = [...modified];
-    updatedModified[activeButton - 1] = 0;
-    // console.log("ceva");
-    setModified(updatedModified);
-  };
-
   const handleClick = (buttonId) => {
     setActiveButton(buttonId);
   };
 
   const handleCheckBoxChange = (value, idx) => {
-    // console.log("raspuns primit");
     const updatedResponse = [...response];
     updatedResponse[activeButton - 1] = 1;
     setResponse(updatedResponse);
@@ -183,34 +172,13 @@ const TestGeneralizator = ({
     const selectedValuesString = selectedValues.sort().join(",");
     const correctValuesString = correctValues.sort().join(",");
     setCorrectAnswer(selectedValuesString === correctValuesString);
-    // setShowHeader(true);
-    //setActiveButton(1);
     const totalResult = userAnswerCheck.reduce((sum, value, index) => {
       const result = value === correctValuesArray[index] ? 1 : 0;
       return sum + result;
     }, 0);
     updatedResults[0] = totalResult;
     setResults(updatedResults);
-    //  console.log("totalResult",totalResult);
   };
-
-  useEffect(() => {}, []);
-
-  const handleAnswer = () => {
-    // const updatedResponse = [...response];
-    // updatedResponse[activeButton - 1] = 1;
-
-    // setResponse(updatedResponse);
-    // console.log(response);
-    const updatedModified = [...modified];
-    updatedModified[activeButton - 1] = 0;
-    // console.log("ceva");
-    setModified(updatedModified);
-  };
-  useEffect(() => {
-    // if (activeButton != response.length && activeButton !== null)
-    //   setActiveButton(activeButton + 1);
-  }, [response]);
 
   const checkTestWords = (propozitie, raspuns, n, updatedResults) => {
     const totalResult = propozitie.reduce((sum, obj) => {
@@ -224,14 +192,11 @@ const TestGeneralizator = ({
       raspuns.length -
       list.quizArray[currentIndex].listaSarcini[n].answers[0].textAdditional
         .length;
-    // console.log("totalResult", totalResult);
     const points = (totalResult * 10) / totalResponse;
 
     updatedResults[n] = totalResult;
     setResults(updatedResults);
-    // console.log("points", points);
   };
-
   const handleFinish = () => {
     const updatedResults = [...results];
     checkAnswer(updatedResults);
@@ -245,6 +210,7 @@ const TestGeneralizator = ({
   const handleTryAgainClearCheck = () => {
     setSelectedValues([]);
     handleTryAgain();
+    handleStart();
   };
   const handleStart = () => {
     setStart(true);
@@ -265,7 +231,6 @@ const TestGeneralizator = ({
     setSentence1(getSentence(text1));
   }, [text1]);
   const onDrop1 = (ev, dropId) => {
-    // console.log("raspuns primit");
     const updatedResponse = [...response];
     updatedResponse[activeButton - 1] = 1;
     setResponse(updatedResponse);
@@ -293,7 +258,6 @@ const TestGeneralizator = ({
     setSentence2(getSentence(text2));
   }, [text2]);
   const onDrop2 = (ev, dropId) => {
-    // console.log("raspuns primit");
     const updatedResponse = [...response];
     updatedResponse[activeButton - 1] = 1;
     setResponse(updatedResponse);
@@ -321,7 +285,6 @@ const TestGeneralizator = ({
     setSentence3(getSentence(text3));
   }, [text3]);
   const onDrop3 = (ev, dropId) => {
-    // console.log("raspuns primit");
     const updatedResponse = [...response];
     updatedResponse[activeButton - 1] = 1;
     setResponse(updatedResponse);
@@ -369,7 +332,6 @@ const TestGeneralizator = ({
                     </div>
                   </div>
                   <div className="points">
-                    {/* {console.log("results[idx]",results)} */}
                     {activeButton === null &&
                       start === null &&
                       marked === false && <span>{totalPoint(idx)} p.</span>}
@@ -405,7 +367,7 @@ const TestGeneralizator = ({
                   : " incorrect"
               }
             >
-              <p>{list.quizArray[currentIndex].listaSarcini[0].sarcina} 1</p>
+              <p>{list.quizArray[currentIndex].listaSarcini[0].sarcina}</p>
               {list.quizArray[currentIndex].listaSarcini[0].answers.map(
                 (answer, idx) => {
                   return (
@@ -437,14 +399,13 @@ const TestGeneralizator = ({
                   : " incorrect"
               }
             >
-              <p>{list.quizArray[currentIndex].listaSarcini[1].sarcina} 2</p>
+              <p>{list.quizArray[currentIndex].listaSarcini[1].sarcina}</p>
               <SentenceBox
                 marked={marked}
                 onDrop={onDrop1}
                 sentence={sentence1}
               />
               {marked === false && <AnswerBox answers={answers1} />}
-              {/* <AnswerBox answers={answers1} /> */}
             </ItemText>
           </>
         )}
@@ -460,14 +421,13 @@ const TestGeneralizator = ({
                   : " incorrect"
               }
             >
-              <p>{list.quizArray[currentIndex].listaSarcini[2].sarcina} 3</p>
+              <p>{list.quizArray[currentIndex].listaSarcini[2].sarcina}</p>
               <SentenceBox
                 marked={marked}
                 onDrop={onDrop2}
                 sentence={sentence2}
               />
               {marked === false && <AnswerBox answers={answers2} />}
-              {/* <AnswerBox answers={answers2} /> */}
             </ItemText>
           </>
         )}
@@ -482,14 +442,13 @@ const TestGeneralizator = ({
                   : " incorrect"
               }
             >
-              <p>{list.quizArray[currentIndex].listaSarcini[3].sarcina} 4</p>
+              <p>{list.quizArray[currentIndex].listaSarcini[3].sarcina}</p>
               <SentenceBox
                 marked={marked}
                 onDrop={onDrop3}
                 sentence={sentence3}
               />
               {marked === false && <AnswerBox answers={answers3} />}
-              {/* <AnswerBox answers={answers3} /> */}
             </ItemText>
           </>
         )}
@@ -498,10 +457,17 @@ const TestGeneralizator = ({
             Incepe testul
           </button>
         )}
-        {activeButton === null && start !== null && (
+        {activeButton === null && start !== null && !marked && (
           <>
             <button onClick={handleFinish} className="btn-test">
               Finisează testul
+            </button>
+          </>
+        )}
+        {activeButton === null && start !== null && marked && (
+          <>
+            <button onClick={handleTryAgainClearCheck} className="btn-test">
+              Încearcă din nou!
             </button>
           </>
         )}
