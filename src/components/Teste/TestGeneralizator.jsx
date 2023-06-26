@@ -6,6 +6,7 @@ import CheckBox from "../CheckBox";
 import SentenceBox from "../DragWords/SentenceBox";
 import AnswerBox from "../DragWords/AnswerBox";
 import ItemText from "../Accordeon/ItemText";
+import Timer from "../Timer";
 import { getSentence, getAnswers } from "../DragWords/TextConverter";
 import { shuffleArray } from "./TestWords";
 import ItemList from "../Accordeon/ItemList";
@@ -20,7 +21,14 @@ const HeaderInit = () => {
   );
 };
 
-const Header = ({ activeButton, handleClick, response }) => {
+const Header = ({
+  activeButton,
+  handleClick,
+  response,
+  handleFinish,
+  timerFinished
+}) => {
+
   return (
     <div className="nav-header">
       <div className="nav-header">
@@ -84,7 +92,14 @@ const Header = ({ activeButton, handleClick, response }) => {
           <a onClick={() => handleClick(null)}>Lista de sarcini</a>
         )}
       </div>
-      <div>00:05:00</div>
+      <div>
+        <Timer
+          onFinish={handleFinish}
+          initialTime={300}
+          isFinished={timerFinished}
+        />
+
+      </div>
     </div>
   );
 };
@@ -102,6 +117,7 @@ const TestGeneralizator = ({
   const [selectedValues, setSelectedValues] = useState([]);
   // const [showHeader, setShowHeader] = useState(false);
   // const [correctAnswer, setCorrectAnswer] = useState(null);
+  const [timerFinished, setTimerFinished] = useState(false);
   const [activeButton, setActiveButton] = useState(null);
   const [start, setStart] = useState(null);
   const [marked, setMarked] = useState(false);
@@ -112,11 +128,9 @@ const TestGeneralizator = ({
     (answer) => false
   );
   const [userAnswerCheck, setUserAnswerCheck] = useState(initValues);
-
   const handleModified = () => {
     const updatedModified = [...modified];
     updatedModified[activeButton - 1] = 1;
-    // console.log("ceva");
     setModified(updatedModified);
     // console.log(response);
   };
@@ -151,11 +165,15 @@ const TestGeneralizator = ({
     setUserAnswerCheck(newInitValues);
   };
 
-  const totalPoint= (n) => {
-    if(list.quizArray[currentIndex].listaSarcini[n].type=="check") return list.quizArray[currentIndex].listaSarcini[n].answers.length;
-    if(list.quizArray[currentIndex].listaSarcini[n].type=="words") return getAnswers(list.quizArray[currentIndex].listaSarcini[n].answers[0].text).length;
-  }
-  const checkAnswer = (updatedResults ) => {
+  const totalPoint = (n) => {
+    if (list.quizArray[currentIndex].listaSarcini[n].type == "check")
+      return list.quizArray[currentIndex].listaSarcini[n].answers.length;
+    if (list.quizArray[currentIndex].listaSarcini[n].type == "words")
+      return getAnswers(
+        list.quizArray[currentIndex].listaSarcini[n].answers[0].text
+      ).length;
+  };
+  const checkAnswer = (updatedResults) => {
     const correctValuesArray = list.quizArray[
       currentIndex
     ].listaSarcini[0].answers.map((answer) => answer.correct);
@@ -216,11 +234,12 @@ const TestGeneralizator = ({
 
   const handleFinish = () => {
     const updatedResults = [...results];
-    checkAnswer(updatedResults );
-    checkTestWords(sentence1, answers1, 1, updatedResults );
-    checkTestWords(sentence2, answers2, 2, updatedResults );
-    checkTestWords(sentence3, answers3, 3, updatedResults );
+    checkAnswer(updatedResults);
+    checkTestWords(sentence1, answers1, 1, updatedResults);
+    checkTestWords(sentence2, answers2, 2, updatedResults);
+    checkTestWords(sentence3, answers3, 3, updatedResults);
     setMarked(true);
+    setTimerFinished(true);
   };
 
   const handleTryAgainClearCheck = () => {
@@ -325,6 +344,8 @@ const TestGeneralizator = ({
           activeButton={activeButton}
           handleClick={handleClick}
           response={response}
+          handleFinish={handleFinish}
+          timerFinished={timerFinished}
         />
       )}
       <ItemAccordeon
@@ -348,11 +369,25 @@ const TestGeneralizator = ({
                     </div>
                   </div>
                   <div className="points">
-                    {console.log("results[idx]",results)}
-                    {activeButton === null && start === null && marked === false && <span>{totalPoint(idx)} p.</span>}
-                    {start === true && marked === false && response[idx] == 1 && <span>Răspuns primit   ? / {totalPoint(idx)} p.</span>}
-                    {start === true && marked === false && response[idx] == 0 && <span>Lipsa răspuns {totalPoint(idx)} p.</span>}                    
-                    {start === true && marked === true && <span>{results[idx]} / {totalPoint(idx)} p.</span>}                    
+                    {/* {console.log("results[idx]",results)} */}
+                    {activeButton === null &&
+                      start === null &&
+                      marked === false && <span>{totalPoint(idx)} p.</span>}
+                    {start === true &&
+                      marked === false &&
+                      response[idx] == 1 && (
+                        <span>Răspuns primit ? / {totalPoint(idx)} p.</span>
+                      )}
+                    {start === true &&
+                      marked === false &&
+                      response[idx] == 0 && (
+                        <span>Lipsa răspuns {totalPoint(idx)} p.</span>
+                      )}
+                    {start === true && marked === true && (
+                      <span>
+                        {results[idx]} / {totalPoint(idx)} p.
+                      </span>
+                    )}
                   </div>
                 </div>
               );
