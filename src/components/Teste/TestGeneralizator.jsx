@@ -110,20 +110,61 @@ const TestGeneralizator = ({
   additionalContent,
   handleTryAgain,
 }) => {
-  const [selectedValues, setSelectedValues] = useState([]);
+
   // const [showHeader, setShowHeader] = useState(false);
   // const [correctAnswer, setCorrectAnswer] = useState(null);
+  const [selectedValues, setSelectedValues] = useState([]);
   const [timerFinished, setTimerFinished] = useState(false);
   const [activeButton, setActiveButton] = useState(null);
   const [start, setStart] = useState(null);
   const [marked, setMarked] = useState(false);
+
   const [response, setResponse] = useState([0, 0, 0, 0]);
   const [modified, setModified] = useState([0, 0, 0, 0]);
   const [results, setResults] = useState([0, 0, 0, 0]);
-  const initValues = list.quizArray[currentIndex].listaSarcini[0].answers.map(
-    (answer) => false
-  );
-  const [userAnswerCheck, setUserAnswerCheck] = useState(initValues);
+  const [answers1, setAnswers1] = useState([]);
+  const [sentence1, setSentence1] = useState([]);
+  const [answers2, setAnswers2] = useState([]);
+  const [sentence2, setSentence2] = useState([]);
+  const [answers3, setAnswers3] = useState([]);
+  const [sentence3, setSentence3] = useState([]);
+  let text1="", textAdd1="";
+  let text2="", textAdd2="";
+  let text3="", textAdd3="";
+  let initValues = [];
+  const [userAnswerCheck, setUserAnswerCheck] = useState([]);
+  useEffect(() => {
+    setSelectedValues([]);
+    setTimerFinished(false);
+    setActiveButton(null);
+    setStart(null);
+    setCorrectAnswer(null);
+    setMarked(false);
+    setResponse([0, 0, 0, 0]);
+    setModified([0, 0, 0, 0]);
+    setResults([0, 0, 0, 0]);
+    initValues = list.quizArray[currentIndex].listaSarcini[0].answers.map(
+      (answer) => false);
+    setUserAnswerCheck(initValues);
+    text1 = list.quizArray[currentIndex].listaSarcini[1].answers[0].text;
+    textAdd1 =
+      list.quizArray[currentIndex].listaSarcini[1].answers[0].textAdditional;
+      setAnswers1(shuffleArray(getAnswers(text1).concat(textAdd1)));
+      setSentence1(getSentence(text1));
+      text2 = list.quizArray[currentIndex].listaSarcini[2].answers[0].text;
+      textAdd2 =
+        list.quizArray[currentIndex].listaSarcini[2].answers[0].textAdditional;
+      setAnswers2(shuffleArray(getAnswers(text2).concat(textAdd2)));
+      setSentence2(getSentence(text2));
+      text3 = list.quizArray[currentIndex].listaSarcini[3].answers[0].text;
+      textAdd3 =
+      list.quizArray[currentIndex].listaSarcini[3].answers[0].textAdditional;
+      setAnswers3(shuffleArray(getAnswers(text3).concat(textAdd3)));
+      setSentence3(getSentence(text3));
+  }, [currentIndex]);
+
+  
+
   console.log(currentIndex);
 
   const handleModified = () => {
@@ -220,16 +261,6 @@ const TestGeneralizator = ({
   /*  Test[0]  */
 
   /*  Test[1]  */
-  const text1 = list.quizArray[currentIndex].listaSarcini[1].answers[0].text;
-  const textAdd1 =
-    list.quizArray[currentIndex].listaSarcini[1].answers[0].textAdditional;
-  const [answers1, setAnswers1] = useState([]);
-  const [sentence1, setSentence1] = useState([]);
-
-  useEffect(() => {
-    setAnswers1(shuffleArray(getAnswers(text1).concat(textAdd1)));
-    setSentence1(getSentence(text1));
-  }, [text1]);
   const onDrop1 = (ev, dropId) => {
     const updatedResponse = [...response];
     updatedResponse[activeButton - 1] = 1;
@@ -247,16 +278,6 @@ const TestGeneralizator = ({
   };
 
   /*  Test[2]  */
-  const text2 = list.quizArray[currentIndex].listaSarcini[2].answers[0].text;
-  const textAdd2 =
-    list.quizArray[currentIndex].listaSarcini[2].answers[0].textAdditional;
-  const [answers2, setAnswers2] = useState([]);
-  const [sentence2, setSentence2] = useState([]);
-
-  useEffect(() => {
-    setAnswers2(shuffleArray(getAnswers(text2).concat(textAdd2)));
-    setSentence2(getSentence(text2));
-  }, [text2]);
   const onDrop2 = (ev, dropId) => {
     const updatedResponse = [...response];
     updatedResponse[activeButton - 1] = 1;
@@ -274,16 +295,6 @@ const TestGeneralizator = ({
   };
 
   /*  Test[3]  */
-  const text3 = list.quizArray[currentIndex].listaSarcini[3].answers[0].text;
-  const textAdd3 =
-    list.quizArray[currentIndex].listaSarcini[3].answers[0].textAdditional;
-  const [answers3, setAnswers3] = useState([]);
-  const [sentence3, setSentence3] = useState([]);
-
-  useEffect(() => {
-    setAnswers3(shuffleArray(getAnswers(text3).concat(textAdd3)));
-    setSentence3(getSentence(text3));
-  }, [text3]);
   const onDrop3 = (ev, dropId) => {
     const updatedResponse = [...response];
     updatedResponse[activeButton - 1] = 1;
