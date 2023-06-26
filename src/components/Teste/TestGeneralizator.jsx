@@ -78,7 +78,8 @@ const TestGeneralizator = ({
   const [start, setStart] = useState(null);
   const [response, setResponse] = useState([0, 0, 0, 0]);
   const [modified, setModified] = useState([0, 0, 0, 0]);
-  const [hovered, setHovered] = useState(false);
+  const initValues = list.quizArray[currentIndex].listaSarcini[0].answers.map(answer => false);
+  const [userAnswerCheck, setUserAnswerCheck] = useState(initValues); 
 
   const handleModified = () => {
     const updatedModified = [...modified];
@@ -98,35 +99,53 @@ const TestGeneralizator = ({
     setActiveButton(buttonId);
   };
 
-  const handleCheckBoxChange = (value) => {
-    // console.log(value==null);
+  const handleCheckBoxChange = (value,idx) => {
+    console.log("raspuns primit");
+    const updatedResponse = [...response];
+    updatedResponse[activeButton - 1] = 1;
+
+    setResponse(updatedResponse);
     if (value !== null) handleModified();
+    const newInitValues = [...userAnswerCheck];
     const updatedValues = [...selectedValues];
     if (updatedValues.includes(value)) {
       const index = updatedValues.indexOf(value);
       updatedValues.splice(index, 1);
+      newInitValues[idx] = false;
     } else {
       updatedValues.push(value);
+      newInitValues[idx] = true;
     }
     setSelectedValues(updatedValues);
+    setUserAnswerCheck(newInitValues);
   };
 
   const checkAnswer = () => {
-    const correctValues = list.quizArray[currentIndex].answers
+    const correctValuesArray = list.quizArray[currentIndex].listaSarcini[0].answers.map(answer => answer.correct);
+    const correctValues = list.quizArray[currentIndex].listaSarcini[0].answers
       .filter((answer) => answer.correct)
       .map((answer) => answer.text);
     const selectedValuesString = selectedValues.sort().join(",");
     const correctValuesString = correctValues.sort().join(",");
     setCorrectAnswer(selectedValuesString === correctValuesString);
     // setShowHeader(true);
-    setActiveButton(1);
+    //setActiveButton(1);
+    const totalResult = userAnswerCheck.reduce((sum, value, index) => {
+      const result = value === correctValuesArray[index] ? 1 : 0;
+      return sum + result;
+    }, 0);
+  //  console.log("totalResult",totalResult);
   };
 
-  const handleAnswer = () => {
-    const updatedResponse = [...response];
-    updatedResponse[activeButton - 1] = 1;
+  useEffect(() => {
+    //console.log(correctAnswer);
+  }, [correctAnswer]);
 
-    setResponse(updatedResponse);
+  const handleAnswer = () => {
+    // const updatedResponse = [...response];
+    // updatedResponse[activeButton - 1] = 1;
+
+    // setResponse(updatedResponse);
     // console.log(response);
     const updatedModified = [...modified];
     updatedModified[activeButton - 1] = 0;
@@ -134,12 +153,31 @@ const TestGeneralizator = ({
     setModified(updatedModified);
   };
   useEffect(() => {
-    if (activeButton != response.length && activeButton !== null)
-      setActiveButton(activeButton + 1);
+    // if (activeButton != response.length && activeButton !== null)
+    //   setActiveButton(activeButton + 1);
   }, [response]);
 
-  const handleContinue = () => {};
-  const handleFinish = () => {};
+  const checkTestWords = (propozitie,raspuns,n) => {
+    console.log("sentence1", propozitie);
+    const totalResult = propozitie.reduce((sum, obj) => {
+      if (obj.type === "answer" && obj.text === obj.displayed) {
+        return sum + 1;
+      } else {
+        return sum;
+      }
+    }, 0);
+    const totalResponse = raspuns.length - list.quizArray[currentIndex].listaSarcini[n].answers[0].textAdditional.length;
+    console.log("totalResult", totalResult);
+    const points = totalResult * 10/ totalResponse;
+    console.log("points", points);
+  };
+
+  const handleFinish = () => {
+    checkAnswer();
+    checkTestWords(sentence1,answers1,1);
+    checkTestWords(sentence2,answers2,2);
+    checkTestWords(sentence3,answers3,3);
+  };
 
   const handleTryAgainClearCheck = () => {
     setSelectedValues([]);
@@ -148,13 +186,6 @@ const TestGeneralizator = ({
   const handleStart = () => {
     setStart(true);
     setActiveButton(1);
-  };
-  const handleMouseEnter = () => {
-    setHovered(true);
-  };
-
-  const handleMouseLeave = () => {
-    setHovered(false);
   };
 
   /*  Test[0]  */
@@ -171,6 +202,11 @@ const TestGeneralizator = ({
     setSentence1(getSentence(text1));
   }, [text1]);
   const onDrop1 = (ev, dropId) => {
+    console.log("raspuns primit");
+    const updatedResponse = [...response];
+    updatedResponse[activeButton - 1] = 1;
+    setResponse(updatedResponse);
+
     const text = ev.dataTransfer.getData("text/plain");
     handleModified();
     const updatedSentence = sentence1.map((w) => {
@@ -194,6 +230,11 @@ const TestGeneralizator = ({
     setSentence2(getSentence(text2));
   }, [text2]);
   const onDrop2 = (ev, dropId) => {
+    console.log("raspuns primit");
+    const updatedResponse = [...response];
+    updatedResponse[activeButton - 1] = 1;
+    setResponse(updatedResponse);
+
     const text = ev.dataTransfer.getData("text/plain");
     handleModified();
     const updatedSentence = sentence2.map((w) => {
@@ -217,6 +258,10 @@ const TestGeneralizator = ({
     setSentence3(getSentence(text3));
   }, [text3]);
   const onDrop3 = (ev, dropId) => {
+    console.log("raspuns primit");
+    const updatedResponse = [...response];
+    updatedResponse[activeButton - 1] = 1;
+    setResponse(updatedResponse);
     const text = ev.dataTransfer.getData("text/plain");
     handleModified();
     const updatedSentence = sentence3.map((w) => {
@@ -280,37 +325,13 @@ const TestGeneralizator = ({
                       value={answer.text}
                       checked={selectedValues.includes(answer.text)}
                       onChange={
-                        correctAnswer === null ? handleCheckBoxChange : () => {}
+                        correctAnswer === null ? () => handleCheckBoxChange(answer.text, idx) : () => {}
                       }
                     />
                   );
                 }
               )}
             </ItemText>
-            {response[0] == 0 && (
-              <button onClick={handleAnswer} className="btn-test">
-                Raspunde
-              </button>
-            )}
-            {response[0] == 1 && (
-              <>
-                <button
-                  onClick={handleSaved}
-                  className={`btn-test ${modified[0] === 0 ? "disable" : ""}`}
-                  style={{ margin: "0 5px 2em 2em", background: hovered ? '#ca5310' : '#ff6b35' }}
-                  onMouseEnter={handleMouseEnter}
-                  onMouseLeave={handleMouseLeave}
-                >
-                  Salvează
-                </button>
-                <button
-                  className={`btn-test ${modified[0] === 0 ? "disable" : ""}`}
-                  style={{ margin: "0 0 2em" }}
-                >
-                  Renunță
-                </button>
-              </>
-            )}
           </>
         )}
 
@@ -333,30 +354,6 @@ const TestGeneralizator = ({
               />
               <AnswerBox answers={answers1} />
             </ItemText>
-            {response[1] == 0 && (
-              <button onClick={handleAnswer} className="btn-test">
-                Raspunde
-              </button>
-            )}
-            {response[1] == 1 && (
-              <>
-                <button
-                  onClick={handleSaved}
-                  className={`btn-test ${modified[1] === 0 ? "disable" : ""}`}
-                  style={{ margin: "0 5px 2em 2em", background: hovered ? '#ca5310' : '#ff6b35' }}
-                  onMouseEnter={handleMouseEnter}
-                  onMouseLeave={handleMouseLeave}
-                >
-                  Salvează
-                </button>
-                <button
-                  className={`btn-test ${modified[1] === 0 ? "disable" : ""}`}
-                  style={{ margin: "0 0 2em" }}
-                >
-                  Renunță
-                </button>
-              </>
-            )}
           </>
         )}
 
@@ -379,30 +376,6 @@ const TestGeneralizator = ({
               />
               <AnswerBox answers={answers2} />
             </ItemText>
-            {response[2] == 0 && (
-              <button onClick={handleAnswer} className="btn-test">
-                Raspunde
-              </button>
-            )}
-            {response[2] == 1 && (
-              <>
-                <button
-                  onClick={handleSaved}
-                  className={`btn-test ${modified[2] === 0 ? "disable" : ""}`}
-                  style={{ margin: "0 5px 2em 2em", background: hovered ? '#ca5310' : '#ff6b35' }}
-                  onMouseEnter={handleMouseEnter}
-                  onMouseLeave={handleMouseLeave}
-                >
-                  Salvează
-                </button>
-                <button
-                  className={`btn-test ${modified[2] === 0 ? "disable" : ""}`}
-                  style={{ margin: "0 0 2em" }}
-                >
-                  Renunță
-                </button>
-              </>
-            )}
           </>
         )}
         {activeButton == 4 && (
@@ -424,30 +397,6 @@ const TestGeneralizator = ({
               />
               <AnswerBox answers={answers3} />
             </ItemText>
-            {response[3] == 0 && (
-              <button onClick={handleAnswer} className="btn-test">
-                Raspunde
-              </button>
-            )}
-            {response[3] == 1 && (
-              <>
-                <button
-                  onClick={handleSaved}
-                  className={`btn-test ${modified[3] === 0 ? "disable" : ""}`}
-                  style={{ margin: "0 5px 2em 2em", background: hovered ? '#ca5310' : '#ff6b35' }}
-                  onMouseEnter={handleMouseEnter}
-                  onMouseLeave={handleMouseLeave}
-                >
-                  Salvează
-                </button>
-                <button
-                  className={`btn-test ${modified[3] === 0 ? "disable" : ""}`}
-                  style={{ margin: "0 0 2em" }}
-                >
-                  Renunță
-                </button>
-              </>
-            )}
           </>
         )}
         {start === null && (
@@ -457,13 +406,9 @@ const TestGeneralizator = ({
         )}
         {activeButton === null && start !== null && (
           <>
-            <button onClick={handleContinue} className="btn-test">
-              Continue testul
-            </button>
             <button
               onClick={handleFinish}
               className="btn-test"
-              style={{ margin: "0 0 2em" }}
             >
               Finisează testul
             </button>
