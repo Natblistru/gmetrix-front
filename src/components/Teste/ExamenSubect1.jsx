@@ -11,6 +11,20 @@ const ExamenSubect1 = () => {
   const { address } = useParams();
   const [item, setItem] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [text, setText] = useState("You can edit this text! Cupcake ipsum dolor sit amet liquorice fruitcake. Candy canes jelly beans sweet roll cupcake lollipop. Powder carrot cake toffee brownie. Marshmallow sweet rolldonut. Chocolate cake apple pie candy canes tiramisudragée wafer. Croissant cookie lemon drops tiramisu jelly-o donut. Sweet gummi bears ice cream.");
+  const [idx, setIdx] = useState(1);
+  const speed = 100;
+
+  useEffect(() => {
+    if (idx > text.length) {
+      return; // Stop the animation if idx exceeds the length of the text
+    }
+    const interval = setInterval(() => {
+      setIdx((prevIdx) => (prevIdx >= text.length ? prevIdx : prevIdx + 1));
+    }, speed);
+
+    return () => clearInterval(interval);
+  }, [text]);
 
   const history = useHistory();
 
@@ -54,14 +68,7 @@ const ExamenSubect1 = () => {
                   <div className="paper">
                     <div className="lines">
                       <div className="text" contenteditable spellcheck="false">
-                        You can edit this text! <br />
-                        <br />
-                        Cupcake ipsum dolor sit amet liquorice fruitcake. Candy
-                        canes jelly beans sweet roll cupcake lollipop. Powder
-                        carrot cake toffee brownie. Marshmallow sweet roll
-                        donut. Chocolate cake apple pie candy canes tiramisu
-                        dragée wafer. Croissant cookie lemon drops tiramisu
-                        jelly-o donut. Sweet gummi bears ice cream.
+                      {text.slice(0, idx)}
                       </div>
                     </div>
                     <div className="holes hole-top"></div>
