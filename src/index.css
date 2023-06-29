@@ -951,7 +951,7 @@ margin: 1em 0;
   background: rgba(255,255,255,0.9);
   margin: -275px -225px;
   left: 34%;
-  top: 81%;
+  top: 78%;
   box-shadow: 0px 0px 5px 0px #888;
 }
 .paper::before {
@@ -997,3 +997,5 @@ margin: 1em 0;
 .hole-bottom {
   bottom: 10%;
 }
+
+

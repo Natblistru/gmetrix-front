@@ -6,14 +6,18 @@ import Breadcrumb from "../Breadcrumb";
 import TitleBox from "../TitleBox";
 import ItemAccordeon from "../Accordeon/ItemAccordeon";
 import ItemText from "../Accordeon/ItemText";
+import ModalForm from "../Modal/ModalForm";
 
 const ExamenSubect1 = () => {
   const { address } = useParams();
   const [item, setItem] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [text, setText] = useState("You can edit this text! Cupcake ipsum dolor sit amet liquorice fruitcake. Candy canes jelly beans sweet roll cupcake lollipop. Powder carrot cake toffee brownie. Marshmallow sweet rolldonut. Chocolate cake apple pie candy canes tiramisudragée wafer. Croissant cookie lemon drops tiramisu jelly-o donut. Sweet gummi bears ice cream.");
+  const [text, setText] = useState(
+    "You can edit this text! Cupcake ipsum dolor sit amet liquorice fruitcake. Candy canes jelly beans sweet roll cupcake lollipop. Powder carrot cake toffee brownie. Marshmallow sweet rolldonut. Chocolate cake apple pie candy canes tiramisudragée wafer. Croissant cookie lemon drops tiramisu jelly-o donut. Sweet gummi bears ice cream."
+  );
   const [idx, setIdx] = useState(1);
-  const speed = 100;
+  const [isOpen, setIsOpen] = useState(false);
+  const speed = 50;
 
   useEffect(() => {
     if (idx > text.length) {
@@ -54,6 +58,15 @@ const ExamenSubect1 = () => {
     }
     setCurrentIndex(0);
   }, []);
+
+  const openModal = () => {
+    setIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsOpen(false);
+  };
+
   return (
     <Wrapper>
       {item && (
@@ -67,9 +80,7 @@ const ExamenSubect1 = () => {
                 <div>
                   <div className="paper">
                     <div className="lines">
-                      <div className="text" contenteditable spellcheck="false">
-                      {text.slice(0, idx)}
-                      </div>
+                      <div className="text">{text.slice(0, idx)}</div>
                     </div>
                     <div className="holes hole-top"></div>
                     <div className="holes hole-middle"></div>
@@ -84,6 +95,18 @@ const ExamenSubect1 = () => {
                 />
               </div>
             </ItemText>
+            <button onClick={openModal}>Открыть модальное окно</button>
+            {isOpen && (
+              <ModalForm onClick={closeModal}/>
+              // <div className="modal-subject">
+              //   <div className="modal-content">
+              //     <h2>Модальное окно</h2>
+              //     <p>Содержимое модального окна.</p>
+              //     <button onClick={closeModal}>Закрыть</button>
+              //   </div>
+              // </div>
+            )
+            }
           </ItemAccordeon>
         </>
       )}
