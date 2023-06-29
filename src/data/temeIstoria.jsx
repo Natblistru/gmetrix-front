@@ -1130,14 +1130,14 @@ let temeIstoria = [
                         type: "words",
                         sarcina:
                           "Aranjează evenimentele istorice în ordine cronologică:",
-                          answers: [
-                            {
-                              text: "În perioada ;<1914>;-;<1916>; România a fost ;<neutră>;, deși avea un tratat de alianță cu ;<Tripla Alianță>;. Au existat dezbateri în țară privind participarea la război, iar în cele din urmă, pe ;<4 august 1916>;, România a semnat un tratat de alianță cu ;<Antanta>;, care prevedea eliberarea ;<Transilvaniei>; și realizarea unității naționale.",
-                              textAdditional: ["1918", "1919"],
-                              rezolvare:
-                                "În perioada 1914-1916, România a fost neutră, deși avea un tratat de alianță cu Tripla Alianță. Au existat dezbateri în țară privind participarea la război, iar în cele din urmă, pe 4 august 1916, România a semnat un tratat de alianță cu Antanta, care prevedea eliberarea Transilvaniei și realizarea unității naționale.",
-                            },
-                          ],
+                        answers: [
+                          {
+                            text: "În perioada ;<1914>;-;<1916>; România a fost ;<neutră>;, deși avea un tratat de alianță cu ;<Tripla Alianță>;. Au existat dezbateri în țară privind participarea la război, iar în cele din urmă, pe ;<4 august 1916>;, România a semnat un tratat de alianță cu ;<Antanta>;, care prevedea eliberarea ;<Transilvaniei>; și realizarea unității naționale.",
+                            textAdditional: ["1918", "1919"],
+                            rezolvare:
+                              "În perioada 1914-1916, România a fost neutră, deși avea un tratat de alianță cu Tripla Alianță. Au existat dezbateri în țară privind participarea la război, iar în cele din urmă, pe 4 august 1916, România a semnat un tratat de alianță cu Antanta, care prevedea eliberarea Transilvaniei și realizarea unității naționale.",
+                          },
+                        ],
                       },
                     ],
                     // cerinte: "Persoana reprezentată în imagine:",
@@ -1239,14 +1239,14 @@ let temeIstoria = [
                         type: "words",
                         sarcina:
                           "Aranjează evenimentele istorice în ordine cronologică:",
-                          answers: [
-                            {
-                              text: "În perioada ;<1914>;-;<1916>; România a fost ;<neutră>;, deși avea un tratat de alianță cu ;<Tripla Alianță>;. Au existat dezbateri în țară privind participarea la război, iar în cele din urmă, pe ;<4 august 1916>;, România a semnat un tratat de alianță cu ;<Antanta>;, care prevedea eliberarea ;<Transilvaniei>; și realizarea unității naționale.",
-                              textAdditional: ["1918", "1919"],
-                              rezolvare:
-                                "În perioada 1914-1916, România a fost neutră, deși avea un tratat de alianță cu Tripla Alianță. Au existat dezbateri în țară privind participarea la război, iar în cele din urmă, pe 4 august 1916, România a semnat un tratat de alianță cu Antanta, care prevedea eliberarea Transilvaniei și realizarea unității naționale.",
-                            },
-                          ],
+                        answers: [
+                          {
+                            text: "În perioada ;<1914>;-;<1916>; România a fost ;<neutră>;, deși avea un tratat de alianță cu ;<Tripla Alianță>;. Au existat dezbateri în țară privind participarea la război, iar în cele din urmă, pe ;<4 august 1916>;, România a semnat un tratat de alianță cu ;<Antanta>;, care prevedea eliberarea ;<Transilvaniei>; și realizarea unității naționale.",
+                            textAdditional: ["1918", "1919"],
+                            rezolvare:
+                              "În perioada 1914-1916, România a fost neutră, deși avea un tratat de alianță cu Tripla Alianță. Au existat dezbateri în țară privind participarea la război, iar în cele din urmă, pe 4 august 1916, România a semnat un tratat de alianță cu Antanta, care prevedea eliberarea Transilvaniei și realizarea unității naționale.",
+                          },
+                        ],
                       },
                     ],
                     // cerinte: "Persoana reprezentată în imagine:",
@@ -1479,9 +1479,33 @@ let temeIstoria = [
           },
         ],
         aplicatii: [
-          { id: "1", name: "Aplicatia 1", complexity: "лёгкое" },
-          { id: "2", name: "Aplicatia 2", complexity: "лёгкое" },
-          { id: "3", name: "Aplicatia 3", complexity: "лёгкое" },
+          {
+            id: "1",
+            name: "Subiectul I",
+            complexity: "лёгкое",
+            path: "/subtema1",
+            addressDisciplina: "/istoria",
+            addressSubtitle: "/romania-in-primul-razboi",
+            addressSubject: "/examen-subiect1",
+            addressAplicatie: "/romania-in-primul-razboi/examen-subiect1",
+            breadcrumb: [
+              { name: "Discipline", path: "/" },
+              { name: "Istoria", path: "/istoria" },
+              {
+                name: "România în Primul Război Mondial",
+                path: "/istoria/romania-in-primul-razboi",
+              },
+            ],
+            quizArray: [
+              {
+                id: "1",
+                cerinte: "Studiază coperta cărții. Numește un fapt istoric pe care autorul îl poate utiliza pentru a justifica titlul cărții. Argumentează răspunsul.",
+                img: "/images/carte_planul_marshall.jpg",
+              },
+            ],
+          },
+          { id: "2", name: "Subiectul II", complexity: "лёгкое" },
+          { id: "3", name: "Subiectul III", complexity: "лёгкое" },
         ],
         repere: [
           {

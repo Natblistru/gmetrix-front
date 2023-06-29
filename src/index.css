@@ -930,3 +930,70 @@ margin: 1em 0;
   margin: 0 5px;
   line-height: 3.5;
 }
+.subject1-container{
+  display: flex;
+  justify-content: space-between;
+}
+
+.subject1-container img{
+  height: 350px;
+  object-fit: cover;
+  width: 30%;
+  padding: 11px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border: 1px gray solid;
+}
+
+.paper {
+  position: absolute;
+  height: 334px;
+  width: 63%;
+  background: rgba(255,255,255,0.9);
+  margin: -275px -225px;
+  left: 34%;
+  top: 81%;
+  box-shadow: 0px 0px 5px 0px #888;
+}
+.paper::before {
+  content: '';
+  position: absolute;
+  left: 28px;
+  height: 100%;
+  width: 2px;
+  background: rgba(255,0,0,0.4);
+}
+.lines {
+  margin-top: 15px;
+  height: calc(100% - 40px);
+  width: 100%;
+  background-image: repeating-linear-gradient(white 0px, white 24px, steelblue 25px);
+}
+.text {
+  position: absolute;
+  top: 40px;
+  left: 50px;
+  bottom: 10px;
+  right: 10px;
+  line-height: 25px;
+  font-family: 'Indie Flower';
+  overflow: hidden;
+  outline: none;
+}
+.holes {
+  position: absolute;
+  left: 7px;
+  height: 15px;
+  width: 15px;
+  background: lightgoldenrodyellow;
+  border-radius: 50%;
+  box-shadow: inset 0px 0px 2px 0px #888;
+}
+.hole-top {
+  top: 10%;
+}
+.hole-middle {
+  top: 50%;
+}
+.hole-bottom {
+  bottom: 10%;
+}
