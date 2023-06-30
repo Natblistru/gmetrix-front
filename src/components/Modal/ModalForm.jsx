@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect, useRef } from "react";
 import { RaspunsuriCtx } from "../context/Raspunsuri";
 
 import "./ModalForm.css";
@@ -11,6 +11,8 @@ const ModalForm = (props) => {
   });
   const [activeTab, setActiveTab] = useState(1);
   const [modalPosition, setModalPosition] = useState({ x: 370, y: 270 });
+  const [isShown, setIsShown] = useState(false);
+  const popupRef = useRef(null);
   let hasPrev = activeTab > 1;
   let hasNext = activeTab < 3;
 
@@ -29,28 +31,28 @@ const ModalForm = (props) => {
   const moveUp = () => {
     setModalPosition((prevPosition) => ({
       ...prevPosition,
-      y: prevPosition.y - 10, 
+      y: prevPosition.y - 10,
     }));
   };
 
   const moveDown = () => {
     setModalPosition((prevPosition) => ({
       ...prevPosition,
-      y: prevPosition.y + 10, 
+      y: prevPosition.y + 10,
     }));
   };
 
   const moveLeft = () => {
     setModalPosition((prevPosition) => ({
       ...prevPosition,
-      x: prevPosition.x - 10, 
+      x: prevPosition.x - 10,
     }));
   };
 
   const moveRight = () => {
     setModalPosition((prevPosition) => ({
       ...prevPosition,
-      x: prevPosition.x + 10, 
+      x: prevPosition.x + 10,
     }));
   };
   const handleResponse = () => {
@@ -60,9 +62,25 @@ const ModalForm = (props) => {
 
     props.onClick({ ...rasp, id: IdRasp });
     SetRasp({ text1: "", text2: "", text3: "" });
-
-
   };
+
+  const handleToggleButtonClick = () => {
+    setIsShown(prevState => !prevState);
+  };
+
+  const handleButtonClick = () => {
+    if (isShown) {
+      setIsShown(false);
+    } else {
+      setIsShown(true);
+    }
+  };
+
+  // const handleOutsideClick = event => {
+  //   if (popupRef.current && !popupRef.current.contains(event.target)) {
+  //     setIsShown(false);
+  //   }
+  // };
 
   return (
     <>
@@ -106,7 +124,9 @@ const ModalForm = (props) => {
         <div className="modal-content">
           <div className={activeTab === 1 ? "active" : ""}>
             <div>
-              <label>{props.item.quizArray[props.currentIndex].cerinte[1]}</label>
+              <label>
+                {props.item.quizArray[props.currentIndex].cerinte[1]}
+              </label>
               <textarea
                 value={rasp.text1}
                 onChange={(e) => SetRasp({ ...rasp, text1: e.target.value })}
@@ -116,7 +136,9 @@ const ModalForm = (props) => {
           </div>
           <div className={activeTab === 2 ? "active" : ""}>
             <div>
-              <label>{props.item.quizArray[props.currentIndex].cerinte[2]}</label>
+              <label>
+                {props.item.quizArray[props.currentIndex].cerinte[2]}
+              </label>
               <textarea
                 value={rasp.text2}
                 onChange={(e) => SetRasp({ ...rasp, text2: e.target.value })}
@@ -126,7 +148,23 @@ const ModalForm = (props) => {
           </div>
           <div className={activeTab === 3 ? "active" : ""}>
             <div>
-              <label>{props.item.quizArray[props.currentIndex].cerinte[3]}</label>
+              <div  style={{display:'flex'}}>
+                <label>
+                  {props.item.quizArray[props.currentIndex].cerinte[3]}
+                </label>
+                <div className="popup-menu-container">
+                  <button className="btn-reper" onClick={handleButtonClick}>
+                    Cuvinte de refetință
+                  </button>
+                  {isShown && (
+                    <div className="popup-menu" ref={popupRef}>
+                      <div style={{display:'flex', flexDirection:'column'}}><span>denumirea cărții face trimitere la...</span><span>în imagine vedem...</span></div>
+                      <button onClick={handleToggleButtonClick} className="btn-close-modal">
+                      </button>
+                    </div>
+                  )}
+                </div>
+              </div>
               <textarea
                 value={rasp.text3}
                 onChange={(e) => SetRasp({ ...rasp, text3: e.target.value })}
@@ -162,7 +200,10 @@ const ModalForm = (props) => {
             </div>
           </div>
         </div>
-        <button className="btn-close-modal" onClick={() => props.onClick(null)}></button>
+        <button
+          className="btn-close-modal"
+          onClick={() => props.onClick(null)}
+        ></button>
       </div>
       <div className="modal-arrows">
         <div className="arrow-container">
