@@ -14,6 +14,7 @@ import TestGeneralizator from './components/Teste/TestGeneralizator';
 import FlipCards from './components/FlipCards/FlipCards';
 import ExamenSubect1 from './components/Teste/ExamenSubect1';
 import Error from './components/Error'
+import Raspunsuri from './components/context/Raspunsuri';
 
 const FlipCardsWithRouter = withRouter(FlipCards);
 const TestWithRouter = withRouter(Test);
@@ -53,6 +54,7 @@ function App() {
          <Route path="*">
           <Error />
         </Route> */}
+    <Raspunsuri>
     <Switch>
       <Route exact path="/" render={() => <Redirect to="/home" />} />
       <Route path="/istoria/:address/examen-subiect1" component={ExamenSubect1} />  
@@ -73,6 +75,7 @@ function App() {
 
       <Route component={Error} />
     </Switch>
+    </Raspunsuri>
       </div>
     </div>
   );

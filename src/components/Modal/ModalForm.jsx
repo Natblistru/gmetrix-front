@@ -1,6 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { RaspunsuriCtx } from "../context/Raspunsuri";
+
 import "./ModalForm.css";
 const ModalForm = (props) => {
+  const { add } = useContext(RaspunsuriCtx);
+  const [rasp, SetRasp] = useState({
+    text1: "",
+    text2: "",
+    text3: "",
+  });
   const [activeTab, setActiveTab] = useState(1);
   const [modalPosition, setModalPosition] = useState({ x: 370, y: 270 });
   let hasPrev = activeTab > 1;
@@ -21,30 +29,41 @@ const ModalForm = (props) => {
   const moveUp = () => {
     setModalPosition((prevPosition) => ({
       ...prevPosition,
-      y: prevPosition.y - 10, // Измените значение сдвига по вертикали по вашему усмотрению
+      y: prevPosition.y - 10, 
     }));
   };
 
   const moveDown = () => {
     setModalPosition((prevPosition) => ({
       ...prevPosition,
-      y: prevPosition.y + 10, // Измените значение сдвига по вертикали по вашему усмотрению
+      y: prevPosition.y + 10, 
     }));
   };
 
   const moveLeft = () => {
     setModalPosition((prevPosition) => ({
       ...prevPosition,
-      x: prevPosition.x - 10, // Измените значение сдвига по горизонтали по вашему усмотрению
+      x: prevPosition.x - 10, 
     }));
   };
 
   const moveRight = () => {
     setModalPosition((prevPosition) => ({
       ...prevPosition,
-      x: prevPosition.x + 10, // Измените значение сдвига по горизонтали по вашему усмотрению
+      x: prevPosition.x + 10, 
     }));
   };
+  const handleResponse = () => {
+    const IdRasp = Date.now();
+    console.log({ ...rasp, id: IdRasp });
+    add({ ...rasp, id: IdRasp });
+
+    props.onClick({ ...rasp, id: IdRasp });
+    SetRasp({ text1: "", text2: "", text3: "" });
+
+
+  };
+
   return (
     <>
       <div
@@ -87,24 +106,36 @@ const ModalForm = (props) => {
         <div className="modal-content">
           <div className={activeTab === 1 ? "active" : ""}>
             <div>
-              <label>Message1</label>
-              <textarea rows="5"></textarea>
+              <label>{props.item.quizArray[props.currentIndex].cerinte[1]}</label>
+              <textarea
+                value={rasp.text1}
+                onChange={(e) => SetRasp({ ...rasp, text1: e.target.value })}
+                rows="5"
+              ></textarea>
             </div>
           </div>
           <div className={activeTab === 2 ? "active" : ""}>
             <div>
-              <label>Message2</label>
-              <textarea rows="5"></textarea>
+              <label>{props.item.quizArray[props.currentIndex].cerinte[2]}</label>
+              <textarea
+                value={rasp.text2}
+                onChange={(e) => SetRasp({ ...rasp, text2: e.target.value })}
+                rows="5"
+              ></textarea>
             </div>
           </div>
           <div className={activeTab === 3 ? "active" : ""}>
             <div>
-              <label>Message3</label>
-              <textarea rows="5"></textarea>
+              <label>{props.item.quizArray[props.currentIndex].cerinte[3]}</label>
+              <textarea
+                value={rasp.text3}
+                onChange={(e) => SetRasp({ ...rasp, text3: e.target.value })}
+                rows="5"
+              ></textarea>
             </div>
           </div>
           <div className="button-nav">
-            <button className="btn" onClick={props.onClick}>
+            <button className="btn" onClick={handleResponse}>
               Răspunde
             </button>
             <div className="button-group">
@@ -131,22 +162,8 @@ const ModalForm = (props) => {
             </div>
           </div>
         </div>
-        <button className="btn-close-modal" onClick={props.onClick}></button>
+        <button className="btn-close-modal" onClick={() => props.onClick(null)}></button>
       </div>
-      {/* <div className="modal-arrows">
-        <button className="arrow-btn" onClick={moveUp}>
-          ↑
-        </button>
-        <button className="arrow-btn" onClick={moveDown}>
-          ↓
-        </button>
-        <button className="arrow-btn" onClick={moveLeft}>
-          ←
-        </button>
-        <button className="arrow-btn" onClick={moveRight}>
-          →
-        </button>
-      </div> */}
       <div className="modal-arrows">
         <div className="arrow-container">
           <div className="arrow arrow--up" onClick={moveUp}>

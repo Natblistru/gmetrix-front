@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useParams, useHistory } from "react-router-dom";
+import { RaspunsuriCtx } from "../context/Raspunsuri";
 import temeIstoriArray from "../../data/temeIstoria";
 import Wrapper from "../Wrapper";
 import Breadcrumb from "../Breadcrumb";
@@ -10,17 +11,16 @@ import ModalForm from "../Modal/ModalForm";
 
 const ExamenSubect1 = () => {
   const { address } = useParams();
+  const { raspunsuri } = useContext(RaspunsuriCtx);
   const [item, setItem] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [text, setText] = useState(
-    "You can edit this text! Cupcake ipsum dolor sit amet liquorice fruitcake. Candy canes jelly beans sweet roll cupcake lollipop. Powder carrot cake toffee brownie. Marshmallow sweet rolldonut. Chocolate cake apple pie candy canes tiramisudragée wafer. Croissant cookie lemon drops tiramisu jelly-o donut. Sweet gummi bears ice cream."
-  );
+  const [text, setText] = useState("");
   const [idx, setIdx] = useState(1);
   const [isOpen, setIsOpen] = useState(false);
   const speed = 50;
 
   useEffect(() => {
-    if (idx > text.length) {
+    if (idx > text?.length) {
       return; // Stop the animation if idx exceeds the length of the text
     }
     const interval = setInterval(() => {
@@ -28,7 +28,7 @@ const ExamenSubect1 = () => {
     }, speed);
 
     return () => clearInterval(interval);
-  }, [text]);
+  }, [text, idx]);
 
   const history = useHistory();
 
@@ -63,7 +63,14 @@ const ExamenSubect1 = () => {
     setIsOpen(true);
   };
 
-  const closeModal = () => {
+  const closeModal = (textRaspuns) => {
+    console.log(raspunsuri);
+    if (textRaspuns !== null) {
+      const obj = { ...textRaspuns };
+      if (!textRaspuns.text3) setText(obj.text1 + obj.text2);
+      else setText(obj.text1 + obj.text3);
+      setIdx(1);
+    }
     setIsOpen(false);
   };
 
@@ -75,7 +82,7 @@ const ExamenSubect1 = () => {
           <TitleBox className="teme-container">{item.name}</TitleBox>
           <ItemAccordeon titlu="Cerințele sarcinii" open={true}>
             <ItemText>
-              <p>{item.quizArray[currentIndex].cerinte}</p>
+              <p>{item.quizArray[currentIndex].cerinte[0]}</p>
               <div className="subject1-container">
                 <div>
                   <div className="paper">
@@ -85,10 +92,16 @@ const ExamenSubect1 = () => {
                     <div className="holes hole-top"></div>
                     <div className="holes hole-middle"></div>
                     <div className="holes hole-bottom"></div>
-                    <img className="edit-img" src={process.env.PUBLIC_URL + '/images/edit-button.png'} onClick={openModal} alt="" />
+                    <img
+                      className="edit-img"
+                      src={process.env.PUBLIC_URL + "/images/edit-button.png"}
+                      onClick={openModal}
+                      alt=""
+                    />
                   </div>
                 </div>
-                <img className="img-subject"
+                <img
+                  className="img-subject"
                   src={
                     process.env.PUBLIC_URL + item.quizArray[currentIndex].img
                   }
@@ -96,18 +109,14 @@ const ExamenSubect1 = () => {
                 />
               </div>
             </ItemText>
-            
+
             {isOpen && (
-              <ModalForm onClick={closeModal}/>
-              // <div className="modal-subject">
-              //   <div className="modal-content">
-              //     <h2>Модальное окно</h2>
-              //     <p>Содержимое модального окна.</p>
-              //     <button onClick={closeModal}>Закрыть</button>
-              //   </div>
-              // </div>
-            )
-            }
+              <ModalForm
+                onClick={closeModal}
+                item={item}
+                currentIndex={currentIndex}
+              />
+            )}
           </ItemAccordeon>
         </>
       )}
