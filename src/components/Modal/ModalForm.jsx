@@ -131,7 +131,7 @@ const ModalForm = (props) => {
             </div>
           </div>
         </div>
-        <button class="btn-close-modal" onClick={props.onClick}></button>
+        <button className="btn-close-modal" onClick={props.onClick}></button>
       </div>
       {/* <div className="modal-arrows">
         <button className="arrow-btn" onClick={moveUp}>

@@ -85,9 +85,10 @@ const ExamenSubect1 = () => {
                     <div className="holes hole-top"></div>
                     <div className="holes hole-middle"></div>
                     <div className="holes hole-bottom"></div>
+                    <img className="edit-img" src={process.env.PUBLIC_URL + '/images/edit-button.png'} onClick={openModal} alt="" />
                   </div>
                 </div>
-                <img
+                <img className="img-subject"
                   src={
                     process.env.PUBLIC_URL + item.quizArray[currentIndex].img
                   }
@@ -95,7 +96,7 @@ const ExamenSubect1 = () => {
                 />
               </div>
             </ItemText>
-            <button onClick={openModal}>Открыть модальное окно</button>
+            
             {isOpen && (
               <ModalForm onClick={closeModal}/>
               // <div className="modal-subject">
