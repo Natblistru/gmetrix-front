@@ -65,7 +65,7 @@ const ModalForm = (props) => {
   };
 
   const handleToggleButtonClick = () => {
-    setIsShown(prevState => !prevState);
+    setIsShown((prevState) => !prevState);
   };
 
   const handleButtonClick = () => {
@@ -148,7 +148,7 @@ const ModalForm = (props) => {
           </div>
           <div className={activeTab === 3 ? "active" : ""}>
             <div>
-              <div  style={{display:'flex'}}>
+              <div style={{ display: "flex" }}>
                 <label>
                   {props.item.quizArray[props.currentIndex].cerinte[3]}
                 </label>
@@ -158,9 +158,15 @@ const ModalForm = (props) => {
                   </button>
                   {isShown && (
                     <div className="popup-menu" ref={popupRef}>
-                      <div style={{display:'flex', flexDirection:'column'}}><span>denumirea cărții face trimitere la...</span><span>în imagine vedem...</span></div>
-                      <button onClick={handleToggleButtonClick} className="btn-close-modal">
-                      </button>
+                      <div style={{ display: "flex", flexDirection: "column" }}>
+                        {props.item.quizArray[props.currentIndex].cuvinteReferinta.map((cuv) => (
+                          <span>{cuv}</span>
+                        ))}
+                      </div>
+                      <button
+                        onClick={handleToggleButtonClick}
+                        className="btn-close-modal"
+                      ></button>
                     </div>
                   )}
                 </div>

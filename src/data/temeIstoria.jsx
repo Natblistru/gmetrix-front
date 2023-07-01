@@ -1501,6 +1501,7 @@ let temeIstoria = [
                 id: "1",
                 cerinte: ["Studiază coperta cărții. Numește un fapt istoric pe care autorul îl poate utiliza pentru a justifica titlul cărții. Argumentează răspunsul.", "Numește un fapt istoric pe care autorul îl poate utiliza pentru a justifica titlul cărții.","Argumentează răspunsul fără referire la imagine.", "Argumentează răspunsul cu referire la copertă." ],
                 img: "/images/carte_planul_marshall.jpg",
+                cuvinteReferinta: ["denumirea cărții face trimitere la...", "în imagine vedem..."]
               },
             ],
           },
