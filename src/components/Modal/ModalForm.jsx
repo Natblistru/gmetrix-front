@@ -12,7 +12,6 @@ const ModalForm = (props) => {
   const [activeTab, setActiveTab] = useState(1);
   const [modalPosition, setModalPosition] = useState({ x: 370, y: 270 });
   const [isShown, setIsShown] = useState(false);
-  const popupRef = useRef(null);
   let hasPrev = activeTab > 1;
   let hasNext = activeTab < 3;
 
@@ -75,12 +74,6 @@ const ModalForm = (props) => {
       setIsShown(true);
     }
   };
-
-  // const handleOutsideClick = event => {
-  //   if (popupRef.current && !popupRef.current.contains(event.target)) {
-  //     setIsShown(false);
-  //   }
-  // };
 
   return (
     <>
@@ -156,19 +149,19 @@ const ModalForm = (props) => {
                   <button className="btn-reper" onClick={handleButtonClick}>
                     Cuvinte de refetință
                   </button>
-                  {isShown && (
-                    <div className="popup-menu" ref={popupRef}>
-                      <div style={{ display: "flex", flexDirection: "column" }}>
-                        {props.item.quizArray[props.currentIndex].cuvinteReferinta.map((cuv) => (
-                          <span>{cuv}</span>
-                        ))}
-                      </div>
-                      <button
-                        onClick={handleToggleButtonClick}
-                        className="btn-close-modal"
-                      ></button>
+                  <div className={`popup-menu ${isShown ? "shown" : ""}`}>
+                    <div style={{ display: "flex", flexDirection: "column" }}>
+                      {props.item.quizArray[
+                        props.currentIndex
+                      ].cuvinteReferinta.map((cuv) => (
+                        <span>{cuv}</span>
+                      ))}
                     </div>
-                  )}
+                    <button
+                      onClick={handleToggleButtonClick}
+                      className="btn-close-modal"
+                    ></button>
+                  </div>
                 </div>
               </div>
               <textarea

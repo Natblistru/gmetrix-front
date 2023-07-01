@@ -1074,8 +1074,8 @@ transition: color 150ms ease-in-out;
 .popup-menu {
   position: absolute;
   z-index: 2;
-  transform: scale(1);
-  transform-origin: top left;
+  transform: scale(0);
+  transform-origin: top right;
   
   min-width: 10rem;
   margin-top: 0.5rem;
