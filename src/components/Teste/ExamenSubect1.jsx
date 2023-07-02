@@ -66,10 +66,9 @@ const ExamenSubect1 = () => {
   };
 
   const closeModal = (textRaspuns) => {
-    // console.log(raspunsuri);
-    if (
-      (!textRaspuns.text1 && !textRaspuns.text3)
-    ) {
+     console.log(textRaspuns);
+     if(textRaspuns!==null) {
+    if (!textRaspuns.text1 && !textRaspuns.text3) {
       setIsAnswered(false);
     } else {
       const obj = { ...textRaspuns };
@@ -78,16 +77,16 @@ const ExamenSubect1 = () => {
       setIdx(1);
       setIsAnswered(true);
     }
+  }
     setIsOpen(false);
   };
   const handleTryAgain = () => {
-      setCurrentIndex(
-        item.quizArray.length - 1 === currentIndex ? 0 : currentIndex + 1
-      );
-      setIsAnswered(false);
-      setShowResponse(false);
-      setText("");
-
+    setCurrentIndex(
+      item.quizArray.length - 1 === currentIndex ? 0 : currentIndex + 1
+    );
+    setIsAnswered(false);
+    setShowResponse(false);
+    setText("");
   };
 
   return (
@@ -101,7 +100,6 @@ const ExamenSubect1 = () => {
               {console.log(currentIndex)}
               <p>{item.quizArray[currentIndex].cerinte[0]}</p>
               <div className="subject1-container">
-                {/* <div> */}
                 <div className="paper">
                   <div className="lines">
                     <div className="text">{text.slice(0, idx)}</div>
@@ -116,7 +114,6 @@ const ExamenSubect1 = () => {
                     alt=""
                   />
                 </div>
-                {/* </div> */}
                 <img
                   className="img-subject"
                   src={
@@ -128,11 +125,13 @@ const ExamenSubect1 = () => {
             </ItemText>
 
             {isOpen && (
-              <ModalForm
-                onClick={closeModal}
-                item={item}
-                currentIndex={currentIndex}
-              />
+              <div className="modal-overlay">
+                <ModalForm
+                  onClick={closeModal}
+                  item={item}
+                  currentIndex={currentIndex}
+                />
+              </div>
             )}
             {isAnswered === true && (
               <button
@@ -155,9 +154,7 @@ const ExamenSubect1 = () => {
                 <br />
                 {item.quizArray[currentIndex].raspuns[1]}
               </ItemText>
-              <button
-                onClick={handleTryAgain} className="btn-test"
-              >
+              <button onClick={handleTryAgain} className="btn-test">
                 Încearcă din nou!
               </button>
             </ItemAccordeon>
