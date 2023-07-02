@@ -15,13 +15,19 @@ const ExamenSubect1 = () => {
   const [item, setItem] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [text, setText] = useState("");
+  const [text1, setText1] = useState("");
   const [idx, setIdx] = useState(1);
+  const [idx1, setIdx1] = useState(1);
+  const [startNext, setStartNext] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [isAnswered, setIsAnswered] = useState(false);
   const [showResponse, setShowResponse] = useState(false);
   const speed = 50;
 
   useEffect(() => {
+    if (idx == text?.length) {
+      setStartNext(true);
+    }
     if (idx > text?.length) {
       return; // Stop the animation if idx exceeds the length of the text
     }
@@ -31,6 +37,19 @@ const ExamenSubect1 = () => {
 
     return () => clearInterval(interval);
   }, [text, idx]);
+
+  useEffect(() => {
+    if(startNext) {
+    if (idx1 > text1?.length) {
+      return; // Stop the animation if idx exceeds the length of the text
+    }
+    const interval1 = setInterval(() => {
+      setIdx1((prevIdx1) => (prevIdx1 >= text1.length ? prevIdx1 : prevIdx1 + 1));
+    }, speed);
+
+    return () => clearInterval(interval1);
+  }
+  }, [text1, idx1,startNext]);
 
   const history = useHistory();
 
@@ -66,14 +85,15 @@ const ExamenSubect1 = () => {
   };
 
   const closeModal = (textRaspuns) => {
-     console.log(textRaspuns);
+    //  console.log(textRaspuns);
      if(textRaspuns!==null) {
     if (!textRaspuns.text1 && !textRaspuns.text3) {
       setIsAnswered(false);
     } else {
       const obj = { ...textRaspuns };
-      if (!textRaspuns.text3) setText(obj.text1 + obj.text2);
-      else setText(obj.text1 + obj.text3);
+      setText(obj.text1)
+      if (!textRaspuns.text3) setText1(obj.text2);
+      else setText1(obj.text3);
       setIdx(1);
       setIsAnswered(true);
     }
@@ -87,6 +107,10 @@ const ExamenSubect1 = () => {
     setIsAnswered(false);
     setShowResponse(false);
     setText("");
+    setText1("");
+    setIdx(1);
+    setIdx1(1);
+    setStartNext(false)
   };
 
   return (
@@ -97,12 +121,12 @@ const ExamenSubect1 = () => {
           <TitleBox className="teme-container">{item.name}</TitleBox>
           <ItemAccordeon titlu="Cerințele sarcinii" open={true}>
             <ItemText>
-              {console.log(currentIndex)}
+              {/* {console.log(currentIndex)} */}
               <p>{item.quizArray[currentIndex].cerinte[0]}</p>
               <div className="subject1-container">
                 <div className="paper">
                   <div className="lines">
-                    <div className="text">{text.slice(0, idx)}</div>
+                    <div className="text">{text.slice(0, idx)} <br/>{startNext? text1.slice(0, idx1):""}</div>
                   </div>
                   <div className="holes hole-top"></div>
                   <div className="holes hole-middle"></div>
