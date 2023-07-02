@@ -76,7 +76,7 @@ const ModalForm = (props) => {
   };
 
   return (
-    <>
+    <div className="modal-overlay">
       <div
         className="modal-subject"
         style={{
@@ -229,7 +229,7 @@ const ModalForm = (props) => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 export default ModalForm;

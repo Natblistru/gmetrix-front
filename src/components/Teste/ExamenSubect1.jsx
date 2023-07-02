@@ -149,13 +149,11 @@ const ExamenSubect1 = () => {
             </ItemText>
 
             {isOpen && (
-              <div className="modal-overlay">
                 <ModalForm
                   onClick={closeModal}
                   item={item}
                   currentIndex={currentIndex}
                 />
-              </div>
             )}
             {isAnswered === true && (
               <button
