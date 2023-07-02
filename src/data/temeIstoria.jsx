@@ -1499,22 +1499,99 @@ let temeIstoria = [
             quizArray: [
               {
                 id: "1",
-                cerinte: ["Studiază coperta cărții. Numește un fapt istoric pe care autorul îl poate utiliza pentru a justifica titlul cărții. Argumentează răspunsul.", "Numește un fapt istoric pe care autorul îl poate utiliza pentru a justifica titlul cărții (nu uita să indici data).","Argumentează răspunsul fără referire la imagine.", "Argumentează răspunsul cu referire la copertă." ],
+                cerinte: [
+                  "Studiază coperta cărții. Numește un fapt istoric pe care autorul îl poate utiliza pentru a justifica titlul cărții. Argumentează răspunsul.",
+                  "Numește un fapt istoric pe care autorul îl poate utiliza pentru a justifica titlul cărții (nu uita să indici data).",
+                  "Argumentează răspunsul fără referire la imagine.",
+                  "Argumentează răspunsul cu referire la copertă.",
+                ],
                 img: "/images/carte_planul_marshall.jpg",
-                cuvinteReferinta: ["denumirea cărții face trimitere la...", "în imagine vedem..."],
-                raspuns: ['Fapt istoric: semnarea Pactului Molotov-Ribentrop din 23 august 1939','Argument: pe coperta cărții se vede denumirea "Pactului Molotov-Ribentrop", iar pe fotografie se văd semnatarii acestui document - Molotov și Ribentrop']
+                cuvinteReferinta: [
+                  "denumirea cărții face trimitere la...",
+                  "în imagine vedem...",
+                ],
+                raspuns: [
+                  "Fapt istoric: semnarea Pactului Molotov-Ribentrop din 23 august 1939",
+                  'Argument: pe coperta cărții se vede denumirea "Pactului Molotov-Ribentrop", iar pe fotografie se văd semnatarii acestui document - Molotov și Ribentrop',
+                ],
               },
               {
                 id: "2",
-                cerinte: ["Studiază coperta cărții. Numește un fapt istoric pe care autorul îl poate utiliza pentru a justifica titlul cărții. Argumentează răspunsul.", "Numește un fapt istoric pe care autorul îl poate utiliza pentru a justifica titlul cărții.","Argumentează răspunsul fără referire la imagine.", "Argumentează răspunsul cu referire la copertă." ],
+                cerinte: [
+                  "Studiază coperta cărții. Numește un fapt istoric pe care autorul îl poate utiliza pentru a justifica titlul cărții. Argumentează răspunsul.",
+                  "Numește un fapt istoric pe care autorul îl poate utiliza pentru a justifica titlul cărții.",
+                  "Argumentează răspunsul fără referire la imagine.",
+                  "Argumentează răspunsul cu referire la copertă.",
+                ],
                 img: "/images/carte_planul_marshall.jpg",
-                cuvinteReferinta: ["denumirea cărții face trimitere la...", "în imagine vedem..."],
-                raspuns: ['Fapt istoric: semnarea Pactului Molotov-Ribentrop din 23 august 1939','Argument: pe coperta cărții se vede denumirea "Pactului Molotov-Ribentrop", iar pe fotografie se văd semnatarii acestui document - Molotov și Ribentrop']
+                cuvinteReferinta: [
+                  "denumirea cărții face trimitere la...",
+                  "în imagine vedem...",
+                ],
+                raspuns: [
+                  "Fapt istoric: semnarea Pactului Molotov-Ribentrop din 23 august 1939",
+                  'Argument: pe coperta cărții se vede denumirea "Pactului Molotov-Ribentrop", iar pe fotografie se văd semnatarii acestui document - Molotov și Ribentrop',
+                ],
               },
             ],
           },
           { id: "2", name: "Subiectul II", complexity: "лёгкое" },
-          { id: "3", name: "Subiectul III", complexity: "лёгкое" },
+          {
+            id: "3",
+            name: "Subiectul III",
+            complexity: "лёгкое",
+            path: "/subtema1",
+            addressDisciplina: "/istoria",
+            addressSubtitle: "/romania-in-primul-razboi",
+            addressSubject: "/examen-subiect3",
+            addressAplicatie: "/romania-in-primul-razboi/examen-subiect3",
+            breadcrumb: [
+              { name: "Discipline", path: "/" },
+              { name: "Istoria", path: "/istoria" },
+              {
+                name: "România în Primul Război Mondial",
+                path: "/istoria/romania-in-primul-razboi",
+              },
+            ],
+            quizArray: [
+              {
+                id: "1",
+                cerinte: [
+                  "Studiază sursele A-C",
+                  "Numește un fapt istoric pe care autorul îl poate utiliza pentru a justifica titlul cărții (nu uita să indici data).",
+                  "Argumentează răspunsul fără referire la imagine.",
+                  "Argumentează răspunsul cu referire la copertă.",
+                ],
+                img: "/images/carte_planul_marshall.jpg",
+                cuvinteReferinta: [
+                  "denumirea cărții face trimitere la...",
+                  "în imagine vedem...",
+                ],
+                raspuns: [
+                  "Fapt istoric: semnarea Pactului Molotov-Ribentrop din 23 august 1939",
+                  'Argument: pe coperta cărții se vede denumirea "Pactului Molotov-Ribentrop", iar pe fotografie se văd semnatarii acestui document - Molotov și Ribentrop',
+                ],
+              },
+              {
+                id: "2",
+                cerinte: [
+                  "Studiază coperta cărții. Numește un fapt istoric pe care autorul îl poate utiliza pentru a justifica titlul cărții. Argumentează răspunsul.",
+                  "Numește un fapt istoric pe care autorul îl poate utiliza pentru a justifica titlul cărții.",
+                  "Argumentează răspunsul fără referire la imagine.",
+                  "Argumentează răspunsul cu referire la copertă.",
+                ],
+                img: "/images/carte_planul_marshall.jpg",
+                cuvinteReferinta: [
+                  "denumirea cărții face trimitere la...",
+                  "în imagine vedem...",
+                ],
+                raspuns: [
+                  "Fapt istoric: semnarea Pactului Molotov-Ribentrop din 23 august 1939",
+                  'Argument: pe coperta cărții se vede denumirea "Pactului Molotov-Ribentrop", iar pe fotografie se văd semnatarii acestui document - Molotov și Ribentrop',
+                ],
+              },
+            ],
+          },
         ],
         repere: [
           {
