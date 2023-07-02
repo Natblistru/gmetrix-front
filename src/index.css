@@ -930,9 +930,12 @@ margin: 1em 0;
   margin: 0 5px;
   line-height: 3.5;
 }
-.subject1-container{
+.subject1-container {
   display: flex;
   justify-content: space-between;
+  position: relative;
+  margin-top: 15px;
+  gap: 15px;
 }
 
 .subject1-container img.img-subject{
@@ -945,13 +948,13 @@ margin: 1em 0;
 }
 
 .paper {
-  position: absolute;
-  height: 334px;
-  width: 63%;
+  position: relative;
+  height: 350px;
+  width: 70%;
   background: rgba(255,255,255,0.9);
-  margin: -275px -225px;
-  left: 34%;
-  top: 81%;
+  /* margin: -275px -225px; */
+  /* left: 211px;
+  top: 274px; */
   box-shadow: 0px 0px 5px 0px #888;
 }
 .paper::before {

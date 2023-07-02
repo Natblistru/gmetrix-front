@@ -56,7 +56,7 @@ const ModalForm = (props) => {
   };
   const handleResponse = () => {
     const IdRasp = Date.now();
-    console.log({ ...rasp, id: IdRasp });
+    // console.log({ ...rasp, id: IdRasp });
     add({ ...rasp, id: IdRasp });
 
     props.onClick({ ...rasp, id: IdRasp });
@@ -153,8 +153,8 @@ const ModalForm = (props) => {
                     <div style={{ display: "flex", flexDirection: "column" }}>
                       {props.item.quizArray[
                         props.currentIndex
-                      ].cuvinteReferinta.map((cuv) => (
-                        <span>{cuv}</span>
+                      ].cuvinteReferinta.map((cuv, idx) => (
+                        <span key={idx}>{cuv}</span>
                       ))}
                     </div>
                     <button

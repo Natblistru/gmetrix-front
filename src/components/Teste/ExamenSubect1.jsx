@@ -17,6 +17,8 @@ const ExamenSubect1 = () => {
   const [text, setText] = useState("");
   const [idx, setIdx] = useState(1);
   const [isOpen, setIsOpen] = useState(false);
+  const [isAnswered, setIsAnswered] = useState(false);
+  const [showResponse, setShowResponse] = useState(false);
   const speed = 50;
 
   useEffect(() => {
@@ -64,14 +66,28 @@ const ExamenSubect1 = () => {
   };
 
   const closeModal = (textRaspuns) => {
-    console.log(raspunsuri);
-    if (textRaspuns !== null) {
+    // console.log(raspunsuri);
+    if (
+      (!textRaspuns.text1 && !textRaspuns.text3)
+    ) {
+      setIsAnswered(false);
+    } else {
       const obj = { ...textRaspuns };
       if (!textRaspuns.text3) setText(obj.text1 + obj.text2);
       else setText(obj.text1 + obj.text3);
       setIdx(1);
+      setIsAnswered(true);
     }
     setIsOpen(false);
+  };
+  const handleTryAgain = () => {
+      setCurrentIndex(
+        item.quizArray.length - 1 === currentIndex ? 0 : currentIndex + 1
+      );
+      setIsAnswered(false);
+      setShowResponse(false);
+      setText("");
+
   };
 
   return (
@@ -82,24 +98,25 @@ const ExamenSubect1 = () => {
           <TitleBox className="teme-container">{item.name}</TitleBox>
           <ItemAccordeon titlu="Cerințele sarcinii" open={true}>
             <ItemText>
+              {console.log(currentIndex)}
               <p>{item.quizArray[currentIndex].cerinte[0]}</p>
               <div className="subject1-container">
-                <div>
-                  <div className="paper">
-                    <div className="lines">
-                      <div className="text">{text.slice(0, idx)}</div>
-                    </div>
-                    <div className="holes hole-top"></div>
-                    <div className="holes hole-middle"></div>
-                    <div className="holes hole-bottom"></div>
-                    <img
-                      className="edit-img"
-                      src={process.env.PUBLIC_URL + "/images/edit-button.png"}
-                      onClick={openModal}
-                      alt=""
-                    />
+                {/* <div> */}
+                <div className="paper">
+                  <div className="lines">
+                    <div className="text">{text.slice(0, idx)}</div>
                   </div>
+                  <div className="holes hole-top"></div>
+                  <div className="holes hole-middle"></div>
+                  <div className="holes hole-bottom"></div>
+                  <img
+                    className="edit-img"
+                    src={process.env.PUBLIC_URL + "/images/edit-button.png"}
+                    onClick={openModal}
+                    alt=""
+                  />
                 </div>
+                {/* </div> */}
                 <img
                   className="img-subject"
                   src={
@@ -117,7 +134,34 @@ const ExamenSubect1 = () => {
                 currentIndex={currentIndex}
               />
             )}
+            {isAnswered === true && (
+              <button
+                onClick={() => setShowResponse(true)}
+                className="btn-test"
+              >
+                Verifică răspunsul
+              </button>
+            )}
           </ItemAccordeon>
+          {showResponse && (
+            <ItemAccordeon
+              titlu={`Rezolvarea sarcinii (${currentIndex + 1}/${
+                item.quizArray.length
+              }):`}
+              open={true}
+            >
+              <ItemText classNameChild="">
+                {item.quizArray[currentIndex].raspuns[0]}
+                <br />
+                {item.quizArray[currentIndex].raspuns[1]}
+              </ItemText>
+              <button
+                onClick={handleTryAgain} className="btn-test"
+              >
+                Încearcă din nou!
+              </button>
+            </ItemAccordeon>
+          )}
         </>
       )}
     </Wrapper>
