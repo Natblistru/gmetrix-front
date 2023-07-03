@@ -87,13 +87,12 @@ const ExamenSubect1 = () => {
   const closeModal = (textRaspuns) => {
     //  console.log(textRaspuns);
      if(textRaspuns!==null) {
-    if (!textRaspuns.text1 && !textRaspuns.text3) {
+    if (textRaspuns.every((element) => element === '')) {
       setIsAnswered(false);
     } else {
-      const obj = { ...textRaspuns };
-      setText(obj.text1)
-      if (!textRaspuns.text3) setText1(obj.text2);
-      else setText1(obj.text3);
+      const obj = [ ...textRaspuns ];
+      setText(obj[0])
+      setText1(obj[1]);
       setIdx(1);
       setIsAnswered(true);
     }

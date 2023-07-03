@@ -1506,6 +1506,20 @@ let temeIstoria = [
                   "Argumentează răspunsul cu referire la copertă.",
                 ],
                 img: "/images/carte_planul_marshall.jpg",
+                forma: [
+                  {
+                    cerinte:
+                      "Numește un fapt istoric pe care autorul îl poate utiliza pentru a justifica titlul cărții (nu uita să indici data).",
+                    hint: [],
+                  },
+                  {
+                    cerinte: "Argumentează răspunsul cu referire la copertă.",
+                    hint: [
+                      "denumirea cărții face trimitere la...",
+                      "în imagine vedem...",
+                    ],
+                  },
+                ],
                 cuvinteReferinta: [
                   "denumirea cărții face trimitere la...",
                   "în imagine vedem...",
@@ -1519,11 +1533,25 @@ let temeIstoria = [
                 id: "2",
                 cerinte: [
                   "Studiază coperta cărții. Numește un fapt istoric pe care autorul îl poate utiliza pentru a justifica titlul cărții. Argumentează răspunsul.",
-                  "Numește un fapt istoric pe care autorul îl poate utiliza pentru a justifica titlul cărții.",
+                  "Numește un fapt istoric pe care autorul îl poate utiliza pentru a justifica titlul cărții (nu uita să indici data).",
                   "Argumentează răspunsul fără referire la imagine.",
                   "Argumentează răspunsul cu referire la copertă.",
                 ],
                 img: "/images/carte_planul_marshall.jpg",
+                forma: [
+                  {
+                    cerinte:
+                      "Numește un fapt istoric pe care autorul îl poate utiliza pentru a justifica titlul cărții (nu uita să indici data).",
+                    hint: [],
+                  },
+                  {
+                    cerinte: "Argumentează răspunsul cu referire la copertă.",
+                    hint: [
+                      "denumirea cărții face trimitere la...",
+                      "în imagine vedem...",
+                    ],
+                  },
+                ],
                 cuvinteReferinta: [
                   "denumirea cărții face trimitere la...",
                   "în imagine vedem...",
@@ -1562,13 +1590,16 @@ let temeIstoria = [
                   "Argumentează răspunsul fără referire la imagine.",
                   "Argumentează răspunsul cu referire la copertă.",
                 ],
-                afirmatia: "Reforma agrară din 1921 a contribuit la modernizarea societății românești.",
-                nota: ["Notă: În elaborarea textului vei :",
-                "- folosi sursele propuse;",
-                "- respecta coerența textului cu structura: introducere, cuprins, concluzie;",
-                "- formula cel puțin trei argumente;",
-                "- utiliza în argumentare referințe cu privire la personalități sau repere cronologice;",
-                "- formula un mesaj corect din punct de vedere științific."],
+                afirmatia:
+                  "Reforma agrară din 1921 a contribuit la modernizarea societății românești.",
+                nota: [
+                  "Notă: În elaborarea textului vei :",
+                  "- folosi sursele propuse;",
+                  "- respecta coerența textului cu structura: introducere, cuprins, concluzie;",
+                  "- formula cel puțin trei argumente;",
+                  "- utiliza în argumentare referințe cu privire la personalități sau repere cronologice;",
+                  "- formula un mesaj corect din punct de vedere științific.",
+                ],
                 sursa: [
                   {
                     title: "SURSA A.",
