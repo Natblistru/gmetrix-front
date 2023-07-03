@@ -1562,6 +1562,37 @@ let temeIstoria = [
                   "Argumentează răspunsul fără referire la imagine.",
                   "Argumentează răspunsul cu referire la copertă.",
                 ],
+                sursa: [
+                  {
+                    title: "SURSA A.",
+                    content: [
+                      '"Articolul II. […] proprietățile ce sunt expuse exproprierii trec asupra statului, libere de orice obligațiuni sau orice sarcini de orice natură.',
+                      "Articolul III. Se vor expropria în întregime: a) Proprietățile imobiliare (rurale, urbane) ce aparțin haznalei (statului), udelurilor (coroanei), băncilor țărănești și mănăstirilor din străinătate; b) Proprietățile imobiliare rurale ale supușilor străini […].",
+                      'Articolul V. Se vor expropria pământurile mănăstirilor locale, lăsându-se fiecărei mănăstiri câte 50 ha pământ cultivabil, viile și grădinile de pomi roditori."',
+                    ],
+                    author: "",
+                    sursaText:
+                      "(Din Legea de reformă agrară pentru Basarabia, votată de Parlamentul României la 11 martie 1920)",
+                  },
+                  {
+                    title: "SURSA B.",
+                    content: [
+                      '"Specificul reformei agrare basarabene a constat nu atât în prevederile legislației agrare, cât în aplicarea acetora. Mecanismul de aplicare a fost unul greoi, din cauza dificitului de pământ și a numărului mare de țărani cu drept de împroprietărire, dar și a lipsei unui cadru legislativ, prin aplicarea căruia statul să sprijine proaspătul proprietar […]. În Basarabia au fost expropriate de fapt pământurile ocupate cu forța de țărani în urma mișcărilor țărănești din anii 1917-1918, care, în final, urmau să devină proprietatea de drept și de fapt. Lotul de împroprietărire în Basarabia a fost mai mic decât prevedea legea, din cauza insuficienței acute de pământ și a cererii ridicate pentru acesta comparativ cu alte regiuni ale României"',
+                    ],
+                    author: "Svetlana Suveică",
+                    sursaText:
+                      "Basarabia în primul deceniu interbelic (1918-1929). Modernizare prin reforme.",
+                  },
+                  {
+                    title: "SURSA C.",
+                    content: [
+                      '"Cu toată rentabilitatea redusă a loturilor, cu toate dificultăţile şi lipsurile prin care avea să treacă ţărănimea mai târziu, situaţia materială a țăranilor a început să se schimbe. În câţiva ani de zile după război au dispărut acoperişurile de paie care mai existau ici-colo înainte de împroprietărire. Mulţi ţărani îşi trimiteau copiii la şcoli în oraşe şi o generaţie nouă de intelectuali se ridica din sate. Erau urmările pozitive ale acestei reforme."',
+                    ],
+                    author: "Alexandra Georgescu",
+                    sursaText:
+                      "Cum s-a aplicat reforma agrară din 1921// Adevărul.ro",
+                  },
+                ],
                 img: "/images/carte_planul_marshall.jpg",
                 cuvinteReferinta: [
                   "denumirea cărții face trimitere la...",

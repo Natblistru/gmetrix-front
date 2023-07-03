@@ -6,6 +6,7 @@ import Wrapper from "../Wrapper";
 import Breadcrumb from "../Breadcrumb";
 import TitleBox from "../TitleBox";
 import ItemAccordeon from "../Accordeon/ItemAccordeon";
+import AccordionSurse from "../Accordeon/AccordionSurse";
 import ItemText from "../Accordeon/ItemText";
 import ModalForm from "../Modal/ModalForm";
 
@@ -123,6 +124,7 @@ const ExamenSubect3 = () => {
             <ItemText>
               {/* {console.log(currentIndex)} */}
               <p>{item.quizArray[currentIndex].cerinte[0]}</p>
+              <AccordionSurse data={item.quizArray[currentIndex].sursa} />
               <div className="subject1-container">
                 <div className="paper">
                   <div className="lines">
