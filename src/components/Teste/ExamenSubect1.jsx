@@ -124,7 +124,7 @@ const ExamenSubect1 = () => {
               {/* {console.log(currentIndex)} */}
               <p>{item.quizArray[currentIndex].cerinte[0]}</p>
               <div className="subject1-container">
-                <div className="paper">
+                <div className="paper" style={{width: '70%'}}>
                   <div className="lines">
                     <div className="text">{text.slice(0, idx)} <br/>{startNext? text1.slice(0, idx1):""}</div>
                   </div>

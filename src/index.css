@@ -950,7 +950,7 @@ margin: 1em 0;
 .paper {
   position: relative;
   height: 350px;
-  width: 70%;
+  /* width: 70%; */
   background: rgba(255,255,255,0.9);
   /* margin: -275px -225px; */
   /* left: 211px;

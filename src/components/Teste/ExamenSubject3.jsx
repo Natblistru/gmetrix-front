@@ -125,8 +125,16 @@ const ExamenSubect3 = () => {
               {/* {console.log(currentIndex)} */}
               <p>{item.quizArray[currentIndex].cerinte[0]}</p>
               <AccordionSurse data={item.quizArray[currentIndex].sursa} />
+              <p>{item.quizArray[currentIndex].cerinte[1]} <span style={{fontStyle: 'italic'}}>{item.quizArray[currentIndex].afirmatia}</span></p>
+              <div
+              style={{display: 'flex', flexDirection: 'column', fontStyle: 'italic', marginTop: '10px'}}
+            >
+              {item.quizArray[currentIndex].nota.map((paragraf, idx) => (
+                <span key={idx}>{paragraf}</span>
+              ))}
+            </div>
               <div className="subject1-container">
-                <div className="paper">
+                <div className="paper" style={{width: '100%'}}>
                   <div className="lines">
                     <div className="text">{text.slice(0, idx)} <br/>{startNext? text1.slice(0, idx1):""}</div>
                   </div>
@@ -140,13 +148,6 @@ const ExamenSubect3 = () => {
                     alt=""
                   />
                 </div>
-                <img
-                  className="img-subject"
-                  src={
-                    process.env.PUBLIC_URL + item.quizArray[currentIndex].img
-                  }
-                  alt=""
-                />
               </div>
             </ItemText>
 
