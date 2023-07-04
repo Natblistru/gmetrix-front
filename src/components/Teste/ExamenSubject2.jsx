@@ -111,15 +111,25 @@ const ExamenSubect2 = () => {
   };
 
   const handleTryAgain = () => {
-    setCurrentIndex(
-      item.quizArray.length - 1 === currentIndex ? 0 : currentIndex + 1
+    setCurrentItem(
+      item.quizArray[currentIndex].item.length - 1 === currentItem ? 0 : currentItem + 1
     );
     setIsAnswered(false);
     setShowResponse(false);
     initialization();
     setCurrentTextIndex(0);
-    setCurrentItem(0);
   };
+
+  const handleIndexTryAgain = () => {
+    setCurrentIndex(
+      item.quizArray.length - 1 === currentIndex ? 0 : currentIndex + 1
+   );
+   setIsAnswered(false);
+   setShowResponse(false);
+   initialization();
+   setCurrentTextIndex(0);
+   setCurrentItem(0);
+  }
 
   const handleVerifica = () => {
     setShowResponse(true);
@@ -146,7 +156,7 @@ const ExamenSubect2 = () => {
                 }):`}
               </h3>
               <h4>{item.quizArray[currentIndex].item[currentItem].sursa}</h4>
-              <p>{item.quizArray[currentIndex].item[currentItem].cerinte}</p>              
+              <p>{item.quizArray[currentIndex].item[currentItem].cerinte[0]} {item.quizArray[currentIndex].item[currentItem].afirmatia}{item.quizArray[currentIndex].item[currentItem].cerinte[1]}</p>              
               <div className="subject1-container">
                 <div className="paper" style={{ width: "100%", height: '267px'}}>
                   <div className="lines">
@@ -196,19 +206,20 @@ const ExamenSubect2 = () => {
           </ItemAccordeon>
           {showResponse && (
             <ItemAccordeon
-              titlu={`Rezolvarea sarcinii (${currentIndex + 1}/${
-                item.quizArray.length
+              titlu={`Rezolvarea item (${currentItem + 1}/${
+                item.quizArray[currentIndex].item.length
               }):`}
               open={true}
             >
               <ItemText classNameChild="">
-                {item.quizArray[currentIndex].raspuns[0]}
-                <br />
-                {item.quizArray[currentIndex].raspuns[1]}
+                {item.quizArray[currentIndex].item[currentItem].raspuns}
               </ItemText>
               <button onClick={handleTryAgain} className="btn-test">
-                Încearcă din nou!
+                Urmatorul item!
               </button>
+              {item.quizArray[currentIndex].item.length - 1 === currentItem && (<button onClick={handleIndexTryAgain} className="btn-test">
+                Urmatoarea sarcina!
+              </button>) }             
             </ItemAccordeon>
           )}
         </>
