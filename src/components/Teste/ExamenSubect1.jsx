@@ -39,17 +39,19 @@ const ExamenSubect1 = () => {
   }, [text, idx]);
 
   useEffect(() => {
-    if(startNext) {
-    if (idx1 > text1?.length) {
-      return; // Stop the animation if idx exceeds the length of the text
-    }
-    const interval1 = setInterval(() => {
-      setIdx1((prevIdx1) => (prevIdx1 >= text1.length ? prevIdx1 : prevIdx1 + 1));
-    }, speed);
+    if (startNext) {
+      if (idx1 > text1?.length) {
+        return; // Stop the animation if idx exceeds the length of the text
+      }
+      const interval1 = setInterval(() => {
+        setIdx1((prevIdx1) =>
+          prevIdx1 >= text1.length ? prevIdx1 : prevIdx1 + 1
+        );
+      }, speed);
 
-    return () => clearInterval(interval1);
-  }
-  }, [text1, idx1,startNext]);
+      return () => clearInterval(interval1);
+    }
+  }, [text1, idx1, startNext]);
 
   const history = useHistory();
 
@@ -86,17 +88,17 @@ const ExamenSubect1 = () => {
 
   const closeModal = (textRaspuns) => {
     //  console.log(textRaspuns);
-     if(textRaspuns!==null) {
-    if (textRaspuns.every((element) => element === '')) {
-      setIsAnswered(false);
-    } else {
-      const obj = [ ...textRaspuns ];
-      setText(obj[0])
-      setText1(obj[1]);
-      setIdx(1);
-      setIsAnswered(true);
+    if (textRaspuns !== null) {
+      if (textRaspuns.every((element) => element === "")) {
+        setIsAnswered(false);
+      } else {
+        const obj = [...textRaspuns];
+        setText(obj[0]);
+        setText1(obj[1]);
+        setIdx(1);
+        setIsAnswered(true);
+      }
     }
-  }
     setIsOpen(false);
   };
   const handleTryAgain = () => {
@@ -109,7 +111,7 @@ const ExamenSubect1 = () => {
     setText1("");
     setIdx(1);
     setIdx1(1);
-    setStartNext(false)
+    setStartNext(false);
   };
 
   return (
@@ -123,9 +125,12 @@ const ExamenSubect1 = () => {
               {/* {console.log(currentIndex)} */}
               <p>{item.quizArray[currentIndex].cerinte[0]}</p>
               <div className="subject1-container">
-                <div className="paper" style={{width: '70%'}}>
+                <div className="paper" style={{ width: "70%" }}>
                   <div className="lines">
-                    <div className="text">{text.slice(0, idx)} <br/>{startNext? text1.slice(0, idx1):""}</div>
+                    <div className="text">
+                      {text.slice(0, idx)} <br />
+                      {startNext ? text1.slice(0, idx1) : ""}
+                    </div>
                   </div>
                   <div className="holes hole-top"></div>
                   <div className="holes hole-middle"></div>
@@ -148,11 +153,10 @@ const ExamenSubect1 = () => {
             </ItemText>
 
             {isOpen && (
-                <ModalForm
-                  onClick={closeModal}
-                  item={item}
-                  currentIndex={currentIndex}
-                />
+              <ModalForm
+                onClick={closeModal}
+                forma={item.quizArray[currentIndex].forma}
+              />
             )}
             {isAnswered === true && (
               <button

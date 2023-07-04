@@ -6,14 +6,14 @@ import "./ModalForm.css";
 const ModalForm = (props) => {
   const { add } = useContext(RaspunsuriCtx);
   const raspInitialArr = Array(
-    props.item.quizArray[props.currentIndex].forma.length
+    props.forma.length
   ).fill("");
   const [rasp, SetRasp] = useState(raspInitialArr);
 
   const [activeTab, setActiveTab] = useState(1);
   const [modalPosition, setModalPosition] = useState({ x: 370, y: 270 });
   let hasPrev = activeTab > 1;
-  let hasNext = activeTab < props.item.quizArray[props.currentIndex].forma.length;
+  let hasNext = activeTab < props.forma.length;
 
   const handleTabClick = (tabNumber) => {
     setActiveTab(tabNumber);
@@ -82,14 +82,14 @@ const ModalForm = (props) => {
         <div className="progress-bar">
           <div
             className="progress-bar-fill"
-            style={{ width: `${(activeTab / props.item.quizArray[props.currentIndex].forma.length) * 100}%` }}
+            style={{ width: `${(activeTab / props.forma.length) * 100}%` }}
           >
-            Step {activeTab} of {props.item.quizArray[props.currentIndex].forma.length}
+            Step {activeTab} of {props.forma.length}
           </div>
         </div>
         <div className="navbar-subject">
           <ul>
-          {props.item.quizArray[props.currentIndex].forma.map((elem, idx) => (
+          {props.forma.map((elem, idx) => (
                <li key={idx}
                className={activeTab === (idx+1) ? "active" : ""}
                onClick={() => handleTabClick(idx+1)}
@@ -100,7 +100,7 @@ const ModalForm = (props) => {
           </ul>
         </div>
         <div className="modal-content">
-          {props.item.quizArray[props.currentIndex].forma.map((elem, idx) => (
+          {props.forma.map((elem, idx) => (
             <div className={activeTab === idx + 1 ? "active" : ""} key={idx}>
               <div>
                 <div style={{ display: "flex" }}>

@@ -1533,9 +1533,9 @@ let temeIstoria = [
                 id: "2",
                 cerinte: [
                   "Studiază coperta cărții. Numește un fapt istoric pe care autorul îl poate utiliza pentru a justifica titlul cărții. Argumentează răspunsul.",
-                  "Numește un fapt istoric pe care autorul îl poate utiliza pentru a justifica titlul cărții (nu uita să indici data).",
-                  "Argumentează răspunsul fără referire la imagine.",
-                  "Argumentează răspunsul cu referire la copertă.",
+                  // "Numește un fapt istoric pe care autorul îl poate utiliza pentru a justifica titlul cărții (nu uita să indici data).",
+                  // "Argumentează răspunsul fără referire la imagine.",
+                  // "Argumentează răspunsul cu referire la copertă.",
                 ],
                 img: "/images/carte_planul_marshall.jpg",
                 forma: [
@@ -1552,10 +1552,10 @@ let temeIstoria = [
                     ],
                   },
                 ],
-                cuvinteReferinta: [
-                  "denumirea cărții face trimitere la...",
-                  "în imagine vedem...",
-                ],
+                // cuvinteReferinta: [
+                //   "denumirea cărții face trimitere la...",
+                //   "în imagine vedem...",
+                // ],
                 raspuns: [
                   "Fapt istoric: semnarea Pactului Molotov-Ribentrop din 23 august 1939",
                   'Argument: pe coperta cărții se vede denumirea "Pactului Molotov-Ribentrop", iar pe fotografie se văd semnatarii acestui document - Molotov și Ribentrop',
@@ -1587,8 +1587,29 @@ let temeIstoria = [
                 cerinte: [
                   "Studiază sursele A-C",
                   "Utilizează sursele pentru a argumenta, într-un text coerent, afirmația:",
-                  "Argumentează răspunsul fără referire la imagine.",
-                  "Argumentează răspunsul cu referire la copertă.",
+                ],
+                forma: [
+                  {
+                    cerinte:
+                      "Introducere",
+                    hint: [],
+                  },
+                  {
+                    cerinte: "Cuprins. I argument",
+                    hint: [],
+                  },
+                  {
+                    cerinte: "Cuprins. II argument",
+                    hint: [],
+                  },
+                  {
+                    cerinte: "Cuprins. III argument",
+                    hint: [],
+                  },
+                  {
+                    cerinte: "Incheiere",
+                    hint: [],
+                  },                  
                 ],
                 afirmatia:
                   "Reforma agrară din 1921 a contribuit la modernizarea societății românești.",
@@ -1632,10 +1653,6 @@ let temeIstoria = [
                   },
                 ],
                 img: "/images/carte_planul_marshall.jpg",
-                cuvinteReferinta: [
-                  "denumirea cărții face trimitere la...",
-                  "în imagine vedem...",
-                ],
                 raspuns: [
                   "Fapt istoric: semnarea Pactului Molotov-Ribentrop din 23 august 1939",
                   'Argument: pe coperta cărții se vede denumirea "Pactului Molotov-Ribentrop", iar pe fotografie se văd semnatarii acestui document - Molotov și Ribentrop',
@@ -1644,16 +1661,74 @@ let temeIstoria = [
               {
                 id: "2",
                 cerinte: [
-                  "Studiază coperta cărții. Numește un fapt istoric pe care autorul îl poate utiliza pentru a justifica titlul cărții. Argumentează răspunsul.",
-                  "Numește un fapt istoric pe care autorul îl poate utiliza pentru a justifica titlul cărții.",
-                  "Argumentează răspunsul fără referire la imagine.",
-                  "Argumentează răspunsul cu referire la copertă.",
+                  "Studiază sursele A-C",
+                  "Utilizează sursele pentru a argumenta, într-un text coerent, afirmația:",
+                ],
+                forma: [
+                  {
+                    cerinte:
+                      "Introducere",
+                    hint: [],
+                  },
+                  {
+                    cerinte: "Cuprins. I argument",
+                    hint: [],
+                  },
+                  {
+                    cerinte: "Cuprins. II argument",
+                    hint: [],
+                  },
+                  {
+                    cerinte: "Cuprins. III argument",
+                    hint: [],
+                  },
+                  {
+                    cerinte: "Incheiere",
+                    hint: [],
+                  },                  
+                ],
+                afirmatia:
+                  "Reforma agrară din 1921 a contribuit la modernizarea societății românești.",
+                nota: [
+                  "Notă: În elaborarea textului vei :",
+                  "- folosi sursele propuse;",
+                  "- respecta coerența textului cu structura: introducere, cuprins, concluzie;",
+                  "- formula cel puțin trei argumente;",
+                  "- utiliza în argumentare referințe cu privire la personalități sau repere cronologice;",
+                  "- formula un mesaj corect din punct de vedere științific.",
+                ],
+                sursa: [
+                  {
+                    title: "SURSA A.",
+                    content: [
+                      '"Articolul II. […] proprietățile ce sunt expuse exproprierii trec asupra statului, libere de orice obligațiuni sau orice sarcini de orice natură.',
+                      "Articolul III. Se vor expropria în întregime: a) Proprietățile imobiliare (rurale, urbane) ce aparțin haznalei (statului), udelurilor (coroanei), băncilor țărănești și mănăstirilor din străinătate; b) Proprietățile imobiliare rurale ale supușilor străini […].",
+                      'Articolul V. Se vor expropria pământurile mănăstirilor locale, lăsându-se fiecărei mănăstiri câte 50 ha pământ cultivabil, viile și grădinile de pomi roditori."',
+                    ],
+                    author: "",
+                    sursaText:
+                      "(Din Legea de reformă agrară pentru Basarabia, votată de Parlamentul României la 11 martie 1920)",
+                  },
+                  {
+                    title: "SURSA B.",
+                    content: [
+                      '"Specificul reformei agrare basarabene a constat nu atât în prevederile legislației agrare, cât în aplicarea acetora. Mecanismul de aplicare a fost unul greoi, din cauza dificitului de pământ și a numărului mare de țărani cu drept de împroprietărire, dar și a lipsei unui cadru legislativ, prin aplicarea căruia statul să sprijine proaspătul proprietar […]. În Basarabia au fost expropriate de fapt pământurile ocupate cu forța de țărani în urma mișcărilor țărănești din anii 1917-1918, care, în final, urmau să devină proprietatea de drept și de fapt. Lotul de împroprietărire în Basarabia a fost mai mic decât prevedea legea, din cauza insuficienței acute de pământ și a cererii ridicate pentru acesta comparativ cu alte regiuni ale României"',
+                    ],
+                    author: "Svetlana Suveică",
+                    sursaText:
+                      "Basarabia în primul deceniu interbelic (1918-1929). Modernizare prin reforme.",
+                  },
+                  {
+                    title: "SURSA C.",
+                    content: [
+                      '"Cu toată rentabilitatea redusă a loturilor, cu toate dificultăţile şi lipsurile prin care avea să treacă ţărănimea mai târziu, situaţia materială a țăranilor a început să se schimbe. În câţiva ani de zile după război au dispărut acoperişurile de paie care mai existau ici-colo înainte de împroprietărire. Mulţi ţărani îşi trimiteau copiii la şcoli în oraşe şi o generaţie nouă de intelectuali se ridica din sate. Erau urmările pozitive ale acestei reforme."',
+                    ],
+                    author: "Alexandra Georgescu",
+                    sursaText:
+                      "Cum s-a aplicat reforma agrară din 1921// Adevărul.ro",
+                  },
                 ],
                 img: "/images/carte_planul_marshall.jpg",
-                cuvinteReferinta: [
-                  "denumirea cărții face trimitere la...",
-                  "în imagine vedem...",
-                ],
                 raspuns: [
                   "Fapt istoric: semnarea Pactului Molotov-Ribentrop din 23 august 1939",
                   'Argument: pe coperta cărții se vede denumirea "Pactului Molotov-Ribentrop", iar pe fotografie se văd semnatarii acestui document - Molotov și Ribentrop',
