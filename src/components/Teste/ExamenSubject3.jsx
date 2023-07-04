@@ -74,6 +74,7 @@ const ExamenSubect3 = () => {
       }
     }
   }, [currentTextIndex]);
+
   useEffect(() => {
     if (currentTextIndex !== null && currentTextIndex < textArray.length ) {
       if (indx == text?.length || text?.length==0) {
@@ -91,7 +92,8 @@ const ExamenSubect3 = () => {
   }, [indx, text]);
 
   const openModal = () => {
-    setIsOpen(true);
+    if(!showResponse)
+      setIsOpen(true);
   };
 
   const closeModal = (textRaspuns) => {
@@ -106,6 +108,7 @@ const ExamenSubect3 = () => {
     }
     setIsOpen(false);
   };
+  
   const handleTryAgain = () => {
     setCurrentIndex(
       item.quizArray.length - 1 === currentIndex ? 0 : currentIndex + 1
@@ -115,6 +118,10 @@ const ExamenSubect3 = () => {
     initialization();
     setCurrentTextIndex(0);
   };
+
+  const handleVerifica = () => {
+    setShowResponse(true);
+  }
 
   return (
     <Wrapper>
@@ -183,7 +190,7 @@ const ExamenSubect3 = () => {
             )}
             {isAnswered === true && (
               <button
-                onClick={() => setShowResponse(true)}
+                onClick={handleVerifica}
                 className="btn-test"
               >
                 Verifică răspunsul

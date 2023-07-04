@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { RaspunsuriCtx } from "../context/Raspunsuri";
 import temeIstoriArray from "../../data/temeIstoria";
@@ -14,44 +14,23 @@ const ExamenSubect1 = () => {
   const { raspunsuri } = useContext(RaspunsuriCtx);
   const [item, setItem] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
+  
+  // const [text, setText] = useState("");
+  // const [text1, setText1] = useState("");
+  // const [idx, setIdx] = useState(1);
+  // const [idx1, setIdx1] = useState(1);
+  // const [startNext, setStartNext] = useState(false);
+  
   const [text, setText] = useState("");
-  const [text1, setText1] = useState("");
-  const [idx, setIdx] = useState(1);
-  const [idx1, setIdx1] = useState(1);
-  const [startNext, setStartNext] = useState(false);
+  const [indx, setIndx] = useState(0);
+  const [currentTextIndex, setCurrentTextIndex] = useState(null);
+  const [textArray, setTextArray] = useState([]);
+
+  
   const [isOpen, setIsOpen] = useState(false);
   const [isAnswered, setIsAnswered] = useState(false);
   const [showResponse, setShowResponse] = useState(false);
   const speed = 50;
-
-  useEffect(() => {
-    if (idx == text?.length) {
-      setStartNext(true);
-    }
-    if (idx > text?.length) {
-      return; // Stop the animation if idx exceeds the length of the text
-    }
-    const interval = setInterval(() => {
-      setIdx((prevIdx) => (prevIdx >= text.length ? prevIdx : prevIdx + 1));
-    }, speed);
-
-    return () => clearInterval(interval);
-  }, [text, idx]);
-
-  useEffect(() => {
-    if (startNext) {
-      if (idx1 > text1?.length) {
-        return; // Stop the animation if idx exceeds the length of the text
-      }
-      const interval1 = setInterval(() => {
-        setIdx1((prevIdx1) =>
-          prevIdx1 >= text1.length ? prevIdx1 : prevIdx1 + 1
-        );
-      }, speed);
-
-      return () => clearInterval(interval1);
-    }
-  }, [text1, idx1, startNext]);
 
   const history = useHistory();
 
@@ -79,40 +58,77 @@ const ExamenSubect1 = () => {
     } else {
       history.push("/error");
     }
-    setCurrentIndex(0);
   }, []);
 
+  const initialization = () => {
+    const newArray = Array(item?.quizArray[currentIndex].forma.length).fill("");
+    setTextArray([...newArray]);
+  };
+
+  useEffect(() => {
+    initialization();
+  }, [item]);
+
+  useEffect(() => {
+    if (currentTextIndex !== null) {
+      setText(textArray[currentTextIndex]);
+      if (currentTextIndex < textArray.length) {
+        if(textArray[currentTextIndex].length==0) {
+          indx==1?setIndx(0):setIndx(1);
+        }
+        else setIndx(1);
+      }
+    }
+  }, [currentTextIndex]);
+
+  useEffect(() => {
+    if (currentTextIndex !== null && currentTextIndex < textArray.length ) {
+      if (indx == text?.length || text?.length==0) {
+        if (currentTextIndex < textArray.length) {
+          setCurrentTextIndex(currentTextIndex+1);          
+        } else return;
+      }
+
+      const interval = setInterval(() => {
+        setIndx((prevIdx) => (prevIdx >= text?.length ? prevIdx : prevIdx + 1));
+      }, speed);
+
+      return () => clearInterval(interval);
+    }
+  }, [indx, text]);
+
+
   const openModal = () => {
-    setIsOpen(true);
+    if(!showResponse)
+      setIsOpen(true);
   };
 
   const closeModal = (textRaspuns) => {
-    //  console.log(textRaspuns);
     if (textRaspuns !== null) {
       if (textRaspuns.every((element) => element === "")) {
         setIsAnswered(false);
       } else {
-        const obj = [...textRaspuns];
-        setText(obj[0]);
-        setText1(obj[1]);
-        setIdx(1);
+        setTextArray([...textRaspuns]);
+        setCurrentTextIndex(0);
         setIsAnswered(true);
       }
     }
     setIsOpen(false);
   };
+
   const handleTryAgain = () => {
     setCurrentIndex(
       item.quizArray.length - 1 === currentIndex ? 0 : currentIndex + 1
     );
     setIsAnswered(false);
     setShowResponse(false);
-    setText("");
-    setText1("");
-    setIdx(1);
-    setIdx1(1);
-    setStartNext(false);
+    initialization();
+    setCurrentTextIndex(0);
   };
+
+  const handleVerifica = () => {
+    setShowResponse(true);
+  }
 
   return (
     <Wrapper>
@@ -122,15 +138,23 @@ const ExamenSubect1 = () => {
           <TitleBox className="teme-container">{item.name}</TitleBox>
           <ItemAccordeon titlu="Cerințele sarcinii" open={true}>
             <ItemText>
-              {/* {console.log(currentIndex)} */}
-              <p>{item.quizArray[currentIndex].cerinte[0]}</p>
+             <p>{item.quizArray[currentIndex].cerinte[0]}</p>
               <div className="subject1-container">
                 <div className="paper" style={{ width: "70%" }}>
                   <div className="lines">
                     <div className="text">
-                      {text.slice(0, idx)} <br />
-                      {startNext ? text1.slice(0, idx1) : ""}
-                    </div>
+                    {currentTextIndex !== null && isAnswered &&
+                        textArray.map((textElem, ind) =>
+                          currentTextIndex >= ind ? (
+                            <React.Fragment key={ind}>
+                              {textElem.slice(
+                                0,
+                                currentTextIndex == ind && indx < textElem.length ? indx : textElem.length
+                              )}
+                              <br />
+                            </React.Fragment>
+                          ) : null
+                        )}                    </div>
                   </div>
                   <div className="holes hole-top"></div>
                   <div className="holes hole-middle"></div>
@@ -160,7 +184,7 @@ const ExamenSubect1 = () => {
             )}
             {isAnswered === true && (
               <button
-                onClick={() => setShowResponse(true)}
+                onClick={handleVerifica}
                 className="btn-test"
               >
                 Verifică răspunsul
