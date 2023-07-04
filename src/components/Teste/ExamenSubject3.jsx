@@ -67,19 +67,18 @@ const ExamenSubect3 = () => {
     if (currentTextIndex !== null) {
       setText(textArray[currentTextIndex]);
       if (currentTextIndex < textArray.length) {
-        if(textArray[currentTextIndex].length==0) {
-          indx==1?setIndx(0):setIndx(1);
-        }
-        else setIndx(1);
+        if (textArray[currentTextIndex].length == 0) {
+          indx == 1 ? setIndx(0) : setIndx(1);
+        } else setIndx(1);
       }
     }
   }, [currentTextIndex]);
 
   useEffect(() => {
-    if (currentTextIndex !== null && currentTextIndex < textArray.length ) {
-      if (indx == text?.length || text?.length==0) {
+    if (currentTextIndex !== null && currentTextIndex < textArray.length) {
+      if (indx == text?.length || text?.length == 0) {
         if (currentTextIndex < textArray.length) {
-          setCurrentTextIndex(currentTextIndex+1);          
+          setCurrentTextIndex(currentTextIndex + 1);
         } else return;
       }
 
@@ -92,8 +91,7 @@ const ExamenSubect3 = () => {
   }, [indx, text]);
 
   const openModal = () => {
-    if(!showResponse)
-      setIsOpen(true);
+    if (!showResponse) setIsOpen(true);
   };
 
   const closeModal = (textRaspuns) => {
@@ -108,7 +106,7 @@ const ExamenSubect3 = () => {
     }
     setIsOpen(false);
   };
-  
+
   const handleTryAgain = () => {
     setCurrentIndex(
       item.quizArray.length - 1 === currentIndex ? 0 : currentIndex + 1
@@ -121,7 +119,7 @@ const ExamenSubect3 = () => {
 
   const handleVerifica = () => {
     setShowResponse(true);
-  }
+  };
 
   return (
     <Wrapper>
@@ -129,7 +127,12 @@ const ExamenSubect3 = () => {
         <>
           <Breadcrumb list={item.breadcrumb} />
           <TitleBox className="teme-container">{item.name}</TitleBox>
-          <ItemAccordeon titlu="Cerințele sarcinii" open={true}>
+          <ItemAccordeon
+            titlu={`Cerințele sarcinii (${currentIndex + 1}/${
+              item.quizArray.length
+            }):`}
+            open={true}
+          >
             <ItemText>
               <p>{item.quizArray[currentIndex].cerinte[0]}</p>
               <AccordionSurse data={item.quizArray[currentIndex].sursa} />
@@ -155,13 +158,17 @@ const ExamenSubect3 = () => {
                 <div className="paper" style={{ width: "100%" }}>
                   <div className="lines">
                     <div className="text">
-                      {currentTextIndex !== null && isAnswered &&
+                      {currentTextIndex !== null &&
+                        isAnswered &&
                         textArray.map((textElem, ind) =>
                           currentTextIndex >= ind ? (
                             <React.Fragment key={ind}>
                               {textElem.slice(
                                 0,
-                                currentTextIndex == ind && indx < textElem.length ? indx : textElem.length
+                                currentTextIndex == ind &&
+                                  indx < textElem.length
+                                  ? indx
+                                  : textElem.length
                               )}
                               <br />
                             </React.Fragment>
@@ -189,10 +196,7 @@ const ExamenSubect3 = () => {
               />
             )}
             {isAnswered === true && (
-              <button
-                onClick={handleVerifica}
-                className="btn-test"
-              >
+              <button onClick={handleVerifica} className="btn-test">
                 Verifică răspunsul
               </button>
             )}

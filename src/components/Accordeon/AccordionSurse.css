@@ -83,12 +83,20 @@ p.content-surse-text {
 p.content-surse-text span{
   font-style: italic;
 }
-
-
+.fa {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+}
 .fa-angle-down {
  font-size: 20px;
- color: rgba(255,255,255, .5);
+ color: rgba(255,255,255, 1);
  transition: all .6s cubic-bezier(0.080, 1.090, 0.320, 1.275);
+}
+
+.fa-angle-down::before {
+  content: "\f107";
 }
 
 .fa-rotate-180 {
@@ -96,6 +104,7 @@ p.content-surse-text span{
 }
 
 .arrow-wrapper {
- position: absolute;
- margin-left: 375px;
-}
+  display: flex; 
+  justify-content: space-between;
+  align-items: center;
+ }

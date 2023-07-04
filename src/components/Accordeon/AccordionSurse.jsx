@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import "./AccordionSurse.css";
 
 const AccordionSurse = ({ data }) => {
@@ -16,15 +18,14 @@ const AccordionSurse = ({ data }) => {
     <div className="accordion-surse">
       {accordionItems.map((item) => (
         <div key={item.title}>
-          <div className="title-surse" onClick={() => handleClick(item)}>
-            <div className="arrow-wrapper">
-              <i
-                className={`fa fa-angle-down ${
-                  item.open ? "fa-rotate-180" : ""
-                }`}
-              ></i>
-            </div>
+          <div className="title-surse arrow-wrapper" onClick={() => handleClick(item)}>
             <span className="title-text">{item.title}</span>
+            {/* <div className="arrow-wrapper"> */}
+            <FontAwesomeIcon
+              icon={faAngleDown}
+              className={`fa fa-angle-down ${item.open ? "fa-rotate-180" : ""}`}
+            />
+            {/* </div> */}
           </div>
           <div
             className={`content-surse ${item.open ? "content-surse-open" : ""}`}
@@ -38,11 +39,14 @@ const AccordionSurse = ({ data }) => {
                 <span key={idx}>{paragraf}</span>
               ))}
             </div>
-            <p 
+            <p
               className={`content-surse-text ${
                 item.open ? "content-surse-text-open" : ""
-              }`}            
-            >{item.author.length > 0 ? `${item.author},` : null}<span>{item.sursaText}</span></p>
+              }`}
+            >
+              {item.author.length > 0 ? `${item.author},` : null}
+              <span>{item.sursaText}</span>
+            </p>
           </div>
         </div>
       ))}

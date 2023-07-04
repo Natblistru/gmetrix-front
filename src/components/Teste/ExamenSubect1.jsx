@@ -15,12 +15,6 @@ const ExamenSubect1 = () => {
   const [item, setItem] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   
-  // const [text, setText] = useState("");
-  // const [text1, setText1] = useState("");
-  // const [idx, setIdx] = useState(1);
-  // const [idx1, setIdx1] = useState(1);
-  // const [startNext, setStartNext] = useState(false);
-  
   const [text, setText] = useState("");
   const [indx, setIndx] = useState(0);
   const [currentTextIndex, setCurrentTextIndex] = useState(null);
@@ -136,7 +130,7 @@ const ExamenSubect1 = () => {
         <>
           <Breadcrumb list={item.breadcrumb} />
           <TitleBox className="teme-container">{item.name}</TitleBox>
-          <ItemAccordeon titlu="Cerințele sarcinii" open={true}>
+          <ItemAccordeon titlu={`Cerințele sarcinii (${currentIndex + 1}/${item.quizArray.length}):`} open={true}>
             <ItemText>
              <p>{item.quizArray[currentIndex].cerinte[0]}</p>
               <div className="subject1-container">
