@@ -20,12 +20,10 @@ const AccordionSurse = ({ data }) => {
         <div key={item.title}>
           <div className="title-surse arrow-wrapper" onClick={() => handleClick(item)}>
             <span className="title-text">{item.title}</span>
-            {/* <div className="arrow-wrapper"> */}
             <FontAwesomeIcon
               icon={faAngleDown}
               className={`fa fa-angle-down ${item.open ? "fa-rotate-180" : ""}`}
             />
-            {/* </div> */}
           </div>
           <div
             className={`content-surse ${item.open ? "content-surse-open" : ""}`}

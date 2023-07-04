@@ -18,6 +18,7 @@ import TestWords from "./components/Teste/TestWords.jsx";
 import TestGeneralizator from "./components/Teste/TestGeneralizator";
 import FlipCards from "./components/FlipCards/FlipCards";
 import ExamenSubect1 from "./components/Teste/ExamenSubect1";
+import ExamenSubect2 from "./components/Teste/ExamenSubject2";
 import ExamenSubect3 from "./components/Teste/ExamenSubject3";
 import Error from "./components/Error";
 import Raspunsuri from "./components/context/Raspunsuri";
@@ -33,6 +34,7 @@ function App() {
           <Switch>
             <Route exact path="/" render={() => <Redirect to="/home" />} />
             <Route path="/istoria/:address/examen-subiect1" component={ExamenSubect1} />
+            <Route path="/istoria/:address/examen-subiect2" component={ExamenSubect2} />
             <Route path="/istoria/:address/examen-subiect3" component={ExamenSubect3} />
             <Route path="/istoria/:address/flipCards/ani" component={FlipCardsWithRouter} />
             <Route path="/istoria/:address/flipCards/termeni" component={FlipCardsWithRouter} />

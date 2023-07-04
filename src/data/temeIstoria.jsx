@@ -1563,7 +1563,172 @@ let temeIstoria = [
               },
             ],
           },
-          { id: "2", name: "Subiectul II", complexity: "лёгкое" },
+          {
+            id: "2",
+            name: "Subiectul II",
+            complexity: "лёгкое",
+            path: "/subtema1",
+            addressDisciplina: "/istoria",
+            addressSubtitle: "/romania-in-primul-razboi",
+            addressSubject: "/examen-subiect2",
+            addressAplicatie: "/romania-in-primul-razboi/examen-subiect2",
+            breadcrumb: [
+              { name: "Discipline", path: "/" },
+              { name: "Istoria", path: "/istoria" },
+              {
+                name: "România în Primul Război Mondial",
+                path: "/istoria/romania-in-primul-razboi",
+              },
+            ],
+            quizArray: [
+              {
+                id: "1",
+                cerinte: [
+                  "Studiază materialul suport și realizează sarcinile propuse.",
+                ],
+                item: [
+                  {
+                    id: 1,
+                    sursa:
+                      "Utilizează sursa A și cunoștințele obținute anterior.",
+                    cerinte:
+                      "Identifică două evenimente importante pentru evoluția regimurilor totalitare în perioada interbelică.",
+
+                    forma: [
+                      {
+                        cerinte: "Primul eveniment important",
+                        hint: [],
+                      },
+                      {
+                        cerinte: "Al doilea eveniment important",
+                        hint: [],
+                      },
+                    ],
+                  },
+                ],
+
+                sursa: [
+                  {
+                    title: "SURSA A. REPERE CRONOLOGICE",
+                    content: [
+                      "1922 - Marșul fasciștilor italieni spre Roma",
+                      "1926 - Formarea guvernului Unității Naționale a Franței în frunte cu R. Poincare",
+                      "1928 - Reforma electorală în Marea Britanie prin care femeile au primit dreptul la vot",
+                      "1929 - 1933 - Marea criză economică",
+                      "1933 - Numirea lui Adolf Hitler în postul de cancelar al Germaniei",
+                      "1939 - Începutul celui de-al Doilea Război Mondial",
+                    ],
+                    author: "",
+                    sursaText: "",
+                  },
+                  {
+                    title: "SURSA B.",
+                    content: [
+                      '"În statele democratice din perioada interbelică a funcţionat principiul separarării puterilor. Parlamentarismul a continuat să fie o trăsătură caracteristică importantă în aceste ţări. Sistemul lor politic era pluripartit şi erau organizate alegeri libere, pe baza votului universal. Libertatea presei şi respectarea drepturilor cetăţenilor au fost alte trăsături ale regimurilor democratice. Perioada interbelică a fost marcată şi de lupta de emancipare a femeilor, care s-au implicat în viaţa economică. Totuşi, doar în unele ţări acestea au obţinut drepturi politice egale cu bărbaţii. În anii 1922-1928, lumea a cunoscut o perioadă de dezvoltare economică. Marea criză economică (1929-1933) a putut fi depăşită prin aplicarea unor politici economice complexe."',
+                    ],
+                    author: "Pierre Milza, Serge Bernstein",
+                    sursaText: "Istoria secolului XX ,Bucureşti, 1998, vol.I",
+                  },
+                  {
+                    title: "SURSA C.",
+                    content: [
+                      '"Regimurile politice totalitare au fost opuse celor democratice. Regimurile totalitare aveau trăsături comune. Ideologia comunistă susţinea că reprezentă interesele proletariatului, dar, în realitate, era dictatura partidului comunist, a nomenclaturii. Cea fascistă accentua rolul statului şi supunerea indivizilor faţă de acesta, iar naţional-socialismul era o ideologie naţionalistă, rasistă şi antisemită. În cadrul regimurilor de extremă-dreaptă, apărute ca reacţie la comunism, economia de piaţă a continuat să existe, dar statul intervenea în cadrul ei, pentru a controla tensiunile sociale."',
+                    ],
+                    author: "Ewan Murray",
+                    sursaText: "Shut Up: Tale of Totalitarianism, 2005",
+                  },
+                  {
+                    title: "SURSA D.",
+                    content: [
+                      '"Dacă primul mandat a lui Roosevelt a fost absorbit de criză, al doilea mandat a fost dominat de probleme internaționale. La început, conștient de atașamentul americanilor față de izolaționism, Roosevelt lasă Congresul să voteze legea neutralității (1935). Apoi, neliniștit de agresiunea germană, italiană și japoneză, amenință aceste țări cu punerea în carantină (1937)[...] Roosevelt refuză totuși să ajute Franța sfâșiată și slăbită, în 1940[...]. Reales în 1940 cu o majoritate redusă, decide să ajute Marea Britanie, rămasă singură în luptă, făcând Congresul să voteze legea armamentului (Lend-Lease), extinsă în 1941 și la URSS, angajând industria americană în producția de război."',
+                    ],
+                    author: "Dominique Vallaud",
+                    sursaText: "Dicționar istoric, București, 2008",
+                  },
+                ],
+                img: "/images/carte_planul_marshall.jpg",
+                raspuns: [
+                  "Fapt istoric: semnarea Pactului Molotov-Ribentrop din 23 august 1939",
+                  'Argument: pe coperta cărții se vede denumirea "Pactului Molotov-Ribentrop", iar pe fotografie se văd semnatarii acestui document - Molotov și Ribentrop',
+                ],
+              },
+              {
+                id: "2",
+                cerinte: [
+                  "Studiază sursele A-C",
+                  "Utilizează sursele pentru a argumenta, într-un text coerent, afirmația:",
+                ],
+                forma: [
+                  {
+                    cerinte: "Introducere",
+                    hint: [],
+                  },
+                  {
+                    cerinte: "Cuprins. I argument",
+                    hint: [],
+                  },
+                  {
+                    cerinte: "Cuprins. II argument",
+                    hint: [],
+                  },
+                  {
+                    cerinte: "Cuprins. III argument",
+                    hint: [],
+                  },
+                  {
+                    cerinte: "Incheiere",
+                    hint: [],
+                  },
+                ],
+                afirmatia:
+                  "Reforma agrară din 1921 a contribuit la modernizarea societății românești.",
+                nota: [
+                  "Notă: În elaborarea textului vei :",
+                  "- folosi sursele propuse;",
+                  "- respecta coerența textului cu structura: introducere, cuprins, concluzie;",
+                  "- formula cel puțin trei argumente;",
+                  "- utiliza în argumentare referințe cu privire la personalități sau repere cronologice;",
+                  "- formula un mesaj corect din punct de vedere științific.",
+                ],
+                sursa: [
+                  {
+                    title: "SURSA A.",
+                    content: [
+                      '"Articolul II. […] proprietățile ce sunt expuse exproprierii trec asupra statului, libere de orice obligațiuni sau orice sarcini de orice natură.',
+                      "Articolul III. Se vor expropria în întregime: a) Proprietățile imobiliare (rurale, urbane) ce aparțin haznalei (statului), udelurilor (coroanei), băncilor țărănești și mănăstirilor din străinătate; b) Proprietățile imobiliare rurale ale supușilor străini […].",
+                      'Articolul V. Se vor expropria pământurile mănăstirilor locale, lăsându-se fiecărei mănăstiri câte 50 ha pământ cultivabil, viile și grădinile de pomi roditori."',
+                    ],
+                    author: "",
+                    sursaText:
+                      "(Din Legea de reformă agrară pentru Basarabia, votată de Parlamentul României la 11 martie 1920)",
+                  },
+                  {
+                    title: "SURSA B.",
+                    content: [
+                      '"Specificul reformei agrare basarabene a constat nu atât în prevederile legislației agrare, cât în aplicarea acetora. Mecanismul de aplicare a fost unul greoi, din cauza dificitului de pământ și a numărului mare de țărani cu drept de împroprietărire, dar și a lipsei unui cadru legislativ, prin aplicarea căruia statul să sprijine proaspătul proprietar […]. În Basarabia au fost expropriate de fapt pământurile ocupate cu forța de țărani în urma mișcărilor țărănești din anii 1917-1918, care, în final, urmau să devină proprietatea de drept și de fapt. Lotul de împroprietărire în Basarabia a fost mai mic decât prevedea legea, din cauza insuficienței acute de pământ și a cererii ridicate pentru acesta comparativ cu alte regiuni ale României"',
+                    ],
+                    author: "Svetlana Suveică",
+                    sursaText:
+                      "Basarabia în primul deceniu interbelic (1918-1929). Modernizare prin reforme.",
+                  },
+                  {
+                    title: "SURSA C.",
+                    content: [
+                      '"Cu toată rentabilitatea redusă a loturilor, cu toate dificultăţile şi lipsurile prin care avea să treacă ţărănimea mai târziu, situaţia materială a țăranilor a început să se schimbe. În câţiva ani de zile după război au dispărut acoperişurile de paie care mai existau ici-colo înainte de împroprietărire. Mulţi ţărani îşi trimiteau copiii la şcoli în oraşe şi o generaţie nouă de intelectuali se ridica din sate. Erau urmările pozitive ale acestei reforme."',
+                    ],
+                    author: "Alexandra Georgescu",
+                    sursaText:
+                      "Cum s-a aplicat reforma agrară din 1921// Adevărul.ro",
+                  },
+                ],
+                img: "/images/carte_planul_marshall.jpg",
+                raspuns: [
+                  "Fapt istoric: semnarea Pactului Molotov-Ribentrop din 23 august 1939",
+                  'Argument: pe coperta cărții se vede denumirea "Pactului Molotov-Ribentrop", iar pe fotografie se văd semnatarii acestui document - Molotov și Ribentrop',
+                ],
+              },
+            ],
+          },
           {
             id: "3",
             name: "Subiectul III",
@@ -1590,8 +1755,7 @@ let temeIstoria = [
                 ],
                 forma: [
                   {
-                    cerinte:
-                      "Introducere",
+                    cerinte: "Introducere",
                     hint: [],
                   },
                   {
@@ -1609,7 +1773,7 @@ let temeIstoria = [
                   {
                     cerinte: "Incheiere",
                     hint: [],
-                  },                  
+                  },
                 ],
                 afirmatia:
                   "Reforma agrară din 1921 a contribuit la modernizarea societății românești.",
@@ -1666,8 +1830,7 @@ let temeIstoria = [
                 ],
                 forma: [
                   {
-                    cerinte:
-                      "Introducere",
+                    cerinte: "Introducere",
                     hint: [],
                   },
                   {
@@ -1685,7 +1848,7 @@ let temeIstoria = [
                   {
                     cerinte: "Incheiere",
                     hint: [],
-                  },                  
+                  },
                 ],
                 afirmatia:
                   "Reforma agrară din 1921 a contribuit la modernizarea societății românești.",
