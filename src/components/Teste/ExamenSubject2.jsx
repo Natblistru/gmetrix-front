@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useParams, useHistory } from "react-router-dom";
-import { RaspunsuriCtx } from "../context/Raspunsuri";
+// import { RaspunsuriCtx } from "../context/Raspunsuri";
+import { connect } from "react-redux"
 import temeIstoriArray from "../../data/temeIstoria";
 import Wrapper from "../Wrapper";
 import Breadcrumb from "../Breadcrumb";
@@ -10,9 +11,9 @@ import AccordionSurse from "../Accordeon/AccordionSurse";
 import ItemText from "../Accordeon/ItemText";
 import ModalForm from "../Modal/ModalForm";
 
-const ExamenSubect2 = () => {
+const ExamenSubect2 = ({raspunsuri}) => {
   const { address } = useParams();
-  const { raspunsuri } = useContext(RaspunsuriCtx);
+  const [idRaspuns, setIdRaspuns] = useState(null);
   const [item, setItem] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [currentItem, setCurrentItem] = useState(0);
@@ -93,11 +94,19 @@ const ExamenSubect2 = () => {
     }
   }, [indx, text]);
 
+  useEffect(() => {
+    console.log(raspunsuri.items);
+    console.log(idRaspuns);
+  }, [raspunsuri.items]);
+
   const openModal = () => {
     if (!showResponse) setIsOpen(true);
   };
 
-  const closeModal = (textRaspuns) => {
+  const closeModal = (textRaspuns,idRasp) => {
+    if (idRasp !== null) {
+      setIdRaspuns(idRasp)
+    }
     if (textRaspuns !== null) {
       if (textRaspuns.every((element) => element === "")) {
         setIsAnswered(false);
@@ -196,6 +205,7 @@ const ExamenSubect2 = () => {
               <ModalForm
                 onClick={closeModal}
                 forma={item.quizArray[currentIndex].item[currentItem].forma}
+                idRaspuns={idRaspuns}
               />
             )}
             {isAnswered === true && (
@@ -227,4 +237,7 @@ const ExamenSubect2 = () => {
     </Wrapper>
   );
 };
-export default ExamenSubect2;
+const reduxState = state => ({
+  raspunsuri: state.raspunsuri,
+})
+export default connect(reduxState,null)(ExamenSubect2);

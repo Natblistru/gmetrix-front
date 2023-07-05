@@ -1,19 +1,35 @@
 import React, { useState, useContext, useEffect, useRef } from "react";
-import { RaspunsuriCtx } from "../context/Raspunsuri";
+import { connect } from "react-redux"
 import Popupmenu from "../Popupmenu";
 
 import "./ModalForm.css";
-const ModalForm = (props) => {
-  const { add } = useContext(RaspunsuriCtx);
+const ModalForm = ({forma,onClick,idRaspuns,raspunsuri,add,update}) => {
+  // const raspInitialArr = Array(
+  //   forma.length
+  // ).fill("");
+  // const [rasp, SetRasp] = useState(raspInitialArr);
   const raspInitialArr = Array(
-    props.forma.length
+    forma.length
   ).fill("");
-  const [rasp, SetRasp] = useState(raspInitialArr);
+  const [rasp, SetRasp] = useState([]);
 
   const [activeTab, setActiveTab] = useState(1);
   const [modalPosition, setModalPosition] = useState({ x: 370, y: 270 });
   let hasPrev = activeTab > 1;
-  let hasNext = activeTab < props.forma.length;
+  let hasNext = activeTab < forma.length;
+
+
+
+  useEffect(() => {
+    console.log(idRaspuns);
+    console.log(raspunsuri);    
+    if(idRaspuns!==null) {
+      const foundRaspuns = raspunsuri.items.find(item => item.id === idRaspuns);
+      const valuesArray = Object.values(foundRaspuns).filter(value => value !== foundRaspuns.id);
+      SetRasp(valuesArray)    
+    } else SetRasp(Array(forma.length).fill(""))
+
+  }, []);
 
   const handleTabClick = (tabNumber) => {
     setActiveTab(tabNumber);
@@ -57,9 +73,16 @@ const ModalForm = (props) => {
   const handleResponse = () => {
     const IdRasp = Date.now();
     // console.log({ ...rasp, id: IdRasp });
-    // add({ ...rasp, id: IdRasp });
+    console.log(idRaspuns);
+    console.log(IdRasp);
+    if(idRaspuns===null){
+     add({ ...rasp, id: IdRasp });
+     onClick(rasp, IdRasp);
+    } else {
+      update({ ...rasp, id: idRaspuns });
+      onClick(rasp, idRaspuns);
+    }
 
-    props.onClick(rasp);
     SetRasp(raspInitialArr);
   };
 
@@ -82,14 +105,14 @@ const ModalForm = (props) => {
         <div className="progress-bar">
           <div
             className="progress-bar-fill"
-            style={{ width: `${(activeTab / props.forma.length) * 100}%` }}
+            style={{ width: `${(activeTab / forma.length) * 100}%` }}
           >
-            Step {activeTab} of {props.forma.length}
+            Step {activeTab} of {forma.length}
           </div>
         </div>
         <div className="navbar-subject">
           <ul>
-          {props.forma.map((elem, idx) => (
+          {forma.map((elem, idx) => (
                <li key={idx}
                className={activeTab === (idx+1) ? "active" : ""}
                onClick={() => handleTabClick(idx+1)}
@@ -100,7 +123,7 @@ const ModalForm = (props) => {
           </ul>
         </div>
         <div className="modal-content">
-          {props.forma.map((elem, idx) => (
+          {forma.map((elem, idx) => (
             <div className={activeTab === idx + 1 ? "active" : ""} key={idx}>
               <div>
                 <div style={{ display: "flex" }}>
@@ -149,7 +172,7 @@ const ModalForm = (props) => {
         </div>
         <button
           className="btn-close-modal"
-          onClick={() => props.onClick(null)}
+          onClick={() => onClick(null,null)}
         ></button>
       </div>
       <div className="modal-arrows">
@@ -180,4 +203,14 @@ const ModalForm = (props) => {
     </div>
   );
 };
-export default ModalForm;
+
+const reduxState = state => ({
+  raspunsuri: state.raspunsuri,
+})
+
+const  reduxFunctions = dispatch => ({
+  add: (item) => dispatch({type: 'ADD_ITEM', payload: item}),
+  update: (item) => dispatch({ type:'UPDATE_ITEM', payload: item})
+})
+
+export default connect(reduxState,reduxFunctions)(ModalForm);

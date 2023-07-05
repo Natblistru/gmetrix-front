@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useParams, useHistory } from "react-router-dom";
-import { RaspunsuriCtx } from "../context/Raspunsuri";
+import { connect } from "react-redux"
 import temeIstoriArray from "../../data/temeIstoria";
 import Wrapper from "../Wrapper";
 import Breadcrumb from "../Breadcrumb";
@@ -9,9 +9,9 @@ import ItemAccordeon from "../Accordeon/ItemAccordeon";
 import ItemText from "../Accordeon/ItemText";
 import ModalForm from "../Modal/ModalForm";
 
-const ExamenSubect1 = () => {
+const ExamenSubect1 = ({raspunsuri}) => {
   const { address } = useParams();
-  const { raspunsuri } = useContext(RaspunsuriCtx);
+  const [idRaspuns, setIdRaspuns] = useState(null);
   const [item, setItem] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   
@@ -91,13 +91,20 @@ const ExamenSubect1 = () => {
     }
   }, [indx, text]);
 
+  useEffect(() => {
+    console.log(raspunsuri.items);
+    console.log(idRaspuns);
+  }, [raspunsuri.items]);
 
   const openModal = () => {
     if(!showResponse)
       setIsOpen(true);
   };
 
-  const closeModal = (textRaspuns) => {
+  const closeModal = (textRaspuns,idRasp) => {
+    if (idRasp !== null) {
+      setIdRaspuns(idRasp)
+    }
     if (textRaspuns !== null) {
       if (textRaspuns.every((element) => element === "")) {
         setIsAnswered(false);
@@ -174,6 +181,7 @@ const ExamenSubect1 = () => {
               <ModalForm
                 onClick={closeModal}
                 forma={item.quizArray[currentIndex].forma}
+                idRaspuns={idRaspuns}
               />
             )}
             {isAnswered === true && (
@@ -207,4 +215,9 @@ const ExamenSubect1 = () => {
     </Wrapper>
   );
 };
-export default ExamenSubect1;
+
+const reduxState = state => ({
+  raspunsuri: state.raspunsuri,
+})
+export default connect(reduxState,null)(ExamenSubect1);
+

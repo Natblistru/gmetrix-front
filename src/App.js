@@ -21,7 +21,8 @@ import ExamenSubect1 from "./components/Teste/ExamenSubect1";
 import ExamenSubect2 from "./components/Teste/ExamenSubject2";
 import ExamenSubect3 from "./components/Teste/ExamenSubject3";
 import Error from "./components/Error";
-import Raspunsuri from "./components/context/Raspunsuri";
+// import Raspunsuri from "./components/context/Raspunsuri";
+import StoreComponent from "./components/ReduxComp/StoreComponent";
 
 const FlipCardsWithRouter = withRouter(FlipCards);
 const TestWithRouter = withRouter(Test);
@@ -30,29 +31,31 @@ function App() {
   return (
     <div className="App">
       <div>
-        <Raspunsuri>
-          <Switch>
-            <Route exact path="/" render={() => <Redirect to="/home" />} />
-            <Route path="/istoria/:address/examen-subiect1" component={ExamenSubect1} />
-            <Route path="/istoria/:address/examen-subiect2" component={ExamenSubect2} />
-            <Route path="/istoria/:address/examen-subiect3" component={ExamenSubect3} />
-            <Route path="/istoria/:address/flipCards/ani" component={FlipCardsWithRouter} />
-            <Route path="/istoria/:address/flipCards/termeni" component={FlipCardsWithRouter} />
-            <Route path="/istoria/:address/:address1/:addressTest/:idTest" component={TestWithRouter} />
-            <Route path="/istoria/:address/:address1" component={Subtema} />
-            <Route path="/istoria/:address" component={Tema} />
-            <Route exact path="/home" component={Home} />
-            <Route path="/romana" component={TemeRom} />
-            <Route path="/matem" component={TemeMatem} />
-            <Route path="/istoria" component={TemeIstoria} />
-            <Route path="/word" component={TestWords} />
-            <Route path="/tema1" component={Tema} />
-            <Route path="/subtema1" component={Subtema} />
-            <Route path="/test1" component={TestGeneralizator} />
+        {/* <Raspunsuri> */}
+          <StoreComponent>
+            <Switch>
+              <Route exact path="/" render={() => <Redirect to="/home" />} />
+              <Route path="/istoria/:address/examen-subiect1" component={ExamenSubect1} />
+              <Route path="/istoria/:address/examen-subiect2" component={ExamenSubect2} />
+              <Route path="/istoria/:address/examen-subiect3" component={ExamenSubect3} />
+              <Route path="/istoria/:address/flipCards/ani" component={FlipCardsWithRouter} />
+              <Route path="/istoria/:address/flipCards/termeni" component={FlipCardsWithRouter} />
+              <Route path="/istoria/:address/:address1/:addressTest/:idTest" component={TestWithRouter} />
+              <Route path="/istoria/:address/:address1" component={Subtema} />
+              <Route path="/istoria/:address" component={Tema} />
+              <Route exact path="/home" component={Home} />
+              <Route path="/romana" component={TemeRom} />
+              <Route path="/matem" component={TemeMatem} />
+              <Route path="/istoria" component={TemeIstoria} />
+              <Route path="/word" component={TestWords} />
+              <Route path="/tema1" component={Tema} />
+              <Route path="/subtema1" component={Subtema} />
+              <Route path="/test1" component={TestGeneralizator} />
 
-            <Route component={Error} />
-          </Switch>
-        </Raspunsuri>
+              <Route component={Error} />
+            </Switch>
+          </StoreComponent>
+        {/* </Raspunsuri> */}
       </div>
     </div>
   );

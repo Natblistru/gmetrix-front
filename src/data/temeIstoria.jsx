@@ -1501,9 +1501,9 @@ let temeIstoria = [
                 id: "1",
                 cerinte: [
                   "Studiază coperta cărții. Numește un fapt istoric pe care autorul îl poate utiliza pentru a justifica titlul cărții. Argumentează răspunsul.",
-                  "Numește un fapt istoric pe care autorul îl poate utiliza pentru a justifica titlul cărții (nu uita să indici data).",
-                  "Argumentează răspunsul fără referire la imagine.",
-                  "Argumentează răspunsul cu referire la copertă.",
+                  // "Numește un fapt istoric pe care autorul îl poate utiliza pentru a justifica titlul cărții (nu uita să indici data).",
+                  // "Argumentează răspunsul fără referire la imagine.",
+                  // "Argumentează răspunsul cu referire la copertă.",
                 ],
                 img: "/images/carte_planul_marshall.jpg",
                 forma: [
@@ -1520,10 +1520,10 @@ let temeIstoria = [
                     ],
                   },
                 ],
-                cuvinteReferinta: [
-                  "denumirea cărții face trimitere la...",
-                  "în imagine vedem...",
-                ],
+                // cuvinteReferinta: [
+                //   "denumirea cărții face trimitere la...",
+                //   "în imagine vedem...",
+                // ],
                 raspuns: [
                   "Fapt istoric: semnarea Pactului Molotov-Ribentrop din 23 august 1939",
                   'Argument: pe coperta cărții se vede denumirea "Pactului Molotov-Ribentrop", iar pe fotografie se văd semnatarii acestui document - Molotov și Ribentrop',
@@ -1754,11 +1754,11 @@ let temeIstoria = [
                     sursaText: "Dicționar istoric, București, 2008",
                   },
                 ],
-                img: "/images/carte_planul_marshall.jpg",
-                raspuns: [
-                  "Fapt istoric: semnarea Pactului Molotov-Ribentrop din 23 august 1939",
-                  'Argument: pe coperta cărții se vede denumirea "Pactului Molotov-Ribentrop", iar pe fotografie se văd semnatarii acestui document - Molotov și Ribentrop',
-                ],
+                // img: "/images/carte_planul_marshall.jpg",
+                // raspuns: [
+                //   "Fapt istoric: semnarea Pactului Molotov-Ribentrop din 23 august 1939",
+                //   'Argument: pe coperta cărții se vede denumirea "Pactului Molotov-Ribentrop", iar pe fotografie se văd semnatarii acestui document - Molotov și Ribentrop',
+                // ],
               },
               {
                 id: "2",
@@ -1933,11 +1933,11 @@ let temeIstoria = [
                     sursaText: "Dicționar istoric, București, 2008",
                   },
                 ],
-                img: "/images/carte_planul_marshall.jpg",
-                raspuns: [
-                  "Fapt istoric: semnarea Pactului Molotov-Ribentrop din 23 august 1939",
-                  'Argument: pe coperta cărții se vede denumirea "Pactului Molotov-Ribentrop", iar pe fotografie se văd semnatarii acestui document - Molotov și Ribentrop',
-                ],
+                // img: "/images/carte_planul_marshall.jpg",
+                // raspuns: [
+                //   "Fapt istoric: semnarea Pactului Molotov-Ribentrop din 23 august 1939",
+                //   'Argument: pe coperta cărții se vede denumirea "Pactului Molotov-Ribentrop", iar pe fotografie se văd semnatarii acestui document - Molotov și Ribentrop',
+                // ],
               },
             ],
           },
