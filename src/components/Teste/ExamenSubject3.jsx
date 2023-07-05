@@ -9,6 +9,7 @@ import ItemAccordeon from "../Accordeon/ItemAccordeon";
 import AccordionSurse from "../Accordeon/AccordionSurse";
 import ItemText from "../Accordeon/ItemText";
 import ModalForm from "../Modal/ModalForm";
+import ModalCalculator from "../Modal/ModalCalculator";
 
 const ExamenSubect3 = ({raspunsuri}) => {
   const { address } = useParams();
@@ -24,6 +25,7 @@ const ExamenSubect3 = ({raspunsuri}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isAnswered, setIsAnswered] = useState(false);
   const [showResponse, setShowResponse] = useState(false);
+  const [showAutoevaluare, setShowAutoevaluare] = useState(false)
   const speed = 50;
 
   const history = useHistory();
@@ -130,6 +132,14 @@ const ExamenSubect3 = ({raspunsuri}) => {
     setShowResponse(true);
   };
 
+  const handleAutoevaluare = () => {
+    setShowAutoevaluare(true);
+  }
+
+  const onCloseAutoevaluare = () => {
+    setShowAutoevaluare(false);
+  }
+
   return (
     <Wrapper>
       {item && (
@@ -139,7 +149,7 @@ const ExamenSubect3 = ({raspunsuri}) => {
           <ItemAccordeon
             titlu={`Cerințele sarcinii (${currentIndex + 1}/${
               item.quizArray.length
-            }):`}
+            }) - ${item.quizArray[currentIndex].barem.maxPoints} puncte:`}
             open={true}
           >
             <ItemText>
@@ -223,6 +233,16 @@ const ExamenSubect3 = ({raspunsuri}) => {
                 <br />
                 {item.quizArray[currentIndex].raspuns[1]}
               </ItemText>
+              <button onClick={handleAutoevaluare} className="btn-test">
+                Autoevaluiaza raspunsul!
+              </button>
+              {showAutoevaluare && (
+                <ModalCalculator
+                  onClick={onCloseAutoevaluare}
+                  barem={item.quizArray[currentIndex].barem}
+                  idRaspuns={idRaspuns}
+                />
+              )}
               <button onClick={handleTryAgain} className="btn-test">
                 Încearcă din nou!
               </button>

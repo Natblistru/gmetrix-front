@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useParams, useHistory } from "react-router-dom";
-import { connect } from "react-redux"
+import { connect } from "react-redux";
 import temeIstoriArray from "../../data/temeIstoria";
 import Wrapper from "../Wrapper";
 import Breadcrumb from "../Breadcrumb";
@@ -8,22 +8,23 @@ import TitleBox from "../TitleBox";
 import ItemAccordeon from "../Accordeon/ItemAccordeon";
 import ItemText from "../Accordeon/ItemText";
 import ModalForm from "../Modal/ModalForm";
+import ModalCalculator from "../Modal/ModalCalculator";
 
-const ExamenSubect1 = ({raspunsuri}) => {
+const ExamenSubect1 = ({ raspunsuri }) => {
   const { address } = useParams();
   const [idRaspuns, setIdRaspuns] = useState(null);
   const [item, setItem] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
-  
+
   const [text, setText] = useState("");
   const [indx, setIndx] = useState(0);
   const [currentTextIndex, setCurrentTextIndex] = useState(null);
   const [textArray, setTextArray] = useState([]);
 
-  
   const [isOpen, setIsOpen] = useState(false);
   const [isAnswered, setIsAnswered] = useState(false);
   const [showResponse, setShowResponse] = useState(false);
+  const [showAutoevaluare, setShowAutoevaluare] = useState(false)
   const speed = 50;
 
   const history = useHistory();
@@ -67,19 +68,18 @@ const ExamenSubect1 = ({raspunsuri}) => {
     if (currentTextIndex !== null) {
       setText(textArray[currentTextIndex]);
       if (currentTextIndex < textArray.length) {
-        if(textArray[currentTextIndex].length==0) {
-          indx==1?setIndx(0):setIndx(1);
-        }
-        else setIndx(1);
+        if (textArray[currentTextIndex].length == 0) {
+          indx == 1 ? setIndx(0) : setIndx(1);
+        } else setIndx(1);
       }
     }
   }, [currentTextIndex]);
 
   useEffect(() => {
-    if (currentTextIndex !== null && currentTextIndex < textArray.length ) {
-      if (indx == text?.length || text?.length==0) {
+    if (currentTextIndex !== null && currentTextIndex < textArray.length) {
+      if (indx == text?.length || text?.length == 0) {
         if (currentTextIndex < textArray.length) {
-          setCurrentTextIndex(currentTextIndex+1);          
+          setCurrentTextIndex(currentTextIndex + 1);
         } else return;
       }
 
@@ -97,13 +97,12 @@ const ExamenSubect1 = ({raspunsuri}) => {
   }, [raspunsuri.items]);
 
   const openModal = () => {
-    if(!showResponse)
-      setIsOpen(true);
+    if (!showResponse) setIsOpen(true);
   };
 
-  const closeModal = (textRaspuns,idRasp) => {
+  const closeModal = (textRaspuns, idRasp) => {
     if (idRasp !== null) {
-      setIdRaspuns(idRasp)
+      setIdRaspuns(idRasp);
     }
     if (textRaspuns !== null) {
       if (textRaspuns.every((element) => element === "")) {
@@ -130,6 +129,14 @@ const ExamenSubect1 = ({raspunsuri}) => {
 
   const handleVerifica = () => {
     setShowResponse(true);
+  };
+
+  const handleAutoevaluare = () => {
+    setShowAutoevaluare(true);
+  }
+
+  const onCloseAutoevaluare = () => {
+    setShowAutoevaluare(false);
   }
 
   return (
@@ -138,25 +145,35 @@ const ExamenSubect1 = ({raspunsuri}) => {
         <>
           <Breadcrumb list={item.breadcrumb} />
           <TitleBox className="teme-container">{item.name}</TitleBox>
-          <ItemAccordeon titlu={`Cerințele sarcinii (${currentIndex + 1}/${item.quizArray.length}):`} open={true}>
+          <ItemAccordeon
+            titlu={`Cerințele sarcinii (${currentIndex + 1}/${
+              item.quizArray.length
+            }) - ${item.quizArray[currentIndex].barem.maxPoints} puncte:`}
+            open={true}
+          >
             <ItemText>
-             <p>{item.quizArray[currentIndex].cerinte[0]}</p>
+              <p>{item.quizArray[currentIndex].cerinte[0]}</p>
               <div className="subject1-container">
                 <div className="paper" style={{ width: "70%" }}>
                   <div className="lines">
                     <div className="text">
-                    {currentTextIndex !== null && isAnswered &&
+                      {currentTextIndex !== null &&
+                        isAnswered &&
                         textArray.map((textElem, ind) =>
                           currentTextIndex >= ind ? (
                             <React.Fragment key={ind}>
                               {textElem.slice(
                                 0,
-                                currentTextIndex == ind && indx < textElem.length ? indx : textElem.length
+                                currentTextIndex == ind &&
+                                  indx < textElem.length
+                                  ? indx
+                                  : textElem.length
                               )}
                               <br />
                             </React.Fragment>
                           ) : null
-                        )}                    </div>
+                        )}{" "}
+                    </div>
                   </div>
                   <div className="holes hole-top"></div>
                   <div className="holes hole-middle"></div>
@@ -186,10 +203,7 @@ const ExamenSubect1 = ({raspunsuri}) => {
               />
             )}
             {isAnswered === true && (
-              <button
-                onClick={handleVerifica}
-                className="btn-test"
-              >
+              <button onClick={handleVerifica} className="btn-test">
                 Verifică răspunsul
               </button>
             )}
@@ -206,6 +220,16 @@ const ExamenSubect1 = ({raspunsuri}) => {
                 <br />
                 {item.quizArray[currentIndex].raspuns[1]}
               </ItemText>
+              <button onClick={handleAutoevaluare} className="btn-test">
+                Autoevaluiaza raspunsul!
+              </button>
+              {showAutoevaluare && (
+                <ModalCalculator
+                  onClick={onCloseAutoevaluare}
+                  barem={item.quizArray[currentIndex].barem}
+                  idRaspuns={idRaspuns}
+                />
+              )}
               <button onClick={handleTryAgain} className="btn-test">
                 Încearcă din nou!
               </button>
@@ -217,8 +241,7 @@ const ExamenSubect1 = ({raspunsuri}) => {
   );
 };
 
-const reduxState = state => ({
+const reduxState = (state) => ({
   raspunsuri: state.raspunsuri,
-})
-export default connect(reduxState,null)(ExamenSubect1);
-
+});
+export default connect(reduxState, null)(ExamenSubect1);

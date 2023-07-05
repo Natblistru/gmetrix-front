@@ -1140,34 +1140,6 @@ let temeIstoria = [
                         ],
                       },
                     ],
-                    // cerinte: "Persoana reprezentată în imagine:",
-                    // answers: [
-                    //   {
-                    //     text: "România a intrat în Primul Război Mondial în anul 1916",
-                    //     correct: true,
-                    //     rezolvare:
-                    //       "România a intrat în Primul Război Mondial în anul 1916",
-                    //   },
-                    //   {
-                    //     text: "Regele României în timpul Primului Război Mondial a fost Carol I",
-                    //     correct: false,
-                    //     rezolvare:
-                    //       "Regele României în timpul Primului Război Mondial nu a fost Carol I",
-                    //   },
-                    //   {
-                    //     text: "România a semnat Tratatul de la Trianon, care a pus capăt participării sale în Primul Război Mondial",
-                    //     correct: true,
-                    //     rezolvare:
-                    //       "România a semnat Tratatul de la Trianon, care a pus capăt participării sale în Primul Război Mondial",
-                    //   },
-                    //   {
-                    //     text: "Motivul principal pentru intrarea României în Primul Război Mondial a fost dorința de a-și extinde teritoriile",
-                    //     correct: false,
-                    //     rezolvare:
-                    //       "Motivul principal pentru intrarea României în Primul Război Mondial a fost dorința de a susține Antanta",
-                    //   },
-                    // ],
-                    // correctAnswer: "",
                   },
                   {
                     id: "2",
@@ -1249,34 +1221,6 @@ let temeIstoria = [
                         ],
                       },
                     ],
-                    // cerinte: "Persoana reprezentată în imagine:",
-                    // answers: [
-                    //   {
-                    //     text: "România a intrat în Primul Război Mondial în anul 1916",
-                    //     correct: true,
-                    //     rezolvare:
-                    //       "România a intrat în Primul Război Mondial în anul 1916",
-                    //   },
-                    //   {
-                    //     text: "Regele României în timpul Primului Război Mondial a fost Carol I",
-                    //     correct: false,
-                    //     rezolvare:
-                    //       "Regele României în timpul Primului Război Mondial nu a fost Carol I",
-                    //   },
-                    //   {
-                    //     text: "România a semnat Tratatul de la Trianon, care a pus capăt participării sale în Primul Război Mondial",
-                    //     correct: true,
-                    //     rezolvare:
-                    //       "România a semnat Tratatul de la Trianon, care a pus capăt participării sale în Primul Război Mondial",
-                    //   },
-                    //   {
-                    //     text: "Motivul principal pentru intrarea României în Primul Război Mondial a fost dorința de a-și extinde teritoriile",
-                    //     correct: false,
-                    //     rezolvare:
-                    //       "Motivul principal pentru intrarea României în Primul Război Mondial a fost dorința de a susține Antanta",
-                    //   },
-                    // ],
-                    // correctAnswer: "",
                   },
                 ],
               },
@@ -1501,9 +1445,6 @@ let temeIstoria = [
                 id: "1",
                 cerinte: [
                   "Studiază coperta cărții. Numește un fapt istoric pe care autorul îl poate utiliza pentru a justifica titlul cărții. Argumentează răspunsul.",
-                  // "Numește un fapt istoric pe care autorul îl poate utiliza pentru a justifica titlul cărții (nu uita să indici data).",
-                  // "Argumentează răspunsul fără referire la imagine.",
-                  // "Argumentează răspunsul cu referire la copertă.",
                 ],
                 img: "/images/carte_planul_marshall.jpg",
                 forma: [
@@ -1520,22 +1461,57 @@ let temeIstoria = [
                     ],
                   },
                 ],
-                // cuvinteReferinta: [
-                //   "denumirea cărții face trimitere la...",
-                //   "în imagine vedem...",
-                // ],
                 raspuns: [
                   "Fapt istoric: semnarea Pactului Molotov-Ribentrop din 23 august 1939",
                   'Argument: pe coperta cărții se vede denumirea "Pactului Molotov-Ribentrop", iar pe fotografie se văd semnatarii acestui document - Molotov și Ribentrop',
                 ],
+                barem: {
+                  maxPoints: 3,
+                  subitems: [
+                    {
+                      nameSubItem: "Numește..",
+                      maxSubPoints: 1,
+                      options: [
+                        {
+                          value: 1,
+                          label: "0 p. - răspuns greșit/ lipsă",
+                          subPoint: 0,
+                        },
+                        {
+                          value: 2,
+                          label: "1 p. - răspuns corect",
+                          subPoint: 1,
+                        },
+                      ],
+                    },
+                    {
+                      nameSubItem: "Argumentează..",
+                      maxSubPoints: 2,
+                      options: [
+                        {
+                          value: 1,
+                          label: "0 p. - răspuns greșit/lipsă",
+                          subPoint: 0,
+                        },
+                        {
+                          value: 2,
+                          label: "1 p. - argumentare parțială, fără invocarea unor exemple/dovezi",
+                          subPoint: 1,
+                        },
+                        {
+                          value: 3,
+                          label: "2 p. - argumentare deplină, cu exemple invocate din sursă sau din cunoștințele obținute anterior",
+                          subPoint: 2,
+                        },
+                      ],
+                    },
+                  ],
+                },
               },
               {
                 id: "2",
                 cerinte: [
                   "Studiază coperta cărții. Numește un fapt istoric pe care autorul îl poate utiliza pentru a justifica titlul cărții. Argumentează răspunsul.",
-                  // "Numește un fapt istoric pe care autorul îl poate utiliza pentru a justifica titlul cărții (nu uita să indici data).",
-                  // "Argumentează răspunsul fără referire la imagine.",
-                  // "Argumentează răspunsul cu referire la copertă.",
                 ],
                 img: "/images/carte_planul_marshall.jpg",
                 forma: [
@@ -1552,14 +1528,52 @@ let temeIstoria = [
                     ],
                   },
                 ],
-                // cuvinteReferinta: [
-                //   "denumirea cărții face trimitere la...",
-                //   "în imagine vedem...",
-                // ],
                 raspuns: [
                   "Fapt istoric: semnarea Pactului Molotov-Ribentrop din 23 august 1939",
                   'Argument: pe coperta cărții se vede denumirea "Pactului Molotov-Ribentrop", iar pe fotografie se văd semnatarii acestui document - Molotov și Ribentrop',
                 ],
+                barem: {
+                  maxPoints: 3,
+                  subitems: [
+                    {
+                      nameSubItem: "Numește..",
+                      maxSubPoints: 1,
+                      options: [
+                        {
+                          value: 1,
+                          label: "0 p. - răspuns greșit/ lipsă",
+                          subPoint: 0,
+                        },
+                        {
+                          value: 2,
+                          label: "1 p. - răspuns corect",
+                          subPoint: 1,
+                        },
+                      ],
+                    },
+                    {
+                      nameSubItem: "Argumentează..",
+                      maxSubPoints: 2,
+                      options: [
+                        {
+                          value: 1,
+                          label: "0 p. - răspuns greșit/lipsă",
+                          subPoint: 0,
+                        },
+                        {
+                          value: 2,
+                          label: "1 p. - argumentare parțială, fără invocarea unor exemple/dovezi",
+                          subPoint: 1,
+                        },
+                        {
+                          value: 3,
+                          label: "2 p. - argumentare deplină, cu exemple invocate din sursă sau din cunoștințele obținute anterior",
+                          subPoint: 2,
+                        },
+                      ],
+                    },
+                  ],
+                },
               },
             ],
           },
@@ -1591,8 +1605,10 @@ let temeIstoria = [
                     id: 1,
                     sursa:
                       "Utilizează sursa A și cunoștințele obținute anterior.",
-                    cerinte:[
-                      "Identifică două evenimente importante pentru evoluția regimurilor totalitare în perioada interbelică.",""],
+                    cerinte: [
+                      "Identifică două evenimente importante pentru evoluția regimurilor totalitare în perioada interbelică.",
+                      "",
+                    ],
 
                     forma: [
                       {
@@ -1604,56 +1620,184 @@ let temeIstoria = [
                         hint: [],
                       },
                     ],
-                    raspuns: "două evenimente importante pentru evoluția regimurilor totalitare în perioada interbelică"
+                    raspuns:
+                      "două evenimente importante pentru evoluția regimurilor totalitare în perioada interbelică",
+                      barem: {
+                        maxPoints: 2,
+                        subitems: [
+                          {
+                            nameSubItem: "Identifică I eveniment..",
+                            maxSubPoints: 1,
+                            options: [
+                              {
+                                value: 1,
+                                label: "0 p. - răspuns greșit/ lipsă",
+                                subPoint: 0,
+                              },
+                              {
+                                value: 2,
+                                label: "1 p. - răspuns corect",
+                                subPoint: 1,
+                              },
+                            ],
+                          },
+                          {
+                            nameSubItem: "Identifică II eveniment..",
+                            maxSubPoints: 1,
+                            options: [
+                              {
+                                value: 1,
+                                label: "0 p. - răspuns greșit/lipsă",
+                                subPoint: 0,
+                              },
+                              {
+                                value: 2,
+                                label: "1 p. - argumentare parțială, fără invocarea unor exemple/dovezi",
+                                subPoint: 1,
+                              },
+                            ],
+                          },
+                        ],
+                      },
                   },
                   {
                     id: 2,
                     sursa:
                       "Utilizează sursele A, C și cunoștințele obținute anterior.",
-                    cerinte:[
-                      "Formulează o cauză a instaurării regimurilor totalitare din perioada interbelică.",""],
+                    cerinte: [
+                      "Formulează o cauză a instaurării regimurilor totalitare din perioada interbelică.",
+                      "",
+                    ],
                     forma: [
                       {
                         cerinte: "Cauza",
                         hint: [],
                       },
                     ],
-                    raspuns: "cauză a instaurării regimurilor totalitare din perioada interbelică"
-                  },    
+                    raspuns:
+                      "cauză a instaurării regimurilor totalitare din perioada interbelică",
+                      barem: {
+                        maxPoints: 2,
+                        subitems: [
+                          {
+                            nameSubItem: "Formulează..",
+                            maxSubPoints: 2,
+                            options: [
+                              {
+                                value: 1,
+                                label: "0 p. - răspuns greșit/ lipsă",
+                                subPoint: 0,
+                              },
+                              {
+                                value: 2,
+                                label: "1 p. - formularea unei cauze parțiale; doar selectare din sursă",
+                                subPoint: 1,
+                              },
+                              {
+                                value: 3,
+                                label: "2 p. - formularea unei cauze depline în baza sursei sau a cunoștințelor anterioare",
+                                subPoint: 2,
+                              },                              
+                            ],
+                          },
+                        ],
+                      },
+                  },
                   {
                     id: 3,
                     sursa:
                       "Utilizează sursa D și cunoștințele obținute anterior.",
-                    cerinte:[
-                      "Explică termenul Izolaționism.",""],
+                    cerinte: ["Explică termenul Izolaționism.", ""],
                     forma: [
                       {
                         cerinte: "Explicația",
                         hint: [],
                       },
                     ],
-                    raspuns: "termenul Izolaționism."
+                    raspuns: "termenul Izolaționism.",
+                    barem: {
+                      maxPoints: 2,
+                      subitems: [
+                        {
+                          nameSubItem: "Explică..",
+                          maxSubPoints: 2,
+                          options: [
+                            {
+                              value: 1,
+                              label: "0 p. - răspuns greșit/ lipsă",
+                              subPoint: 0,
+                            },
+                            {
+                              value: 2,
+                              label: "1 p. - explicație parțială, în baza unor indicii din sursă",
+                              subPoint: 1,
+                            },
+                            {
+                              value: 3,
+                              label: "2 p. - explicație deplină menționând aspectele esențiale ale sensului termenului",
+                              subPoint: 2,
+                            },                              
+                          ],
+                        },
+                      ],
+                    },
                   },
                   {
                     id: 4,
                     sursa:
                       "Utilizează sursa B și cunoștințele obținute anterior.",
-                    cerinte:[
-                      "Explică scopul luptei de emancipare a femeilor în perioada interbelică.",""],
+                    cerinte: [
+                      "Explică scopul luptei de emancipare a femeilor în perioada interbelică.",
+                      "",
+                    ],
                     forma: [
                       {
                         cerinte: "Scopul",
                         hint: [],
                       },
                     ],
-                    raspuns: "scopul luptei de emancipare a femeilor în perioada interbelică."
-                  }, 
+                    raspuns:
+                      "scopul luptei de emancipare a femeilor în perioada interbelică.",
+                      barem: {
+                        maxPoints: 3,
+                        subitems: [
+                          {
+                            nameSubItem: "Explică scopul..",
+                            maxSubPoints: 3,
+                            options: [
+                              {
+                                value: 1,
+                                label: "0 p. - răspuns greșit/ lipsă",
+                                subPoint: 0,
+                              },
+                              {
+                                value: 2,
+                                label: "1 p. - răspuns simplist/declarativ",
+                                subPoint: 1,
+                              },
+                              {
+                                value: 3,
+                                label: "2 p. - explicație parțială în baza opiniei personale asupra sarcinii, fără a valorifica informația din sursă",
+                                subPoint: 2,
+                              },   
+                              {
+                                value: 4,
+                                label: "3 p. - explicație deplină - reflectă esența faptului istoric analizat și valorifică informația din sursă",
+                                subPoint: 3,
+                              },                                                          
+                            ],
+                          },
+                        ],
+                      },
+                  },
                   {
                     id: 5,
                     sursa:
                       "Utilizează sursele A, B și cunoștințele obținute anterior.",
-                    cerinte:[
-                      "Determină două consecințe ale menținerii regimurilor democratice în perioada interbelică. Explică răspunsul.",""],
+                    cerinte: [
+                      "Determină două consecințe ale menținerii regimurilor democratice în perioada interbelică. Explică răspunsul.",
+                      "",
+                    ],
                     forma: [
                       {
                         cerinte: "Consecința 1:",
@@ -1664,14 +1808,64 @@ let temeIstoria = [
                         hint: [],
                       },
                     ],
-                    raspuns: "două consecințe ale menținerii regimurilor democratice în perioada interbelică"
-                  },   
+                    raspuns:
+                      "două consecințe ale menținerii regimurilor democratice în perioada interbelică",
+                      barem: {
+                        maxPoints: 4,
+                        subitems: [
+                          {
+                            nameSubItem: "Prima consecință..",
+                            maxSubPoints: 2,
+                            options: [
+                              {
+                                value: 1,
+                                label: "0 p. - răspuns greșit/ lipsă",
+                                subPoint: 0,
+                              },
+                              {
+                                value: 2,
+                                label: "1 p. - determină consecința corect; selectează din sursă sau din cunoștințele anterioare fără a explica",
+                                subPoint: 1,
+                              },
+                              {
+                                value: 3,
+                                label: "2 p. - determină consecința corect; selectează din sursă sau din cunoștințele anterioare și oferă o explicație pertinentă",
+                                subPoint: 2,
+                              },                                                         
+                            ],
+                          },
+                          {
+                            nameSubItem: "A doua consecință..",
+                            maxSubPoints: 2,
+                            options: [
+                              {
+                                value: 1,
+                                label: "0 p. - răspuns greșit/ lipsă",
+                                subPoint: 0,
+                              },
+                              {
+                                value: 2,
+                                label: "1 p. - determină consecința corect; selectează din sursă sau din cunoștințele anterioare fără a explica",
+                                subPoint: 1,
+                              },
+                              {
+                                value: 3,
+                                label: "2 p. - determină consecința corect; selectează din sursă sau din cunoștințele anterioare și oferă o explicație pertinentă",
+                                subPoint: 2,
+                              },                                                         
+                            ],
+                          },
+                        ],
+                      },
+                  },
                   {
                     id: 6,
                     sursa:
                       "Utilizează sursa D și cunoștințele obținute anterior.",
                     cerinte: [
-                      "Numește o personalitate istorică ce a condus SUA în perioada celui de-al Doilea Război Mondial. Argumentează, în două idei, rolul acestei personalități în istorie.",""],
+                      "Numește o personalitate istorică ce a condus SUA în perioada celui de-al Doilea Război Mondial. Argumentează, în două idei, rolul acestei personalități în istorie.",
+                      "",
+                    ],
                     forma: [
                       {
                         cerinte: "Personalitatea:",
@@ -1686,17 +1880,81 @@ let temeIstoria = [
                         hint: [],
                       },
                     ],
-                    raspuns: "personalitate istorică ce a condus SUA în perioada celui de-al Doilea Război Mondial"
-                  },  
+                    raspuns:
+                      "personalitate istorică ce a condus SUA în perioada celui de-al Doilea Război Mondial",
+                      barem: {
+                        maxPoints: 5,
+                        subitems: [
+                          {
+                            nameSubItem: "Numește..",
+                            maxSubPoints: 2,
+                            options: [
+                              {
+                                value: 1,
+                                label: "0 p. - răspuns greșit/ lipsă",
+                                subPoint: 0,
+                              },
+                              {
+                                value: 2,
+                                label: "1 p. - numește corect personalitatea",
+                                subPoint: 1,
+                              },                                                      
+                            ],
+                          },
+                          {
+                            nameSubItem: "Argumenteaza - I idee..",
+                            maxSubPoints: 2,
+                            options: [
+                              {
+                                value: 1,
+                                label: "0 p. - răspuns lipsă sau în discordanță cu opinia exprimată",
+                                subPoint: 0,
+                              },
+                              {
+                                value: 2,
+                                label: "1 p. - argumentare parțială, fără invocarea unor exemple",
+                                subPoint: 1,
+                              },
+                              {
+                                value: 3,
+                                label: "2 p. - argumentare deplină, cu exemple invocate, corecte din punct de vedere științific",
+                                subPoint: 2,
+                              },                                                         
+                            ],
+                          },
+                          {
+                            nameSubItem: "Argumenteaza - II idee..",
+                            maxSubPoints: 2,
+                            options: [
+                              {
+                                value: 1,
+                                label: "0 p. - răspuns lipsă sau în discordanță cu opinia exprimată",
+                                subPoint: 0,
+                              },
+                              {
+                                value: 2,
+                                label: "1 p. - argumentare parțială, fără invocarea unor exemple",
+                                subPoint: 1,
+                              },
+                              {
+                                value: 3,
+                                label: "2 p. - argumentare deplină, cu exemple invocate, corecte din punct de vedere științific",
+                                subPoint: 2,
+                              },                                                         
+                            ],
+                          },
+                        ],
+                      },
+                  },
                   {
                     id: 7,
-                    sursa:
-                      "",
-                    cerinte:[
-                      "Exprimă-ți opinia:", "Formulează două argumente."
+                    sursa: "",
+                    cerinte: [
+                      "Exprimă-ți opinia:",
+                      "Formulează două argumente.",
                     ],
                     afirmatia:
-                    "Regimurile totalitare interbelice aveau trăsături comune?",
+                      "Regimurile totalitare interbelice aveau trăsături comune?",
                     forma: [
                       {
                         cerinte: "Opinia:",
@@ -1711,8 +1969,72 @@ let temeIstoria = [
                         hint: [],
                       },
                     ],
-                    raspuns: "Regimurile totalitare interbelice aveau trăsături comune"
-                  },            
+                    raspuns:
+                      "Regimurile totalitare interbelice aveau trăsături comune",
+                      barem: {
+                        maxPoints: 5,
+                        subitems: [
+                          {
+                            nameSubItem: "Exprimă opinia..",
+                            maxSubPoints: 2,
+                            options: [
+                              {
+                                value: 1,
+                                label: "0 p. - răspuns lipsă/ neexplicit (nu este posibil a identifica opinia)",
+                                subPoint: 0,
+                              },
+                              {
+                                value: 2,
+                                label: "1 p. - apreciere explicit formulată",
+                                subPoint: 1,
+                              },                                                      
+                            ],
+                          },
+                          {
+                            nameSubItem: "Argumenteaza - I argument..",
+                            maxSubPoints: 2,
+                            options: [
+                              {
+                                value: 1,
+                                label: "0 p. - răspuns lipsă sau în discordanță cu opinia exprimată",
+                                subPoint: 0,
+                              },
+                              {
+                                value: 2,
+                                label: "1 p. - argumentare parțială, fără a face trimitere la suportul propus sau a valorifica cunoștințelor obținute anterior",
+                                subPoint: 1,
+                              },
+                              {
+                                value: 3,
+                                label: "2 p. - argumentare deplină (raționament și exemplu), corectă științific, în concordanță cu opinia exprimată, valorifică suportul sau cunoștințele obținute anterior",
+                                subPoint: 2,
+                              },                                                         
+                            ],
+                          },
+                          {
+                            nameSubItem: "Argumenteaza - II argument..",
+                            maxSubPoints: 2,
+                            options: [
+                              {
+                                value: 1,
+                                label: "0 p. - răspuns lipsă sau în discordanță cu opinia exprimată",
+                                subPoint: 0,
+                              },
+                              {
+                                value: 2,
+                                label: "1 p. - argumentare parțială, fără a face trimitere la suportul propus sau a valorifica cunoștințelor obținute anterior",
+                                subPoint: 1,
+                              },
+                              {
+                                value: 3,
+                                label: "2 p. - argumentare deplină (raționament și exemplu), corectă științific, în concordanță cu opinia exprimată, valorifică suportul sau cunoștințele obținute anterior",
+                                subPoint: 2,
+                              },                                                         
+                            ],
+                          },
+                        ],
+                      },
+                  },
                 ],
 
                 sursa: [
@@ -1754,11 +2076,6 @@ let temeIstoria = [
                     sursaText: "Dicționar istoric, București, 2008",
                   },
                 ],
-                // img: "/images/carte_planul_marshall.jpg",
-                // raspuns: [
-                //   "Fapt istoric: semnarea Pactului Molotov-Ribentrop din 23 august 1939",
-                //   'Argument: pe coperta cărții se vede denumirea "Pactului Molotov-Ribentrop", iar pe fotografie se văd semnatarii acestui document - Molotov și Ribentrop',
-                // ],
               },
               {
                 id: "2",
@@ -1770,8 +2087,10 @@ let temeIstoria = [
                     id: 1,
                     sursa:
                       "Utilizează sursa A și cunoștințele obținute anterior.",
-                    cerinte:[
-                      "Identifică două evenimente importante pentru evoluția regimurilor totalitare în perioada interbelică.",""],
+                    cerinte: [
+                      "Identifică două evenimente importante pentru evoluția regimurilor totalitare în perioada interbelică.",
+                      "",
+                    ],
 
                     forma: [
                       {
@@ -1783,56 +2102,184 @@ let temeIstoria = [
                         hint: [],
                       },
                     ],
-                    raspuns: "două evenimente importante pentru evoluția regimurilor totalitare în perioada interbelică"
+                    raspuns:
+                      "două evenimente importante pentru evoluția regimurilor totalitare în perioada interbelică",
+                      barem: {
+                        maxPoints: 2,
+                        subitems: [
+                          {
+                            nameSubItem: "Identifică I eveniment..",
+                            maxSubPoints: 1,
+                            options: [
+                              {
+                                value: 1,
+                                label: "0 p. - răspuns greșit/ lipsă",
+                                subPoint: 0,
+                              },
+                              {
+                                value: 2,
+                                label: "1 p. - răspuns corect",
+                                subPoint: 1,
+                              },
+                            ],
+                          },
+                          {
+                            nameSubItem: "Identifică II eveniment..",
+                            maxSubPoints: 1,
+                            options: [
+                              {
+                                value: 1,
+                                label: "0 p. - răspuns greșit/lipsă",
+                                subPoint: 0,
+                              },
+                              {
+                                value: 2,
+                                label: "1 p. - argumentare parțială, fără invocarea unor exemple/dovezi",
+                                subPoint: 1,
+                              },
+                            ],
+                          },
+                        ],
+                      },
                   },
                   {
                     id: 2,
                     sursa:
                       "Utilizează sursele A, C și cunoștințele obținute anterior.",
-                    cerinte:[
-                      "Formulează o cauză a instaurării regimurilor totalitare din perioada interbelică.",""],
+                    cerinte: [
+                      "Formulează o cauză a instaurării regimurilor totalitare din perioada interbelică.",
+                      "",
+                    ],
                     forma: [
                       {
                         cerinte: "Cauza",
                         hint: [],
                       },
                     ],
-                    raspuns: "cauză a instaurării regimurilor totalitare din perioada interbelică"
-                  },    
+                    raspuns:
+                      "cauză a instaurării regimurilor totalitare din perioada interbelică",
+                      barem: {
+                        maxPoints: 2,
+                        subitems: [
+                          {
+                            nameSubItem: "Formulează..",
+                            maxSubPoints: 2,
+                            options: [
+                              {
+                                value: 1,
+                                label: "0 p. - răspuns greșit/ lipsă",
+                                subPoint: 0,
+                              },
+                              {
+                                value: 2,
+                                label: "1 p. - formularea unei cauze parțiale; doar selectare din sursă",
+                                subPoint: 1,
+                              },
+                              {
+                                value: 3,
+                                label: "2 p. - formularea unei cauze depline în baza sursei sau a cunoștințelor anterioare",
+                                subPoint: 2,
+                              },                              
+                            ],
+                          },
+                        ],
+                      },
+                  },
                   {
                     id: 3,
                     sursa:
                       "Utilizează sursa D și cunoștințele obținute anterior.",
-                    cerinte:[
-                      "Explică termenul Izolaționism.",""],
+                    cerinte: ["Explică termenul Izolaționism.", ""],
                     forma: [
                       {
                         cerinte: "Explicația",
                         hint: [],
                       },
                     ],
-                    raspuns: "termenul Izolaționism."
+                    raspuns: "termenul Izolaționism.",
+                    barem: {
+                      maxPoints: 2,
+                      subitems: [
+                        {
+                          nameSubItem: "Explică..",
+                          maxSubPoints: 2,
+                          options: [
+                            {
+                              value: 1,
+                              label: "0 p. - răspuns greșit/ lipsă",
+                              subPoint: 0,
+                            },
+                            {
+                              value: 2,
+                              label: "1 p. - explicație parțială, în baza unor indicii din sursă",
+                              subPoint: 1,
+                            },
+                            {
+                              value: 3,
+                              label: "2 p. - explicație deplină menționând aspectele esențiale ale sensului termenului",
+                              subPoint: 2,
+                            },                              
+                          ],
+                        },
+                      ],
+                    },
                   },
                   {
                     id: 4,
                     sursa:
                       "Utilizează sursa B și cunoștințele obținute anterior.",
-                    cerinte:[
-                      "Explică scopul luptei de emancipare a femeilor în perioada interbelică.",""],
+                    cerinte: [
+                      "Explică scopul luptei de emancipare a femeilor în perioada interbelică.",
+                      "",
+                    ],
                     forma: [
                       {
                         cerinte: "Scopul",
                         hint: [],
                       },
                     ],
-                    raspuns: "scopul luptei de emancipare a femeilor în perioada interbelică."
-                  }, 
+                    raspuns:
+                      "scopul luptei de emancipare a femeilor în perioada interbelică.",
+                      barem: {
+                        maxPoints: 3,
+                        subitems: [
+                          {
+                            nameSubItem: "Explică scopul..",
+                            maxSubPoints: 3,
+                            options: [
+                              {
+                                value: 1,
+                                label: "0 p. - răspuns greșit/ lipsă",
+                                subPoint: 0,
+                              },
+                              {
+                                value: 2,
+                                label: "1 p. - răspuns simplist/declarativ",
+                                subPoint: 1,
+                              },
+                              {
+                                value: 3,
+                                label: "2 p. - explicație parțială în baza opiniei personale asupra sarcinii, fără a valorifica informația din sursă",
+                                subPoint: 2,
+                              },   
+                              {
+                                value: 4,
+                                label: "3 p. - explicație deplină - reflectă esența faptului istoric analizat și valorifică informația din sursă",
+                                subPoint: 3,
+                              },                                                          
+                            ],
+                          },
+                        ],
+                      },
+                  },
                   {
                     id: 5,
                     sursa:
                       "Utilizează sursele A, B și cunoștințele obținute anterior.",
-                    cerinte:[
-                      "Determină două consecințe ale menținerii regimurilor democratice în perioada interbelică. Explică răspunsul.",""],
+                    cerinte: [
+                      "Determină două consecințe ale menținerii regimurilor democratice în perioada interbelică. Explică răspunsul.",
+                      "",
+                    ],
                     forma: [
                       {
                         cerinte: "Consecința 1:",
@@ -1843,14 +2290,64 @@ let temeIstoria = [
                         hint: [],
                       },
                     ],
-                    raspuns: "două consecințe ale menținerii regimurilor democratice în perioada interbelică"
-                  },   
+                    raspuns:
+                      "două consecințe ale menținerii regimurilor democratice în perioada interbelică",
+                      barem: {
+                        maxPoints: 4,
+                        subitems: [
+                          {
+                            nameSubItem: "Prima consecință..",
+                            maxSubPoints: 2,
+                            options: [
+                              {
+                                value: 1,
+                                label: "0 p. - răspuns greșit/ lipsă",
+                                subPoint: 0,
+                              },
+                              {
+                                value: 2,
+                                label: "1 p. - determină consecința corect; selectează din sursă sau din cunoștințele anterioare fără a explica",
+                                subPoint: 1,
+                              },
+                              {
+                                value: 3,
+                                label: "2 p. - determină consecința corect; selectează din sursă sau din cunoștințele anterioare și oferă o explicație pertinentă",
+                                subPoint: 2,
+                              },                                                         
+                            ],
+                          },
+                          {
+                            nameSubItem: "A doua consecință..",
+                            maxSubPoints: 2,
+                            options: [
+                              {
+                                value: 1,
+                                label: "0 p. - răspuns greșit/ lipsă",
+                                subPoint: 0,
+                              },
+                              {
+                                value: 2,
+                                label: "1 p. - determină consecința corect; selectează din sursă sau din cunoștințele anterioare fără a explica",
+                                subPoint: 1,
+                              },
+                              {
+                                value: 3,
+                                label: "2 p. - determină consecința corect; selectează din sursă sau din cunoștințele anterioare și oferă o explicație pertinentă",
+                                subPoint: 2,
+                              },                                                         
+                            ],
+                          },
+                        ],
+                      },
+                  },
                   {
                     id: 6,
                     sursa:
                       "Utilizează sursa D și cunoștințele obținute anterior.",
                     cerinte: [
-                      "Numește o personalitate istorică ce a condus SUA în perioada celui de-al Doilea Război Mondial. Argumentează, în două idei, rolul acestei personalități în istorie.",""],
+                      "Numește o personalitate istorică ce a condus SUA în perioada celui de-al Doilea Război Mondial. Argumentează, în două idei, rolul acestei personalități în istorie.",
+                      "",
+                    ],
                     forma: [
                       {
                         cerinte: "Personalitatea:",
@@ -1865,17 +2362,81 @@ let temeIstoria = [
                         hint: [],
                       },
                     ],
-                    raspuns: "personalitate istorică ce a condus SUA în perioada celui de-al Doilea Război Mondial"
-                  },  
+                    raspuns:
+                      "personalitate istorică ce a condus SUA în perioada celui de-al Doilea Război Mondial",
+                      barem: {
+                        maxPoints: 5,
+                        subitems: [
+                          {
+                            nameSubItem: "Numește..",
+                            maxSubPoints: 2,
+                            options: [
+                              {
+                                value: 1,
+                                label: "0 p. - răspuns greșit/ lipsă",
+                                subPoint: 0,
+                              },
+                              {
+                                value: 2,
+                                label: "1 p. - numește corect personalitatea",
+                                subPoint: 1,
+                              },                                                      
+                            ],
+                          },
+                          {
+                            nameSubItem: "Argumenteaza - I idee..",
+                            maxSubPoints: 2,
+                            options: [
+                              {
+                                value: 1,
+                                label: "0 p. - răspuns lipsă sau în discordanță cu opinia exprimată",
+                                subPoint: 0,
+                              },
+                              {
+                                value: 2,
+                                label: "1 p. - argumentare parțială, fără invocarea unor exemple",
+                                subPoint: 1,
+                              },
+                              {
+                                value: 3,
+                                label: "2 p. - argumentare deplină, cu exemple invocate, corecte din punct de vedere științific",
+                                subPoint: 2,
+                              },                                                         
+                            ],
+                          },
+                          {
+                            nameSubItem: "Argumenteaza - II idee..",
+                            maxSubPoints: 2,
+                            options: [
+                              {
+                                value: 1,
+                                label: "0 p. - răspuns lipsă sau în discordanță cu opinia exprimată",
+                                subPoint: 0,
+                              },
+                              {
+                                value: 2,
+                                label: "1 p. - argumentare parțială, fără invocarea unor exemple",
+                                subPoint: 1,
+                              },
+                              {
+                                value: 3,
+                                label: "2 p. - argumentare deplină, cu exemple invocate, corecte din punct de vedere științific",
+                                subPoint: 2,
+                              },                                                         
+                            ],
+                          },
+                        ],
+                      },
+                  },
                   {
                     id: 7,
-                    sursa:
-                      "",
-                    cerinte:[
-                      "Exprimă-ți opinia:", "Formulează două argumente."
+                    sursa: "",
+                    cerinte: [
+                      "Exprimă-ți opinia:",
+                      "Formulează două argumente.",
                     ],
                     afirmatia:
-                    "Regimurile totalitare interbelice aveau trăsături comune?",
+                      "Regimurile totalitare interbelice aveau trăsături comune?",
                     forma: [
                       {
                         cerinte: "Opinia:",
@@ -1890,8 +2451,72 @@ let temeIstoria = [
                         hint: [],
                       },
                     ],
-                    raspuns: "Regimurile totalitare interbelice aveau trăsături comune"
-                  },            
+                    raspuns:
+                      "Regimurile totalitare interbelice aveau trăsături comune",
+                      barem: {
+                        maxPoints: 5,
+                        subitems: [
+                          {
+                            nameSubItem: "Exprimă opinia..",
+                            maxSubPoints: 2,
+                            options: [
+                              {
+                                value: 1,
+                                label: "0 p. - răspuns lipsă/ neexplicit (nu este posibil a identifica opinia)",
+                                subPoint: 0,
+                              },
+                              {
+                                value: 2,
+                                label: "1 p. - apreciere explicit formulată",
+                                subPoint: 1,
+                              },                                                      
+                            ],
+                          },
+                          {
+                            nameSubItem: "Argumenteaza - I argument..",
+                            maxSubPoints: 2,
+                            options: [
+                              {
+                                value: 1,
+                                label: "0 p. - răspuns lipsă sau în discordanță cu opinia exprimată",
+                                subPoint: 0,
+                              },
+                              {
+                                value: 2,
+                                label: "1 p. - argumentare parțială, fără a face trimitere la suportul propus sau a valorifica cunoștințelor obținute anterior",
+                                subPoint: 1,
+                              },
+                              {
+                                value: 3,
+                                label: "2 p. - argumentare deplină (raționament și exemplu), corectă științific, în concordanță cu opinia exprimată, valorifică suportul sau cunoștințele obținute anterior",
+                                subPoint: 2,
+                              },                                                         
+                            ],
+                          },
+                          {
+                            nameSubItem: "Argumenteaza - II argument..",
+                            maxSubPoints: 2,
+                            options: [
+                              {
+                                value: 1,
+                                label: "0 p. - răspuns lipsă sau în discordanță cu opinia exprimată",
+                                subPoint: 0,
+                              },
+                              {
+                                value: 2,
+                                label: "1 p. - argumentare parțială, fără a face trimitere la suportul propus sau a valorifica cunoștințelor obținute anterior",
+                                subPoint: 1,
+                              },
+                              {
+                                value: 3,
+                                label: "2 p. - argumentare deplină (raționament și exemplu), corectă științific, în concordanță cu opinia exprimată, valorifică suportul sau cunoștințele obținute anterior",
+                                subPoint: 2,
+                              },                                                         
+                            ],
+                          },
+                        ],
+                      },
+                  },
                 ],
 
                 sursa: [
@@ -1933,11 +2558,6 @@ let temeIstoria = [
                     sursaText: "Dicționar istoric, București, 2008",
                   },
                 ],
-                // img: "/images/carte_planul_marshall.jpg",
-                // raspuns: [
-                //   "Fapt istoric: semnarea Pactului Molotov-Ribentrop din 23 august 1939",
-                //   'Argument: pe coperta cărții se vede denumirea "Pactului Molotov-Ribentrop", iar pe fotografie se văd semnatarii acestui document - Molotov și Ribentrop',
-                // ],
               },
             ],
           },
@@ -2033,6 +2653,197 @@ let temeIstoria = [
                   "Fapt istoric: semnarea Pactului Molotov-Ribentrop din 23 august 1939",
                   'Argument: pe coperta cărții se vede denumirea "Pactului Molotov-Ribentrop", iar pe fotografie se văd semnatarii acestui document - Molotov și Ribentrop',
                 ],
+                barem: {
+                  maxPoints: 15,
+                  subitems: [
+                    {
+                      nameSubItem: "Utilizează sursele..",
+                      maxSubPoints: 2,
+                      options: [
+                        {
+                          value: 1,
+                          label: "0 p. - răspuns lipsă sau fără a face trimitere la surse",
+                          subPoint: 0,
+                        },
+                        {
+                          value: 2,
+                          label: "1 p. - se fac unele încercări de valorificare a surselor; textul surselor este preluat fără a fi integrat în text",
+                          subPoint: 1,
+                        },   
+                        {
+                          value: 3,
+                          label: "2 p. - sursele sunt parte integră a textului, servesc ca suport al reflecției autorului",
+                          subPoint: 2,
+                        },                                                                            
+                      ],
+                    },
+                    {
+                      nameSubItem: "Întroducere..",
+                      maxSubPoints: 1,
+                      options: [
+                        {
+                          value: 1,
+                          label: "0 p. - răspuns lipsă",
+                          subPoint: 0,
+                        },
+                        {
+                          value: 2,
+                          label: "1 p. - întroducere corect formulată, clar organizată ca mesaj/ structură",
+                          subPoint: 1,
+                        },
+                      ],
+                    },
+                    {
+                      nameSubItem: "Cuprins..",
+                      maxSubPoints: 1,
+                      options: [
+                        {
+                          value: 1,
+                          label: "0 p. - răspuns lipsă",
+                          subPoint: 0,
+                        },
+                        {
+                          value: 2,
+                          label: "1 p. - Cuprins corect formulat, clar organizat ca mesaj/ structură",
+                          subPoint: 1,
+                        },
+                      ],
+                    },     
+                    {
+                      nameSubItem: "Concluzie..",
+                      maxSubPoints: 1,
+                      options: [
+                        {
+                          value: 1,
+                          label: "0 p. - răspuns lipsă",
+                          subPoint: 0,
+                        },
+                        {
+                          value: 2,
+                          label: "1 p. - Concluzie corect formulată, clar organizată ca mesaj/ structură",
+                          subPoint: 1,
+                        },
+                      ],
+                    }, 
+                    {
+                      nameSubItem: "Relevanța argumentelor..",
+                      maxSubPoints: 1,
+                      options: [
+                        {
+                          value: 1,
+                          label: "0 p. - răspuns lipsă sau sunt doar enumerate informații disparate din surse",
+                          subPoint: 0,
+                        },
+                        {
+                          value: 2,
+                          label: "1 p. - argumentele care reflectă explicit afirmația propusă",
+                          subPoint: 1,
+                        },
+                      ],
+                    },                                                       
+                    {
+                      nameSubItem: "Argumenteaza - I argument..",
+                      maxSubPoints: 2,
+                      options: [
+                        {
+                          value: 1,
+                          label: "0 p. - răspuns lipsă",
+                          subPoint: 0,
+                        },
+                        {
+                          value: 2,
+                          label: "1 p. - argument parțial/declarativ",
+                          subPoint: 1,
+                        },
+                        {
+                          value: 3,
+                          label: "2 p. - argument deplin (raționament și exemplu)",
+                          subPoint: 2,
+                        },                                                         
+                      ],
+                    },
+                    {
+                      nameSubItem: "Argumenteaza - II argument..",
+                      maxSubPoints: 2,
+                      options: [
+                        {
+                          value: 1,
+                          label: "0 p. - răspuns lipsă",
+                          subPoint: 0,
+                        },
+                        {
+                          value: 2,
+                          label: "1 p. - argument parțial/declarativ",
+                          subPoint: 1,
+                        },
+                        {
+                          value: 3,
+                          label: "2 p. - argument deplin (raționament și exemplu)",
+                          subPoint: 2,
+                        },                                                         
+                      ],
+                    }, 
+                    {
+                      nameSubItem: "Argumenteaza - III argument..",
+                      maxSubPoints: 2,
+                      options: [
+                        {
+                          value: 1,
+                          label: "0 p. - răspuns lipsă",
+                          subPoint: 0,
+                        },
+                        {
+                          value: 2,
+                          label: "1 p. - argument parțial/declarativ",
+                          subPoint: 1,
+                        },
+                        {
+                          value: 3,
+                          label: "2 p. - argument deplin (raționament și exemplu)",
+                          subPoint: 2,
+                        },                                                         
+                      ],
+                    },  
+                    {
+                      nameSubItem: "Referințe date/personalități..",
+                      maxSubPoints: 2,
+                      options: [
+                        {
+                          value: 1,
+                          label: "0 p. - răspuns lipsă",
+                          subPoint: 0,
+                        },
+                        {
+                          value: 2,
+                          label: "1 p. - referințele sunt parțial relevante pentru tema propusă",
+                          subPoint: 1,
+                        },
+                        {
+                          value: 3,
+                          label: "2 p. - refrințele sunt relevante pentru prezentarea temei",
+                          subPoint: 2,
+                        },                                                         
+                      ],
+                    },   
+                    {
+                      nameSubItem: "Corect științific..",
+                      maxSubPoints: 1,
+                      options: [
+                        {
+                          value: 1,
+                          label: "0 p. - răspuns lipsă/ volum irelevant (2-3 enunțuri)",
+                          subPoint: 0,
+                        },
+                        {
+                          value: 2,
+                          label: "1 p. - nu sunt comise greșeli științifice grave",
+                          subPoint: 1,
+                        },                                                      
+                      ],
+                    },                                                                            
+                  ],
+                },
+
               },
               {
                 id: "2",
@@ -2108,6 +2919,196 @@ let temeIstoria = [
                   "Fapt istoric: semnarea Pactului Molotov-Ribentrop din 23 august 1939",
                   'Argument: pe coperta cărții se vede denumirea "Pactului Molotov-Ribentrop", iar pe fotografie se văd semnatarii acestui document - Molotov și Ribentrop',
                 ],
+                barem: {
+                  maxPoints: 15,
+                  subitems: [
+                    {
+                      nameSubItem: "Utilizează sursele..",
+                      maxSubPoints: 2,
+                      options: [
+                        {
+                          value: 1,
+                          label: "0 p. - răspuns lipsă sau fără a face trimitere la surse",
+                          subPoint: 0,
+                        },
+                        {
+                          value: 2,
+                          label: "1 p. - se fac unele încercări de valorificare a surselor; textul surselor este preluat fără a fi integrat în text",
+                          subPoint: 1,
+                        },   
+                        {
+                          value: 3,
+                          label: "2 p. - sursele sunt parte integră a textului, servesc ca suport al reflecției autorului",
+                          subPoint: 2,
+                        },                                                                            
+                      ],
+                    },
+                    {
+                      nameSubItem: "Întroducere..",
+                      maxSubPoints: 1,
+                      options: [
+                        {
+                          value: 1,
+                          label: "0 p. - răspuns lipsă",
+                          subPoint: 0,
+                        },
+                        {
+                          value: 2,
+                          label: "1 p. - întroducere corect formulată, clar organizată ca mesaj/ structură",
+                          subPoint: 1,
+                        },
+                      ],
+                    },
+                    {
+                      nameSubItem: "Cuprins..",
+                      maxSubPoints: 1,
+                      options: [
+                        {
+                          value: 1,
+                          label: "0 p. - răspuns lipsă",
+                          subPoint: 0,
+                        },
+                        {
+                          value: 2,
+                          label: "1 p. - Cuprins corect formulat, clar organizat ca mesaj/ structură",
+                          subPoint: 1,
+                        },
+                      ],
+                    },     
+                    {
+                      nameSubItem: "Concluzie..",
+                      maxSubPoints: 1,
+                      options: [
+                        {
+                          value: 1,
+                          label: "0 p. - răspuns lipsă",
+                          subPoint: 0,
+                        },
+                        {
+                          value: 2,
+                          label: "1 p. - Concluzie corect formulată, clar organizată ca mesaj/ structură",
+                          subPoint: 1,
+                        },
+                      ],
+                    }, 
+                    {
+                      nameSubItem: "Relevanța argumentelor..",
+                      maxSubPoints: 1,
+                      options: [
+                        {
+                          value: 1,
+                          label: "0 p. - răspuns lipsă sau sunt doar enumerate informații disparate din surse",
+                          subPoint: 0,
+                        },
+                        {
+                          value: 2,
+                          label: "1 p. - argumentele care reflectă explicit afirmația propusă",
+                          subPoint: 1,
+                        },
+                      ],
+                    },                                                       
+                    {
+                      nameSubItem: "Argumenteaza - I argument..",
+                      maxSubPoints: 2,
+                      options: [
+                        {
+                          value: 1,
+                          label: "0 p. - răspuns lipsă",
+                          subPoint: 0,
+                        },
+                        {
+                          value: 2,
+                          label: "1 p. - argument parțial/declarativ",
+                          subPoint: 1,
+                        },
+                        {
+                          value: 3,
+                          label: "2 p. - argument deplin (raționament și exemplu)",
+                          subPoint: 2,
+                        },                                                         
+                      ],
+                    },
+                    {
+                      nameSubItem: "Argumenteaza - II argument..",
+                      maxSubPoints: 2,
+                      options: [
+                        {
+                          value: 1,
+                          label: "0 p. - răspuns lipsă",
+                          subPoint: 0,
+                        },
+                        {
+                          value: 2,
+                          label: "1 p. - argument parțial/declarativ",
+                          subPoint: 1,
+                        },
+                        {
+                          value: 3,
+                          label: "2 p. - argument deplin (raționament și exemplu)",
+                          subPoint: 2,
+                        },                                                         
+                      ],
+                    }, 
+                    {
+                      nameSubItem: "Argumenteaza - III argument..",
+                      maxSubPoints: 2,
+                      options: [
+                        {
+                          value: 1,
+                          label: "0 p. - răspuns lipsă",
+                          subPoint: 0,
+                        },
+                        {
+                          value: 2,
+                          label: "1 p. - argument parțial/declarativ",
+                          subPoint: 1,
+                        },
+                        {
+                          value: 3,
+                          label: "2 p. - argument deplin (raționament și exemplu)",
+                          subPoint: 2,
+                        },                                                         
+                      ],
+                    },  
+                    {
+                      nameSubItem: "Referințe date/personalități..",
+                      maxSubPoints: 2,
+                      options: [
+                        {
+                          value: 1,
+                          label: "0 p. - răspuns lipsă",
+                          subPoint: 0,
+                        },
+                        {
+                          value: 2,
+                          label: "1 p. - referințele sunt parțial relevante pentru tema propusă",
+                          subPoint: 1,
+                        },
+                        {
+                          value: 3,
+                          label: "2 p. - refrințele sunt relevante pentru prezentarea temei",
+                          subPoint: 2,
+                        },                                                         
+                      ],
+                    },   
+                    {
+                      nameSubItem: "Corect științific..",
+                      maxSubPoints: 1,
+                      options: [
+                        {
+                          value: 1,
+                          label: "0 p. - răspuns lipsă/ volum irelevant (2-3 enunțuri)",
+                          subPoint: 0,
+                        },
+                        {
+                          value: 2,
+                          label: "1 p. - nu sunt comise greșeli științifice grave",
+                          subPoint: 1,
+                        },                                                      
+                      ],
+                    },                                                                            
+                  ],
+                },
               },
             ],
           },

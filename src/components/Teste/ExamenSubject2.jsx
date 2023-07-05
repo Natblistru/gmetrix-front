@@ -10,6 +10,7 @@ import ItemAccordeon from "../Accordeon/ItemAccordeon";
 import AccordionSurse from "../Accordeon/AccordionSurse";
 import ItemText from "../Accordeon/ItemText";
 import ModalForm from "../Modal/ModalForm";
+import ModalCalculator from "../Modal/ModalCalculator";
 
 const ExamenSubect2 = ({raspunsuri}) => {
   const { address } = useParams();
@@ -26,6 +27,7 @@ const ExamenSubect2 = ({raspunsuri}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isAnswered, setIsAnswered] = useState(false);
   const [showResponse, setShowResponse] = useState(false);
+  const [showAutoevaluare, setShowAutoevaluare] = useState(false)
   const speed = 50;
 
   const history = useHistory();
@@ -127,6 +129,7 @@ const ExamenSubect2 = ({raspunsuri}) => {
     setShowResponse(false);
     initialization();
     setCurrentTextIndex(0);
+    setIdRaspuns(null);
   };
 
   const handleIndexTryAgain = () => {
@@ -144,6 +147,14 @@ const ExamenSubect2 = ({raspunsuri}) => {
   const handleVerifica = () => {
     setShowResponse(true);
   };
+  
+  const handleAutoevaluare = () => {
+    setShowAutoevaluare(true);
+  }
+
+  const onCloseAutoevaluare = () => {
+    setShowAutoevaluare(false);
+  }
 
   return (
     <Wrapper>
@@ -154,7 +165,7 @@ const ExamenSubect2 = ({raspunsuri}) => {
           <ItemAccordeon
             titlu={`Cerințele sarcinii (${currentIndex + 1}/${
               item.quizArray.length
-            }):`}
+            }) - ${item.quizArray[currentIndex].item[currentItem].barem.maxPoints} puncte:`}
             open={true}
           >
             <ItemText>
@@ -225,6 +236,16 @@ const ExamenSubect2 = ({raspunsuri}) => {
               <ItemText classNameChild="">
                 {item.quizArray[currentIndex].item[currentItem].raspuns}
               </ItemText>
+              <button onClick={handleAutoevaluare} className="btn-test">
+                Autoevaluiaza raspunsul!
+              </button>
+              {showAutoevaluare && (
+                <ModalCalculator
+                  onClick={onCloseAutoevaluare}
+                  barem={item.quizArray[currentIndex].item[currentItem].barem}
+                  idRaspuns={idRaspuns}
+                />
+              )}
               <button onClick={handleTryAgain} className="btn-test">
                 Urmatorul item!
               </button>

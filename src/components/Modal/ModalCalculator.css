@@ -1,0 +1,96 @@
+.modal-content-select{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.selectbox-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* width: 85%; */
+}
+
+.selectbox {
+  /*! margin-bottom: 20px; */
+  clear: both;
+  float: left;
+  width: 388px;
+  /*! line-height: 2; */
+  /*! height: 25px; */
+}
+.selectbox {
+  display: inline-block;
+  position: relative;
+  user-select: none;
+}
+.selectbox .selectbox-selector {
+  border: 1px solid #9a9a9a;
+  border-radius: 0.15em;
+  cursor: pointer;
+  height: 32px;
+  padding: 0.25em 1.5em 0.35em 0.3em;
+  line-height: 1.5;
+  overflow: hidden;
+  outline-offset: -1px;
+}
+.selectbox .selectbox-selector:after {
+  content: "";
+  display: inline-block;
+  border: 0.4em solid #9a9a9a;
+  border-right-color: transparent;
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+  position: absolute;
+  right: 0.5em;
+  top: 0.75em;
+}
+.selectbox .selectbox-option-wrap {
+  border: 1px solid #9a9a9a;
+  border-radius: 0.15em;
+  display: none;
+  position: absolute;
+  top: 1.7em;
+  left: 0;
+  width: 100%;
+}
+.selectbox .selectbox-option-wrap.showing {
+  display: block;
+}
+.selectbox .selectbox-option {
+  position: relative;
+  cursor: pointer;
+  padding: 0.25em 1.5em 0.35em 0.3em;
+  line-height: 1.2em;
+  background-color: #fff;
+  z-index: 10;
+}
+.selectbox .selectbox-option.selected {
+  background: #06f;
+  color: #fff;
+}
+.selectbox .selectbox-option:hover {
+  background: #06f;
+  color: #fff;
+}
+.points-nota {
+  border: 1px solid lightgray;
+  display: inline-block;
+  width: 3.6rem;
+  background-color: #fff;
+  text-align: center;
+  line-height: 2.53;
+  font-size: 23px;
+  font-weight: 700;
+}
+.modal-subject-calc {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  width: 733px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-5%, -50%);
+  border: 1px solid #ccc9c9;
+}

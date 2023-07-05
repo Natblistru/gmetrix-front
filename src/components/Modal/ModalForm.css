@@ -227,7 +227,7 @@
 .modal-subject textarea {
   display: block;
   width: 100%;
-  max-width: 560px;
+  /* max-width: 560px; */
   font-size: 18px;
 }
 .button-nav {
