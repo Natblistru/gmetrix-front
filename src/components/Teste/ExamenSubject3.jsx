@@ -123,6 +123,7 @@ const ExamenSubect3 = ({raspunsuri}) => {
     setShowResponse(false);
     initialization();
     setCurrentTextIndex(0);
+    setIdRaspuns(null);
   };
 
   const handleVerifica = () => {

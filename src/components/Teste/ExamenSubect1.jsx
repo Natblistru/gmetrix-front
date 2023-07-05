@@ -125,6 +125,7 @@ const ExamenSubect1 = ({raspunsuri}) => {
     setShowResponse(false);
     initialization();
     setCurrentTextIndex(0);
+    setIdRaspuns(null);
   };
 
   const handleVerifica = () => {
