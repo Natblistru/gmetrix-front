@@ -156,7 +156,7 @@ const ExamenSubect2 = () => {
                 }):`}
               </h3>
               <h4>{item.quizArray[currentIndex].item[currentItem].sursa}</h4>
-              <p>{item.quizArray[currentIndex].item[currentItem].cerinte[0]} {item.quizArray[currentIndex].item[currentItem].afirmatia}{item.quizArray[currentIndex].item[currentItem].cerinte[1]}</p>              
+              <p>{item.quizArray[currentIndex].item[currentItem].cerinte[0]} <span style={{fontStyle: 'italic'}}>{item.quizArray[currentIndex].item[currentItem].afirmatia} </span> {item.quizArray[currentIndex].item[currentItem].cerinte[1]}</p>              
               <div className="subject1-container">
                 <div className="paper" style={{ width: "100%", height: '267px'}}>
                   <div className="lines">
