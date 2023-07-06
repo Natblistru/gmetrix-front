@@ -2,6 +2,8 @@ import React, { useState, useContext, useEffect, useRef } from "react";
 import { connect } from "react-redux";
 import "./ModalCalculator.css";
 import "./ModalForm.css";
+import DraggableElement from "../DndTest/DraggableElement";
+import ModalArrows from "./ModalArrows";
 
 const SelectBox = ({ options, activeTab, setActiveTab,nota, setNota,idx }) => {
   const [value, setValue] = useState(null);
@@ -83,37 +85,7 @@ const ModalCalculator = ({ barem, onClick, idRaspuns, raspunsuri, update }) => {
     } else SetRasp(Array(barem.subitems.length).fill(0));
   }, []);
 
-  const handleTabClick = (tabNumber) => {
-    setActiveTab(tabNumber);
-  };
 
-  const moveUp = () => {
-    setModalPosition((prevPosition) => ({
-      ...prevPosition,
-      y: prevPosition.y - 10,
-    }));
-  };
-
-  const moveDown = () => {
-    setModalPosition((prevPosition) => ({
-      ...prevPosition,
-      y: prevPosition.y + 10,
-    }));
-  };
-
-  const moveLeft = () => {
-    setModalPosition((prevPosition) => ({
-      ...prevPosition,
-      x: prevPosition.x - 10,
-    }));
-  };
-
-  const moveRight = () => {
-    setModalPosition((prevPosition) => ({
-      ...prevPosition,
-      x: prevPosition.x + 10,
-    }));
-  };
   const handleResponse = () => {
     // console.log({ ...rasp, id: IdRasp });
     // console.log(idRaspuns);
@@ -132,6 +104,7 @@ const ModalCalculator = ({ barem, onClick, idRaspuns, raspunsuri, update }) => {
 
   return (
     <div className="modal-overlay">
+      <DraggableElement>
       <div
         className="modal-subject-calc"
         style={{
@@ -172,31 +145,7 @@ const ModalCalculator = ({ barem, onClick, idRaspuns, raspunsuri, update }) => {
         </div>
         <button className="btn-close-modal" onClick={() => onClick()}></button>
       </div>
-      <div className="modal-arrows">
-        <div className="arrow-container">
-          <div className="arrow arrow--up" onClick={moveUp}>
-            <div className="arrow-line arrow-line__upper"></div>
-            <div className="arrow-line arrow-line__lower"></div>
-          </div>
-        </div>
-        <div className="arrow-container">
-          <div className="arrow arrow--back" onClick={moveLeft}>
-            <div className="arrow-line arrow-line__upper"></div>
-            <div className="arrow-line arrow-line__lower"></div>
-          </div>
-          <div className="arrow"></div>
-          <div className="arrow arrow--next" onClick={moveRight}>
-            <div className="arrow-line arrow-line__upper"></div>
-            <div className="arrow-line arrow-line__lower"></div>
-          </div>
-        </div>
-        <div className="arrow-container">
-          <div className="arrow arrow--down" onClick={moveDown}>
-            <div className="arrow-line arrow-line__upper"></div>
-            <div className="arrow-line arrow-line__lower"></div>
-          </div>
-        </div>
-      </div>
+      </DraggableElement>
     </div>
   );
 };

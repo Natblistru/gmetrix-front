@@ -70,7 +70,7 @@
   transition-delay: 100ms;
 }
 
-.modal-arrows {
+/* .modal-arrows {
   position: fixed;
   top: 20px;
   right: 20px;
@@ -135,7 +135,7 @@
 
 .arrow:nth-child(2) {
   cursor: default;
-}
+} */
 
 .progress-bar {
   height: 20px;

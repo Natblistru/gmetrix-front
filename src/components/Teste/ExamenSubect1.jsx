@@ -194,7 +194,6 @@ const ExamenSubect1 = ({ raspunsuri }) => {
                 />
               </div>
             </ItemText>
-
             {isOpen && (
               <ModalForm
                 onClick={closeModal}

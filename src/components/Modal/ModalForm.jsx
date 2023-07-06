@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect, useRef } from "react";
 import { connect } from "react-redux"
 import Popupmenu from "../Popupmenu";
+import ModalArrows from "./ModalArrows";
 
 import "./ModalForm.css";
 const ModalForm = ({forma,onClick,idRaspuns,raspunsuri,add,update}) => {
@@ -43,33 +44,6 @@ const ModalForm = ({forma,onClick,idRaspuns,raspunsuri,add,update}) => {
     if (hasPrev) setActiveTab(activeTab - 1);
   };
 
-  const moveUp = () => {
-    setModalPosition((prevPosition) => ({
-      ...prevPosition,
-      y: prevPosition.y - 10,
-    }));
-  };
-
-  const moveDown = () => {
-    setModalPosition((prevPosition) => ({
-      ...prevPosition,
-      y: prevPosition.y + 10,
-    }));
-  };
-
-  const moveLeft = () => {
-    setModalPosition((prevPosition) => ({
-      ...prevPosition,
-      x: prevPosition.x - 10,
-    }));
-  };
-
-  const moveRight = () => {
-    setModalPosition((prevPosition) => ({
-      ...prevPosition,
-      x: prevPosition.x + 10,
-    }));
-  };
   const handleResponse = () => {
     const IdRasp = Date.now();
     // console.log({ ...rasp, id: IdRasp });
@@ -175,31 +149,7 @@ const ModalForm = ({forma,onClick,idRaspuns,raspunsuri,add,update}) => {
           onClick={() => onClick(null,null)}
         ></button>
       </div>
-      <div className="modal-arrows">
-        <div className="arrow-container">
-          <div className="arrow arrow--up" onClick={moveUp}>
-            <div className="arrow-line arrow-line__upper"></div>
-            <div className="arrow-line arrow-line__lower"></div>
-          </div>
-        </div>
-        <div className="arrow-container">
-          <div className="arrow arrow--back" onClick={moveLeft}>
-            <div className="arrow-line arrow-line__upper"></div>
-            <div className="arrow-line arrow-line__lower"></div>
-          </div>
-          <div className="arrow"></div>
-          <div className="arrow arrow--next" onClick={moveRight}>
-            <div className="arrow-line arrow-line__upper"></div>
-            <div className="arrow-line arrow-line__lower"></div>
-          </div>
-        </div>
-        <div className="arrow-container">
-          <div className="arrow arrow--down" onClick={moveDown}>
-            <div className="arrow-line arrow-line__upper"></div>
-            <div className="arrow-line arrow-line__lower"></div>
-          </div>
-        </div>
-      </div>
+      <ModalArrows setModalPosition={setModalPosition}/>
     </div>
   );
 };
