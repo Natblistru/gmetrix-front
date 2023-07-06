@@ -11,6 +11,7 @@ import AccordionSurse from "../Accordeon/AccordionSurse";
 import ItemText from "../Accordeon/ItemText";
 import ModalForm from "../Modal/ModalForm";
 import ModalCalculator from "../Modal/ModalCalculator";
+import Draw from "../CanvasDrawing/Draw";
 
 const ExamenSubect2 = ({raspunsuri}) => {
   const { address } = useParams();
@@ -178,7 +179,9 @@ const ExamenSubect2 = ({raspunsuri}) => {
               </h3>
               <h4>{item.quizArray[currentIndex].item[currentItem].sursa}</h4>
               <p>{item.quizArray[currentIndex].item[currentItem].cerinte[0]} <span style={{fontStyle: 'italic'}}>{item.quizArray[currentIndex].item[currentItem].afirmatia} </span> {item.quizArray[currentIndex].item[currentItem].cerinte[1]}</p>              
+              <Draw/>
               <div className="subject1-container">
+              
                 <div className="paper" style={{ width: "100%", height: '267px'}}>
                   <div className="lines">
                     <div className="text">
@@ -233,6 +236,7 @@ const ExamenSubect2 = ({raspunsuri}) => {
               }):`}
               open={true}
             >
+
               <ItemText classNameChild="">
                 {item.quizArray[currentIndex].item[currentItem].raspuns}
               </ItemText>
