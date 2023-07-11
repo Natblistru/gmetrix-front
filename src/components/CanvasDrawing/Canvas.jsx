@@ -16,6 +16,12 @@ const Canvas = () => {
     canvas.height = 500;
 
     const context = canvas.getContext("2d");
+    const img = new Image(674,500);
+    img.onload = function() {
+      context.drawImage(img, 0, 0, canvas.width, canvas.height);
+    };
+    img.src = "/images/Romania_1938.png";
+
     context.lineCap = "round";
     context.strokeStyle = fillColor;
     context.lineWidth = lineWidth;
@@ -117,22 +123,22 @@ const Canvas = () => {
     return `rgba(${r}, ${g}, ${b}, 0.3)`;
   };
 
-  const canvasStyle = {
-    backgroundImage: `url(${
-      process.env.PUBLIC_URL + "/images/Romania_1938.png"
-    })`,
-    backgroundRepeat: "no-repeat",
-    backgroundSize: "cover",
-    width: "100%",
-    height: "500px",
-  };
+  // const canvasStyle = {
+  //   backgroundImage: `url(${
+  //     process.env.PUBLIC_URL + "/images/Romania_1938.png"
+  //   })`,
+  //   backgroundRepeat: "no-repeat",
+  //   backgroundSize: "cover",
+  //   width: "100%",
+  //   height: "500px",
+  // };
 
   return (
     <div>
       <canvas
         className="canvas-container"
         ref={canvasRef}
-        style={canvasStyle}
+        // style={canvasStyle}
         onMouseDown={startDrawing}
         onMouseMove={draw}
         onMouseUp={stopDrawing}
