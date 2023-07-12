@@ -207,7 +207,14 @@ const Canvas = () => {
         canvasRef.current.width,
         canvasRef.current.height
       );
-    } else {
+      const savedData = contextRef.current.getImageData(
+        0,
+        0,
+        canvasRef.current.width,
+        canvasRef.current.height
+      );
+      setUndoStack((prevState) => [...prevState, savedData]);
+    } else if (points && points.length > 0) {
       const canvas = canvasRef.current;
       const context = canvas.getContext("2d");
       context.fillStyle = hexToRgb(fillColor);
@@ -220,14 +227,14 @@ const Canvas = () => {
 
       context.closePath();
       context.fill();
+      const savedData = contextRef.current.getImageData(
+        0,
+        0,
+        canvasRef.current.width,
+        canvasRef.current.height
+      );
+      setUndoStack((prevState) => [...prevState, savedData]);
     }
-    const savedData = contextRef.current.getImageData(
-      0,
-      0,
-      canvasRef.current.width,
-      canvasRef.current.height
-    );
-    setUndoStack((prevState) => [...prevState, savedData]);
   };
 
   const hexToRgb = (hex) => {
