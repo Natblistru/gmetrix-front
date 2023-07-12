@@ -100,6 +100,7 @@ const Canvas = () => {
   };
 
   const setToText = () => {
+    contextRef.current.globalCompositeOperation = "source-over";
     setCursorStyle("text");
     setTool("text");
     setPositionText(null);
@@ -197,9 +198,6 @@ const Canvas = () => {
     setLineWidth(e.target.value);
   };
 
-  const handleLineWidthChange = (e) => {
-    setLineWidth(e.target.value);
-  };
 
   const handleFillColorChange = (e) => {
     setFillColor(e.target.value);
@@ -254,12 +252,28 @@ const Canvas = () => {
     return `rgba(${r}, ${g}, ${b}, 0.3)`;
   };
 
+  function rgbToHex(rgb) {
+    // Получение числовых значений красного, зеленого и синего каналов
+    const match = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+    if (!match) {
+      return "";
+    }
+    
+    // Конвертирование числовых значений в шестнадцатеричный формат
+    const r = parseInt(match[1], 10).toString(16).padStart(2, "0");
+    const g = parseInt(match[2], 10).toString(16).padStart(2, "0");
+    const b = parseInt(match[3], 10).toString(16).padStart(2, "0");
+  
+    // Возвращение шестнадцатеричного значения цвета
+    return `#${r}${g}${b}`;
+  }
+  
   const testColor = (e, n) => {
     const element = e.target;
     const computedStyle = getComputedStyle(element);
     const backgroundColor = computedStyle.backgroundColor;
-    console.log(backgroundColor);
-    setFillColor(backgroundColor);
+    const hexColor = rgbToHex(backgroundColor);
+    setFillColor(hexColor);
     setSelectedOption(n);
   };
   useEffect(() => {

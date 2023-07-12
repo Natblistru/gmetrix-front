@@ -77,20 +77,20 @@
   color: #4A98F7;
 } */
 .color-option:nth-child(1){
-  background-color: rgb(224, 32, 32);
+  background-color: #e02020;
 }
 .color-option:nth-child(2){
-  background-color: rgb(109, 212, 0);
+  background-color: #6dd400;
 }
 .color-option:nth-child(3){
-  background-color: rgb(74, 152, 247);
+  background-color: #4a98f7;
 }
 .color-option:nth-child(4){
-  background-color: rgb(255, 255, 255);
-  border: 1px solid rgb(191, 191, 191);
+  background-color: #ffffff;
+  border: 1px solid #bfbfbf;
 }
 .color-option:nth-child(5){
-  border: 1px solid rgb(191, 191, 191);
+  border: 1px solid #bfbfbf;
   background-color: #000000;
 }
 .color-option.selected::before{
