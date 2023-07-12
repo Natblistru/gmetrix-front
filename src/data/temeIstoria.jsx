@@ -1622,6 +1622,7 @@ let temeIstoria = [
                     ],
                     raspuns:
                       "două evenimente importante pentru evoluția regimurilor totalitare în perioada interbelică",
+                    raspuns_harta: "/images/Romania_1938.png",                     
                       barem: {
                         maxPoints: 2,
                         subitems: [
@@ -1677,6 +1678,7 @@ let temeIstoria = [
                     ],
                     raspuns:
                       "cauză a instaurării regimurilor totalitare din perioada interbelică",
+                      raspuns_harta: "", 
                       barem: {
                         maxPoints: 2,
                         subitems: [
@@ -1717,6 +1719,7 @@ let temeIstoria = [
                       },
                     ],
                     raspuns: "termenul Izolaționism.",
+                    raspuns_harta: "/images/Romania_1938.png", 
                     barem: {
                       maxPoints: 2,
                       subitems: [
@@ -1761,7 +1764,8 @@ let temeIstoria = [
                     ],
                     raspuns:
                       "scopul luptei de emancipare a femeilor în perioada interbelică.",
-                      barem: {
+                    raspuns_harta: "", 
+                    barem: {
                         maxPoints: 3,
                         subitems: [
                           {
@@ -1814,6 +1818,7 @@ let temeIstoria = [
                     ],
                     raspuns:
                       "două consecințe ale menținerii regimurilor democratice în perioada interbelică",
+                      raspuns_harta: "",   
                       barem: {
                         maxPoints: 4,
                         subitems: [
@@ -1887,6 +1892,7 @@ let temeIstoria = [
                     ],
                     raspuns:
                       "personalitate istorică ce a condus SUA în perioada celui de-al Doilea Război Mondial",
+                      raspuns_harta: "", 
                       barem: {
                         maxPoints: 5,
                         subitems: [
@@ -1977,6 +1983,7 @@ let temeIstoria = [
                     ],
                     raspuns:
                       "Regimurile totalitare interbelice aveau trăsături comune",
+                      raspuns_harta: "", 
                       barem: {
                         maxPoints: 5,
                         subitems: [

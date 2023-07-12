@@ -238,6 +238,7 @@ const ExamenSubect2 = ({raspunsuri}) => {
             >
 
               <ItemText classNameChild="">
+              {item.quizArray[currentIndex].item[currentItem].raspuns_harta && (<img src={item.quizArray[currentIndex].item[currentItem].raspuns_harta} />)}
                 {item.quizArray[currentIndex].item[currentItem].raspuns}
               </ItemText>
               <button onClick={handleAutoevaluare} className="btn-test">
