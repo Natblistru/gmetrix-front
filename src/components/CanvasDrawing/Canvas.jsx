@@ -6,7 +6,9 @@ const Canvas = () => {
   const contextRef = useRef(null);
   const [isDrawing, setIsDrawing] = useState(false);
   const [lineWidth, setLineWidth] = useState(5);
-  const [fillColor, setFillColor] = useState("black");
+  const [fillColor, setFillColor] = useState('#000000');
+  const [inputColor, setInputColor] = useState('#000000');
+  const [selectedOption, setSelectedOption] = useState(5); 
   const [points, setPoints] = useState([]);
   const [isAreaClosed, setIsAreaClosed] = useState(false);
   const [cursorStyle, setCursorStyle] = useState("default");
@@ -104,7 +106,7 @@ const Canvas = () => {
   };
 
   const handleClickOutside = (event) => {
-    console.log(textAreaRef.current);
+    // console.log(textAreaRef.current);
     if (textAreaRef.current && !textAreaRef.current.contains(event.target)) {
       contextRef.current.font = "28px sans-serif";
       contextRef.current.fillText(
@@ -122,7 +124,7 @@ const Canvas = () => {
       setUndoStack((prevState) => [...prevState, savedData]);
       setAction("none");
       setPositionText(null);
-      console.log("Клик за пределами textarea");
+      // console.log("Клик за пределами textarea");
     }
   };
 
@@ -196,6 +198,8 @@ const Canvas = () => {
 
   const handleFillColorChange = (e) => {
     setFillColor(e.target.value);
+    setInputColor(e.target.value);
+    setSelectedOption(5);
   };
 
   const fillSelectedArea = () => {
@@ -245,6 +249,14 @@ const Canvas = () => {
     return `rgba(${r}, ${g}, ${b}, 0.3)`;
   };
 
+  const testColor =(e,n) => {
+    const element = e.target;
+    const computedStyle = getComputedStyle(element);
+    const backgroundColor = computedStyle.backgroundColor;
+    console.log(backgroundColor);
+    setFillColor(backgroundColor)
+    setSelectedOption(n);
+  }
   useEffect(() => {
     if (undoStack.length > 0) {
       contextRef.current.putImageData(undoStack[undoStack.length - 1], 0, 0);
@@ -291,7 +303,7 @@ const Canvas = () => {
         onMouseUp={stopDrawing}
         onMouseLeave={stopDrawing}
       ></canvas>
-      <div>
+      <div className="toolbar-canvas">
         <button onClick={setToDraw} className="toolbar__btn brush"></button>
         <button onClick={setToErase} className="toolbar__btn eraser"></button>
         <button onClick={setToText} className="toolbar__btn textA"></button>
@@ -326,7 +338,7 @@ const Canvas = () => {
             );
           }}
         ></button>
-        <label>
+        {/* <label>
           Color:{" "}
           <input
             type="color"
@@ -334,7 +346,7 @@ const Canvas = () => {
             value={fillColor}
             onChange={handleFillColorChange}
           />
-        </label>
+        </label> */}
         <label>
           Size:{" "}
           <input
@@ -345,6 +357,15 @@ const Canvas = () => {
             onChange={handleLineWidthChange}
           />
         </label>
+        <ul className="color-options">
+            <li className={`color-option ${selectedOption === 1 ? "selected" : ""}`} onClick={(e) => testColor(e, 1)}></li>
+            <li className={`color-option ${selectedOption === 2 ? "selected" : ""}`} onClick={(e)=>testColor(e,2)}></li>
+            <li className={`color-option ${selectedOption === 3 ? "selected" : ""}`} onClick={(e)=>testColor(e,3)}></li>
+            <li className={`color-option ${selectedOption === 4 ? "selected" : ""}`} onClick={(e)=>testColor(e,4)}></li>
+            <li className={`color-option ${selectedOption === 5 ? "selected" : ""}`}  style={{background: inputColor}} >
+              <input type="color" id="color-picker" /*value={fillColor}*/ onChange={handleFillColorChange}/>
+            </li>
+          </ul>
         <button
           onClick={fillSelectedArea}
           className="toolbar__btn fill"
