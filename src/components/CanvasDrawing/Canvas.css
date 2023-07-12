@@ -3,13 +3,13 @@
   width: 500px; */
   border: 2px solid #000;
 }
-  .toolbar-canvas {
-    display: flex;
-    align-content: center;
-    line-height: 2;
-    justify-content: space-between;
-    gap: 10px;
-    margin-top: 15px;
+.toolbar-canvas {
+  display: flex;
+  align-content: center;
+  line-height: 2;
+  justify-content: space-between;
+  gap: 10px;
+  margin: 15px 5px 0px -3px;
 }
 
 .toolbar__btn {
@@ -19,7 +19,10 @@
   outline: none;
   cursor: pointer;
   background-size: cover;
-  margin-left: 10px;
+  padding: 20px;
+}
+.toolbar__btn:hover {
+  background-color:#f5f3f4;
 }
 .brush {
   background: url('../../assets/img/brush.png') no-repeat center center;
