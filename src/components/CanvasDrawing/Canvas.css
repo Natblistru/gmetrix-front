@@ -27,6 +27,9 @@
 .clear {
   background: url('../../assets/img/clear.png') no-repeat center center;
 }
+.fill {
+  background: url('../../assets/img/fill.png') no-repeat center center;
+}
 
 .undo {
   margin-left: auto;

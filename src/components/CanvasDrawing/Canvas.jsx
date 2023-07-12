@@ -12,7 +12,7 @@ const Canvas = () => {
   const [cursorStyle, setCursorStyle] = useState("default");
   const [undoStack, setUndoStack] = useState([]);
   const [action, setAction] = useState("none");
-  const [positionText, setPositionText] = useState(null); 
+  const [positionText, setPositionText] = useState(null);
 
   const [tool, setTool] = useState("");
   const textAreaRef = useRef();
@@ -38,9 +38,9 @@ const Canvas = () => {
   }, [fillColor]);
 
   useEffect(() => {
-    if(action==="writing" && textAreaRef.current) {
-    textAreaRef.current.focus()
-  }
+    if (action === "writing" && textAreaRef.current) {
+      textAreaRef.current.focus();
+    }
   }, [action]);
 
   const startDrawing = ({ nativeEvent }) => {
@@ -48,11 +48,10 @@ const Canvas = () => {
     if (tool === "text") {
       setAction("writing");
       if (!positionText) {
-        setPositionText({x:offsetX,y:offsetY});
-        
-      } 
+        setPositionText({ x: offsetX, y: offsetY });
+      }
       return;
-    } 
+    }
     contextRef.current.beginPath();
     contextRef.current.moveTo(offsetX, offsetY);
     setIsDrawing(true);
@@ -101,14 +100,18 @@ const Canvas = () => {
   const setToText = () => {
     setCursorStyle("text");
     setTool("text");
-    setPositionText(null)
+    setPositionText(null);
   };
 
   const handleClickOutside = (event) => {
-    console.log(textAreaRef.current)
+    console.log(textAreaRef.current);
     if (textAreaRef.current && !textAreaRef.current.contains(event.target)) {
       contextRef.current.font = "28px sans-serif";
-      contextRef.current.fillText(textAreaRef.current.value, positionText.x, positionText.y+20);
+      contextRef.current.fillText(
+        textAreaRef.current.value,
+        positionText.x,
+        positionText.y + 20
+      );
 
       const savedData = contextRef.current.getImageData(
         0,
@@ -117,8 +120,8 @@ const Canvas = () => {
         canvasRef.current.height
       );
       setUndoStack((prevState) => [...prevState, savedData]);
-      setAction("none")
-      setPositionText(null)
+      setAction("none");
+      setPositionText(null);
       console.log("Клик за пределами textarea");
     }
   };
@@ -204,20 +207,27 @@ const Canvas = () => {
         canvasRef.current.width,
         canvasRef.current.height
       );
-      return;
-    }
-    const canvas = canvasRef.current;
-    const context = canvas.getContext("2d");
-    context.fillStyle = hexToRgb(fillColor);
-    context.beginPath();
-    context.moveTo(points[0].x, points[0].y);
+    } else {
+      const canvas = canvasRef.current;
+      const context = canvas.getContext("2d");
+      context.fillStyle = hexToRgb(fillColor);
+      context.beginPath();
+      context.moveTo(points[0].x, points[0].y);
 
-    for (let i = 1; i < points.length; i++) {
-      context.lineTo(points[i].x, points[i].y);
-    }
+      for (let i = 1; i < points.length; i++) {
+        context.lineTo(points[i].x, points[i].y);
+      }
 
-    context.closePath();
-    context.fill();
+      context.closePath();
+      context.fill();
+    }
+    const savedData = contextRef.current.getImageData(
+      0,
+      0,
+      canvasRef.current.width,
+      canvasRef.current.height
+    );
+    setUndoStack((prevState) => [...prevState, savedData]);
   };
 
   const hexToRgb = (hex) => {
@@ -259,11 +269,11 @@ const Canvas = () => {
     width: "100%",
     height: "500px",
     cursor: cursorStyle,
-    position: 'relative',
+    position: "relative",
   };
 
   return (
-    <div style={{position: 'relative'}} onClick={handleClickOutside}>
+    <div style={{ position: "relative" }} onClick={handleClickOutside}>
       <canvas
         className="canvas-container"
         ref={canvasRef}
@@ -284,8 +294,8 @@ const Canvas = () => {
             // onBlur={handleBlur}
             style={{
               position: "absolute",
-              top: positionText? (positionText.y - 2) : 0,
-              left: positionText? positionText.x : 0,
+              top: positionText ? positionText.y - 2 : 0,
+              left: positionText ? positionText.x : 0,
               font: "24px sans-serif",
               margin: 0,
               padding: 0,
@@ -298,7 +308,8 @@ const Canvas = () => {
             }}
           />
         ) : null}
-        <button className="toolbar__btn clear"
+        <button
+          className="toolbar__btn clear"
           onClick={() => {
             contextRef.current.clearRect(
               0,
@@ -307,8 +318,7 @@ const Canvas = () => {
               canvasRef.current.height
             );
           }}
-        >
-        </button>
+        ></button>
         <label>
           Color:{" "}
           <input
@@ -328,7 +338,10 @@ const Canvas = () => {
             onChange={handleLineWidthChange}
           />
         </label>
-        <button onClick={fillSelectedArea}>Заполнить цветом</button>
+        <button
+          onClick={fillSelectedArea}
+          className="toolbar__btn fill"
+        ></button>
         <button className="toolbar__btn save" onClick={saveImageToLocal} />
         <button className="toolbar__btn undo" onClick={handleUndo}></button>
       </div>
