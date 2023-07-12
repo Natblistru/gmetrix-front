@@ -1447,6 +1447,7 @@ let temeIstoria = [
                   "Studiază coperta cărții. Numește un fapt istoric pe care autorul îl poate utiliza pentru a justifica titlul cărții. Argumentează răspunsul.",
                 ],
                 img: "/images/carte_planul_marshall.jpg",
+                procent_paper: "70%",
                 forma: [
                   {
                     cerinte:
@@ -1514,6 +1515,7 @@ let temeIstoria = [
                   "Studiază coperta cărții. Numește un fapt istoric pe care autorul îl poate utiliza pentru a justifica titlul cărții. Argumentează răspunsul.",
                 ],
                 img: "/images/carte_planul_marshall.jpg",
+                procent_paper: "70%",
                 forma: [
                   {
                     cerinte:

@@ -154,7 +154,7 @@ const ExamenSubect1 = ({ raspunsuri }) => {
             <ItemText>
               <p>{item.quizArray[currentIndex].cerinte[0]}</p>
               <div className="subject1-container">
-                <div className="paper" style={{ width: "70%" }}>
+                <div className="paper" style={{ width: item.quizArray[currentIndex].procent_paper }}>
                   <div className="lines">
                     <div className="text">
                       {currentTextIndex !== null &&
