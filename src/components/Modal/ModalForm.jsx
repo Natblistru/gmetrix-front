@@ -22,8 +22,8 @@ const ModalForm = ({forma,onClick,idRaspuns,raspunsuri,add,update}) => {
 
 
   useEffect(() => {
-    console.log(idRaspuns);
-    console.log(raspunsuri);    
+    // console.log(idRaspuns);
+    // console.log(raspunsuri);    
     if(idRaspuns!==null) {
       const foundRaspuns = raspunsuri.items.find(item => item.id === idRaspuns);
       const valuesArray = Object.values(foundRaspuns).filter(value => value !== foundRaspuns.id);
@@ -47,8 +47,8 @@ const ModalForm = ({forma,onClick,idRaspuns,raspunsuri,add,update}) => {
   const handleResponse = () => {
     const IdRasp = Date.now();
     // console.log({ ...rasp, id: IdRasp });
-    console.log(idRaspuns);
-    console.log(IdRasp);
+    // console.log(idRaspuns);
+    // console.log(IdRasp);
     if(idRaspuns===null){
      add({ ...rasp, id: IdRasp });
      onClick(rasp, IdRasp);

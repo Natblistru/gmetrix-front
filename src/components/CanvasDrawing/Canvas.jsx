@@ -11,6 +11,11 @@ const Canvas = () => {
   const [isAreaClosed, setIsAreaClosed] = useState(false);
   const [cursorStyle, setCursorStyle] = useState("default");
   const [undoStack, setUndoStack] = useState([]);
+  const [action, setAction] = useState("none");
+  const [positionText, setPositionText] = useState(null); 
+
+  const [tool, setTool] = useState("");
+  const textAreaRef = useRef();
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -32,8 +37,22 @@ const Canvas = () => {
     contextRef.current.strokeStyle = fillColor;
   }, [fillColor]);
 
+  useEffect(() => {
+    if(action==="writing" && textAreaRef.current) {
+    textAreaRef.current.focus()
+  }
+  }, [action]);
+
   const startDrawing = ({ nativeEvent }) => {
     const { offsetX, offsetY } = nativeEvent;
+    if (tool === "text") {
+      setAction("writing");
+      if (!positionText) {
+        setPositionText({x:offsetX,y:offsetY});
+        
+      } 
+      return;
+    } 
     contextRef.current.beginPath();
     contextRef.current.moveTo(offsetX, offsetY);
     setIsDrawing(true);
@@ -54,10 +73,14 @@ const Canvas = () => {
 
   const stopDrawing = () => {
     contextRef.current.closePath();
-    if(isDrawing){
-      const savedData = contextRef.current.getImageData(0, 0, canvasRef.current.width, canvasRef.current.height);
-      setUndoStack((prevState) => [...prevState,savedData ]);
-      console.log(savedData);
+    if (isDrawing) {
+      const savedData = contextRef.current.getImageData(
+        0,
+        0,
+        canvasRef.current.width,
+        canvasRef.current.height
+      );
+      setUndoStack((prevState) => [...prevState, savedData]);
     }
     setIsDrawing(false);
     setIsAreaClosed(true);
@@ -66,15 +89,38 @@ const Canvas = () => {
   const setToDraw = () => {
     contextRef.current.globalCompositeOperation = "source-over";
     setCursorStyle("default");
+    setTool("pensil");
   };
 
   const setToErase = () => {
     contextRef.current.globalCompositeOperation = "destination-out";
     setCursorStyle("cell");
+    setTool("erase");
   };
 
   const setToText = () => {
     setCursorStyle("text");
+    setTool("text");
+    setPositionText(null)
+  };
+
+  const handleClickOutside = (event) => {
+    console.log(textAreaRef.current)
+    if (textAreaRef.current && !textAreaRef.current.contains(event.target)) {
+      contextRef.current.font = "28px sans-serif";
+      contextRef.current.fillText(textAreaRef.current.value, positionText.x, positionText.y+20);
+
+      const savedData = contextRef.current.getImageData(
+        0,
+        0,
+        canvasRef.current.width,
+        canvasRef.current.height
+      );
+      setUndoStack((prevState) => [...prevState, savedData]);
+      setAction("none")
+      setPositionText(null)
+      console.log("Клик за пределами textarea");
+    }
   };
 
   const backgroundImageSrc = "/images/Romania_1938.png";
@@ -83,7 +129,7 @@ const Canvas = () => {
     const canvas = canvasRef.current;
     const context = canvas.getContext("2d");
     const savedData = context.getImageData(0, 0, canvas.width, canvas.height);
-  
+
     const loadImage = () => {
       return new Promise((resolve, reject) => {
         const image = new Image();
@@ -92,37 +138,45 @@ const Canvas = () => {
         image.onerror = (error) => reject(error);
       });
     };
-  
+
     try {
       const image = await loadImage();
-  
+
       const tempCanvas = document.createElement("canvas");
       tempCanvas.width = canvas.width;
       tempCanvas.height = canvas.height;
       const tempContext = tempCanvas.getContext("2d");
-  
+
       // Отрисовываем фоновое изображение на временном холсте
       tempContext.drawImage(image, 0, 0);
-  
+
       // Восстанавливаем сохраненные данные с прозрачным фоном
-      const imageData = tempContext.getImageData(0, 0, tempCanvas.width, tempCanvas.height);
+      const imageData = tempContext.getImageData(
+        0,
+        0,
+        tempCanvas.width,
+        tempCanvas.height
+      );
       const pixels = imageData.data;
       const savedPixels = savedData.data;
 
       // Копируем сохраненные данные на временный холст с прозрачным фоном
       for (let i = 0; i < pixels.length; i += 4) {
-        pixels[i] = savedPixels[i+3] === 0? pixels[i]: savedPixels[i]; // красный
-        pixels[i + 1] = savedPixels[i + 3] === 0? pixels[i + 1]: savedPixels[i + 1];; // зеленый
-        pixels[i + 2] = savedPixels[i + 3] === 0? pixels[i + 2]: savedPixels[i + 2];; // синий
-        pixels[i + 3] = savedPixels[i + 3] === 0? pixels[i + 3]: savedPixels[i + 3]; // альфа-канал
+        pixels[i] = savedPixels[i + 3] === 0 ? pixels[i] : savedPixels[i]; // красный
+        pixels[i + 1] =
+          savedPixels[i + 3] === 0 ? pixels[i + 1] : savedPixels[i + 1]; // зеленый
+        pixels[i + 2] =
+          savedPixels[i + 3] === 0 ? pixels[i + 2] : savedPixels[i + 2]; // синий
+        pixels[i + 3] =
+          savedPixels[i + 3] === 0 ? pixels[i + 3] : savedPixels[i + 3]; // альфа-канал
       }
 
       // Накладываем сохраненные данные на фоновое изображение
       tempContext.putImageData(imageData, 0, 0);
-  
+
       // Получаем данные временного холста
       const finalImageData = tempCanvas.toDataURL("image/png");
-  
+
       // Создаем ссылку для скачивания
       const link = document.createElement("a");
       link.href = finalImageData;
@@ -132,7 +186,7 @@ const Canvas = () => {
       console.error("Ошибка загрузки изображения:", error);
     }
   };
-  
+
   const handleLineWidthChange = (e) => {
     setLineWidth(e.target.value);
   };
@@ -174,10 +228,9 @@ const Canvas = () => {
     return `rgba(${r}, ${g}, ${b}, 0.3)`;
   };
 
-  useEffect(()=>{
-    console.log(undoStack.length)
+  useEffect(() => {
     if (undoStack.length > 0) {
-      contextRef.current.putImageData(undoStack[undoStack.length-1], 0, 0); 
+      contextRef.current.putImageData(undoStack[undoStack.length - 1], 0, 0);
     } else if (undoStack.length === 0) {
       contextRef.current.clearRect(
         0,
@@ -186,12 +239,10 @@ const Canvas = () => {
         canvasRef.current.height
       );
     }
-  },[undoStack])
+  }, [undoStack]);
 
   const handleUndo = () => {
-    console.log(undoStack)
     if (undoStack.length >= 0) {
-
       setUndoStack((prevState) => {
         const newState = [...prevState];
         newState.pop();
@@ -208,10 +259,11 @@ const Canvas = () => {
     width: "100%",
     height: "500px",
     cursor: cursorStyle,
+    position: 'relative',
   };
 
   return (
-    <div>
+    <div style={{position: 'relative'}} onClick={handleClickOutside}>
       <canvas
         className="canvas-container"
         ref={canvasRef}
@@ -225,8 +277,28 @@ const Canvas = () => {
       <div>
         <button onClick={setToDraw} className="toolbar__btn brush"></button>
         <button onClick={setToErase} className="toolbar__btn eraser"></button>
-        <button onClick={setToText}>Text</button>
-        <button
+        <button onClick={setToText} className="toolbar__btn textA"></button>
+        {action === "writing" ? (
+          <textarea
+            ref={textAreaRef}
+            // onBlur={handleBlur}
+            style={{
+              position: "absolute",
+              top: positionText? (positionText.y - 2) : 0,
+              left: positionText? positionText.x : 0,
+              font: "24px sans-serif",
+              margin: 0,
+              padding: 0,
+              border: "1px dashed black",
+              outline: 0,
+              resize: "auto",
+              overflow: "hidden",
+              whiteSpace: "pre",
+              background: "transparent",
+            }}
+          />
+        ) : null}
+        <button className="toolbar__btn clear"
           onClick={() => {
             contextRef.current.clearRect(
               0,
@@ -236,7 +308,6 @@ const Canvas = () => {
             );
           }}
         >
-          Clear
         </button>
         <label>
           Color:{" "}
@@ -258,7 +329,7 @@ const Canvas = () => {
           />
         </label>
         <button onClick={fillSelectedArea}>Заполнить цветом</button>
-        <button className="toolbar__btn save" onClick={saveImageToLocal}/>
+        <button className="toolbar__btn save" onClick={saveImageToLocal} />
         <button className="toolbar__btn undo" onClick={handleUndo}></button>
       </div>
     </div>

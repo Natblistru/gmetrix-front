@@ -18,8 +18,8 @@ const SelectBox = ({ options, activeTab, setActiveTab,nota, setNota,idx }) => {
     setValue(option.value);
     setLabel(option.label);
     setShowing(false);
-    console.log("idx", idx)
-    console.log("option.subPoint", option.subPoint)
+    // console.log("idx", idx)
+    // console.log("option.subPoint", option.subPoint)
     setNota(nota.map((n, index) => {
       if (index === idx) {
         return option.subPoint;
@@ -73,7 +73,7 @@ const ModalCalculator = ({ barem, onClick, idRaspuns, raspunsuri, update }) => {
   const [activeTab, setActiveTab] = useState(0);
   const [modalPosition, setModalPosition] = useState({ x: 370, y: 270 });
 
-  console.log(nota)
+  // console.log(nota)
   useEffect(() => {
     // console.log(idRaspuns);
     // console.log(raspunsuri);

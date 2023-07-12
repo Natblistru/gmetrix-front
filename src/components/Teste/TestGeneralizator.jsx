@@ -165,7 +165,7 @@ const TestGeneralizator = ({
 
   
 
-  console.log(currentIndex);
+  // console.log(currentIndex);
 
   const handleModified = () => {
     const updatedModified = [...modified];

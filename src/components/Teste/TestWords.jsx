@@ -38,7 +38,7 @@ const TestWords = ({
     setAnswers(shuffleArray(getAnswers(text).concat(textAdd)));
     setSentence(getSentence(text));
   }, [text]);
-console.log(answers);
+// console.log(answers);
   const onDrop = (ev, dropId) => {
     const text = ev.dataTransfer.getData("text/plain");
     const updatedSentence = sentence.map((w) => {

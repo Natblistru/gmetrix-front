@@ -20,6 +20,14 @@
 .eraser {
   background: url('../../assets/img/eraser.png') no-repeat center center;
 }
+.textA {
+  background: url('../../assets/img/text.png') no-repeat center center;
+}
+
+.clear {
+  background: url('../../assets/img/clear.png') no-repeat center center;
+}
+
 .undo {
   margin-left: auto;
   background: url('../../assets/img/undo.png') no-repeat center center;
