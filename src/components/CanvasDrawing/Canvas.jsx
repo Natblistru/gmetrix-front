@@ -10,6 +10,7 @@ const Canvas = () => {
   const [points, setPoints] = useState([]);
   const [isAreaClosed, setIsAreaClosed] = useState(false);
   const [cursorStyle, setCursorStyle] = useState("default");
+  const [undoStack, setUndoStack] = useState([]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -35,10 +36,7 @@ const Canvas = () => {
     const { offsetX, offsetY } = nativeEvent;
     contextRef.current.beginPath();
     contextRef.current.moveTo(offsetX, offsetY);
-    // contextRef.current.lineTo(offsetX, offsetY);
-    // contextRef.current.stroke();
     setIsDrawing(true);
-    // nativeEvent.preventDefault();
     setPoints([{ x: offsetX, y: offsetY }]);
     setIsAreaClosed(false);
   };
@@ -51,12 +49,16 @@ const Canvas = () => {
     const { offsetX, offsetY } = nativeEvent;
     contextRef.current.lineTo(offsetX, offsetY);
     contextRef.current.stroke();
-    // nativeEvent.preventDefault();
     setPoints([...points, { x: offsetX, y: offsetY }]);
   };
 
   const stopDrawing = () => {
     contextRef.current.closePath();
+    if(isDrawing){
+      const savedData = contextRef.current.getImageData(0, 0, canvasRef.current.width, canvasRef.current.height);
+      setUndoStack((prevState) => [...prevState,savedData ]);
+      console.log(savedData);
+    }
     setIsDrawing(false);
     setIsAreaClosed(true);
   };
@@ -172,6 +174,31 @@ const Canvas = () => {
     return `rgba(${r}, ${g}, ${b}, 0.3)`;
   };
 
+  useEffect(()=>{
+    console.log(undoStack.length)
+    if (undoStack.length > 0) {
+      contextRef.current.putImageData(undoStack[undoStack.length-1], 0, 0); 
+    } else if (undoStack.length === 0) {
+      contextRef.current.clearRect(
+        0,
+        0,
+        canvasRef.current.width,
+        canvasRef.current.height
+      );
+    }
+  },[undoStack])
+
+  const handleUndo = () => {
+    console.log(undoStack)
+    if (undoStack.length >= 0) {
+
+      setUndoStack((prevState) => {
+        const newState = [...prevState];
+        newState.pop();
+        return newState;
+      });
+    }
+  };
   const canvasStyle = {
     backgroundImage: `url(${
       process.env.PUBLIC_URL + "/images/Romania_1938.png"
@@ -232,7 +259,7 @@ const Canvas = () => {
         </label>
         <button onClick={fillSelectedArea}>Заполнить цветом</button>
         <button className="toolbar__btn save" onClick={saveImageToLocal}/>
-        <button className="toolbar__btn undo"></button>
+        <button className="toolbar__btn undo" onClick={handleUndo}></button>
       </div>
     </div>
   );
