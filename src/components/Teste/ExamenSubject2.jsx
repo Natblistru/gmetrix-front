@@ -179,7 +179,7 @@ const ExamenSubect2 = ({raspunsuri}) => {
               </h3>
               <h4>{item.quizArray[currentIndex].item[currentItem].sursa}</h4>
               <p>{item.quizArray[currentIndex].item[currentItem].cerinte[0]} <span style={{fontStyle: 'italic'}}>{item.quizArray[currentIndex].item[currentItem].afirmatia} </span> {item.quizArray[currentIndex].item[currentItem].cerinte[1]}</p>              
-              <Draw/>
+              {item.quizArray[currentIndex].item[currentItem].harta && item.quizArray[currentIndex].item[currentItem].harta.length>0 && <Draw item={item.quizArray[currentIndex].item[currentItem]} disable={showResponse}/>}
               <div className="subject1-container">
               
                 <div className="paper" style={{ width: "100%", height: '267px'}}>

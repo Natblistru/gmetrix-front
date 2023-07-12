@@ -1,7 +1,7 @@
 import "./Canvas.css";
 import { useEffect, useRef, useState } from "react";
 
-const Canvas = () => {
+const Canvas = ({item, disable}) => {
   const canvasRef = useRef(null);
   const contextRef = useRef(null);
   const [isDrawing, setIsDrawing] = useState(false);
@@ -25,11 +25,17 @@ const Canvas = () => {
     canvas.height = 500;
 
     const context = canvas.getContext("2d");
+    if(contextRef.current) {contextRef.current.clearRect(
+      0,
+      0,
+      canvasRef.current.width,
+      canvasRef.current.height
+    );}
     context.lineCap = "round";
     context.strokeStyle = fillColor;
     context.lineWidth = lineWidth;
     contextRef.current = context;
-  }, []);
+  }, [item]);
 
   useEffect(() => {
     contextRef.current.lineWidth = lineWidth;
@@ -312,8 +318,8 @@ const Canvas = () => {
 
   return (
     <div style={{ position: "relative" }} onClick={handleClickOutside}>
-      <canvas
-        className="canvas-container"
+      <canvas 
+        className={`canvas-container ${disable ? "canvas-disable" : ""}`}
         ref={canvasRef}
         // style={{cursor: cursorStyle}}
         style={canvasStyle}

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import Canvas from "./Canvas";
-const Draw = () => {
+const Draw = (props) => {
   return (
     <section>
-      <Canvas />
+      <Canvas {...props}/>
     </section>
   )
 } 

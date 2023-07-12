@@ -1609,7 +1609,7 @@ let temeIstoria = [
                       "Identifică două evenimente importante pentru evoluția regimurilor totalitare în perioada interbelică.",
                       "",
                     ],
-
+                    harta: "/images/Romania_1938.png",
                     forma: [
                       {
                         cerinte: "Primul eveniment important",
@@ -1668,6 +1668,7 @@ let temeIstoria = [
                       "Formulează o cauză a instaurării regimurilor totalitare din perioada interbelică.",
                       "",
                     ],
+                    harta: "",
                     forma: [
                       {
                         cerinte: "Cauza",
@@ -1708,6 +1709,7 @@ let temeIstoria = [
                     sursa:
                       "Utilizează sursa D și cunoștințele obținute anterior.",
                     cerinte: ["Explică termenul Izolaționism.", ""],
+                    harta: "/images/Romania_1938.png",
                     forma: [
                       {
                         cerinte: "Explicația",
@@ -1750,6 +1752,7 @@ let temeIstoria = [
                       "Explică scopul luptei de emancipare a femeilor în perioada interbelică.",
                       "",
                     ],
+                    harta: "",
                     forma: [
                       {
                         cerinte: "Scopul",
@@ -1798,6 +1801,7 @@ let temeIstoria = [
                       "Determină două consecințe ale menținerii regimurilor democratice în perioada interbelică. Explică răspunsul.",
                       "",
                     ],
+                    harta: "",
                     forma: [
                       {
                         cerinte: "Consecința 1:",
@@ -1866,6 +1870,7 @@ let temeIstoria = [
                       "Numește o personalitate istorică ce a condus SUA în perioada celui de-al Doilea Război Mondial. Argumentează, în două idei, rolul acestei personalități în istorie.",
                       "",
                     ],
+                    harta: "",
                     forma: [
                       {
                         cerinte: "Personalitatea:",
@@ -1953,6 +1958,7 @@ let temeIstoria = [
                       "Exprimă-ți opinia:",
                       "Formulează două argumente.",
                     ],
+                    harta: "",
                     afirmatia:
                       "Regimurile totalitare interbelice aveau trăsături comune?",
                     forma: [

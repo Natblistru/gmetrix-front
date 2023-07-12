@@ -3,6 +3,10 @@
   width: 500px; */
   border: 2px solid #000;
 }
+
+.canvas-disable {
+  pointer-events: none;
+} 
 .toolbar-canvas {
   display: flex;
   align-content: center;
