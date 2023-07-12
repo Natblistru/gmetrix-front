@@ -3,12 +3,13 @@
   width: 500px; */
   border: 2px solid #000;
 }
-.toolbar-canvas {
+  .toolbar-canvas {
     display: flex;
     align-content: center;
     line-height: 2;
     justify-content: space-between;
     gap: 10px;
+    margin-top: 15px;
 }
 
 .toolbar__btn {
@@ -49,11 +50,9 @@
 
 .color-options {
   list-style: none;
-  margin: 10px 0 0 5px;
   display: flex;
   justify-content: space-between;
   gap: 5px;
-  align-items: center;
   cursor: pointer;
 }
 .color-option {
@@ -109,4 +108,5 @@
 .color-option #color-picker{
   opacity: 0;
   cursor: pointer;
+    width: 27px;
 }

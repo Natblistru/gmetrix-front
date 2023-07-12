@@ -6,9 +6,9 @@ const Canvas = () => {
   const contextRef = useRef(null);
   const [isDrawing, setIsDrawing] = useState(false);
   const [lineWidth, setLineWidth] = useState(5);
-  const [fillColor, setFillColor] = useState('#000000');
-  const [inputColor, setInputColor] = useState('#000000');
-  const [selectedOption, setSelectedOption] = useState(5); 
+  const [fillColor, setFillColor] = useState("#000000");
+  const [inputColor, setInputColor] = useState("#000000");
+  const [selectedOption, setSelectedOption] = useState(5);
   const [points, setPoints] = useState([]);
   const [isAreaClosed, setIsAreaClosed] = useState(false);
   const [cursorStyle, setCursorStyle] = useState("default");
@@ -108,6 +108,7 @@ const Canvas = () => {
   const handleClickOutside = (event) => {
     // console.log(textAreaRef.current);
     if (textAreaRef.current && !textAreaRef.current.contains(event.target)) {
+      contextRef.current.fillStyle = "black";
       contextRef.current.font = "28px sans-serif";
       contextRef.current.fillText(
         textAreaRef.current.value,
@@ -192,6 +193,10 @@ const Canvas = () => {
     }
   };
 
+  const handleRangeChange = (e) => {
+    setLineWidth(e.target.value);
+  };
+
   const handleLineWidthChange = (e) => {
     setLineWidth(e.target.value);
   };
@@ -249,14 +254,14 @@ const Canvas = () => {
     return `rgba(${r}, ${g}, ${b}, 0.3)`;
   };
 
-  const testColor =(e,n) => {
+  const testColor = (e, n) => {
     const element = e.target;
     const computedStyle = getComputedStyle(element);
     const backgroundColor = computedStyle.backgroundColor;
     console.log(backgroundColor);
-    setFillColor(backgroundColor)
+    setFillColor(backgroundColor);
     setSelectedOption(n);
-  }
+  };
   useEffect(() => {
     if (undoStack.length > 0) {
       contextRef.current.putImageData(undoStack[undoStack.length - 1], 0, 0);
@@ -304,9 +309,9 @@ const Canvas = () => {
         onMouseLeave={stopDrawing}
       ></canvas>
       <div className="toolbar-canvas">
-        <button onClick={setToDraw} className="toolbar__btn brush"></button>
-        <button onClick={setToErase} className="toolbar__btn eraser"></button>
-        <button onClick={setToText} className="toolbar__btn textA"></button>
+        <button onClick={setToDraw} className="toolbar__btn brush" title="Brush"></button>
+        <button onClick={setToErase} className="toolbar__btn eraser" title="Eraser"></button>
+        <button onClick={setToText} className="toolbar__btn textA" title="Text"></button>
         {action === "writing" ? (
           <textarea
             ref={textAreaRef}
@@ -328,7 +333,7 @@ const Canvas = () => {
           />
         ) : null}
         <button
-          className="toolbar__btn clear"
+          className="toolbar__btn clear" title="Clear"
           onClick={() => {
             contextRef.current.clearRect(
               0,
@@ -338,40 +343,44 @@ const Canvas = () => {
             );
           }}
         ></button>
-        {/* <label>
-          Color:{" "}
-          <input
-            type="color"
-            name="color"
-            value={fillColor}
-            onChange={handleFillColorChange}
-          />
-        </label> */}
         <label>
-          Size:{" "}
-          <input
-            type="number"
-            name="number"
-            size="4"
-            value={lineWidth}
-            onChange={handleLineWidthChange}
-          />
+          <input type="range" id="size-slider" min="1" max="30" value={lineWidth} onChange={handleRangeChange}/>
         </label>
+        <span>{lineWidth}</span>
         <ul className="color-options">
-            <li className={`color-option ${selectedOption === 1 ? "selected" : ""}`} onClick={(e) => testColor(e, 1)}></li>
-            <li className={`color-option ${selectedOption === 2 ? "selected" : ""}`} onClick={(e)=>testColor(e,2)}></li>
-            <li className={`color-option ${selectedOption === 3 ? "selected" : ""}`} onClick={(e)=>testColor(e,3)}></li>
-            <li className={`color-option ${selectedOption === 4 ? "selected" : ""}`} onClick={(e)=>testColor(e,4)}></li>
-            <li className={`color-option ${selectedOption === 5 ? "selected" : ""}`}  style={{background: inputColor}} >
-              <input type="color" id="color-picker" /*value={fillColor}*/ onChange={handleFillColorChange}/>
-            </li>
-          </ul>
+          <li
+            className={`color-option ${selectedOption === 1 ? "selected" : ""}`}
+            onClick={(e) => testColor(e, 1)}
+          ></li>
+          <li
+            className={`color-option ${selectedOption === 2 ? "selected" : ""}`}
+            onClick={(e) => testColor(e, 2)}
+          ></li>
+          <li
+            className={`color-option ${selectedOption === 3 ? "selected" : ""}`}
+            onClick={(e) => testColor(e, 3)}
+          ></li>
+          <li
+            className={`color-option ${selectedOption === 4 ? "selected" : ""}`}
+            onClick={(e) => testColor(e, 4)}
+          ></li>
+          <li
+            className={`color-option ${selectedOption === 5 ? "selected" : ""}`}
+            style={{ background: inputColor }}
+          >
+            <input
+              type="color"
+              id="color-picker"
+              onChange={handleFillColorChange}
+            />
+          </li>
+        </ul>
         <button
           onClick={fillSelectedArea}
-          className="toolbar__btn fill"
+          className="toolbar__btn fill" title="Fill"
         ></button>
-        <button className="toolbar__btn save" onClick={saveImageToLocal} />
-        <button className="toolbar__btn undo" onClick={handleUndo}></button>
+        <button className="toolbar__btn undo" onClick={handleUndo} title="Undo"></button>
+        <button className="toolbar__btn save" onClick={saveImageToLocal} title="Save image" />
       </div>
     </div>
   );
