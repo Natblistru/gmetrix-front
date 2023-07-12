@@ -9,6 +9,7 @@ const Canvas = () => {
   const [fillColor, setFillColor] = useState("black");
   const [points, setPoints] = useState([]);
   const [isAreaClosed, setIsAreaClosed] = useState(false);
+  const [cursorStyle, setCursorStyle] = useState("default");
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -16,12 +17,6 @@ const Canvas = () => {
     canvas.height = 500;
 
     const context = canvas.getContext("2d");
-    const img = new Image(674,500);
-    img.onload = function() {
-      context.drawImage(img, 0, 0, canvas.width, canvas.height);
-    };
-    img.src = "/images/Romania_1938.png";
-
     context.lineCap = "round";
     context.strokeStyle = fillColor;
     context.lineWidth = lineWidth;
@@ -57,7 +52,7 @@ const Canvas = () => {
     contextRef.current.lineTo(offsetX, offsetY);
     contextRef.current.stroke();
     // nativeEvent.preventDefault();
-    setPoints([...points, { x: offsetX, y: offsetY }]); 
+    setPoints([...points, { x: offsetX, y: offsetY }]);
   };
 
   const stopDrawing = () => {
@@ -68,19 +63,74 @@ const Canvas = () => {
 
   const setToDraw = () => {
     contextRef.current.globalCompositeOperation = "source-over";
+    setCursorStyle("default");
   };
 
   const setToErase = () => {
     contextRef.current.globalCompositeOperation = "destination-out";
+    setCursorStyle("cell");
   };
 
-  const saveImageToLocal = (event) => {
-    let link = event.currentTarget;
-    link.setAttribute("download", "canvas.png");
-    let image = canvasRef.current.toDataURL("image/png");
-    link.setAttribute("href", image);
+  const setToText = () => {
+    setCursorStyle("text");
   };
 
+  const backgroundImageSrc = "/images/Romania_1938.png";
+
+  const saveImageToLocal = async (e) => {
+    const canvas = canvasRef.current;
+    const context = canvas.getContext("2d");
+    const savedData = context.getImageData(0, 0, canvas.width, canvas.height);
+  
+    const loadImage = () => {
+      return new Promise((resolve, reject) => {
+        const image = new Image();
+        image.src = backgroundImageSrc;
+        image.onload = () => resolve(image);
+        image.onerror = (error) => reject(error);
+      });
+    };
+  
+    try {
+      const image = await loadImage();
+  
+      const tempCanvas = document.createElement("canvas");
+      tempCanvas.width = canvas.width;
+      tempCanvas.height = canvas.height;
+      const tempContext = tempCanvas.getContext("2d");
+  
+      // Отрисовываем фоновое изображение на временном холсте
+      tempContext.drawImage(image, 0, 0);
+  
+      // Восстанавливаем сохраненные данные с прозрачным фоном
+      const imageData = tempContext.getImageData(0, 0, tempCanvas.width, tempCanvas.height);
+      const pixels = imageData.data;
+      const savedPixels = savedData.data;
+
+      // Копируем сохраненные данные на временный холст с прозрачным фоном
+      for (let i = 0; i < pixels.length; i += 4) {
+        pixels[i] = savedPixels[i+3] === 0? pixels[i]: savedPixels[i]; // красный
+        pixels[i + 1] = savedPixels[i + 3] === 0? pixels[i + 1]: savedPixels[i + 1];; // зеленый
+        pixels[i + 2] = savedPixels[i + 3] === 0? pixels[i + 2]: savedPixels[i + 2];; // синий
+        pixels[i + 3] = savedPixels[i + 3] === 0? pixels[i + 3]: savedPixels[i + 3]; // альфа-канал
+      }
+
+      // Накладываем сохраненные данные на фоновое изображение
+      tempContext.putImageData(imageData, 0, 0);
+  
+      // Получаем данные временного холста
+      const finalImageData = tempCanvas.toDataURL("image/png");
+  
+      // Создаем ссылку для скачивания
+      const link = document.createElement("a");
+      link.href = finalImageData;
+      link.download = "canvas_with_background.png";
+      link.click();
+    } catch (error) {
+      console.error("Ошибка загрузки изображения:", error);
+    }
+  };
+  
   const handleLineWidthChange = (e) => {
     setLineWidth(e.target.value);
   };
@@ -90,7 +140,6 @@ const Canvas = () => {
   };
 
   const fillSelectedArea = () => {
-    console.log(fillColor);
     if (!isAreaClosed) {
       contextRef.current.fillStyle = hexToRgb(fillColor);
       contextRef.current.fillRect(
@@ -123,30 +172,33 @@ const Canvas = () => {
     return `rgba(${r}, ${g}, ${b}, 0.3)`;
   };
 
-  // const canvasStyle = {
-  //   backgroundImage: `url(${
-  //     process.env.PUBLIC_URL + "/images/Romania_1938.png"
-  //   })`,
-  //   backgroundRepeat: "no-repeat",
-  //   backgroundSize: "cover",
-  //   width: "100%",
-  //   height: "500px",
-  // };
+  const canvasStyle = {
+    backgroundImage: `url(${
+      process.env.PUBLIC_URL + "/images/Romania_1938.png"
+    })`,
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover",
+    width: "100%",
+    height: "500px",
+    cursor: cursorStyle,
+  };
 
   return (
     <div>
       <canvas
         className="canvas-container"
         ref={canvasRef}
-        // style={canvasStyle}
+        // style={{cursor: cursorStyle}}
+        style={canvasStyle}
         onMouseDown={startDrawing}
         onMouseMove={draw}
         onMouseUp={stopDrawing}
         onMouseLeave={stopDrawing}
       ></canvas>
       <div>
-        <button onClick={setToDraw}>Draw</button>
-        <button onClick={setToErase}>Erase</button>
+        <button onClick={setToDraw} className="toolbar__btn brush"></button>
+        <button onClick={setToErase} className="toolbar__btn eraser"></button>
+        <button onClick={setToText}>Text</button>
         <button
           onClick={() => {
             contextRef.current.clearRect(
@@ -179,13 +231,8 @@ const Canvas = () => {
           />
         </label>
         <button onClick={fillSelectedArea}>Заполнить цветом</button>
-        <a
-          id="download_image_link"
-          href="download_link"
-          onClick={saveImageToLocal}
-        >
-          Download Image
-        </a>
+        <button className="toolbar__btn save" onClick={saveImageToLocal}/>
+        <button className="toolbar__btn undo"></button>
       </div>
     </div>
   );
