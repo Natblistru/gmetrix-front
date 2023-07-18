@@ -561,9 +561,11 @@ let temeIstoria = [
                 quizArray: [
                   {
                     id: "1",
+                    cerinte: "Formează perechi logice, unind prin săgeţi, conţinuturile din prima și a doua coloană:",
                   },
                   {
-                    id: "2",          
+                    id: "2",  
+                    cerinte: "Formează perechi logice, unind prin săgeţi, conţinuturile din prima și a doua coloană:",        
                   }
                 ]
               },
