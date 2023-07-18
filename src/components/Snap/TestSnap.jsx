@@ -5,6 +5,20 @@ import ItemAccordeon from "../Accordeon/ItemAccordeon";
 import ItemText from "../Accordeon/ItemText";
 import Pinzone from "./Pinzone";
 
+const RowText = ({ indx, text }) => {
+  return (
+    <div key={indx} className="box-raspuns">
+      <div data-slate-node="element">
+        <span data-slate-node="text">
+          <span data-slate-leaf="true">
+            <span data-slate-string="true">{text}</span>
+          </span>
+        </span>
+      </div>
+    </div>
+  );
+};
+
 const TestSnap = ({
   list,
   currentIndex,
@@ -33,10 +47,62 @@ const TestSnap = ({
   }, [connectedZones]);
 
   const getPinZoneIndex = (x, y) => {
-    if (x > list.points[0].x && x < (list.points[0].x +48) && y > list.points[0].y && y < (list.points[0].y+48)) return 0;
-    if (x > list.points[1].x && x < (list.points[1].x +48) && y > list.points[1].y && y < (list.points[1].y+48)) return 1;
-    if (x > list.points[2].x && x < (list.points[2].x +48) && y > list.points[2].y && y < (list.points[2].y+48)) return 2;
-    if (x > list.points[3].x && x < (list.points[3].x +48) && y > list.points[3].y && y < (list.points[3].y+48)) return 3;
+    if (
+      x > list.points[0].x &&
+      x < list.points[0].x + 48 &&
+      y > list.points[0].y &&
+      y < list.points[0].y + 48
+    )
+      return 0;
+    if (
+      x > list.points[1].x &&
+      x < list.points[1].x + 48 &&
+      y > list.points[1].y &&
+      y < list.points[1].y + 48
+    )
+      return 1;
+    if (
+      x > list.points[2].x &&
+      x < list.points[2].x + 48 &&
+      y > list.points[2].y &&
+      y < list.points[2].y + 48
+    )
+      return 2;
+    if (
+      x > list.points[3].x &&
+      x < list.points[3].x + 48 &&
+      y > list.points[3].y &&
+      y < list.points[3].y + 48
+    )
+      return 3;
+    if (
+      x > list.points[4].x &&
+      x < list.points[4].x + 48 &&
+      y > list.points[4].y &&
+      y < list.points[4].y + 48
+    )
+      return 4;
+    if (
+      x > list.points[5].x &&
+      x < list.points[5].x + 48 &&
+      y > list.points[5].y &&
+      y < list.points[5].y + 48
+    )
+      return 5;
+    if (
+      x > list.points[6].x &&
+      x < list.points[6].x + 48 &&
+      y > list.points[6].y &&
+      y < list.points[6].y + 48
+    )
+      return 6;
+    if (
+      x > list.points[7].x &&
+      x < list.points[7].x + 48 &&
+      y > list.points[7].y &&
+      y < list.points[7].y + 48
+    )
+      return 7;
     return null;
   };
 
@@ -45,42 +111,74 @@ const TestSnap = ({
       const originX = list.points[0].x;
       const originY = list.points[0].y;
       const width = 48;
-      const X = originX + width / 2; //= 234.5;
-      const Y = originY + width / 2; // = 18
+      const X = originX + width / 2;
+      const Y = originY + width / 2;
 
-      return { x: X, y: Y }; //{x: 234, y1: 18} //0 zone
+      return { x: X, y: Y };
     } else if (idx === 1) {
       const originX = list.points[1].x;
       const originY = list.points[1].y;
       const width = 48;
-      const X = originX + width / 2; //= 234.5;
-      const Y = originY + width / 2; // = 215
+      const X = originX + width / 2;
+      const Y = originY + width / 2;
 
-      return { x: X, y: Y }; //{x: 234, y1: 215} //1 zone
+      return { x: X, y: Y };
     } else if (idx === 2) {
       const originX = list.points[2].x;
       const originY = list.points[2].y;
       const width = 48;
-      const X = originX + width / 2; //= 330.5;
-      const Y = originY + width / 2; // = 31
+      const X = originX + width / 2;
+      const Y = originY + width / 2;
 
-      return { x: X, y: Y }; //{x: 330.5, y: 31} //2 zone
+      return { x: X, y: Y };
     } else if (idx === 3) {
       const originX = list.points[3].x;
       const originY = list.points[3].y;
       const width = 48;
-      const X = originX + width / 2; //= 234.5;
-      const Y = originY + width / 2; // = 215
+      const X = originX + width / 2;
+      const Y = originY + width / 2;
 
-      return { x: X, y: Y }; //{x: 330.5, y1: 105} //3 zone
+      return { x: X, y: Y };
+    } else if (idx === 4) {
+      const originX = list.points[4].x;
+      const originY = list.points[4].y;
+      const width = 48;
+      const X = originX + width / 2;
+      const Y = originY + width / 2;
+
+      return { x: X, y: Y };
+    } else if (idx === 5) {
+      const originX = list.points[5].x;
+      const originY = list.points[5].y;
+      const width = 48;
+      const X = originX + width / 2;
+      const Y = originY + width / 2;
+
+      return { x: X, y: Y };
+    } else if (idx === 6) {
+      const originX = list.points[6].x;
+      const originY = list.points[6].y;
+      const width = 48;
+      const X = originX + width / 2;
+      const Y = originY + width / 2;
+
+      return { x: X, y: Y };
+    } else if (idx === 7) {
+      const originX = list.points[7].x;
+      const originY = list.points[7].y;
+      const width = 48;
+      const X = originX + width / 2;
+      const Y = originY + width / 2;
+
+      return { x: X, y: Y };
     } else {
       return { x: 0, y: 0 };
     }
   };
 
   const isCorrespondingZone = (index1, index2) => {
-    const arr = [0, 1, 2, 3];
-    const halfLength = arr.length / 2;
+    // const arr = [0, 1, 2, 3];
+    const halfLength = list.points.length / 2;
 
     if (
       (index1 < halfLength && index2 >= halfLength) ||
@@ -142,16 +240,28 @@ const TestSnap = ({
     let { x: x2, y: y2 } = getCentre(1);
     let { x: x3, y: y3 } = getCentre(2);
     let { x: x4, y: y4 } = getCentre(3);
+    let { x: x5, y: y5 } = getCentre(4);
+    let { x: x6, y: y6 } = getCentre(5);
+    let { x: x7, y: y7 } = getCentre(6);
+    let { x: x8, y: y8 } = getCentre(7);
     lines = lines.filter((el) => {
       return (
         ((el.x1 == x1 && el.y1 == y1) ||
           (el.x1 == x2 && el.y1 == y2) ||
           (el.x1 == x3 && el.y1 == y3) ||
-          (el.x1 == x4 && el.y1 == y4)) &&
+          (el.x1 == x4 && el.y1 == y4) ||
+          (el.x1 == x5 && el.y1 == y5) ||
+          (el.x1 == x6 && el.y1 == y6) ||
+          (el.x1 == x7 && el.y1 == y7) ||
+          (el.x1 == x8 && el.y1 == y8)) &&
         ((el.x2 == x1 && el.y2 == y1) ||
           (el.x2 == x2 && el.y2 == y2) ||
           (el.x2 == x3 && el.y2 == y3) ||
-          (el.x2 == x4 && el.y2 == y4))
+          (el.x2 == x4 && el.y2 == y4) ||
+          (el.x2 == x5 && el.y2 == y5) ||
+          (el.x2 == x6 && el.y2 == y6) ||
+          (el.x2 == x7 && el.y2 == y7) ||
+          (el.x2 == x8 && el.y2 == y8))
       );
     });
 
@@ -198,8 +308,8 @@ const TestSnap = ({
 
         s.mousemove(function (event) {
           line.attr({ x2: event.offsetX, y2: event.offsetY });
-          console.log("event.offsetX",event.offsetX)
-          console.log("event.offsetY",event.offsetY)
+          console.log("event.offsetX", event.offsetX);
+          console.log("event.offsetY", event.offsetY);
         });
 
         s.mouseup(function (evUp) {
@@ -388,6 +498,8 @@ const TestSnap = ({
     }
   };
 
+  const halfIndex = Math.ceil(list.quizArray[currentIndex].text.length / 2);
+
   return (
     <>
       <ItemAccordeon
@@ -416,30 +528,13 @@ const TestSnap = ({
           <div className="content-snap">
             <div>
               <div className="grid-container-snap">
-              <div>
+                <div>
                   <div data-slate-node="element">
-                    <div data-slate-node="element" className="box-raspuns">
-                      <div data-slate-node="element">
-                        <span data-slate-node="text">
-                          <span data-slate-leaf="true">
-                            <span data-slate-string="true">
-                            {list.quizArray[currentIndex].text[0]}
-                            </span>
-                          </span>
-                        </span>
-                      </div>
-                    </div>
-                    <div data-slate-node="element" className="box-raspuns">
-                      <div data-slate-node="element">
-                        <span data-slate-node="text">
-                          <span data-slate-leaf="true">
-                            <span data-slate-string="true">
-                            {list.quizArray[currentIndex].text[1]}
-                            </span>
-                          </span>
-                        </span>
-                      </div>
-                    </div>
+                    {list.quizArray[currentIndex].text
+                      .slice(0, halfIndex)
+                      .map((text, index) => (
+                        <RowText indx={index} text={text} />
+                      ))}
                   </div>
                 </div>
                 <div>
@@ -455,28 +550,11 @@ const TestSnap = ({
                 </div>
                 <div>
                   <div data-slate-node="element">
-                    <div data-slate-node="element" className="box-raspuns">
-                      <div data-slate-node="element">
-                        <span data-slate-node="text">
-                          <span data-slate-leaf="true">
-                            <span data-slate-string="true">
-                            {list.quizArray[currentIndex].text[4]}
-                            </span>
-                          </span>
-                        </span>
-                      </div>
-                    </div>
-                    <div data-slate-node="element" className="box-raspuns">
-                      <div data-slate-node="element">
-                        <span data-slate-node="text">
-                          <span data-slate-leaf="true">
-                            <span data-slate-string="true">
-                            {list.quizArray[currentIndex].text[5]}
-                            </span>
-                          </span>
-                        </span>
-                      </div>
-                    </div>
+                    {list.quizArray[currentIndex].text
+                      .slice(halfIndex)
+                      .map((text, index) => (
+                        <RowText indx={halfIndex + index} text={text} />
+                      ))}
                   </div>
                 </div>
               </div>
@@ -499,26 +577,16 @@ const TestSnap = ({
         /></g>
       ))} */}
               <g ref={gRef}></g>
-              <Pinzone
-                transformMatrix={`matrix(1, 0, 0, 1, ${list.points[0].x}, ${list.points[0].y})`}
-                onPointMousedown={(event) => handlePointMousedown(event, 0)}
-                index={0}
-              />
-              <Pinzone
-                transformMatrix={`matrix(1, 0, 0, 1, ${list.points[1].x}, ${list.points[1].y})`}
-                onPointMousedown={(event) => handlePointMousedown(event, 1)}
-                index={1}
-              />
-              <Pinzone
-                transformMatrix={`matrix(1, 0, 0, 1, ${list.points[2].x}, ${list.points[2].y})`}
-                onPointMousedown={(event) => handlePointMousedown(event, 2)}
-                index={2}
-              />
-              <Pinzone
-                transformMatrix={`matrix(1, 0, 0, 1, ${list.points[3].x}, ${list.points[3].y})`}
-                onPointMousedown={(event) => handlePointMousedown(event, 3)}
-                index={3}
-              />
+              {list.points.map((p, index) => (
+                <Pinzone
+                  key={index}
+                  transformMatrix={`matrix(1, 0, 0, 1, ${list.points[index].x}, ${list.points[index].y})`}
+                  onPointMousedown={(event) =>
+                    handlePointMousedown(event, index)
+                  }
+                  index={index}
+                />
+              ))}
             </svg>
           </div>
         </ItemText>
