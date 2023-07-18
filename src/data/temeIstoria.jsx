@@ -531,9 +531,44 @@ let temeIstoria = [
                   },
                 ],
               },
-
               {
                 id: "5",
+                name: "Formează perechi logice",
+                complexity: "simplu",
+                path: "/test1",
+                addressTestDisciplina: "/istoria",
+                addressTestSubtitle: "/romania-in-primul-razboi",
+                addressTestSubject:
+                  "/optiuni-politice-in-perioada-neutralitatii",
+                addressTest: "/formeaza-perechi",
+                addressTestId:
+                  "/optiuni-politice-in-perioada-neutralitatii/formeaza-perechi",
+                breadcrumb: [
+                  { name: "Discipline", path: "/" },
+                  { name: "Istoria", path: "/istoria" },
+                  {
+                    name: "România în Primul Război Mondial",
+                    path: "/istoria/romania-in-primul-razboi",
+                  },
+                  {
+                    name: "Opțiunile politice în perioada neutralității",
+                    path: "/istoria/romania-in-primul-razboi/optiuni-politice-in-perioada-neutralitatii",
+                  },
+                ],
+                type: "snap",
+                coloane: [],
+                quizArray: [
+                  {
+                    id: "1",
+                  },
+                  {
+                    id: "2",          
+                  }
+                ]
+              },
+
+              {
+                id: "6",
                 name: "Grupează elementele",
                 complexity: "simplu",
                 path: "/test1",
@@ -639,7 +674,7 @@ let temeIstoria = [
                 ],
               },
               {
-                id: "6",
+                id: "7",
                 name: "Caracteristicile evenimentelor",
                 complexity: "moderat",
                 type: "caracteristica",
@@ -743,7 +778,7 @@ let temeIstoria = [
                 ],
               },
               {
-                id: "7",
+                id: "8",
                 name: "Completează propoziția",
                 complexity: "simplu",
                 coloane: [],
@@ -806,7 +841,7 @@ let temeIstoria = [
                 ],
               },
               {
-                id: "8",
+                id: "9",
                 name: "Elaborează un fragment de text",
                 complexity: "dificil",
                 type: "chronoDuble",
@@ -924,7 +959,7 @@ let temeIstoria = [
                 ],
               },
               {
-                id: "9",
+                id: "10",
                 name: "Succesiunea cronologică a evenimentelor",
                 complexity: "moderat",
                 type: "chrono",
@@ -1034,7 +1069,7 @@ let temeIstoria = [
                 ],
               },
               {
-                id: "10",
+                id: "11",
                 name: "Test de totalizare",
                 complexity: "moderat",
                 coloane: [],

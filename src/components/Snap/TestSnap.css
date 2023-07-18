@@ -1,0 +1,37 @@
+.content-snap {
+  max-width: 780px;
+  margin: 0px auto;
+  position: relative;
+ }
+ 
+.grid-container-snap {
+  max-width: 780px;
+  display: grid;
+  grid-template-columns: minmax(0px, 252px) minmax(0px, 54px) minmax(0px, 384px) minmax(0px, 54px);
+  grid-template-rows: 1fr;
+  gap: 12px;
+  margin: 30px auto;
+}
+
+.box-raspuns {
+  color: #232323;
+  background-color: #fff;
+  border: 1px solid #bcb0ff;
+  box-shadow: rgba(35, 35, 35, 0.03) 0px 1px 6px 1px, rgba(35, 35, 35, 0.05) 0px 2px 6px 0px;
+  margin-top: 12px;
+  padding: 19px 18px;
+  max-width: 384px;
+  width: fit-content;
+  line-height: normal;
+}
+
+.box-raspuns:first-child {
+  margin-top: 0px;
+}
+
+.main-svg {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  overflow: visible;
+}
