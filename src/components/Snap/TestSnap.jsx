@@ -434,11 +434,6 @@ const TestSnap = ({
             );
             currentLine1.remove();
           }
-          // if (evUp.offsetX > 320 && evUp.offsetX < 340) {
-          //   line.attr({ x2: 330, y2: 30 });
-          // } else {
-          //   line.remove();
-          // }
           checkLines();
           s.unmousemove();
           s.unmouseup();
@@ -565,17 +560,6 @@ const TestSnap = ({
               width="100%"
               className="main-svg"
             >
-              {/* {lines.map((line, index) => (
-        <g><line
-          key={index}
-          x1={line.x1}
-          y1={line.y1}
-          x2={line.x2}
-          y2={line.y2}
-          strokeWidth="2"
-          stroke="black"
-        /></g>
-      ))} */}
               <g ref={gRef}></g>
               {list.points.map((p, index) => (
                 <Pinzone
