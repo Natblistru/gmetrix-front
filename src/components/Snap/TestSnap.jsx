@@ -423,7 +423,7 @@ const TestSnap = ({
                         <span data-slate-node="text">
                           <span data-slate-leaf="true">
                             <span data-slate-string="true">
-                              Обладает кинетической энергией
+                            {list.quizArray[currentIndex].text[0]}
                             </span>
                           </span>
                         </span>
@@ -434,7 +434,7 @@ const TestSnap = ({
                         <span data-slate-node="text">
                           <span data-slate-leaf="true">
                             <span data-slate-string="true">
-                              Обладает потенциальной энергией
+                            {list.quizArray[currentIndex].text[1]}
                             </span>
                           </span>
                         </span>
@@ -460,7 +460,7 @@ const TestSnap = ({
                         <span data-slate-node="text">
                           <span data-slate-leaf="true">
                             <span data-slate-string="true">
-                              Обладает кинетической энергией
+                            {list.quizArray[currentIndex].text[4]}
                             </span>
                           </span>
                         </span>
@@ -471,7 +471,7 @@ const TestSnap = ({
                         <span data-slate-node="text">
                           <span data-slate-leaf="true">
                             <span data-slate-string="true">
-                              Обладает потенциальной энергией
+                            {list.quizArray[currentIndex].text[5]}
                             </span>
                           </span>
                         </span>

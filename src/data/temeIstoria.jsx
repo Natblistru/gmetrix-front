@@ -557,17 +557,34 @@ let temeIstoria = [
                 ],
                 type: "snap",
                 coloane: [],
-                points: [{x:285,y:17},{x:285,y:109},{x:342,y:17},{x:342,y:109},],
+                points: [
+                  { x: 285, y: 17 },
+                  { x: 285, y: 109 },
+                  { x: 342, y: 17 },
+                  { x: 342, y: 109 },
+                ],
                 quizArray: [
                   {
                     id: "1",
-                    cerinte: "Formează perechi logice, unind prin săgeţi, conţinuturile din prima și a doua coloană:",
+                    cerinte:
+                      "Formează perechi logice, unind prin săgeţi, conţinuturile din prima și a doua coloană:",
+                    text: [
+                      "1. Regele Mihai",
+                      "2. Generalul Alexandru Averescu ",
+                      "3. Regele Carol II ",
+                      "4. Regele Ferdinand I",
+                      "A. Instituirea regimului monarhiei autoritare",
+                      "B. Prim-ministru al României",
+                      "C.'Rege unificator'",
+                      "D. Greva regală",
+                    ],
                   },
                   {
-                    id: "2",  
-                    cerinte: "Formează perechi logice, unind prin săgeţi, conţinuturile din prima și a doua coloană:",        
-                  }
-                ]
+                    id: "2",
+                    cerinte:
+                      "Formează perechi logice, unind prin săgeţi, conţinuturile din prima și a doua coloană:",
+                  },
+                ],
               },
 
               {
@@ -1534,12 +1551,14 @@ let temeIstoria = [
                         },
                         {
                           value: 2,
-                          label: "1 p. - argumentare parțială, fără invocarea unor exemple/dovezi",
+                          label:
+                            "1 p. - argumentare parțială, fără invocarea unor exemple/dovezi",
                           subPoint: 1,
                         },
                         {
                           value: 3,
-                          label: "2 p. - argumentare deplină, cu exemple invocate din sursă sau din cunoștințele obținute anterior",
+                          label:
+                            "2 p. - argumentare deplină, cu exemple invocate din sursă sau din cunoștințele obținute anterior",
                           subPoint: 2,
                         },
                       ],
@@ -1602,12 +1621,14 @@ let temeIstoria = [
                         },
                         {
                           value: 2,
-                          label: "1 p. - argumentare parțială, fără invocarea unor exemple/dovezi",
+                          label:
+                            "1 p. - argumentare parțială, fără invocarea unor exemple/dovezi",
                           subPoint: 1,
                         },
                         {
                           value: 3,
-                          label: "2 p. - argumentare deplină, cu exemple invocate din sursă sau din cunoștințele obținute anterior",
+                          label:
+                            "2 p. - argumentare deplină, cu exemple invocate din sursă sau din cunoștințele obținute anterior",
                           subPoint: 2,
                         },
                       ],
@@ -1662,44 +1683,45 @@ let temeIstoria = [
                     ],
                     raspuns:
                       "două evenimente importante pentru evoluția regimurilor totalitare în perioada interbelică",
-                    raspuns_harta: "/images/Romania_1938.png",                     
-                      barem: {
-                        maxPoints: 2,
-                        subitems: [
-                          {
-                            nameSubItem: "Identifică I eveniment..",
-                            maxSubPoints: 1,
-                            options: [
-                              {
-                                value: 1,
-                                label: "0 p. - răspuns greșit/ lipsă",
-                                subPoint: 0,
-                              },
-                              {
-                                value: 2,
-                                label: "1 p. - răspuns corect",
-                                subPoint: 1,
-                              },
-                            ],
-                          },
-                          {
-                            nameSubItem: "Identifică II eveniment..",
-                            maxSubPoints: 1,
-                            options: [
-                              {
-                                value: 1,
-                                label: "0 p. - răspuns greșit/lipsă",
-                                subPoint: 0,
-                              },
-                              {
-                                value: 2,
-                                label: "1 p. - argumentare parțială, fără invocarea unor exemple/dovezi",
-                                subPoint: 1,
-                              },
-                            ],
-                          },
-                        ],
-                      },
+                    raspuns_harta: "/images/Romania_1938.png",
+                    barem: {
+                      maxPoints: 2,
+                      subitems: [
+                        {
+                          nameSubItem: "Identifică I eveniment..",
+                          maxSubPoints: 1,
+                          options: [
+                            {
+                              value: 1,
+                              label: "0 p. - răspuns greșit/ lipsă",
+                              subPoint: 0,
+                            },
+                            {
+                              value: 2,
+                              label: "1 p. - răspuns corect",
+                              subPoint: 1,
+                            },
+                          ],
+                        },
+                        {
+                          nameSubItem: "Identifică II eveniment..",
+                          maxSubPoints: 1,
+                          options: [
+                            {
+                              value: 1,
+                              label: "0 p. - răspuns greșit/lipsă",
+                              subPoint: 0,
+                            },
+                            {
+                              value: 2,
+                              label:
+                                "1 p. - argumentare parțială, fără invocarea unor exemple/dovezi",
+                              subPoint: 1,
+                            },
+                          ],
+                        },
+                      ],
+                    },
                   },
                   {
                     id: 2,
@@ -1718,33 +1740,35 @@ let temeIstoria = [
                     ],
                     raspuns:
                       "cauză a instaurării regimurilor totalitare din perioada interbelică",
-                      raspuns_harta: "", 
-                      barem: {
-                        maxPoints: 2,
-                        subitems: [
-                          {
-                            nameSubItem: "Formulează..",
-                            maxSubPoints: 2,
-                            options: [
-                              {
-                                value: 1,
-                                label: "0 p. - răspuns greșit/ lipsă",
-                                subPoint: 0,
-                              },
-                              {
-                                value: 2,
-                                label: "1 p. - formularea unei cauze parțiale; doar selectare din sursă",
-                                subPoint: 1,
-                              },
-                              {
-                                value: 3,
-                                label: "2 p. - formularea unei cauze depline în baza sursei sau a cunoștințelor anterioare",
-                                subPoint: 2,
-                              },                              
-                            ],
-                          },
-                        ],
-                      },
+                    raspuns_harta: "",
+                    barem: {
+                      maxPoints: 2,
+                      subitems: [
+                        {
+                          nameSubItem: "Formulează..",
+                          maxSubPoints: 2,
+                          options: [
+                            {
+                              value: 1,
+                              label: "0 p. - răspuns greșit/ lipsă",
+                              subPoint: 0,
+                            },
+                            {
+                              value: 2,
+                              label:
+                                "1 p. - formularea unei cauze parțiale; doar selectare din sursă",
+                              subPoint: 1,
+                            },
+                            {
+                              value: 3,
+                              label:
+                                "2 p. - formularea unei cauze depline în baza sursei sau a cunoștințelor anterioare",
+                              subPoint: 2,
+                            },
+                          ],
+                        },
+                      ],
+                    },
                   },
                   {
                     id: 3,
@@ -1759,7 +1783,7 @@ let temeIstoria = [
                       },
                     ],
                     raspuns: "termenul Izolaționism.",
-                    raspuns_harta: "/images/Romania_1938.png", 
+                    raspuns_harta: "/images/Romania_1938.png",
                     barem: {
                       maxPoints: 2,
                       subitems: [
@@ -1774,14 +1798,16 @@ let temeIstoria = [
                             },
                             {
                               value: 2,
-                              label: "1 p. - explicație parțială, în baza unor indicii din sursă",
+                              label:
+                                "1 p. - explicație parțială, în baza unor indicii din sursă",
                               subPoint: 1,
                             },
                             {
                               value: 3,
-                              label: "2 p. - explicație deplină menționând aspectele esențiale ale sensului termenului",
+                              label:
+                                "2 p. - explicație deplină menționând aspectele esențiale ale sensului termenului",
                               subPoint: 2,
-                            },                              
+                            },
                           ],
                         },
                       ],
@@ -1804,38 +1830,40 @@ let temeIstoria = [
                     ],
                     raspuns:
                       "scopul luptei de emancipare a femeilor în perioada interbelică.",
-                    raspuns_harta: "", 
+                    raspuns_harta: "",
                     barem: {
-                        maxPoints: 3,
-                        subitems: [
-                          {
-                            nameSubItem: "Explică scopul..",
-                            maxSubPoints: 3,
-                            options: [
-                              {
-                                value: 1,
-                                label: "0 p. - răspuns greșit/ lipsă",
-                                subPoint: 0,
-                              },
-                              {
-                                value: 2,
-                                label: "1 p. - răspuns simplist/declarativ",
-                                subPoint: 1,
-                              },
-                              {
-                                value: 3,
-                                label: "2 p. - explicație parțială în baza opiniei personale asupra sarcinii, fără a valorifica informația din sursă",
-                                subPoint: 2,
-                              },   
-                              {
-                                value: 4,
-                                label: "3 p. - explicație deplină - reflectă esența faptului istoric analizat și valorifică informația din sursă",
-                                subPoint: 3,
-                              },                                                          
-                            ],
-                          },
-                        ],
-                      },
+                      maxPoints: 3,
+                      subitems: [
+                        {
+                          nameSubItem: "Explică scopul..",
+                          maxSubPoints: 3,
+                          options: [
+                            {
+                              value: 1,
+                              label: "0 p. - răspuns greșit/ lipsă",
+                              subPoint: 0,
+                            },
+                            {
+                              value: 2,
+                              label: "1 p. - răspuns simplist/declarativ",
+                              subPoint: 1,
+                            },
+                            {
+                              value: 3,
+                              label:
+                                "2 p. - explicație parțială în baza opiniei personale asupra sarcinii, fără a valorifica informația din sursă",
+                              subPoint: 2,
+                            },
+                            {
+                              value: 4,
+                              label:
+                                "3 p. - explicație deplină - reflectă esența faptului istoric analizat și valorifică informația din sursă",
+                              subPoint: 3,
+                            },
+                          ],
+                        },
+                      ],
+                    },
                   },
                   {
                     id: 5,
@@ -1858,54 +1886,58 @@ let temeIstoria = [
                     ],
                     raspuns:
                       "două consecințe ale menținerii regimurilor democratice în perioada interbelică",
-                      raspuns_harta: "",   
-                      barem: {
-                        maxPoints: 4,
-                        subitems: [
-                          {
-                            nameSubItem: "Prima consecință..",
-                            maxSubPoints: 2,
-                            options: [
-                              {
-                                value: 1,
-                                label: "0 p. - răspuns greșit/ lipsă",
-                                subPoint: 0,
-                              },
-                              {
-                                value: 2,
-                                label: "1 p. - determină consecința corect; selectează din sursă sau din cunoștințele anterioare fără a explica",
-                                subPoint: 1,
-                              },
-                              {
-                                value: 3,
-                                label: "2 p. - determină consecința corect; selectează din sursă sau din cunoștințele anterioare și oferă o explicație pertinentă",
-                                subPoint: 2,
-                              },                                                         
-                            ],
-                          },
-                          {
-                            nameSubItem: "A doua consecință..",
-                            maxSubPoints: 2,
-                            options: [
-                              {
-                                value: 1,
-                                label: "0 p. - răspuns greșit/ lipsă",
-                                subPoint: 0,
-                              },
-                              {
-                                value: 2,
-                                label: "1 p. - determină consecința corect; selectează din sursă sau din cunoștințele anterioare fără a explica",
-                                subPoint: 1,
-                              },
-                              {
-                                value: 3,
-                                label: "2 p. - determină consecința corect; selectează din sursă sau din cunoștințele anterioare și oferă o explicație pertinentă",
-                                subPoint: 2,
-                              },                                                         
-                            ],
-                          },
-                        ],
-                      },
+                    raspuns_harta: "",
+                    barem: {
+                      maxPoints: 4,
+                      subitems: [
+                        {
+                          nameSubItem: "Prima consecință..",
+                          maxSubPoints: 2,
+                          options: [
+                            {
+                              value: 1,
+                              label: "0 p. - răspuns greșit/ lipsă",
+                              subPoint: 0,
+                            },
+                            {
+                              value: 2,
+                              label:
+                                "1 p. - determină consecința corect; selectează din sursă sau din cunoștințele anterioare fără a explica",
+                              subPoint: 1,
+                            },
+                            {
+                              value: 3,
+                              label:
+                                "2 p. - determină consecința corect; selectează din sursă sau din cunoștințele anterioare și oferă o explicație pertinentă",
+                              subPoint: 2,
+                            },
+                          ],
+                        },
+                        {
+                          nameSubItem: "A doua consecință..",
+                          maxSubPoints: 2,
+                          options: [
+                            {
+                              value: 1,
+                              label: "0 p. - răspuns greșit/ lipsă",
+                              subPoint: 0,
+                            },
+                            {
+                              value: 2,
+                              label:
+                                "1 p. - determină consecința corect; selectează din sursă sau din cunoștințele anterioare fără a explica",
+                              subPoint: 1,
+                            },
+                            {
+                              value: 3,
+                              label:
+                                "2 p. - determină consecința corect; selectează din sursă sau din cunoștințele anterioare și oferă o explicație pertinentă",
+                              subPoint: 2,
+                            },
+                          ],
+                        },
+                      ],
+                    },
                   },
                   {
                     id: 6,
@@ -1932,70 +1964,76 @@ let temeIstoria = [
                     ],
                     raspuns:
                       "personalitate istorică ce a condus SUA în perioada celui de-al Doilea Război Mondial",
-                      raspuns_harta: "", 
-                      barem: {
-                        maxPoints: 5,
-                        subitems: [
-                          {
-                            nameSubItem: "Numește..",
-                            maxSubPoints: 2,
-                            options: [
-                              {
-                                value: 1,
-                                label: "0 p. - răspuns greșit/ lipsă",
-                                subPoint: 0,
-                              },
-                              {
-                                value: 2,
-                                label: "1 p. - numește corect personalitatea",
-                                subPoint: 1,
-                              },                                                      
-                            ],
-                          },
-                          {
-                            nameSubItem: "Argumenteaza - I idee..",
-                            maxSubPoints: 2,
-                            options: [
-                              {
-                                value: 1,
-                                label: "0 p. - răspuns lipsă sau în discordanță cu opinia exprimată",
-                                subPoint: 0,
-                              },
-                              {
-                                value: 2,
-                                label: "1 p. - argumentare parțială, fără invocarea unor exemple",
-                                subPoint: 1,
-                              },
-                              {
-                                value: 3,
-                                label: "2 p. - argumentare deplină, cu exemple invocate, corecte din punct de vedere științific",
-                                subPoint: 2,
-                              },                                                         
-                            ],
-                          },
-                          {
-                            nameSubItem: "Argumenteaza - II idee..",
-                            maxSubPoints: 2,
-                            options: [
-                              {
-                                value: 1,
-                                label: "0 p. - răspuns lipsă sau în discordanță cu opinia exprimată",
-                                subPoint: 0,
-                              },
-                              {
-                                value: 2,
-                                label: "1 p. - argumentare parțială, fără invocarea unor exemple",
-                                subPoint: 1,
-                              },
-                              {
-                                value: 3,
-                                label: "2 p. - argumentare deplină, cu exemple invocate, corecte din punct de vedere științific",
-                                subPoint: 2,
-                              },                                                         
-                            ],
-                          },
-                        ],
-                      },
+                    raspuns_harta: "",
+                    barem: {
+                      maxPoints: 5,
+                      subitems: [
+                        {
+                          nameSubItem: "Numește..",
+                          maxSubPoints: 2,
+                          options: [
+                            {
+                              value: 1,
+                              label: "0 p. - răspuns greșit/ lipsă",
+                              subPoint: 0,
+                            },
+                            {
+                              value: 2,
+                              label: "1 p. - numește corect personalitatea",
+                              subPoint: 1,
+                            },
+                          ],
+                        },
+                        {
+                          nameSubItem: "Argumenteaza - I idee..",
+                          maxSubPoints: 2,
+                          options: [
+                            {
+                              value: 1,
+                              label:
+                                "0 p. - răspuns lipsă sau în discordanță cu opinia exprimată",
+                              subPoint: 0,
+                            },
+                            {
+                              value: 2,
+                              label:
+                                "1 p. - argumentare parțială, fără invocarea unor exemple",
+                              subPoint: 1,
+                            },
+                            {
+                              value: 3,
+                              label:
+                                "2 p. - argumentare deplină, cu exemple invocate, corecte din punct de vedere științific",
+                              subPoint: 2,
+                            },
+                          ],
+                        },
+                        {
+                          nameSubItem: "Argumenteaza - II idee..",
+                          maxSubPoints: 2,
+                          options: [
+                            {
+                              value: 1,
+                              label:
+                                "0 p. - răspuns lipsă sau în discordanță cu opinia exprimată",
+                              subPoint: 0,
+                            },
+                            {
+                              value: 2,
+                              label:
+                                "1 p. - argumentare parțială, fără invocarea unor exemple",
+                              subPoint: 1,
+                            },
+                            {
+                              value: 3,
+                              label:
+                                "2 p. - argumentare deplină, cu exemple invocate, corecte din punct de vedere științific",
+                              subPoint: 2,
+                            },
+                          ],
+                        },
+                      ],
+                    },
                   },
                   {
                     id: 7,
@@ -2023,70 +2061,77 @@ let temeIstoria = [
                     ],
                     raspuns:
                       "Regimurile totalitare interbelice aveau trăsături comune",
-                      raspuns_harta: "", 
-                      barem: {
-                        maxPoints: 5,
-                        subitems: [
-                          {
-                            nameSubItem: "Exprimă opinia..",
-                            maxSubPoints: 2,
-                            options: [
-                              {
-                                value: 1,
-                                label: "0 p. - răspuns lipsă/ neexplicit (nu este posibil a identifica opinia)",
-                                subPoint: 0,
-                              },
-                              {
-                                value: 2,
-                                label: "1 p. - apreciere explicit formulată",
-                                subPoint: 1,
-                              },                                                      
-                            ],
-                          },
-                          {
-                            nameSubItem: "Argumenteaza - I argument..",
-                            maxSubPoints: 2,
-                            options: [
-                              {
-                                value: 1,
-                                label: "0 p. - răspuns lipsă sau în discordanță cu opinia exprimată",
-                                subPoint: 0,
-                              },
-                              {
-                                value: 2,
-                                label: "1 p. - argumentare parțială, fără a face trimitere la suportul propus sau a valorifica cunoștințelor obținute anterior",
-                                subPoint: 1,
-                              },
-                              {
-                                value: 3,
-                                label: "2 p. - argumentare deplină (raționament și exemplu), corectă științific, în concordanță cu opinia exprimată, valorifică suportul sau cunoștințele obținute anterior",
-                                subPoint: 2,
-                              },                                                         
-                            ],
-                          },
-                          {
-                            nameSubItem: "Argumenteaza - II argument..",
-                            maxSubPoints: 2,
-                            options: [
-                              {
-                                value: 1,
-                                label: "0 p. - răspuns lipsă sau în discordanță cu opinia exprimată",
-                                subPoint: 0,
-                              },
-                              {
-                                value: 2,
-                                label: "1 p. - argumentare parțială, fără a face trimitere la suportul propus sau a valorifica cunoștințelor obținute anterior",
-                                subPoint: 1,
-                              },
-                              {
-                                value: 3,
-                                label: "2 p. - argumentare deplină (raționament și exemplu), corectă științific, în concordanță cu opinia exprimată, valorifică suportul sau cunoștințele obținute anterior",
-                                subPoint: 2,
-                              },                                                         
-                            ],
-                          },
-                        ],
-                      },
+                    raspuns_harta: "",
+                    barem: {
+                      maxPoints: 5,
+                      subitems: [
+                        {
+                          nameSubItem: "Exprimă opinia..",
+                          maxSubPoints: 2,
+                          options: [
+                            {
+                              value: 1,
+                              label:
+                                "0 p. - răspuns lipsă/ neexplicit (nu este posibil a identifica opinia)",
+                              subPoint: 0,
+                            },
+                            {
+                              value: 2,
+                              label: "1 p. - apreciere explicit formulată",
+                              subPoint: 1,
+                            },
+                          ],
+                        },
+                        {
+                          nameSubItem: "Argumenteaza - I argument..",
+                          maxSubPoints: 2,
+                          options: [
+                            {
+                              value: 1,
+                              label:
+                                "0 p. - răspuns lipsă sau în discordanță cu opinia exprimată",
+                              subPoint: 0,
+                            },
+                            {
+                              value: 2,
+                              label:
+                                "1 p. - argumentare parțială, fără a face trimitere la suportul propus sau a valorifica cunoștințelor obținute anterior",
+                              subPoint: 1,
+                            },
+                            {
+                              value: 3,
+                              label:
+                                "2 p. - argumentare deplină (raționament și exemplu), corectă științific, în concordanță cu opinia exprimată, valorifică suportul sau cunoștințele obținute anterior",
+                              subPoint: 2,
+                            },
+                          ],
+                        },
+                        {
+                          nameSubItem: "Argumenteaza - II argument..",
+                          maxSubPoints: 2,
+                          options: [
+                            {
+                              value: 1,
+                              label:
+                                "0 p. - răspuns lipsă sau în discordanță cu opinia exprimată",
+                              subPoint: 0,
+                            },
+                            {
+                              value: 2,
+                              label:
+                                "1 p. - argumentare parțială, fără a face trimitere la suportul propus sau a valorifica cunoștințelor obținute anterior",
+                              subPoint: 1,
+                            },
+                            {
+                              value: 3,
+                              label:
+                                "2 p. - argumentare deplină (raționament și exemplu), corectă științific, în concordanță cu opinia exprimată, valorifică suportul sau cunoștințele obținute anterior",
+                              subPoint: 2,
+                            },
+                          ],
+                        },
+                      ],
+                    },
                   },
                 ],
 
@@ -2157,43 +2202,44 @@ let temeIstoria = [
                     ],
                     raspuns:
                       "două evenimente importante pentru evoluția regimurilor totalitare în perioada interbelică",
-                      barem: {
-                        maxPoints: 2,
-                        subitems: [
-                          {
-                            nameSubItem: "Identifică I eveniment..",
-                            maxSubPoints: 1,
-                            options: [
-                              {
-                                value: 1,
-                                label: "0 p. - răspuns greșit/ lipsă",
-                                subPoint: 0,
-                              },
-                              {
-                                value: 2,
-                                label: "1 p. - răspuns corect",
-                                subPoint: 1,
-                              },
-                            ],
-                          },
-                          {
-                            nameSubItem: "Identifică II eveniment..",
-                            maxSubPoints: 1,
-                            options: [
-                              {
-                                value: 1,
-                                label: "0 p. - răspuns greșit/lipsă",
-                                subPoint: 0,
-                              },
-                              {
-                                value: 2,
-                                label: "1 p. - argumentare parțială, fără invocarea unor exemple/dovezi",
-                                subPoint: 1,
-                              },
-                            ],
-                          },
-                        ],
-                      },
+                    barem: {
+                      maxPoints: 2,
+                      subitems: [
+                        {
+                          nameSubItem: "Identifică I eveniment..",
+                          maxSubPoints: 1,
+                          options: [
+                            {
+                              value: 1,
+                              label: "0 p. - răspuns greșit/ lipsă",
+                              subPoint: 0,
+                            },
+                            {
+                              value: 2,
+                              label: "1 p. - răspuns corect",
+                              subPoint: 1,
+                            },
+                          ],
+                        },
+                        {
+                          nameSubItem: "Identifică II eveniment..",
+                          maxSubPoints: 1,
+                          options: [
+                            {
+                              value: 1,
+                              label: "0 p. - răspuns greșit/lipsă",
+                              subPoint: 0,
+                            },
+                            {
+                              value: 2,
+                              label:
+                                "1 p. - argumentare parțială, fără invocarea unor exemple/dovezi",
+                              subPoint: 1,
+                            },
+                          ],
+                        },
+                      ],
+                    },
                   },
                   {
                     id: 2,
@@ -2211,32 +2257,34 @@ let temeIstoria = [
                     ],
                     raspuns:
                       "cauză a instaurării regimurilor totalitare din perioada interbelică",
-                      barem: {
-                        maxPoints: 2,
-                        subitems: [
-                          {
-                            nameSubItem: "Formulează..",
-                            maxSubPoints: 2,
-                            options: [
-                              {
-                                value: 1,
-                                label: "0 p. - răspuns greșit/ lipsă",
-                                subPoint: 0,
-                              },
-                              {
-                                value: 2,
-                                label: "1 p. - formularea unei cauze parțiale; doar selectare din sursă",
-                                subPoint: 1,
-                              },
-                              {
-                                value: 3,
-                                label: "2 p. - formularea unei cauze depline în baza sursei sau a cunoștințelor anterioare",
-                                subPoint: 2,
-                              },                              
-                            ],
-                          },
-                        ],
-                      },
+                    barem: {
+                      maxPoints: 2,
+                      subitems: [
+                        {
+                          nameSubItem: "Formulează..",
+                          maxSubPoints: 2,
+                          options: [
+                            {
+                              value: 1,
+                              label: "0 p. - răspuns greșit/ lipsă",
+                              subPoint: 0,
+                            },
+                            {
+                              value: 2,
+                              label:
+                                "1 p. - formularea unei cauze parțiale; doar selectare din sursă",
+                              subPoint: 1,
+                            },
+                            {
+                              value: 3,
+                              label:
+                                "2 p. - formularea unei cauze depline în baza sursei sau a cunoștințelor anterioare",
+                              subPoint: 2,
+                            },
+                          ],
+                        },
+                      ],
+                    },
                   },
                   {
                     id: 3,
@@ -2264,14 +2312,16 @@ let temeIstoria = [
                             },
                             {
                               value: 2,
-                              label: "1 p. - explicație parțială, în baza unor indicii din sursă",
+                              label:
+                                "1 p. - explicație parțială, în baza unor indicii din sursă",
                               subPoint: 1,
                             },
                             {
                               value: 3,
-                              label: "2 p. - explicație deplină menționând aspectele esențiale ale sensului termenului",
+                              label:
+                                "2 p. - explicație deplină menționând aspectele esențiale ale sensului termenului",
                               subPoint: 2,
-                            },                              
+                            },
                           ],
                         },
                       ],
@@ -2293,37 +2343,39 @@ let temeIstoria = [
                     ],
                     raspuns:
                       "scopul luptei de emancipare a femeilor în perioada interbelică.",
-                      barem: {
-                        maxPoints: 3,
-                        subitems: [
-                          {
-                            nameSubItem: "Explică scopul..",
-                            maxSubPoints: 3,
-                            options: [
-                              {
-                                value: 1,
-                                label: "0 p. - răspuns greșit/ lipsă",
-                                subPoint: 0,
-                              },
-                              {
-                                value: 2,
-                                label: "1 p. - răspuns simplist/declarativ",
-                                subPoint: 1,
-                              },
-                              {
-                                value: 3,
-                                label: "2 p. - explicație parțială în baza opiniei personale asupra sarcinii, fără a valorifica informația din sursă",
-                                subPoint: 2,
-                              },   
-                              {
-                                value: 4,
-                                label: "3 p. - explicație deplină - reflectă esența faptului istoric analizat și valorifică informația din sursă",
-                                subPoint: 3,
-                              },                                                          
-                            ],
-                          },
-                        ],
-                      },
+                    barem: {
+                      maxPoints: 3,
+                      subitems: [
+                        {
+                          nameSubItem: "Explică scopul..",
+                          maxSubPoints: 3,
+                          options: [
+                            {
+                              value: 1,
+                              label: "0 p. - răspuns greșit/ lipsă",
+                              subPoint: 0,
+                            },
+                            {
+                              value: 2,
+                              label: "1 p. - răspuns simplist/declarativ",
+                              subPoint: 1,
+                            },
+                            {
+                              value: 3,
+                              label:
+                                "2 p. - explicație parțială în baza opiniei personale asupra sarcinii, fără a valorifica informația din sursă",
+                              subPoint: 2,
+                            },
+                            {
+                              value: 4,
+                              label:
+                                "3 p. - explicație deplină - reflectă esența faptului istoric analizat și valorifică informația din sursă",
+                              subPoint: 3,
+                            },
+                          ],
+                        },
+                      ],
+                    },
                   },
                   {
                     id: 5,
@@ -2345,53 +2397,57 @@ let temeIstoria = [
                     ],
                     raspuns:
                       "două consecințe ale menținerii regimurilor democratice în perioada interbelică",
-                      barem: {
-                        maxPoints: 4,
-                        subitems: [
-                          {
-                            nameSubItem: "Prima consecință..",
-                            maxSubPoints: 2,
-                            options: [
-                              {
-                                value: 1,
-                                label: "0 p. - răspuns greșit/ lipsă",
-                                subPoint: 0,
-                              },
-                              {
-                                value: 2,
-                                label: "1 p. - determină consecința corect; selectează din sursă sau din cunoștințele anterioare fără a explica",
-                                subPoint: 1,
-                              },
-                              {
-                                value: 3,
-                                label: "2 p. - determină consecința corect; selectează din sursă sau din cunoștințele anterioare și oferă o explicație pertinentă",
-                                subPoint: 2,
-                              },                                                         
-                            ],
-                          },
-                          {
-                            nameSubItem: "A doua consecință..",
-                            maxSubPoints: 2,
-                            options: [
-                              {
-                                value: 1,
-                                label: "0 p. - răspuns greșit/ lipsă",
-                                subPoint: 0,
-                              },
-                              {
-                                value: 2,
-                                label: "1 p. - determină consecința corect; selectează din sursă sau din cunoștințele anterioare fără a explica",
-                                subPoint: 1,
-                              },
-                              {
-                                value: 3,
-                                label: "2 p. - determină consecința corect; selectează din sursă sau din cunoștințele anterioare și oferă o explicație pertinentă",
-                                subPoint: 2,
-                              },                                                         
-                            ],
-                          },
-                        ],
-                      },
+                    barem: {
+                      maxPoints: 4,
+                      subitems: [
+                        {
+                          nameSubItem: "Prima consecință..",
+                          maxSubPoints: 2,
+                          options: [
+                            {
+                              value: 1,
+                              label: "0 p. - răspuns greșit/ lipsă",
+                              subPoint: 0,
+                            },
+                            {
+                              value: 2,
+                              label:
+                                "1 p. - determină consecința corect; selectează din sursă sau din cunoștințele anterioare fără a explica",
+                              subPoint: 1,
+                            },
+                            {
+                              value: 3,
+                              label:
+                                "2 p. - determină consecința corect; selectează din sursă sau din cunoștințele anterioare și oferă o explicație pertinentă",
+                              subPoint: 2,
+                            },
+                          ],
+                        },
+                        {
+                          nameSubItem: "A doua consecință..",
+                          maxSubPoints: 2,
+                          options: [
+                            {
+                              value: 1,
+                              label: "0 p. - răspuns greșit/ lipsă",
+                              subPoint: 0,
+                            },
+                            {
+                              value: 2,
+                              label:
+                                "1 p. - determină consecința corect; selectează din sursă sau din cunoștințele anterioare fără a explica",
+                              subPoint: 1,
+                            },
+                            {
+                              value: 3,
+                              label:
+                                "2 p. - determină consecința corect; selectează din sursă sau din cunoștințele anterioare și oferă o explicație pertinentă",
+                              subPoint: 2,
+                            },
+                          ],
+                        },
+                      ],
+                    },
                   },
                   {
                     id: 6,
@@ -2417,69 +2473,75 @@ let temeIstoria = [
                     ],
                     raspuns:
                       "personalitate istorică ce a condus SUA în perioada celui de-al Doilea Război Mondial",
-                      barem: {
-                        maxPoints: 5,
-                        subitems: [
-                          {
-                            nameSubItem: "Numește..",
-                            maxSubPoints: 2,
-                            options: [
-                              {
-                                value: 1,
-                                label: "0 p. - răspuns greșit/ lipsă",
-                                subPoint: 0,
-                              },
-                              {
-                                value: 2,
-                                label: "1 p. - numește corect personalitatea",
-                                subPoint: 1,
-                              },                                                      
-                            ],
-                          },
-                          {
-                            nameSubItem: "Argumenteaza - I idee..",
-                            maxSubPoints: 2,
-                            options: [
-                              {
-                                value: 1,
-                                label: "0 p. - răspuns lipsă sau în discordanță cu opinia exprimată",
-                                subPoint: 0,
-                              },
-                              {
-                                value: 2,
-                                label: "1 p. - argumentare parțială, fără invocarea unor exemple",
-                                subPoint: 1,
-                              },
-                              {
-                                value: 3,
-                                label: "2 p. - argumentare deplină, cu exemple invocate, corecte din punct de vedere științific",
-                                subPoint: 2,
-                              },                                                         
-                            ],
-                          },
-                          {
-                            nameSubItem: "Argumenteaza - II idee..",
-                            maxSubPoints: 2,
-                            options: [
-                              {
-                                value: 1,
-                                label: "0 p. - răspuns lipsă sau în discordanță cu opinia exprimată",
-                                subPoint: 0,
-                              },
-                              {
-                                value: 2,
-                                label: "1 p. - argumentare parțială, fără invocarea unor exemple",
-                                subPoint: 1,
-                              },
-                              {
-                                value: 3,
-                                label: "2 p. - argumentare deplină, cu exemple invocate, corecte din punct de vedere științific",
-                                subPoint: 2,
-                              },                                                         
-                            ],
-                          },
-                        ],
-                      },
+                    barem: {
+                      maxPoints: 5,
+                      subitems: [
+                        {
+                          nameSubItem: "Numește..",
+                          maxSubPoints: 2,
+                          options: [
+                            {
+                              value: 1,
+                              label: "0 p. - răspuns greșit/ lipsă",
+                              subPoint: 0,
+                            },
+                            {
+                              value: 2,
+                              label: "1 p. - numește corect personalitatea",
+                              subPoint: 1,
+                            },
+                          ],
+                        },
+                        {
+                          nameSubItem: "Argumenteaza - I idee..",
+                          maxSubPoints: 2,
+                          options: [
+                            {
+                              value: 1,
+                              label:
+                                "0 p. - răspuns lipsă sau în discordanță cu opinia exprimată",
+                              subPoint: 0,
+                            },
+                            {
+                              value: 2,
+                              label:
+                                "1 p. - argumentare parțială, fără invocarea unor exemple",
+                              subPoint: 1,
+                            },
+                            {
+                              value: 3,
+                              label:
+                                "2 p. - argumentare deplină, cu exemple invocate, corecte din punct de vedere științific",
+                              subPoint: 2,
+                            },
+                          ],
+                        },
+                        {
+                          nameSubItem: "Argumenteaza - II idee..",
+                          maxSubPoints: 2,
+                          options: [
+                            {
+                              value: 1,
+                              label:
+                                "0 p. - răspuns lipsă sau în discordanță cu opinia exprimată",
+                              subPoint: 0,
+                            },
+                            {
+                              value: 2,
+                              label:
+                                "1 p. - argumentare parțială, fără invocarea unor exemple",
+                              subPoint: 1,
+                            },
+                            {
+                              value: 3,
+                              label:
+                                "2 p. - argumentare deplină, cu exemple invocate, corecte din punct de vedere științific",
+                              subPoint: 2,
+                            },
+                          ],
+                        },
+                      ],
+                    },
                   },
                   {
                     id: 7,
@@ -2506,69 +2568,76 @@ let temeIstoria = [
                     ],
                     raspuns:
                       "Regimurile totalitare interbelice aveau trăsături comune",
-                      barem: {
-                        maxPoints: 5,
-                        subitems: [
-                          {
-                            nameSubItem: "Exprimă opinia..",
-                            maxSubPoints: 2,
-                            options: [
-                              {
-                                value: 1,
-                                label: "0 p. - răspuns lipsă/ neexplicit (nu este posibil a identifica opinia)",
-                                subPoint: 0,
-                              },
-                              {
-                                value: 2,
-                                label: "1 p. - apreciere explicit formulată",
-                                subPoint: 1,
-                              },                                                      
-                            ],
-                          },
-                          {
-                            nameSubItem: "Argumenteaza - I argument..",
-                            maxSubPoints: 2,
-                            options: [
-                              {
-                                value: 1,
-                                label: "0 p. - răspuns lipsă sau în discordanță cu opinia exprimată",
-                                subPoint: 0,
-                              },
-                              {
-                                value: 2,
-                                label: "1 p. - argumentare parțială, fără a face trimitere la suportul propus sau a valorifica cunoștințelor obținute anterior",
-                                subPoint: 1,
-                              },
-                              {
-                                value: 3,
-                                label: "2 p. - argumentare deplină (raționament și exemplu), corectă științific, în concordanță cu opinia exprimată, valorifică suportul sau cunoștințele obținute anterior",
-                                subPoint: 2,
-                              },                                                         
-                            ],
-                          },
-                          {
-                            nameSubItem: "Argumenteaza - II argument..",
-                            maxSubPoints: 2,
-                            options: [
-                              {
-                                value: 1,
-                                label: "0 p. - răspuns lipsă sau în discordanță cu opinia exprimată",
-                                subPoint: 0,
-                              },
-                              {
-                                value: 2,
-                                label: "1 p. - argumentare parțială, fără a face trimitere la suportul propus sau a valorifica cunoștințelor obținute anterior",
-                                subPoint: 1,
-                              },
-                              {
-                                value: 3,
-                                label: "2 p. - argumentare deplină (raționament și exemplu), corectă științific, în concordanță cu opinia exprimată, valorifică suportul sau cunoștințele obținute anterior",
-                                subPoint: 2,
-                              },                                                         
-                            ],
-                          },
-                        ],
-                      },
+                    barem: {
+                      maxPoints: 5,
+                      subitems: [
+                        {
+                          nameSubItem: "Exprimă opinia..",
+                          maxSubPoints: 2,
+                          options: [
+                            {
+                              value: 1,
+                              label:
+                                "0 p. - răspuns lipsă/ neexplicit (nu este posibil a identifica opinia)",
+                              subPoint: 0,
+                            },
+                            {
+                              value: 2,
+                              label: "1 p. - apreciere explicit formulată",
+                              subPoint: 1,
+                            },
+                          ],
+                        },
+                        {
+                          nameSubItem: "Argumenteaza - I argument..",
+                          maxSubPoints: 2,
+                          options: [
+                            {
+                              value: 1,
+                              label:
+                                "0 p. - răspuns lipsă sau în discordanță cu opinia exprimată",
+                              subPoint: 0,
+                            },
+                            {
+                              value: 2,
+                              label:
+                                "1 p. - argumentare parțială, fără a face trimitere la suportul propus sau a valorifica cunoștințelor obținute anterior",
+                              subPoint: 1,
+                            },
+                            {
+                              value: 3,
+                              label:
+                                "2 p. - argumentare deplină (raționament și exemplu), corectă științific, în concordanță cu opinia exprimată, valorifică suportul sau cunoștințele obținute anterior",
+                              subPoint: 2,
+                            },
+                          ],
+                        },
+                        {
+                          nameSubItem: "Argumenteaza - II argument..",
+                          maxSubPoints: 2,
+                          options: [
+                            {
+                              value: 1,
+                              label:
+                                "0 p. - răspuns lipsă sau în discordanță cu opinia exprimată",
+                              subPoint: 0,
+                            },
+                            {
+                              value: 2,
+                              label:
+                                "1 p. - argumentare parțială, fără a face trimitere la suportul propus sau a valorifica cunoștințelor obținute anterior",
+                              subPoint: 1,
+                            },
+                            {
+                              value: 3,
+                              label:
+                                "2 p. - argumentare deplină (raționament și exemplu), corectă științific, în concordanță cu opinia exprimată, valorifică suportul sau cunoștințele obținute anterior",
+                              subPoint: 2,
+                            },
+                          ],
+                        },
+                      ],
+                    },
                   },
                 ],
 
@@ -2715,19 +2784,22 @@ let temeIstoria = [
                       options: [
                         {
                           value: 1,
-                          label: "0 p. - răspuns lipsă sau fără a face trimitere la surse",
+                          label:
+                            "0 p. - răspuns lipsă sau fără a face trimitere la surse",
                           subPoint: 0,
                         },
                         {
                           value: 2,
-                          label: "1 p. - se fac unele încercări de valorificare a surselor; textul surselor este preluat fără a fi integrat în text",
+                          label:
+                            "1 p. - se fac unele încercări de valorificare a surselor; textul surselor este preluat fără a fi integrat în text",
                           subPoint: 1,
-                        },   
+                        },
                         {
                           value: 3,
-                          label: "2 p. - sursele sunt parte integră a textului, servesc ca suport al reflecției autorului",
+                          label:
+                            "2 p. - sursele sunt parte integră a textului, servesc ca suport al reflecției autorului",
                           subPoint: 2,
-                        },                                                                            
+                        },
                       ],
                     },
                     {
@@ -2741,7 +2813,8 @@ let temeIstoria = [
                         },
                         {
                           value: 2,
-                          label: "1 p. - întroducere corect formulată, clar organizată ca mesaj/ structură",
+                          label:
+                            "1 p. - întroducere corect formulată, clar organizată ca mesaj/ structură",
                           subPoint: 1,
                         },
                       ],
@@ -2757,11 +2830,12 @@ let temeIstoria = [
                         },
                         {
                           value: 2,
-                          label: "1 p. - Cuprins corect formulat, clar organizat ca mesaj/ structură",
+                          label:
+                            "1 p. - Cuprins corect formulat, clar organizat ca mesaj/ structură",
                           subPoint: 1,
                         },
                       ],
-                    },     
+                    },
                     {
                       nameSubItem: "Concluzie..",
                       maxSubPoints: 1,
@@ -2773,27 +2847,30 @@ let temeIstoria = [
                         },
                         {
                           value: 2,
-                          label: "1 p. - Concluzie corect formulată, clar organizată ca mesaj/ structură",
+                          label:
+                            "1 p. - Concluzie corect formulată, clar organizată ca mesaj/ structură",
                           subPoint: 1,
                         },
                       ],
-                    }, 
+                    },
                     {
                       nameSubItem: "Relevanța argumentelor..",
                       maxSubPoints: 1,
                       options: [
                         {
                           value: 1,
-                          label: "0 p. - răspuns lipsă sau sunt doar enumerate informații disparate din surse",
+                          label:
+                            "0 p. - răspuns lipsă sau sunt doar enumerate informații disparate din surse",
                           subPoint: 0,
                         },
                         {
                           value: 2,
-                          label: "1 p. - argumentele care reflectă explicit afirmația propusă",
+                          label:
+                            "1 p. - argumentele care reflectă explicit afirmația propusă",
                           subPoint: 1,
                         },
                       ],
-                    },                                                       
+                    },
                     {
                       nameSubItem: "Argumenteaza - I argument..",
                       maxSubPoints: 2,
@@ -2810,9 +2887,10 @@ let temeIstoria = [
                         },
                         {
                           value: 3,
-                          label: "2 p. - argument deplin (raționament și exemplu)",
+                          label:
+                            "2 p. - argument deplin (raționament și exemplu)",
                           subPoint: 2,
-                        },                                                         
+                        },
                       ],
                     },
                     {
@@ -2831,11 +2909,12 @@ let temeIstoria = [
                         },
                         {
                           value: 3,
-                          label: "2 p. - argument deplin (raționament și exemplu)",
+                          label:
+                            "2 p. - argument deplin (raționament și exemplu)",
                           subPoint: 2,
-                        },                                                         
+                        },
                       ],
-                    }, 
+                    },
                     {
                       nameSubItem: "Argumenteaza - III argument..",
                       maxSubPoints: 2,
@@ -2852,11 +2931,12 @@ let temeIstoria = [
                         },
                         {
                           value: 3,
-                          label: "2 p. - argument deplin (raționament și exemplu)",
+                          label:
+                            "2 p. - argument deplin (raționament și exemplu)",
                           subPoint: 2,
-                        },                                                         
+                        },
                       ],
-                    },  
+                    },
                     {
                       nameSubItem: "Referințe date/personalități..",
                       maxSubPoints: 2,
@@ -2868,35 +2948,38 @@ let temeIstoria = [
                         },
                         {
                           value: 2,
-                          label: "1 p. - referințele sunt parțial relevante pentru tema propusă",
+                          label:
+                            "1 p. - referințele sunt parțial relevante pentru tema propusă",
                           subPoint: 1,
                         },
                         {
                           value: 3,
-                          label: "2 p. - refrințele sunt relevante pentru prezentarea temei",
+                          label:
+                            "2 p. - refrințele sunt relevante pentru prezentarea temei",
                           subPoint: 2,
-                        },                                                         
+                        },
                       ],
-                    },   
+                    },
                     {
                       nameSubItem: "Corect științific..",
                       maxSubPoints: 1,
                       options: [
                         {
                           value: 1,
-                          label: "0 p. - răspuns lipsă/ volum irelevant (2-3 enunțuri)",
+                          label:
+                            "0 p. - răspuns lipsă/ volum irelevant (2-3 enunțuri)",
                           subPoint: 0,
                         },
                         {
                           value: 2,
-                          label: "1 p. - nu sunt comise greșeli științifice grave",
+                          label:
+                            "1 p. - nu sunt comise greșeli științifice grave",
                           subPoint: 1,
-                        },                                                      
+                        },
                       ],
-                    },                                                                            
+                    },
                   ],
                 },
-
               },
               {
                 id: "2",
@@ -2981,19 +3064,22 @@ let temeIstoria = [
                       options: [
                         {
                           value: 1,
-                          label: "0 p. - răspuns lipsă sau fără a face trimitere la surse",
+                          label:
+                            "0 p. - răspuns lipsă sau fără a face trimitere la surse",
                           subPoint: 0,
                         },
                         {
                           value: 2,
-                          label: "1 p. - se fac unele încercări de valorificare a surselor; textul surselor este preluat fără a fi integrat în text",
+                          label:
+                            "1 p. - se fac unele încercări de valorificare a surselor; textul surselor este preluat fără a fi integrat în text",
                           subPoint: 1,
-                        },   
+                        },
                         {
                           value: 3,
-                          label: "2 p. - sursele sunt parte integră a textului, servesc ca suport al reflecției autorului",
+                          label:
+                            "2 p. - sursele sunt parte integră a textului, servesc ca suport al reflecției autorului",
                           subPoint: 2,
-                        },                                                                            
+                        },
                       ],
                     },
                     {
@@ -3007,7 +3093,8 @@ let temeIstoria = [
                         },
                         {
                           value: 2,
-                          label: "1 p. - întroducere corect formulată, clar organizată ca mesaj/ structură",
+                          label:
+                            "1 p. - întroducere corect formulată, clar organizată ca mesaj/ structură",
                           subPoint: 1,
                         },
                       ],
@@ -3023,11 +3110,12 @@ let temeIstoria = [
                         },
                         {
                           value: 2,
-                          label: "1 p. - Cuprins corect formulat, clar organizat ca mesaj/ structură",
+                          label:
+                            "1 p. - Cuprins corect formulat, clar organizat ca mesaj/ structură",
                           subPoint: 1,
                         },
                       ],
-                    },     
+                    },
                     {
                       nameSubItem: "Concluzie..",
                       maxSubPoints: 1,
@@ -3039,27 +3127,30 @@ let temeIstoria = [
                         },
                         {
                           value: 2,
-                          label: "1 p. - Concluzie corect formulată, clar organizată ca mesaj/ structură",
+                          label:
+                            "1 p. - Concluzie corect formulată, clar organizată ca mesaj/ structură",
                           subPoint: 1,
                         },
                       ],
-                    }, 
+                    },
                     {
                       nameSubItem: "Relevanța argumentelor..",
                       maxSubPoints: 1,
                       options: [
                         {
                           value: 1,
-                          label: "0 p. - răspuns lipsă sau sunt doar enumerate informații disparate din surse",
+                          label:
+                            "0 p. - răspuns lipsă sau sunt doar enumerate informații disparate din surse",
                           subPoint: 0,
                         },
                         {
                           value: 2,
-                          label: "1 p. - argumentele care reflectă explicit afirmația propusă",
+                          label:
+                            "1 p. - argumentele care reflectă explicit afirmația propusă",
                           subPoint: 1,
                         },
                       ],
-                    },                                                       
+                    },
                     {
                       nameSubItem: "Argumenteaza - I argument..",
                       maxSubPoints: 2,
@@ -3076,9 +3167,10 @@ let temeIstoria = [
                         },
                         {
                           value: 3,
-                          label: "2 p. - argument deplin (raționament și exemplu)",
+                          label:
+                            "2 p. - argument deplin (raționament și exemplu)",
                           subPoint: 2,
-                        },                                                         
+                        },
                       ],
                     },
                     {
@@ -3097,11 +3189,12 @@ let temeIstoria = [
                         },
                         {
                           value: 3,
-                          label: "2 p. - argument deplin (raționament și exemplu)",
+                          label:
+                            "2 p. - argument deplin (raționament și exemplu)",
                           subPoint: 2,
-                        },                                                         
+                        },
                       ],
-                    }, 
+                    },
                     {
                       nameSubItem: "Argumenteaza - III argument..",
                       maxSubPoints: 2,
@@ -3118,11 +3211,12 @@ let temeIstoria = [
                         },
                         {
                           value: 3,
-                          label: "2 p. - argument deplin (raționament și exemplu)",
+                          label:
+                            "2 p. - argument deplin (raționament și exemplu)",
                           subPoint: 2,
-                        },                                                         
+                        },
                       ],
-                    },  
+                    },
                     {
                       nameSubItem: "Referințe date/personalități..",
                       maxSubPoints: 2,
@@ -3134,32 +3228,36 @@ let temeIstoria = [
                         },
                         {
                           value: 2,
-                          label: "1 p. - referințele sunt parțial relevante pentru tema propusă",
+                          label:
+                            "1 p. - referințele sunt parțial relevante pentru tema propusă",
                           subPoint: 1,
                         },
                         {
                           value: 3,
-                          label: "2 p. - refrințele sunt relevante pentru prezentarea temei",
+                          label:
+                            "2 p. - refrințele sunt relevante pentru prezentarea temei",
                           subPoint: 2,
-                        },                                                         
+                        },
                       ],
-                    },   
+                    },
                     {
                       nameSubItem: "Corect științific..",
                       maxSubPoints: 1,
                       options: [
                         {
                           value: 1,
-                          label: "0 p. - răspuns lipsă/ volum irelevant (2-3 enunțuri)",
+                          label:
+                            "0 p. - răspuns lipsă/ volum irelevant (2-3 enunțuri)",
                           subPoint: 0,
                         },
                         {
                           value: 2,
-                          label: "1 p. - nu sunt comise greșeli științifice grave",
+                          label:
+                            "1 p. - nu sunt comise greșeli științifice grave",
                           subPoint: 1,
-                        },                                                      
+                        },
                       ],
-                    },                                                                            
+                    },
                   ],
                 },
               },
