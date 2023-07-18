@@ -4,12 +4,12 @@
   position: relative;
  }
  
-.grid-container-snap {
+ .grid-container-snap {
   max-width: 780px;
   display: grid;
-  grid-template-columns: minmax(0px, 252px) minmax(0px, 54px) minmax(0px, 384px) minmax(0px, 54px);
+  grid-template-columns: minmax(0px, 310px) minmax(0px, 50px) minmax(0px, 310px);
   grid-template-rows: 1fr;
-  gap: 12px;
+  gap: 3px;
   margin: 30px auto;
 }
 
@@ -21,8 +21,11 @@
   margin-top: 12px;
   padding: 19px 18px;
   max-width: 384px;
+  width: -moz-fit-content;
   width: fit-content;
   line-height: normal;
+  min-width: 310px;
+  min-height: 83px;
 }
 
 .box-raspuns:first-child {

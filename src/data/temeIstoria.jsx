@@ -557,6 +557,7 @@ let temeIstoria = [
                 ],
                 type: "snap",
                 coloane: [],
+                points: [{x:285,y:17},{x:285,y:109},{x:342,y:17},{x:342,y:109},],
                 quizArray: [
                   {
                     id: "1",
