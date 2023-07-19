@@ -41,12 +41,26 @@ const TestSnap = ({
     const gElement = gRef.current;
     g = Snap(gElement);
     console.log();
+    setConnectedZones([]);
   }, [currentIndex]);
 
   useEffect(() => {
-    console.log(connectedZones);
+    // console.log(connectedZones);
   }, [connectedZones]);
 
+  useEffect(() => {
+    if (correctAnswer !== null) {
+      repaintLines();
+    }
+  }, [correctAnswer]);
+
+  const repaintLines = () => {
+    connectedZones.map(({ zone1, zone2 }) => {
+      const { x: x1, y: y1 } = getCentre(zone1);
+      const { x: x2, y: y2 } = getCentre(zone2);
+       gRef.current.append(Snap(svgboxRef.current).line(x1, y1, x2, y2).attr({ strokeWidth: 2, stroke: "black" }));
+    });
+  };
   const getPinZoneIndex = (x, y) => {
     for (let i = 0; i < list.points.length; i++) {
       const point = list.points[i];
@@ -131,7 +145,7 @@ const TestSnap = ({
   const checkLines = () => {
     const centrePoints = [];
 
-    for (let i = 0; i < 8; i++) {
+    for (let i = 0; i < list.points.length; i++) {
       centrePoints.push(getCentre(i));
     }
 
@@ -475,7 +489,24 @@ const TestSnap = ({
               width="100%"
               className="main-svg"
             >
-              <g ref={gRef}></g>
+              <g ref={gRef}>
+                {/* {correctAnswer !== null && (
+                  <>
+                    {(() => {
+                      const { x: x1, y: y1 } = getCentre(
+                        connectedZones[0].zone1
+                      );
+                      const { x: x2, y: y2 } = getCentre(
+                        connectedZones[0].zone2
+                      );
+                      const line = Snap.parse(
+                        `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" strokeWidth="2" stroke="black"/>`
+                      );
+                      return line;
+                    })()}
+                  </>
+                )} */}
+              </g>
               {list.points.map((p, index) => (
                 <Pinzone
                   key={index}
