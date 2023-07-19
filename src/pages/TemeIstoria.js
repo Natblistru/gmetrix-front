@@ -9,7 +9,7 @@ import '../index.css';
 
 const TemeIstoria = () => {
     return (
-        <Wrapper>
+        <Wrapper className="large">
             <Breadcrumb list={[{name: "Discipline", path: "/"}]}/>
             <Card>
                 <Titlu className="titlu-card">Istoria - pregătire pentru examen clasa 9</Titlu>

@@ -1,5 +1,6 @@
 import React from "react";
 import SubTopicItem from "./SubTopicItem";
+import ProgressBar from "./ProgressBar";
 
 const TopicItem = (props) => {
     const tema = props.item;
@@ -10,12 +11,7 @@ const TopicItem = (props) => {
                 <span className="num"></span>
                 <h3>{tema.title}</h3>                
             </div>
-            <div className="progress-box">
-                <span>0%</span>
-                <div className="progress">
-                    <div className="bar"></div>
-                </div>
-            </div>
+            <ProgressBar proc={5}/>
         </div>
         <ol className="subtopic-list">
             {

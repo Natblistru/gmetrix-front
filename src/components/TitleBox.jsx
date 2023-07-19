@@ -1,3 +1,5 @@
+import ProgressBar from "./ProgressBar";
+
 const TitleBox = (props) => {
 const classes = "title-box " + props.className; 
   return (
@@ -6,12 +8,7 @@ const classes = "title-box " + props.className;
         <img src={process.env.PUBLIC_URL + '/images/parchment.png'} alt="" />
         <h1>{props.children}</h1>
       </div>
-      <div className="progress-box">
-        <span>0%</span>
-        <div className="progress">
-          <div className="bar"></div>
-        </div>
-      </div>
+      <ProgressBar proc={50}/>
     </div>
   );
 };

@@ -24,6 +24,10 @@ body {
   margin: 0 auto;
 }
 
+.wrapper.large {
+  width: 1000px;
+}
+
 .card {
   box-shadow: 1px 1px 16px #ccc;
   padding: 0 15px 15px 15px;
@@ -162,6 +166,7 @@ div.manual-item {
   display: flex;
   justify-content: space-between;
   margin-bottom: 2em;
+  align-items: end;
 }
 .title-img {
   display: flex;
@@ -227,6 +232,49 @@ header h3 {
   height: 8px;
   background-color: #04aa6d;
 }
+
+.topic-progress {
+  padding-left: 1em;
+  white-space: nowrap;
+  font-size: 1.2rem;
+}
+.topic-progress .progres-prcnt {
+  width: 130px;
+  display: inline-block;
+  height: .5em;
+  position: relative;
+}
+.topic-progress .progres-prcnt .back-progress {
+  border-bottom: 4px solid #c2c2c2;
+  width: 100%;
+}
+.topic-progress .progres-prcnt span {
+  position: absolute;
+  display: inline-block;
+}
+.topic-progress .progres-prcnt .value-progress {
+  overflow: hidden;
+  height: 4px;
+}
+.topic-progress .progres-prcnt .for-progress {
+  border-bottom: 4px solid #3ba900;
+  width: 130px;
+}
+
+.crc-mark {
+  display: inline-block;
+  border-radius: 50%;
+  color: #3ba900;
+  width: 1.5em;
+  height: 1.5em;
+  text-align: center;
+  line-height: 1.1em;
+  border: .15em solid #3ba900;
+  background-color: #fff;
+  letter-spacing: -.15em;
+  padding-right: .2em;
+}
+
 .topic-list {
   margin-top: 1.25em;
   list-style: none;
