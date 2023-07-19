@@ -31,7 +31,7 @@ const ItemList = (props) => {
                 )}
               </div>
             </div>
-            <div className="points">V</div>
+            <div className="svg-sprite-vs-small result-perfect"></div>
           </div>
         );
       })}
