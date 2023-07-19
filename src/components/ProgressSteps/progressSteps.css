@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Muli&display=swap");
 
 :root {
   --line-border-fill: #76a900;
@@ -11,28 +11,27 @@
 }
 
 .container {
-    text-align: center;
-    font-family: 'Muli', sans-serif;
-    display: flex;
-    align-items: end;
-    justify-content: center;
-    height: 31vh;
-    overflow: hidden;
-    margin: -72px auto;
-    
-  }
+  text-align: center;
+  font-family: "Muli", sans-serif;
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  height: 31vh;
+  overflow: hidden;
+  margin: -72px auto;
+}
 
 .progress-container {
   display: flex;
   justify-content: space-between;
   position: relative;
-  margin-bottom: 30px;
+  margin-bottom: 22px;
   max-width: 100%;
   width: 350px;
 }
 
 .progress-container::before {
-  content: '';
+  content: "";
   background-color: var(--line-border-empty);
   position: absolute;
   top: 50%;
@@ -55,26 +54,25 @@
   transition: 0.4s ease;
 }
 
-
-.circle{
-    background-color: #fff;
-    height: 30px;
-    width: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 2px solid var(--line-border-empty);
-    border-radius: 50%;
-    transition: all .4s ease-in;
-    cursor: pointer;
-    z-index: 2;
-  }
-  .circle.active{
-    border-color: var(--line-border-fill);
-    background-color: var(--background-fill);
-    color: #fff;
-    box-shadow: 0px 0px 31px -2px rgba(0,105,37,0.62);
-  }
+.circle {
+  background-color: #fff;
+  height: 30px;
+  width: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid var(--line-border-empty);
+  border-radius: 50%;
+  transition: all 0.4s ease-in;
+  cursor: pointer;
+  z-index: 2;
+}
+.circle.active {
+  border-color: var(--line-border-fill);
+  background-color: var(--background-fill);
+  color: #fff;
+  box-shadow: 0px 0px 31px -2px rgba(0, 105, 37, 0.62);
+}
 
 .btn {
   background-color: var(--line-border-fill);

@@ -582,11 +582,23 @@ let temeIstoria = [
                       "C.'Rege unificator'",
                       "D. Greva regală",
                     ],
+                    correctAnswer: [[5, 0], [3, 4], [1, 6], [7, 2]],
                   },
                   {
                     id: "2",
                     cerinte:
                       "Formează perechi logice, unind prin săgeţi, conţinuturile din prima și a doua coloană:",
+                      text: [
+                        "1. Regele Mihai",
+                        "2. Generalul Alexandru Averescu ",
+                        "3. Regele Carol II ",
+                        "4. Regele Ferdinand I",
+                        "A. Instituirea regimului monarhiei autoritare",
+                        "B. Prim-ministru al României",
+                        "C.'Rege unificator'",
+                        "D. Greva regală",
+                      ],
+                      correctAnswer: [[5, 0], [3, 4], [1, 6], [7, 2]],
                   },
                 ],
               },

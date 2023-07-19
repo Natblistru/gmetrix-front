@@ -8,10 +8,10 @@ import Pinzone from "./Pinzone";
 const RowText = ({ indx, text }) => {
   return (
     <div key={indx} className="box-raspuns">
-      <div data-slate-node="element">
-        <span data-slate-node="text">
-          <span data-slate-leaf="true">
-            <span data-slate-string="true">{text}</span>
+      <div>
+        <span>
+          <span>
+            <span>{text}</span>
           </span>
         </span>
       </div>
@@ -40,7 +40,8 @@ const TestSnap = ({
     s = Snap(svgElement);
     const gElement = gRef.current;
     g = Snap(gElement);
-  }, []);
+    console.log();
+  }, [currentIndex]);
 
   useEffect(() => {
     console.log(connectedZones);
@@ -175,203 +176,231 @@ const TestSnap = ({
   };
 
   const handlePointMousedown = (event, index) => {
-    const { offsetX, offsetY } = event;
-    const { x, y } = getCentre(index);
-    if (pointIsFree(x, y)) {
-      if (x < 258) {
-        //pointIsFree, xCentru < 258(centru)
-        const newLine = { x1: x, y1: y, x2: offsetX, y2: offsetY };
-        lines.push(newLine);
-        const line = s
-          .line(x, y, offsetX, offsetY)
-          .attr({ strokeWidth: 2, stroke: "black" });
+    if (correctAnswer === null) {
+      const { offsetX, offsetY } = event;
+      const { x, y } = getCentre(index);
+      if (pointIsFree(x, y)) {
+        if (x < 258) {
+          //pointIsFree, xCentru < 258(centru)
+          const newLine = { x1: x, y1: y, x2: offsetX, y2: offsetY };
+          lines.push(newLine);
+          const line = s
+            .line(x, y, offsetX, offsetY)
+            .attr({ strokeWidth: 2, stroke: "black" });
 
-        g.append(line);
+          g.append(line);
 
-        s.mousemove(function (event) {
-          line.attr({ x2: event.offsetX, y2: event.offsetY });
-          console.log("event.offsetX", event.offsetX);
-          console.log("event.offsetY", event.offsetY);
-        });
+          s.mousemove(function (event) {
+            line.attr({ x2: event.offsetX, y2: event.offsetY });
+            console.log("event.offsetX", event.offsetX);
+            console.log("event.offsetY", event.offsetY);
+          });
 
-        s.mouseup(function (evUp) {
-          const indexTargetZone = getPinZoneIndex(evUp.offsetX, evUp.offsetY);
-          if (
-            indexTargetZone !== null &&
-            isCorrespondingZone(indexTargetZone, index)
-          ) {
-            const { x: xUp, y: yUp } = getCentre(indexTargetZone);
-            if (!pointIsFree(xUp, yUp)) {
-              const currentLine1 = getLineByCenter1(xUp, yUp);
-              const currentLine2 = getLineByCenter2(xUp, yUp);
-              if (currentLine1) {
-                currentLine1.remove();
+          s.mouseup(function (evUp) {
+            const indexTargetZone = getPinZoneIndex(evUp.offsetX, evUp.offsetY);
+            if (
+              indexTargetZone !== null &&
+              isCorrespondingZone(indexTargetZone, index)
+            ) {
+              const { x: xUp, y: yUp } = getCentre(indexTargetZone);
+              if (!pointIsFree(xUp, yUp)) {
+                const currentLine1 = getLineByCenter1(xUp, yUp);
+                const currentLine2 = getLineByCenter2(xUp, yUp);
+                if (currentLine1) {
+                  currentLine1.remove();
+                }
+                if (currentLine2) {
+                  currentLine2.remove();
+                }
+                deleteLine(xUp, yUp);
               }
-              if (currentLine2) {
-                currentLine2.remove();
-              }
-              deleteLine(xUp, yUp);
+              line.attr({ x2: xUp, y2: yUp });
+              updateLine(newLine.x1, newLine.y1, xUp, yUp, line);
+            } else {
+              line.remove();
+              deleteLine(newLine.x1, newLine.y1);
             }
-            line.attr({ x2: xUp, y2: yUp });
-            updateLine(newLine.x1, newLine.y1, xUp, yUp, line);
-          } else {
-            line.remove();
-            deleteLine(newLine.x1, newLine.y1);
-          }
-          checkLines();
-          s.unmousemove();
-          s.unmouseup();
-        });
+            checkLines();
+            s.unmousemove();
+            s.unmouseup();
+          });
+        } else {
+          //pointIsFree, xCentru > 258(centru)
+          const newLine = { x1: offsetX, y1: offsetY, x2: x, y2: y }; //x1: 234, y1: 18
+          lines.push(newLine);
+          const line = s
+            .line(offsetX, offsetY, x, y)
+            .attr({ strokeWidth: 2, stroke: "black" });
+
+          g.append(line);
+
+          s.mousemove(function (event) {
+            line.attr({ x1: event.offsetX, y1: event.offsetY });
+            // point.animate({ transform: "s1.33,1.33" }, 100, mina.easeout);
+            // dot.animate({ r: "3.5" }, 100, mina.easeout);
+          });
+          s.mouseup(function (evUp) {
+            const indexTargetZone = getPinZoneIndex(evUp.offsetX, evUp.offsetY);
+            if (
+              indexTargetZone !== null &&
+              isCorrespondingZone(indexTargetZone, index)
+            ) {
+              const { x: xUp, y: yUp } = getCentre(indexTargetZone);
+              if (!pointIsFree(xUp, yUp)) {
+                const currentLine1 = getLineByCenter1(xUp, yUp);
+                const currentLine2 = getLineByCenter2(xUp, yUp);
+                if (currentLine1) {
+                  currentLine1.remove();
+                }
+                if (currentLine2) {
+                  currentLine2.remove();
+                }
+                deleteLine(xUp, yUp);
+              }
+              line.attr({ x1: xUp, y1: yUp });
+              updateLine(xUp, yUp, newLine.x2, newLine.y2, line);
+            } else {
+              line.remove();
+              deleteLine(newLine.x2, newLine.y2);
+            }
+            checkLines();
+            s.unmousemove();
+            s.unmouseup();
+          });
+        }
       } else {
-        //pointIsFree, xCentru > 258(centru)
-        const newLine = { x1: offsetX, y1: offsetY, x2: x, y2: y }; //x1: 234, y1: 18
-        lines.push(newLine);
-        const line = s
-          .line(offsetX, offsetY, x, y)
-          .attr({ strokeWidth: 2, stroke: "black" });
-
-        g.append(line);
-
-        s.mousemove(function (event) {
-          line.attr({ x1: event.offsetX, y1: event.offsetY });
-          // point.animate({ transform: "s1.33,1.33" }, 100, mina.easeout);
-          // dot.animate({ r: "3.5" }, 100, mina.easeout);
-        });
-        s.mouseup(function (evUp) {
-          const indexTargetZone = getPinZoneIndex(evUp.offsetX, evUp.offsetY);
-          if (
-            indexTargetZone !== null &&
-            isCorrespondingZone(indexTargetZone, index)
-          ) {
-            const { x: xUp, y: yUp } = getCentre(indexTargetZone);
-            if (!pointIsFree(xUp, yUp)) {
-              const currentLine1 = getLineByCenter1(xUp, yUp);
-              const currentLine2 = getLineByCenter2(xUp, yUp);
-              if (currentLine1) {
-                currentLine1.remove();
-              }
-              if (currentLine2) {
-                currentLine2.remove();
-              }
-              deleteLine(xUp, yUp);
-            }
-            line.attr({ x1: xUp, y1: yUp });
-            updateLine(xUp, yUp, newLine.x2, newLine.y2, line);
-          } else {
-            line.remove();
-            deleteLine(newLine.x2, newLine.y2);
-          }
-          checkLines();
-          s.unmousemove();
-          s.unmouseup();
-        });
-      }
-    } else {
-      const currentLine1 = getLineByCenter1(x, y);
-      const currentLine2 = getLineByCenter2(x, y);
-      if (currentLine1) {
-        //pointNOTFree, xCentru < 258(mijloc)
-        index = getPinZoneIndex(
-          currentLine1.node.attributes[1].value,
-          currentLine1.node.attributes[3].value
-        );
-        currentLine1.attr({ x1: event.offsetX, y1: event.offsetY });
-        s.mousemove(function (event) {
+        const currentLine1 = getLineByCenter1(x, y);
+        const currentLine2 = getLineByCenter2(x, y);
+        if (currentLine1) {
+          //pointNOTFree, xCentru < 258(mijloc)
+          index = getPinZoneIndex(
+            currentLine1.node.attributes[1].value,
+            currentLine1.node.attributes[3].value
+          );
           currentLine1.attr({ x1: event.offsetX, y1: event.offsetY });
-          // point.animate({ transform: "s1.33,1.33" }, 100, mina.easeout);
-          // dot.animate({ r: "3.5" }, 100, mina.easeout);
-        });
+          s.mousemove(function (event) {
+            currentLine1.attr({ x1: event.offsetX, y1: event.offsetY });
+            // point.animate({ transform: "s1.33,1.33" }, 100, mina.easeout);
+            // dot.animate({ r: "3.5" }, 100, mina.easeout);
+          });
 
-        s.mouseup(function (evUp) {
-          const indexTargetZone = getPinZoneIndex(evUp.offsetX, evUp.offsetY);
-          if (
-            indexTargetZone !== null &&
-            isCorrespondingZone(indexTargetZone, index)
-          ) {
-            const { x, y } = getCentre(indexTargetZone);
+          s.mouseup(function (evUp) {
+            const indexTargetZone = getPinZoneIndex(evUp.offsetX, evUp.offsetY);
+            if (
+              indexTargetZone !== null &&
+              isCorrespondingZone(indexTargetZone, index)
+            ) {
+              const { x, y } = getCentre(indexTargetZone);
 
-            if (!pointIsFree(x, y)) {
-              const primLine = getLineByCenter1(x, y);
-              const secLine = getLineByCenter2(x, y);
-              if (primLine) {
-                primLine.remove();
+              if (!pointIsFree(x, y)) {
+                const primLine = getLineByCenter1(x, y);
+                const secLine = getLineByCenter2(x, y);
+                if (primLine) {
+                  primLine.remove();
+                }
+                if (secLine) {
+                  secLine.remove();
+                }
+                deleteLine(x, y);
               }
-              if (secLine) {
-                secLine.remove();
-              }
-              deleteLine(x, y);
+              currentLine1.attr({ x1: x, y1: y });
+              updateLine(
+                x,
+                y,
+                Number(currentLine1.node.attributes[1].value),
+                Number(currentLine1.node.attributes[3].value),
+                currentLine1
+              );
+            } else {
+              deleteLine(
+                Number(currentLine1.node.attributes[1].value),
+                Number(currentLine1.node.attributes[3].value)
+              );
+              currentLine1.remove();
             }
-            currentLine1.attr({ x1: x, y1: y });
-            updateLine(
-              x,
-              y,
-              Number(currentLine1.node.attributes[1].value),
-              Number(currentLine1.node.attributes[3].value),
-              currentLine1
-            );
-          } else {
-            deleteLine(
-              Number(currentLine1.node.attributes[1].value),
-              Number(currentLine1.node.attributes[3].value)
-            );
-            currentLine1.remove();
-          }
-          checkLines();
-          s.unmousemove();
-          s.unmouseup();
-        });
-      }
-      if (currentLine2) {
-        //pointNOTFree, xCentru > 258(mijloc)
-        index = getPinZoneIndex(
-          currentLine2.node.attributes[0].value,
-          currentLine2.node.attributes[2].value
-        );
-        currentLine2.attr({ x2: event.offsetX, y2: event.offsetY });
-        s.mousemove(function (event) {
+            checkLines();
+            s.unmousemove();
+            s.unmouseup();
+          });
+        }
+        if (currentLine2) {
+          //pointNOTFree, xCentru > 258(mijloc)
+          index = getPinZoneIndex(
+            currentLine2.node.attributes[0].value,
+            currentLine2.node.attributes[2].value
+          );
           currentLine2.attr({ x2: event.offsetX, y2: event.offsetY });
-          // point.animate({ transform: "s1.33,1.33" }, 100, mina.easeout);
-          // dot.animate({ r: "3.5" }, 100, mina.easeout);
-        });
+          s.mousemove(function (event) {
+            currentLine2.attr({ x2: event.offsetX, y2: event.offsetY });
+            // point.animate({ transform: "s1.33,1.33" }, 100, mina.easeout);
+            // dot.animate({ r: "3.5" }, 100, mina.easeout);
+          });
 
-        s.mouseup(function (evUp) {
-          const indexTargetZone = getPinZoneIndex(evUp.offsetX, evUp.offsetY);
-          if (
-            indexTargetZone !== null &&
-            isCorrespondingZone(indexTargetZone, index)
-          ) {
-            const { x, y } = getCentre(indexTargetZone);
-            if (!pointIsFree(x, y)) {
-              const primLine = getLineByCenter1(x, y);
-              const secLine = getLineByCenter2(x, y);
-              if (primLine) {
-                primLine.remove();
+          s.mouseup(function (evUp) {
+            const indexTargetZone = getPinZoneIndex(evUp.offsetX, evUp.offsetY);
+            if (
+              indexTargetZone !== null &&
+              isCorrespondingZone(indexTargetZone, index)
+            ) {
+              const { x, y } = getCentre(indexTargetZone);
+              if (!pointIsFree(x, y)) {
+                const primLine = getLineByCenter1(x, y);
+                const secLine = getLineByCenter2(x, y);
+                if (primLine) {
+                  primLine.remove();
+                }
+                if (secLine) {
+                  secLine.remove();
+                }
+                deleteLine(x, y);
               }
-              if (secLine) {
-                secLine.remove();
-              }
-              deleteLine(x, y);
+              currentLine2.attr({ x2: x, y2: y });
+              updateLine(
+                Number(currentLine2.node.attributes[0].value),
+                Number(currentLine2.node.attributes[2].value),
+                x,
+                y,
+                currentLine2
+              );
+            } else {
+              deleteLine(
+                Number(currentLine2.node.attributes[0].value),
+                Number(currentLine2.node.attributes[2].value)
+              );
+              currentLine2.remove();
             }
-            currentLine2.attr({ x2: x, y2: y });
-            updateLine(
-              Number(currentLine2.node.attributes[0].value),
-              Number(currentLine2.node.attributes[2].value),
-              x,
-              y,
-              currentLine2
-            );
-          } else {
-            deleteLine(
-              Number(currentLine2.node.attributes[0].value),
-              Number(currentLine2.node.attributes[2].value)
-            );
-            currentLine2.remove();
-          }
-          checkLines();
-          s.unmousemove();
-          s.unmouseup();
-        });
+            checkLines();
+            s.unmousemove();
+            s.unmouseup();
+          });
+        }
       }
+    }
+  };
+
+  const checkAnswer = () => {
+    const correctAnswers = [
+      [5, 0],
+      [3, 4],
+      [1, 6],
+      [7, 2],
+    ];
+
+    const isAnswersCorrect = list.quizArray[currentIndex].correctAnswer.every(
+      (correctAnswer) =>
+        connectedZones.some(
+          (userAnswer) =>
+            (userAnswer.zone1 === correctAnswer[0] &&
+              userAnswer.zone2 === correctAnswer[1]) ||
+            (userAnswer.zone1 === correctAnswer[1] &&
+              userAnswer.zone2 === correctAnswer[0])
+        )
+    );
+
+    if (isAnswersCorrect) {
+      setCorrectAnswer(true);
+    } else {
+      setCorrectAnswer(false);
     }
   };
 
@@ -406,19 +435,19 @@ const TestSnap = ({
             <div>
               <div className="grid-container-snap">
                 <div>
-                  <div data-slate-node="element">
+                  <div>
                     {list.quizArray[currentIndex].text
                       .slice(0, halfIndex)
                       .map((text, index) => (
-                        <RowText indx={index} text={text} />
+                        <RowText key={index} indx={index} text={text} />
                       ))}
                   </div>
                 </div>
                 <div>
-                  <div data-slate-node="element">
-                    <span data-slate-node="text">
-                      <span data-slate-leaf="true">
-                        <span data-slate-zero-width="n" data-slate-length="0">
+                  <div>
+                    <span>
+                      <span>
+                        <span>
                           ﻿<br />
                         </span>
                       </span>
@@ -426,11 +455,15 @@ const TestSnap = ({
                   </div>
                 </div>
                 <div>
-                  <div data-slate-node="element">
+                  <div>
                     {list.quizArray[currentIndex].text
                       .slice(halfIndex)
                       .map((text, index) => (
-                        <RowText indx={halfIndex + index} text={text} />
+                        <RowText
+                          key={halfIndex + index}
+                          indx={halfIndex + index}
+                          text={text}
+                        />
                       ))}
                   </div>
                 </div>
@@ -456,7 +489,39 @@ const TestSnap = ({
             </svg>
           </div>
         </ItemText>
+        {correctAnswer === null && (
+          <button onClick={checkAnswer} className="btn-test">
+            Verifică răspunsul
+          </button>
+        )}
       </ItemAccordeon>
+      {correctAnswer !== null && (
+        <ItemAccordeon
+          titlu={`Rezolvarea sarcinii (${currentIndex + 1}/${
+            list.quizArray.length
+          }):`}
+          open={true}
+        >
+          <ItemText classNameChild="">
+            {list.quizArray[currentIndex].correctAnswer.map(
+              ([index1, index2]) => {
+                const answer1 =
+                  list.quizArray[currentIndex].text[Math.min(index1, index2)];
+                const answer2 =
+                  list.quizArray[currentIndex].text[Math.max(index1, index2)];
+                return (
+                  <p key={`${index1}-${index2}`}>
+                    {answer1} - {answer2}
+                  </p>
+                );
+              }
+            )}
+          </ItemText>
+          <button onClick={handleTryAgain} className="btn-test">
+            Încearcă din nou!
+          </button>
+        </ItemAccordeon>
+      )}
     </>
   );
 };
