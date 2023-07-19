@@ -3,7 +3,6 @@ import React from "react";
 const ProgressBar = (props) => {
   return (
     <span className="topic-progress">
-      {console.log(props.nota)}
       {props.nota !== null && props.nota !== undefined && (
         <span className="crc-mark" title="nota">
           {props.nota}

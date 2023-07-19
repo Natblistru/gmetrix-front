@@ -40,7 +40,6 @@ const TestSnap = ({
     s = Snap(svgElement);
     const gElement = gRef.current;
     g = Snap(gElement);
-    console.log();
     setConnectedZones([]);
   }, [currentIndex]);
 
@@ -206,8 +205,6 @@ const TestSnap = ({
 
           s.mousemove(function (event) {
             line.attr({ x2: event.offsetX, y2: event.offsetY });
-            console.log("event.offsetX", event.offsetX);
-            console.log("event.offsetY", event.offsetY);
           });
 
           s.mouseup(function (evUp) {
