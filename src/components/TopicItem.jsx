@@ -8,7 +8,7 @@ const TopicItem = ({ item,results }) => {
   const tema = item;
   const [procent, setProcent] = useState(0);
   useEffect(() => {
-    console.log(results.items);
+   // console.log(results.items);
     if (tema.id !== null && tema.id !== undefined) {
       const filteredIds = temeIstoriArray
         .flatMap((item) =>
@@ -18,7 +18,7 @@ const TopicItem = ({ item,results }) => {
         .map((subjectItem) => subjectItem.id);
 
       let SumProcValue = 0;
-      console.log(filteredIds);
+    //  console.log(filteredIds);
 
       filteredIds.forEach((id) => {
         const foundObject = results.items.find((item) => {

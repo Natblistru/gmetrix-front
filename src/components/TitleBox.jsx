@@ -8,8 +8,8 @@ const TitleBox = ({ className, subjectId, subtitleId, children, results }) => {
   const [procent, setProcent] = useState(0);
 
   useEffect(() => {
-    console.log(results.items);
-    console.log("subjectId", subjectId);
+  //  console.log(results.items);
+  //  console.log("subjectId", subjectId);
 
     if (subjectId !== null && subjectId !== undefined) {
       const foundObject = results.items.find((item) => {

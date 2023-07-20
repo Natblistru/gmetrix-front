@@ -92,8 +92,8 @@ const ExamenSubect1 = ({ raspunsuri }) => {
   }, [indx, text]);
 
   useEffect(() => {
-    console.log(raspunsuri.items);
-    console.log(idRaspuns);
+   // console.log(raspunsuri.items);
+  //  console.log(idRaspuns);
   }, [raspunsuri.items]);
 
   const openModal = () => {

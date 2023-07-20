@@ -9,7 +9,7 @@ const SubTopicItem = ({subTit,idx,results}) => {
   const [procent, setProcent] = useState(0);
 
   useEffect(() => {
-    console.log(results.items);
+   // console.log(results.items);
     if (subtitle.id !== null && subtitle.id !== undefined) {
       const filteredIds = temeIstoriArray
         .flatMap((item) =>
