@@ -5,6 +5,13 @@ import { Provider, connect } from "react-redux"
 const initialState = {
   items: []
 };
+const initialResultState = {
+  items: [{user: "Current user",
+           teme: [{
+            id: "1",
+            proc: 60
+           }] }]
+};
 
 const raspunsuriReducer = (state=initialState, action) => {
   switch (action.type) {
@@ -30,6 +37,30 @@ const raspunsuriReducer = (state=initialState, action) => {
   }
 };
 
+const resultsReducer = (state=initialResultState, action) => {
+  switch (action.type) {
+    case 'ADD_RESULT':
+      return {
+        ...state,
+        items: [...state.items, action.payload]
+      };
+      case 'UPDATE_RESULT':
+        return {
+          ...state,
+          items: state.items.map(item =>
+            item.id === action.payload.id ? action.payload : item
+          )
+        };
+      case 'DELETE_RESULT':
+        return {
+          ...state,
+          items: state.items.filter(item => item.id !== action.payload)
+        };
+      default:
+        return state;
+  }
+};
+
 const textReducer = ( state = "", action )=> {
   switch (action.type) {
     case " update":
@@ -41,7 +72,8 @@ const textReducer = ( state = "", action )=> {
 
 const combinedReducers = combineReducers({
   raspunsuri: raspunsuriReducer,
-  text: textReducer
+  text: textReducer,
+  results: resultsReducer
 })
 
 const store = createStore(combinedReducers)

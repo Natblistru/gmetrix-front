@@ -13,7 +13,7 @@ const ProgressBar = (props) => {
         title={props.proc !== 0 ? `Ai studiat ${props.proc}%` : null}
       >
         <span className="back-progress"></span>
-        <span className="value-progress" style={{ width: props.proc }}>
+        <span className="value-progress" style={{ width: `${props.proc}%` }}>
           <span className="for-progress"></span>
         </span>
       </span>

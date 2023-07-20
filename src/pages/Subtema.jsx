@@ -6,10 +6,11 @@ import Wrapper from "../components/Wrapper";
 import TitleBox from "../components/TitleBox";
 import ListSubAccordeon from "../components/Accordeon/ListSubAccordeon";
 
-const Subtema = () => {
+const Subtema = ({results})  => {
   const { address1 } = useParams();
   const [item, setItem] = useState(null);
   // console.log("address1", address1);
+
   const history = useHistory();
 
   function findObjectWithAddress(obj) {
@@ -40,11 +41,13 @@ const Subtema = () => {
       {item && (
         <>
           <Breadcrumb list={item.breadcrumb} />
-          <TitleBox className="teme-container">{item.name}</TitleBox>
-          <ListSubAccordeon teme={temeIstoriArray} subtema={item} />
+          <TitleBox className="teme-container" subtemaId={item.id}>{item.name}</TitleBox>
+          <ListSubAccordeon teme={temeIstoriArray} subtema={item}/>
         </>
       )}
     </Wrapper>
   );
 };
+
+
 export default Subtema;

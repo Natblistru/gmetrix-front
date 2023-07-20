@@ -4,12 +4,12 @@ import ItemList from "./ItemList";
 import ItemText from "./ItemText";
 import ItemTable from "./ItemTable";
 import SimpleSlider from "../Slider/SimpleSlider";
-import Audio from "../Audio";
+// import Audio from "../Audio";
+import Audio from "../AudioPlayer";
 import ProgressSteps from "../ProgressSteps/ProgressSteps";
 
 const ListSubAccordeon = (props) => {
   const [currentSubject, setCurrentSubject] = useState(0);
-
   const classes = " " + props.className;
   // let arraySubject = props.teme[0].subtitles[0].subjects[0].vomAfla;
   // let arrayTests = props.teme[0].subtitles[0].subjects[0].teste;
@@ -34,7 +34,7 @@ const ListSubAccordeon = (props) => {
         className="blockPB50" open={true}
       >
         <SimpleSlider {...props} images={arraySubject[currentSubject].images} />
-        <Audio path={arraySubject[currentSubject].audio} />
+        <Audio path={arraySubject[currentSubject].audio} currentSubject={currentSubject}/>
         <ProgressSteps list={arraySubject} onClick={clickSubjectHandler} />
       </ItemAccordeon>
       {arraySubject?.map((subj) => (
@@ -48,4 +48,5 @@ const ListSubAccordeon = (props) => {
     </div>
   );
 };
+
 export default ListSubAccordeon;
