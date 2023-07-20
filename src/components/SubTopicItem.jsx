@@ -35,7 +35,7 @@ const SubTopicItem = ({subTit,idx,results}) => {
         if (procValue !== null && procValue !== undefined)
         SumProcValue+=procValue;
       });
-      SumProcValue = SumProcValue/filteredIds.length;
+      SumProcValue = Math.round(SumProcValue / filteredIds.length);
       setProcent(SumProcValue);
     }
   }, [results.items]);

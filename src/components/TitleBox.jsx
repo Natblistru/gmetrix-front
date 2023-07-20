@@ -31,7 +31,7 @@ const TitleBox = ({ className, subjectId, subtitleId, children, results }) => {
         )
         .filter((subjectItem) => subjectItem.subtitleID == subtitleId)
         .map((subjectItem) => subjectItem.id);
-      
+
       let SumProcValue = 0;
 
       filteredIds.forEach((id) => {
@@ -47,9 +47,35 @@ const TitleBox = ({ className, subjectId, subtitleId, children, results }) => {
           )?.proc;
         }
         if (procValue !== null && procValue !== undefined)
-        SumProcValue+=procValue;
+          SumProcValue += procValue;
       });
-      SumProcValue = SumProcValue/filteredIds.length;
+      SumProcValue = Math.round(SumProcValue / filteredIds.length);
+      setProcent(SumProcValue);
+    } else {
+      const filteredIds = temeIstoriArray
+        .flatMap((item) =>
+          item.subtitles.flatMap((subItem) => subItem.subjects)
+        )
+        .map((subjectItem) => subjectItem.id);
+
+      let SumProcValue = 0;
+
+      filteredIds.forEach((id) => {
+        const foundObject = results.items.find((item) => {
+          return item.subject.find((subItem) => subItem.id === id);
+        });
+
+        let procValue = null;
+
+        if (foundObject) {
+          procValue = foundObject.subject.find(
+            (subItem) => subItem.id === id
+          )?.proc;
+        }
+        if (procValue !== null && procValue !== undefined)
+          SumProcValue += procValue;
+      });
+      SumProcValue = Math.round(SumProcValue / filteredIds.length);
       setProcent(SumProcValue);
     }
   }, [results.items]);
