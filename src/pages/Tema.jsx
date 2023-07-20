@@ -41,7 +41,7 @@ const Tema = () => {
       {item && (
         <>
           <Breadcrumb list={item.breadcrumb} />
-          <TitleBox className="teme-container">{item.name}</TitleBox>
+          <TitleBox className="teme-container" subtitleId={item.id} >{item.name}</TitleBox>
           <ListAccordeon teme={item} />
         </>
       )}

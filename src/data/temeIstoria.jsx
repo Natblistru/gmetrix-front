@@ -17,6 +17,8 @@ let temeIstoria = [
         subjects: [
           {
             id: "1",
+            subtitleID: "1",
+            titleID: "1",
             name: "Opțiunile politice în perioada neutralității",
             path: "/subtema1",
             addressDisciplina: "/istoria",
@@ -1300,6 +1302,8 @@ let temeIstoria = [
           },
           {
             id: "2",
+            subtitleID: "1",
+            titleID: "1",
             name: "Intrarea României în război",
             path: "/subtema1",
             addressDisciplina: "/istoria",
@@ -1317,6 +1321,8 @@ let temeIstoria = [
 
           {
             id: "3",
+            subtitleID: "1",
+            titleID: "1",
             name: "Operațiile militare din anul 1917",
             path: "/subtema1",
             addressDisciplina: "/istoria",
@@ -1333,6 +1339,8 @@ let temeIstoria = [
           },
           {
             id: "4",
+            subtitleID: "1",
+            titleID: "1",
             name: "Agravarea situației pe frontul român",
             path: "/subtema1",
             addressDisciplina: "/istoria",
@@ -1349,6 +1357,8 @@ let temeIstoria = [
           },
           {
             id: "5",
+            subtitleID: "1",
+            titleID: "1",
             name: "Armistițiul de la Focșani și Pacea de la București",
             path: "/subtema1",
             addressDisciplina: "/istoria",
@@ -3331,6 +3341,8 @@ let temeIstoria = [
         subjects: [
           {
             id: "6",
+            subtitleID: "2",
+            titleID: "1",
             name: "Revigorarea luptei pentru autonomia Basarabiei din primăvara anului 1917",
             path: "/subtema1",
             addressDisciplina: "/istoria",
@@ -3347,6 +3359,8 @@ let temeIstoria = [
           },
           {
             id: "7",
+            subtitleID: "2",
+            titleID: "1",
             name: "Evoluția mișcării naționale în vara anului 1917",
             path: "/subtema1",
             addressDisciplina: "/istoria",
@@ -3375,6 +3389,8 @@ let temeIstoria = [
         subjects: [
           {
             id: "8",
+            subtitleID: "3",
+            titleID: "1",
             name: "Republica Democratică Moldovenească în lupta cu anarhia",
             path: "/subtema1",
             addressDisciplina: "/istoria",
@@ -3392,6 +3408,8 @@ let temeIstoria = [
           },
           {
             id: "9",
+            subtitleID: "3",
+            titleID: "1",
             name: "Declararea de independență a Republicii Democratice Moldovenești",
             path: "/subtema1",
             addressDisciplina: "/istoria",
@@ -3420,6 +3438,8 @@ let temeIstoria = [
         subjects: [
           {
             id: "10",
+            subtitleID: "4",
+            titleID: "1",
             name: "Conferința de Pace de la Paris (1919-1920)",
             path: "/subtema1",
             addressDisciplina: "/istoria",
@@ -3436,6 +3456,8 @@ let temeIstoria = [
           },
           {
             id: "11",
+            subtitleID: "4",
+            titleID: "1",
             name: "Tratatul de la Saint-Germain",
             path: "/subtema1",
             addressDisciplina: "/istoria",
@@ -3472,6 +3494,8 @@ let temeIstoria = [
         subjects: [
           {
             id: "12",
+            subtitleID: "5",
+            titleID: "2",
             name: "SUA după Primul Război Mondial",
             path: "/subtema1",
             addressDisciplina: "/istoria",
@@ -3488,6 +3512,8 @@ let temeIstoria = [
           },
           {
             id: "13",
+            subtitleID: "5",
+            titleID: "2",
             name: "Marea criză economică și consecințele ei",
             path: "/subtema1",
             addressDisciplina: "/istoria",
@@ -3516,6 +3542,8 @@ let temeIstoria = [
         subjects: [
           {
             id: "14",
+            subtitleID: "6",
+            titleID: "2",
             name: "Viața politică în Marea Britanie în anii 20-30 ai secolului XX-lea",
             path: "/subtema1",
             addressDisciplina: "/istoria",
@@ -3532,6 +3560,8 @@ let temeIstoria = [
           },
           {
             id: "15",
+            subtitleID: "6",
+            titleID: "2",
             name: "Rivalitatea pentru putere dintre partidele politice în Franța",
             path: "/subtema1",
             addressDisciplina: "/istoria",
@@ -3560,6 +3590,8 @@ let temeIstoria = [
         subjects: [
           {
             id: "16",
+            subtitleID: "7",
+            titleID: "2",
             name: "Dezvoltarea economiei României în anii 1918-1940",
             path: "/subtema1",
             addressDisciplina: "/istoria",
@@ -3576,6 +3608,8 @@ let temeIstoria = [
           },
           {
             id: "17",
+            subtitleID: "7",
+            titleID: "2",
             name: "Minoritățile etnice în România",
             path: "/subtema1",
             addressDisciplina: "/istoria",
@@ -3604,6 +3638,8 @@ let temeIstoria = [
         subjects: [
           {
             id: "18",
+            subtitleID: "8",
+            titleID: "2",
             name: "Specificul dezvoltării social-economice a Basarabiei",
             path: "/subtema1",
             addressDisciplina: "/istoria",
@@ -3620,6 +3656,8 @@ let temeIstoria = [
           },
           {
             id: "19",
+            subtitleID: "8",
+            titleID: "2",
             name: "Minoritățile etnice în Basarabia",
             path: "/subtema1",
             addressDisciplina: "/istoria",
@@ -3648,6 +3686,8 @@ let temeIstoria = [
         subjects: [
           {
             id: "20",
+            subtitleID: "9",
+            titleID: "2",
             name: "Formarea RASSM",
             path: "/subtema1",
             addressDisciplina: "/istoria",
@@ -3664,6 +3704,8 @@ let temeIstoria = [
           },
           {
             id: "21",
+            subtitleID: "9",
+            titleID: "2",
             name: "Represiunile staliniste",
             path: "/subtema1",
             addressDisciplina: "/istoria",
@@ -3692,6 +3734,8 @@ let temeIstoria = [
         subjects: [
           {
             id: "22",
+            subtitleID: "10",
+            titleID: "2",
             name: "Manifestările suprarealismului",
             path: "/subtema1",
             addressDisciplina: "/istoria",
@@ -3708,6 +3752,8 @@ let temeIstoria = [
           },
           {
             id: "23",
+            subtitleID: "10",
+            titleID: "2",
             name: "Descoperiri științifice",
             path: "/subtema1",
             addressDisciplina: "/istoria",
@@ -3736,6 +3782,8 @@ let temeIstoria = [
         subjects: [
           {
             id: "24",
+            subtitleID: "11",
+            titleID: "2",
             name: "Învățământul și știința",
             path: "/subtema1",
             addressDisciplina: "/istoria",
@@ -3752,6 +3800,8 @@ let temeIstoria = [
           },
           {
             id: "25",
+            subtitleID: "11",
+            titleID: "2",
             name: "Literatura și arta",
             path: "/subtema1",
             addressDisciplina: "/istoria",
@@ -3788,6 +3838,8 @@ let temeIstoria = [
         subjects: [
           {
             id: "26",
+            subtitleID: "12",
+            titleID: "3",
             name: "Expansiunea Germaniei",
             path: "/subtema1",
             addressDisciplina: "/istoria",
@@ -3804,6 +3856,8 @@ let temeIstoria = [
           },
           {
             id: "27",
+            subtitleID: "12",
+            titleID: "3",
             name: "Agresiunea italiană în Etiopia",
             path: "/subtema1",
             addressDisciplina: "/istoria",
@@ -3832,6 +3886,8 @@ let temeIstoria = [
         subjects: [
           {
             id: "28",
+            subtitleID: "13",
+            titleID: "3",
             name: "Problema basarabeană în relațiile româno-sovietice în anul 1924",
             path: "/subtema1",
             addressDisciplina: "/istoria",
@@ -3848,6 +3904,8 @@ let temeIstoria = [
           },
           {
             id: "29",
+            subtitleID: "13",
+            titleID: "3",
             name: "Tezaurul României aflat la Moscova",
             path: "/subtema1",
             addressDisciplina: "/istoria",
@@ -3876,6 +3934,8 @@ let temeIstoria = [
         subjects: [
           {
             id: "30",
+            subtitleID: "14",
+            titleID: "3",
             name: "Raptul Basarabiei",
             path: "/subtema1",
             addressDisciplina: "/istoria",
@@ -3892,6 +3952,8 @@ let temeIstoria = [
           },
           {
             id: "31",
+            subtitleID: "14",
+            titleID: "3",
             name: "Raptul Bucovinei de Nord",
             path: "/subtema1",
             addressDisciplina: "/istoria",
@@ -3920,6 +3982,8 @@ let temeIstoria = [
         subjects: [
           {
             id: "32",
+            subtitleID: "15",
+            titleID: "3",
             name: "Crearea RSSM și politica de ocupație sovietică",
             path: "/subtema1",
             addressDisciplina: "/istoria",
@@ -3936,6 +4000,8 @@ let temeIstoria = [
           },
           {
             id: "33",
+            subtitleID: "15",
+            titleID: "3",
             name: "Dictatul de la Viena și Tratatul de la Craiova",
             path: "/subtema1",
             addressDisciplina: "/istoria",
@@ -3961,7 +4027,7 @@ let temeIstoria = [
     ciclul: "Ciclul gimnazial",
     subtitles: [
       {
-        id: "15",
+        id: "16",
         name: "Al Doilea Război Mondial 1939-1945",
         addressDisciplina: "/istoria",
         address: "/al-doilea-razboi-mondial",
@@ -3972,6 +4038,8 @@ let temeIstoria = [
         subjects: [
           {
             id: "34",
+            subtitleID: "16",
+            titleID: "4",
             name: "Cauzele și izbucnirea războiului",
             path: "/subtema1",
             addressDisciplina: "/istoria",
@@ -3988,6 +4056,8 @@ let temeIstoria = [
           },
           {
             id: "35",
+            subtitleID: "16",
+            titleID: "4",
             name: "Invazia germană aspura URSS",
             path: "/subtema1",
             addressDisciplina: "/istoria",
@@ -4016,6 +4086,8 @@ let temeIstoria = [
         subjects: [
           {
             id: "36",
+            subtitleID: "17",
+            titleID: "4",
             name: "Regimul politic în România (1940-1944)",
             path: "/subtema1",
             addressDisciplina: "/istoria",
@@ -4032,6 +4104,8 @@ let temeIstoria = [
           },
           {
             id: "37",
+            subtitleID: "17",
+            titleID: "4",
             name: "Angajarea României în război",
             path: "/subtema1",
             addressDisciplina: "/istoria",
@@ -4060,6 +4134,8 @@ let temeIstoria = [
         subjects: [
           {
             id: "38",
+            subtitleID: "18",
+            titleID: "4",
             name: "Reinstaurarea regimului totalitar comunist",
             path: "/subtema1",
             addressDisciplina: "/istoria",
@@ -4076,6 +4152,8 @@ let temeIstoria = [
           },
           {
             id: "39",
+            subtitleID: "18",
+            titleID: "4",
             name: "Politica față de evrei și romi",
             path: "/subtema1",
             addressDisciplina: "/istoria",
@@ -4104,6 +4182,8 @@ let temeIstoria = [
         subjects: [
           {
             id: "40",
+            subtitleID: "19",
+            titleID: "4",
             name: "Reconstrucția postbelică și noile ordini mondiale",
             path: "/subtema1",
             addressDisciplina: "/istoria",
@@ -4120,6 +4200,8 @@ let temeIstoria = [
           },
           {
             id: "41",
+            subtitleID: "19",
+            titleID: "4",
             name: "Impactul asupra societății și schimbările geopolitice",
             path: "/subtema1",
             addressDisciplina: "/istoria",
@@ -4156,6 +4238,8 @@ let temeIstoria = [
         subjects: [
           {
             id: "42",
+            subtitleID: "20",
+            titleID: "5",
             name: "Organizația Națiunilor Unite",
             path: "/subtema1",
             addressDisciplina: "/istoria",
@@ -4172,6 +4256,8 @@ let temeIstoria = [
           },
           {
             id: "43",
+            subtitleID: "20",
+            titleID: "5",
             name: "Începutul Războiului Rece",
             path: "/subtema1",
             addressDisciplina: "/istoria",
@@ -4200,6 +4286,8 @@ let temeIstoria = [
         subjects: [
           {
             id: "44",
+            subtitleID: "21",
+            titleID: "5",
             name: "Viața politică în URSS",
             path: "/subtema1",
             addressDisciplina: "/istoria",
@@ -4216,6 +4304,8 @@ let temeIstoria = [
           },
           {
             id: "45",
+            subtitleID: "21",
+            titleID: "5",
             name: "Economia sovietică",
             path: "/subtema1",
             addressDisciplina: "/istoria",
@@ -4244,6 +4334,8 @@ let temeIstoria = [
         subjects: [
           {
             id: "46",
+            subtitleID: "22",
+            titleID: "5",
             name: "Monopolul partidului",
             path: "/subtema1",
             addressDisciplina: "/istoria",
@@ -4260,6 +4352,8 @@ let temeIstoria = [
           },
           {
             id: "47",
+            subtitleID: "22",
+            titleID: "5",
             name: "Politica economică promovată în RSSM",
             path: "/subtema1",
             addressDisciplina: "/istoria",
@@ -4288,6 +4382,8 @@ let temeIstoria = [
         subjects: [
           {
             id: "48",
+            subtitleID: "23",
+            titleID: "5",
             name: "Foametea din anii 1946-1947",
             path: "/subtema1",
             addressDisciplina: "/istoria",
@@ -4304,6 +4400,8 @@ let temeIstoria = [
           },
           {
             id: "49",
+            subtitleID: "23",
+            titleID: "5",
             name: "Colectivizarea forțată",
             path: "/subtema1",
             addressDisciplina: "/istoria",
@@ -4340,6 +4438,8 @@ let temeIstoria = [
         subjects: [
           {
             id: "50",
+            subtitleID: "24",
+            titleID: "6",
             name: "Transformări politice și economice în RSSM între 1985-1991",
             path: "/subtema1",
             addressDisciplina: "/istoria",
@@ -4356,6 +4456,8 @@ let temeIstoria = [
           },
           {
             id: "51",
+            subtitleID: "24",
+            titleID: "6",
             name: "Proclamarea independenței Republicii Moldova",
             path: "/subtema1",
             addressDisciplina: "/istoria",
@@ -4384,6 +4486,8 @@ let temeIstoria = [
         subjects: [
           {
             id: "52",
+            subtitleID: "25",
+            titleID: "6",
             name: "Originile conflictului",
             path: "/subtema1",
             addressDisciplina: "/istoria",
@@ -4400,6 +4504,8 @@ let temeIstoria = [
           },
           {
             id: "53",
+            subtitleID: "25",
+            titleID: "6",
             name: "Formarea autoproclamatei RSSMN",
             path: "/subtema1",
             addressDisciplina: "/istoria",
@@ -4436,6 +4542,8 @@ let temeIstoria = [
         subjects: [
           {
             id: "54",
+            subtitleID: "26",
+            titleID: "7",
             name: "Politica de ideologizare a vieții culturale",
             path: "/subtema1",
             addressDisciplina: "/istoria",
@@ -4452,6 +4560,8 @@ let temeIstoria = [
           },
           {
             id: "55",
+            subtitleID: "26",
+            titleID: "7",
             name: "Invățământul și știința",
             path: "/subtema1",
             addressDisciplina: "/istoria",
@@ -4480,6 +4590,8 @@ let temeIstoria = [
         subjects: [
           {
             id: "56",
+            subtitleID: "27",
+            titleID: "7",
             name: "Influente și schimbări în cultura Republicii Moldova",
             path: "/subtema1",
             addressDisciplina: "/istoria",
@@ -4496,6 +4608,8 @@ let temeIstoria = [
           },
           {
             id: "57",
+            subtitleID: "27",
+            titleID: "7",
             name: "Patrimoniu cultural și diversitatea culturală în Republica Moldova",
             path: "/subtema1",
             addressDisciplina: "/istoria",
@@ -4524,6 +4638,8 @@ let temeIstoria = [
         subjects: [
           {
             id: "58",
+            subtitleID: "28",
+            titleID: "7",
             name: "Cucerirea spațiului cosmic",
             path: "/subtema1",
             addressDisciplina: "/istoria",
@@ -4540,6 +4656,8 @@ let temeIstoria = [
           },
           {
             id: "59",
+            subtitleID: "28",
+            titleID: "7",
             name: "Arta și industria cinematografică",
             path: "/subtema1",
             addressDisciplina: "/istoria",

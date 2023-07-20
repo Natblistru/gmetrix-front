@@ -1,34 +1,66 @@
 import { useState, useEffect } from "react";
+import temeIstoriArray from "../data/temeIstoria";
 import ProgressBar from "./ProgressBar";
 import { connect } from "react-redux";
 
-const TitleBox = ({className,subtemaId,children,results}) => {
-const classes = "title-box " + className; 
-const [procent, setProcent] = useState(0)
+const TitleBox = ({ className, subjectId, subtitleId, children, results }) => {
+  const classes = "title-box " + className;
+  const [procent, setProcent] = useState(0);
 
-useEffect(() => {
-  console.log(results.items);
+  useEffect(() => {
+    console.log(results.items);
+    console.log("subjectId", subjectId);
 
-  const foundObject = results.items.find(item => {
-    return item.teme.find(subItem => subItem.id === subtemaId);
-  });
-  
-  let procValue = null;
-  
-  if (foundObject) {
-    procValue = foundObject.teme.find(subItem => subItem.id === subtemaId)?.proc;
-  }
-  if(procValue !== null && procValue !== undefined) setProcent(procValue)
-  
-}, [results.items]);
+    if (subjectId !== null && subjectId !== undefined) {
+      const foundObject = results.items.find((item) => {
+        return item.subject.find((subItem) => subItem.id === subjectId);
+      });
+
+      let procValue = null;
+
+      if (foundObject) {
+        procValue = foundObject.subject.find(
+          (subItem) => subItem.id === subjectId
+        )?.proc;
+      }
+      if (procValue !== null && procValue !== undefined) setProcent(procValue);
+    } else if (subtitleId !== null && subtitleId !== undefined) {
+      const filteredIds = temeIstoriArray
+        .flatMap((item) =>
+          item.subtitles.flatMap((subItem) => subItem.subjects)
+        )
+        .filter((subjectItem) => subjectItem.subtitleID == subtitleId)
+        .map((subjectItem) => subjectItem.id);
+      
+      let SumProcValue = 0;
+
+      filteredIds.forEach((id) => {
+        const foundObject = results.items.find((item) => {
+          return item.subject.find((subItem) => subItem.id === id);
+        });
+
+        let procValue = null;
+
+        if (foundObject) {
+          procValue = foundObject.subject.find(
+            (subItem) => subItem.id === id
+          )?.proc;
+        }
+        if (procValue !== null && procValue !== undefined)
+        SumProcValue+=procValue;
+      });
+      SumProcValue = SumProcValue/filteredIds.length;
+      setProcent(SumProcValue);
+    }
+  }, [results.items]);
 
   return (
     <div className={classes}>
       <div className="title-img">
-        <img src={process.env.PUBLIC_URL + '/images/parchment.png'} alt="" />
+        <img src={process.env.PUBLIC_URL + "/images/parchment.png"} alt="" />
         <h1>{children}</h1>
       </div>
-      <ProgressBar proc={procent}/>
+      <ProgressBar proc={procent} />
     </div>
   );
 };

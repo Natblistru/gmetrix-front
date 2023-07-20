@@ -7,10 +7,11 @@ const initialState = {
 };
 const initialResultState = {
   items: [{user: "Current user",
-           teme: [{
+           subject: [{
             id: "1",
             proc: 60
-           }] }]
+           }]
+        }]
 };
 
 const raspunsuriReducer = (state=initialState, action) => {

@@ -41,7 +41,7 @@ const Subtema = ({results})  => {
       {item && (
         <>
           <Breadcrumb list={item.breadcrumb} />
-          <TitleBox className="teme-container" subtemaId={item.id}>{item.name}</TitleBox>
+          <TitleBox className="teme-container" subjectId={item.id}>{item.name}</TitleBox>
           <ListSubAccordeon teme={temeIstoriArray} subtema={item}/>
         </>
       )}
