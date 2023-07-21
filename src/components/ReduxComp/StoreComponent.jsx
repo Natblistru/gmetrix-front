@@ -7,10 +7,18 @@ const initialState = {
 };
 const initialResultState = {
   items: [{user: "Current user",
-           subject: [{
+           subject: [
+            {
             id: "1",
+            audio: "10",
             proc: 60
-           }]
+           },
+           {
+            id: "1",
+            audio: "11",
+            proc: 10
+           },
+          ]
         }]
 };
 

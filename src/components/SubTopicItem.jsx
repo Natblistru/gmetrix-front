@@ -9,7 +9,6 @@ const SubTopicItem = ({subTit,idx,results}) => {
   const [procent, setProcent] = useState(0);
 
   useEffect(() => {
-   // console.log(results.items);
     if (subtitle.id !== null && subtitle.id !== undefined) {
       const filteredIds = temeIstoriArray
         .flatMap((item) =>
@@ -19,26 +18,27 @@ const SubTopicItem = ({subTit,idx,results}) => {
         .map((subjectItem) => subjectItem.id);
       
       let SumProcValue = 0;
+      let result;
+      const user = "Current user";
 
       filteredIds.forEach((id) => {
-        const foundObject = results.items.find((item) => {
-          return item.subject.find((subItem) => subItem.id === id);
-        });
-
-        let procValue = null;
-
-        if (foundObject) {
-          procValue = foundObject.subject.find(
-            (subItem) => subItem.id === id
-          )?.proc;
-        }
-        if (procValue !== null && procValue !== undefined)
-        SumProcValue+=procValue;
+        result = sumProc(results.items, user, id);
+        if (result !== null && result !== undefined && !isNaN(result)) SumProcValue += result;
       });
       SumProcValue = Math.round(SumProcValue / filteredIds.length);
       setProcent(SumProcValue);
     }
   }, [results.items]);
+
+  const sumProc = (items, user, id) => {
+    const userItems = items.find(item => item.user === user);
+    if (!userItems) return 0;
+  
+    const filteredItems = userItems.subject.filter(item => item.id == id);
+    const procSum = filteredItems.reduce((acc, item) => acc + item.proc, 0);
+  
+    return procSum / filteredItems.length;
+  };
 
   return (
     <li key={idx}>

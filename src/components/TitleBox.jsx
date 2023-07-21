@@ -8,22 +8,12 @@ const TitleBox = ({ className, subjectId, subtitleId, children, results }) => {
   const [procent, setProcent] = useState(0);
 
   useEffect(() => {
-  //  console.log(results.items);
-  //  console.log("subjectId", subjectId);
-
     if (subjectId !== null && subjectId !== undefined) {
-      const foundObject = results.items.find((item) => {
-        return item.subject.find((subItem) => subItem.id === subjectId);
-      });
 
-      let procValue = null;
-
-      if (foundObject) {
-        procValue = foundObject.subject.find(
-          (subItem) => subItem.id === subjectId
-        )?.proc;
-      }
-      if (procValue !== null && procValue !== undefined) setProcent(procValue);
+      const user = "Current user";
+      const result = sumProc(results.items, user, subjectId);
+      if (result !== null && result !== undefined) setProcent(Math.round(result));
+  
     } else if (subtitleId !== null && subtitleId !== undefined) {
       const filteredIds = temeIstoriArray
         .flatMap((item) =>
@@ -33,24 +23,16 @@ const TitleBox = ({ className, subjectId, subtitleId, children, results }) => {
         .map((subjectItem) => subjectItem.id);
 
       let SumProcValue = 0;
+      let result;
+      const user = "Current user";
 
       filteredIds.forEach((id) => {
-        const foundObject = results.items.find((item) => {
-          return item.subject.find((subItem) => subItem.id === id);
-        });
-
-        let procValue = null;
-
-        if (foundObject) {
-          procValue = foundObject.subject.find(
-            (subItem) => subItem.id === id
-          )?.proc;
-        }
-        if (procValue !== null && procValue !== undefined)
-          SumProcValue += procValue;
+        result = sumProc(results.items, user, id);
+        if (result !== null && result !== undefined && !isNaN(result)) SumProcValue += result;
       });
       SumProcValue = Math.round(SumProcValue / filteredIds.length);
       setProcent(SumProcValue);
+
     } else {
       const filteredIds = temeIstoriArray
         .flatMap((item) =>
@@ -59,26 +41,28 @@ const TitleBox = ({ className, subjectId, subtitleId, children, results }) => {
         .map((subjectItem) => subjectItem.id);
 
       let SumProcValue = 0;
+      let result;
+      const user = "Current user";
 
       filteredIds.forEach((id) => {
-        const foundObject = results.items.find((item) => {
-          return item.subject.find((subItem) => subItem.id === id);
-        });
-
-        let procValue = null;
-
-        if (foundObject) {
-          procValue = foundObject.subject.find(
-            (subItem) => subItem.id === id
-          )?.proc;
-        }
-        if (procValue !== null && procValue !== undefined)
-          SumProcValue += procValue;
+        result = sumProc(results.items, user, id);
+        if (result !== null && result !== undefined && !isNaN(result)) SumProcValue += result;
       });
       SumProcValue = Math.round(SumProcValue / filteredIds.length);
       setProcent(SumProcValue);
     }
   }, [results.items]);
+
+  const sumProc = (items, user, id) => {
+    const userItems = items.find(item => item.user === user);
+    if (!userItems) return 0;
+  
+    const filteredItems = userItems.subject.filter(item => item.id == id);
+    const procSum = filteredItems.reduce((acc, item) => acc + item.proc, 0);
+  
+    return procSum / filteredItems.length;
+  };
+
 
   return (
     <div className={classes}>

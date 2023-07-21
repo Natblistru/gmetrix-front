@@ -37,7 +37,10 @@ let temeIstoria = [
             vomAfla: [
               {
                 name: "Când a intrat România în război și de partea cui",
-                id: "1",
+                id: "10",
+                subjectID: "1",
+                subtitleID: "1",
+                titleID: "1",
                 raspuns: "România în război in 1916 și de partea Antantei",
                 audio: "/sound/audio-joiner1_31.mp3",
                 images: [
@@ -48,7 +51,10 @@ let temeIstoria = [
               },
               {
                 name: "Principalul motiv pentru care România a intrat în război",
-                id: "2",
+                id: "11",
+                subjectID: "1",
+                subtitleID: "1",
+                titleID: "1",
                 raspuns:
                   "Eliberarea teritoriilor aflate sub stăpânire austro-ungară",
                 audio: "/sound/soundsample.mp3",
@@ -1317,6 +1323,14 @@ let temeIstoria = [
                 path: "/istoria/romania-in-primul-razboi",
               },
             ],
+            vomAfla: [
+              {
+                id: "20",
+                subjectID: "2",
+                subtitleID: "1",
+                titleID: "1"
+               }
+             ],
           },
 
           {
@@ -1336,6 +1350,14 @@ let temeIstoria = [
                 path: "/istoria/romania-in-primul-razboi",
               },
             ],
+            vomAfla: [
+              {
+                id: "30",
+                subjectID: "3",
+                subtitleID: "1",
+                titleID: "1"
+               }
+             ],
           },
           {
             id: "4",
@@ -1354,6 +1376,14 @@ let temeIstoria = [
                 path: "/istoria/romania-in-primul-razboi",
               },
             ],
+            vomAfla: [
+              {
+                id: "40",
+                subjectID: "4",
+                subtitleID: "1",
+                titleID: "1"
+               }
+             ],
           },
           {
             id: "5",
@@ -1372,6 +1402,14 @@ let temeIstoria = [
                 path: "/istoria/romania-in-primul-razboi",
               },
             ],
+            vomAfla: [
+              {
+                id: "50",
+                subjectID: "5",
+                subtitleID: "1",
+                titleID: "1"
+               }
+             ],
           },
         ],
         diagramData: [
@@ -3356,6 +3394,14 @@ let temeIstoria = [
                 path: "/istoria/mișcarea-națională-a-românilor",
               },
             ],
+            vomAfla: [
+              {
+                id: "60",
+                subjectID: "6",
+                subtitleID: "2",
+                titleID: "1"
+               }
+             ],
           },
           {
             id: "7",
@@ -3374,6 +3420,14 @@ let temeIstoria = [
                 path: "/istoria/mișcarea-națională-a-românilor",
               },
             ],
+            vomAfla: [
+              {
+                id: "70",
+                subjectID: "7",
+                subtitleID: "2",
+                titleID: "1"
+               }
+             ],
           },
         ],
       },
@@ -3405,6 +3459,14 @@ let temeIstoria = [
                 path: "/istoria/formarea-statului-national-unitar-roman",
               },
             ],
+            vomAfla: [
+              {
+                id: "80",
+                subjectID: "8",
+                subtitleID: "3",
+                titleID: "1"
+               }
+             ],
           },
           {
             id: "9",
@@ -3423,6 +3485,14 @@ let temeIstoria = [
                 path: "/istoria/formarea-statului-national-unitar-roman",
               },
             ],
+            vomAfla: [
+              {
+                id: "90",
+                subjectID: "9",
+                subtitleID: "3",
+                titleID: "1"
+               }
+             ],
           },
         ],
       },
@@ -3453,6 +3523,14 @@ let temeIstoria = [
                 path: "/istoria/conferinta-de-pace-de-la-paris",
               },
             ],
+            vomAfla: [
+              {
+                id: "100",
+                subjectID: "10",
+                subtitleID: "4",
+                titleID: "1"
+               }
+             ],
           },
           {
             id: "11",
@@ -3471,6 +3549,14 @@ let temeIstoria = [
                 path: "/istoria/conferinta-de-pace-de-la-paris",
               },
             ],
+            vomAfla: [
+              {
+                id: "110",
+                subjectID: "11",
+                subtitleID: "4",
+                titleID: "1"
+               }
+             ],
           },
         ],
       },
@@ -3509,6 +3595,14 @@ let temeIstoria = [
                 path: "/istoria/sua-in-perioada-interbelica",
               },
             ],
+            vomAfla: [
+              {
+                id: "120",
+                subjectID: "12",
+                subtitleID: "5",
+                titleID: "2"
+               }
+             ],
           },
           {
             id: "13",
@@ -3527,6 +3621,14 @@ let temeIstoria = [
                 path: "/istoria/sua-in-perioada-interbelica",
               },
             ],
+            vomAfla: [
+              {
+                id: "130",
+                subjectID: "13",
+                subtitleID: "5",
+                titleID: "2"
+               }
+             ],
           },
         ],
       },
@@ -3557,6 +3659,14 @@ let temeIstoria = [
                 path: "/istoria/europa-de-vest-in-perioada-interbelica",
               },
             ],
+            vomAfla: [
+              {
+                id: "140",
+                subjectID: "14",
+                subtitleID: "6",
+                titleID: "2"
+               }
+             ],
           },
           {
             id: "15",
@@ -3605,6 +3715,14 @@ let temeIstoria = [
                 path: "/istoria/romania-in-perioada-interbelica",
               },
             ],
+            vomAfla: [
+              {
+                id: "160",
+                subjectID: "16",
+                subtitleID: "7",
+                titleID: "2"
+               }
+             ],
           },
           {
             id: "17",
@@ -3623,6 +3741,14 @@ let temeIstoria = [
                 path: "/istoria/romania-in-perioada-interbelica",
               },
             ],
+            vomAfla: [
+              {
+                id: "170",
+                subjectID: "17",
+                subtitleID: "7",
+                titleID: "2"
+               }
+             ],
           },
         ],
       },
@@ -3653,6 +3779,14 @@ let temeIstoria = [
                 path: "/istoria/basarabia-in-cadrul-romaniei-mari",
               },
             ],
+            vomAfla: [
+              {
+                id: "180",
+                subjectID: "18",
+                subtitleID: "8",
+                titleID: "2"
+               }
+             ],
           },
           {
             id: "19",
@@ -3671,6 +3805,14 @@ let temeIstoria = [
                 path: "/istoria/basarabia-in-cadrul-romaniei-mari",
               },
             ],
+            vomAfla: [
+              {
+                id: "190",
+                subjectID: "19",
+                subtitleID: "8",
+                titleID: "2"
+               }
+             ],
           },
         ],
       },
@@ -3701,6 +3843,14 @@ let temeIstoria = [
                 path: "/istoria/rassm",
               },
             ],
+            vomAfla: [
+              {
+                id: "200",
+                subjectID: "20",
+                subtitleID: "9",
+                titleID: "2"
+               }
+             ],
           },
           {
             id: "21",
@@ -3719,6 +3869,14 @@ let temeIstoria = [
                 path: "/istoria/rassm",
               },
             ],
+            vomAfla: [
+              {
+                id: "210",
+                subjectID: "21",
+                subtitleID: "9",
+                titleID: "2"
+               }
+             ],
           },
         ],
       },
@@ -3749,6 +3907,14 @@ let temeIstoria = [
                 path: "/istoria/cultura-in-perioada-interbelica",
               },
             ],
+            vomAfla: [
+              {
+                id: "220",
+                subjectID: "22",
+                subtitleID: "10",
+                titleID: "2"
+               }
+             ],
           },
           {
             id: "23",
@@ -3767,6 +3933,14 @@ let temeIstoria = [
                 path: "/istoria/cultura-in-perioada-interbelica",
               },
             ],
+            vomAfla: [
+              {
+                id: "230",
+                subjectID: "23",
+                subtitleID: "10",
+                titleID: "2"
+               }
+             ],
           },
         ],
       },
@@ -3797,6 +3971,14 @@ let temeIstoria = [
                 path: "/istoria/cultura-romaneasca-interbelica",
               },
             ],
+            vomAfla: [
+              {
+                id: "240",
+                subjectID: "24",
+                subtitleID: "11",
+                titleID: "2"
+               }
+             ],
           },
           {
             id: "25",
@@ -3815,6 +3997,14 @@ let temeIstoria = [
                 path: "/istoria/cultura-romaneasca-interbelica",
               },
             ],
+            vomAfla: [
+              {
+                id: "250",
+                subjectID: "25",
+                subtitleID: "11",
+                titleID: "2"
+               }
+             ],
           },
         ],
       },
@@ -3853,6 +4043,14 @@ let temeIstoria = [
                 path: "/istoria/aliante-in-perioada-interbelica",
               },
             ],
+            vomAfla: [
+              {
+                id: "260",
+                subjectID: "26",
+                subtitleID: "12",
+                titleID: "3"
+               }
+             ],
           },
           {
             id: "27",
@@ -3871,6 +4069,14 @@ let temeIstoria = [
                 path: "/istoria/aliante-in-perioada-interbelica",
               },
             ],
+            vomAfla: [
+              {
+                id: "270",
+                subjectID: "27",
+                subtitleID: "12",
+                titleID: "3"
+               }
+             ],
           },
         ],
       },
@@ -3901,6 +4107,14 @@ let temeIstoria = [
                 path: "/istoria/relatiie-sovieto-romane",
               },
             ],
+            vomAfla: [
+              {
+                id: "280",
+                subjectID: "28",
+                subtitleID: "13",
+                titleID: "3"
+               }
+             ],
           },
           {
             id: "29",
@@ -3919,6 +4133,14 @@ let temeIstoria = [
                 path: "/istoria/relatiie-sovieto-romane",
               },
             ],
+            vomAfla: [
+              {
+                id: "290",
+                subjectID: "29",
+                subtitleID: "13",
+                titleID: "3"
+               }
+             ],
           },
         ],
       },
@@ -3949,6 +4171,14 @@ let temeIstoria = [
                 path: "/istoria/pierderile-teritoriale-ale-romaniei",
               },
             ],
+            vomAfla: [
+              {
+                id: "300",
+                subjectID: "30",
+                subtitleID: "14",
+                titleID: "3"
+               }
+             ],
           },
           {
             id: "31",
@@ -3967,6 +4197,14 @@ let temeIstoria = [
                 path: "/istoria/pierderile-teritoriale-ale-romaniei",
               },
             ],
+            vomAfla: [
+              {
+                id: "310",
+                subjectID: "31",
+                subtitleID: "14",
+                titleID: "3"
+               }
+             ],
           },
         ],
       },
@@ -3997,6 +4235,14 @@ let temeIstoria = [
                 path: "/istoria/formarea-rssm",
               },
             ],
+            vomAfla: [
+              {
+                id: "320",
+                subjectID: "32",
+                subtitleID: "15",
+                titleID: "3"
+               }
+             ],
           },
           {
             id: "33",
@@ -4015,6 +4261,14 @@ let temeIstoria = [
                 path: "/istoria/formarea-rssm",
               },
             ],
+            vomAfla: [
+              {
+                id: "330",
+                subjectID: "33",
+                subtitleID: "15",
+                titleID: "3"
+               }
+             ],
           },
         ],
       },
@@ -4053,6 +4307,14 @@ let temeIstoria = [
                 path: "/istoria/al-doilea-razboi-mondial",
               },
             ],
+            vomAfla: [
+              {
+                id: "340",
+                subjectID: "34",
+                subtitleID: "16",
+                titleID: "4"
+               }
+             ],
           },
           {
             id: "35",
@@ -4071,6 +4333,14 @@ let temeIstoria = [
                 path: "/istoria/al-doilea-razboi-mondial",
               },
             ],
+            vomAfla: [
+              {
+                id: "350",
+                subjectID: "35",
+                subtitleID: "16",
+                titleID: "4"
+               }
+             ],
           },
         ],
       },
@@ -4101,6 +4371,14 @@ let temeIstoria = [
                 path: "/istoria/romania-in-al-doilea-razboi-mondial",
               },
             ],
+            vomAfla: [
+              {
+                id: "360",
+                subjectID: "36",
+                subtitleID: "17",
+                titleID: "4"
+               }
+             ],
           },
           {
             id: "37",
@@ -4119,6 +4397,14 @@ let temeIstoria = [
                 path: "/istoria/romania-in-al-doilea-razboi-mondial",
               },
             ],
+            vomAfla: [
+              {
+                id: "370",
+                subjectID: "37",
+                subtitleID: "17",
+                titleID: "4"
+               }
+             ],
           },
         ],
       },
@@ -4149,6 +4435,14 @@ let temeIstoria = [
                 path: "/istoria/holocaust",
               },
             ],
+            vomAfla: [
+              {
+                id: "380",
+                subjectID: "38",
+                subtitleID: "18",
+                titleID: "4"
+               }
+             ],
           },
           {
             id: "39",
@@ -4167,6 +4461,14 @@ let temeIstoria = [
                 path: "/istoria/holocaust",
               },
             ],
+            vomAfla: [
+              {
+                id: "390",
+                subjectID: "39",
+                subtitleID: "18",
+                titleID: "4"
+               }
+             ],
           },
         ],
       },
@@ -4197,6 +4499,14 @@ let temeIstoria = [
                 path: "/istoria/consecintele-celui-de-al-doilea-razboi-mondial",
               },
             ],
+            vomAfla: [
+              {
+                id: "400",
+                subjectID: "40",
+                subtitleID: "19",
+                titleID: "4"
+               }
+             ],
           },
           {
             id: "41",
@@ -4215,6 +4525,14 @@ let temeIstoria = [
                 path: "/istoria/consecintele-celui-de-al-doilea-razboi-mondial",
               },
             ],
+            vomAfla: [
+              {
+                id: "410",
+                subjectID: "41",
+                subtitleID: "19",
+                titleID: "4"
+               }
+             ],
           },
         ],
       },
@@ -4253,6 +4571,14 @@ let temeIstoria = [
                 path: "/istoria/constituirea-onu",
               },
             ],
+            vomAfla: [
+              {
+                id: "420",
+                subjectID: "42",
+                subtitleID: "20",
+                titleID: "5"
+               }
+             ],
           },
           {
             id: "43",
@@ -4271,6 +4597,14 @@ let temeIstoria = [
                 path: "/istoria/constituirea-onu",
               },
             ],
+            vomAfla: [
+              {
+                id: "430",
+                subjectID: "43",
+                subtitleID: "20",
+                titleID: "5"
+               }
+             ],
           },
         ],
       },
@@ -4301,6 +4635,14 @@ let temeIstoria = [
                 path: "/istoria/uniunea-sovietica-in-perioada-postbelica",
               },
             ],
+            vomAfla: [
+              {
+                id: "440",
+                subjectID: "44",
+                subtitleID: "21",
+                titleID: "5"
+               }
+             ],
           },
           {
             id: "45",
@@ -4319,6 +4661,14 @@ let temeIstoria = [
                 path: "/istoria/uniunea-sovietica-in-perioada-postbelica",
               },
             ],
+            vomAfla: [
+              {
+                id: "450",
+                subjectID: "45",
+                subtitleID: "21",
+                titleID: "5"
+               }
+             ],
           },
         ],
       },
@@ -4349,6 +4699,14 @@ let temeIstoria = [
                 path: "/istoria/rssm",
               },
             ],
+            vomAfla: [
+              {
+                id: "460",
+                subjectID: "46",
+                subtitleID: "22",
+                titleID: "5"
+               }
+             ],
           },
           {
             id: "47",
@@ -4367,6 +4725,14 @@ let temeIstoria = [
                 path: "/istoria/rssm",
               },
             ],
+            vomAfla: [
+              {
+                id: "470",
+                subjectID: "47",
+                subtitleID: "22",
+                titleID: "5"
+               }
+             ],
           },
         ],
       },
@@ -4397,6 +4763,14 @@ let temeIstoria = [
                 path: "/istoria/deportarile-staliniste-din-rssm",
               },
             ],
+            vomAfla: [
+              {
+                id: "480",
+                subjectID: "48",
+                subtitleID: "23",
+                titleID: "5"
+               }
+             ],
           },
           {
             id: "49",
@@ -4415,6 +4789,14 @@ let temeIstoria = [
                 path: "/istoria/deportarile-staliniste-din-rssm",
               },
             ],
+            vomAfla: [
+              {
+                id: "490",
+                subjectID: "49",
+                subtitleID: "23",
+                titleID: "5"
+               }
+             ],
           },
         ],
       },
@@ -4453,6 +4835,14 @@ let temeIstoria = [
                 path: "/istoria/proclamarea-independentei-republicii-moldova",
               },
             ],
+            vomAfla: [
+              {
+                id: "500",
+                subjectID: "50",
+                subtitleID: "24",
+                titleID: "6"
+               }
+             ],
           },
           {
             id: "51",
@@ -4471,6 +4861,14 @@ let temeIstoria = [
                 path: "/istoria/proclamarea-independentei-republicii-moldova",
               },
             ],
+            vomAfla: [
+              {
+                id: "510",
+                subjectID: "51",
+                subtitleID: "24",
+                titleID: "6"
+               }
+             ],
           },
         ],
       },
@@ -4501,6 +4899,14 @@ let temeIstoria = [
                 path: "/istoria/razboiul-de-pe-nistru",
               },
             ],
+            vomAfla: [
+              {
+                id: "520",
+                subjectID: "52",
+                subtitleID: "25",
+                titleID: "6"
+               }
+             ],
           },
           {
             id: "53",
@@ -4519,6 +4925,14 @@ let temeIstoria = [
                 path: "/istoria/razboiul-de-pe-nistru",
               },
             ],
+            vomAfla: [
+              {
+                id: "530",
+                subjectID: "53",
+                subtitleID: "25",
+                titleID: "6"
+               }
+             ],
           },
         ],
       },
@@ -4557,6 +4971,14 @@ let temeIstoria = [
                 path: "/istoria/cultura-si-stiinta-in-rssm",
               },
             ],
+            vomAfla: [
+              {
+                id: "540",
+                subjectID: "54",
+                subtitleID: "26",
+                titleID: "7"
+               }
+             ],
           },
           {
             id: "55",
@@ -4575,6 +4997,14 @@ let temeIstoria = [
                 path: "/istoria/cultura-si-stiinta-in-rssm",
               },
             ],
+            vomAfla: [
+              {
+                id: "550",
+                subjectID: "55",
+                subtitleID: "26",
+                titleID: "7"
+               }
+             ],
           },
         ],
       },
@@ -4605,6 +5035,14 @@ let temeIstoria = [
                 path: "/istoria/evolutia-culturii-in-republica-moldova",
               },
             ],
+            vomAfla: [
+              {
+                id: "560",
+                subjectID: "56",
+                subtitleID: "27",
+                titleID: "7"
+               }
+             ],
           },
           {
             id: "57",
@@ -4623,6 +5061,14 @@ let temeIstoria = [
                 path: "/istoria/evolutia-culturii-in-republica-moldova",
               },
             ],
+            vomAfla: [
+              {
+                id: "570",
+                subjectID: "57",
+                subtitleID: "27",
+                titleID: "7"
+               }
+             ],
           },
         ],
       },
@@ -4653,6 +5099,14 @@ let temeIstoria = [
                 path: "/istoria/cultura-si-stiinta-in-epoca-contemporana",
               },
             ],
+            vomAfla: [
+              {
+                id: "580",
+                subjectID: "58",
+                subtitleID: "28",
+                titleID: "7"
+               }
+             ],
           },
           {
             id: "59",
@@ -4671,6 +5125,14 @@ let temeIstoria = [
                 path: "/istoria/cultura-si-stiinta-in-epoca-contemporana",
               },
             ],
+            vomAfla: [
+              {
+                id: "590",
+                subjectID: "59",
+                subtitleID: "28",
+                titleID: "7"
+               }
+             ],
           },
         ],
       },
