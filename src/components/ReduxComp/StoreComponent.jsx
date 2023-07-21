@@ -7,18 +7,19 @@ const initialState = {
 };
 const initialResultState = {
   items: [{user: "Current user",
-           subject: [
-            {
-            id: "1",
-            audio: "1",
-            proc: 60
-           },
-           {
-            id: "1",
-            audio: "2",
-            proc: 10
-           },
-          ]
+          //  subject: [
+          //   {
+          //   id: "1",
+          //   audio: "1",
+          //   proc: 60
+          //  },
+          //  {
+          //   id: "1",
+          //   audio: "2",
+          //   proc: 10
+          //  },
+          // ]
+          subject: []
         }]
 };
 
@@ -51,7 +52,16 @@ const resultsReducer = (state=initialResultState, action) => {
     case 'ADD_RESULT':
       return {
         ...state,
-        items: [...state.items, action.payload]
+        items: state.items.map(userItem => {
+          if (userItem.user === "Current user") {
+            return {
+              ...userItem,
+              subject: [...userItem.subject, action.payload] 
+            };
+          } else {
+            return userItem;
+          }
+        })
       };
       case 'UPDATE_RESULT':
         return {
@@ -62,7 +72,7 @@ const resultsReducer = (state=initialResultState, action) => {
                 ...userItem,
                 subject: userItem.subject.map(subjectItem =>
                   subjectItem.id === action.payload.id && subjectItem.audio === action.payload.audio
-                    ? action.payload // Обновляем элемент с нужным id и audio
+                    ? action.payload 
                     : subjectItem
                 )
               };

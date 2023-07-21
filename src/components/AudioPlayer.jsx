@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { connect } from "react-redux";
 
-const AudioPlayer = ({currentSubject,path,subjectID,results,update}) => {
+const AudioPlayer = ({currentSubject,path,subjectID,arrayAudioLength, results,update, add}) => {
   const audioRef = useRef(null);
   const [progress, setProgress] = useState(0);
   const [currentResult, setCurrentResult] = useState(null);
@@ -13,14 +13,33 @@ const AudioPlayer = ({currentSubject,path,subjectID,results,update}) => {
     const userItems = results.items.find(item => item.user === "Current user");
     if (userItems) {
       const resultItem = userItems.subject.find(subjectItem => subjectItem.id == subjectID && subjectItem.audio == (currentSubject+1));
-      audioRef.current.addEventListener('loadedmetadata', () => {
-        // Рассчитываем значение currentTimeInSeconds из процента
-        const currentTimeInSeconds = (resultItem.proc / 100) * audioRef.current.duration;
-        audioRef.current.currentTime = currentTimeInSeconds;
-      });
-      setCurrentResult(resultItem);
+      if (resultItem) {
+        audioRef.current.addEventListener('loadedmetadata', () => {
+          const currentTimeInSeconds = (resultItem.proc / 100) * audioRef.current.duration;
+          audioRef.current.currentTime = currentTimeInSeconds;
+        });
+        setCurrentResult(resultItem);
+      } else {
+        setCurrentResult(            {
+          id: subjectID,
+          audio: currentSubject+1,
+          proc: 0
+         });
+         for (let i = 0; i < arrayAudioLength; i++) {
+          add(           {
+            id: subjectID,
+            audio: currentSubject+1+i,
+            proc: 0
+           })
+        }
+        //  add(           {
+        //   id: subjectID,
+        //   audio: currentSubject+1,
+        //   proc: 0
+        //  })
+      }
     } else {
-      setCurrentResult(null); // Если объект не найден, устанавливаем в null
+      setCurrentResult(null); 
     }
   }, [currentSubject, path]);
 
@@ -63,6 +82,7 @@ const reduxState = (state) => ({
 
 const reduxFunctions = (dispatch) => ({
   update: (item) => dispatch({ type: "UPDATE_RESULT", payload: item }),
+  add: (item) => dispatch({ type: "ADD_RESULT", payload: item }),
 });
 
 export default connect(reduxState, reduxFunctions)(AudioPlayer);

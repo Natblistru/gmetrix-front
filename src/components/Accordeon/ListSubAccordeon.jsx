@@ -34,7 +34,7 @@ const ListSubAccordeon = (props) => {
         className="blockPB50" open={true}
       > 
         <SimpleSlider {...props} images={arraySubject[currentSubject].images} />
-        <Audio path={arraySubject[currentSubject].audio} currentSubject={currentSubject} subjectID={props.subtema.id}/>
+        <Audio path={arraySubject[currentSubject].audio} currentSubject={currentSubject} subjectID={props.subtema.id} arrayAudioLength={arraySubject.length}/>
         <ProgressSteps list={arraySubject} onClick={clickSubjectHandler} />
       </ItemAccordeon>
       {arraySubject?.map((subj) => (
