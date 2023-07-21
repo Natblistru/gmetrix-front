@@ -7,7 +7,7 @@ const TableRow = (props) => {
   const idx = props.ind;
   const classes = "row " + props.className;
   const dynamicPath = `${rowData.addressTestDisciplina}${rowData.addressTestSubtitle}${rowData.addressTestSubject}${rowData.addressTest}/1`;
-  // console.log(dynamicPath)
+  console.log(rowData)
   return (
     <div className={classes}>
       <div className="column">
@@ -45,7 +45,7 @@ const TableRow = (props) => {
       <div className="tbl-points" title="Cel mai bun rezultat">
         <div className="svg-sprite-vs-points profile-point-empty"></div>
         <span className="points">
-          <span className="points"> 5</span>
+          <span className="points"> {rowData.quizArray.length*rowData.complexityNumber}</span>
         </span>
       </div>
     </div>

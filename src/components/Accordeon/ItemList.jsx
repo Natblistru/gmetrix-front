@@ -22,9 +22,9 @@ const ItemList = ({ list, className, results }) => {
     const user = "Current user";
     const userItems = results.items.find((item) => item.user === user);
     if (!userItems) return 0;
-    console.log(userItems.subject);
-    console.log(subjectId);
-    console.log(subtitle);   
+    // console.log(userItems.subject);
+    // console.log(subjectId);
+    // console.log(subtitle);   
     const filteredItems = userItems.subject.filter(item =>
       subtitle.vomAfla.some(subtitleItem =>
         item.id == subtitleItem.subjectID && item.audio == subtitleItem.id
