@@ -28,12 +28,12 @@ const TableRow = (props) => {
         </span>
       </div> */}
       {/* //test cu raspuns partial (jumatate) */}
-      <div className="tbl-points" title="Cel mai bun rezultat">
+      {/* <div className="tbl-points" title="Cel mai bun rezultat">
         <div className="svg-sprite-vs-points profile-point-half"></div>
         <span className="points">
           <span className="earned"> 1</span> / <span className="max">2</span>
         </span>
-      </div>
+      </div> */}
       {/* //test cu raspuns minimal=0 */}
       {/* <div className="tbl-points" title="Cel mai bun rezultat">
         <div className="svg-sprite-vs-points profile-point-empty"></div>
@@ -42,12 +42,12 @@ const TableRow = (props) => {
         </span>
       </div> */}
       {/* //test cu fara raspuns */}
-      {/* <div className="tbl-points" title="Cel mai bun rezultat">
+      <div className="tbl-points" title="Cel mai bun rezultat">
         <div className="svg-sprite-vs-points profile-point-empty"></div>
         <span className="points">
           <span className="points"> 5</span>
         </span>
-      </div> */}
+      </div>
     </div>
   );
 };
