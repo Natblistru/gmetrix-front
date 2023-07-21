@@ -6,8 +6,52 @@ import { connect } from "react-redux";
 const TitleBox = ({ className, subjectId, subtitleId, children, results }) => {
   const classes = "title-box " + className;
   const [procent, setProcent] = useState(0);
+  
+  useEffect(()=>{
+    console.log(results.items)
+    console.log("subtitleId",subtitleId)   
+   
+if (subtitleId !== null && subtitleId !== undefined) {
+      const filteredIds = temeIstoriArray
+        .flatMap((item) =>
+          item.subtitles.flatMap((subItem) => subItem.subjects)
+        )
+        .filter((subjectItem) => subjectItem.subtitleID == subtitleId)
+        .map((subjectItem) => subjectItem.id);
+
+      let SumProcValue = 0;
+      let result;
+      const user = "Current user";
+      console.log("filteredIds",filteredIds)   
+      filteredIds.forEach((id) => {
+        result = sumProc(results.items, user, id);
+        if (result !== null && result !== undefined && !isNaN(result)) SumProcValue += result;
+      });
+      SumProcValue = Math.round(SumProcValue / filteredIds.length);
+      setProcent(SumProcValue);
+
+    } else {
+      const filteredIds = temeIstoriArray
+        .flatMap((item) =>
+          item.subtitles.flatMap((subItem) => subItem.subjects)
+        )
+        .map((subjectItem) => subjectItem.id);
+
+      let SumProcValue = 0;
+      let result;
+      const user = "Current user";
+
+      filteredIds.forEach((id) => {
+        result = sumProc(results.items, user, id);
+        if (result !== null && result !== undefined && !isNaN(result)) SumProcValue += result;
+      });
+      SumProcValue = Math.round(SumProcValue / filteredIds.length);
+      setProcent(SumProcValue);
+    }
+  },[])
 
   useEffect(() => {
+
     if (subjectId !== null && subjectId !== undefined) {
 
       const user = "Current user";

@@ -20,7 +20,7 @@ const TopicItem = ({ item,results }) => {
       let SumProcValue = 0;
       let result;
       const user = "Current user";
-    console.log(filteredIds);
+    //console.log(filteredIds);
 
       filteredIds.forEach((id) => {
         result = sumProc(results.items, user, id);

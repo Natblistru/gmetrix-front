@@ -1,30 +1,33 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { connect } from "react-redux";
 
-const AudioPlayer = ({currentSubject,path,subjectID,results}) => {
+const AudioPlayer = ({currentSubject,path,subjectID,results,update}) => {
   const audioRef = useRef(null);
   const [progress, setProgress] = useState(0);
+  const [currentResult, setCurrentResult] = useState(null);
 
   useEffect(() => {
     audioRef.current.src = process.env.PUBLIC_URL + path;
+    // audioRef.current.currentTime = 10;
     setProgress(0);
-    // const interval = setInterval(calculateProgress, 3000);
-    // return () => clearInterval(interval); 
+    const userItems = results.items.find(item => item.user === "Current user");
+    if (userItems) {
+      const resultItem = userItems.subject.find(subjectItem => subjectItem.id == subjectID && subjectItem.audio == (currentSubject+1));
+      audioRef.current.addEventListener('loadedmetadata', () => {
+        // Рассчитываем значение currentTimeInSeconds из процента
+        const currentTimeInSeconds = (resultItem.proc / 100) * audioRef.current.duration;
+        audioRef.current.currentTime = currentTimeInSeconds;
+      });
+      setCurrentResult(resultItem);
+    } else {
+      setCurrentResult(null); // Если объект не найден, устанавливаем в null
+    }
   }, [currentSubject, path]);
 
-  const calculateProgress = () => {
-    const audioElement = audioRef.current;
-    const currentTime = audioElement.currentTime;
-    const duration = audioElement.duration;
+  useEffect(()=> {
+    console.log(results.items)
+  },[results.items])
 
-    // Рассчитываем процент прогресса
-    const progressPercentage = (currentTime / duration) * 100;
-    // console.log(currentTime)    
-    // console.log(duration) 
-    // console.log(isNaN(progressPercentage)) 
-    if(!isNaN(progressPercentage)) setProgress(progressPercentage);
-
-  };
 
   const handleTimeUpdate = () => {
     const audioElement = audioRef.current;
@@ -38,15 +41,16 @@ const AudioPlayer = ({currentSubject,path,subjectID,results}) => {
 
    
   useEffect(() => {
-
-    // console.log(progress.toFixed(2));
-    // console.log("results", results.items);
-    // setProgressUp(progress);
-  }, [progress]);
+     if (currentResult && currentResult.proc < progress) {
+      const updatedResult = { ...currentResult, proc: Math.round(progress) };
+      setCurrentResult(updatedResult);
+      update(updatedResult);
+    }
+  }, [progress]); 
 
   return (
     <div className="audio">
-      <audio ref={audioRef} onTimeUpdate={handleTimeUpdate} controls preload="none">
+      <audio ref={audioRef} onTimeUpdate={handleTimeUpdate} controls preload="auto">
         <source src={process.env.PUBLIC_URL + path} type="audio/mpeg" />
       </audio>
     </div>

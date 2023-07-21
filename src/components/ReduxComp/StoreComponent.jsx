@@ -10,12 +10,12 @@ const initialResultState = {
            subject: [
             {
             id: "1",
-            audio: "10",
+            audio: "1",
             proc: 60
            },
            {
             id: "1",
-            audio: "11",
+            audio: "2",
             proc: 10
            },
           ]
@@ -56,9 +56,20 @@ const resultsReducer = (state=initialResultState, action) => {
       case 'UPDATE_RESULT':
         return {
           ...state,
-          items: state.items.map(item =>
-            item.id === action.payload.id ? action.payload : item
-          )
+          items: state.items.map(userItem => {
+            if (userItem.user === "Current user") {
+              return {
+                ...userItem,
+                subject: userItem.subject.map(subjectItem =>
+                  subjectItem.id === action.payload.id && subjectItem.audio === action.payload.audio
+                    ? action.payload // Обновляем элемент с нужным id и audio
+                    : subjectItem
+                )
+              };
+            } else {
+              return userItem;
+            }
+          })
         };
       case 'DELETE_RESULT':
         return {

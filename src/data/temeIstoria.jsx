@@ -37,7 +37,7 @@ let temeIstoria = [
             vomAfla: [
               {
                 name: "Când a intrat România în război și de partea cui",
-                id: "10",
+                id: "1",
                 subjectID: "1",
                 subtitleID: "1",
                 titleID: "1",
@@ -51,7 +51,7 @@ let temeIstoria = [
               },
               {
                 name: "Principalul motiv pentru care România a intrat în război",
-                id: "11",
+                id: "2",
                 subjectID: "1",
                 subtitleID: "1",
                 titleID: "1",
@@ -1325,7 +1325,7 @@ let temeIstoria = [
             ],
             vomAfla: [
               {
-                id: "20",
+                id: "1",
                 subjectID: "2",
                 subtitleID: "1",
                 titleID: "1"
@@ -1352,7 +1352,7 @@ let temeIstoria = [
             ],
             vomAfla: [
               {
-                id: "30",
+                id: "1",
                 subjectID: "3",
                 subtitleID: "1",
                 titleID: "1"
@@ -1378,7 +1378,7 @@ let temeIstoria = [
             ],
             vomAfla: [
               {
-                id: "40",
+                id: "1",
                 subjectID: "4",
                 subtitleID: "1",
                 titleID: "1"
@@ -1404,7 +1404,7 @@ let temeIstoria = [
             ],
             vomAfla: [
               {
-                id: "50",
+                id: "1",
                 subjectID: "5",
                 subtitleID: "1",
                 titleID: "1"
@@ -3396,7 +3396,7 @@ let temeIstoria = [
             ],
             vomAfla: [
               {
-                id: "60",
+                id: "1",
                 subjectID: "6",
                 subtitleID: "2",
                 titleID: "1"
@@ -3422,7 +3422,7 @@ let temeIstoria = [
             ],
             vomAfla: [
               {
-                id: "70",
+                id: "1",
                 subjectID: "7",
                 subtitleID: "2",
                 titleID: "1"
@@ -3461,7 +3461,7 @@ let temeIstoria = [
             ],
             vomAfla: [
               {
-                id: "80",
+                id: "1",
                 subjectID: "8",
                 subtitleID: "3",
                 titleID: "1"
@@ -3487,7 +3487,7 @@ let temeIstoria = [
             ],
             vomAfla: [
               {
-                id: "90",
+                id: "1",
                 subjectID: "9",
                 subtitleID: "3",
                 titleID: "1"
@@ -3525,7 +3525,7 @@ let temeIstoria = [
             ],
             vomAfla: [
               {
-                id: "100",
+                id: "1",
                 subjectID: "10",
                 subtitleID: "4",
                 titleID: "1"
@@ -3551,7 +3551,7 @@ let temeIstoria = [
             ],
             vomAfla: [
               {
-                id: "110",
+                id: "1",
                 subjectID: "11",
                 subtitleID: "4",
                 titleID: "1"
@@ -3597,7 +3597,7 @@ let temeIstoria = [
             ],
             vomAfla: [
               {
-                id: "120",
+                id: "1",
                 subjectID: "12",
                 subtitleID: "5",
                 titleID: "2"
@@ -3623,7 +3623,7 @@ let temeIstoria = [
             ],
             vomAfla: [
               {
-                id: "130",
+                id: "1",
                 subjectID: "13",
                 subtitleID: "5",
                 titleID: "2"
@@ -3661,7 +3661,7 @@ let temeIstoria = [
             ],
             vomAfla: [
               {
-                id: "140",
+                id: "1",
                 subjectID: "14",
                 subtitleID: "6",
                 titleID: "2"
@@ -3717,7 +3717,7 @@ let temeIstoria = [
             ],
             vomAfla: [
               {
-                id: "160",
+                id: "1",
                 subjectID: "16",
                 subtitleID: "7",
                 titleID: "2"
@@ -3743,7 +3743,7 @@ let temeIstoria = [
             ],
             vomAfla: [
               {
-                id: "170",
+                id: "1",
                 subjectID: "17",
                 subtitleID: "7",
                 titleID: "2"
@@ -3781,7 +3781,7 @@ let temeIstoria = [
             ],
             vomAfla: [
               {
-                id: "180",
+                id: "1",
                 subjectID: "18",
                 subtitleID: "8",
                 titleID: "2"
@@ -3807,7 +3807,7 @@ let temeIstoria = [
             ],
             vomAfla: [
               {
-                id: "190",
+                id: "1",
                 subjectID: "19",
                 subtitleID: "8",
                 titleID: "2"
@@ -3845,7 +3845,7 @@ let temeIstoria = [
             ],
             vomAfla: [
               {
-                id: "200",
+                id: "1",
                 subjectID: "20",
                 subtitleID: "9",
                 titleID: "2"
@@ -3871,7 +3871,7 @@ let temeIstoria = [
             ],
             vomAfla: [
               {
-                id: "210",
+                id: "1",
                 subjectID: "21",
                 subtitleID: "9",
                 titleID: "2"
@@ -3909,7 +3909,7 @@ let temeIstoria = [
             ],
             vomAfla: [
               {
-                id: "220",
+                id: "1",
                 subjectID: "22",
                 subtitleID: "10",
                 titleID: "2"
@@ -3935,7 +3935,7 @@ let temeIstoria = [
             ],
             vomAfla: [
               {
-                id: "230",
+                id: "1",
                 subjectID: "23",
                 subtitleID: "10",
                 titleID: "2"
@@ -3973,7 +3973,7 @@ let temeIstoria = [
             ],
             vomAfla: [
               {
-                id: "240",
+                id: "1",
                 subjectID: "24",
                 subtitleID: "11",
                 titleID: "2"
@@ -3999,7 +3999,7 @@ let temeIstoria = [
             ],
             vomAfla: [
               {
-                id: "250",
+                id: "1",
                 subjectID: "25",
                 subtitleID: "11",
                 titleID: "2"
@@ -4045,7 +4045,7 @@ let temeIstoria = [
             ],
             vomAfla: [
               {
-                id: "260",
+                id: "1",
                 subjectID: "26",
                 subtitleID: "12",
                 titleID: "3"
@@ -4071,7 +4071,7 @@ let temeIstoria = [
             ],
             vomAfla: [
               {
-                id: "270",
+                id: "1",
                 subjectID: "27",
                 subtitleID: "12",
                 titleID: "3"
@@ -4109,7 +4109,7 @@ let temeIstoria = [
             ],
             vomAfla: [
               {
-                id: "280",
+                id: "1",
                 subjectID: "28",
                 subtitleID: "13",
                 titleID: "3"
@@ -4135,7 +4135,7 @@ let temeIstoria = [
             ],
             vomAfla: [
               {
-                id: "290",
+                id: "1",
                 subjectID: "29",
                 subtitleID: "13",
                 titleID: "3"
@@ -4173,7 +4173,7 @@ let temeIstoria = [
             ],
             vomAfla: [
               {
-                id: "300",
+                id: "1",
                 subjectID: "30",
                 subtitleID: "14",
                 titleID: "3"
@@ -4199,7 +4199,7 @@ let temeIstoria = [
             ],
             vomAfla: [
               {
-                id: "310",
+                id: "1",
                 subjectID: "31",
                 subtitleID: "14",
                 titleID: "3"
@@ -4237,7 +4237,7 @@ let temeIstoria = [
             ],
             vomAfla: [
               {
-                id: "320",
+                id: "1",
                 subjectID: "32",
                 subtitleID: "15",
                 titleID: "3"
@@ -4263,7 +4263,7 @@ let temeIstoria = [
             ],
             vomAfla: [
               {
-                id: "330",
+                id: "1",
                 subjectID: "33",
                 subtitleID: "15",
                 titleID: "3"
@@ -4309,7 +4309,7 @@ let temeIstoria = [
             ],
             vomAfla: [
               {
-                id: "340",
+                id: "1",
                 subjectID: "34",
                 subtitleID: "16",
                 titleID: "4"
@@ -4335,7 +4335,7 @@ let temeIstoria = [
             ],
             vomAfla: [
               {
-                id: "350",
+                id: "1",
                 subjectID: "35",
                 subtitleID: "16",
                 titleID: "4"
@@ -4373,7 +4373,7 @@ let temeIstoria = [
             ],
             vomAfla: [
               {
-                id: "360",
+                id: "1",
                 subjectID: "36",
                 subtitleID: "17",
                 titleID: "4"
@@ -4399,7 +4399,7 @@ let temeIstoria = [
             ],
             vomAfla: [
               {
-                id: "370",
+                id: "1",
                 subjectID: "37",
                 subtitleID: "17",
                 titleID: "4"
@@ -4437,7 +4437,7 @@ let temeIstoria = [
             ],
             vomAfla: [
               {
-                id: "380",
+                id: "1",
                 subjectID: "38",
                 subtitleID: "18",
                 titleID: "4"
@@ -4463,7 +4463,7 @@ let temeIstoria = [
             ],
             vomAfla: [
               {
-                id: "390",
+                id: "1",
                 subjectID: "39",
                 subtitleID: "18",
                 titleID: "4"
@@ -4501,7 +4501,7 @@ let temeIstoria = [
             ],
             vomAfla: [
               {
-                id: "400",
+                id: "1",
                 subjectID: "40",
                 subtitleID: "19",
                 titleID: "4"
@@ -4527,7 +4527,7 @@ let temeIstoria = [
             ],
             vomAfla: [
               {
-                id: "410",
+                id: "1",
                 subjectID: "41",
                 subtitleID: "19",
                 titleID: "4"
@@ -4573,7 +4573,7 @@ let temeIstoria = [
             ],
             vomAfla: [
               {
-                id: "420",
+                id: "1",
                 subjectID: "42",
                 subtitleID: "20",
                 titleID: "5"
@@ -4599,7 +4599,7 @@ let temeIstoria = [
             ],
             vomAfla: [
               {
-                id: "430",
+                id: "1",
                 subjectID: "43",
                 subtitleID: "20",
                 titleID: "5"
@@ -4637,7 +4637,7 @@ let temeIstoria = [
             ],
             vomAfla: [
               {
-                id: "440",
+                id: "1",
                 subjectID: "44",
                 subtitleID: "21",
                 titleID: "5"
@@ -4663,7 +4663,7 @@ let temeIstoria = [
             ],
             vomAfla: [
               {
-                id: "450",
+                id: "1",
                 subjectID: "45",
                 subtitleID: "21",
                 titleID: "5"
@@ -4701,7 +4701,7 @@ let temeIstoria = [
             ],
             vomAfla: [
               {
-                id: "460",
+                id: "1",
                 subjectID: "46",
                 subtitleID: "22",
                 titleID: "5"
@@ -4727,7 +4727,7 @@ let temeIstoria = [
             ],
             vomAfla: [
               {
-                id: "470",
+                id: "1",
                 subjectID: "47",
                 subtitleID: "22",
                 titleID: "5"
@@ -4765,7 +4765,7 @@ let temeIstoria = [
             ],
             vomAfla: [
               {
-                id: "480",
+                id: "1",
                 subjectID: "48",
                 subtitleID: "23",
                 titleID: "5"
@@ -4791,7 +4791,7 @@ let temeIstoria = [
             ],
             vomAfla: [
               {
-                id: "490",
+                id: "1",
                 subjectID: "49",
                 subtitleID: "23",
                 titleID: "5"
@@ -4837,7 +4837,7 @@ let temeIstoria = [
             ],
             vomAfla: [
               {
-                id: "500",
+                id: "1",
                 subjectID: "50",
                 subtitleID: "24",
                 titleID: "6"
@@ -4863,7 +4863,7 @@ let temeIstoria = [
             ],
             vomAfla: [
               {
-                id: "510",
+                id: "1",
                 subjectID: "51",
                 subtitleID: "24",
                 titleID: "6"
@@ -4901,7 +4901,7 @@ let temeIstoria = [
             ],
             vomAfla: [
               {
-                id: "520",
+                id: "1",
                 subjectID: "52",
                 subtitleID: "25",
                 titleID: "6"
@@ -4927,7 +4927,7 @@ let temeIstoria = [
             ],
             vomAfla: [
               {
-                id: "530",
+                id: "1",
                 subjectID: "53",
                 subtitleID: "25",
                 titleID: "6"
@@ -4973,7 +4973,7 @@ let temeIstoria = [
             ],
             vomAfla: [
               {
-                id: "540",
+                id: "1",
                 subjectID: "54",
                 subtitleID: "26",
                 titleID: "7"
@@ -4999,7 +4999,7 @@ let temeIstoria = [
             ],
             vomAfla: [
               {
-                id: "550",
+                id: "1",
                 subjectID: "55",
                 subtitleID: "26",
                 titleID: "7"
@@ -5037,7 +5037,7 @@ let temeIstoria = [
             ],
             vomAfla: [
               {
-                id: "560",
+                id: "1",
                 subjectID: "56",
                 subtitleID: "27",
                 titleID: "7"
@@ -5063,7 +5063,7 @@ let temeIstoria = [
             ],
             vomAfla: [
               {
-                id: "570",
+                id: "1",
                 subjectID: "57",
                 subtitleID: "27",
                 titleID: "7"
@@ -5101,7 +5101,7 @@ let temeIstoria = [
             ],
             vomAfla: [
               {
-                id: "580",
+                id: "1",
                 subjectID: "58",
                 subtitleID: "28",
                 titleID: "7"
@@ -5127,7 +5127,7 @@ let temeIstoria = [
             ],
             vomAfla: [
               {
-                id: "590",
+                id: "1",
                 subjectID: "59",
                 subtitleID: "28",
                 titleID: "7"
