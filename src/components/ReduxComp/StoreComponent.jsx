@@ -22,6 +22,67 @@ const initialResultState = {
           subject: []
         }]
 };
+const initialTeststState = {
+  items: [{user: "Current user",
+            tests: [
+            {
+            id: "1",
+            quiz: "2",
+            item: "1",
+            proc: 100
+           },
+           {
+            id: "1",
+            quiz: "2",
+            item: "2",
+            proc: 100
+           },
+           {
+            id: "1",
+            quiz: "4",
+            item: "1",
+            proc: 0
+           },
+           {
+            id: "1",
+            quiz: "4",
+            item: "2",
+            proc: 0
+           },
+           {
+            id: "1",
+            quiz: "8",
+            item: "1",
+            proc: 100
+           },
+           {
+            id: "1",
+            quiz: "8",
+            item: "2",
+            proc: 0
+           },
+           {
+            id: "1",
+            quiz: "1",
+            item: "1",
+            proc: 100
+           },
+           {
+            id: "1",
+            quiz: "1",
+            item: "2",
+            proc: 100
+           },
+           {
+            id: "1",
+            quiz: "1",
+            item: "3",
+            proc: 100
+           },
+          ]
+          // tests: []
+        }]
+};
 
 const raspunsuriReducer = (state=initialState, action) => {
   switch (action.type) {
@@ -81,13 +142,74 @@ const resultsReducer = (state=initialResultState, action) => {
             }
           })
         };
-      case 'DELETE_RESULT':
+        case 'DELETE_RESULT':
+          return {
+            ...state,
+            items: state.items.map(userItem => {
+              if (userItem.user === "Current user") {
+                return {
+                  ...userItem,
+                  subject: state.subject.filter(item => item.id != action.payload.id && item.audio != action.payload.audio) 
+                };
+              } else {
+                return userItem;
+              }
+            })
+          };
+        default:
+        return state;
+  }
+};
+const testsReducer = (state=initialTeststState, action) => {
+  switch (action.type) {
+    case 'ADD_TEST':
+      return {
+        ...state,
+        items: state.items.map(userItem => {
+          if (userItem.user === "Current user") {
+            return {
+              ...userItem,
+              tests: [...userItem.tests, action.payload] 
+            };
+          } else {
+            return userItem;
+          }
+        })
+      };
+      case 'UPDATE_TEST':
         return {
           ...state,
-          items: state.items.filter(item => item.id !== action.payload)
+          items: state.items.map(userItem => {
+            if (userItem.user === "Current user") {
+              return {
+                ...userItem,
+                tests: userItem.tests.map(testItem =>
+                  testItem.id == action.payload.id && testItem.quiz == action.payload.quiz && testItem.item == action.payload.item
+                    ? action.payload 
+                    : testItem
+                )
+              };
+            } else {
+              return userItem;
+            }
+          })
         };
-      default:
-        return state;
+        case 'DELETE_TEST':
+          return {
+            ...state,
+            items: state.items.map(userItem => {
+              if (userItem.user === "Current user") {
+                return {
+                  ...userItem,
+                  tests: state.tests.filter(item => item.id != action.payload.id && item.quiz != action.payload.quiz && item.item != action.payload.item) 
+                };
+              } else {
+                return userItem;
+              }
+            })
+          };
+          default:
+            return state;
   }
 };
 
@@ -103,7 +225,8 @@ const textReducer = ( state = "", action )=> {
 const combinedReducers = combineReducers({
   raspunsuri: raspunsuriReducer,
   text: textReducer,
-  results: resultsReducer
+  results: resultsReducer,
+  tests: testsReducer
 })
 
 const store = createStore(combinedReducers)

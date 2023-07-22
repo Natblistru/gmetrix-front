@@ -78,6 +78,9 @@ let temeIstoria = [
             teste: [
               {
                 id: "1",
+                subjectID: "1",
+                subtitleID: "1",
+                titleID: "1",
                 name: "Alege afirmația corectă",
                 complexity: "simplu",
                 complexityNumber: 1,
@@ -107,6 +110,10 @@ let temeIstoria = [
                 quizArray: [
                   {
                     id: "1",
+                    testID: "1",
+                    subjectID: "1",
+                    subtitleID: "1",
+                    titleID: "1",
                     answers: [
                       {
                         text: "România a intrat în Primul Război Mondial în anul 1916",
@@ -134,6 +141,10 @@ let temeIstoria = [
                   },
                   {
                     id: "2",
+                    testID: "1",
+                    subjectID: "1",
+                    subtitleID: "1",
+                    titleID: "1",
                     answers: [
                       {
                         text: "România a intrat în Primul Război Mondial de partea Puterilor Antantei",
@@ -161,6 +172,10 @@ let temeIstoria = [
                   },
                   {
                     id: "3",
+                    testID: "1",
+                    subjectID: "1",
+                    subtitleID: "1",
+                    titleID: "1",
                     answers: [
                       {
                         text: "Principala bătălie în care România a suferit pierderi semnificative în timpul războiului a fost Bătălia de la Turtucaia",
@@ -188,6 +203,10 @@ let temeIstoria = [
                   },
                   {
                     id: "4",
+                    testID: "1",
+                    subjectID: "1",
+                    subtitleID: "1",
+                    titleID: "1",
                     answers: [
                       {
                         text: "România a câștigat o victorie importantă în Bătălia de la Mărăști în 1917",
@@ -215,6 +234,10 @@ let temeIstoria = [
                   },
                   {
                     id: "5",
+                    testID: "1",
+                    subjectID: "1",
+                    subtitleID: "1",
+                    titleID: "1",
                     answers: [
                       {
                         text: "România a obținut câștiguri teritoriale semnificative în urma Tratatului de la Trianon",
@@ -244,6 +267,9 @@ let temeIstoria = [
               },
               {
                 id: "2",
+                subjectID: "1",
+                subtitleID: "1",
+                titleID: "1",
                 name: "Stabilește cauzele evenimentelor",
                 complexity: "moderat",
                 complexityNumber: 2,
@@ -273,6 +299,10 @@ let temeIstoria = [
                 quizArray: [
                   {
                     id: "1",
+                    testID: "2",
+                    subjectID: "1",
+                    subtitleID: "1",
+                    titleID: "1",
                     cerinte:
                       "Din lista prezentată selectați cauzele I Război Mondial:",
                     answers: [
@@ -310,6 +340,10 @@ let temeIstoria = [
                   },
                   {
                     id: "2",
+                    testID: "2",
+                    subjectID: "1",
+                    subtitleID: "1",
+                    titleID: "1",
                     cerinte:
                       "Din lista prezentată selectați cauzele neutralității României la începutil I Război Mondial:",
                     answers: [
@@ -352,6 +386,9 @@ let temeIstoria = [
               },
               {
                 id: "3",
+                subjectID: "1",
+                subtitleID: "1",
+                titleID: "1",
                 name: "Stabilește consecințele evenimentelor",
                 complexity: "moderat",
                 complexityNumber: 2,
@@ -381,6 +418,10 @@ let temeIstoria = [
                 quizArray: [
                   {
                     id: "1",
+                    testID: "3",
+                    subjectID: "1",
+                    subtitleID: "1",
+                    titleID: "1",
                     cerinte:
                       "Din lista prezentată selectați consecințele I Război Mondial:",
                     answers: [
@@ -411,6 +452,10 @@ let temeIstoria = [
                   },
                   {
                     id: "2",
+                    testID: "3",
+                    subjectID: "1",
+                    subtitleID: "1",
+                    titleID: "1",
                     cerinte:
                       "Din lista prezentată selectați consecințele intrării Romaniei în I Război Mondial:",
                     answers: [
@@ -454,6 +499,9 @@ let temeIstoria = [
 
               {
                 id: "4",
+                subjectID: "1",
+                subtitleID: "1",
+                titleID: "1",
                 name: "Verifică corectitudinea afirmațiilor",
                 complexity: "simplu",
                 complexityNumber: 1,
@@ -482,6 +530,10 @@ let temeIstoria = [
                 quizArray: [
                   {
                     id: "1",
+                    testID: "4",
+                    subjectID: "1",
+                    subtitleID: "1",
+                    titleID: "1",
                     cerinte: "Persoana reprezentată în imagine:",
                     answers: [
                       {
@@ -513,6 +565,10 @@ let temeIstoria = [
                   },
                   {
                     id: "2",
+                    testID: "4",
+                    subjectID: "1",
+                    subtitleID: "1",
+                    titleID: "1",
                     cerinte: "Persoana reprezentată în imagine:",
                     answers: [
                       {
@@ -546,6 +602,9 @@ let temeIstoria = [
               },
               {
                 id: "5",
+                subjectID: "1",
+                subtitleID: "1",
+                titleID: "1",
                 name: "Formează perechi logice",
                 complexity: "simplu",
                 complexityNumber: 1,
@@ -584,6 +643,10 @@ let temeIstoria = [
                 quizArray: [
                   {
                     id: "1",
+                    testID: "5",
+                    subjectID: "1",
+                    subtitleID: "1",
+                    titleID: "1",
                     cerinte:
                       "Formează perechi logice, unind prin săgeţi, conţinuturile din prima și a doua coloană:",
                     text: [
@@ -600,6 +663,10 @@ let temeIstoria = [
                   },
                   {
                     id: "2",
+                    testID: "5",
+                    subjectID: "1",
+                    subtitleID: "1",
+                    titleID: "1",
                     cerinte:
                       "Formează perechi logice, unind prin săgeţi, conţinuturile din prima și a doua coloană:",
                       text: [
@@ -619,6 +686,9 @@ let temeIstoria = [
 
               {
                 id: "6",
+                subjectID: "1",
+                subtitleID: "1",
+                titleID: "1",
                 name: "Grupează elementele",
                 complexity: "simplu",
                 complexityNumber: 1,
@@ -648,6 +718,10 @@ let temeIstoria = [
                 quizArray: [
                   {
                     id: "1",
+                    testID: "6",
+                    subjectID: "1",
+                    subtitleID: "1",
+                    titleID: "1",
                     answers: [
                       { id: "1", text: "Germania" },
                       { id: "2", text: "Austro-Ungaria" },
@@ -680,6 +754,10 @@ let temeIstoria = [
                   },
                   {
                     id: "2",
+                    testID: "6",
+                    subjectID: "1",
+                    subtitleID: "1",
+                    titleID: "1",
                     answers: [
                       {
                         id: "1",
@@ -726,6 +804,9 @@ let temeIstoria = [
               },
               {
                 id: "7",
+                subjectID: "1",
+                subtitleID: "1",
+                titleID: "1",
                 name: "Caracteristicile evenimentelor",
                 complexity: "moderat",
                 complexityNumber: 2,
@@ -755,6 +836,10 @@ let temeIstoria = [
                 quizArray: [
                   {
                     id: "1",
+                    testID: "7",
+                    subjectID: "1",
+                    subtitleID: "1",
+                    titleID: "1",
                     cerinte:
                       "Din lista prezentată selectați caracteristicile I Război Mondial:",
                     answers: [
@@ -792,6 +877,10 @@ let temeIstoria = [
                   },
                   {
                     id: "2",
+                    testID: "7",
+                    subjectID: "1",
+                    subtitleID: "1",
+                    titleID: "1",
                     cerinte:
                       "Din lista prezentată selectați caracteristicile I Război Mondial:",
                     answers: [
@@ -831,6 +920,9 @@ let temeIstoria = [
               },
               {
                 id: "8",
+                subjectID: "1",
+                subtitleID: "1",
+                titleID: "1",
                 name: "Completează propoziția",
                 complexity: "simplu",
                 complexityNumber: 1,
@@ -859,6 +951,10 @@ let temeIstoria = [
                 quizArray: [
                   {
                     id: "1",
+                    testID: "8",
+                    subjectID: "1",
+                    subtitleID: "1",
+                    titleID: "1",
                     answers: [
                       {
                         // id: "1",
@@ -871,6 +967,10 @@ let temeIstoria = [
                   },
                   {
                     id: "2",
+                    testID: "8",
+                    subjectID: "1",
+                    subtitleID: "1",
+                    titleID: "1",
                     answers: [
                       {
                         // id: "1",
@@ -895,6 +995,9 @@ let temeIstoria = [
               },
               {
                 id: "9",
+                subjectID: "1",
+                subtitleID: "1",
+                titleID: "1",
                 name: "Elaborează un fragment de text",
                 complexity: "dificil",
                 complexityNumber: 3,
@@ -924,6 +1027,10 @@ let temeIstoria = [
                 quizArray: [
                   {
                     id: "1",
+                    testID: "9",
+                    subjectID: "1",
+                    subtitleID: "1",
+                    titleID: "1",
                     answers: [
                       {
                         id: "1",
@@ -968,6 +1075,10 @@ let temeIstoria = [
                   },
                   {
                     id: "2",
+                    testID: "9",
+                    subjectID: "1",
+                    subtitleID: "1",
+                    titleID: "1",
                     answers: [
                       {
                         id: "1",
@@ -1014,6 +1125,9 @@ let temeIstoria = [
               },
               {
                 id: "10",
+                subjectID: "1",
+                subtitleID: "1",
+                titleID: "1",
                 name: "Succesiunea cronologică a evenimentelor",
                 complexity: "moderat",
                 complexityNumber: 2,
@@ -1043,6 +1157,10 @@ let temeIstoria = [
                 quizArray: [
                   {
                     id: "1",
+                    testID: "10",
+                    subjectID: "1",
+                    subtitleID: "1",
+                    titleID: "1",
                     answers: [
                       {
                         id: "1",
@@ -1083,6 +1201,10 @@ let temeIstoria = [
                   },
                   {
                     id: "2",
+                    testID: "10",
+                    subjectID: "1",
+                    subtitleID: "1",
+                    titleID: "1",
                     answers: [
                       {
                         id: "1",
@@ -1125,6 +1247,9 @@ let temeIstoria = [
               },
               {
                 id: "11",
+                subjectID: "1",
+                subtitleID: "1",
+                titleID: "1",
                 name: "Test de totalizare",
                 complexity: "moderat",
                 complexityNumber: 2,
@@ -1153,6 +1278,10 @@ let temeIstoria = [
                 quizArray: [
                   {
                     id: "1",
+                    testID: "11",
+                    subjectID: "1",
+                    subtitleID: "1",
+                    titleID: "1",
                     listaSarcini: [
                       {
                         id: "1",
@@ -1234,6 +1363,10 @@ let temeIstoria = [
                   },
                   {
                     id: "2",
+                    testID: "11",
+                    subjectID: "1",
+                    subtitleID: "1",
+                    titleID: "1",
                     listaSarcini: [
                       {
                         id: "1",
@@ -1342,6 +1475,16 @@ let temeIstoria = [
                 titleID: "1"
                }
              ],
+             teste: [{
+              id: 1,
+              quizArray: [{
+                   id: 1,
+                   testID: "1",
+                   subjectID: "2",  
+                   subtitleID: "1",
+                   titleID: "1" 
+              }]
+            }],
           },
 
           {
@@ -1369,6 +1512,16 @@ let temeIstoria = [
                 titleID: "1"
                }
              ],
+             teste: [{
+              id: 1,
+              quizArray: [{
+                   id: 1,
+                   testID: "1",
+                   subjectID: "3",  
+                   subtitleID: "1",
+                   titleID: "1" 
+              }]
+            }],
           },
           {
             id: "4",
@@ -1395,6 +1548,16 @@ let temeIstoria = [
                 titleID: "1"
                }
              ],
+             teste: [{
+              id: 1,
+              quizArray: [{
+                   id: 1,
+                   testID: "1",
+                   subjectID: "4",  
+                   subtitleID: "1",
+                   titleID: "1" 
+              }]
+            }],
           },
           {
             id: "5",
@@ -1421,6 +1584,16 @@ let temeIstoria = [
                 titleID: "1"
                }
              ],
+             teste: [{
+              id: 1,
+              quizArray: [{
+                   id: 1,
+                   testID: "1",
+                   subjectID: "5",  
+                   subtitleID: "1",
+                   titleID: "1" 
+              }]
+            }],
           },
         ],
         diagramData: [
@@ -3416,6 +3589,16 @@ let temeIstoria = [
                 titleID: "1"
                }
              ],
+             teste: [{
+              id: 1,
+              quizArray: [{
+                   id: 1,
+                   testID: "1",
+                   subjectID: "6",  
+                   subtitleID: "2",
+                   titleID: "1" 
+              }]
+            }],
           },
           {
             id: "7",
@@ -3442,6 +3625,16 @@ let temeIstoria = [
                 titleID: "1"
                }
              ],
+             teste: [{
+              id: 1,
+              quizArray: [{
+                   id: 1,
+                   testID: "1",
+                   subjectID: "7",  
+                   subtitleID: "2",
+                   titleID: "1" 
+              }]
+            }],
           },
         ],
       },
@@ -3481,6 +3674,16 @@ let temeIstoria = [
                 titleID: "1"
                }
              ],
+             teste: [{
+              id: 1,
+              quizArray: [{
+                   id: 1,
+                   testID: "1",
+                   subjectID: "8",  
+                   subtitleID: "3",
+                   titleID: "1" 
+              }]
+            }],
           },
           {
             id: "9",
@@ -3507,6 +3710,16 @@ let temeIstoria = [
                 titleID: "1"
                }
              ],
+             teste: [{
+              id: 1,
+              quizArray: [{
+                   id: 1,
+                   testID: "1",
+                   subjectID: "9",  
+                   subtitleID: "3",
+                   titleID: "1" 
+              }]
+            }],
           },
         ],
       },
@@ -3545,6 +3758,16 @@ let temeIstoria = [
                 titleID: "1"
                }
              ],
+             teste: [{
+              id: 1,
+              quizArray: [{
+                   id: 1,
+                   testID: "1",
+                   subjectID: "10",  
+                   subtitleID: "4",
+                   titleID: "1" 
+              }]
+            }],
           },
           {
             id: "11",
@@ -3571,6 +3794,16 @@ let temeIstoria = [
                 titleID: "1"
                }
              ],
+             teste: [{
+              id: 1,
+              quizArray: [{
+                   id: 1,
+                   testID: "1",
+                   subjectID: "11",  
+                   subtitleID: "4",
+                   titleID: "1" 
+              }]
+            }],
           },
         ],
       },
@@ -3617,6 +3850,16 @@ let temeIstoria = [
                 titleID: "2"
                }
              ],
+             teste: [{
+              id: 1,
+              quizArray: [{
+                   id: 1,
+                   testID: "1",
+                   subjectID: "12",  
+                   subtitleID: "5",
+                   titleID: "2" 
+              }]
+            }],
           },
           {
             id: "13",
@@ -3643,6 +3886,16 @@ let temeIstoria = [
                 titleID: "2"
                }
              ],
+             teste: [{
+              id: 1,
+              quizArray: [{
+                   id: 1,
+                   testID: "1",
+                   subjectID: "13",  
+                   subtitleID: "5",
+                   titleID: "2" 
+              }]
+            }],
           },
         ],
       },
@@ -3681,6 +3934,16 @@ let temeIstoria = [
                 titleID: "2"
                }
              ],
+             teste: [{
+              id: 1,
+              quizArray: [{
+                   id: 1,
+                   testID: "1",
+                   subjectID: "14",  
+                   subtitleID: "6",
+                   titleID: "2" 
+              }]
+            }],
           },
           {
             id: "15",
@@ -3699,6 +3962,24 @@ let temeIstoria = [
                 path: "/istoria/europa-de-vest-in-perioada-interbelica",
               },
             ],
+            vomAfla: [
+              {
+                id: "1",
+                subjectID: "15",
+                subtitleID: "6",
+                titleID: "2"
+               }
+             ],
+             teste: [{
+              id: 1,
+              quizArray: [{
+                   id: 1,
+                   testID: "1",
+                   subjectID: "15",  
+                   subtitleID: "6",
+                   titleID: "2" 
+              }]
+            }],
           },
         ],
       },
@@ -3737,6 +4018,16 @@ let temeIstoria = [
                 titleID: "2"
                }
              ],
+             teste: [{
+              id: 1,
+              quizArray: [{
+                   id: 1,
+                   testID: "1",
+                   subjectID: "16",  
+                   subtitleID: "7",
+                   titleID: "2" 
+              }]
+            }],
           },
           {
             id: "17",
@@ -3763,6 +4054,16 @@ let temeIstoria = [
                 titleID: "2"
                }
              ],
+             teste: [{
+              id: 1,
+              quizArray: [{
+                   id: 1,
+                   testID: "1",
+                   subjectID: "17",  
+                   subtitleID: "7",
+                   titleID: "2" 
+              }]
+            }],
           },
         ],
       },
@@ -3801,6 +4102,16 @@ let temeIstoria = [
                 titleID: "2"
                }
              ],
+             teste: [{
+              id: 1,
+              quizArray: [{
+                   id: 1,
+                   testID: "1",
+                   subjectID: "18",  
+                   subtitleID: "8",
+                   titleID: "2" 
+              }]
+            }],
           },
           {
             id: "19",
@@ -3827,6 +4138,16 @@ let temeIstoria = [
                 titleID: "2"
                }
              ],
+             teste: [{
+              id: 1,
+              quizArray: [{
+                   id: 1,
+                   testID: "1",
+                   subjectID: "19",  
+                   subtitleID: "8",
+                   titleID: "2" 
+              }]
+            }],
           },
         ],
       },
@@ -3865,6 +4186,16 @@ let temeIstoria = [
                 titleID: "2"
                }
              ],
+             teste: [{
+              id: 1,
+              quizArray: [{
+                   id: 1,
+                   testID: "1",
+                   subjectID: "20",  
+                   subtitleID: "9",
+                   titleID: "2" 
+              }]
+            }],
           },
           {
             id: "21",
@@ -3891,6 +4222,16 @@ let temeIstoria = [
                 titleID: "2"
                }
              ],
+             teste: [{
+              id: 1,
+              quizArray: [{
+                   id: 1,
+                   testID: "1",
+                   subjectID: "21",  
+                   subtitleID: "9",
+                   titleID: "2" 
+              }]
+            }],
           },
         ],
       },
@@ -3929,6 +4270,16 @@ let temeIstoria = [
                 titleID: "2"
                }
              ],
+             teste: [{
+              id: 1,
+              quizArray: [{
+                   id: 1,
+                   testID: "1",
+                   subjectID: "22",  
+                   subtitleID: "10",
+                   titleID: "2" 
+              }]
+            }],
           },
           {
             id: "23",
@@ -3955,6 +4306,16 @@ let temeIstoria = [
                 titleID: "2"
                }
              ],
+             teste: [{
+              id: 1,
+              quizArray: [{
+                   id: 1,
+                   testID: "1",
+                   subjectID: "23",  
+                   subtitleID: "10",
+                   titleID: "2" 
+              }]
+            }],
           },
         ],
       },
@@ -3993,6 +4354,16 @@ let temeIstoria = [
                 titleID: "2"
                }
              ],
+             teste: [{
+              id: 1,
+              quizArray: [{
+                   id: 1,
+                   testID: "1",
+                   subjectID: "24",  
+                   subtitleID: "11",
+                   titleID: "2" 
+              }]
+            }],
           },
           {
             id: "25",
@@ -4019,6 +4390,16 @@ let temeIstoria = [
                 titleID: "2"
                }
              ],
+             teste: [{
+              id: 1,
+              quizArray: [{
+                   id: 1,
+                   testID: "1",
+                   subjectID: "25",  
+                   subtitleID: "11",
+                   titleID: "2" 
+              }]
+            }],
           },
         ],
       },
@@ -4065,6 +4446,16 @@ let temeIstoria = [
                 titleID: "3"
                }
              ],
+             teste: [{
+              id: 1,
+              quizArray: [{
+                   id: 1,
+                   testID: "1",
+                   subjectID: "26",  
+                   subtitleID: "12",
+                   titleID: "3" 
+              }]
+            }],
           },
           {
             id: "27",
@@ -4091,6 +4482,16 @@ let temeIstoria = [
                 titleID: "3"
                }
              ],
+             teste: [{
+              id: 1,
+              quizArray: [{
+                   id: 1,
+                   testID: "1",
+                   subjectID: "27",  
+                   subtitleID: "12",
+                   titleID: "3" 
+              }]
+            }],
           },
         ],
       },
@@ -4129,6 +4530,16 @@ let temeIstoria = [
                 titleID: "3"
                }
              ],
+             teste: [{
+              id: 1,
+              quizArray: [{
+                   id: 1,
+                   testID: "1",
+                   subjectID: "28",  
+                   subtitleID: "13",
+                   titleID: "3" 
+              }]
+            }],
           },
           {
             id: "29",
@@ -4155,6 +4566,16 @@ let temeIstoria = [
                 titleID: "3"
                }
              ],
+             teste: [{
+              id: 1,
+              quizArray: [{
+                   id: 1,
+                   testID: "1",
+                   subjectID: "29",  
+                   subtitleID: "13",
+                   titleID: "3" 
+              }]
+            }],
           },
         ],
       },
@@ -4193,6 +4614,16 @@ let temeIstoria = [
                 titleID: "3"
                }
              ],
+             teste: [{
+              id: 1,
+              quizArray: [{
+                   id: 1,
+                   testID: "1",
+                   subjectID: "30",  
+                   subtitleID: "14",
+                   titleID: "3" 
+              }]
+            }],
           },
           {
             id: "31",
@@ -4219,6 +4650,16 @@ let temeIstoria = [
                 titleID: "3"
                }
              ],
+             teste: [{
+              id: 1,
+              quizArray: [{
+                   id: 1,
+                   testID: "1",
+                   subjectID: "31",  
+                   subtitleID: "14",
+                   titleID: "3" 
+              }]
+            }],
           },
         ],
       },
@@ -4257,6 +4698,16 @@ let temeIstoria = [
                 titleID: "3"
                }
              ],
+             teste: [{
+              id: 1,
+              quizArray: [{
+                   id: 1,
+                   testID: "1",
+                   subjectID: "32",  
+                   subtitleID: "15",
+                   titleID: "3" 
+              }]
+            }],
           },
           {
             id: "33",
@@ -4283,6 +4734,16 @@ let temeIstoria = [
                 titleID: "3"
                }
              ],
+             teste: [{
+              id: 1,
+              quizArray: [{
+                   id: 1,
+                   testID: "1",
+                   subjectID: "33",  
+                   subtitleID: "15",
+                   titleID: "3" 
+              }]
+            }],
           },
         ],
       },
@@ -4329,6 +4790,16 @@ let temeIstoria = [
                 titleID: "4"
                }
              ],
+             teste: [{
+              id: 1,
+              quizArray: [{
+                   id: 1,
+                   testID: "1",
+                   subjectID: "34",  
+                   subtitleID: "16",
+                   titleID: "4" 
+              }]
+            }],
           },
           {
             id: "35",
@@ -4355,6 +4826,16 @@ let temeIstoria = [
                 titleID: "4"
                }
              ],
+             teste: [{
+              id: 1,
+              quizArray: [{
+                   id: 1,
+                   testID: "1",
+                   subjectID: "35",  
+                   subtitleID: "16",
+                   titleID: "4" 
+              }]
+            }],
           },
         ],
       },
@@ -4393,6 +4874,16 @@ let temeIstoria = [
                 titleID: "4"
                }
              ],
+             teste: [{
+              id: 1,
+              quizArray: [{
+                   id: 1,
+                   testID: "1",
+                   subjectID: "36",  
+                   subtitleID: "17",
+                   titleID: "4" 
+              }]
+            }],
           },
           {
             id: "37",
@@ -4419,6 +4910,16 @@ let temeIstoria = [
                 titleID: "4"
                }
              ],
+             teste: [{
+              id: 1,
+              quizArray: [{
+                   id: 1,
+                   testID: "1",
+                   subjectID: "37",  
+                   subtitleID: "17",
+                   titleID: "4" 
+              }]
+            }],
           },
         ],
       },
@@ -4457,6 +4958,16 @@ let temeIstoria = [
                 titleID: "4"
                }
              ],
+             teste: [{
+              id: 1,
+              quizArray: [{
+                   id: 1,
+                   testID: "1",
+                   subjectID: "38",  
+                   subtitleID: "18",
+                   titleID: "4" 
+              }]
+            }],
           },
           {
             id: "39",
@@ -4483,6 +4994,16 @@ let temeIstoria = [
                 titleID: "4"
                }
              ],
+             teste: [{
+              id: 1,
+              quizArray: [{
+                   id: 1,
+                   testID: "1",
+                   subjectID: "39",  
+                   subtitleID: "18",
+                   titleID: "4" 
+              }]
+            }],
           },
         ],
       },
@@ -4521,6 +5042,16 @@ let temeIstoria = [
                 titleID: "4"
                }
              ],
+             teste: [{
+              id: 1,
+              quizArray: [{
+                   id: 1,
+                   testID: "1",
+                   subjectID: "40",  
+                   subtitleID: "19",
+                   titleID: "4" 
+              }]
+            }],
           },
           {
             id: "41",
@@ -4547,6 +5078,16 @@ let temeIstoria = [
                 titleID: "4"
                }
              ],
+             teste: [{
+              id: 1,
+              quizArray: [{
+                   id: 1,
+                   testID: "1",
+                   subjectID: "41",  
+                   subtitleID: "19",
+                   titleID: "4" 
+              }]
+            }],
           },
         ],
       },
@@ -4593,6 +5134,16 @@ let temeIstoria = [
                 titleID: "5"
                }
              ],
+             teste: [{
+              id: 1,
+              quizArray: [{
+                   id: 1,
+                   testID: "1",
+                   subjectID: "42",  
+                   subtitleID: "20",
+                   titleID: "5" 
+              }]
+            }],
           },
           {
             id: "43",
@@ -4619,6 +5170,16 @@ let temeIstoria = [
                 titleID: "5"
                }
              ],
+             teste: [{
+              id: 1,
+              quizArray: [{
+                   id: 1,
+                   testID: "1",
+                   subjectID: "43",  
+                   subtitleID: "20",
+                   titleID: "5" 
+              }]
+            }],
           },
         ],
       },
@@ -4657,6 +5218,16 @@ let temeIstoria = [
                 titleID: "5"
                }
              ],
+             teste: [{
+              id: 1,
+              quizArray: [{
+                   id: 1,
+                   testID: "1",
+                   subjectID: "44",  
+                   subtitleID: "21",
+                   titleID: "5" 
+              }]
+            }],
           },
           {
             id: "45",
@@ -4683,6 +5254,16 @@ let temeIstoria = [
                 titleID: "5"
                }
              ],
+             teste: [{
+              id: 1,
+              quizArray: [{
+                   id: 1,
+                   testID: "1",
+                   subjectID: "45",  
+                   subtitleID: "21",
+                   titleID: "5" 
+              }]
+            }],
           },
         ],
       },
@@ -4721,6 +5302,16 @@ let temeIstoria = [
                 titleID: "5"
                }
              ],
+             teste: [{
+              id: 1,
+              quizArray: [{
+                   id: 1,
+                   testID: "1",
+                   subjectID: "46",  
+                   subtitleID: "22",
+                   titleID: "5" 
+              }]
+            }],
           },
           {
             id: "47",
@@ -4747,6 +5338,16 @@ let temeIstoria = [
                 titleID: "5"
                }
              ],
+             teste: [{
+              id: 1,
+              quizArray: [{
+                   id: 1,
+                   testID: "1",
+                   subjectID: "47",  
+                   subtitleID: "22",
+                   titleID: "5" 
+              }]
+            }],
           },
         ],
       },
@@ -4785,6 +5386,16 @@ let temeIstoria = [
                 titleID: "5"
                }
              ],
+             teste: [{
+              id: 1,
+              quizArray: [{
+                   id: 1,
+                   testID: "1",
+                   subjectID: "48",  
+                   subtitleID: "23",
+                   titleID: "5" 
+              }]
+            }],
           },
           {
             id: "49",
@@ -4811,6 +5422,16 @@ let temeIstoria = [
                 titleID: "5"
                }
              ],
+             teste: [{
+              id: 1,
+              quizArray: [{
+                   id: 1,
+                   testID: "1",
+                   subjectID: "49",  
+                   subtitleID: "23",
+                   titleID: "5" 
+              }]
+            }],
           },
         ],
       },
@@ -4857,6 +5478,16 @@ let temeIstoria = [
                 titleID: "6"
                }
              ],
+             teste: [{
+              id: 1,
+              quizArray: [{
+                   id: 1,
+                   testID: "1",
+                   subjectID: "50",  
+                   subtitleID: "24",
+                   titleID: "6" 
+              }]
+            }],
           },
           {
             id: "51",
@@ -4883,6 +5514,16 @@ let temeIstoria = [
                 titleID: "6"
                }
              ],
+             teste: [{
+              id: 1,
+              quizArray: [{
+                   id: 1,
+                   testID: "1",
+                   subjectID: "51",  
+                   subtitleID: "24",
+                   titleID: "6" 
+              }]
+            }],
           },
         ],
       },
@@ -4921,6 +5562,16 @@ let temeIstoria = [
                 titleID: "6"
                }
              ],
+             teste: [{
+              id: 1,
+              quizArray: [{
+                   id: 1,
+                   testID: "1",
+                   subjectID: "52",  
+                   subtitleID: "25",
+                   titleID: "6" 
+              }]
+            }],
           },
           {
             id: "53",
@@ -4947,6 +5598,16 @@ let temeIstoria = [
                 titleID: "6"
                }
              ],
+             teste: [{
+              id: 1,
+              quizArray: [{
+                   id: 1,
+                   testID: "1",
+                   subjectID: "53",  
+                   subtitleID: "25",
+                   titleID: "6" 
+              }]
+            }],
           },
         ],
       },
@@ -4993,6 +5654,16 @@ let temeIstoria = [
                 titleID: "7"
                }
              ],
+             teste: [{
+              id: 1,
+              quizArray: [{
+                   id: 1,
+                   testID: "1",
+                   subjectID: "54",  
+                   subtitleID: "26",
+                   titleID: "7" 
+              }]
+            }],
           },
           {
             id: "55",
@@ -5019,6 +5690,16 @@ let temeIstoria = [
                 titleID: "7"
                }
              ],
+             teste: [{
+              id: 1,
+              quizArray: [{
+                   id: 1,
+                   testID: "1",
+                   subjectID: "55",  
+                   subtitleID: "26",
+                   titleID: "7" 
+              }]
+            }],
           },
         ],
       },
@@ -5057,6 +5738,16 @@ let temeIstoria = [
                 titleID: "7"
                }
              ],
+             teste: [{
+              id: 1,
+              quizArray: [{
+                   id: 1,
+                   testID: "1",
+                   subjectID: "56",  
+                   subtitleID: "27",
+                   titleID: "7" 
+              }]
+            }],
           },
           {
             id: "57",
@@ -5083,6 +5774,16 @@ let temeIstoria = [
                 titleID: "7"
                }
              ],
+             teste: [{
+              id: 1,
+              quizArray: [{
+                   id: 1,
+                   testID: "1",
+                   subjectID: "57",  
+                   subtitleID: "27",
+                   titleID: "7" 
+              }]
+            }],
           },
         ],
       },
@@ -5121,6 +5822,16 @@ let temeIstoria = [
                 titleID: "7"
                }
              ],
+             teste: [{
+              id: 1,
+              quizArray: [{
+                   id: 1,
+                   testID: "1",
+                   subjectID: "58",  
+                   subtitleID: "28",
+                   titleID: "7" 
+              }]
+            }],
           },
           {
             id: "59",
@@ -5147,6 +5858,16 @@ let temeIstoria = [
                 titleID: "7"
                }
              ],
+             teste: [{
+              id: 1,
+              quizArray: [{
+                   id: 1,
+                   testID: "1",
+                   subjectID: "59",  
+                   subtitleID: "28",
+                   titleID: "7" 
+              }]
+            }],
           },
         ],
       },
