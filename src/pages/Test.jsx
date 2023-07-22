@@ -55,9 +55,11 @@ const TestWrapper = ({ tests, add, update }) => {
 
   useEffect(() => {
     console.log("Nota s-aschimbat", correctAnswer);
-    if (correctAnswer !== null) {
-      // console.log("currentList", currentList);
-      // console.log("currentIndex", currentIndex);
+      console.log("currentList", currentList);
+      if (correctAnswer !== null && currentList.type!= "testGeneralizator") {
+      console.log("currentList", currentList);
+      console.log("currentIndex", currentIndex);
+      console.log("correctAnswer", correctAnswer);
       const userItems = tests.items.find(
         (item) => item.user === "Current user"
       );
@@ -113,6 +115,7 @@ const TestWrapper = ({ tests, add, update }) => {
     // if(currInd!==undefined) setCurrentIndex(currInd)
     // else
     if (currentList.type === "testGeneralizator") {
+      console.log("currentIndex",currentIndex);
       setCurrentIndex(
         currentList.quizArray.length - 1 === currentIndex ? 0 : currentIndex + 1
       );
@@ -139,7 +142,7 @@ const TestWrapper = ({ tests, add, update }) => {
           <Breadcrumb list={currentList.breadcrumb} />
           {/* {console.log("currentList", currentList)} */}
           <TitleBox className="teme-container" list={currentList}>
-            {currentList.name}
+            {currentList.type === "testGeneralizator"? currentList.name+ "  "+ `  ${currentIndex+1} / ${currentList.quizArray.length}`:currentList.name }
           </TitleBox>
           {currentList.type === "quiz" && (
             <TestQuiz

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+import { connect } from "react-redux";
 import ItemAccordeon from "../Accordeon/ItemAccordeon";
 import CheckBox from "../CheckBox";
 import SentenceBox from "../DragWords/SentenceBox";
@@ -109,6 +109,9 @@ const TestGeneralizator = ({
   setCorrectAnswer,
   additionalContent,
   handleTryAgain,
+  tests,
+  add,
+  update
 }) => {
 
   // const [showHeader, setShowHeader] = useState(false);
@@ -163,9 +166,13 @@ const TestGeneralizator = ({
       setSentence3(getSentence(text3));
   }, [currentIndex]);
 
-  
-
-  // console.log(currentIndex);
+  const sumTotalPoints = () => {
+    let sumTotal = 0;
+    list.quizArray[currentIndex].listaSarcini?.map((item, idx) => {
+      sumTotal +=totalPoint(idx);
+    })
+    return sumTotal;
+  }
 
   const handleModified = () => {
     const updatedModified = [...modified];
@@ -238,12 +245,51 @@ const TestGeneralizator = ({
     updatedResults[n] = totalResult;
     setResults(updatedResults);
   };
+
+  const updateNota = (nota) => {
+   console.log("nota",nota);
+      const userItems = tests.items.find(
+        (item) => item.user === "Current user"
+      );
+      if (userItems) {
+        const resultItem = userItems.tests.find(
+          (item) =>
+            item.id == list.subjectID &&
+            item.quiz == list.id &&
+            item.item == currentIndex + 1
+        );
+        console.log("userItems.tests",userItems.tests);   
+        console.log("resultItem",resultItem);    
+        if (resultItem) {
+          update({
+            id: list.subjectID,
+            quiz: list.id,
+            item: currentIndex + 1,
+            proc: nota,
+          });
+        } else {
+          add({
+            id: list.subjectID,
+            quiz: list.id,
+            item: currentIndex + 1,
+            proc: nota,
+          });
+        }
+      }
+  }
+ 
   const handleFinish = () => {
     const updatedResults = [...results];
     checkAnswer(updatedResults);
     checkTestWords(sentence1, answers1, 1, updatedResults);
     checkTestWords(sentence2, answers2, 2, updatedResults);
     checkTestWords(sentence3, answers3, 3, updatedResults);
+    let sumResults = 0;
+    for (let i = 0; i < updatedResults.length; i++) {
+      sumResults += updatedResults[i];
+    }
+    const nota = sumResults *100 / sumTotalPoints();
+    updateNota(nota);
     setMarked(true);
     setTimerFinished(true);
   };
@@ -487,4 +533,14 @@ const TestGeneralizator = ({
   );
 };
 
-export default TestGeneralizator;
+
+const reduxState = (state) => ({
+  tests: state.tests,
+});
+
+const reduxFunctions = (dispatch) => ({
+  update: (item) => dispatch({ type: "UPDATE_TEST", payload: item }),
+  add: (item) => dispatch({ type: "ADD_TEST", payload: item }),
+});
+
+export default connect(reduxState, reduxFunctions)(TestGeneralizator);

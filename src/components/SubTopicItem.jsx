@@ -54,6 +54,7 @@ const SubTopicItem = ({subTit,idx,results,tests}) => {
       let foundedItem;
       let numLength = 0;
       filteredQuizArray.forEach((el) => {
+        console.log(userItems.tests)
         foundedItem = userItems.tests.find(
           (item) =>
             item.id == el.subjectID &&

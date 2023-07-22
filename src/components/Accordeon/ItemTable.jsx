@@ -26,8 +26,10 @@ const TableRow = (props) => {
       (item) => item.testID == testID && item.subjectID == subjectId
     );
 
-    //console.log(filteredQuizArray);
+    //console.log("userItems.tests",userItems.tests);
+    //console.log("filteredQuizArray",filteredQuizArray)
     let SumProcValue = 0;
+    let iterration = 0;
     let foundedItem;
     filteredQuizArray.forEach((el) => {
       foundedItem = userItems.tests.find(
@@ -36,10 +38,11 @@ const TableRow = (props) => {
           item.quiz == el.testID &&
           item.item == el.id
       );
-      if (foundedItem) SumProcValue += foundedItem.proc;
+      if (foundedItem) {SumProcValue += foundedItem.proc; iterration++}
     });
-    //console.log(SumProcValue)
-    if (foundedItem == undefined && SumProcValue==0) return null;
+   // console.log("userItems.tests",userItems.tests)
+    // console.log("idx",idx)
+    if (foundedItem == undefined && iterration==0) return null;
     return Math.round(SumProcValue / filteredQuizArray.length);
   };
 
