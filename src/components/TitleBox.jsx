@@ -8,10 +8,10 @@ const TitleBox = ({className,subjectId,subtitleId,list,children,results,tests}) 
   const [procent, setProcent] = useState(0);
 
   useEffect(() => {
-    console.log(results.items);
-    console.log("subjectId", subjectId);
-    console.log("subtitleId", subtitleId);    
-    console.log("list", list);
+    // console.log(results.items);
+    // console.log("subjectId", subjectId);
+    // console.log("subtitleId", subtitleId);    
+    // console.log("list", list);
 
     if (subtitleId !== null && subtitleId !== undefined) {
       const filteredIds = temeIstoriArray
@@ -24,7 +24,7 @@ const TitleBox = ({className,subjectId,subtitleId,list,children,results,tests}) 
       let SumProcValue = 0;
       let result;
       const user = "Current user";
-      console.log("filteredIds", filteredIds);
+      //console.log("filteredIds", filteredIds);
       filteredIds.forEach((id) => {
         result = sumProc(results.items, user, id);
         if (result !== null && result !== undefined && !isNaN(result))
@@ -71,7 +71,7 @@ const TitleBox = ({className,subjectId,subtitleId,list,children,results,tests}) 
       const filteredQuizArray = allQuizArray.filter(
         (item) => item.testID == list.id && item.subjectID == list.subjectID
       );
-      console.log("filteredQuizArray",filteredQuizArray)
+      //console.log("filteredQuizArray",filteredQuizArray)
       let SumProcValue = 0;
       let foundedItem;
       filteredQuizArray.forEach((el) => {
@@ -84,7 +84,7 @@ const TitleBox = ({className,subjectId,subtitleId,list,children,results,tests}) 
         if (foundedItem) SumProcValue += foundedItem.proc;
       });
       SumProcValue = Math.round(SumProcValue / filteredQuizArray.length);
-      console.log("SumProcValue",SumProcValue)
+      //console.log("SumProcValue",SumProcValue)
       setProcent(SumProcValue);
     }
   },[list])
@@ -161,7 +161,7 @@ const TitleBox = ({className,subjectId,subtitleId,list,children,results,tests}) 
         if (foundedItem) SumProcValue += foundedItem.proc;
       });
       SumProcValue = Math.round(SumProcValue / filteredQuizArray.length);
-      console.log("SumProcValue",SumProcValue)
+      //("SumProcValue",SumProcValue)
       setProcent(SumProcValue);
     }
   }, [results.items,tests.items]);

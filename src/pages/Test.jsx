@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { withRouter, useParams, useHistory } from "react-router-dom";
+import { connect } from "react-redux";
 import temeIstoriArray from "../data/temeIstoria";
 import Breadcrumb from "../components/Breadcrumb";
 import Wrapper from "../components/Wrapper";
@@ -13,10 +14,11 @@ import TestSnap from "../components/Snap/TestSnap";
 import TestGeneralizator from "../components/Teste/TestGeneralizator";
 import "../index.css";
 
-const TestWrapper = (props) => {
+const TestWrapper = ({ tests, add, update }) => {
   const { address1, addressTest, idTest } = useParams();
   // console.log(addressTest);
   const [currentList, setCurrentList] = useState(null);
+  // const [currentTest, setcurrentTest] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const history = useHistory();
 
@@ -50,6 +52,40 @@ const TestWrapper = (props) => {
 
   // console.log("correctAns ", correctAns);
   const [correctAnswer, setCorrectAnswer] = useState(null);
+
+  useEffect(() => {
+    console.log("Nota s-aschimbat", correctAnswer);
+    if (correctAnswer !== null) {
+      // console.log("currentList", currentList);
+      // console.log("currentIndex", currentIndex);
+      const userItems = tests.items.find(
+        (item) => item.user === "Current user"
+      );
+      if (userItems) {
+        const resultItem = userItems.tests.find(
+          (item) =>
+            item.id == currentList.subjectID &&
+            item.quiz == currentList.id &&
+            item.item == currentIndex + 1
+        );
+        if (resultItem) {
+          update({
+            id: currentList.subjectID,
+            quiz: currentList.id,
+            item: currentIndex + 1,
+            proc: correctAnswer ? 100 : 0,
+          });
+        } else {
+          add({
+            id: currentList.subjectID,
+            quiz: currentList.id,
+            item: currentIndex + 1,
+            proc: correctAnswer ? 100 : 0,
+          });
+        }
+      }
+    }
+  }, [correctAnswer]);
 
   // if(currInd!==undefined) setCurrentIndex(currInd);
   const testBoardRef = useRef(null);
@@ -102,7 +138,9 @@ const TestWrapper = (props) => {
         <>
           <Breadcrumb list={currentList.breadcrumb} />
           {/* {console.log("currentList", currentList)} */}
-          <TitleBox className="teme-container" list={currentList}>{currentList.name}</TitleBox>
+          <TitleBox className="teme-container" list={currentList}>
+            {currentList.name}
+          </TitleBox>
           {currentList.type === "quiz" && (
             <TestQuiz
               list={currentList}
@@ -184,4 +222,18 @@ const TestWrapper = (props) => {
   );
 };
 
-export default withRouter(TestWrapper);
+// export default withRouter(TestWrapper);
+// export default connect(reduxState, null)(TestWrapper);
+
+const withRouterWrapper = withRouter(TestWrapper);
+const reduxState = (state) => ({
+  tests: state.tests,
+});
+const reduxFunctions = (dispatch) => ({
+  update: (item) => dispatch({ type: "UPDATE_TEST", payload: item }),
+  add: (item) => dispatch({ type: "ADD_TEST", payload: item }),
+});
+
+const connectWrapper = connect(reduxState, reduxFunctions)(withRouterWrapper);
+
+export default connectWrapper;

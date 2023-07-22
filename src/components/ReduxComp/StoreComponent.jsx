@@ -13,74 +13,21 @@ const initialResultState = {
           //   audio: "1",
           //   proc: 60
           //  },
-          //  {
-          //   id: "1",
-          //   audio: "2",
-          //   proc: 10
-          //  },
           // ]
           subject: []
         }]
 };
 const initialTeststState = {
   items: [{user: "Current user",
-            tests: [
-            {
-            id: "1",
-            quiz: "2",
-            item: "1",
-            proc: 100
-           },
-           {
-            id: "1",
-            quiz: "2",
-            item: "2",
-            proc: 100
-           },
-           {
-            id: "1",
-            quiz: "4",
-            item: "1",
-            proc: 0
-           },
-           {
-            id: "1",
-            quiz: "4",
-            item: "2",
-            proc: 0
-           },
-           {
-            id: "1",
-            quiz: "8",
-            item: "1",
-            proc: 100
-           },
-           {
-            id: "1",
-            quiz: "8",
-            item: "2",
-            proc: 0
-           },
-           {
-            id: "1",
-            quiz: "1",
-            item: "1",
-            proc: 100
-           },
-           {
-            id: "1",
-            quiz: "1",
-            item: "2",
-            proc: 100
-           },
-           {
-            id: "1",
-            quiz: "1",
-            item: "3",
-            proc: 100
-           },
-          ]
-          // tests: []
+          //   tests: [
+          //   {
+          //   id: "1",
+          //   quiz: "2",
+          //   item: "1",
+          //   proc: 100
+          //  },
+          // ]
+          tests: []
         }]
 };
 

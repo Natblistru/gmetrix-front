@@ -32,11 +32,6 @@ const AudioPlayer = ({currentSubject,path,subjectID,arrayAudioLength, results,up
             proc: 0
            })
         }
-        //  add(           {
-        //   id: subjectID,
-        //   audio: currentSubject+1,
-        //   proc: 0
-        //  })
       }
     } else {
       setCurrentResult(null); 
@@ -44,7 +39,7 @@ const AudioPlayer = ({currentSubject,path,subjectID,arrayAudioLength, results,up
   }, [currentSubject, path]);
 
   useEffect(()=> {
-    console.log(results.items)
+    //console.log(results.items)
   },[results.items])
 
 

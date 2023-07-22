@@ -49,7 +49,7 @@ const SubTopicItem = ({subTit,idx,results,tests}) => {
       const filteredQuizArray = allQuizArray.filter(
         (item) => item.subtitleID == subtitle.id
       );
-      console.log("filteredQuizArray",filteredQuizArray)
+      //console.log("filteredQuizArray",filteredQuizArray)
       let SumProcValue = 0;
       let foundedItem;
       let numLength = 0;
@@ -63,7 +63,7 @@ const SubTopicItem = ({subTit,idx,results,tests}) => {
         if (foundedItem) {SumProcValue += foundedItem.proc; numLength++};
       });
       if(numLength>0) SumProcValue = Math.round(SumProcValue / numLength / 10);
-      console.log("SumProcValue",SumProcValue)
+      //console.log("SumProcValue",SumProcValue)
       setNota(SumProcValue);
     }
   },[tests.items])
