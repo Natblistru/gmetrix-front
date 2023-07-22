@@ -22,7 +22,6 @@ const TableRow = (props) => {
         )
       )
     );
-    console.log(allQuizArray);
     const filteredQuizArray = allQuizArray.filter(
       (item) => item.testID == testID && item.subjectID == subjectId
     );

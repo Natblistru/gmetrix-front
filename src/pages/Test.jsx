@@ -101,8 +101,8 @@ const TestWrapper = (props) => {
       {currentList && (
         <>
           <Breadcrumb list={currentList.breadcrumb} />
-          {/* {console.log("currentList.breadcrumb", currentList.breadcrumb)} */}
-          <TitleBox className="teme-container">{currentList.name}</TitleBox>
+          {/* {console.log("currentList", currentList)} */}
+          <TitleBox className="teme-container" list={currentList}>{currentList.name}</TitleBox>
           {currentList.type === "quiz" && (
             <TestQuiz
               list={currentList}
