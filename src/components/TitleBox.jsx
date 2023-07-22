@@ -51,39 +51,6 @@ const TitleBox = ({className,subjectId,subtitleId,list,children,results,tests}) 
       SumProcValue = Math.round(SumProcValue / filteredIds.length);
       setProcent(SumProcValue);
     }
-    // if(list!==undefined){
-    //   const user = "Current user";
-    //   const userItems = tests.items.find((item) => item.user === user);
-    //   if (!userItems) setProcent(0);
-    //   // Используем метод flatMap() для получения всех элементов quizArray
-    //   const allQuizArray = temeIstoriArray.flatMap((item) =>
-    //     item.subtitles.flatMap((subtitle) =>
-    //       subtitle.subjects.flatMap((subject) =>
-    //         subject.teste.flatMap((test) => test.quizArray)
-    //       )
-    //     )
-    //   );
-
-  
-    //   const filteredQuizArray = allQuizArray.filter(
-    //     (item) => item.testID == list.id && item.subjectID == list.subjectID
-    //   );
-    //   console.log("filteredQuizArray",filteredQuizArray)
-    //   let SumProcValue = 0;
-    //   let foundedItem;
-    //   filteredQuizArray.forEach((el) => {
-    //     foundedItem = userItems.tests.find(
-    //       (item) =>
-    //         item.id == el.subjectID &&
-    //         item.quiz == el.testID &&
-    //         item.item == el.id
-    //     );
-    //     if (foundedItem) SumProcValue += foundedItem.proc;
-    //   });
-    //   SumProcValue = Math.round(SumProcValue / filteredQuizArray.length);
-    //   console.log("SumProcValue",SumProcValue)
-    //   setProcent(SumProcValue);
-    // }
   }, []);
 
   useEffect(()=>{

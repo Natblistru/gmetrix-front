@@ -4,9 +4,10 @@ import { connect } from "react-redux";
 import temeIstoriArray from "../data/temeIstoria";
 import ProgressBar from "./ProgressBar";
 
-const SubTopicItem = ({subTit,idx,results}) => {
+const SubTopicItem = ({subTit,idx,results,tests}) => {
   const subtitle = subTit;
   const [procent, setProcent] = useState(0);
+  const [nota, setNota] = useState(0);
 
   useEffect(() => {
     if (subtitle.id !== null && subtitle.id !== undefined) {
@@ -30,6 +31,43 @@ const SubTopicItem = ({subTit,idx,results}) => {
     }
   }, [results.items]);
 
+  useEffect(()=>{
+    if (subtitle.id !== null && subtitle.id !== undefined) {
+      const user = "Current user";
+      const userItems = tests.items.find((item) => item.user === user);
+      if (!userItems) setNota(0);
+      // Используем метод flatMap() для получения всех элементов quizArray
+      const allQuizArray = temeIstoriArray.flatMap((item) =>
+        item.subtitles.flatMap((subtitle) =>
+          subtitle.subjects.flatMap((subject) =>
+            subject.teste.flatMap((test) => test.quizArray)
+          )
+        )
+      );
+
+  
+      const filteredQuizArray = allQuizArray.filter(
+        (item) => item.subtitleID == subtitle.id
+      );
+      console.log("filteredQuizArray",filteredQuizArray)
+      let SumProcValue = 0;
+      let foundedItem;
+      let numLength = 0;
+      filteredQuizArray.forEach((el) => {
+        foundedItem = userItems.tests.find(
+          (item) =>
+            item.id == el.subjectID &&
+            item.quiz == el.testID &&
+            item.item == el.id
+        );
+        if (foundedItem) {SumProcValue += foundedItem.proc; numLength++};
+      });
+      if(numLength>0) SumProcValue = Math.round(SumProcValue / numLength / 10);
+      console.log("SumProcValue",SumProcValue)
+      setNota(SumProcValue);
+    }
+  },[tests.items])
+
   const sumProc = (items, user, id) => {
     const userItems = items.find(item => item.user === user);
     if (!userItems) return 0;
@@ -51,11 +89,12 @@ const SubTopicItem = ({subTit,idx,results}) => {
           </Link>
         </h4>
       </div>
-      <ProgressBar proc={procent} nota={10}/>
+      <ProgressBar proc={procent} nota={nota}/>
     </li>
   );
 };
 const reduxState = (state) => ({
   results: state.results,
+  tests: state.tests,
 });
 export default connect(reduxState, null)(SubTopicItem);
