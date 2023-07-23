@@ -111,9 +111,8 @@ const TestGeneralizator = ({
   handleTryAgain,
   tests,
   add,
-  update
+  update,
 }) => {
-
   // const [showHeader, setShowHeader] = useState(false);
   // const [correctAnswer, setCorrectAnswer] = useState(null);
   const [selectedValues, setSelectedValues] = useState([]);
@@ -121,6 +120,7 @@ const TestGeneralizator = ({
   const [activeButton, setActiveButton] = useState(null);
   const [start, setStart] = useState(null);
   const [marked, setMarked] = useState(false);
+  const [nota, setNota] = useState(0);
 
   const [response, setResponse] = useState([0, 0, 0, 0]);
   const [modified, setModified] = useState([0, 0, 0, 0]);
@@ -131,9 +131,12 @@ const TestGeneralizator = ({
   const [sentence2, setSentence2] = useState([]);
   const [answers3, setAnswers3] = useState([]);
   const [sentence3, setSentence3] = useState([]);
-  let text1="", textAdd1="";
-  let text2="", textAdd2="";
-  let text3="", textAdd3="";
+  let text1 = "",
+    textAdd1 = "";
+  let text2 = "",
+    textAdd2 = "";
+  let text3 = "",
+    textAdd3 = "";
   let initValues = [];
   const [userAnswerCheck, setUserAnswerCheck] = useState([]);
   useEffect(() => {
@@ -143,36 +146,38 @@ const TestGeneralizator = ({
     setStart(null);
     setCorrectAnswer(null);
     setMarked(false);
+    setNota(0);
     setResponse([0, 0, 0, 0]);
     setModified([0, 0, 0, 0]);
     setResults([0, 0, 0, 0]);
     initValues = list.quizArray[currentIndex].listaSarcini[0].answers.map(
-      (answer) => false);
+      (answer) => false
+    );
     setUserAnswerCheck(initValues);
     text1 = list.quizArray[currentIndex].listaSarcini[1].answers[0].text;
     textAdd1 =
       list.quizArray[currentIndex].listaSarcini[1].answers[0].textAdditional;
-      setAnswers1(shuffleArray(getAnswers(text1).concat(textAdd1)));
-      setSentence1(getSentence(text1));
-      text2 = list.quizArray[currentIndex].listaSarcini[2].answers[0].text;
-      textAdd2 =
-        list.quizArray[currentIndex].listaSarcini[2].answers[0].textAdditional;
-      setAnswers2(shuffleArray(getAnswers(text2).concat(textAdd2)));
-      setSentence2(getSentence(text2));
-      text3 = list.quizArray[currentIndex].listaSarcini[3].answers[0].text;
-      textAdd3 =
+    setAnswers1(shuffleArray(getAnswers(text1).concat(textAdd1)));
+    setSentence1(getSentence(text1));
+    text2 = list.quizArray[currentIndex].listaSarcini[2].answers[0].text;
+    textAdd2 =
+      list.quizArray[currentIndex].listaSarcini[2].answers[0].textAdditional;
+    setAnswers2(shuffleArray(getAnswers(text2).concat(textAdd2)));
+    setSentence2(getSentence(text2));
+    text3 = list.quizArray[currentIndex].listaSarcini[3].answers[0].text;
+    textAdd3 =
       list.quizArray[currentIndex].listaSarcini[3].answers[0].textAdditional;
-      setAnswers3(shuffleArray(getAnswers(text3).concat(textAdd3)));
-      setSentence3(getSentence(text3));
+    setAnswers3(shuffleArray(getAnswers(text3).concat(textAdd3)));
+    setSentence3(getSentence(text3));
   }, [currentIndex]);
 
   const sumTotalPoints = () => {
     let sumTotal = 0;
     list.quizArray[currentIndex].listaSarcini?.map((item, idx) => {
-      sumTotal +=totalPoint(idx);
-    })
+      sumTotal += totalPoint(idx);
+    });
     return sumTotal;
-  }
+  };
 
   const handleModified = () => {
     const updatedModified = [...modified];
@@ -247,50 +252,54 @@ const TestGeneralizator = ({
   };
 
   const updateNota = (nota) => {
-   console.log("nota",nota);
-      const userItems = tests.items.find(
-        (item) => item.user === "Current user"
+    console.log("nota", nota);
+    const userItems = tests.items.find((item) => item.user === "Current user");
+    if (userItems) {
+      const resultItem = userItems.tests.find(
+        (item) =>
+          item.id == list.subjectID &&
+          item.quiz == list.id &&
+          item.item == currentIndex + 1
       );
-      if (userItems) {
-        const resultItem = userItems.tests.find(
-          (item) =>
-            item.id == list.subjectID &&
-            item.quiz == list.id &&
-            item.item == currentIndex + 1
-        );
-        console.log("userItems.tests",userItems.tests);   
-        console.log("resultItem",resultItem);    
-        if (resultItem) {
-          update({
-            id: list.subjectID,
-            quiz: list.id,
-            item: currentIndex + 1,
-            proc: nota,
-          });
-        } else {
-          add({
-            id: list.subjectID,
-            quiz: list.id,
-            item: currentIndex + 1,
-            proc: nota,
-          });
-        }
+      console.log("userItems.tests", userItems.tests);
+      console.log("resultItem", resultItem);
+      if (resultItem) {
+        update({
+          id: list.subjectID,
+          quiz: list.id,
+          item: currentIndex + 1,
+          proc: nota,
+        });
+      } else {
+        add({
+          id: list.subjectID,
+          quiz: list.id,
+          item: currentIndex + 1,
+          proc: nota,
+        });
       }
-  }
- 
+    }
+  };
+
+  const calcSumArray = (updatedResults) => {
+    let sumResults = 0;
+    for (let i = 0; i < updatedResults.length; i++) {
+      sumResults += updatedResults[i];
+    }
+    return sumResults;
+  };
+
   const handleFinish = () => {
     const updatedResults = [...results];
     checkAnswer(updatedResults);
     checkTestWords(sentence1, answers1, 1, updatedResults);
     checkTestWords(sentence2, answers2, 2, updatedResults);
     checkTestWords(sentence3, answers3, 3, updatedResults);
-    let sumResults = 0;
-    for (let i = 0; i < updatedResults.length; i++) {
-      sumResults += updatedResults[i];
-    }
-    const nota = sumResults *100 / sumTotalPoints();
+    const nota = (calcSumArray(updatedResults) * 100) / sumTotalPoints();
+    setNota(nota);
     updateNota(nota);
     setMarked(true);
+    setResults(updatedResults);
     setTimerFinished(true);
   };
 
@@ -356,6 +365,74 @@ const TestGeneralizator = ({
     setSentence3(updatedSentence);
   };
 
+  const additionalText = (n) => {
+    return (
+      <div className="answer-result">
+        <div
+          className={`svg-sprite-vs ${
+            correctAnswer ? "result-perfect" : "result-tried"
+          }`}
+        ></div>
+        <div>
+          <h3>
+            {results[n] == totalPoint(n)
+              ? "Excelent, felicitări!"
+              : results[n] > 0
+              ? "Raspuns parțial corect"
+              : "Răspuns incorect."}{" "}
+          </h3>
+          <p style={{ fontSize: "small" }}>
+            Câștigat puncte: {results[n]}/{totalPoint(n)}
+          </p>
+        </div>
+      </div>
+    );
+  };
+  let titlu;
+
+  if (activeButton === null && start === null) {
+    titlu = "Lista de sarcini";
+  } else if (
+    activeButton === null &&
+    start !== null &&
+    !marked &&
+    activeButton !== 1 &&
+    activeButton !== 2 &&
+    activeButton !== 3 &&
+    activeButton !== 4
+  ) {
+    titlu = "Lista de sarcini";
+  } else if (
+    activeButton !== null &&
+    start !== null &&
+    !marked &&
+    (activeButton === 1 ||
+      activeButton === 2 ||
+      activeButton === 3 ||
+      activeButton === 4)
+  ) {
+    titlu = "Cerintele sarcinii";
+  } else if (
+    activeButton === null &&
+    start !== null &&
+    marked &&
+    activeButton !== 1 &&
+    activeButton !== 2 &&
+    activeButton !== 3 &&
+    activeButton !== 4
+  ) {
+    titlu = "Rezultatele testului:";
+  } else if (
+    activeButton !== null &&
+    start !== null &&
+    marked &&
+    (activeButton === 1 ||
+      activeButton === 2 ||
+      activeButton === 3 ||
+      activeButton === 4)
+  ) {
+    titlu = "Rezultat:";
+  }
   return (
     <>
       {!start && <HeaderInit />}
@@ -369,9 +446,38 @@ const TestGeneralizator = ({
         />
       )}
       <ItemAccordeon
-        titlu={activeButton ? `Cerințele sarcinii:` : `Lista de sarcini`}
+        // titlu={activeButton ? `Cerințele sarcinii:` : `Lista de sarcini`}
+        titlu={titlu}
+        // additionalContent={additionalContent}
         open={true}
       >
+        {activeButton === null &&
+          start !== null &&
+          marked &&
+          activeButton !== 1 &&
+          activeButton !== 2 &&
+          activeButton !== 3 &&
+          activeButton !== 4 && (
+            <div className="answer-result">
+              <div
+                className={`svg-sprite-vs ${
+                  nota == 100 ? "result-perfect" : "result-tried"
+                }`}
+              ></div>
+              <div>
+                <h3>
+                  {nota == 100
+                    ? "Excelent, felicitări!"
+                    : nota > 0
+                    ? "Raspuns parțial corect"
+                    : "Răspuns incorect."}{" "}
+                </h3>
+                <p style={{ fontSize: "small" }}>
+                  Câștigat puncte: {calcSumArray(results)}/{sumTotalPoints()}
+                </p>
+              </div>
+            </div>
+          )}
         {activeButton === null && (
           <div className="subjects-container ">
             {list.quizArray[currentIndex].listaSarcini?.map((subtitle, idx) => {
@@ -402,11 +508,32 @@ const TestGeneralizator = ({
                       response[idx] == 0 && (
                         <span>Lipsa răspuns {totalPoint(idx)} p.</span>
                       )}
-                    {start === true && marked === true && (
+                    {/* {start === true && marked === true && (
                       <span>
                         {results[idx]} / {totalPoint(idx)} p.
                       </span>
-                    )}
+                    )} */}
+                    {start === true &&
+                    marked === true &&
+                    results[idx] === totalPoint(idx) ? (
+                      <>
+                        <span className="svg-sprite-vs-small result-perfect"></span>
+                        <span>{" "}</span>
+                        <span>
+                          {results[idx]} / {totalPoint(idx)} p.
+                        </span>
+                      </>
+                    ) : start === true && marked === true && results[idx] !== totalPoint(idx) ? 
+                    (
+                      <>
+                        <span className="svg-sprite-vs-small result-tried"> </span>
+                        <span>{"   "}</span>
+                        <span>
+                          {results[idx]} / {totalPoint(idx)} p.
+                        </span>
+                      </>
+                    ) : null
+                  }
                   </div>
                 </div>
               );
@@ -415,11 +542,13 @@ const TestGeneralizator = ({
         )}
         {activeButton == 1 && (
           <>
+            {" "}
+            {marked && additionalText(0)}
             <ItemText
               classNameChild={
                 correctAnswer === null
                   ? ""
-                  : correctAnswer
+                  : results[0] == totalPoint(0)
                   ? " correct"
                   : " incorrect"
               }
@@ -447,11 +576,12 @@ const TestGeneralizator = ({
 
         {activeButton == 2 && (
           <>
+            {marked && additionalText(1)}
             <ItemText
               classNameChild={
                 correctAnswer === null
                   ? ""
-                  : correctAnswer
+                  : results[1] == totalPoint(1)
                   ? " correct"
                   : " incorrect"
               }
@@ -469,11 +599,12 @@ const TestGeneralizator = ({
 
         {activeButton == 3 && (
           <>
+            {marked && additionalText(2)}
             <ItemText
               classNameChild={
                 correctAnswer === null
                   ? ""
-                  : correctAnswer
+                  : results[2] == totalPoint(2)
                   ? " correct"
                   : " incorrect"
               }
@@ -490,11 +621,12 @@ const TestGeneralizator = ({
         )}
         {activeButton == 4 && (
           <>
+            {marked && additionalText(3)}
             <ItemText
               classNameChild={
                 correctAnswer === null
                   ? ""
-                  : correctAnswer
+                  : results[3] == totalPoint(3)
                   ? " correct"
                   : " incorrect"
               }
@@ -532,7 +664,6 @@ const TestGeneralizator = ({
     </>
   );
 };
-
 
 const reduxState = (state) => ({
   tests: state.tests,
