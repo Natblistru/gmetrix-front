@@ -162,7 +162,7 @@ const ExamenSubect2 = ({raspunsuri}) => {
       {item && (
         <>
           <Breadcrumb list={item.breadcrumb} />
-          <TitleBox className="teme-container">{item.name}</TitleBox>
+          <TitleBox className="teme-container" list={item.quizArray[currentIndex].item[currentItem]}>{item.name}</TitleBox>
           <ItemAccordeon
             titlu={`Cerințele sarcinii (${currentIndex + 1}/${
               item.quizArray.length

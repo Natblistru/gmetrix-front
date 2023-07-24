@@ -24,10 +24,52 @@ const initialTeststState = {
           //   id: "1",
           //   quiz: "2",
           //   item: "1",
-          //   proc: 100
+          //   proc: 80
           //  },
           // ]
           tests: []
+        }]
+};
+const initialExamsState = {
+  items: [{user: "Current user",
+            exams: [
+            {
+            id: "1",
+            subiect: "1",
+            superitem: "1",
+            item: "1",
+            proc: 100
+           },
+           {
+            id: "1",
+            subiect: "1",
+            superitem: "2",
+            item: "2",
+            proc: 100
+           },
+           {
+            id: "1",
+            subiect: "3",
+            superitem: "1",
+            item: "1",
+            proc: 100
+           },
+           {
+            id: "1",
+            subiect: "2",
+            superitem: "1",
+            item: "1",
+            proc: 100
+           },
+           {
+            id: "1",
+            subiect: "2",
+            superitem: "1",
+            item: "2",
+            proc: 0
+           },
+          ]
+          // exams: []
         }]
 };
 
@@ -159,6 +201,58 @@ const testsReducer = (state=initialTeststState, action) => {
             return state;
   }
 };
+const examsReducer = (state=initialExamsState, action) => {
+  switch (action.type) {
+    case 'ADD_EXAM':
+      return {
+        ...state,
+        items: state.items.map(userItem => {
+          if (userItem.user === "Current user") {
+            return {
+              ...userItem,
+              exams: [...userItem.exams, action.payload] 
+            };
+          } else {
+            return userItem;
+          }
+        })
+      };
+      case 'UPDATE_EXAM':
+        return {
+          ...state,
+          items: state.items.map(userItem => {
+            if (userItem.user === "Current user") {
+              return {
+                ...userItem,
+                exams: userItem.exams.map(examItem =>
+                  examItem.id == action.payload.id && examItem.subiect == action.payload.subiect && examItem.item == action.payload.item
+                    ? action.payload 
+                    : examItem
+                )
+              };
+            } else {
+              return userItem;
+            }
+          })
+        };
+        case 'DELETE_EXAM':
+          return {
+            ...state,
+            items: state.items.map(userItem => {
+              if (userItem.user === "Current user") {
+                return {
+                  ...userItem,
+                  exams: state.exams.filter(item => item.id != action.payload.id && item.subiect != action.payload.subiect && item.item != action.payload.item) 
+                };
+              } else {
+                return userItem;
+              }
+            })
+          };
+          default:
+            return state;
+  }
+};
 
 const textReducer = ( state = "", action )=> {
   switch (action.type) {
@@ -173,7 +267,8 @@ const combinedReducers = combineReducers({
   raspunsuri: raspunsuriReducer,
   text: textReducer,
   results: resultsReducer,
-  tests: testsReducer
+  tests: testsReducer,
+  exams: examsReducer
 })
 
 const store = createStore(combinedReducers)

@@ -1729,6 +1729,8 @@ let temeIstoria = [
         aplicatii: [
           {
             id: "1",
+            subtitleID: "1",
+            titleID: "1",
             name: "Subiectul I",
             complexity: "dificil",
             complexityNumber: 3,
@@ -1748,6 +1750,9 @@ let temeIstoria = [
             quizArray: [
               {
                 id: "1",
+                subiect: "1",
+                subtitleID: "1",
+                titleID: "1",
                 cerinte: [
                   "Studiază coperta cărții. Numește un fapt istoric pe care autorul îl poate utiliza pentru a justifica titlul cărții. Argumentează răspunsul.",
                 ],
@@ -1818,6 +1823,9 @@ let temeIstoria = [
               },
               {
                 id: "2",
+                subiect: "1",
+                subtitleID: "1",
+                titleID: "1",
                 cerinte: [
                   "Studiază coperta cărții. Numește un fapt istoric pe care autorul îl poate utiliza pentru a justifica titlul cărții. Argumentează răspunsul.",
                 ],
@@ -1891,6 +1899,8 @@ let temeIstoria = [
           {
             id: "2",
             name: "Subiectul II",
+            subtitleID: "1",
+            titleID: "1",
             complexity: "dificil",
             complexityNumber: 3,
             path: "/subtema1",
@@ -1909,12 +1919,19 @@ let temeIstoria = [
             quizArray: [
               {
                 id: "1",
+                subiect: "2",
+                subtitleID: "1",
+                titleID: "1",
                 cerinte: [
                   "Studiază materialul suport și realizează sarcinile propuse.",
                 ],
                 item: [
                   {
                     id: 1,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "1",
+                    titleID: "1",
                     sursa:
                       "Utilizează sursa A și cunoștințele obținute anterior.",
                     cerinte: [
@@ -1976,6 +1993,10 @@ let temeIstoria = [
                   },
                   {
                     id: 2,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "1",
+                    titleID: "1",
                     sursa:
                       "Utilizează sursele A, C și cunoștințele obținute anterior.",
                     cerinte: [
@@ -2023,6 +2044,10 @@ let temeIstoria = [
                   },
                   {
                     id: 3,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "1",
+                    titleID: "1",
                     sursa:
                       "Utilizează sursa D și cunoștințele obținute anterior.",
                     cerinte: ["Explică termenul Izolaționism.", ""],
@@ -2066,6 +2091,10 @@ let temeIstoria = [
                   },
                   {
                     id: 4,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "1",
+                    titleID: "1",
                     sursa:
                       "Utilizează sursa B și cunoștințele obținute anterior.",
                     cerinte: [
@@ -2118,6 +2147,10 @@ let temeIstoria = [
                   },
                   {
                     id: 5,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "1",
+                    titleID: "1",
                     sursa:
                       "Utilizează sursele A, B și cunoștințele obținute anterior.",
                     cerinte: [
@@ -2192,6 +2225,10 @@ let temeIstoria = [
                   },
                   {
                     id: 6,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "1",
+                    titleID: "1",
                     sursa:
                       "Utilizează sursa D și cunoștințele obținute anterior.",
                     cerinte: [
@@ -2288,6 +2325,10 @@ let temeIstoria = [
                   },
                   {
                     id: 7,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "1",
+                    titleID: "1",
                     sursa: "",
                     cerinte: [
                       "Exprimă-ți opinia:",
@@ -2428,12 +2469,19 @@ let temeIstoria = [
               },
               {
                 id: "2",
+                subiect: "2",
+                subtitleID: "1",
+                titleID: "1",
                 cerinte: [
                   "Studiază materialul suport și realizează sarcinile propuse2",
                 ],
                 item: [
                   {
                     id: 1,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "1",
+                    titleID: "1",
                     sursa:
                       "Utilizează sursa A și cunoștințele obținute anterior.",
                     cerinte: [
@@ -2494,6 +2542,10 @@ let temeIstoria = [
                   },
                   {
                     id: 2,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "1",
+                    titleID: "1",
                     sursa:
                       "Utilizează sursele A, C și cunoștințele obținute anterior.",
                     cerinte: [
@@ -2539,6 +2591,10 @@ let temeIstoria = [
                   },
                   {
                     id: 3,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "1",
+                    titleID: "1",
                     sursa:
                       "Utilizează sursa D și cunoștințele obținute anterior.",
                     cerinte: ["Explică termenul Izolaționism.", ""],
@@ -2580,6 +2636,10 @@ let temeIstoria = [
                   },
                   {
                     id: 4,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "1",
+                    titleID: "1",
                     sursa:
                       "Utilizează sursa B și cunoștințele obținute anterior.",
                     cerinte: [
@@ -2630,6 +2690,10 @@ let temeIstoria = [
                   },
                   {
                     id: 5,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "1",
+                    titleID: "1",
                     sursa:
                       "Utilizează sursele A, B și cunoștințele obținute anterior.",
                     cerinte: [
@@ -2702,6 +2766,10 @@ let temeIstoria = [
                   },
                   {
                     id: 6,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "1",
+                    titleID: "1",
                     sursa:
                       "Utilizează sursa D și cunoștințele obținute anterior.",
                     cerinte: [
@@ -2796,6 +2864,10 @@ let temeIstoria = [
                   },
                   {
                     id: 7,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "1",
+                    titleID: "1",
                     sursa: "",
                     cerinte: [
                       "Exprimă-ți opinia:",
@@ -2936,6 +3008,8 @@ let temeIstoria = [
           },
           {
             id: "3",
+            subtitleID: "1",
+            titleID: "1",
             name: "Subiectul III",
             complexity: "dificil",
             complexityNumber: 3,
@@ -2955,6 +3029,9 @@ let temeIstoria = [
             quizArray: [
               {
                 id: "1",
+                subiect: "3",
+                subtitleID: "1",
+                titleID: "1",                
                 cerinte: [
                   "Studiază sursele A-C",
                   "Utilizează sursele pentru a argumenta, într-un text coerent, afirmația:",
@@ -3235,6 +3312,9 @@ let temeIstoria = [
               },
               {
                 id: "2",
+                subiect: "3",
+                subtitleID: "1",
+                titleID: "1",
                 cerinte: [
                   "Studiază sursele A-C",
                   "Utilizează sursele pentru a argumenta, într-un text coerent, afirmația:",
@@ -3637,6 +3717,233 @@ let temeIstoria = [
             }],
           },
         ],
+        aplicatii: [
+          {
+            id: "1",
+            subtitleID: "2",
+            titleID: "1",
+            name: "Subiectul I",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect1",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "1",
+                subtitleID: "2",
+                titleID: "1",
+                barem: {
+                  maxPoints: 3,
+                }
+              },
+              {
+                id: "2",
+                subiect: "1",
+                subtitleID: "2",
+                titleID: "1",
+                barem: {
+                  maxPoints: 3,
+                }
+              }
+            ]
+          },
+          {
+            id: "2",
+            name: "Subiectul II",
+            subtitleID: "2",
+            titleID: "1",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect2",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "2",
+                subtitleID: "2",
+                titleID: "1",
+                item: [
+                  {
+                    id: 1,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "2",
+                    titleID: "1",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 2,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "2",
+                    titleID: "1",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 3,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "2",
+                    titleID: "1",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 4,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "2",
+                    titleID: "1",
+                    barem: {
+                      maxPoints: 3,
+                    }
+                  },
+                  {
+                    id: 5,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "2",
+                    titleID: "1",
+                    barem: {
+                      maxPoints: 4,
+                    }
+                  },
+                  {
+                    id: 6,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "2",
+                    titleID: "1",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  },
+                  {
+                    id: 7,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "2",
+                    titleID: "1",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  }
+                ]
+               },
+               {
+                id: "2",
+                subiect: "2",
+                subtitleID: "2",
+                titleID: "1",
+                item: [
+                  {
+                    id: 1,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "2",
+                    titleID: "1",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 2,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "2",
+                    titleID: "1",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 3,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "2",
+                    titleID: "1",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 4,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "2",
+                    titleID: "1",
+                    barem: {
+                      maxPoints: 3,
+                    }
+                  },
+                  {
+                    id: 5,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "2",
+                    titleID: "1",
+                    barem: {
+                      maxPoints: 4,
+                    }
+                  },
+                  {
+                    id: 6,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "2",
+                    titleID: "1",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  },
+                  {
+                    id: 7,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "2",
+                    titleID: "1",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            id: "3",
+            subtitleID: "2",
+            titleID: "1",
+            name: "Subiectul III",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect3",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "3",
+                subtitleID: "2",
+                titleID: "1", 
+                barem: {
+                  maxPoints: 15,
+                }   
+              },
+              {
+                id: "2",
+                subiect: "3",
+                subtitleID: "2",
+                titleID: "1",
+                barem: {
+                  maxPoints: 15,
+                } 
+              }
+            ]
+          }
+         ]
       },
       {
         id: "3",
@@ -3722,6 +4029,233 @@ let temeIstoria = [
             }],
           },
         ],
+        aplicatii: [
+          {
+            id: "1",
+            subtitleID: "3",
+            titleID: "1",
+            name: "Subiectul I",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect1",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "1",
+                subtitleID: "3",
+                titleID: "1",
+                barem: {
+                  maxPoints: 3,
+                }
+              },
+              {
+                id: "2",
+                subiect: "1",
+                subtitleID: "3",
+                titleID: "1",
+                barem: {
+                  maxPoints: 3,
+                }
+              }
+            ]
+          },
+          {
+            id: "2",
+            name: "Subiectul II",
+            subtitleID: "3",
+            titleID: "1",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect2",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "2",
+                subtitleID: "3",
+                titleID: "1",
+                item: [
+                  {
+                    id: 1,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "3",
+                    titleID: "1",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 2,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "3",
+                    titleID: "1",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 3,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "3",
+                    titleID: "1",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 4,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "3",
+                    titleID: "1",
+                    barem: {
+                      maxPoints: 3,
+                    }
+                  },
+                  {
+                    id: 5,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "3",
+                    titleID: "1",
+                    barem: {
+                      maxPoints: 4,
+                    }
+                  },
+                  {
+                    id: 6,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "3",
+                    titleID: "1",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  },
+                  {
+                    id: 7,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "3",
+                    titleID: "1",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  }
+                ]
+               },
+               {
+                id: "2",
+                subiect: "2",
+                subtitleID: "3",
+                titleID: "1",
+                item: [
+                  {
+                    id: 1,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "3",
+                    titleID: "1",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 2,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "3",
+                    titleID: "1",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 3,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "3",
+                    titleID: "1",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 4,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "3",
+                    titleID: "1",
+                    barem: {
+                      maxPoints: 3,
+                    }
+                  },
+                  {
+                    id: 5,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "3",
+                    titleID: "1",
+                    barem: {
+                      maxPoints: 4,
+                    }
+                  },
+                  {
+                    id: 6,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "3",
+                    titleID: "1",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  },
+                  {
+                    id: 7,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "3",
+                    titleID: "1",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            id: "3",
+            subtitleID: "3",
+            titleID: "1",
+            name: "Subiectul III",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect3",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "3",
+                subtitleID: "3",
+                titleID: "1", 
+                barem: {
+                  maxPoints: 15,
+                }   
+              },
+              {
+                id: "2",
+                subiect: "3",
+                subtitleID: "3",
+                titleID: "1",
+                barem: {
+                  maxPoints: 15,
+                } 
+              }
+            ]
+          }
+         ]
       },
       {
         id: "4",
@@ -3806,6 +4340,233 @@ let temeIstoria = [
             }],
           },
         ],
+        aplicatii: [
+          {
+            id: "1",
+            subtitleID: "4",
+            titleID: "1",
+            name: "Subiectul I",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect1",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "1",
+                subtitleID: "4",
+                titleID: "1",
+                barem: {
+                  maxPoints: 3,
+                }
+              },
+              {
+                id: "2",
+                subiect: "1",
+                subtitleID: "4",
+                titleID: "1",
+                barem: {
+                  maxPoints: 3,
+                }
+              }
+            ]
+          },
+          {
+            id: "2",
+            name: "Subiectul II",
+            subtitleID: "4",
+            titleID: "1",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect2",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "2",
+                subtitleID: "4",
+                titleID: "1",
+                item: [
+                  {
+                    id: 1,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "4",
+                    titleID: "1",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 2,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "4",
+                    titleID: "1",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 3,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "4",
+                    titleID: "1",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 4,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "4",
+                    titleID: "1",
+                    barem: {
+                      maxPoints: 3,
+                    }
+                  },
+                  {
+                    id: 5,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "4",
+                    titleID: "1",
+                    barem: {
+                      maxPoints: 4,
+                    }
+                  },
+                  {
+                    id: 6,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "4",
+                    titleID: "1",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  },
+                  {
+                    id: 7,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "4",
+                    titleID: "1",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  }
+                ]
+               },
+               {
+                id: "2",
+                subiect: "2",
+                subtitleID: "4",
+                titleID: "1",
+                item: [
+                  {
+                    id: 1,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "4",
+                    titleID: "1",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 2,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "4",
+                    titleID: "1",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 3,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "4",
+                    titleID: "1",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 4,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "4",
+                    titleID: "1",
+                    barem: {
+                      maxPoints: 3,
+                    }
+                  },
+                  {
+                    id: 5,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "4",
+                    titleID: "1",
+                    barem: {
+                      maxPoints: 4,
+                    }
+                  },
+                  {
+                    id: 6,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "4",
+                    titleID: "1",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  },
+                  {
+                    id: 7,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "4",
+                    titleID: "1",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            id: "3",
+            subtitleID: "4",
+            titleID: "1",
+            name: "Subiectul III",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect3",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "3",
+                subtitleID: "4",
+                titleID: "1", 
+                barem: {
+                  maxPoints: 15,
+                }   
+              },
+              {
+                id: "2",
+                subiect: "3",
+                subtitleID: "4",
+                titleID: "1",
+                barem: {
+                  maxPoints: 15,
+                } 
+              }
+            ]
+          }
+         ]        
       },
     ],
   },
@@ -3898,6 +4659,233 @@ let temeIstoria = [
             }],
           },
         ],
+        aplicatii: [
+          {
+            id: "1",
+            subtitleID: "5",
+            titleID: "2",
+            name: "Subiectul I",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect1",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "1",
+                subtitleID: "5",
+                titleID: "2",
+                barem: {
+                  maxPoints: 3,
+                }
+              },
+              {
+                id: "2",
+                subiect: "1",
+                subtitleID: "5",
+                titleID: "2",
+                barem: {
+                  maxPoints: 3,
+                }
+              }
+            ]
+          },
+          {
+            id: "2",
+            name: "Subiectul II",
+            subtitleID: "5",
+            titleID: "2",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect2",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "2",
+                subtitleID: "5",
+                titleID: "2",
+                item: [
+                  {
+                    id: 1,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "5",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 2,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "5",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 3,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "5",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 4,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "5",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 3,
+                    }
+                  },
+                  {
+                    id: 5,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "5",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 4,
+                    }
+                  },
+                  {
+                    id: 6,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "5",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  },
+                  {
+                    id: 7,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "5",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  }
+                ]
+               },
+               {
+                id: "2",
+                subiect: "2",
+                subtitleID: "5",
+                titleID: "2",
+                item: [
+                  {
+                    id: 1,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "5",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 2,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "5",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 3,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "5",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 4,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "5",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 3,
+                    }
+                  },
+                  {
+                    id: 5,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "5",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 4,
+                    }
+                  },
+                  {
+                    id: 6,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "5",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  },
+                  {
+                    id: 7,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "5",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            id: "3",
+            subtitleID: "5",
+            titleID: "2",
+            name: "Subiectul III",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect3",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "3",
+                subtitleID: "5",
+                titleID: "2", 
+                barem: {
+                  maxPoints: 15,
+                }   
+              },
+              {
+                id: "2",
+                subiect: "3",
+                subtitleID: "5",
+                titleID: "2",
+                barem: {
+                  maxPoints: 15,
+                } 
+              }
+            ]
+          }
+         ]
       },
       {
         id: "6",
@@ -3982,6 +4970,233 @@ let temeIstoria = [
             }],
           },
         ],
+        aplicatii: [
+          {
+            id: "1",
+            subtitleID: "6",
+            titleID: "2",
+            name: "Subiectul I",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect1",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "1",
+                subtitleID: "6",
+                titleID: "2",
+                barem: {
+                  maxPoints: 3,
+                }
+              },
+              {
+                id: "2",
+                subiect: "1",
+                subtitleID: "6",
+                titleID: "2",
+                barem: {
+                  maxPoints: 3,
+                }
+              }
+            ]
+          },
+          {
+            id: "2",
+            name: "Subiectul II",
+            subtitleID: "6",
+            titleID: "2",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect2",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "2",
+                subtitleID: "6",
+                titleID: "2",
+                item: [
+                  {
+                    id: 1,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "6",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 2,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "6",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 3,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "6",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 4,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "6",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 3,
+                    }
+                  },
+                  {
+                    id: 5,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "6",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 4,
+                    }
+                  },
+                  {
+                    id: 6,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "6",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  },
+                  {
+                    id: 7,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "6",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  }
+                ]
+               },
+               {
+                id: "2",
+                subiect: "2",
+                subtitleID: "6",
+                titleID: "2",
+                item: [
+                  {
+                    id: 1,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "6",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 2,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "6",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 3,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "6",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 4,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "6",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 3,
+                    }
+                  },
+                  {
+                    id: 5,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "6",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 4,
+                    }
+                  },
+                  {
+                    id: 6,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "6",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  },
+                  {
+                    id: 7,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "6",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            id: "3",
+            subtitleID: "6",
+            titleID: "2",
+            name: "Subiectul III",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect3",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "3",
+                subtitleID: "6",
+                titleID: "2", 
+                barem: {
+                  maxPoints: 15,
+                }   
+              },
+              {
+                id: "2",
+                subiect: "3",
+                subtitleID: "6",
+                titleID: "2",
+                barem: {
+                  maxPoints: 15,
+                } 
+              }
+            ]
+          }
+         ]
       },
       {
         id: "7",
@@ -4066,6 +5281,233 @@ let temeIstoria = [
             }],
           },
         ],
+        aplicatii: [
+          {
+            id: "1",
+            subtitleID: "7",
+            titleID: "2",
+            name: "Subiectul I",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect1",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "1",
+                subtitleID: "7",
+                titleID: "2",
+                barem: {
+                  maxPoints: 3,
+                }
+              },
+              {
+                id: "2",
+                subiect: "1",
+                subtitleID: "7",
+                titleID: "2",
+                barem: {
+                  maxPoints: 3,
+                }
+              }
+            ]
+          },
+          {
+            id: "2",
+            name: "Subiectul II",
+            subtitleID: "7",
+            titleID: "2",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect2",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "2",
+                subtitleID: "7",
+                titleID: "2",
+                item: [
+                  {
+                    id: 1,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "7",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 2,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "7",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 3,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "7",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 4,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "7",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 3,
+                    }
+                  },
+                  {
+                    id: 5,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "7",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 4,
+                    }
+                  },
+                  {
+                    id: 6,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "7",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  },
+                  {
+                    id: 7,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "7",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  }
+                ]
+               },
+               {
+                id: "2",
+                subiect: "2",
+                subtitleID: "7",
+                titleID: "2",
+                item: [
+                  {
+                    id: 1,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "7",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 2,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "7",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 3,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "7",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 4,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "7",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 3,
+                    }
+                  },
+                  {
+                    id: 5,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "7",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 4,
+                    }
+                  },
+                  {
+                    id: 6,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "7",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  },
+                  {
+                    id: 7,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "7",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            id: "3",
+            subtitleID: "7",
+            titleID: "2",
+            name: "Subiectul III",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect3",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "3",
+                subtitleID: "7",
+                titleID: "2", 
+                barem: {
+                  maxPoints: 15,
+                }   
+              },
+              {
+                id: "2",
+                subiect: "3",
+                subtitleID: "7",
+                titleID: "2",
+                barem: {
+                  maxPoints: 15,
+                } 
+              }
+            ]
+          }
+         ]
       },
       {
         id: "8",
@@ -4150,6 +5592,233 @@ let temeIstoria = [
             }],
           },
         ],
+        aplicatii: [
+          {
+            id: "1",
+            subtitleID: "8",
+            titleID: "2",
+            name: "Subiectul I",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect1",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "1",
+                subtitleID: "8",
+                titleID: "2",
+                barem: {
+                  maxPoints: 3,
+                }
+              },
+              {
+                id: "2",
+                subiect: "1",
+                subtitleID: "8",
+                titleID: "2",
+                barem: {
+                  maxPoints: 3,
+                }
+              }
+            ]
+          },
+          {
+            id: "2",
+            name: "Subiectul II",
+            subtitleID: "8",
+            titleID: "2",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect2",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "2",
+                subtitleID: "8",
+                titleID: "2",
+                item: [
+                  {
+                    id: 1,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "8",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 2,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "8",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 3,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "8",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 4,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "8",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 3,
+                    }
+                  },
+                  {
+                    id: 5,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "8",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 4,
+                    }
+                  },
+                  {
+                    id: 6,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "8",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  },
+                  {
+                    id: 7,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "8",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  }
+                ]
+               },
+               {
+                id: "2",
+                subiect: "2",
+                subtitleID: "8",
+                titleID: "2",
+                item: [
+                  {
+                    id: 1,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "8",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 2,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "8",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 3,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "8",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 4,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "8",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 3,
+                    }
+                  },
+                  {
+                    id: 5,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "8",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 4,
+                    }
+                  },
+                  {
+                    id: 6,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "8",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  },
+                  {
+                    id: 7,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "8",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            id: "3",
+            subtitleID: "8",
+            titleID: "2",
+            name: "Subiectul III",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect3",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "3",
+                subtitleID: "8",
+                titleID: "2", 
+                barem: {
+                  maxPoints: 15,
+                }   
+              },
+              {
+                id: "2",
+                subiect: "3",
+                subtitleID: "8",
+                titleID: "2",
+                barem: {
+                  maxPoints: 15,
+                } 
+              }
+            ]
+          }
+         ]
       },
       {
         id: "9",
@@ -4234,6 +5903,233 @@ let temeIstoria = [
             }],
           },
         ],
+        aplicatii: [
+          {
+            id: "1",
+            subtitleID: "9",
+            titleID: "2",
+            name: "Subiectul I",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect1",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "1",
+                subtitleID: "9",
+                titleID: "2",
+                barem: {
+                  maxPoints: 3,
+                }
+              },
+              {
+                id: "2",
+                subiect: "1",
+                subtitleID: "9",
+                titleID: "2",
+                barem: {
+                  maxPoints: 3,
+                }
+              }
+            ]
+          },
+          {
+            id: "2",
+            name: "Subiectul II",
+            subtitleID: "9",
+            titleID: "2",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect2",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "2",
+                subtitleID: "9",
+                titleID: "2",
+                item: [
+                  {
+                    id: 1,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "9",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 2,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "9",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 3,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "9",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 4,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "9",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 3,
+                    }
+                  },
+                  {
+                    id: 5,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "9",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 4,
+                    }
+                  },
+                  {
+                    id: 6,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "9",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  },
+                  {
+                    id: 7,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "9",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  }
+                ]
+               },
+               {
+                id: "2",
+                subiect: "2",
+                subtitleID: "9",
+                titleID: "2",
+                item: [
+                  {
+                    id: 1,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "9",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 2,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "9",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 3,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "9",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 4,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "9",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 3,
+                    }
+                  },
+                  {
+                    id: 5,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "9",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 4,
+                    }
+                  },
+                  {
+                    id: 6,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "9",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  },
+                  {
+                    id: 7,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "9",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            id: "3",
+            subtitleID: "9",
+            titleID: "2",
+            name: "Subiectul III",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect3",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "3",
+                subtitleID: "9",
+                titleID: "2", 
+                barem: {
+                  maxPoints: 15,
+                }   
+              },
+              {
+                id: "2",
+                subiect: "3",
+                subtitleID: "9",
+                titleID: "2",
+                barem: {
+                  maxPoints: 15,
+                } 
+              }
+            ]
+          }
+         ]
       },
       {
         id: "10",
@@ -4318,6 +6214,233 @@ let temeIstoria = [
             }],
           },
         ],
+        aplicatii: [
+          {
+            id: "1",
+            subtitleID: "10",
+            titleID: "2",
+            name: "Subiectul I",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect1",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "1",
+                subtitleID: "10",
+                titleID: "2",
+                barem: {
+                  maxPoints: 3,
+                }
+              },
+              {
+                id: "2",
+                subiect: "1",
+                subtitleID: "10",
+                titleID: "2",
+                barem: {
+                  maxPoints: 3,
+                }
+              }
+            ]
+          },
+          {
+            id: "2",
+            name: "Subiectul II",
+            subtitleID: "10",
+            titleID: "2",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect2",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "2",
+                subtitleID: "10",
+                titleID: "2",
+                item: [
+                  {
+                    id: 1,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "10",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 2,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "10",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 3,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "10",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 4,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "10",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 3,
+                    }
+                  },
+                  {
+                    id: 5,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "10",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 4,
+                    }
+                  },
+                  {
+                    id: 6,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "10",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  },
+                  {
+                    id: 7,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "10",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  }
+                ]
+               },
+               {
+                id: "2",
+                subiect: "2",
+                subtitleID: "10",
+                titleID: "2",
+                item: [
+                  {
+                    id: 1,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "10",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 2,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "10",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 3,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "10",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 4,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "10",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 3,
+                    }
+                  },
+                  {
+                    id: 5,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "10",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 4,
+                    }
+                  },
+                  {
+                    id: 6,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "10",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  },
+                  {
+                    id: 7,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "10",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            id: "3",
+            subtitleID: "10",
+            titleID: "2",
+            name: "Subiectul III",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect3",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "3",
+                subtitleID: "10",
+                titleID: "2", 
+                barem: {
+                  maxPoints: 15,
+                }   
+              },
+              {
+                id: "2",
+                subiect: "3",
+                subtitleID: "10",
+                titleID: "2",
+                barem: {
+                  maxPoints: 15,
+                } 
+              }
+            ]
+          }
+         ]
       },
       {
         id: "11",
@@ -4402,6 +6525,233 @@ let temeIstoria = [
             }],
           },
         ],
+        aplicatii: [
+          {
+            id: "1",
+            subtitleID: "11",
+            titleID: "2",
+            name: "Subiectul I",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect1",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "1",
+                subtitleID: "11",
+                titleID: "2",
+                barem: {
+                  maxPoints: 3,
+                }
+              },
+              {
+                id: "2",
+                subiect: "1",
+                subtitleID: "11",
+                titleID: "2",
+                barem: {
+                  maxPoints: 3,
+                }
+              }
+            ]
+          },
+          {
+            id: "2",
+            name: "Subiectul II",
+            subtitleID: "11",
+            titleID: "2",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect2",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "2",
+                subtitleID: "11",
+                titleID: "2",
+                item: [
+                  {
+                    id: 1,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "11",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 2,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "11",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 3,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "11",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 4,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "11",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 3,
+                    }
+                  },
+                  {
+                    id: 5,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "11",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 4,
+                    }
+                  },
+                  {
+                    id: 6,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "11",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  },
+                  {
+                    id: 7,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "11",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  }
+                ]
+               },
+               {
+                id: "2",
+                subiect: "2",
+                subtitleID: "11",
+                titleID: "2",
+                item: [
+                  {
+                    id: 1,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "11",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 2,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "11",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 3,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "11",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 4,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "11",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 3,
+                    }
+                  },
+                  {
+                    id: 5,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "11",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 4,
+                    }
+                  },
+                  {
+                    id: 6,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "11",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  },
+                  {
+                    id: 7,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "11",
+                    titleID: "2",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            id: "3",
+            subtitleID: "11",
+            titleID: "2",
+            name: "Subiectul III",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect3",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "3",
+                subtitleID: "11",
+                titleID: "2", 
+                barem: {
+                  maxPoints: 15,
+                }   
+              },
+              {
+                id: "2",
+                subiect: "3",
+                subtitleID: "11",
+                titleID: "2",
+                barem: {
+                  maxPoints: 15,
+                } 
+              }
+            ]
+          }
+         ]
       },
     ],
   },
@@ -4494,6 +6844,233 @@ let temeIstoria = [
             }],
           },
         ],
+        aplicatii: [
+          {
+            id: "1",
+            subtitleID: "12",
+            titleID: "3",
+            name: "Subiectul I",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect1",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "1",
+                subtitleID: "12",
+                titleID: "3",
+                barem: {
+                  maxPoints: 3,
+                }
+              },
+              {
+                id: "2",
+                subiect: "1",
+                subtitleID: "12",
+                titleID: "3",
+                barem: {
+                  maxPoints: 3,
+                }
+              }
+            ]
+          },
+          {
+            id: "2",
+            name: "Subiectul II",
+            subtitleID: "12",
+            titleID: "3",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect2",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "2",
+                subtitleID: "12",
+                titleID: "3",
+                item: [
+                  {
+                    id: 1,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "12",
+                    titleID: "3",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 2,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "12",
+                    titleID: "3",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 3,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "12",
+                    titleID: "3",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 4,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "12",
+                    titleID: "3",
+                    barem: {
+                      maxPoints: 3,
+                    }
+                  },
+                  {
+                    id: 5,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "12",
+                    titleID: "3",
+                    barem: {
+                      maxPoints: 4,
+                    }
+                  },
+                  {
+                    id: 6,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "12",
+                    titleID: "3",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  },
+                  {
+                    id: 7,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "12",
+                    titleID: "3",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  }
+                ]
+               },
+               {
+                id: "2",
+                subiect: "2",
+                subtitleID: "12",
+                titleID: "3",
+                item: [
+                  {
+                    id: 1,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "12",
+                    titleID: "3",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 2,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "12",
+                    titleID: "3",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 3,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "12",
+                    titleID: "3",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 4,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "12",
+                    titleID: "3",
+                    barem: {
+                      maxPoints: 3,
+                    }
+                  },
+                  {
+                    id: 5,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "12",
+                    titleID: "3",
+                    barem: {
+                      maxPoints: 4,
+                    }
+                  },
+                  {
+                    id: 6,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "12",
+                    titleID: "3",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  },
+                  {
+                    id: 7,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "12",
+                    titleID: "3",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            id: "3",
+            subtitleID: "12",
+            titleID: "3",
+            name: "Subiectul III",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect3",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "3",
+                subtitleID: "12",
+                titleID: "3", 
+                barem: {
+                  maxPoints: 15,
+                }   
+              },
+              {
+                id: "2",
+                subiect: "3",
+                subtitleID: "12",
+                titleID: "3",
+                barem: {
+                  maxPoints: 15,
+                } 
+              }
+            ]
+          }
+        ]
       },
       {
         id: "13",
@@ -4578,6 +7155,233 @@ let temeIstoria = [
             }],
           },
         ],
+        aplicatii: [
+          {
+            id: "1",
+            subtitleID: "13",
+            titleID: "3",
+            name: "Subiectul I",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect1",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "1",
+                subtitleID: "13",
+                titleID: "3",
+                barem: {
+                  maxPoints: 3,
+                }
+              },
+              {
+                id: "2",
+                subiect: "1",
+                subtitleID: "13",
+                titleID: "3",
+                barem: {
+                  maxPoints: 3,
+                }
+              }
+            ]
+          },
+          {
+            id: "2",
+            name: "Subiectul II",
+            subtitleID: "13",
+            titleID: "3",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect2",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "2",
+                subtitleID: "13",
+                titleID: "3",
+                item: [
+                  {
+                    id: 1,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "13",
+                    titleID: "3",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 2,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "13",
+                    titleID: "3",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 3,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "13",
+                    titleID: "3",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 4,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "13",
+                    titleID: "3",
+                    barem: {
+                      maxPoints: 3,
+                    }
+                  },
+                  {
+                    id: 5,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "13",
+                    titleID: "3",
+                    barem: {
+                      maxPoints: 4,
+                    }
+                  },
+                  {
+                    id: 6,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "13",
+                    titleID: "3",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  },
+                  {
+                    id: 7,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "13",
+                    titleID: "3",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  }
+                ]
+               },
+               {
+                id: "2",
+                subiect: "2",
+                subtitleID: "13",
+                titleID: "3",
+                item: [
+                  {
+                    id: 1,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "13",
+                    titleID: "3",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 2,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "13",
+                    titleID: "3",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 3,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "13",
+                    titleID: "3",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 4,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "13",
+                    titleID: "3",
+                    barem: {
+                      maxPoints: 3,
+                    }
+                  },
+                  {
+                    id: 5,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "13",
+                    titleID: "3",
+                    barem: {
+                      maxPoints: 4,
+                    }
+                  },
+                  {
+                    id: 6,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "13",
+                    titleID: "3",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  },
+                  {
+                    id: 7,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "13",
+                    titleID: "3",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            id: "3",
+            subtitleID: "13",
+            titleID: "3",
+            name: "Subiectul III",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect3",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "3",
+                subtitleID: "13",
+                titleID: "3", 
+                barem: {
+                  maxPoints: 15,
+                }   
+              },
+              {
+                id: "2",
+                subiect: "3",
+                subtitleID: "13",
+                titleID: "3",
+                barem: {
+                  maxPoints: 15,
+                } 
+              }
+            ]
+          }
+        ]
       },
       {
         id: "14",
@@ -4662,6 +7466,233 @@ let temeIstoria = [
             }],
           },
         ],
+        aplicatii: [
+          {
+            id: "1",
+            subtitleID: "14",
+            titleID: "3",
+            name: "Subiectul I",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect1",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "1",
+                subtitleID: "14",
+                titleID: "3",
+                barem: {
+                  maxPoints: 3,
+                }
+              },
+              {
+                id: "2",
+                subiect: "1",
+                subtitleID: "14",
+                titleID: "3",
+                barem: {
+                  maxPoints: 3,
+                }
+              }
+            ]
+          },
+          {
+            id: "2",
+            name: "Subiectul II",
+            subtitleID: "14",
+            titleID: "3",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect2",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "2",
+                subtitleID: "14",
+                titleID: "3",
+                item: [
+                  {
+                    id: 1,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "14",
+                    titleID: "3",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 2,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "14",
+                    titleID: "3",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 3,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "14",
+                    titleID: "3",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 4,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "14",
+                    titleID: "3",
+                    barem: {
+                      maxPoints: 3,
+                    }
+                  },
+                  {
+                    id: 5,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "14",
+                    titleID: "3",
+                    barem: {
+                      maxPoints: 4,
+                    }
+                  },
+                  {
+                    id: 6,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "14",
+                    titleID: "3",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  },
+                  {
+                    id: 7,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "14",
+                    titleID: "3",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  }
+                ]
+               },
+               {
+                id: "2",
+                subiect: "2",
+                subtitleID: "14",
+                titleID: "3",
+                item: [
+                  {
+                    id: 1,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "14",
+                    titleID: "3",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 2,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "14",
+                    titleID: "3",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 3,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "14",
+                    titleID: "3",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 4,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "14",
+                    titleID: "3",
+                    barem: {
+                      maxPoints: 3,
+                    }
+                  },
+                  {
+                    id: 5,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "14",
+                    titleID: "3",
+                    barem: {
+                      maxPoints: 4,
+                    }
+                  },
+                  {
+                    id: 6,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "14",
+                    titleID: "3",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  },
+                  {
+                    id: 7,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "14",
+                    titleID: "3",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            id: "3",
+            subtitleID: "14",
+            titleID: "3",
+            name: "Subiectul III",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect3",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "3",
+                subtitleID: "14",
+                titleID: "3", 
+                barem: {
+                  maxPoints: 15,
+                }   
+              },
+              {
+                id: "2",
+                subiect: "3",
+                subtitleID: "14",
+                titleID: "3",
+                barem: {
+                  maxPoints: 15,
+                } 
+              }
+            ]
+          }
+        ]
       },
       {
         id: "15",
@@ -4746,6 +7777,233 @@ let temeIstoria = [
             }],
           },
         ],
+        aplicatii: [
+          {
+            id: "1",
+            subtitleID: "15",
+            titleID: "3",
+            name: "Subiectul I",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect1",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "1",
+                subtitleID: "15",
+                titleID: "3",
+                barem: {
+                  maxPoints: 3,
+                }
+              },
+              {
+                id: "2",
+                subiect: "1",
+                subtitleID: "15",
+                titleID: "3",
+                barem: {
+                  maxPoints: 3,
+                }
+              }
+            ]
+          },
+          {
+            id: "2",
+            name: "Subiectul II",
+            subtitleID: "15",
+            titleID: "3",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect2",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "2",
+                subtitleID: "15",
+                titleID: "3",
+                item: [
+                  {
+                    id: 1,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "15",
+                    titleID: "3",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 2,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "15",
+                    titleID: "3",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 3,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "15",
+                    titleID: "3",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 4,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "15",
+                    titleID: "3",
+                    barem: {
+                      maxPoints: 3,
+                    }
+                  },
+                  {
+                    id: 5,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "15",
+                    titleID: "3",
+                    barem: {
+                      maxPoints: 4,
+                    }
+                  },
+                  {
+                    id: 6,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "15",
+                    titleID: "3",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  },
+                  {
+                    id: 7,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "15",
+                    titleID: "3",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  }
+                ]
+               },
+               {
+                id: "2",
+                subiect: "2",
+                subtitleID: "15",
+                titleID: "3",
+                item: [
+                  {
+                    id: 1,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "15",
+                    titleID: "3",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 2,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "15",
+                    titleID: "3",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 3,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "15",
+                    titleID: "3",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 4,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "15",
+                    titleID: "3",
+                    barem: {
+                      maxPoints: 3,
+                    }
+                  },
+                  {
+                    id: 5,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "15",
+                    titleID: "3",
+                    barem: {
+                      maxPoints: 4,
+                    }
+                  },
+                  {
+                    id: 6,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "15",
+                    titleID: "3",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  },
+                  {
+                    id: 7,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "15",
+                    titleID: "3",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            id: "3",
+            subtitleID: "15",
+            titleID: "3",
+            name: "Subiectul III",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect3",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "3",
+                subtitleID: "15",
+                titleID: "3", 
+                barem: {
+                  maxPoints: 15,
+                }   
+              },
+              {
+                id: "2",
+                subiect: "3",
+                subtitleID: "15",
+                titleID: "3",
+                barem: {
+                  maxPoints: 15,
+                } 
+              }
+            ]
+          }
+        ]
       },
     ],
   },
@@ -4838,6 +8096,233 @@ let temeIstoria = [
             }],
           },
         ],
+        aplicatii: [
+          {
+            id: "1",
+            subtitleID: "16",
+            titleID: "4",
+            name: "Subiectul I",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect1",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "1",
+                subtitleID: "16",
+                titleID: "4",
+                barem: {
+                  maxPoints: 3,
+                }
+              },
+              {
+                id: "2",
+                subiect: "1",
+                subtitleID: "16",
+                titleID: "4",
+                barem: {
+                  maxPoints: 3,
+                }
+              }
+            ]
+          },
+          {
+            id: "2",
+            name: "Subiectul II",
+            subtitleID: "16",
+            titleID: "4",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect2",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "2",
+                subtitleID: "16",
+                titleID: "4",
+                item: [
+                  {
+                    id: 1,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "16",
+                    titleID: "4",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 2,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "16",
+                    titleID: "4",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 3,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "16",
+                    titleID: "4",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 4,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "16",
+                    titleID: "4",
+                    barem: {
+                      maxPoints: 3,
+                    }
+                  },
+                  {
+                    id: 5,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "16",
+                    titleID: "4",
+                    barem: {
+                      maxPoints: 4,
+                    }
+                  },
+                  {
+                    id: 6,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "16",
+                    titleID: "4",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  },
+                  {
+                    id: 7,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "16",
+                    titleID: "4",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  }
+                ]
+               },
+               {
+                id: "2",
+                subiect: "2",
+                subtitleID: "16",
+                titleID: "4",
+                item: [
+                  {
+                    id: 1,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "16",
+                    titleID: "4",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 2,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "16",
+                    titleID: "4",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 3,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "16",
+                    titleID: "4",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 4,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "16",
+                    titleID: "4",
+                    barem: {
+                      maxPoints: 3,
+                    }
+                  },
+                  {
+                    id: 5,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "16",
+                    titleID: "4",
+                    barem: {
+                      maxPoints: 4,
+                    }
+                  },
+                  {
+                    id: 6,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "16",
+                    titleID: "4",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  },
+                  {
+                    id: 7,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "16",
+                    titleID: "4",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            id: "3",
+            subtitleID: "16",
+            titleID: "4",
+            name: "Subiectul III",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect3",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "3",
+                subtitleID: "16",
+                titleID: "4", 
+                barem: {
+                  maxPoints: 15,
+                }   
+              },
+              {
+                id: "2",
+                subiect: "3",
+                subtitleID: "16",
+                titleID: "4",
+                barem: {
+                  maxPoints: 15,
+                } 
+              }
+            ]
+          }
+        ]
       },
       {
         id: "17",
@@ -4922,6 +8407,233 @@ let temeIstoria = [
             }],
           },
         ],
+        aplicatii: [
+          {
+            id: "1",
+            subtitleID: "17",
+            titleID: "4",
+            name: "Subiectul I",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect1",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "1",
+                subtitleID: "17",
+                titleID: "4",
+                barem: {
+                  maxPoints: 3,
+                }
+              },
+              {
+                id: "2",
+                subiect: "1",
+                subtitleID: "17",
+                titleID: "4",
+                barem: {
+                  maxPoints: 3,
+                }
+              }
+            ]
+          },
+          {
+            id: "2",
+            name: "Subiectul II",
+            subtitleID: "17",
+            titleID: "4",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect2",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "2",
+                subtitleID: "17",
+                titleID: "4",
+                item: [
+                  {
+                    id: 1,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "17",
+                    titleID: "4",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 2,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "17",
+                    titleID: "4",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 3,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "17",
+                    titleID: "4",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 4,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "17",
+                    titleID: "4",
+                    barem: {
+                      maxPoints: 3,
+                    }
+                  },
+                  {
+                    id: 5,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "17",
+                    titleID: "4",
+                    barem: {
+                      maxPoints: 4,
+                    }
+                  },
+                  {
+                    id: 6,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "17",
+                    titleID: "4",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  },
+                  {
+                    id: 7,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "17",
+                    titleID: "4",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  }
+                ]
+               },
+               {
+                id: "2",
+                subiect: "2",
+                subtitleID: "17",
+                titleID: "4",
+                item: [
+                  {
+                    id: 1,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "17",
+                    titleID: "4",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 2,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "17",
+                    titleID: "4",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 3,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "17",
+                    titleID: "4",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 4,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "17",
+                    titleID: "4",
+                    barem: {
+                      maxPoints: 3,
+                    }
+                  },
+                  {
+                    id: 5,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "17",
+                    titleID: "4",
+                    barem: {
+                      maxPoints: 4,
+                    }
+                  },
+                  {
+                    id: 6,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "17",
+                    titleID: "4",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  },
+                  {
+                    id: 7,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "17",
+                    titleID: "4",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            id: "3",
+            subtitleID: "17",
+            titleID: "4",
+            name: "Subiectul III",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect3",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "3",
+                subtitleID: "17",
+                titleID: "4", 
+                barem: {
+                  maxPoints: 15,
+                }   
+              },
+              {
+                id: "2",
+                subiect: "3",
+                subtitleID: "17",
+                titleID: "4",
+                barem: {
+                  maxPoints: 15,
+                } 
+              }
+            ]
+          }
+        ]
       },
       {
         id: "18",
@@ -5006,6 +8718,233 @@ let temeIstoria = [
             }],
           },
         ],
+        aplicatii: [
+          {
+            id: "1",
+            subtitleID: "18",
+            titleID: "4",
+            name: "Subiectul I",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect1",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "1",
+                subtitleID: "18",
+                titleID: "4",
+                barem: {
+                  maxPoints: 3,
+                }
+              },
+              {
+                id: "2",
+                subiect: "1",
+                subtitleID: "18",
+                titleID: "4",
+                barem: {
+                  maxPoints: 3,
+                }
+              }
+            ]
+          },
+          {
+            id: "2",
+            name: "Subiectul II",
+            subtitleID: "18",
+            titleID: "4",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect2",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "2",
+                subtitleID: "18",
+                titleID: "4",
+                item: [
+                  {
+                    id: 1,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "18",
+                    titleID: "4",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 2,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "18",
+                    titleID: "4",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 3,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "18",
+                    titleID: "4",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 4,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "18",
+                    titleID: "4",
+                    barem: {
+                      maxPoints: 3,
+                    }
+                  },
+                  {
+                    id: 5,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "18",
+                    titleID: "4",
+                    barem: {
+                      maxPoints: 4,
+                    }
+                  },
+                  {
+                    id: 6,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "18",
+                    titleID: "4",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  },
+                  {
+                    id: 7,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "18",
+                    titleID: "4",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  }
+                ]
+               },
+               {
+                id: "2",
+                subiect: "2",
+                subtitleID: "18",
+                titleID: "4",
+                item: [
+                  {
+                    id: 1,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "18",
+                    titleID: "4",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 2,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "18",
+                    titleID: "4",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 3,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "18",
+                    titleID: "4",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 4,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "18",
+                    titleID: "4",
+                    barem: {
+                      maxPoints: 3,
+                    }
+                  },
+                  {
+                    id: 5,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "18",
+                    titleID: "4",
+                    barem: {
+                      maxPoints: 4,
+                    }
+                  },
+                  {
+                    id: 6,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "18",
+                    titleID: "4",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  },
+                  {
+                    id: 7,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "18",
+                    titleID: "4",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            id: "3",
+            subtitleID: "18",
+            titleID: "4",
+            name: "Subiectul III",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect3",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "3",
+                subtitleID: "18",
+                titleID: "4", 
+                barem: {
+                  maxPoints: 15,
+                }   
+              },
+              {
+                id: "2",
+                subiect: "3",
+                subtitleID: "18",
+                titleID: "4",
+                barem: {
+                  maxPoints: 15,
+                } 
+              }
+            ]
+          }
+        ]
       },
       {
         id: "19",
@@ -5090,6 +9029,233 @@ let temeIstoria = [
             }],
           },
         ],
+        aplicatii: [
+          {
+            id: "1",
+            subtitleID: "19",
+            titleID: "4",
+            name: "Subiectul I",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect1",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "1",
+                subtitleID: "19",
+                titleID: "4",
+                barem: {
+                  maxPoints: 3,
+                }
+              },
+              {
+                id: "2",
+                subiect: "1",
+                subtitleID: "19",
+                titleID: "4",
+                barem: {
+                  maxPoints: 3,
+                }
+              }
+            ]
+          },
+          {
+            id: "2",
+            name: "Subiectul II",
+            subtitleID: "19",
+            titleID: "4",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect2",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "2",
+                subtitleID: "19",
+                titleID: "4",
+                item: [
+                  {
+                    id: 1,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "19",
+                    titleID: "4",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 2,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "19",
+                    titleID: "4",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 3,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "19",
+                    titleID: "4",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 4,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "19",
+                    titleID: "4",
+                    barem: {
+                      maxPoints: 3,
+                    }
+                  },
+                  {
+                    id: 5,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "19",
+                    titleID: "4",
+                    barem: {
+                      maxPoints: 4,
+                    }
+                  },
+                  {
+                    id: 6,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "19",
+                    titleID: "4",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  },
+                  {
+                    id: 7,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "19",
+                    titleID: "4",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  }
+                ]
+               },
+               {
+                id: "2",
+                subiect: "2",
+                subtitleID: "19",
+                titleID: "4",
+                item: [
+                  {
+                    id: 1,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "19",
+                    titleID: "4",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 2,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "19",
+                    titleID: "4",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 3,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "19",
+                    titleID: "4",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 4,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "19",
+                    titleID: "4",
+                    barem: {
+                      maxPoints: 3,
+                    }
+                  },
+                  {
+                    id: 5,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "19",
+                    titleID: "4",
+                    barem: {
+                      maxPoints: 4,
+                    }
+                  },
+                  {
+                    id: 6,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "19",
+                    titleID: "4",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  },
+                  {
+                    id: 7,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "19",
+                    titleID: "4",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            id: "3",
+            subtitleID: "19",
+            titleID: "4",
+            name: "Subiectul III",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect3",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "3",
+                subtitleID: "19",
+                titleID: "4", 
+                barem: {
+                  maxPoints: 15,
+                }   
+              },
+              {
+                id: "2",
+                subiect: "3",
+                subtitleID: "19",
+                titleID: "4",
+                barem: {
+                  maxPoints: 15,
+                } 
+              }
+            ]
+          }
+        ]
       },
     ],
   },
@@ -5182,6 +9348,233 @@ let temeIstoria = [
             }],
           },
         ],
+        aplicatii: [
+          {
+            id: "1",
+            subtitleID: "20",
+            titleID: "5",
+            name: "Subiectul I",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect1",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "1",
+                subtitleID: "20",
+                titleID: "5",
+                barem: {
+                  maxPoints: 3,
+                }
+              },
+              {
+                id: "2",
+                subiect: "1",
+                subtitleID: "20",
+                titleID: "5",
+                barem: {
+                  maxPoints: 3,
+                }
+              }
+            ]
+          },
+          {
+            id: "2",
+            name: "Subiectul II",
+            subtitleID: "20",
+            titleID: "5",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect2",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "2",
+                subtitleID: "20",
+                titleID: "5",
+                item: [
+                  {
+                    id: 1,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "20",
+                    titleID: "5",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 2,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "20",
+                    titleID: "5",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 3,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "20",
+                    titleID: "5",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 4,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "20",
+                    titleID: "5",
+                    barem: {
+                      maxPoints: 3,
+                    }
+                  },
+                  {
+                    id: 5,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "20",
+                    titleID: "5",
+                    barem: {
+                      maxPoints: 4,
+                    }
+                  },
+                  {
+                    id: 6,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "20",
+                    titleID: "5",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  },
+                  {
+                    id: 7,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "20",
+                    titleID: "5",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  }
+                ]
+               },
+               {
+                id: "2",
+                subiect: "2",
+                subtitleID: "20",
+                titleID: "5",
+                item: [
+                  {
+                    id: 1,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "20",
+                    titleID: "5",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 2,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "20",
+                    titleID: "5",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 3,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "20",
+                    titleID: "5",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 4,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "20",
+                    titleID: "5",
+                    barem: {
+                      maxPoints: 3,
+                    }
+                  },
+                  {
+                    id: 5,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "20",
+                    titleID: "5",
+                    barem: {
+                      maxPoints: 4,
+                    }
+                  },
+                  {
+                    id: 6,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "20",
+                    titleID: "5",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  },
+                  {
+                    id: 7,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "20",
+                    titleID: "5",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            id: "3",
+            subtitleID: "20",
+            titleID: "5",
+            name: "Subiectul III",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect3",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "3",
+                subtitleID: "20",
+                titleID: "5", 
+                barem: {
+                  maxPoints: 15,
+                }   
+              },
+              {
+                id: "2",
+                subiect: "3",
+                subtitleID: "20",
+                titleID: "5",
+                barem: {
+                  maxPoints: 15,
+                } 
+              }
+            ]
+          }
+        ]
       },
       {
         id: "21",
@@ -5266,6 +9659,233 @@ let temeIstoria = [
             }],
           },
         ],
+        aplicatii: [
+          {
+            id: "1",
+            subtitleID: "21",
+            titleID: "5",
+            name: "Subiectul I",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect1",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "1",
+                subtitleID: "21",
+                titleID: "5",
+                barem: {
+                  maxPoints: 3,
+                }
+              },
+              {
+                id: "2",
+                subiect: "1",
+                subtitleID: "21",
+                titleID: "5",
+                barem: {
+                  maxPoints: 3,
+                }
+              }
+            ]
+          },
+          {
+            id: "2",
+            name: "Subiectul II",
+            subtitleID: "21",
+            titleID: "5",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect2",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "2",
+                subtitleID: "21",
+                titleID: "5",
+                item: [
+                  {
+                    id: 1,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "21",
+                    titleID: "5",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 2,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "21",
+                    titleID: "5",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 3,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "21",
+                    titleID: "5",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 4,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "21",
+                    titleID: "5",
+                    barem: {
+                      maxPoints: 3,
+                    }
+                  },
+                  {
+                    id: 5,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "21",
+                    titleID: "5",
+                    barem: {
+                      maxPoints: 4,
+                    }
+                  },
+                  {
+                    id: 6,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "21",
+                    titleID: "5",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  },
+                  {
+                    id: 7,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "21",
+                    titleID: "5",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  }
+                ]
+               },
+               {
+                id: "2",
+                subiect: "2",
+                subtitleID: "21",
+                titleID: "5",
+                item: [
+                  {
+                    id: 1,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "21",
+                    titleID: "5",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 2,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "21",
+                    titleID: "5",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 3,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "21",
+                    titleID: "5",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 4,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "21",
+                    titleID: "5",
+                    barem: {
+                      maxPoints: 3,
+                    }
+                  },
+                  {
+                    id: 5,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "21",
+                    titleID: "5",
+                    barem: {
+                      maxPoints: 4,
+                    }
+                  },
+                  {
+                    id: 6,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "21",
+                    titleID: "5",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  },
+                  {
+                    id: 7,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "21",
+                    titleID: "5",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            id: "3",
+            subtitleID: "21",
+            titleID: "5",
+            name: "Subiectul III",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect3",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "3",
+                subtitleID: "21",
+                titleID: "5", 
+                barem: {
+                  maxPoints: 15,
+                }   
+              },
+              {
+                id: "2",
+                subiect: "3",
+                subtitleID: "21",
+                titleID: "5",
+                barem: {
+                  maxPoints: 15,
+                } 
+              }
+            ]
+          }
+        ]
       },
       {
         id: "22",
@@ -5350,6 +9970,233 @@ let temeIstoria = [
             }],
           },
         ],
+        aplicatii: [
+          {
+            id: "1",
+            subtitleID: "22",
+            titleID: "5",
+            name: "Subiectul I",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect1",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "1",
+                subtitleID: "22",
+                titleID: "5",
+                barem: {
+                  maxPoints: 3,
+                }
+              },
+              {
+                id: "2",
+                subiect: "1",
+                subtitleID: "22",
+                titleID: "5",
+                barem: {
+                  maxPoints: 3,
+                }
+              }
+            ]
+          },
+          {
+            id: "2",
+            name: "Subiectul II",
+            subtitleID: "22",
+            titleID: "5",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect2",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "2",
+                subtitleID: "22",
+                titleID: "5",
+                item: [
+                  {
+                    id: 1,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "22",
+                    titleID: "5",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 2,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "22",
+                    titleID: "5",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 3,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "22",
+                    titleID: "5",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 4,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "22",
+                    titleID: "5",
+                    barem: {
+                      maxPoints: 3,
+                    }
+                  },
+                  {
+                    id: 5,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "22",
+                    titleID: "5",
+                    barem: {
+                      maxPoints: 4,
+                    }
+                  },
+                  {
+                    id: 6,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "22",
+                    titleID: "5",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  },
+                  {
+                    id: 7,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "22",
+                    titleID: "5",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  }
+                ]
+               },
+               {
+                id: "2",
+                subiect: "2",
+                subtitleID: "22",
+                titleID: "5",
+                item: [
+                  {
+                    id: 1,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "22",
+                    titleID: "5",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 2,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "22",
+                    titleID: "5",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 3,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "22",
+                    titleID: "5",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 4,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "22",
+                    titleID: "5",
+                    barem: {
+                      maxPoints: 3,
+                    }
+                  },
+                  {
+                    id: 5,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "22",
+                    titleID: "5",
+                    barem: {
+                      maxPoints: 4,
+                    }
+                  },
+                  {
+                    id: 6,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "22",
+                    titleID: "5",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  },
+                  {
+                    id: 7,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "22",
+                    titleID: "5",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            id: "3",
+            subtitleID: "22",
+            titleID: "5",
+            name: "Subiectul III",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect3",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "3",
+                subtitleID: "22",
+                titleID: "5", 
+                barem: {
+                  maxPoints: 15,
+                }   
+              },
+              {
+                id: "2",
+                subiect: "3",
+                subtitleID: "22",
+                titleID: "5",
+                barem: {
+                  maxPoints: 15,
+                } 
+              }
+            ]
+          }
+        ]
       },
       {
         id: "23",
@@ -5434,8 +10281,236 @@ let temeIstoria = [
             }],
           },
         ],
+        aplicatii: [
+          {
+            id: "1",
+            subtitleID: "23",
+            titleID: "5",
+            name: "Subiectul I",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect1",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "1",
+                subtitleID: "23",
+                titleID: "5",
+                barem: {
+                  maxPoints: 3,
+                }
+              },
+              {
+                id: "2",
+                subiect: "1",
+                subtitleID: "23",
+                titleID: "5",
+                barem: {
+                  maxPoints: 3,
+                }
+              }
+            ]
+          },
+          {
+            id: "2",
+            name: "Subiectul II",
+            subtitleID: "23",
+            titleID: "5",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect2",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "2",
+                subtitleID: "23",
+                titleID: "5",
+                item: [
+                  {
+                    id: 1,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "23",
+                    titleID: "5",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 2,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "23",
+                    titleID: "5",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 3,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "23",
+                    titleID: "5",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 4,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "23",
+                    titleID: "5",
+                    barem: {
+                      maxPoints: 3,
+                    }
+                  },
+                  {
+                    id: 5,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "23",
+                    titleID: "5",
+                    barem: {
+                      maxPoints: 4,
+                    }
+                  },
+                  {
+                    id: 6,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "23",
+                    titleID: "5",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  },
+                  {
+                    id: 7,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "23",
+                    titleID: "5",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  }
+                ]
+               },
+               {
+                id: "2",
+                subiect: "2",
+                subtitleID: "23",
+                titleID: "5",
+                item: [
+                  {
+                    id: 1,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "23",
+                    titleID: "5",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 2,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "23",
+                    titleID: "5",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 3,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "23",
+                    titleID: "5",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 4,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "23",
+                    titleID: "5",
+                    barem: {
+                      maxPoints: 3,
+                    }
+                  },
+                  {
+                    id: 5,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "23",
+                    titleID: "5",
+                    barem: {
+                      maxPoints: 4,
+                    }
+                  },
+                  {
+                    id: 6,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "23",
+                    titleID: "5",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  },
+                  {
+                    id: 7,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "23",
+                    titleID: "5",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            id: "3",
+            subtitleID: "23",
+            titleID: "5",
+            name: "Subiectul III",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect3",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "3",
+                subtitleID: "23",
+                titleID: "5", 
+                barem: {
+                  maxPoints: 15,
+                }   
+              },
+              {
+                id: "2",
+                subiect: "3",
+                subtitleID: "23",
+                titleID: "5",
+                barem: {
+                  maxPoints: 15,
+                } 
+              }
+            ]
+          }
+        ]
       },
     ],
+
   },
   {
     id: "6",
@@ -5526,6 +10601,233 @@ let temeIstoria = [
             }],
           },
         ],
+        aplicatii: [
+          {
+            id: "1",
+            subtitleID: "24",
+            titleID: "6",
+            name: "Subiectul I",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect1",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "1",
+                subtitleID: "24",
+                titleID: "6",
+                barem: {
+                  maxPoints: 3,
+                }
+              },
+              {
+                id: "2",
+                subiect: "1",
+                subtitleID: "24",
+                titleID: "6",
+                barem: {
+                  maxPoints: 3,
+                }
+              }
+            ]
+          },
+          {
+            id: "2",
+            name: "Subiectul II",
+            subtitleID: "24",
+            titleID: "6",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect2",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "2",
+                subtitleID: "24",
+                titleID: "6",
+                item: [
+                  {
+                    id: 1,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "24",
+                    titleID: "6",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 2,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "24",
+                    titleID: "6",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 3,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "24",
+                    titleID: "6",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 4,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "24",
+                    titleID: "6",
+                    barem: {
+                      maxPoints: 3,
+                    }
+                  },
+                  {
+                    id: 5,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "24",
+                    titleID: "6",
+                    barem: {
+                      maxPoints: 4,
+                    }
+                  },
+                  {
+                    id: 6,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "24",
+                    titleID: "6",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  },
+                  {
+                    id: 7,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "24",
+                    titleID: "6",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  }
+                ]
+               },
+               {
+                id: "2",
+                subiect: "2",
+                subtitleID: "24",
+                titleID: "6",
+                item: [
+                  {
+                    id: 1,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "24",
+                    titleID: "6",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 2,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "24",
+                    titleID: "6",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 3,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "24",
+                    titleID: "6",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 4,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "24",
+                    titleID: "6",
+                    barem: {
+                      maxPoints: 3,
+                    }
+                  },
+                  {
+                    id: 5,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "24",
+                    titleID: "6",
+                    barem: {
+                      maxPoints: 4,
+                    }
+                  },
+                  {
+                    id: 6,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "24",
+                    titleID: "6",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  },
+                  {
+                    id: 7,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "24",
+                    titleID: "6",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            id: "3",
+            subtitleID: "24",
+            titleID: "6",
+            name: "Subiectul III",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect3",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "3",
+                subtitleID: "24",
+                titleID: "6", 
+                barem: {
+                  maxPoints: 15,
+                }   
+              },
+              {
+                id: "2",
+                subiect: "3",
+                subtitleID: "24",
+                titleID: "6",
+                barem: {
+                  maxPoints: 15,
+                } 
+              }
+            ]
+          }
+        ]
       },
       {
         id: "25",
@@ -5610,6 +10912,233 @@ let temeIstoria = [
             }],
           },
         ],
+        aplicatii: [
+          {
+            id: "1",
+            subtitleID: "25",
+            titleID: "6",
+            name: "Subiectul I",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect1",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "1",
+                subtitleID: "25",
+                titleID: "6",
+                barem: {
+                  maxPoints: 3,
+                }
+              },
+              {
+                id: "2",
+                subiect: "1",
+                subtitleID: "25",
+                titleID: "6",
+                barem: {
+                  maxPoints: 3,
+                }
+              }
+            ]
+          },
+          {
+            id: "2",
+            name: "Subiectul II",
+            subtitleID: "25",
+            titleID: "6",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect2",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "2",
+                subtitleID: "25",
+                titleID: "6",
+                item: [
+                  {
+                    id: 1,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "25",
+                    titleID: "6",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 2,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "25",
+                    titleID: "6",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 3,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "25",
+                    titleID: "6",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 4,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "25",
+                    titleID: "6",
+                    barem: {
+                      maxPoints: 3,
+                    }
+                  },
+                  {
+                    id: 5,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "25",
+                    titleID: "6",
+                    barem: {
+                      maxPoints: 4,
+                    }
+                  },
+                  {
+                    id: 6,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "25",
+                    titleID: "6",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  },
+                  {
+                    id: 7,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "25",
+                    titleID: "6",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  }
+                ]
+               },
+               {
+                id: "2",
+                subiect: "2",
+                subtitleID: "25",
+                titleID: "6",
+                item: [
+                  {
+                    id: 1,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "25",
+                    titleID: "6",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 2,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "25",
+                    titleID: "6",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 3,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "25",
+                    titleID: "6",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 4,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "25",
+                    titleID: "6",
+                    barem: {
+                      maxPoints: 3,
+                    }
+                  },
+                  {
+                    id: 5,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "25",
+                    titleID: "6",
+                    barem: {
+                      maxPoints: 4,
+                    }
+                  },
+                  {
+                    id: 6,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "25",
+                    titleID: "6",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  },
+                  {
+                    id: 7,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "25",
+                    titleID: "6",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            id: "3",
+            subtitleID: "25",
+            titleID: "6",
+            name: "Subiectul III",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect3",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "3",
+                subtitleID: "25",
+                titleID: "6", 
+                barem: {
+                  maxPoints: 15,
+                }   
+              },
+              {
+                id: "2",
+                subiect: "3",
+                subtitleID: "25",
+                titleID: "6",
+                barem: {
+                  maxPoints: 15,
+                } 
+              }
+            ]
+          }
+        ]
       },
     ],
   },
@@ -5702,6 +11231,233 @@ let temeIstoria = [
             }],
           },
         ],
+        aplicatii: [
+          {
+            id: "1",
+            subtitleID: "26",
+            titleID: "7",
+            name: "Subiectul I",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect1",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "1",
+                subtitleID: "26",
+                titleID: "7",
+                barem: {
+                  maxPoints: 3,
+                }
+              },
+              {
+                id: "2",
+                subiect: "1",
+                subtitleID: "26",
+                titleID: "7",
+                barem: {
+                  maxPoints: 3,
+                }
+              }
+            ]
+          },
+          {
+            id: "2",
+            name: "Subiectul II",
+            subtitleID: "26",
+            titleID: "7",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect2",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "2",
+                subtitleID: "26",
+                titleID: "7",
+                item: [
+                  {
+                    id: 1,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "26",
+                    titleID: "7",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 2,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "26",
+                    titleID: "7",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 3,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "26",
+                    titleID: "7",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 4,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "26",
+                    titleID: "7",
+                    barem: {
+                      maxPoints: 3,
+                    }
+                  },
+                  {
+                    id: 5,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "26",
+                    titleID: "7",
+                    barem: {
+                      maxPoints: 4,
+                    }
+                  },
+                  {
+                    id: 6,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "26",
+                    titleID: "7",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  },
+                  {
+                    id: 7,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "26",
+                    titleID: "7",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  }
+                ]
+               },
+               {
+                id: "2",
+                subiect: "2",
+                subtitleID: "26",
+                titleID: "7",
+                item: [
+                  {
+                    id: 1,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "26",
+                    titleID: "7",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 2,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "26",
+                    titleID: "7",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 3,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "26",
+                    titleID: "7",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 4,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "26",
+                    titleID: "7",
+                    barem: {
+                      maxPoints: 3,
+                    }
+                  },
+                  {
+                    id: 5,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "26",
+                    titleID: "7",
+                    barem: {
+                      maxPoints: 4,
+                    }
+                  },
+                  {
+                    id: 6,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "26",
+                    titleID: "7",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  },
+                  {
+                    id: 7,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "26",
+                    titleID: "7",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            id: "3",
+            subtitleID: "26",
+            titleID: "7",
+            name: "Subiectul III",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect3",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "3",
+                subtitleID: "26",
+                titleID: "7", 
+                barem: {
+                  maxPoints: 15,
+                }   
+              },
+              {
+                id: "2",
+                subiect: "3",
+                subtitleID: "26",
+                titleID: "7",
+                barem: {
+                  maxPoints: 15,
+                } 
+              }
+            ]
+          }
+        ]
       },
       {
         id: "27",
@@ -5786,6 +11542,233 @@ let temeIstoria = [
             }],
           },
         ],
+        aplicatii: [
+          {
+            id: "1",
+            subtitleID: "27",
+            titleID: "7",
+            name: "Subiectul I",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect1",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "1",
+                subtitleID: "27",
+                titleID: "7",
+                barem: {
+                  maxPoints: 3,
+                }
+              },
+              {
+                id: "2",
+                subiect: "1",
+                subtitleID: "27",
+                titleID: "7",
+                barem: {
+                  maxPoints: 3,
+                }
+              }
+            ]
+          },
+          {
+            id: "2",
+            name: "Subiectul II",
+            subtitleID: "27",
+            titleID: "7",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect2",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "2",
+                subtitleID: "27",
+                titleID: "7",
+                item: [
+                  {
+                    id: 1,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "27",
+                    titleID: "7",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 2,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "27",
+                    titleID: "7",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 3,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "27",
+                    titleID: "7",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 4,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "27",
+                    titleID: "7",
+                    barem: {
+                      maxPoints: 3,
+                    }
+                  },
+                  {
+                    id: 5,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "27",
+                    titleID: "7",
+                    barem: {
+                      maxPoints: 4,
+                    }
+                  },
+                  {
+                    id: 6,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "27",
+                    titleID: "7",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  },
+                  {
+                    id: 7,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "27",
+                    titleID: "7",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  }
+                ]
+               },
+               {
+                id: "2",
+                subiect: "2",
+                subtitleID: "27",
+                titleID: "7",
+                item: [
+                  {
+                    id: 1,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "27",
+                    titleID: "7",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 2,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "27",
+                    titleID: "7",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 3,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "27",
+                    titleID: "7",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 4,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "27",
+                    titleID: "7",
+                    barem: {
+                      maxPoints: 3,
+                    }
+                  },
+                  {
+                    id: 5,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "27",
+                    titleID: "7",
+                    barem: {
+                      maxPoints: 4,
+                    }
+                  },
+                  {
+                    id: 6,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "27",
+                    titleID: "7",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  },
+                  {
+                    id: 7,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "27",
+                    titleID: "7",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            id: "3",
+            subtitleID: "27",
+            titleID: "7",
+            name: "Subiectul III",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect3",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "3",
+                subtitleID: "27",
+                titleID: "7", 
+                barem: {
+                  maxPoints: 15,
+                }   
+              },
+              {
+                id: "2",
+                subiect: "3",
+                subtitleID: "27",
+                titleID: "7",
+                barem: {
+                  maxPoints: 15,
+                } 
+              }
+            ]
+          }
+        ]
       },
       {
         id: "28",
@@ -5870,6 +11853,233 @@ let temeIstoria = [
             }],
           },
         ],
+        aplicatii: [
+          {
+            id: "1",
+            subtitleID: "28",
+            titleID: "7",
+            name: "Subiectul I",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect1",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "1",
+                subtitleID: "28",
+                titleID: "7",
+                barem: {
+                  maxPoints: 3,
+                }
+              },
+              {
+                id: "2",
+                subiect: "1",
+                subtitleID: "28",
+                titleID: "7",
+                barem: {
+                  maxPoints: 3,
+                }
+              }
+            ]
+          },
+          {
+            id: "2",
+            name: "Subiectul II",
+            subtitleID: "28",
+            titleID: "7",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect2",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "2",
+                subtitleID: "28",
+                titleID: "7",
+                item: [
+                  {
+                    id: 1,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "28",
+                    titleID: "7",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 2,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "28",
+                    titleID: "7",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 3,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "28",
+                    titleID: "7",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 4,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "28",
+                    titleID: "7",
+                    barem: {
+                      maxPoints: 3,
+                    }
+                  },
+                  {
+                    id: 5,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "28",
+                    titleID: "7",
+                    barem: {
+                      maxPoints: 4,
+                    }
+                  },
+                  {
+                    id: 6,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "28",
+                    titleID: "7",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  },
+                  {
+                    id: 7,
+                    superitem: "1",
+                    subiect: "2",
+                    subtitleID: "28",
+                    titleID: "7",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  }
+                ]
+               },
+               {
+                id: "2",
+                subiect: "2",
+                subtitleID: "28",
+                titleID: "7",
+                item: [
+                  {
+                    id: 1,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "28",
+                    titleID: "7",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 2,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "28",
+                    titleID: "7",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 3,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "28",
+                    titleID: "7",
+                    barem: {
+                      maxPoints: 2,
+                    }
+                  },
+                  {
+                    id: 4,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "28",
+                    titleID: "7",
+                    barem: {
+                      maxPoints: 3,
+                    }
+                  },
+                  {
+                    id: 5,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "28",
+                    titleID: "7",
+                    barem: {
+                      maxPoints: 4,
+                    }
+                  },
+                  {
+                    id: 6,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "28",
+                    titleID: "7",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  },
+                  {
+                    id: 7,
+                    superitem: "2",
+                    subiect: "2",
+                    subtitleID: "28",
+                    titleID: "7",
+                    barem: {
+                      maxPoints: 5,
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            id: "3",
+            subtitleID: "28",
+            titleID: "7",
+            name: "Subiectul III",
+            complexity: "dificil",
+            complexityNumber: 3,
+            addressSubject: "/examen-subiect3",
+            quizArray: [
+              {
+                id: "1",
+                subiect: "3",
+                subtitleID: "28",
+                titleID: "7", 
+                barem: {
+                  maxPoints: 15,
+                }   
+              },
+              {
+                id: "2",
+                subiect: "3",
+                subtitleID: "28",
+                titleID: "7",
+                barem: {
+                  maxPoints: 15,
+                } 
+              }
+            ]
+          }
+        ]
       },
     ],
   },
