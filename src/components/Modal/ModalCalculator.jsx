@@ -65,7 +65,7 @@ const SelectBox = ({ options, activeTab, setActiveTab,nota, setNota,idx }) => {
   );
 };
 
-const ModalCalculator = ({ barem, onClick, idRaspuns, raspunsuri, update, exams,addExam,updateExam }) => {
+const ModalCalculator = ({ barem, onClick, idRaspuns, raspunsuri, update }) => {
   const raspInitialArr = Array(barem.subitems.length).fill(0);
   const [rasp, SetRasp] = useState([]);
   const initialNoteArray = Array(barem.subitems.length).fill(0);
@@ -73,8 +73,7 @@ const ModalCalculator = ({ barem, onClick, idRaspuns, raspunsuri, update, exams,
   const [activeTab, setActiveTab] = useState(0);
   const [modalPosition, setModalPosition] = useState({ x: 370, y: 270 });
 
-  // console.log(nota)
-  useEffect(() => {
+   useEffect(() => {
     // console.log(idRaspuns);
     // console.log(raspunsuri);
     if (idRaspuns !== null) {
@@ -87,12 +86,10 @@ const ModalCalculator = ({ barem, onClick, idRaspuns, raspunsuri, update, exams,
 
 
   const handleResponse = () => {
-    // console.log({ ...rasp, id: IdRasp });
-    // console.log(idRaspuns);
     update({ ...rasp, id: idRaspuns });
-
     SetRasp(raspInitialArr);
-    onClick();
+    const notaResult = nota.reduce((accumulator, currentValue) => accumulator + currentValue, 0)
+    onClick(notaResult);
   };
 
   const handleChange = (e, idx) => {
@@ -152,13 +149,10 @@ const ModalCalculator = ({ barem, onClick, idRaspuns, raspunsuri, update, exams,
 
 const reduxState = (state) => ({
   raspunsuri: state.raspunsuri,
-  exams: state.exams
 });
 
 const reduxFunctions = (dispatch) => ({
   update: (item) => dispatch({ type: "UPDATE_ITEM", payload: item }),
-  addExam: (item) => dispatch({ type: "ADD_EXAM", payload: item }),
-  updateExam: (item) => dispatch({ type: "UPDATE_EXAM", payload: item }),
 });
 
 export default connect(reduxState, reduxFunctions)(ModalCalculator);

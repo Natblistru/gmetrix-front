@@ -32,44 +32,15 @@ const initialTeststState = {
 };
 const initialExamsState = {
   items: [{user: "Current user",
-            exams: [
-            {
-            id: "1",
-            subiect: "1",
-            superitem: "1",
-            item: "1",
-            proc: 100
-           },
-           {
-            id: "1",
-            subiect: "1",
-            superitem: "2",
-            item: "2",
-            proc: 100
-           },
-           {
-            id: "1",
-            subiect: "3",
-            superitem: "1",
-            item: "1",
-            proc: 100
-           },
-           {
-            id: "1",
-            subiect: "2",
-            superitem: "1",
-            item: "1",
-            proc: 100
-           },
-           {
-            id: "1",
-            subiect: "2",
-            superitem: "1",
-            item: "2",
-            proc: 0
-           },
-          ]
-          // exams: []
+          //   exams: [
+          //   {
+          //   id: "1",
+          //   subiect: "1",
+          //   superitem: "1",
+          //   item: "1",
+          //   proc: 100
+          //  },
+          exams: []
         }]
 };
 
