@@ -13,7 +13,7 @@ import ModalForm from "../Modal/ModalForm";
 import ModalCalculator from "../Modal/ModalCalculator";
 import Draw from "../CanvasDrawing/Draw";
 
-const ExamenSubect2 = ({raspunsuri}) => {
+const ExamenSubect2 = ({raspunsuri, exams, addExam, updateExam}) => {
   const { address } = useParams();
   const [idRaspuns, setIdRaspuns] = useState(null);
   const [item, setItem] = useState(null);
@@ -153,8 +153,40 @@ const ExamenSubect2 = ({raspunsuri}) => {
     setShowAutoevaluare(true);
   }
 
-  const onCloseAutoevaluare = () => {
+  const onCloseAutoevaluare = (notaResult) => {
     setShowAutoevaluare(false);
+    if(notaResult!==undefined){
+      console.log(notaResult)
+      const userItems = exams.items.find(
+        (el) => el.user === "Current user"
+      );
+      if (userItems) {
+        const resultItem = userItems.exams.find(
+          (el) =>
+            el.id == item.subtitleID &&
+            el.subiect == "2" &&
+            el.superitem == currentIndex + 1 &&
+            el.item == currentItem + 1
+        );
+        if (resultItem) {
+          updateExam({
+            id: item.subtitleID,
+            subiect: "2",
+            superitem: currentIndex + 1,
+            item: currentItem + 1,            
+            proc: Math.round(notaResult*100/item.quizArray[currentIndex].item[currentItem].barem.maxPoints),
+          });
+        } else {
+          addExam({
+            id: item.subtitleID,
+            subiect: "2",
+            superitem: currentIndex + 1,
+            item: currentItem + 1,            
+            proc: Math.round(notaResult*100/item.quizArray[currentIndex].item[currentItem].barem.maxPoints),
+          });
+        }
+      }
+     }
   }
 
   return (
@@ -264,7 +296,12 @@ const ExamenSubect2 = ({raspunsuri}) => {
     </Wrapper>
   );
 };
-const reduxState = state => ({
+const reduxState = (state) => ({
   raspunsuri: state.raspunsuri,
-})
-export default connect(reduxState,null)(ExamenSubect2);
+  exams: state.exams
+});
+const reduxFunctions = (dispatch) => ({
+  addExam: (item) => dispatch({ type: "ADD_EXAM", payload: item }),
+  updateExam: (item) => dispatch({ type: "UPDATE_EXAM", payload: item }),
+});
+export default connect(reduxState, reduxFunctions)(ExamenSubect2);
