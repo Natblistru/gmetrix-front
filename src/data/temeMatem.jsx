@@ -53,17 +53,6 @@ let temeMatem = [
     ]
   },
   {
-    id: "3",
-    title: "Calcul algebric. Polinoame. Fracţii algebrice.",
-    disciplina: "Matematica",
-    subtitles: [
-      {
-        id: "1",
-        name: "Expresii algebrice.",
-      },
-    ]
-  },
-  {
     id: "4",
     title: "Funcţii.",
     disciplina: "Matematica",
