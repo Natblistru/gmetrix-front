@@ -42,7 +42,8 @@ function App() {
               <Route path="/istoria/:address/flipCards/termeni" component={FlipCardsWithRouter} />
               <Route path="/istoria/:address/:address1/:addressTest/:idTest" component={TestWithRouter} />
               <Route path="/istoria/:address/:address1" component={Subtema} />
-              <Route path="/istoria/:address" component={Tema} />
+              <Route path="/:disciplina/:address" component={Tema} />
+              <Route path="/matem/:address" component={Tema} />
               <Route exact path="/home" component={Home} />
               <Route path="/romana" component={TemeRom} />
               <Route path="/matem" component={TemeMatem} />

@@ -54,12 +54,12 @@ const TestWrapper = ({ tests, add, update }) => {
   const [correctAnswer, setCorrectAnswer] = useState(null);
 
   useEffect(() => {
-    console.log("Nota s-aschimbat", correctAnswer);
-      console.log("currentList", currentList);
+  //  console.log("Nota s-aschimbat", correctAnswer);
+  //    console.log("currentList", currentList);
       if (correctAnswer !== null && currentList.type!= "testGeneralizator") {
-      console.log("currentList", currentList);
-      console.log("currentIndex", currentIndex);
-      console.log("correctAnswer", correctAnswer);
+  //    console.log("currentList", currentList);
+  //    console.log("currentIndex", currentIndex);
+  //    console.log("correctAnswer", correctAnswer);
       const userItems = tests.items.find(
         (item) => item.user === "Current user"
       );
@@ -115,7 +115,7 @@ const TestWrapper = ({ tests, add, update }) => {
     // if(currInd!==undefined) setCurrentIndex(currInd)
     // else
     if (currentList.type === "testGeneralizator") {
-      console.log("currentIndex",currentIndex);
+   //   console.log("currentIndex",currentIndex);
       setCurrentIndex(
         currentList.quizArray.length - 1 === currentIndex ? 0 : currentIndex + 1
       );

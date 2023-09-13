@@ -139,7 +139,7 @@ const ExamenSubect1 = ({ raspunsuri, exams, addExam, updateExam}) => {
     setShowAutoevaluare(false);
 
      if(notaResult!==undefined){
-      console.log(notaResult)
+   //   console.log(notaResult)
       const userItems = exams.items.find(
         (el) => el.user === "Current user"
       );

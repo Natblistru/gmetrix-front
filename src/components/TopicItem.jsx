@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import temeIstoriArray from "../data/temeIstoria";
 import SubTopicItem from "./SubTopicItem";
 import ProgressBar from "./ProgressBar";
 
-const TopicItem = ({ item,results }) => {
+const TopicItem = ({ item,results,allTems }) => {
   const tema = item;
   const [procent, setProcent] = useState(0);
+
   useEffect(() => {
    // console.log(results.items);
     if (tema.id !== null && tema.id !== undefined) {
-      const filteredIds = temeIstoriArray
+      const filteredIds = allTems
         .flatMap((item) =>
           item.subtitles.flatMap((subItem) => subItem.subjects)
         )
@@ -52,7 +52,7 @@ const TopicItem = ({ item,results }) => {
       </div>
       <ol className="subtopic-list">
         {tema?.subtitles?.map((subtitle, idx) => (
-          <SubTopicItem subTit={subtitle} idx={idx} key={idx} />
+          <SubTopicItem subTit={subtitle} idx={idx} key={idx} allTems={allTems}/>
         ))}
       </ol>
     </li>

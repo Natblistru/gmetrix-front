@@ -4,14 +4,15 @@ import { connect } from "react-redux";
 import temeIstoriArray from "../data/temeIstoria";
 import ProgressBar from "./ProgressBar";
 
-const SubTopicItem = ({subTit,idx,results,tests,exams}) => {
+const SubTopicItem = ({subTit,idx,results,tests,exams, allTems}) => {
   const subtitle = subTit;
   const [procent, setProcent] = useState(0);
   const [nota, setNota] = useState(0);
 
   useEffect(() => {
     if (subtitle.id !== null && subtitle.id !== undefined) {
-      const filteredIds = temeIstoriArray
+   //   console.log(allTems);
+      const filteredIds = allTems
         .flatMap((item) =>
           item.subtitles.flatMap((subItem) => subItem.subjects)
         )
@@ -37,7 +38,7 @@ const SubTopicItem = ({subTit,idx,results,tests,exams}) => {
       const userItems = tests.items.find((item) => item.user === user);
       if (!userItems) setNota(0);
       // Используем метод flatMap() для получения всех элементов quizArray у тестов
-      const allQuizArray = temeIstoriArray.flatMap((item) =>
+      const allQuizArray = allTems.flatMap((item) =>
         item.subtitles.flatMap((subtitle) =>
           subtitle.subjects.flatMap((subject) =>
             subject.teste.flatMap((test) => test.quizArray)
@@ -52,7 +53,7 @@ const SubTopicItem = ({subTit,idx,results,tests,exams}) => {
       let foundedItem;
       let numLength = 0;
       filteredQuizArray.forEach((el) => {
-        console.log(userItems.tests)
+   //     console.log(userItems.tests)
         foundedItem = userItems.tests.find(
           (item) =>
             item.id == el.subjectID &&
@@ -65,13 +66,13 @@ const SubTopicItem = ({subTit,idx,results,tests,exams}) => {
       // Используем метод flatMap() для получения всех элементов quizArray у Subject I,III
       const userItemsExams = exams.items.find((item) => item.user === user);
       if (!userItemsExams) setNota(0);      
-      // const allQuizArray_1_3 = temeIstoriArray.flatMap((item) =>
+      // const allQuizArray_1_3 = allTems.flatMap((item) =>
       //   item.subtitles.flatMap((subtitle) =>
       //     subtitle.aplicatii.flatMap((app) => app.quizArray)
       //     )
       // );
       let allowedAppNames = ["/examen-subiect1", "/examen-subiect3"];
-      const allQuizArray_1_3 = temeIstoriArray.flatMap((item) =>
+      const allQuizArray_1_3 = allTems.flatMap((item) =>
         item.subtitles.flatMap((subtit) =>
         subtit.id == subtitle.id
             ? subtit.aplicatii.flatMap((app) =>
@@ -95,7 +96,7 @@ const SubTopicItem = ({subTit,idx,results,tests,exams}) => {
       foundedItem = null;
       // let numLength = 0;
       filteredQuizArray_1_3.forEach((el) => {
-        console.log(userItemsExams.exams)
+   //     console.log(userItemsExams.exams)
         foundedItem = userItemsExams.exams.find(
           (item) =>
           item.id == el.subtitleID &&
@@ -107,14 +108,14 @@ const SubTopicItem = ({subTit,idx,results,tests,exams}) => {
       });
 
             // Используем метод flatMap() для получения всех элементов quizArray у Subject II
-              // const allQuizArray_2 = temeIstoriArray.flatMap((item) =>
+              // const allQuizArray_2 = allTems.flatMap((item) =>
               // item.subtitles.flatMap((subtitle) =>
               //   subtitle.aplicatii.flatMap((app) => 
               //   app.quizArray.flatMap((el) => el.item))
               //   )
               // )
               allowedAppNames = ["/examen-subiect2"];
-              const allQuizArray_2 = temeIstoriArray.flatMap((item) =>
+              const allQuizArray_2 = allTems.flatMap((item) =>
               item.subtitles.flatMap((subtit) =>
                 subtit.id === subtitle.id
                   ? subtit.aplicatii.flatMap((app) =>
@@ -145,8 +146,8 @@ const SubTopicItem = ({subTit,idx,results,tests,exams}) => {
               if (foundedItem) {SumProcValue += foundedItem.proc; numLength++};
             });
       
-            console.log("SumProcValue",SumProcValue)
-            console.log("numLength",numLength) 
+     //       console.log("SumProcValue",SumProcValue)
+     //       console.log("numLength",numLength) 
       if(numLength>0) SumProcValue = Math.round(SumProcValue / numLength / 10);
      
       setNota(SumProcValue);
@@ -162,7 +163,8 @@ const SubTopicItem = ({subTit,idx,results,tests,exams}) => {
   
     return procSum / filteredItems.length;
   };
-
+console.log(subtitle.addressDisciplina);
+console.log(subtitle.address);
   return (
     <li key={idx}>
       <div className="subtopic-header">

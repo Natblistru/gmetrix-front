@@ -63,7 +63,7 @@ const TitleBox = ({
   }, []);
 
   useEffect(() => {
-    console.log(list);
+   // console.log(list);
     if (list !== undefined && !list.barem) {
       const user = "Current user";
       const userItems = tests.items.find((item) => item.user === user);
@@ -118,7 +118,7 @@ const TitleBox = ({
           (item) =>
             item.subiect == list.subiect && item.subjectID == list.subjectID
         );
-        console.log(filteredQuizArray);
+   //     console.log(filteredQuizArray);
         let SumProcValue = 0;
         let foundedItem;
         filteredQuizArray.forEach((el) => {
@@ -133,7 +133,7 @@ const TitleBox = ({
         });
         SumProcValue = Math.round(SumProcValue / filteredQuizArray.length);
         setProcent(SumProcValue);
-        console.log(SumProcValue);
+   //     console.log(SumProcValue);
       } else if (list.subiect == "2") {
         // Используем метод flatMap() для получения всех элементов quizArray
         const allowedAppNames = ["/examen-subiect2"];
@@ -149,13 +149,13 @@ const TitleBox = ({
               : []
           )
         );
-        console.log(userItems);
-        console.log(list);
+    //    console.log(userItems);
+ //       console.log(list);
         const filteredQuizArray = allQuizArray_2.filter(
           (item) =>
             item.subiect == list.subiect && item.subjectID == list.subjectID
         );
-        console.log(filteredQuizArray);
+  //      console.log(filteredQuizArray);
         let SumProcValue = 0;
         let countItem = 0;
         filteredQuizArray.forEach((item) => {
@@ -174,7 +174,7 @@ const TitleBox = ({
         
         SumProcValue = Math.round(SumProcValue / countItem);
         setProcent(SumProcValue);
-        console.log(SumProcValue);
+   //     console.log(SumProcValue);
       }
     }
   }, [list]);
@@ -251,7 +251,7 @@ const TitleBox = ({
         if (foundedItem) SumProcValue += foundedItem.proc;
       });
       SumProcValue = Math.round(SumProcValue / filteredQuizArray.length);
-      console.log("SumProcValue", SumProcValue);
+   //   console.log("SumProcValue", SumProcValue);
       setProcent(SumProcValue);
     } else if (list !== undefined && list.barem) {
       const user = "Current user";
@@ -305,13 +305,13 @@ const TitleBox = ({
               : []
           )
         );
-        console.log(userItems);
-        console.log(list);
+   //     console.log(userItems);
+  //      console.log(list);
         const filteredQuizArray = allQuizArray_2.filter(
           (item) =>
             item.subiect == list.subiect && item.subjectID == list.subjectID
         );
-        console.log(filteredQuizArray);
+   //     console.log(filteredQuizArray);
         let SumProcValue = 0;
         let countItem = 0;
         filteredQuizArray.forEach((item) => {
@@ -330,7 +330,7 @@ const TitleBox = ({
         
         SumProcValue = Math.round(SumProcValue / countItem);
         setProcent(SumProcValue);
-        console.log(SumProcValue);
+    //    console.log(SumProcValue);
       }
     }
   }, [results.items, tests.items, exams.items]);

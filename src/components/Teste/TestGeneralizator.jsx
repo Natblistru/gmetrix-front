@@ -252,7 +252,7 @@ const TestGeneralizator = ({
   };
 
   const updateNota = (nota) => {
-    console.log("nota", nota);
+  //  console.log("nota", nota);
     const userItems = tests.items.find((item) => item.user === "Current user");
     if (userItems) {
       const resultItem = userItems.tests.find(
@@ -261,8 +261,8 @@ const TestGeneralizator = ({
           item.quiz == list.id &&
           item.item == currentIndex + 1
       );
-      console.log("userItems.tests", userItems.tests);
-      console.log("resultItem", resultItem);
+   //   console.log("userItems.tests", userItems.tests);
+   //   console.log("resultItem", resultItem);
       if (resultItem) {
         update({
           id: list.subjectID,

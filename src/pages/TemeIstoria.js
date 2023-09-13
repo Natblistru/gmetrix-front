@@ -13,7 +13,7 @@ const TemeIstoria = () => {
             <Breadcrumb list={[{name: "Discipline", path: "/"}]}/>
             <Card>
                 <Titlu className="titlu-card">Istoria - pregătire pentru examen clasa 9</Titlu>
-                <TitleBox className="teme-container">clasa 9</TitleBox>
+                <TitleBox className="teme-container" teme={temeIstoriArray}>clasa 9</TitleBox>
                 <TopicsList teme={temeIstoriArray}/>
             </Card>
         </Wrapper>
