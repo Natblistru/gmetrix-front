@@ -489,6 +489,23 @@ a:focus,
 .subjects-container.panel {
   padding: 0;
 }
+
+.subjects-container.text-raspuns:only-child {
+  padding: 2em 2em 2.5em;
+}
+
+.subjects-container + .subjects-container.text-raspuns {
+  padding: 1em 2em 0;
+}
+
+.subjects-container.text-raspuns:first-child:not(:only-child) {
+  padding: 2em 2em 0;
+}
+
+.subjects-container.text-raspuns:last-child:not(:only-child) {
+  padding: 1em 2em 2.5em;
+}
+
 .subject-item,
 .test-item {
   display: flex;
