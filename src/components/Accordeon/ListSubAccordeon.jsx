@@ -39,7 +39,9 @@ const ListSubAccordeon = (props) => {
       </ItemAccordeon>
       {arraySubject?.map((subj) => (
         <ItemAccordeon titlu={subj.name} {...props} key={subj.id} open={false}>
-          <ItemText {...props}>{subj.raspuns}</ItemText>
+          {subj.raspuns.split('\n').map((line, index) => (
+            <ItemText {...props} key={index}>{line}</ItemText>
+          ))}
         </ItemAccordeon>
       ))}
       <ItemAccordeon titlu="Evaluare (teste)" {...props} open={true}>

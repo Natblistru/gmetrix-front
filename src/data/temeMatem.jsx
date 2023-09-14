@@ -19,7 +19,7 @@ let temeMatem = [
             id: "1",
             subtitleID: "1",
             titleID: "1",
-            name: "Mulţimi.Operaţii cu mulţimi. Mulţimile:N,Z,Q,R.",
+            name: "Mulţimi.Operaţii cu mulţimi. Mulţimile: N,Z,Q,R.",
             path: "/subtema1",
             addressDisciplina: "/matem",
             addressSubtitle: "/multimea-numerelor-naturale",
@@ -34,12 +34,12 @@ let temeMatem = [
             ],
             vomAfla: [
               {
-                name: "Când a intrat România în război și de partea cui",
+                name: "Definiția mulțimilor",
                 id: "1",
                 subjectID: "1",
                 subtitleID: "1",
                 titleID: "1",
-                raspuns: "România în război in 1916 și de partea Antantei",
+                raspuns: "Totalitate de obiecte bine determinate și distincte, numite elementele mulțimii.",
                 audio: "/sound/audio-joiner1_31.mp3",
                 images: [
                   "/images/abstract01.jpg",
@@ -48,13 +48,14 @@ let temeMatem = [
                 ],
               },
               {
-                name: "Principalul motiv pentru care România a intrat în război",
+                name: "Modurile de reprezentare a mulțimii",
                 id: "2",
                 subjectID: "1",
                 subtitleID: "1",
                 titleID: "1",
                 raspuns:
-                  "Eliberarea teritoriilor aflate sub stăpânire austro-ungară",
+                  "1) prin enumerarea elementelor mulțimii (între acolade): A = {1,4, 9, 16, 25, 36, 49}\n2) prin descriere verbală:'B este mulțimea fetelor din clasa V-a'\n3)prin diagrama Venn-Euler\n4) prin definiția a mulțimii: C = {x | x∈N,x<5}"
+                  ,
                 audio: "/sound/soundsample.mp3",
                 images: [
                   "/images/pretext1.png",
@@ -98,7 +99,7 @@ let temeMatem = [
                     path: "/matem/multimea-numerelor-naturale",
                   },
                   {
-                    name: "Mulţimi.Operaţii cu mulţimi. Mulţimile:N,Z,Q,R.",
+                    name: "Mulţimi.Operaţii cu mulţimi. Mulţimile: N,Z,Q,R.",
                     path: "/matem/multimea-numerelor-naturale/mulţimi-operatii-cu-multimi",
                   },
                 ],
@@ -288,7 +289,7 @@ let temeMatem = [
                     path: "/matem/multimea-numerelor-naturale",
                   },
                   {
-                    name: "Mulţimi.Operaţii cu mulţimi. Mulţimile:N,Z,Q,R.",
+                    name: "Mulţimi.Operaţii cu mulţimi. Mulţimile: N,Z,Q,R.",
                     path: "/matem/multimea-numerelor-naturale/mulţimi-operatii-cu-multimi",
                   },
                 ],
@@ -407,7 +408,7 @@ let temeMatem = [
                     path: "/matem/multimea-numerelor-naturale",
                   },
                   {
-                    name: "Mulţimi.Operaţii cu mulţimi. Mulţimile:N,Z,Q,R.",
+                    name: "Mulţimi.Operaţii cu mulţimi. Mulţimile: N,Z,Q,R.",
                     path: "/matem/multimea-numerelor-naturale/mulţimi-operatii-cu-multimi",
                   },
                 ],
@@ -519,7 +520,7 @@ let temeMatem = [
                     path: "/matem/multimea-numerelor-naturale",
                   },
                   {
-                    name: "Mulţimi.Operaţii cu mulţimi. Mulţimile:N,Z,Q,R.",
+                    name: "Mulţimi.Operaţii cu mulţimi. Mulţimile: N,Z,Q,R.",
                     path: "/matem/multimea-numerelor-naturale/mulţimi-operatii-cu-multimi",
                   },
                 ],
@@ -622,7 +623,7 @@ let temeMatem = [
                     path: "/matem/multimea-numerelor-naturale",
                   },
                   {
-                    name: "Mulţimi.Operaţii cu mulţimi. Mulţimile:N,Z,Q,R.",
+                    name: "Mulţimi.Operaţii cu mulţimi. Mulţimile: N,Z,Q,R.",
                     path: "/matem/multimea-numerelor-naturale/mulţimi-operatii-cu-multimi",
                   },
                 ],
@@ -706,7 +707,7 @@ let temeMatem = [
                     path: "/matem/multimea-numerelor-naturale",
                   },
                   {
-                    name: "Mulţimi.Operaţii cu mulţimi. Mulţimile:N,Z,Q,R.",
+                    name: "Mulţimi.Operaţii cu mulţimi. Mulţimile: N,Z,Q,R.",
                     path: "/matem/multimea-numerelor-naturale/mulţimi-operatii-cu-multimi",
                   },
                 ],
@@ -825,7 +826,7 @@ let temeMatem = [
                     path: "/matem/multimea-numerelor-naturale",
                   },
                   {
-                    name: "Mulţimi.Operaţii cu mulţimi. Mulţimile:N,Z,Q,R.",
+                    name: "Mulţimi.Operaţii cu mulţimi. Mulţimile: N,Z,Q,R.",
                     path: "/matem/multimea-numerelor-naturale/mulţimi-operatii-cu-multimi",
                   },
                 ],
@@ -942,7 +943,7 @@ let temeMatem = [
                     path: "/matem/multimea-numerelor-naturale",
                   },
                   {
-                    name: "Mulţimi.Operaţii cu mulţimi. Mulţimile:N,Z,Q,R.",
+                    name: "Mulţimi.Operaţii cu mulţimi. Mulţimile: N,Z,Q,R.",
                     path: "/matem/multimea-numerelor-naturale/mulţimi-operatii-cu-multimi",
                   },
                 ],
@@ -1016,7 +1017,7 @@ let temeMatem = [
                     path: "/matem/multimea-numerelor-naturale",
                   },
                   {
-                    name: "Mulţimi.Operaţii cu mulţimi. Mulţimile:N,Z,Q,R.",
+                    name: "Mulţimi.Operaţii cu mulţimi. Mulţimile: N,Z,Q,R.",
                     path: "/matem/multimea-numerelor-naturale/mulţimi-operatii-cu-multimi",
                   },
                 ],
@@ -1146,7 +1147,7 @@ let temeMatem = [
                     path: "/matem/multimea-numerelor-naturale",
                   },
                   {
-                    name: "Mulţimi.Operaţii cu mulţimi. Mulţimile:N,Z,Q,R.",
+                    name: "Mulţimi.Operaţii cu mulţimi. Mulţimile: N,Z,Q,R.",
                     path: "/matem/multimea-numerelor-naturale/mulţimi-operatii-cu-multimi",
                   },
                 ],
@@ -1268,7 +1269,7 @@ let temeMatem = [
                     path: "/matem/multimea-numerelor-naturale",
                   },
                   {
-                    name: "Mulţimi.Operaţii cu mulţimi. Mulţimile:N,Z,Q,R.",
+                    name: "Mulţimi.Operaţii cu mulţimi. Mulţimile: N,Z,Q,R.",
                     path: "/matem/multimea-numerelor-naturale/mulţimi-operatii-cu-multimi",
                   },
                 ],
@@ -1456,7 +1457,7 @@ let temeMatem = [
             path: "/subtema1",
             addressDisciplina: "/matem",
             addressSubtitle: "/multimea-numerelor-naturale",
-            addressSubject: "operatii-cu-numere-naturale",
+            addressSubject: "/operatii-cu-numere-naturale",
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Matematica", path: "/matem" },

@@ -22,7 +22,7 @@ const Tema = () => {
   } else if(disciplina == "romana") {
     teme = temeRomanaArray;    
   }
-  console.log(teme);
+  //console.log(teme);
 
   function findObjectWithAddress(obj) {
     for (let key in obj) {
