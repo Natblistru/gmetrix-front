@@ -444,6 +444,10 @@ a:focus,
   color: #00aeef;
 }
 
+.text-block:hover {
+  text-decoration: underline;
+}
+
 .text-block.correct {
   background-color: #d1faf2;
   padding: 5px;

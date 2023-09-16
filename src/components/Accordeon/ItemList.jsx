@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
-const ItemList = ({ list, className, results }) => {
+const ItemList = ({ list, className, results, onItemClick }) => {
   let listItems = list;
   const classes = "subjects-container " + className;
   let procProgress = 0;
@@ -40,8 +40,8 @@ const ItemList = ({ list, className, results }) => {
       {listItems?.map((subtitle, idx) => {
         const dynamicPath = `${subtitle.addressDisciplina}${subtitle.addressSubtitle}${subtitle.addressSubject}`;
         return (
-          <div key={idx} className="subject-item">
-            <div className="title-item">
+          <div key={idx} className="subject-item" onClick={() => onItemClick && onItemClick(idx)}>
+            <div className="title-item"> 
               <div className="num-item">{subtitle.id}.</div>
               <div className="name-item">
                 {console.log(subtitle, dynamicPath)}

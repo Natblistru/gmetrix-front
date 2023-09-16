@@ -19,11 +19,11 @@ let temeRomana = [
             id: "1",
             subtitleID: "1",
             titleID: "1",
-            name: "Mulţimi.Operaţii cu mulţimi. Mulţimile:N,Z,Q,R.",
+            name: "Limba română - limba maternă",
             path: "/subtema1",
             addressDisciplina: "/romana",
             addressSubtitle: "/limba-romana",
-            addressSubject: "/mulţimi-operatii-cu-multimi",
+            addressSubject: "/limba-materna",
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Romana", path: "/romana" },
@@ -34,7 +34,7 @@ let temeRomana = [
             ],
             vomAfla: [
               {
-                name: "Când a intrat România în război și de partea cui",
+                name: "Ce inseamna Limba Română, asocieri, figuri de stil",
                 id: "1",
                 subjectID: "1",
                 subtitleID: "1",
@@ -42,14 +42,60 @@ let temeRomana = [
                 raspuns: "România în război in 1916 și de partea Antantei",
                 audio: "/sound/audio-joiner1_31.mp3",
                 images: [
-                  "/images/abstract01.jpg",
-                  "/images/abstract02.jpg",
-                  "/images/abstract03.jpg",
+                  "/images/LimbaCeInseamna.jpg",
                 ],
               },
               {
-                name: "Principalul motiv pentru care România a intrat în război",
+                name: "Dragostea față de Limba Română: mesaj, urare, laudă",
                 id: "2",
+                subjectID: "1",
+                subtitleID: "1",
+                titleID: "1",
+                raspuns:
+                  "Eliberarea teritoriilor aflate sub stăpânire austro-ungară",
+                audio: "/sound/soundsample.mp3",
+                images: [
+                  "/images/pretext1.png",
+                  "/images/21EfecteleRazboiului.png",
+                  "/images/22FamiliaRegalăRazboi.png",
+                  "/images/24SucceseMilitare4.png",
+                ],
+              },
+              {
+                name: "Limba română - comună în Moldova și România",
+                id: "3",
+                subjectID: "1",
+                subtitleID: "1",
+                titleID: "1",
+                raspuns:
+                  "Eliberarea teritoriilor aflate sub stăpânire austro-ungară",
+                audio: "/sound/soundsample.mp3",
+                images: [
+                  "/images/pretext1.png",
+                  "/images/21EfecteleRazboiului.png",
+                  "/images/22FamiliaRegalăRazboi.png",
+                  "/images/24SucceseMilitare4.png",
+                ],
+              },
+              {
+                name: "Citate despre Limba Română",
+                id: "4",
+                subjectID: "1",
+                subtitleID: "1",
+                titleID: "1",
+                raspuns:
+                  "Eliberarea teritoriilor aflate sub stăpânire austro-ungară",
+                audio: "/sound/soundsample.mp3",
+                images: [
+                  "/images/pretext1.png",
+                  "/images/21EfecteleRazboiului.png",
+                  "/images/22FamiliaRegalăRazboi.png",
+                  "/images/24SucceseMilitare4.png",
+                ],
+              },
+              {
+                name: "Texte cu tematica Limba Română",
+                id: "5",
                 subjectID: "1",
                 subtitleID: "1",
                 titleID: "1",
@@ -98,7 +144,7 @@ let temeRomana = [
                     path: "/romana/limba-romana",
                   },
                   {
-                    name: "Mulţimi.Operaţii cu mulţimi. Mulţimile:N,Z,Q,R.",
+                    name: "Limba română - limba maternă",
                     path: "/romana/limba-romana/mulţimi-operatii-cu-multimi",
                   },
                 ],
@@ -288,7 +334,7 @@ let temeRomana = [
                     path: "/romana/limba-romana",
                   },
                   {
-                    name: "Mulţimi.Operaţii cu mulţimi. Mulţimile:N,Z,Q,R.",
+                    name: "Limba română - limba maternă",
                     path: "/romana/limba-romana/mulţimi-operatii-cu-multimi",
                   },
                 ],
@@ -407,7 +453,7 @@ let temeRomana = [
                     path: "/romana/limba-romana",
                   },
                   {
-                    name: "Mulţimi.Operaţii cu mulţimi. Mulţimile:N,Z,Q,R.",
+                    name: "Limba română - limba maternă",
                     path: "/romana/limba-romana/mulţimi-operatii-cu-multimi",
                   },
                 ],
@@ -519,7 +565,7 @@ let temeRomana = [
                     path: "/romana/limba-romana",
                   },
                   {
-                    name: "Mulţimi.Operaţii cu mulţimi. Mulţimile:N,Z,Q,R.",
+                    name: "Limba română - limba maternă",
                     path: "/romana/limba-romana/mulţimi-operatii-cu-multimi",
                   },
                 ],
@@ -622,7 +668,7 @@ let temeRomana = [
                     path: "/romana/limba-romana",
                   },
                   {
-                    name: "Mulţimi.Operaţii cu mulţimi. Mulţimile:N,Z,Q,R.",
+                    name: "Limba română - limba maternă",
                     path: "/romana/limba-romana/mulţimi-operatii-cu-multimi",
                   },
                 ],
@@ -706,7 +752,7 @@ let temeRomana = [
                     path: "/romana/limba-romana",
                   },
                   {
-                    name: "Mulţimi.Operaţii cu mulţimi. Mulţimile:N,Z,Q,R.",
+                    name: "Limba română - limba maternă",
                     path: "/romana/limba-romana/mulţimi-operatii-cu-multimi",
                   },
                 ],
@@ -825,7 +871,7 @@ let temeRomana = [
                     path: "/romana/limba-romana",
                   },
                   {
-                    name: "Mulţimi.Operaţii cu mulţimi. Mulţimile:N,Z,Q,R.",
+                    name: "Limba română - limba maternă",
                     path: "/romana/limba-romana/mulţimi-operatii-cu-multimi",
                   },
                 ],
@@ -942,7 +988,7 @@ let temeRomana = [
                     path: "/romana/limba-romana",
                   },
                   {
-                    name: "Mulţimi.Operaţii cu mulţimi. Mulţimile:N,Z,Q,R.",
+                    name: "Limba română - limba maternă",
                     path: "/romana/limba-romana/mulţimi-operatii-cu-multimi",
                   },
                 ],
@@ -1016,7 +1062,7 @@ let temeRomana = [
                     path: "/romana/limba-romana",
                   },
                   {
-                    name: "Mulţimi.Operaţii cu mulţimi. Mulţimile:N,Z,Q,R.",
+                    name: "Limba română - limba maternă",
                     path: "/romana/limba-romana/mulţimi-operatii-cu-multimi",
                   },
                 ],
@@ -1146,7 +1192,7 @@ let temeRomana = [
                     path: "/romana/limba-romana",
                   },
                   {
-                    name: "Mulţimi.Operaţii cu mulţimi. Mulţimile:N,Z,Q,R.",
+                    name: "Limba română - limba maternă",
                     path: "/romana/limba-romana/mulţimi-operatii-cu-multimi",
                   },
                 ],
@@ -1268,7 +1314,7 @@ let temeRomana = [
                     path: "/romana/limba-romana",
                   },
                   {
-                    name: "Mulţimi.Operaţii cu mulţimi. Mulţimile:N,Z,Q,R.",
+                    name: "Limba română - limba maternă",
                     path: "/romana/limba-romana/mulţimi-operatii-cu-multimi",
                   },
                 ],
