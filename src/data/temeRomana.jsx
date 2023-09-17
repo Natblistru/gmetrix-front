@@ -55,10 +55,10 @@ let temeRomana = [
                   "Eliberarea teritoriilor aflate sub stăpânire austro-ungară",
                 audio: "/sound/soundsample.mp3",
                 images: [
-                  "/images/pretext1.png",
-                  "/images/21EfecteleRazboiului.png",
-                  "/images/22FamiliaRegalăRazboi.png",
-                  "/images/24SucceseMilitare4.png",
+                  "/images/LimbaMesaj.jpg",                  
+                  "/images/LimbaUrare.jpg",
+                  "/images/LimbaLauda.jpg",
+                  "/images/LimbaDuminica.jpg",
                 ],
               },
               {
@@ -71,10 +71,7 @@ let temeRomana = [
                   "Eliberarea teritoriilor aflate sub stăpânire austro-ungară",
                 audio: "/sound/soundsample.mp3",
                 images: [
-                  "/images/pretext1.png",
-                  "/images/21EfecteleRazboiului.png",
-                  "/images/22FamiliaRegalăRazboi.png",
-                  "/images/24SucceseMilitare4.png",
+                  "/images/LimbaComuna.jpg",
                 ],
               },
               {
@@ -87,10 +84,7 @@ let temeRomana = [
                   "Eliberarea teritoriilor aflate sub stăpânire austro-ungară",
                 audio: "/sound/soundsample.mp3",
                 images: [
-                  "/images/pretext1.png",
-                  "/images/21EfecteleRazboiului.png",
-                  "/images/22FamiliaRegalăRazboi.png",
-                  "/images/24SucceseMilitare4.png",
+                  "/images/LimbaCitate.jpg",
                 ],
               },
               {
@@ -103,10 +97,7 @@ let temeRomana = [
                   "Eliberarea teritoriilor aflate sub stăpânire austro-ungară",
                 audio: "/sound/soundsample.mp3",
                 images: [
-                  "/images/pretext1.png",
-                  "/images/21EfecteleRazboiului.png",
-                  "/images/22FamiliaRegalăRazboi.png",
-                  "/images/24SucceseMilitare4.png",
+                  "/images/LimbaTexte.jpg",
                 ],
               },
             ],
@@ -1498,11 +1489,11 @@ let temeRomana = [
             id: "2",
             subtitleID: "1",
             titleID: "1",
-            name: "Operaţii cu numere naturale",
+            name: "Limba - mijloc de exprimare artistică",
             path: "/subtema1",
             addressDisciplina: "/romana",
             addressSubtitle: "/limba-romana",
-            addressSubject: "operatii-cu-numere-naturale",
+            addressSubject: "/limba-mijloc-de-exprimare-artistic",
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Romana", path: "/romana" },
@@ -1516,7 +1507,27 @@ let temeRomana = [
                 id: "1",
                 subjectID: "2",
                 subtitleID: "1",
-                titleID: "1"
+                titleID: "1",
+                name: "Limba - mijloc de exprimare artistică",
+                raspuns: "România în război in 1916 și de partea Antantei",
+                audio: "/sound/audio-joiner1_31.mp3",
+                images: [
+                  "/images/LimbaVehicol.jpg",
+                  "/images/LimbaAcasa.jpg",
+                ],
+               },
+               {
+                id: "2",
+                subjectID: "2",
+                subtitleID: "1",
+                titleID: "1",
+                name: "Limba - sistem de impuneri și libertăți",
+                raspuns: "România în război in 1916 și de partea Antantei",
+                audio: "/sound/audio-joiner1_31.mp3",
+                images: [
+                  "/images/LimbaImpuneriLibertati.jpg",
+                  "/images/LimbaDominare.jpg",
+                ],
                }
              ],
              teste: [{
@@ -1530,16 +1541,15 @@ let temeRomana = [
               }]
             }],
           },
-
           {
             id: "3",
             subtitleID: "1",
             titleID: "1",
-            name: "Divizibilitate în N. Criteriile de divizibilitate cu 2, 3, 5, 9, 10.",
+            name: "Limba română - limbă europeană",
             path: "/subtema1",
             addressDisciplina: "/romana",
             addressSubtitle: "/limba-romana",
-            addressSubject: "/divizibilitate",
+            addressSubject: "/Limba-romana-limba-europeana",
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Romana", path: "/romana" },
@@ -1553,8 +1563,26 @@ let temeRomana = [
                 id: "1",
                 subjectID: "3",
                 subtitleID: "1",
-                titleID: "1"
-               }
+                titleID: "1",
+                name: "Limba română - limbă europeană",
+                raspuns: "România în război in 1916 și de partea Antantei",
+                audio: "/sound/audio-joiner1_31.mp3",
+                images: [
+                  "/images/LimbaEuropeana.jpg",
+                ],
+               },
+               {
+                id: "2",
+                subjectID: "3",
+                subtitleID: "1",
+                titleID: "1",
+                name: "Limba română în diversitatea lingvistică europeană",
+                raspuns: "România în război in 1916 și de partea Antantei",
+                audio: "/sound/audio-joiner1_31.mp3",
+                images: [
+                  "/images/LimbaDiversitate.jpg",
+                ],
+               },               
              ],
              teste: [{
               id: 1,
@@ -1571,11 +1599,11 @@ let temeRomana = [
             id: "4",
             subtitleID: "1",
             titleID: "1",
-            name: "Cel mai mare divizor comun al două numere naturale.",
+            name: "Limba română azi.",
             path: "/subtema1",
             addressDisciplina: "/romana",
             addressSubtitle: "/limba-romana",
-            addressSubject: "/cel-mai-mare-divizor-comun",
+            addressSubject: "/limba-romana-azi",
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Romana", path: "/romana" },
@@ -1589,8 +1617,46 @@ let temeRomana = [
                 id: "1",
                 subjectID: "4",
                 subtitleID: "1",
-                titleID: "1"
-               }
+                titleID: "1",
+                name: "Limba - indicator al al nivelului cultural",
+                raspuns: "România în război in 1916 și de partea Antantei",
+                audio: "/sound/audio-joiner1_31.mp3",
+                images: [
+                  "/images/LimbaMasurator.jpg",
+                ],
+               },
+               {
+                id: "2",
+                subjectID: "4",
+                subtitleID: "1",
+                titleID: "1",
+                name: "Limba - fundament al identității culturale",
+                raspuns: "România în război in 1916 și de partea Antantei",
+                audio: "/sound/audio-joiner1_31.mp3",
+                images: [
+                  "/images/LimbaOglinda.jpg",
+                  "/images/LimbaPoem.jpg",
+                  "/images/LimbaNoblete.jpg",
+                  "/images/LimbaMama.jpg",
+
+                ],
+                },
+                {
+                  id: "3",
+                  subjectID: "4",
+                  subtitleID: "1",
+                  titleID: "1",
+                  name: "Vorbire corectă - necesitate, sfaturi, exersare",
+                  raspuns: "România în război in 1916 și de partea Antantei",
+                  audio: "/sound/audio-joiner1_31.mp3",
+                  images: [
+                    "/images/VorbireCorectNecesitate.jpg",
+                    "/images/VorbireCorectSfaturi.jpg",
+                    "/images/VorbireCorectCultivare.jpg",
+  
+                  ],
+                 }
+              
              ],
              teste: [{
               id: 1,
@@ -1607,11 +1673,11 @@ let temeRomana = [
             id: "5",
             subtitleID: "1",
             titleID: "1",
-            name: "Cel mai mic multiplu comun al două numere naturale.",
+            name: "Evoluția limbii române. Caracterul ei latin",
             path: "/subtema1",
             addressDisciplina: "/romana",
             addressSubtitle: "/limba-romana",
-            addressSubject: "/cel-mai-mic-multiplu-comun",
+            addressSubject: "/evolutia-limbii-romane",
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Romana", path: "/romana" },
@@ -1625,11 +1691,32 @@ let temeRomana = [
                 id: "1",
                 subjectID: "5",
                 subtitleID: "1",
-                titleID: "1"
+                titleID: "1",
+                name: "Limba română - bogată și complexă",
+                raspuns: "România în război in 1916 și de partea Antantei",
+                audio: "/sound/audio-joiner1_31.mp3",
+                images: [
+                  "/images/LimbaBogata.jpg",
+                ],
+               },
+               {
+                id: "2",
+                subjectID: "5",
+                subtitleID: "1",
+                titleID: "1",
+                name: "Caracterul latin al limbii romane - demonstrare, cuvinte împrumutate",
+                raspuns: "România în război in 1916 și de partea Antantei",
+                audio: "/sound/audio-joiner1_31.mp3",
+                images: [
+                  "/images/CaracterLatinDescriere.jpg",
+                  "/images/CaracterLatinDemonstrare.jpg",
+                  "/images/CaracterLatinDemonstrareCine.jpg",
+                  "/images/CaracterLatinCuvinte.jpg",
+                ],
                }
              ],
              teste: [{
-              id: 1,
+              id: 2,
               quizArray: [{
                    id: 1,
                    testID: "1",
