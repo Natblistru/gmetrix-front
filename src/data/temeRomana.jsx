@@ -1,7 +1,8 @@
 let temeRomana = [
   {
     id: "1",
-    title: "Perceperea identității lingvistice și culturale proprii în context național.",
+    title:
+      "Perceperea identității lingvistice și culturale proprii în context național.",
     disciplina: "Romana",
     ciclul: "Ciclul gimnazial",
     subtitles: [
@@ -41,9 +42,7 @@ let temeRomana = [
                 titleID: "1",
                 raspuns: "România în război in 1916 și de partea Antantei",
                 audio: "/sound/audio-joiner1_31.mp3",
-                images: [
-                  "/images/LimbaCeInseamna.jpg",
-                ],
+                images: ["/images/LimbaCeInseamna.jpg"],
               },
               {
                 name: "Dragostea față de Limba Română: mesaj, urare, laudă",
@@ -55,7 +54,7 @@ let temeRomana = [
                   "Eliberarea teritoriilor aflate sub stăpânire austro-ungară",
                 audio: "/sound/soundsample.mp3",
                 images: [
-                  "/images/LimbaMesaj.jpg",                  
+                  "/images/LimbaMesaj.jpg",
                   "/images/LimbaUrare.jpg",
                   "/images/LimbaLauda.jpg",
                   "/images/LimbaDuminica.jpg",
@@ -70,9 +69,7 @@ let temeRomana = [
                 raspuns:
                   "Eliberarea teritoriilor aflate sub stăpânire austro-ungară",
                 audio: "/sound/soundsample.mp3",
-                images: [
-                  "/images/LimbaComuna.jpg",
-                ],
+                images: ["/images/LimbaComuna.jpg"],
               },
               {
                 name: "Citate despre Limba Română",
@@ -83,9 +80,7 @@ let temeRomana = [
                 raspuns:
                   "Eliberarea teritoriilor aflate sub stăpânire austro-ungară",
                 audio: "/sound/soundsample.mp3",
-                images: [
-                  "/images/LimbaCitate.jpg",
-                ],
+                images: ["/images/LimbaCitate.jpg"],
               },
               {
                 name: "Texte cu tematica Limba Română",
@@ -96,9 +91,7 @@ let temeRomana = [
                 raspuns:
                   "Eliberarea teritoriilor aflate sub stăpânire austro-ungară",
                 audio: "/sound/soundsample.mp3",
-                images: [
-                  "/images/LimbaTexte.jpg",
-                ],
+                images: ["/images/LimbaTexte.jpg"],
               },
             ],
             innerHTML: "",
@@ -122,8 +115,7 @@ let temeRomana = [
                 path: "/test1",
                 addressTestDisciplina: "/matem",
                 addressTestSubtitle: "/limba-romana",
-                addressTestSubject:
-                  "/mulţimi-operatii-cu-multimi",
+                addressTestSubject: "/mulţimi-operatii-cu-multimi",
                 addressTest: "/alege-afirmatia-corecta",
                 addressTestId:
                   "/mulţimi-operatii-cu-multimi/alege-afirmatia-corecta",
@@ -312,8 +304,7 @@ let temeRomana = [
                 path: "/test1",
                 addressTestDisciplina: "/matem",
                 addressTestSubtitle: "/limba-romana",
-                addressTestSubject:
-                  "/mulţimi-operatii-cu-multimi",
+                addressTestSubject: "/mulţimi-operatii-cu-multimi",
                 addressTest: "/stabileste-cauzele",
                 addressTestId:
                   "/mulţimi-operatii-cu-multimi/stabileste-cauzele",
@@ -431,8 +422,7 @@ let temeRomana = [
                 path: "/test1",
                 addressTestDisciplina: "/matem",
                 addressTestSubtitle: "/limba-romana",
-                addressTestSubject:
-                  "/mulţimi-operatii-cu-multimi",
+                addressTestSubject: "/mulţimi-operatii-cu-multimi",
                 addressTest: "/stabileste-consecintele",
                 addressTestId:
                   "/mulţimi-operatii-cu-multimi/stabileste-consecintele",
@@ -543,8 +533,7 @@ let temeRomana = [
                 path: "/test1",
                 addressTestDisciplina: "/matem",
                 addressTestSubtitle: "/limba-romana",
-                addressTestSubject:
-                  "/mulţimi-operatii-cu-multimi",
+                addressTestSubject: "/mulţimi-operatii-cu-multimi",
                 addressTest: "/verifica-corectitudinea",
                 addressTestId:
                   "/mulţimi-operatii-cu-multimi/verifica-corectitudinea",
@@ -646,11 +635,9 @@ let temeRomana = [
                 path: "/test1",
                 addressTestDisciplina: "/matem",
                 addressTestSubtitle: "/limba-romana",
-                addressTestSubject:
-                  "/mulţimi-operatii-cu-multimi",
+                addressTestSubject: "/mulţimi-operatii-cu-multimi",
                 addressTest: "/formeaza-perechi",
-                addressTestId:
-                  "/mulţimi-operatii-cu-multimi/formeaza-perechi",
+                addressTestId: "/mulţimi-operatii-cu-multimi/formeaza-perechi",
                 breadcrumb: [
                   { name: "Discipline", path: "/" },
                   { name: "Romana", path: "/romana" },
@@ -694,7 +681,12 @@ let temeRomana = [
                       "C.'Rege unificator'",
                       "D. Greva regală",
                     ],
-                    correctAnswer: [[5, 0], [3, 4], [1, 6], [7, 2]],
+                    correctAnswer: [
+                      [5, 0],
+                      [3, 4],
+                      [1, 6],
+                      [7, 2],
+                    ],
                   },
                   {
                     id: "2",
@@ -704,17 +696,22 @@ let temeRomana = [
                     titleID: "1",
                     cerinte:
                       "Formează perechi logice, unind prin săgeţi, conţinuturile din prima și a doua coloană:",
-                      text: [
-                        "1. Regele Mihai",
-                        "2. Generalul Alexandru Averescu ",
-                        "3. Regele Carol II ",
-                        "4. Regele Ferdinand I",
-                        "A. Instituirea regimului monarhiei autoritare",
-                        "B. Prim-ministru al României",
-                        "C.'Rege unificator'",
-                        "D. Greva regală",
-                      ],
-                      correctAnswer: [[5, 0], [3, 4], [1, 6], [7, 2]],
+                    text: [
+                      "1. Regele Mihai",
+                      "2. Generalul Alexandru Averescu ",
+                      "3. Regele Carol II ",
+                      "4. Regele Ferdinand I",
+                      "A. Instituirea regimului monarhiei autoritare",
+                      "B. Prim-ministru al României",
+                      "C.'Rege unificator'",
+                      "D. Greva regală",
+                    ],
+                    correctAnswer: [
+                      [5, 0],
+                      [3, 4],
+                      [1, 6],
+                      [7, 2],
+                    ],
                   },
                 ],
               },
@@ -730,8 +727,7 @@ let temeRomana = [
                 path: "/test1",
                 addressTestDisciplina: "/matem",
                 addressTestSubtitle: "/limba-romana",
-                addressTestSubject:
-                  "/mulţimi-operatii-cu-multimi",
+                addressTestSubject: "/mulţimi-operatii-cu-multimi",
                 addressTest: "/grupeaza-elementele",
                 addressTestId:
                   "/mulţimi-operatii-cu-multimi/grupeaza-elementele",
@@ -849,8 +845,7 @@ let temeRomana = [
                 path: "/test1",
                 addressTestDisciplina: "/matem",
                 addressTestSubtitle: "/limba-romana",
-                addressTestSubject:
-                  "/mulţimi-operatii-cu-multimi",
+                addressTestSubject: "/mulţimi-operatii-cu-multimi",
                 addressTest: "/caracteristicile-evenimentelor",
                 addressTestId:
                   "/mulţimi-operatii-cu-multimi/caracteristicile-evenimentelor",
@@ -966,8 +961,7 @@ let temeRomana = [
                 path: "/test1",
                 addressTestDisciplina: "/matem",
                 addressTestSubtitle: "/limba-romana",
-                addressTestSubject:
-                  "/mulţimi-operatii-cu-multimi",
+                addressTestSubject: "/mulţimi-operatii-cu-multimi",
                 addressTest: "/completeaza-propozitia",
                 addressTestId:
                   "/mulţimi-operatii-cu-multimi/completeaza-propozitia",
@@ -1040,11 +1034,9 @@ let temeRomana = [
                 path: "/test1",
                 addressTestDisciplina: "/matem",
                 addressTestSubtitle: "/limba-romana",
-                addressTestSubject:
-                  "/mulţimi-operatii-cu-multimi",
+                addressTestSubject: "/mulţimi-operatii-cu-multimi",
                 addressTest: "/elaboreaza-text",
-                addressTestId:
-                  "/mulţimi-operatii-cu-multimi/elaboreaza-text",
+                addressTestId: "/mulţimi-operatii-cu-multimi/elaboreaza-text",
                 breadcrumb: [
                   { name: "Discipline", path: "/" },
                   { name: "Romana", path: "/romana" },
@@ -1170,8 +1162,7 @@ let temeRomana = [
                 path: "/test1",
                 addressTestDisciplina: "/matem",
                 addressTestSubtitle: "/limba-romana",
-                addressTestSubject:
-                  "/mulţimi-operatii-cu-multimi",
+                addressTestSubject: "/mulţimi-operatii-cu-multimi",
                 addressTest: "/succesiunea-cronologica",
                 addressTestId:
                   "/mulţimi-operatii-cu-multimi/succesiunea-cronologica",
@@ -1292,8 +1283,7 @@ let temeRomana = [
                 path: "/test1",
                 addressTestDisciplina: "/matem",
                 addressTestSubtitle: "/limba-romana",
-                addressTestSubject:
-                  "/mulţimi-operatii-cu-multimi",
+                addressTestSubject: "/mulţimi-operatii-cu-multimi",
                 addressTest: "/test-de-totalizare",
                 addressTestId:
                   "/mulţimi-operatii-cu-multimi/test-de-totalizare",
@@ -1511,12 +1501,9 @@ let temeRomana = [
                 name: "Limba - mijloc de exprimare artistică",
                 raspuns: "România în război in 1916 și de partea Antantei",
                 audio: "/sound/audio-joiner1_31.mp3",
-                images: [
-                  "/images/LimbaVehicol.jpg",
-                  "/images/LimbaAcasa.jpg",
-                ],
-               },
-               {
+                images: ["/images/LimbaVehicol.jpg", "/images/LimbaAcasa.jpg"],
+              },
+              {
                 id: "2",
                 subjectID: "2",
                 subtitleID: "1",
@@ -1528,18 +1515,22 @@ let temeRomana = [
                   "/images/LimbaImpuneriLibertati.jpg",
                   "/images/LimbaDominare.jpg",
                 ],
-               }
-             ],
-             teste: [{
-              id: 1,
-              quizArray: [{
-                   id: 1,
-                   testID: "1",
-                   subjectID: "2",  
-                   subtitleID: "1",
-                   titleID: "1" 
-              }]
-            }],
+              },
+            ],
+            teste: [
+              {
+                id: 1,
+                quizArray: [
+                  {
+                    id: 1,
+                    testID: "1",
+                    subjectID: "2",
+                    subtitleID: "1",
+                    titleID: "1",
+                  },
+                ],
+              },
+            ],
           },
           {
             id: "3",
@@ -1567,11 +1558,9 @@ let temeRomana = [
                 name: "Limba română - limbă europeană",
                 raspuns: "România în război in 1916 și de partea Antantei",
                 audio: "/sound/audio-joiner1_31.mp3",
-                images: [
-                  "/images/LimbaEuropeana.jpg",
-                ],
-               },
-               {
+                images: ["/images/LimbaEuropeana.jpg"],
+              },
+              {
                 id: "2",
                 subjectID: "3",
                 subtitleID: "1",
@@ -1579,21 +1568,23 @@ let temeRomana = [
                 name: "Limba română în diversitatea lingvistică europeană",
                 raspuns: "România în război in 1916 și de partea Antantei",
                 audio: "/sound/audio-joiner1_31.mp3",
-                images: [
-                  "/images/LimbaDiversitate.jpg",
+                images: ["/images/LimbaDiversitate.jpg"],
+              },
+            ],
+            teste: [
+              {
+                id: 1,
+                quizArray: [
+                  {
+                    id: 1,
+                    testID: "1",
+                    subjectID: "3",
+                    subtitleID: "1",
+                    titleID: "1",
+                  },
                 ],
-               },               
-             ],
-             teste: [{
-              id: 1,
-              quizArray: [{
-                   id: 1,
-                   testID: "1",
-                   subjectID: "3",  
-                   subtitleID: "1",
-                   titleID: "1" 
-              }]
-            }],
+              },
+            ],
           },
           {
             id: "4",
@@ -1621,11 +1612,9 @@ let temeRomana = [
                 name: "Limba - indicator al al nivelului cultural",
                 raspuns: "România în război in 1916 și de partea Antantei",
                 audio: "/sound/audio-joiner1_31.mp3",
-                images: [
-                  "/images/LimbaMasurator.jpg",
-                ],
-               },
-               {
+                images: ["/images/LimbaMasurator.jpg"],
+              },
+              {
                 id: "2",
                 subjectID: "4",
                 subtitleID: "1",
@@ -1638,36 +1627,37 @@ let temeRomana = [
                   "/images/LimbaPoem.jpg",
                   "/images/LimbaNoblete.jpg",
                   "/images/LimbaMama.jpg",
-
                 ],
-                },
-                {
-                  id: "3",
-                  subjectID: "4",
-                  subtitleID: "1",
-                  titleID: "1",
-                  name: "Vorbire corectă - necesitate, sfaturi, exersare",
-                  raspuns: "România în război in 1916 și de partea Antantei",
-                  audio: "/sound/audio-joiner1_31.mp3",
-                  images: [
-                    "/images/VorbireCorectNecesitate.jpg",
-                    "/images/VorbireCorectSfaturi.jpg",
-                    "/images/VorbireCorectCultivare.jpg",
-  
-                  ],
-                 }
-              
-             ],
-             teste: [{
-              id: 1,
-              quizArray: [{
-                   id: 1,
-                   testID: "1",
-                   subjectID: "4",  
-                   subtitleID: "1",
-                   titleID: "1" 
-              }]
-            }],
+              },
+              {
+                id: "3",
+                subjectID: "4",
+                subtitleID: "1",
+                titleID: "1",
+                name: "Vorbire corectă - necesitate, sfaturi, exersare",
+                raspuns: "România în război in 1916 și de partea Antantei",
+                audio: "/sound/audio-joiner1_31.mp3",
+                images: [
+                  "/images/VorbireCorectNecesitate.jpg",
+                  "/images/VorbireCorectSfaturi.jpg",
+                  "/images/VorbireCorectCultivare.jpg",
+                ],
+              },
+            ],
+            teste: [
+              {
+                id: 1,
+                quizArray: [
+                  {
+                    id: 1,
+                    testID: "1",
+                    subjectID: "4",
+                    subtitleID: "1",
+                    titleID: "1",
+                  },
+                ],
+              },
+            ],
           },
           {
             id: "5",
@@ -1695,11 +1685,9 @@ let temeRomana = [
                 name: "Limba română - bogată și complexă",
                 raspuns: "România în război in 1916 și de partea Antantei",
                 audio: "/sound/audio-joiner1_31.mp3",
-                images: [
-                  "/images/LimbaBogata.jpg",
-                ],
-               },
-               {
+                images: ["/images/LimbaBogata.jpg"],
+              },
+              {
                 id: "2",
                 subjectID: "5",
                 subtitleID: "1",
@@ -1713,18 +1701,22 @@ let temeRomana = [
                   "/images/CaracterLatinDemonstrareCine.jpg",
                   "/images/CaracterLatinCuvinte.jpg",
                 ],
-               }
-             ],
-             teste: [{
-              id: 2,
-              quizArray: [{
-                   id: 1,
-                   testID: "1",
-                   subjectID: "5",  
-                   subtitleID: "1",
-                   titleID: "1" 
-              }]
-            }],
+              },
+            ],
+            teste: [
+              {
+                id: 2,
+                quizArray: [
+                  {
+                    id: 1,
+                    testID: "1",
+                    subjectID: "5",
+                    subtitleID: "1",
+                    titleID: "1",
+                  },
+                ],
+              },
+            ],
           },
         ],
         diagramData: [
@@ -3162,7 +3154,7 @@ let temeRomana = [
                 id: "1",
                 subiect: "3",
                 subtitleID: "1",
-                titleID: "1",                
+                titleID: "1",
                 cerinte: [
                   "Studiază sursele A-C",
                   "Utilizează sursele pentru a argumenta, într-un text coerent, afirmația:",
@@ -3805,8 +3797,8 @@ let temeRomana = [
                   "/images/PatrieCeEste.jpg",
                   "/images/PatriaIncepe.jpg",
                 ],
-               },
-               {
+              },
+              {
                 id: "2",
                 subjectID: "6",
                 subtitleID: "2",
@@ -3819,8 +3811,8 @@ let temeRomana = [
                   "/images/MoldivaLocMemorabil.jpg",
                   "/images/MoldivaFrumusete.jpg",
                 ],
-               },
-               {
+              },
+              {
                 id: "3",
                 subjectID: "6",
                 subtitleID: "2",
@@ -3828,22 +3820,23 @@ let temeRomana = [
                 name: "Patriotism - responsabilitatea față de patrie, utilitatea",
                 raspuns: "România în război in 1916 și de partea Antantei",
                 audio: "/sound/audio-joiner1_31.mp3",
-                images: [
-                  "/images/PatriaPom.jpg",
-                  "/images/PatriaUtil.jpg",
+                images: ["/images/PatriaPom.jpg", "/images/PatriaUtil.jpg"],
+              },
+            ],
+            teste: [
+              {
+                id: 1,
+                quizArray: [
+                  {
+                    id: 1,
+                    testID: "1",
+                    subjectID: "6",
+                    subtitleID: "2",
+                    titleID: "1",
+                  },
                 ],
-               },
-             ],
-             teste: [{
-              id: 1,
-              quizArray: [{
-                   id: 1,
-                   testID: "1",
-                   subjectID: "6",  
-                   subtitleID: "2",
-                   titleID: "1" 
-              }]
-            }],
+              },
+            ],
           },
           {
             id: "7",
@@ -3871,11 +3864,9 @@ let temeRomana = [
                 name: "Personalitate a neamului - definiție",
                 raspuns: "România în război in 1916 și de partea Antantei",
                 audio: "/sound/audio-joiner1_31.mp3",
-                images: [
-                  "/images/PersonalitateDef.jpg",
-                ],
-               },
-               {
+                images: ["/images/PersonalitateDef.jpg"],
+              },
+              {
                 id: "2",
                 subjectID: "7",
                 subtitleID: "2",
@@ -3883,11 +3874,9 @@ let temeRomana = [
                 name: "Personalitatea ce a dat nume instituției",
                 raspuns: "România în război in 1916 și de partea Antantei",
                 audio: "/sound/audio-joiner1_31.mp3",
-                images: [
-                  "/images/PersonalitateLiceu.jpg",
-                ],
-               },
-               {
+                images: ["/images/PersonalitateLiceu.jpg"],
+              },
+              {
                 id: "3",
                 subjectID: "7",
                 subtitleID: "2",
@@ -3901,8 +3890,8 @@ let temeRomana = [
                   "/images/PersonalitateDoga.jpg",
                   "/images/PersonalitateTeodorovici.jpg",
                 ],
-               }, 
-               {
+              },
+              {
                 id: "4",
                 subjectID: "7",
                 subtitleID: "2",
@@ -3914,8 +3903,8 @@ let temeRomana = [
                   "/images/PersonalitateVolontir.jpg",
                   "/images/PersonalitateLoteanu.jpg",
                 ],
-               }, 
-               {
+              },
+              {
                 id: "5",
                 subjectID: "7",
                 subtitleID: "2",
@@ -3923,11 +3912,9 @@ let temeRomana = [
                 name: "Personalitățile din domeniul literaturii",
                 raspuns: "România în război in 1916 și de partea Antantei",
                 audio: "/sound/audio-joiner1_31.mp3",
-                images: [
-                  "/images/PersonalitateVieru.jpg",
-                ],
-               }, 
-               {
+                images: ["/images/PersonalitateVieru.jpg"],
+              },
+              {
                 id: "6",
                 subjectID: "7",
                 subtitleID: "2",
@@ -3935,21 +3922,23 @@ let temeRomana = [
                 name: "Personalitățile contemporane ale neamului",
                 raspuns: "România în război in 1916 și de partea Antantei",
                 audio: "/sound/audio-joiner1_31.mp3",
-                images: [
-                  "/images/PersonalitateContemporana.jpg",
+                images: ["/images/PersonalitateContemporana.jpg"],
+              },
+            ],
+            teste: [
+              {
+                id: 1,
+                quizArray: [
+                  {
+                    id: 1,
+                    testID: "1",
+                    subjectID: "7",
+                    subtitleID: "2",
+                    titleID: "1",
+                  },
                 ],
-               }, 
-             ],
-             teste: [{
-              id: 1,
-              quizArray: [{
-                   id: 1,
-                   testID: "1",
-                   subjectID: "7",  
-                   subtitleID: "2",
-                   titleID: "1" 
-              }]
-            }],
+              },
+            ],
           },
         ],
         aplicatii: [
@@ -3969,7 +3958,7 @@ let temeRomana = [
                 titleID: "1",
                 barem: {
                   maxPoints: 3,
-                }
+                },
               },
               {
                 id: "2",
@@ -3978,9 +3967,9 @@ let temeRomana = [
                 titleID: "1",
                 barem: {
                   maxPoints: 3,
-                }
-              }
-            ]
+                },
+              },
+            ],
           },
           {
             id: "2",
@@ -4005,7 +3994,7 @@ let temeRomana = [
                     titleID: "1",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 2,
@@ -4015,7 +4004,7 @@ let temeRomana = [
                     titleID: "1",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 3,
@@ -4025,7 +4014,7 @@ let temeRomana = [
                     titleID: "1",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 4,
@@ -4035,7 +4024,7 @@ let temeRomana = [
                     titleID: "1",
                     barem: {
                       maxPoints: 3,
-                    }
+                    },
                   },
                   {
                     id: 5,
@@ -4045,7 +4034,7 @@ let temeRomana = [
                     titleID: "1",
                     barem: {
                       maxPoints: 4,
-                    }
+                    },
                   },
                   {
                     id: 6,
@@ -4055,7 +4044,7 @@ let temeRomana = [
                     titleID: "1",
                     barem: {
                       maxPoints: 5,
-                    }
+                    },
                   },
                   {
                     id: 7,
@@ -4065,11 +4054,11 @@ let temeRomana = [
                     titleID: "1",
                     barem: {
                       maxPoints: 5,
-                    }
-                  }
-                ]
-               },
-               {
+                    },
+                  },
+                ],
+              },
+              {
                 id: "2",
                 subiect: "2",
                 subtitleID: "2",
@@ -4083,7 +4072,7 @@ let temeRomana = [
                     titleID: "1",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 2,
@@ -4093,7 +4082,7 @@ let temeRomana = [
                     titleID: "1",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 3,
@@ -4103,7 +4092,7 @@ let temeRomana = [
                     titleID: "1",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 4,
@@ -4113,7 +4102,7 @@ let temeRomana = [
                     titleID: "1",
                     barem: {
                       maxPoints: 3,
-                    }
+                    },
                   },
                   {
                     id: 5,
@@ -4123,7 +4112,7 @@ let temeRomana = [
                     titleID: "1",
                     barem: {
                       maxPoints: 4,
-                    }
+                    },
                   },
                   {
                     id: 6,
@@ -4133,7 +4122,7 @@ let temeRomana = [
                     titleID: "1",
                     barem: {
                       maxPoints: 5,
-                    }
+                    },
                   },
                   {
                     id: 7,
@@ -4143,11 +4132,11 @@ let temeRomana = [
                     titleID: "1",
                     barem: {
                       maxPoints: 5,
-                    }
-                  }
-                ]
-              }
-            ]
+                    },
+                  },
+                ],
+              },
+            ],
           },
           {
             id: "3",
@@ -4162,10 +4151,10 @@ let temeRomana = [
                 id: "1",
                 subiect: "3",
                 subtitleID: "2",
-                titleID: "1", 
+                titleID: "1",
                 barem: {
                   maxPoints: 15,
-                }   
+                },
               },
               {
                 id: "2",
@@ -4174,11 +4163,11 @@ let temeRomana = [
                 titleID: "1",
                 barem: {
                   maxPoints: 15,
-                } 
-              }
-            ]
-          }
-         ]
+                },
+              },
+            ],
+          },
+        ],
       },
       {
         id: "3",
@@ -4194,12 +4183,11 @@ let temeRomana = [
             id: "8",
             subtitleID: "3",
             titleID: "1",
-            name: "Republica Democratică Moldovenească în lupta cu anarhia",
+            name: "Comunitatea vorbitorilor de limbă română",
             path: "/subtema1",
             addressDisciplina: "/romana",
-            addressSubtitle: "/Comunitatea-vorbitorilor-de-limba-romana",
-            addressSubject:
-              "/republica-democratica-moldoveneasca-in-lupta-cu-anarhia",
+            addressSubtitle: "/comunitatea-vorbitorilor",
+            addressSubject: "/comunitatea-vorbitorilor-de-limba-romana",
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Romana", path: "/romana" },
@@ -4213,29 +4201,50 @@ let temeRomana = [
                 id: "1",
                 subjectID: "8",
                 subtitleID: "3",
-                titleID: "1"
-               }
-             ],
-             teste: [{
-              id: 1,
-              quizArray: [{
-                   id: 1,
-                   testID: "1",
-                   subjectID: "8",  
-                   subtitleID: "3",
-                   titleID: "1" 
-              }]
-            }],
+                titleID: "1",
+                name: "Cine intră în comunitatea vorbitorilor de limbă română de pretutindeni",
+                raspuns: "România în război in 1916 și de partea Antantei",
+                audio: "/sound/audio-joiner1_31.mp3",
+                images: [
+                  "/images/VorbitoriCine.jpg",
+                  "/images/VorbitoriMonolog.jpg",
+                ],
+              },
+              {
+                id: "2",
+                subjectID: "8",
+                subtitleID: "3",
+                titleID: "1",
+                name: "Misiunea vorbitorilor de limba română",
+                raspuns: "România în război in 1916 și de partea Antantei",
+                audio: "/sound/audio-joiner1_31.mp3",
+                images: ["/images/VorbitoriMisiune.jpg"],
+              },
+            ],
+            teste: [
+              {
+                id: 1,
+                quizArray: [
+                  {
+                    id: 1,
+                    testID: "1",
+                    subjectID: "8",
+                    subtitleID: "3",
+                    titleID: "1",
+                  },
+                ],
+              },
+            ],
           },
           {
             id: "9",
             subtitleID: "3",
             titleID: "1",
-            name: "Declararea de independență a Republicii Democratice Moldovenești",
+            name: "Ziua Limbii Române",
             path: "/subtema1",
             addressDisciplina: "/romana",
             addressSubtitle: "/Comunitatea-vorbitorilor-de-limba-romana",
-            addressSubject: "/independenta-republicii-democratice-moldovenesti",
+            addressSubject: "/ziua-limbii-romane",
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Romana", path: "/romana" },
@@ -4249,19 +4258,37 @@ let temeRomana = [
                 id: "1",
                 subjectID: "9",
                 subtitleID: "3",
-                titleID: "1"
-               }
-             ],
-             teste: [{
-              id: 1,
-              quizArray: [{
-                   id: 1,
-                   testID: "1",
-                   subjectID: "9",  
-                   subtitleID: "3",
-                   titleID: "1" 
-              }]
-            }],
+                titleID: "1",
+                name: "Cum sărbătorești Ziua Limbii Române.",
+                raspuns: "Cum sărbătorești Ziua Limbii Române",
+                audio: "/sound/audio-joiner1_31.mp3",
+                images: ["/images/ZiuaLimbiiSarbatorire.jpg"],
+              },
+              {
+                id: "2",
+                subjectID: "9",
+                subtitleID: "3",
+                titleID: "1",
+                name: "Celebrarea Zilei Limbii Române la școală.",
+                raspuns: "România în război in 1916 și de partea Antantei",
+                audio: "/sound/audio-joiner1_31.mp3",
+                images: ["/images/ZiuaLimbiiScoala.jpg"],
+              },
+            ],
+            teste: [
+              {
+                id: 1,
+                quizArray: [
+                  {
+                    id: 1,
+                    testID: "1",
+                    subjectID: "9",
+                    subtitleID: "3",
+                    titleID: "1",
+                  },
+                ],
+              },
+            ],
           },
         ],
         aplicatii: [
@@ -4281,7 +4308,7 @@ let temeRomana = [
                 titleID: "1",
                 barem: {
                   maxPoints: 3,
-                }
+                },
               },
               {
                 id: "2",
@@ -4290,9 +4317,9 @@ let temeRomana = [
                 titleID: "1",
                 barem: {
                   maxPoints: 3,
-                }
-              }
-            ]
+                },
+              },
+            ],
           },
           {
             id: "2",
@@ -4317,7 +4344,7 @@ let temeRomana = [
                     titleID: "1",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 2,
@@ -4327,7 +4354,7 @@ let temeRomana = [
                     titleID: "1",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 3,
@@ -4337,7 +4364,7 @@ let temeRomana = [
                     titleID: "1",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 4,
@@ -4347,7 +4374,7 @@ let temeRomana = [
                     titleID: "1",
                     barem: {
                       maxPoints: 3,
-                    }
+                    },
                   },
                   {
                     id: 5,
@@ -4357,7 +4384,7 @@ let temeRomana = [
                     titleID: "1",
                     barem: {
                       maxPoints: 4,
-                    }
+                    },
                   },
                   {
                     id: 6,
@@ -4367,7 +4394,7 @@ let temeRomana = [
                     titleID: "1",
                     barem: {
                       maxPoints: 5,
-                    }
+                    },
                   },
                   {
                     id: 7,
@@ -4377,11 +4404,11 @@ let temeRomana = [
                     titleID: "1",
                     barem: {
                       maxPoints: 5,
-                    }
-                  }
-                ]
-               },
-               {
+                    },
+                  },
+                ],
+              },
+              {
                 id: "2",
                 subiect: "2",
                 subtitleID: "3",
@@ -4395,7 +4422,7 @@ let temeRomana = [
                     titleID: "1",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 2,
@@ -4405,7 +4432,7 @@ let temeRomana = [
                     titleID: "1",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 3,
@@ -4415,7 +4442,7 @@ let temeRomana = [
                     titleID: "1",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 4,
@@ -4425,7 +4452,7 @@ let temeRomana = [
                     titleID: "1",
                     barem: {
                       maxPoints: 3,
-                    }
+                    },
                   },
                   {
                     id: 5,
@@ -4435,7 +4462,7 @@ let temeRomana = [
                     titleID: "1",
                     barem: {
                       maxPoints: 4,
-                    }
+                    },
                   },
                   {
                     id: 6,
@@ -4445,7 +4472,7 @@ let temeRomana = [
                     titleID: "1",
                     barem: {
                       maxPoints: 5,
-                    }
+                    },
                   },
                   {
                     id: 7,
@@ -4455,11 +4482,11 @@ let temeRomana = [
                     titleID: "1",
                     barem: {
                       maxPoints: 5,
-                    }
-                  }
-                ]
-              }
-            ]
+                    },
+                  },
+                ],
+              },
+            ],
           },
           {
             id: "3",
@@ -4474,10 +4501,10 @@ let temeRomana = [
                 id: "1",
                 subiect: "3",
                 subtitleID: "3",
-                titleID: "1", 
+                titleID: "1",
                 barem: {
                   maxPoints: 15,
-                }   
+                },
               },
               {
                 id: "2",
@@ -4486,11 +4513,11 @@ let temeRomana = [
                 titleID: "1",
                 barem: {
                   maxPoints: 15,
-                } 
-              }
-            ]
-          }
-         ]
+                },
+              },
+            ],
+          },
+        ],
       },
       {
         id: "4",
@@ -4506,11 +4533,11 @@ let temeRomana = [
             id: "10",
             subtitleID: "4",
             titleID: "1",
-            name: "Conferința de Pace de la Paris (1919-1920)",
+            name: "Cultura națională",
             path: "/subtema1",
             addressDisciplina: "/romana",
             addressSubtitle: "/cultura-nationala-si-europeana",
-            addressSubject: "/cultura-nationala-si-europeana-din-1919-1920",
+            addressSubject: "/cultura-nationala",
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Romana", path: "/romana" },
@@ -4524,29 +4551,68 @@ let temeRomana = [
                 id: "1",
                 subjectID: "10",
                 subtitleID: "4",
-                titleID: "1"
-               }
-             ],
-             teste: [{
-              id: 1,
-              quizArray: [{
-                   id: 1,
-                   testID: "1",
-                   subjectID: "10",  
-                   subtitleID: "4",
-                   titleID: "1" 
-              }]
-            }],
+                titleID: "1",
+                name: "Cultura națională",
+                raspuns: "România în război in 1916 și de partea Antantei",
+                audio: "/sound/audio-joiner1_31.mp3",
+                images: [
+                  "/images/CulturaNationalaDefinitie.jpg",
+                  "/images/CulturaNationalaIndicatori.jpg",
+                ],
+              },
+              {
+                id: "2",
+                subjectID: "10",
+                subtitleID: "4",
+                titleID: "1",
+                name: "Patrimoniul cultural al națiunii (valorile naționale)",
+                raspuns: "România în război in 1916 și de partea Antantei",
+                audio: "/sound/audio-joiner1_31.mp3",
+                images: [
+                  "/images/PatrimoniulCultural.jpg",
+                  "/images/ValoarePreferata.jpg",
+                  "/images/ValoareMartisor.jpg",
+                  "/images/ValoareTraditiiIarna.jpg",
+                  "/images/ValoareTraditiiNunta.jpg",
+                  "/images/ValoareTraditiiDans.jpg",
+                  "/images/ValoareTraditiiIntalnire.jpg",
+                ],
+              },
+              {
+                id: "3",
+                subjectID: "10",
+                subtitleID: "4",
+                titleID: "1",
+                name: "Calitățile poporului român",
+                raspuns: "România în război in 1916 și de partea Antantei",
+                audio: "/sound/audio-joiner1_31.mp3",
+                images: ["/images/CalitatilePoporului.jpg"],
+              },
+            ],
+            teste: [
+              {
+                id: 1,
+                quizArray: [
+                  {
+                    id: 1,
+                    testID: "1",
+                    subjectID: "10",
+                    subtitleID: "4",
+                    titleID: "1",
+                  },
+                ],
+              },
+            ],
           },
           {
             id: "11",
             subtitleID: "4",
             titleID: "1",
-            name: "Tratatul de la Saint-Germain",
+            name: "Cultura europeană și contacte culturale",
             path: "/subtema1",
             addressDisciplina: "/romana",
             addressSubtitle: "/cultura-nationala-si-europeana",
-            addressSubject: "/tratatul-de-la-saint-germain",
+            addressSubject: "/cultura-europeana-si-contacte-culturale",
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Romana", path: "/romana" },
@@ -4560,19 +4626,53 @@ let temeRomana = [
                 id: "1",
                 subjectID: "11",
                 subtitleID: "4",
-                titleID: "1"
-               }
-             ],
-             teste: [{
-              id: 1,
-              quizArray: [{
-                   id: 1,
-                   testID: "1",
-                   subjectID: "11",  
-                   subtitleID: "4",
-                   titleID: "1" 
-              }]
-            }],
+                titleID: "1",
+                name: "Valori europene",
+                raspuns: "România în război in 1916 și de partea Antantei",
+                audio: "/sound/audio-joiner1_31.mp3",
+                images: [
+                  "/images/ValoriEuropene.jpg",
+                  "/images/ValoriEuropeneApartenenta.jpg",
+                ],
+              },
+              {
+                id: "2",
+                subjectID: "11",
+                subtitleID: "4",
+                titleID: "1",
+                name: "Contacte culturale",
+                raspuns: "România în război in 1916 și de partea Antantei",
+                audio: "/sound/audio-joiner1_31.mp3",
+                images: ["/images/ContacteCulturale.jpg"],
+              },
+              {
+                id: "3",
+                subjectID: "11",
+                subtitleID: "4",
+                titleID: "1",
+                name: "Cultura bunei vecinătăți",
+                raspuns: "România în război in 1916 și de partea Antantei",
+                audio: "/sound/audio-joiner1_31.mp3",
+                images: [
+                  "/images/CulturaBuneiVeninatati.jpg",
+                  "/images/PrioritareaRelatiilor.jpg",
+                ],
+              },
+            ],
+            teste: [
+              {
+                id: 1,
+                quizArray: [
+                  {
+                    id: 1,
+                    testID: "1",
+                    subjectID: "11",
+                    subtitleID: "4",
+                    titleID: "1",
+                  },
+                ],
+              },
+            ],
           },
         ],
         aplicatii: [
@@ -4592,7 +4692,7 @@ let temeRomana = [
                 titleID: "1",
                 barem: {
                   maxPoints: 3,
-                }
+                },
               },
               {
                 id: "2",
@@ -4601,9 +4701,9 @@ let temeRomana = [
                 titleID: "1",
                 barem: {
                   maxPoints: 3,
-                }
-              }
-            ]
+                },
+              },
+            ],
           },
           {
             id: "2",
@@ -4628,7 +4728,7 @@ let temeRomana = [
                     titleID: "1",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 2,
@@ -4638,7 +4738,7 @@ let temeRomana = [
                     titleID: "1",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 3,
@@ -4648,7 +4748,7 @@ let temeRomana = [
                     titleID: "1",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 4,
@@ -4658,7 +4758,7 @@ let temeRomana = [
                     titleID: "1",
                     barem: {
                       maxPoints: 3,
-                    }
+                    },
                   },
                   {
                     id: 5,
@@ -4668,7 +4768,7 @@ let temeRomana = [
                     titleID: "1",
                     barem: {
                       maxPoints: 4,
-                    }
+                    },
                   },
                   {
                     id: 6,
@@ -4678,7 +4778,7 @@ let temeRomana = [
                     titleID: "1",
                     barem: {
                       maxPoints: 5,
-                    }
+                    },
                   },
                   {
                     id: 7,
@@ -4688,11 +4788,11 @@ let temeRomana = [
                     titleID: "1",
                     barem: {
                       maxPoints: 5,
-                    }
-                  }
-                ]
-               },
-               {
+                    },
+                  },
+                ],
+              },
+              {
                 id: "2",
                 subiect: "2",
                 subtitleID: "4",
@@ -4706,7 +4806,7 @@ let temeRomana = [
                     titleID: "1",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 2,
@@ -4716,7 +4816,7 @@ let temeRomana = [
                     titleID: "1",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 3,
@@ -4726,7 +4826,7 @@ let temeRomana = [
                     titleID: "1",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 4,
@@ -4736,7 +4836,7 @@ let temeRomana = [
                     titleID: "1",
                     barem: {
                       maxPoints: 3,
-                    }
+                    },
                   },
                   {
                     id: 5,
@@ -4746,7 +4846,7 @@ let temeRomana = [
                     titleID: "1",
                     barem: {
                       maxPoints: 4,
-                    }
+                    },
                   },
                   {
                     id: 6,
@@ -4756,7 +4856,7 @@ let temeRomana = [
                     titleID: "1",
                     barem: {
                       maxPoints: 5,
-                    }
+                    },
                   },
                   {
                     id: 7,
@@ -4766,11 +4866,11 @@ let temeRomana = [
                     titleID: "1",
                     barem: {
                       maxPoints: 5,
-                    }
-                  }
-                ]
-              }
-            ]
+                    },
+                  },
+                ],
+              },
+            ],
           },
           {
             id: "3",
@@ -4785,10 +4885,10 @@ let temeRomana = [
                 id: "1",
                 subiect: "3",
                 subtitleID: "4",
-                titleID: "1", 
+                titleID: "1",
                 barem: {
                   maxPoints: 15,
-                }   
+                },
               },
               {
                 id: "2",
@@ -4797,17 +4897,18 @@ let temeRomana = [
                 titleID: "1",
                 barem: {
                   maxPoints: 15,
-                } 
-              }
-            ]
-          }
-         ]        
+                },
+              },
+            ],
+          },
+        ],
       },
     ],
   },
   {
     id: "2",
-    title: "Utilizarea limbii ca sistem și a normelor lingvistice în realizarea actelor communicative.",
+    title:
+      "Utilizarea limbii ca sistem și a normelor lingvistice în realizarea actelor communicative.",
     disciplina: "Romana",
     ciclul: "Ciclul gimnazial",
     subtitles: [
@@ -4843,19 +4944,23 @@ let temeRomana = [
                 id: "1",
                 subjectID: "12",
                 subtitleID: "5",
-                titleID: "2"
-               }
-             ],
-             teste: [{
-              id: 1,
-              quizArray: [{
-                   id: 1,
-                   testID: "1",
-                   subjectID: "12",  
-                   subtitleID: "5",
-                   titleID: "2" 
-              }]
-            }],
+                titleID: "2",
+              },
+            ],
+            teste: [
+              {
+                id: 1,
+                quizArray: [
+                  {
+                    id: 1,
+                    testID: "1",
+                    subjectID: "12",
+                    subtitleID: "5",
+                    titleID: "2",
+                  },
+                ],
+              },
+            ],
           },
           {
             id: "13",
@@ -4879,19 +4984,23 @@ let temeRomana = [
                 id: "1",
                 subjectID: "13",
                 subtitleID: "5",
-                titleID: "2"
-               }
-             ],
-             teste: [{
-              id: 1,
-              quizArray: [{
-                   id: 1,
-                   testID: "1",
-                   subjectID: "13",  
-                   subtitleID: "5",
-                   titleID: "2" 
-              }]
-            }],
+                titleID: "2",
+              },
+            ],
+            teste: [
+              {
+                id: 1,
+                quizArray: [
+                  {
+                    id: 1,
+                    testID: "1",
+                    subjectID: "13",
+                    subtitleID: "5",
+                    titleID: "2",
+                  },
+                ],
+              },
+            ],
           },
         ],
         aplicatii: [
@@ -4911,7 +5020,7 @@ let temeRomana = [
                 titleID: "2",
                 barem: {
                   maxPoints: 3,
-                }
+                },
               },
               {
                 id: "2",
@@ -4920,9 +5029,9 @@ let temeRomana = [
                 titleID: "2",
                 barem: {
                   maxPoints: 3,
-                }
-              }
-            ]
+                },
+              },
+            ],
           },
           {
             id: "2",
@@ -4947,7 +5056,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 2,
@@ -4957,7 +5066,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 3,
@@ -4967,7 +5076,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 4,
@@ -4977,7 +5086,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 3,
-                    }
+                    },
                   },
                   {
                     id: 5,
@@ -4987,7 +5096,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 4,
-                    }
+                    },
                   },
                   {
                     id: 6,
@@ -4997,7 +5106,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 5,
-                    }
+                    },
                   },
                   {
                     id: 7,
@@ -5007,11 +5116,11 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 5,
-                    }
-                  }
-                ]
-               },
-               {
+                    },
+                  },
+                ],
+              },
+              {
                 id: "2",
                 subiect: "2",
                 subtitleID: "5",
@@ -5025,7 +5134,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 2,
@@ -5035,7 +5144,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 3,
@@ -5045,7 +5154,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 4,
@@ -5055,7 +5164,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 3,
-                    }
+                    },
                   },
                   {
                     id: 5,
@@ -5065,7 +5174,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 4,
-                    }
+                    },
                   },
                   {
                     id: 6,
@@ -5075,7 +5184,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 5,
-                    }
+                    },
                   },
                   {
                     id: 7,
@@ -5085,11 +5194,11 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 5,
-                    }
-                  }
-                ]
-              }
-            ]
+                    },
+                  },
+                ],
+              },
+            ],
           },
           {
             id: "3",
@@ -5104,10 +5213,10 @@ let temeRomana = [
                 id: "1",
                 subiect: "3",
                 subtitleID: "5",
-                titleID: "2", 
+                titleID: "2",
                 barem: {
                   maxPoints: 15,
-                }   
+                },
               },
               {
                 id: "2",
@@ -5116,11 +5225,11 @@ let temeRomana = [
                 titleID: "2",
                 barem: {
                   maxPoints: 15,
-                } 
-              }
-            ]
-          }
-         ]
+                },
+              },
+            ],
+          },
+        ],
       },
       {
         id: "6",
@@ -5154,19 +5263,23 @@ let temeRomana = [
                 id: "1",
                 subjectID: "14",
                 subtitleID: "6",
-                titleID: "2"
-               }
-             ],
-             teste: [{
-              id: 1,
-              quizArray: [{
-                   id: 1,
-                   testID: "1",
-                   subjectID: "14",  
-                   subtitleID: "6",
-                   titleID: "2" 
-              }]
-            }],
+                titleID: "2",
+              },
+            ],
+            teste: [
+              {
+                id: 1,
+                quizArray: [
+                  {
+                    id: 1,
+                    testID: "1",
+                    subjectID: "14",
+                    subtitleID: "6",
+                    titleID: "2",
+                  },
+                ],
+              },
+            ],
           },
           {
             id: "15",
@@ -5190,19 +5303,23 @@ let temeRomana = [
                 id: "1",
                 subjectID: "15",
                 subtitleID: "6",
-                titleID: "2"
-               }
-             ],
-             teste: [{
-              id: 1,
-              quizArray: [{
-                   id: 1,
-                   testID: "1",
-                   subjectID: "15",  
-                   subtitleID: "6",
-                   titleID: "2" 
-              }]
-            }],
+                titleID: "2",
+              },
+            ],
+            teste: [
+              {
+                id: 1,
+                quizArray: [
+                  {
+                    id: 1,
+                    testID: "1",
+                    subjectID: "15",
+                    subtitleID: "6",
+                    titleID: "2",
+                  },
+                ],
+              },
+            ],
           },
         ],
         aplicatii: [
@@ -5222,7 +5339,7 @@ let temeRomana = [
                 titleID: "2",
                 barem: {
                   maxPoints: 3,
-                }
+                },
               },
               {
                 id: "2",
@@ -5231,9 +5348,9 @@ let temeRomana = [
                 titleID: "2",
                 barem: {
                   maxPoints: 3,
-                }
-              }
-            ]
+                },
+              },
+            ],
           },
           {
             id: "2",
@@ -5258,7 +5375,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 2,
@@ -5268,7 +5385,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 3,
@@ -5278,7 +5395,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 4,
@@ -5288,7 +5405,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 3,
-                    }
+                    },
                   },
                   {
                     id: 5,
@@ -5298,7 +5415,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 4,
-                    }
+                    },
                   },
                   {
                     id: 6,
@@ -5308,7 +5425,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 5,
-                    }
+                    },
                   },
                   {
                     id: 7,
@@ -5318,11 +5435,11 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 5,
-                    }
-                  }
-                ]
-               },
-               {
+                    },
+                  },
+                ],
+              },
+              {
                 id: "2",
                 subiect: "2",
                 subtitleID: "6",
@@ -5336,7 +5453,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 2,
@@ -5346,7 +5463,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 3,
@@ -5356,7 +5473,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 4,
@@ -5366,7 +5483,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 3,
-                    }
+                    },
                   },
                   {
                     id: 5,
@@ -5376,7 +5493,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 4,
-                    }
+                    },
                   },
                   {
                     id: 6,
@@ -5386,7 +5503,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 5,
-                    }
+                    },
                   },
                   {
                     id: 7,
@@ -5396,11 +5513,11 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 5,
-                    }
-                  }
-                ]
-              }
-            ]
+                    },
+                  },
+                ],
+              },
+            ],
           },
           {
             id: "3",
@@ -5415,10 +5532,10 @@ let temeRomana = [
                 id: "1",
                 subiect: "3",
                 subtitleID: "6",
-                titleID: "2", 
+                titleID: "2",
                 barem: {
                   maxPoints: 15,
-                }   
+                },
               },
               {
                 id: "2",
@@ -5427,11 +5544,11 @@ let temeRomana = [
                 titleID: "2",
                 barem: {
                   maxPoints: 15,
-                } 
-              }
-            ]
-          }
-         ]
+                },
+              },
+            ],
+          },
+        ],
       },
       {
         id: "7",
@@ -5465,19 +5582,23 @@ let temeRomana = [
                 id: "1",
                 subjectID: "16",
                 subtitleID: "7",
-                titleID: "2"
-               }
-             ],
-             teste: [{
-              id: 1,
-              quizArray: [{
-                   id: 1,
-                   testID: "1",
-                   subjectID: "16",  
-                   subtitleID: "7",
-                   titleID: "2" 
-              }]
-            }],
+                titleID: "2",
+              },
+            ],
+            teste: [
+              {
+                id: 1,
+                quizArray: [
+                  {
+                    id: 1,
+                    testID: "1",
+                    subjectID: "16",
+                    subtitleID: "7",
+                    titleID: "2",
+                  },
+                ],
+              },
+            ],
           },
           {
             id: "17",
@@ -5501,19 +5622,23 @@ let temeRomana = [
                 id: "1",
                 subjectID: "17",
                 subtitleID: "7",
-                titleID: "2"
-               }
-             ],
-             teste: [{
-              id: 1,
-              quizArray: [{
-                   id: 1,
-                   testID: "1",
-                   subjectID: "17",  
-                   subtitleID: "7",
-                   titleID: "2" 
-              }]
-            }],
+                titleID: "2",
+              },
+            ],
+            teste: [
+              {
+                id: 1,
+                quizArray: [
+                  {
+                    id: 1,
+                    testID: "1",
+                    subjectID: "17",
+                    subtitleID: "7",
+                    titleID: "2",
+                  },
+                ],
+              },
+            ],
           },
         ],
         aplicatii: [
@@ -5533,7 +5658,7 @@ let temeRomana = [
                 titleID: "2",
                 barem: {
                   maxPoints: 3,
-                }
+                },
               },
               {
                 id: "2",
@@ -5542,9 +5667,9 @@ let temeRomana = [
                 titleID: "2",
                 barem: {
                   maxPoints: 3,
-                }
-              }
-            ]
+                },
+              },
+            ],
           },
           {
             id: "2",
@@ -5569,7 +5694,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 2,
@@ -5579,7 +5704,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 3,
@@ -5589,7 +5714,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 4,
@@ -5599,7 +5724,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 3,
-                    }
+                    },
                   },
                   {
                     id: 5,
@@ -5609,7 +5734,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 4,
-                    }
+                    },
                   },
                   {
                     id: 6,
@@ -5619,7 +5744,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 5,
-                    }
+                    },
                   },
                   {
                     id: 7,
@@ -5629,11 +5754,11 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 5,
-                    }
-                  }
-                ]
-               },
-               {
+                    },
+                  },
+                ],
+              },
+              {
                 id: "2",
                 subiect: "2",
                 subtitleID: "7",
@@ -5647,7 +5772,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 2,
@@ -5657,7 +5782,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 3,
@@ -5667,7 +5792,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 4,
@@ -5677,7 +5802,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 3,
-                    }
+                    },
                   },
                   {
                     id: 5,
@@ -5687,7 +5812,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 4,
-                    }
+                    },
                   },
                   {
                     id: 6,
@@ -5697,7 +5822,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 5,
-                    }
+                    },
                   },
                   {
                     id: 7,
@@ -5707,11 +5832,11 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 5,
-                    }
-                  }
-                ]
-              }
-            ]
+                    },
+                  },
+                ],
+              },
+            ],
           },
           {
             id: "3",
@@ -5726,10 +5851,10 @@ let temeRomana = [
                 id: "1",
                 subiect: "3",
                 subtitleID: "7",
-                titleID: "2", 
+                titleID: "2",
                 barem: {
                   maxPoints: 15,
-                }   
+                },
               },
               {
                 id: "2",
@@ -5738,11 +5863,11 @@ let temeRomana = [
                 titleID: "2",
                 barem: {
                   maxPoints: 15,
-                } 
-              }
-            ]
-          }
-         ]
+                },
+              },
+            ],
+          },
+        ],
       },
       {
         id: "8",
@@ -5776,19 +5901,23 @@ let temeRomana = [
                 id: "1",
                 subjectID: "18",
                 subtitleID: "8",
-                titleID: "2"
-               }
-             ],
-             teste: [{
-              id: 1,
-              quizArray: [{
-                   id: 1,
-                   testID: "1",
-                   subjectID: "18",  
-                   subtitleID: "8",
-                   titleID: "2" 
-              }]
-            }],
+                titleID: "2",
+              },
+            ],
+            teste: [
+              {
+                id: 1,
+                quizArray: [
+                  {
+                    id: 1,
+                    testID: "1",
+                    subjectID: "18",
+                    subtitleID: "8",
+                    titleID: "2",
+                  },
+                ],
+              },
+            ],
           },
           {
             id: "19",
@@ -5812,19 +5941,23 @@ let temeRomana = [
                 id: "1",
                 subjectID: "19",
                 subtitleID: "8",
-                titleID: "2"
-               }
-             ],
-             teste: [{
-              id: 1,
-              quizArray: [{
-                   id: 1,
-                   testID: "1",
-                   subjectID: "19",  
-                   subtitleID: "8",
-                   titleID: "2" 
-              }]
-            }],
+                titleID: "2",
+              },
+            ],
+            teste: [
+              {
+                id: 1,
+                quizArray: [
+                  {
+                    id: 1,
+                    testID: "1",
+                    subjectID: "19",
+                    subtitleID: "8",
+                    titleID: "2",
+                  },
+                ],
+              },
+            ],
           },
         ],
         aplicatii: [
@@ -5844,7 +5977,7 @@ let temeRomana = [
                 titleID: "2",
                 barem: {
                   maxPoints: 3,
-                }
+                },
               },
               {
                 id: "2",
@@ -5853,9 +5986,9 @@ let temeRomana = [
                 titleID: "2",
                 barem: {
                   maxPoints: 3,
-                }
-              }
-            ]
+                },
+              },
+            ],
           },
           {
             id: "2",
@@ -5880,7 +6013,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 2,
@@ -5890,7 +6023,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 3,
@@ -5900,7 +6033,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 4,
@@ -5910,7 +6043,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 3,
-                    }
+                    },
                   },
                   {
                     id: 5,
@@ -5920,7 +6053,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 4,
-                    }
+                    },
                   },
                   {
                     id: 6,
@@ -5930,7 +6063,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 5,
-                    }
+                    },
                   },
                   {
                     id: 7,
@@ -5940,11 +6073,11 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 5,
-                    }
-                  }
-                ]
-               },
-               {
+                    },
+                  },
+                ],
+              },
+              {
                 id: "2",
                 subiect: "2",
                 subtitleID: "8",
@@ -5958,7 +6091,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 2,
@@ -5968,7 +6101,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 3,
@@ -5978,7 +6111,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 4,
@@ -5988,7 +6121,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 3,
-                    }
+                    },
                   },
                   {
                     id: 5,
@@ -5998,7 +6131,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 4,
-                    }
+                    },
                   },
                   {
                     id: 6,
@@ -6008,7 +6141,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 5,
-                    }
+                    },
                   },
                   {
                     id: 7,
@@ -6018,11 +6151,11 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 5,
-                    }
-                  }
-                ]
-              }
-            ]
+                    },
+                  },
+                ],
+              },
+            ],
           },
           {
             id: "3",
@@ -6037,10 +6170,10 @@ let temeRomana = [
                 id: "1",
                 subiect: "3",
                 subtitleID: "8",
-                titleID: "2", 
+                titleID: "2",
                 barem: {
                   maxPoints: 15,
-                }   
+                },
               },
               {
                 id: "2",
@@ -6049,11 +6182,11 @@ let temeRomana = [
                 titleID: "2",
                 barem: {
                   maxPoints: 15,
-                } 
-              }
-            ]
-          }
-         ]
+                },
+              },
+            ],
+          },
+        ],
       },
     ],
   },
@@ -6095,19 +6228,23 @@ let temeRomana = [
                 id: "1",
                 subjectID: "26",
                 subtitleID: "10",
-                titleID: "3"
-               }
-             ],
-             teste: [{
-              id: 1,
-              quizArray: [{
-                   id: 1,
-                   testID: "1",
-                   subjectID: "26",  
-                   subtitleID: "10",
-                   titleID: "3" 
-              }]
-            }],
+                titleID: "3",
+              },
+            ],
+            teste: [
+              {
+                id: 1,
+                quizArray: [
+                  {
+                    id: 1,
+                    testID: "1",
+                    subjectID: "26",
+                    subtitleID: "10",
+                    titleID: "3",
+                  },
+                ],
+              },
+            ],
           },
           {
             id: "27",
@@ -6131,19 +6268,23 @@ let temeRomana = [
                 id: "1",
                 subjectID: "27",
                 subtitleID: "10",
-                titleID: "3"
-               }
-             ],
-             teste: [{
-              id: 1,
-              quizArray: [{
-                   id: 1,
-                   testID: "1",
-                   subjectID: "27",  
-                   subtitleID: "10",
-                   titleID: "3" 
-              }]
-            }],
+                titleID: "3",
+              },
+            ],
+            teste: [
+              {
+                id: 1,
+                quizArray: [
+                  {
+                    id: 1,
+                    testID: "1",
+                    subjectID: "27",
+                    subtitleID: "10",
+                    titleID: "3",
+                  },
+                ],
+              },
+            ],
           },
         ],
         aplicatii: [
@@ -6163,7 +6304,7 @@ let temeRomana = [
                 titleID: "3",
                 barem: {
                   maxPoints: 3,
-                }
+                },
               },
               {
                 id: "2",
@@ -6172,9 +6313,9 @@ let temeRomana = [
                 titleID: "3",
                 barem: {
                   maxPoints: 3,
-                }
-              }
-            ]
+                },
+              },
+            ],
           },
           {
             id: "2",
@@ -6199,7 +6340,7 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 2,
@@ -6209,7 +6350,7 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 3,
@@ -6219,7 +6360,7 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 4,
@@ -6229,7 +6370,7 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 3,
-                    }
+                    },
                   },
                   {
                     id: 5,
@@ -6239,7 +6380,7 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 4,
-                    }
+                    },
                   },
                   {
                     id: 6,
@@ -6249,7 +6390,7 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 5,
-                    }
+                    },
                   },
                   {
                     id: 7,
@@ -6259,11 +6400,11 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 5,
-                    }
-                  }
-                ]
-               },
-               {
+                    },
+                  },
+                ],
+              },
+              {
                 id: "2",
                 subiect: "2",
                 subtitleID: "10",
@@ -6277,7 +6418,7 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 2,
@@ -6287,7 +6428,7 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 3,
@@ -6297,7 +6438,7 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 4,
@@ -6307,7 +6448,7 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 3,
-                    }
+                    },
                   },
                   {
                     id: 5,
@@ -6317,7 +6458,7 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 4,
-                    }
+                    },
                   },
                   {
                     id: 6,
@@ -6327,7 +6468,7 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 5,
-                    }
+                    },
                   },
                   {
                     id: 7,
@@ -6337,11 +6478,11 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 5,
-                    }
-                  }
-                ]
-              }
-            ]
+                    },
+                  },
+                ],
+              },
+            ],
           },
           {
             id: "3",
@@ -6356,10 +6497,10 @@ let temeRomana = [
                 id: "1",
                 subiect: "3",
                 subtitleID: "10",
-                titleID: "3", 
+                titleID: "3",
                 barem: {
                   maxPoints: 15,
-                }   
+                },
               },
               {
                 id: "2",
@@ -6368,11 +6509,11 @@ let temeRomana = [
                 titleID: "3",
                 barem: {
                   maxPoints: 15,
-                } 
-              }
-            ]
-          }
-        ]
+                },
+              },
+            ],
+          },
+        ],
       },
       {
         id: "11",
@@ -6406,19 +6547,23 @@ let temeRomana = [
                 id: "1",
                 subjectID: "28",
                 subtitleID: "11",
-                titleID: "3"
-               }
-             ],
-             teste: [{
-              id: 1,
-              quizArray: [{
-                   id: 1,
-                   testID: "1",
-                   subjectID: "28",  
-                   subtitleID: "11",
-                   titleID: "3" 
-              }]
-            }],
+                titleID: "3",
+              },
+            ],
+            teste: [
+              {
+                id: 1,
+                quizArray: [
+                  {
+                    id: 1,
+                    testID: "1",
+                    subjectID: "28",
+                    subtitleID: "11",
+                    titleID: "3",
+                  },
+                ],
+              },
+            ],
           },
           {
             id: "29",
@@ -6442,19 +6587,23 @@ let temeRomana = [
                 id: "1",
                 subjectID: "29",
                 subtitleID: "11",
-                titleID: "3"
-               }
-             ],
-             teste: [{
-              id: 1,
-              quizArray: [{
-                   id: 1,
-                   testID: "1",
-                   subjectID: "29",  
-                   subtitleID: "11",
-                   titleID: "3" 
-              }]
-            }],
+                titleID: "3",
+              },
+            ],
+            teste: [
+              {
+                id: 1,
+                quizArray: [
+                  {
+                    id: 1,
+                    testID: "1",
+                    subjectID: "29",
+                    subtitleID: "11",
+                    titleID: "3",
+                  },
+                ],
+              },
+            ],
           },
         ],
         aplicatii: [
@@ -6474,7 +6623,7 @@ let temeRomana = [
                 titleID: "3",
                 barem: {
                   maxPoints: 3,
-                }
+                },
               },
               {
                 id: "2",
@@ -6483,9 +6632,9 @@ let temeRomana = [
                 titleID: "3",
                 barem: {
                   maxPoints: 3,
-                }
-              }
-            ]
+                },
+              },
+            ],
           },
           {
             id: "2",
@@ -6510,7 +6659,7 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 2,
@@ -6520,7 +6669,7 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 3,
@@ -6530,7 +6679,7 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 4,
@@ -6540,7 +6689,7 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 3,
-                    }
+                    },
                   },
                   {
                     id: 5,
@@ -6550,7 +6699,7 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 4,
-                    }
+                    },
                   },
                   {
                     id: 6,
@@ -6560,7 +6709,7 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 5,
-                    }
+                    },
                   },
                   {
                     id: 7,
@@ -6570,11 +6719,11 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 5,
-                    }
-                  }
-                ]
-               },
-               {
+                    },
+                  },
+                ],
+              },
+              {
                 id: "2",
                 subiect: "2",
                 subtitleID: "11",
@@ -6588,7 +6737,7 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 2,
@@ -6598,7 +6747,7 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 3,
@@ -6608,7 +6757,7 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 4,
@@ -6618,7 +6767,7 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 3,
-                    }
+                    },
                   },
                   {
                     id: 5,
@@ -6628,7 +6777,7 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 4,
-                    }
+                    },
                   },
                   {
                     id: 6,
@@ -6638,7 +6787,7 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 5,
-                    }
+                    },
                   },
                   {
                     id: 7,
@@ -6648,11 +6797,11 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 5,
-                    }
-                  }
-                ]
-              }
-            ]
+                    },
+                  },
+                ],
+              },
+            ],
           },
           {
             id: "3",
@@ -6667,10 +6816,10 @@ let temeRomana = [
                 id: "1",
                 subiect: "3",
                 subtitleID: "11",
-                titleID: "3", 
+                titleID: "3",
                 barem: {
                   maxPoints: 15,
-                }   
+                },
               },
               {
                 id: "2",
@@ -6679,11 +6828,11 @@ let temeRomana = [
                 titleID: "3",
                 barem: {
                   maxPoints: 15,
-                } 
-              }
-            ]
-          }
-        ]
+                },
+              },
+            ],
+          },
+        ],
       },
       {
         id: "12",
@@ -6717,19 +6866,23 @@ let temeRomana = [
                 id: "1",
                 subjectID: "30",
                 subtitleID: "12",
-                titleID: "3"
-               }
-             ],
-             teste: [{
-              id: 1,
-              quizArray: [{
-                   id: 1,
-                   testID: "1",
-                   subjectID: "30",  
-                   subtitleID: "12",
-                   titleID: "3" 
-              }]
-            }],
+                titleID: "3",
+              },
+            ],
+            teste: [
+              {
+                id: 1,
+                quizArray: [
+                  {
+                    id: 1,
+                    testID: "1",
+                    subjectID: "30",
+                    subtitleID: "12",
+                    titleID: "3",
+                  },
+                ],
+              },
+            ],
           },
           {
             id: "31",
@@ -6753,19 +6906,23 @@ let temeRomana = [
                 id: "1",
                 subjectID: "31",
                 subtitleID: "12",
-                titleID: "3"
-               }
-             ],
-             teste: [{
-              id: 1,
-              quizArray: [{
-                   id: 1,
-                   testID: "1",
-                   subjectID: "31",  
-                   subtitleID: "12",
-                   titleID: "3" 
-              }]
-            }],
+                titleID: "3",
+              },
+            ],
+            teste: [
+              {
+                id: 1,
+                quizArray: [
+                  {
+                    id: 1,
+                    testID: "1",
+                    subjectID: "31",
+                    subtitleID: "12",
+                    titleID: "3",
+                  },
+                ],
+              },
+            ],
           },
         ],
         aplicatii: [
@@ -6785,7 +6942,7 @@ let temeRomana = [
                 titleID: "3",
                 barem: {
                   maxPoints: 3,
-                }
+                },
               },
               {
                 id: "2",
@@ -6794,9 +6951,9 @@ let temeRomana = [
                 titleID: "3",
                 barem: {
                   maxPoints: 3,
-                }
-              }
-            ]
+                },
+              },
+            ],
           },
           {
             id: "2",
@@ -6821,7 +6978,7 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 2,
@@ -6831,7 +6988,7 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 3,
@@ -6841,7 +6998,7 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 4,
@@ -6851,7 +7008,7 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 3,
-                    }
+                    },
                   },
                   {
                     id: 5,
@@ -6861,7 +7018,7 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 4,
-                    }
+                    },
                   },
                   {
                     id: 6,
@@ -6871,7 +7028,7 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 5,
-                    }
+                    },
                   },
                   {
                     id: 7,
@@ -6881,11 +7038,11 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 5,
-                    }
-                  }
-                ]
-               },
-               {
+                    },
+                  },
+                ],
+              },
+              {
                 id: "2",
                 subiect: "2",
                 subtitleID: "12",
@@ -6899,7 +7056,7 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 2,
@@ -6909,7 +7066,7 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 3,
@@ -6919,7 +7076,7 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 4,
@@ -6929,7 +7086,7 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 3,
-                    }
+                    },
                   },
                   {
                     id: 5,
@@ -6939,7 +7096,7 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 4,
-                    }
+                    },
                   },
                   {
                     id: 6,
@@ -6949,7 +7106,7 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 5,
-                    }
+                    },
                   },
                   {
                     id: 7,
@@ -6959,11 +7116,11 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 5,
-                    }
-                  }
-                ]
-              }
-            ]
+                    },
+                  },
+                ],
+              },
+            ],
           },
           {
             id: "3",
@@ -6978,10 +7135,10 @@ let temeRomana = [
                 id: "1",
                 subiect: "3",
                 subtitleID: "12",
-                titleID: "3", 
+                titleID: "3",
                 barem: {
                   maxPoints: 15,
-                }   
+                },
               },
               {
                 id: "2",
@@ -6990,11 +7147,11 @@ let temeRomana = [
                 titleID: "3",
                 barem: {
                   maxPoints: 15,
-                } 
-              }
-            ]
-          }
-        ]
+                },
+              },
+            ],
+          },
+        ],
       },
       {
         id: "13",
@@ -7028,19 +7185,23 @@ let temeRomana = [
                 id: "1",
                 subjectID: "32",
                 subtitleID: "13",
-                titleID: "3"
-               }
-             ],
-             teste: [{
-              id: 1,
-              quizArray: [{
-                   id: 1,
-                   testID: "1",
-                   subjectID: "32",  
-                   subtitleID: "13",
-                   titleID: "3" 
-              }]
-            }],
+                titleID: "3",
+              },
+            ],
+            teste: [
+              {
+                id: 1,
+                quizArray: [
+                  {
+                    id: 1,
+                    testID: "1",
+                    subjectID: "32",
+                    subtitleID: "13",
+                    titleID: "3",
+                  },
+                ],
+              },
+            ],
           },
           {
             id: "33",
@@ -7064,19 +7225,23 @@ let temeRomana = [
                 id: "1",
                 subjectID: "33",
                 subtitleID: "13",
-                titleID: "3"
-               }
-             ],
-             teste: [{
-              id: 1,
-              quizArray: [{
-                   id: 1,
-                   testID: "1",
-                   subjectID: "33",  
-                   subtitleID: "13",
-                   titleID: "3" 
-              }]
-            }],
+                titleID: "3",
+              },
+            ],
+            teste: [
+              {
+                id: 1,
+                quizArray: [
+                  {
+                    id: 1,
+                    testID: "1",
+                    subjectID: "33",
+                    subtitleID: "13",
+                    titleID: "3",
+                  },
+                ],
+              },
+            ],
           },
         ],
         aplicatii: [
@@ -7096,7 +7261,7 @@ let temeRomana = [
                 titleID: "3",
                 barem: {
                   maxPoints: 3,
-                }
+                },
               },
               {
                 id: "2",
@@ -7105,9 +7270,9 @@ let temeRomana = [
                 titleID: "3",
                 barem: {
                   maxPoints: 3,
-                }
-              }
-            ]
+                },
+              },
+            ],
           },
           {
             id: "2",
@@ -7132,7 +7297,7 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 2,
@@ -7142,7 +7307,7 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 3,
@@ -7152,7 +7317,7 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 4,
@@ -7162,7 +7327,7 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 3,
-                    }
+                    },
                   },
                   {
                     id: 5,
@@ -7172,7 +7337,7 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 4,
-                    }
+                    },
                   },
                   {
                     id: 6,
@@ -7182,7 +7347,7 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 5,
-                    }
+                    },
                   },
                   {
                     id: 7,
@@ -7192,11 +7357,11 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 5,
-                    }
-                  }
-                ]
-               },
-               {
+                    },
+                  },
+                ],
+              },
+              {
                 id: "2",
                 subiect: "2",
                 subtitleID: "13",
@@ -7210,7 +7375,7 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 2,
@@ -7220,7 +7385,7 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 3,
@@ -7230,7 +7395,7 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 4,
@@ -7240,7 +7405,7 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 3,
-                    }
+                    },
                   },
                   {
                     id: 5,
@@ -7250,7 +7415,7 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 4,
-                    }
+                    },
                   },
                   {
                     id: 6,
@@ -7260,7 +7425,7 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 5,
-                    }
+                    },
                   },
                   {
                     id: 7,
@@ -7270,11 +7435,11 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 5,
-                    }
-                  }
-                ]
-              }
-            ]
+                    },
+                  },
+                ],
+              },
+            ],
           },
           {
             id: "3",
@@ -7289,10 +7454,10 @@ let temeRomana = [
                 id: "1",
                 subiect: "3",
                 subtitleID: "13",
-                titleID: "3", 
+                titleID: "3",
                 barem: {
                   maxPoints: 15,
-                }   
+                },
               },
               {
                 id: "2",
@@ -7301,11 +7466,11 @@ let temeRomana = [
                 titleID: "3",
                 barem: {
                   maxPoints: 15,
-                } 
-              }
-            ]
-          }
-        ]
+                },
+              },
+            ],
+          },
+        ],
       },
       {
         id: "14",
@@ -7339,19 +7504,23 @@ let temeRomana = [
                 id: "1",
                 subjectID: "32",
                 subtitleID: "14",
-                titleID: "3"
-               }
-             ],
-             teste: [{
-              id: 1,
-              quizArray: [{
-                   id: 1,
-                   testID: "1",
-                   subjectID: "32",  
-                   subtitleID: "14",
-                   titleID: "3" 
-              }]
-            }],
+                titleID: "3",
+              },
+            ],
+            teste: [
+              {
+                id: 1,
+                quizArray: [
+                  {
+                    id: 1,
+                    testID: "1",
+                    subjectID: "32",
+                    subtitleID: "14",
+                    titleID: "3",
+                  },
+                ],
+              },
+            ],
           },
           {
             id: "33",
@@ -7375,19 +7544,23 @@ let temeRomana = [
                 id: "1",
                 subjectID: "33",
                 subtitleID: "14",
-                titleID: "3"
-               }
-             ],
-             teste: [{
-              id: 1,
-              quizArray: [{
-                   id: 1,
-                   testID: "1",
-                   subjectID: "33",  
-                   subtitleID: "14",
-                   titleID: "3" 
-              }]
-            }],
+                titleID: "3",
+              },
+            ],
+            teste: [
+              {
+                id: 1,
+                quizArray: [
+                  {
+                    id: 1,
+                    testID: "1",
+                    subjectID: "33",
+                    subtitleID: "14",
+                    titleID: "3",
+                  },
+                ],
+              },
+            ],
           },
         ],
         aplicatii: [
@@ -7407,7 +7580,7 @@ let temeRomana = [
                 titleID: "3",
                 barem: {
                   maxPoints: 3,
-                }
+                },
               },
               {
                 id: "2",
@@ -7416,9 +7589,9 @@ let temeRomana = [
                 titleID: "3",
                 barem: {
                   maxPoints: 3,
-                }
-              }
-            ]
+                },
+              },
+            ],
           },
           {
             id: "2",
@@ -7443,7 +7616,7 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 2,
@@ -7453,7 +7626,7 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 3,
@@ -7463,7 +7636,7 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 4,
@@ -7473,7 +7646,7 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 3,
-                    }
+                    },
                   },
                   {
                     id: 5,
@@ -7483,7 +7656,7 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 4,
-                    }
+                    },
                   },
                   {
                     id: 6,
@@ -7493,7 +7666,7 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 5,
-                    }
+                    },
                   },
                   {
                     id: 7,
@@ -7503,11 +7676,11 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 5,
-                    }
-                  }
-                ]
-               },
-               {
+                    },
+                  },
+                ],
+              },
+              {
                 id: "2",
                 subiect: "2",
                 subtitleID: "14",
@@ -7521,7 +7694,7 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 2,
@@ -7531,7 +7704,7 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 3,
@@ -7541,7 +7714,7 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 4,
@@ -7551,7 +7724,7 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 3,
-                    }
+                    },
                   },
                   {
                     id: 5,
@@ -7561,7 +7734,7 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 4,
-                    }
+                    },
                   },
                   {
                     id: 6,
@@ -7571,7 +7744,7 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 5,
-                    }
+                    },
                   },
                   {
                     id: 7,
@@ -7581,11 +7754,11 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 5,
-                    }
-                  }
-                ]
-              }
-            ]
+                    },
+                  },
+                ],
+              },
+            ],
           },
           {
             id: "3",
@@ -7600,10 +7773,10 @@ let temeRomana = [
                 id: "1",
                 subiect: "3",
                 subtitleID: "14",
-                titleID: "3", 
+                titleID: "3",
                 barem: {
                   maxPoints: 15,
-                }   
+                },
               },
               {
                 id: "2",
@@ -7612,11 +7785,11 @@ let temeRomana = [
                 titleID: "3",
                 barem: {
                   maxPoints: 15,
-                } 
-              }
-            ]
-          }
-        ]
+                },
+              },
+            ],
+          },
+        ],
       },
       {
         id: "15",
@@ -7650,19 +7823,23 @@ let temeRomana = [
                 id: "1",
                 subjectID: "32",
                 subtitleID: "15",
-                titleID: "3"
-               }
-             ],
-             teste: [{
-              id: 1,
-              quizArray: [{
-                   id: 1,
-                   testID: "1",
-                   subjectID: "32",  
-                   subtitleID: "15",
-                   titleID: "3" 
-              }]
-            }],
+                titleID: "3",
+              },
+            ],
+            teste: [
+              {
+                id: 1,
+                quizArray: [
+                  {
+                    id: 1,
+                    testID: "1",
+                    subjectID: "32",
+                    subtitleID: "15",
+                    titleID: "3",
+                  },
+                ],
+              },
+            ],
           },
           {
             id: "33",
@@ -7686,19 +7863,23 @@ let temeRomana = [
                 id: "1",
                 subjectID: "33",
                 subtitleID: "15",
-                titleID: "3"
-               }
-             ],
-             teste: [{
-              id: 1,
-              quizArray: [{
-                   id: 1,
-                   testID: "1",
-                   subjectID: "33",  
-                   subtitleID: "15",
-                   titleID: "3" 
-              }]
-            }],
+                titleID: "3",
+              },
+            ],
+            teste: [
+              {
+                id: 1,
+                quizArray: [
+                  {
+                    id: 1,
+                    testID: "1",
+                    subjectID: "33",
+                    subtitleID: "15",
+                    titleID: "3",
+                  },
+                ],
+              },
+            ],
           },
         ],
         aplicatii: [
@@ -7718,7 +7899,7 @@ let temeRomana = [
                 titleID: "3",
                 barem: {
                   maxPoints: 3,
-                }
+                },
               },
               {
                 id: "2",
@@ -7727,9 +7908,9 @@ let temeRomana = [
                 titleID: "3",
                 barem: {
                   maxPoints: 3,
-                }
-              }
-            ]
+                },
+              },
+            ],
           },
           {
             id: "2",
@@ -7754,7 +7935,7 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 2,
@@ -7764,7 +7945,7 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 3,
@@ -7774,7 +7955,7 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 4,
@@ -7784,7 +7965,7 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 3,
-                    }
+                    },
                   },
                   {
                     id: 5,
@@ -7794,7 +7975,7 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 4,
-                    }
+                    },
                   },
                   {
                     id: 6,
@@ -7804,7 +7985,7 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 5,
-                    }
+                    },
                   },
                   {
                     id: 7,
@@ -7814,11 +7995,11 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 5,
-                    }
-                  }
-                ]
-               },
-               {
+                    },
+                  },
+                ],
+              },
+              {
                 id: "2",
                 subiect: "2",
                 subtitleID: "15",
@@ -7832,7 +8013,7 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 2,
@@ -7842,7 +8023,7 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 3,
@@ -7852,7 +8033,7 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 4,
@@ -7862,7 +8043,7 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 3,
-                    }
+                    },
                   },
                   {
                     id: 5,
@@ -7872,7 +8053,7 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 4,
-                    }
+                    },
                   },
                   {
                     id: 6,
@@ -7882,7 +8063,7 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 5,
-                    }
+                    },
                   },
                   {
                     id: 7,
@@ -7892,11 +8073,11 @@ let temeRomana = [
                     titleID: "3",
                     barem: {
                       maxPoints: 5,
-                    }
-                  }
-                ]
-              }
-            ]
+                    },
+                  },
+                ],
+              },
+            ],
           },
           {
             id: "3",
@@ -7911,10 +8092,10 @@ let temeRomana = [
                 id: "1",
                 subiect: "3",
                 subtitleID: "15",
-                titleID: "3", 
+                titleID: "3",
                 barem: {
                   maxPoints: 15,
-                }   
+                },
               },
               {
                 id: "2",
@@ -7923,11 +8104,11 @@ let temeRomana = [
                 titleID: "3",
                 barem: {
                   maxPoints: 15,
-                } 
-              }
-            ]
-          }
-        ]
+                },
+              },
+            ],
+          },
+        ],
       },
       {
         id: "5",
@@ -7961,19 +8142,23 @@ let temeRomana = [
                 id: "1",
                 subjectID: "12",
                 subtitleID: "5",
-                titleID: "2"
-               }
-             ],
-             teste: [{
-              id: 1,
-              quizArray: [{
-                   id: 1,
-                   testID: "1",
-                   subjectID: "12",  
-                   subtitleID: "5",
-                   titleID: "2" 
-              }]
-            }],
+                titleID: "2",
+              },
+            ],
+            teste: [
+              {
+                id: 1,
+                quizArray: [
+                  {
+                    id: 1,
+                    testID: "1",
+                    subjectID: "12",
+                    subtitleID: "5",
+                    titleID: "2",
+                  },
+                ],
+              },
+            ],
           },
           {
             id: "13",
@@ -7997,19 +8182,23 @@ let temeRomana = [
                 id: "1",
                 subjectID: "13",
                 subtitleID: "5",
-                titleID: "2"
-               }
-             ],
-             teste: [{
-              id: 1,
-              quizArray: [{
-                   id: 1,
-                   testID: "1",
-                   subjectID: "13",  
-                   subtitleID: "5",
-                   titleID: "2" 
-              }]
-            }],
+                titleID: "2",
+              },
+            ],
+            teste: [
+              {
+                id: 1,
+                quizArray: [
+                  {
+                    id: 1,
+                    testID: "1",
+                    subjectID: "13",
+                    subtitleID: "5",
+                    titleID: "2",
+                  },
+                ],
+              },
+            ],
           },
         ],
         aplicatii: [
@@ -8029,7 +8218,7 @@ let temeRomana = [
                 titleID: "2",
                 barem: {
                   maxPoints: 3,
-                }
+                },
               },
               {
                 id: "2",
@@ -8038,9 +8227,9 @@ let temeRomana = [
                 titleID: "2",
                 barem: {
                   maxPoints: 3,
-                }
-              }
-            ]
+                },
+              },
+            ],
           },
           {
             id: "2",
@@ -8065,7 +8254,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 2,
@@ -8075,7 +8264,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 3,
@@ -8085,7 +8274,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 4,
@@ -8095,7 +8284,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 3,
-                    }
+                    },
                   },
                   {
                     id: 5,
@@ -8105,7 +8294,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 4,
-                    }
+                    },
                   },
                   {
                     id: 6,
@@ -8115,7 +8304,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 5,
-                    }
+                    },
                   },
                   {
                     id: 7,
@@ -8125,11 +8314,11 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 5,
-                    }
-                  }
-                ]
-               },
-               {
+                    },
+                  },
+                ],
+              },
+              {
                 id: "2",
                 subiect: "2",
                 subtitleID: "5",
@@ -8143,7 +8332,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 2,
@@ -8153,7 +8342,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 3,
@@ -8163,7 +8352,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 4,
@@ -8173,7 +8362,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 3,
-                    }
+                    },
                   },
                   {
                     id: 5,
@@ -8183,7 +8372,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 4,
-                    }
+                    },
                   },
                   {
                     id: 6,
@@ -8193,7 +8382,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 5,
-                    }
+                    },
                   },
                   {
                     id: 7,
@@ -8203,11 +8392,11 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 5,
-                    }
-                  }
-                ]
-              }
-            ]
+                    },
+                  },
+                ],
+              },
+            ],
           },
           {
             id: "3",
@@ -8222,10 +8411,10 @@ let temeRomana = [
                 id: "1",
                 subiect: "3",
                 subtitleID: "5",
-                titleID: "2", 
+                titleID: "2",
                 barem: {
                   maxPoints: 15,
-                }   
+                },
               },
               {
                 id: "2",
@@ -8234,11 +8423,11 @@ let temeRomana = [
                 titleID: "2",
                 barem: {
                   maxPoints: 15,
-                } 
-              }
-            ]
-          }
-         ]
+                },
+              },
+            ],
+          },
+        ],
       },
       {
         id: "6",
@@ -8272,19 +8461,23 @@ let temeRomana = [
                 id: "1",
                 subjectID: "14",
                 subtitleID: "6",
-                titleID: "2"
-               }
-             ],
-             teste: [{
-              id: 1,
-              quizArray: [{
-                   id: 1,
-                   testID: "1",
-                   subjectID: "14",  
-                   subtitleID: "6",
-                   titleID: "2" 
-              }]
-            }],
+                titleID: "2",
+              },
+            ],
+            teste: [
+              {
+                id: 1,
+                quizArray: [
+                  {
+                    id: 1,
+                    testID: "1",
+                    subjectID: "14",
+                    subtitleID: "6",
+                    titleID: "2",
+                  },
+                ],
+              },
+            ],
           },
           {
             id: "15",
@@ -8308,19 +8501,23 @@ let temeRomana = [
                 id: "1",
                 subjectID: "15",
                 subtitleID: "6",
-                titleID: "2"
-               }
-             ],
-             teste: [{
-              id: 1,
-              quizArray: [{
-                   id: 1,
-                   testID: "1",
-                   subjectID: "15",  
-                   subtitleID: "6",
-                   titleID: "2" 
-              }]
-            }],
+                titleID: "2",
+              },
+            ],
+            teste: [
+              {
+                id: 1,
+                quizArray: [
+                  {
+                    id: 1,
+                    testID: "1",
+                    subjectID: "15",
+                    subtitleID: "6",
+                    titleID: "2",
+                  },
+                ],
+              },
+            ],
           },
         ],
         aplicatii: [
@@ -8340,7 +8537,7 @@ let temeRomana = [
                 titleID: "2",
                 barem: {
                   maxPoints: 3,
-                }
+                },
               },
               {
                 id: "2",
@@ -8349,9 +8546,9 @@ let temeRomana = [
                 titleID: "2",
                 barem: {
                   maxPoints: 3,
-                }
-              }
-            ]
+                },
+              },
+            ],
           },
           {
             id: "2",
@@ -8376,7 +8573,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 2,
@@ -8386,7 +8583,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 3,
@@ -8396,7 +8593,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 4,
@@ -8406,7 +8603,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 3,
-                    }
+                    },
                   },
                   {
                     id: 5,
@@ -8416,7 +8613,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 4,
-                    }
+                    },
                   },
                   {
                     id: 6,
@@ -8426,7 +8623,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 5,
-                    }
+                    },
                   },
                   {
                     id: 7,
@@ -8436,11 +8633,11 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 5,
-                    }
-                  }
-                ]
-               },
-               {
+                    },
+                  },
+                ],
+              },
+              {
                 id: "2",
                 subiect: "2",
                 subtitleID: "6",
@@ -8454,7 +8651,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 2,
@@ -8464,7 +8661,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 3,
@@ -8474,7 +8671,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 4,
@@ -8484,7 +8681,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 3,
-                    }
+                    },
                   },
                   {
                     id: 5,
@@ -8494,7 +8691,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 4,
-                    }
+                    },
                   },
                   {
                     id: 6,
@@ -8504,7 +8701,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 5,
-                    }
+                    },
                   },
                   {
                     id: 7,
@@ -8514,11 +8711,11 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 5,
-                    }
-                  }
-                ]
-              }
-            ]
+                    },
+                  },
+                ],
+              },
+            ],
           },
           {
             id: "3",
@@ -8533,10 +8730,10 @@ let temeRomana = [
                 id: "1",
                 subiect: "3",
                 subtitleID: "6",
-                titleID: "2", 
+                titleID: "2",
                 barem: {
                   maxPoints: 15,
-                }   
+                },
               },
               {
                 id: "2",
@@ -8545,11 +8742,11 @@ let temeRomana = [
                 titleID: "2",
                 barem: {
                   maxPoints: 15,
-                } 
-              }
-            ]
-          }
-         ]
+                },
+              },
+            ],
+          },
+        ],
       },
       {
         id: "7",
@@ -8583,19 +8780,23 @@ let temeRomana = [
                 id: "1",
                 subjectID: "16",
                 subtitleID: "7",
-                titleID: "2"
-               }
-             ],
-             teste: [{
-              id: 1,
-              quizArray: [{
-                   id: 1,
-                   testID: "1",
-                   subjectID: "16",  
-                   subtitleID: "7",
-                   titleID: "2" 
-              }]
-            }],
+                titleID: "2",
+              },
+            ],
+            teste: [
+              {
+                id: 1,
+                quizArray: [
+                  {
+                    id: 1,
+                    testID: "1",
+                    subjectID: "16",
+                    subtitleID: "7",
+                    titleID: "2",
+                  },
+                ],
+              },
+            ],
           },
           {
             id: "17",
@@ -8619,19 +8820,23 @@ let temeRomana = [
                 id: "1",
                 subjectID: "17",
                 subtitleID: "7",
-                titleID: "2"
-               }
-             ],
-             teste: [{
-              id: 1,
-              quizArray: [{
-                   id: 1,
-                   testID: "1",
-                   subjectID: "17",  
-                   subtitleID: "7",
-                   titleID: "2" 
-              }]
-            }],
+                titleID: "2",
+              },
+            ],
+            teste: [
+              {
+                id: 1,
+                quizArray: [
+                  {
+                    id: 1,
+                    testID: "1",
+                    subjectID: "17",
+                    subtitleID: "7",
+                    titleID: "2",
+                  },
+                ],
+              },
+            ],
           },
         ],
         aplicatii: [
@@ -8651,7 +8856,7 @@ let temeRomana = [
                 titleID: "2",
                 barem: {
                   maxPoints: 3,
-                }
+                },
               },
               {
                 id: "2",
@@ -8660,9 +8865,9 @@ let temeRomana = [
                 titleID: "2",
                 barem: {
                   maxPoints: 3,
-                }
-              }
-            ]
+                },
+              },
+            ],
           },
           {
             id: "2",
@@ -8687,7 +8892,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 2,
@@ -8697,7 +8902,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 3,
@@ -8707,7 +8912,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 4,
@@ -8717,7 +8922,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 3,
-                    }
+                    },
                   },
                   {
                     id: 5,
@@ -8727,7 +8932,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 4,
-                    }
+                    },
                   },
                   {
                     id: 6,
@@ -8737,7 +8942,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 5,
-                    }
+                    },
                   },
                   {
                     id: 7,
@@ -8747,11 +8952,11 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 5,
-                    }
-                  }
-                ]
-               },
-               {
+                    },
+                  },
+                ],
+              },
+              {
                 id: "2",
                 subiect: "2",
                 subtitleID: "7",
@@ -8765,7 +8970,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 2,
@@ -8775,7 +8980,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 3,
@@ -8785,7 +8990,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 4,
@@ -8795,7 +9000,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 3,
-                    }
+                    },
                   },
                   {
                     id: 5,
@@ -8805,7 +9010,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 4,
-                    }
+                    },
                   },
                   {
                     id: 6,
@@ -8815,7 +9020,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 5,
-                    }
+                    },
                   },
                   {
                     id: 7,
@@ -8825,11 +9030,11 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 5,
-                    }
-                  }
-                ]
-              }
-            ]
+                    },
+                  },
+                ],
+              },
+            ],
           },
           {
             id: "3",
@@ -8844,10 +9049,10 @@ let temeRomana = [
                 id: "1",
                 subiect: "3",
                 subtitleID: "7",
-                titleID: "2", 
+                titleID: "2",
                 barem: {
                   maxPoints: 15,
-                }   
+                },
               },
               {
                 id: "2",
@@ -8856,11 +9061,11 @@ let temeRomana = [
                 titleID: "2",
                 barem: {
                   maxPoints: 15,
-                } 
-              }
-            ]
-          }
-         ]
+                },
+              },
+            ],
+          },
+        ],
       },
       {
         id: "8",
@@ -8894,19 +9099,23 @@ let temeRomana = [
                 id: "1",
                 subjectID: "18",
                 subtitleID: "8",
-                titleID: "2"
-               }
-             ],
-             teste: [{
-              id: 1,
-              quizArray: [{
-                   id: 1,
-                   testID: "1",
-                   subjectID: "18",  
-                   subtitleID: "8",
-                   titleID: "2" 
-              }]
-            }],
+                titleID: "2",
+              },
+            ],
+            teste: [
+              {
+                id: 1,
+                quizArray: [
+                  {
+                    id: 1,
+                    testID: "1",
+                    subjectID: "18",
+                    subtitleID: "8",
+                    titleID: "2",
+                  },
+                ],
+              },
+            ],
           },
           {
             id: "19",
@@ -8930,19 +9139,23 @@ let temeRomana = [
                 id: "1",
                 subjectID: "19",
                 subtitleID: "8",
-                titleID: "2"
-               }
-             ],
-             teste: [{
-              id: 1,
-              quizArray: [{
-                   id: 1,
-                   testID: "1",
-                   subjectID: "19",  
-                   subtitleID: "8",
-                   titleID: "2" 
-              }]
-            }],
+                titleID: "2",
+              },
+            ],
+            teste: [
+              {
+                id: 1,
+                quizArray: [
+                  {
+                    id: 1,
+                    testID: "1",
+                    subjectID: "19",
+                    subtitleID: "8",
+                    titleID: "2",
+                  },
+                ],
+              },
+            ],
           },
         ],
         aplicatii: [
@@ -8962,7 +9175,7 @@ let temeRomana = [
                 titleID: "2",
                 barem: {
                   maxPoints: 3,
-                }
+                },
               },
               {
                 id: "2",
@@ -8971,9 +9184,9 @@ let temeRomana = [
                 titleID: "2",
                 barem: {
                   maxPoints: 3,
-                }
-              }
-            ]
+                },
+              },
+            ],
           },
           {
             id: "2",
@@ -8998,7 +9211,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 2,
@@ -9008,7 +9221,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 3,
@@ -9018,7 +9231,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 4,
@@ -9028,7 +9241,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 3,
-                    }
+                    },
                   },
                   {
                     id: 5,
@@ -9038,7 +9251,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 4,
-                    }
+                    },
                   },
                   {
                     id: 6,
@@ -9048,7 +9261,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 5,
-                    }
+                    },
                   },
                   {
                     id: 7,
@@ -9058,11 +9271,11 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 5,
-                    }
-                  }
-                ]
-               },
-               {
+                    },
+                  },
+                ],
+              },
+              {
                 id: "2",
                 subiect: "2",
                 subtitleID: "8",
@@ -9076,7 +9289,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 2,
@@ -9086,7 +9299,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 3,
@@ -9096,7 +9309,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 4,
@@ -9106,7 +9319,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 3,
-                    }
+                    },
                   },
                   {
                     id: 5,
@@ -9116,7 +9329,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 4,
-                    }
+                    },
                   },
                   {
                     id: 6,
@@ -9126,7 +9339,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 5,
-                    }
+                    },
                   },
                   {
                     id: 7,
@@ -9136,11 +9349,11 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 5,
-                    }
-                  }
-                ]
-              }
-            ]
+                    },
+                  },
+                ],
+              },
+            ],
           },
           {
             id: "3",
@@ -9155,10 +9368,10 @@ let temeRomana = [
                 id: "1",
                 subiect: "3",
                 subtitleID: "8",
-                titleID: "2", 
+                titleID: "2",
                 barem: {
                   maxPoints: 15,
-                }   
+                },
               },
               {
                 id: "2",
@@ -9167,11 +9380,11 @@ let temeRomana = [
                 titleID: "2",
                 barem: {
                   maxPoints: 15,
-                } 
-              }
-            ]
-          }
-         ]
+                },
+              },
+            ],
+          },
+        ],
       },
       {
         id: "9",
@@ -9205,19 +9418,23 @@ let temeRomana = [
                 id: "1",
                 subjectID: "20",
                 subtitleID: "9",
-                titleID: "2"
-               }
-             ],
-             teste: [{
-              id: 1,
-              quizArray: [{
-                   id: 1,
-                   testID: "1",
-                   subjectID: "20",  
-                   subtitleID: "9",
-                   titleID: "2" 
-              }]
-            }],
+                titleID: "2",
+              },
+            ],
+            teste: [
+              {
+                id: 1,
+                quizArray: [
+                  {
+                    id: 1,
+                    testID: "1",
+                    subjectID: "20",
+                    subtitleID: "9",
+                    titleID: "2",
+                  },
+                ],
+              },
+            ],
           },
           {
             id: "21",
@@ -9241,19 +9458,23 @@ let temeRomana = [
                 id: "1",
                 subjectID: "21",
                 subtitleID: "9",
-                titleID: "2"
-               }
-             ],
-             teste: [{
-              id: 1,
-              quizArray: [{
-                   id: 1,
-                   testID: "1",
-                   subjectID: "21",  
-                   subtitleID: "9",
-                   titleID: "2" 
-              }]
-            }],
+                titleID: "2",
+              },
+            ],
+            teste: [
+              {
+                id: 1,
+                quizArray: [
+                  {
+                    id: 1,
+                    testID: "1",
+                    subjectID: "21",
+                    subtitleID: "9",
+                    titleID: "2",
+                  },
+                ],
+              },
+            ],
           },
         ],
         aplicatii: [
@@ -9273,7 +9494,7 @@ let temeRomana = [
                 titleID: "2",
                 barem: {
                   maxPoints: 3,
-                }
+                },
               },
               {
                 id: "2",
@@ -9282,9 +9503,9 @@ let temeRomana = [
                 titleID: "2",
                 barem: {
                   maxPoints: 3,
-                }
-              }
-            ]
+                },
+              },
+            ],
           },
           {
             id: "2",
@@ -9309,7 +9530,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 2,
@@ -9319,7 +9540,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 3,
@@ -9329,7 +9550,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 4,
@@ -9339,7 +9560,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 3,
-                    }
+                    },
                   },
                   {
                     id: 5,
@@ -9349,7 +9570,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 4,
-                    }
+                    },
                   },
                   {
                     id: 6,
@@ -9359,7 +9580,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 5,
-                    }
+                    },
                   },
                   {
                     id: 7,
@@ -9369,11 +9590,11 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 5,
-                    }
-                  }
-                ]
-               },
-               {
+                    },
+                  },
+                ],
+              },
+              {
                 id: "2",
                 subiect: "2",
                 subtitleID: "9",
@@ -9387,7 +9608,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 2,
@@ -9397,7 +9618,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 3,
@@ -9407,7 +9628,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 4,
@@ -9417,7 +9638,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 3,
-                    }
+                    },
                   },
                   {
                     id: 5,
@@ -9427,7 +9648,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 4,
-                    }
+                    },
                   },
                   {
                     id: 6,
@@ -9437,7 +9658,7 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 5,
-                    }
+                    },
                   },
                   {
                     id: 7,
@@ -9447,11 +9668,11 @@ let temeRomana = [
                     titleID: "2",
                     barem: {
                       maxPoints: 5,
-                    }
-                  }
-                ]
-              }
-            ]
+                    },
+                  },
+                ],
+              },
+            ],
           },
           {
             id: "3",
@@ -9466,10 +9687,10 @@ let temeRomana = [
                 id: "1",
                 subiect: "3",
                 subtitleID: "9",
-                titleID: "2", 
+                titleID: "2",
                 barem: {
                   maxPoints: 15,
-                }   
+                },
               },
               {
                 id: "2",
@@ -9478,11 +9699,11 @@ let temeRomana = [
                 titleID: "2",
                 barem: {
                   maxPoints: 15,
-                } 
-              }
-            ]
-          }
-         ]
+                },
+              },
+            ],
+          },
+        ],
       },
     ],
   },
@@ -9524,19 +9745,23 @@ let temeRomana = [
                 id: "1",
                 subjectID: "34",
                 subtitleID: "16",
-                titleID: "4"
-               }
-             ],
-             teste: [{
-              id: 1,
-              quizArray: [{
-                   id: 1,
-                   testID: "1",
-                   subjectID: "34",  
-                   subtitleID: "16",
-                   titleID: "4" 
-              }]
-            }],
+                titleID: "4",
+              },
+            ],
+            teste: [
+              {
+                id: 1,
+                quizArray: [
+                  {
+                    id: 1,
+                    testID: "1",
+                    subjectID: "34",
+                    subtitleID: "16",
+                    titleID: "4",
+                  },
+                ],
+              },
+            ],
           },
           {
             id: "35",
@@ -9560,19 +9785,23 @@ let temeRomana = [
                 id: "1",
                 subjectID: "35",
                 subtitleID: "16",
-                titleID: "4"
-               }
-             ],
-             teste: [{
-              id: 1,
-              quizArray: [{
-                   id: 1,
-                   testID: "1",
-                   subjectID: "35",  
-                   subtitleID: "16",
-                   titleID: "4" 
-              }]
-            }],
+                titleID: "4",
+              },
+            ],
+            teste: [
+              {
+                id: 1,
+                quizArray: [
+                  {
+                    id: 1,
+                    testID: "1",
+                    subjectID: "35",
+                    subtitleID: "16",
+                    titleID: "4",
+                  },
+                ],
+              },
+            ],
           },
         ],
         aplicatii: [
@@ -9592,7 +9821,7 @@ let temeRomana = [
                 titleID: "4",
                 barem: {
                   maxPoints: 3,
-                }
+                },
               },
               {
                 id: "2",
@@ -9601,9 +9830,9 @@ let temeRomana = [
                 titleID: "4",
                 barem: {
                   maxPoints: 3,
-                }
-              }
-            ]
+                },
+              },
+            ],
           },
           {
             id: "2",
@@ -9628,7 +9857,7 @@ let temeRomana = [
                     titleID: "4",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 2,
@@ -9638,7 +9867,7 @@ let temeRomana = [
                     titleID: "4",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 3,
@@ -9648,7 +9877,7 @@ let temeRomana = [
                     titleID: "4",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 4,
@@ -9658,7 +9887,7 @@ let temeRomana = [
                     titleID: "4",
                     barem: {
                       maxPoints: 3,
-                    }
+                    },
                   },
                   {
                     id: 5,
@@ -9668,7 +9897,7 @@ let temeRomana = [
                     titleID: "4",
                     barem: {
                       maxPoints: 4,
-                    }
+                    },
                   },
                   {
                     id: 6,
@@ -9678,7 +9907,7 @@ let temeRomana = [
                     titleID: "4",
                     barem: {
                       maxPoints: 5,
-                    }
+                    },
                   },
                   {
                     id: 7,
@@ -9688,11 +9917,11 @@ let temeRomana = [
                     titleID: "4",
                     barem: {
                       maxPoints: 5,
-                    }
-                  }
-                ]
-               },
-               {
+                    },
+                  },
+                ],
+              },
+              {
                 id: "2",
                 subiect: "2",
                 subtitleID: "16",
@@ -9706,7 +9935,7 @@ let temeRomana = [
                     titleID: "4",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 2,
@@ -9716,7 +9945,7 @@ let temeRomana = [
                     titleID: "4",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 3,
@@ -9726,7 +9955,7 @@ let temeRomana = [
                     titleID: "4",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 4,
@@ -9736,7 +9965,7 @@ let temeRomana = [
                     titleID: "4",
                     barem: {
                       maxPoints: 3,
-                    }
+                    },
                   },
                   {
                     id: 5,
@@ -9746,7 +9975,7 @@ let temeRomana = [
                     titleID: "4",
                     barem: {
                       maxPoints: 4,
-                    }
+                    },
                   },
                   {
                     id: 6,
@@ -9756,7 +9985,7 @@ let temeRomana = [
                     titleID: "4",
                     barem: {
                       maxPoints: 5,
-                    }
+                    },
                   },
                   {
                     id: 7,
@@ -9766,11 +9995,11 @@ let temeRomana = [
                     titleID: "4",
                     barem: {
                       maxPoints: 5,
-                    }
-                  }
-                ]
-              }
-            ]
+                    },
+                  },
+                ],
+              },
+            ],
           },
           {
             id: "3",
@@ -9785,10 +10014,10 @@ let temeRomana = [
                 id: "1",
                 subiect: "3",
                 subtitleID: "16",
-                titleID: "4", 
+                titleID: "4",
                 barem: {
                   maxPoints: 15,
-                }   
+                },
               },
               {
                 id: "2",
@@ -9797,11 +10026,11 @@ let temeRomana = [
                 titleID: "4",
                 barem: {
                   maxPoints: 15,
-                } 
-              }
-            ]
-          }
-        ]
+                },
+              },
+            ],
+          },
+        ],
       },
       {
         id: "17",
@@ -9835,19 +10064,23 @@ let temeRomana = [
                 id: "1",
                 subjectID: "36",
                 subtitleID: "17",
-                titleID: "4"
-               }
-             ],
-             teste: [{
-              id: 1,
-              quizArray: [{
-                   id: 1,
-                   testID: "1",
-                   subjectID: "36",  
-                   subtitleID: "17",
-                   titleID: "4" 
-              }]
-            }],
+                titleID: "4",
+              },
+            ],
+            teste: [
+              {
+                id: 1,
+                quizArray: [
+                  {
+                    id: 1,
+                    testID: "1",
+                    subjectID: "36",
+                    subtitleID: "17",
+                    titleID: "4",
+                  },
+                ],
+              },
+            ],
           },
           {
             id: "37",
@@ -9871,19 +10104,23 @@ let temeRomana = [
                 id: "1",
                 subjectID: "37",
                 subtitleID: "17",
-                titleID: "4"
-               }
-             ],
-             teste: [{
-              id: 1,
-              quizArray: [{
-                   id: 1,
-                   testID: "1",
-                   subjectID: "37",  
-                   subtitleID: "17",
-                   titleID: "4" 
-              }]
-            }],
+                titleID: "4",
+              },
+            ],
+            teste: [
+              {
+                id: 1,
+                quizArray: [
+                  {
+                    id: 1,
+                    testID: "1",
+                    subjectID: "37",
+                    subtitleID: "17",
+                    titleID: "4",
+                  },
+                ],
+              },
+            ],
           },
         ],
         aplicatii: [
@@ -9903,7 +10140,7 @@ let temeRomana = [
                 titleID: "4",
                 barem: {
                   maxPoints: 3,
-                }
+                },
               },
               {
                 id: "2",
@@ -9912,9 +10149,9 @@ let temeRomana = [
                 titleID: "4",
                 barem: {
                   maxPoints: 3,
-                }
-              }
-            ]
+                },
+              },
+            ],
           },
           {
             id: "2",
@@ -9939,7 +10176,7 @@ let temeRomana = [
                     titleID: "4",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 2,
@@ -9949,7 +10186,7 @@ let temeRomana = [
                     titleID: "4",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 3,
@@ -9959,7 +10196,7 @@ let temeRomana = [
                     titleID: "4",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 4,
@@ -9969,7 +10206,7 @@ let temeRomana = [
                     titleID: "4",
                     barem: {
                       maxPoints: 3,
-                    }
+                    },
                   },
                   {
                     id: 5,
@@ -9979,7 +10216,7 @@ let temeRomana = [
                     titleID: "4",
                     barem: {
                       maxPoints: 4,
-                    }
+                    },
                   },
                   {
                     id: 6,
@@ -9989,7 +10226,7 @@ let temeRomana = [
                     titleID: "4",
                     barem: {
                       maxPoints: 5,
-                    }
+                    },
                   },
                   {
                     id: 7,
@@ -9999,11 +10236,11 @@ let temeRomana = [
                     titleID: "4",
                     barem: {
                       maxPoints: 5,
-                    }
-                  }
-                ]
-               },
-               {
+                    },
+                  },
+                ],
+              },
+              {
                 id: "2",
                 subiect: "2",
                 subtitleID: "17",
@@ -10017,7 +10254,7 @@ let temeRomana = [
                     titleID: "4",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 2,
@@ -10027,7 +10264,7 @@ let temeRomana = [
                     titleID: "4",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 3,
@@ -10037,7 +10274,7 @@ let temeRomana = [
                     titleID: "4",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 4,
@@ -10047,7 +10284,7 @@ let temeRomana = [
                     titleID: "4",
                     barem: {
                       maxPoints: 3,
-                    }
+                    },
                   },
                   {
                     id: 5,
@@ -10057,7 +10294,7 @@ let temeRomana = [
                     titleID: "4",
                     barem: {
                       maxPoints: 4,
-                    }
+                    },
                   },
                   {
                     id: 6,
@@ -10067,7 +10304,7 @@ let temeRomana = [
                     titleID: "4",
                     barem: {
                       maxPoints: 5,
-                    }
+                    },
                   },
                   {
                     id: 7,
@@ -10077,11 +10314,11 @@ let temeRomana = [
                     titleID: "4",
                     barem: {
                       maxPoints: 5,
-                    }
-                  }
-                ]
-              }
-            ]
+                    },
+                  },
+                ],
+              },
+            ],
           },
           {
             id: "3",
@@ -10096,10 +10333,10 @@ let temeRomana = [
                 id: "1",
                 subiect: "3",
                 subtitleID: "17",
-                titleID: "4", 
+                titleID: "4",
                 barem: {
                   maxPoints: 15,
-                }   
+                },
               },
               {
                 id: "2",
@@ -10108,11 +10345,11 @@ let temeRomana = [
                 titleID: "4",
                 barem: {
                   maxPoints: 15,
-                } 
-              }
-            ]
-          }
-        ]
+                },
+              },
+            ],
+          },
+        ],
       },
       {
         id: "18",
@@ -10146,19 +10383,23 @@ let temeRomana = [
                 id: "1",
                 subjectID: "38",
                 subtitleID: "18",
-                titleID: "4"
-               }
-             ],
-             teste: [{
-              id: 1,
-              quizArray: [{
-                   id: 1,
-                   testID: "1",
-                   subjectID: "38",  
-                   subtitleID: "18",
-                   titleID: "4" 
-              }]
-            }],
+                titleID: "4",
+              },
+            ],
+            teste: [
+              {
+                id: 1,
+                quizArray: [
+                  {
+                    id: 1,
+                    testID: "1",
+                    subjectID: "38",
+                    subtitleID: "18",
+                    titleID: "4",
+                  },
+                ],
+              },
+            ],
           },
           {
             id: "39",
@@ -10182,19 +10423,23 @@ let temeRomana = [
                 id: "1",
                 subjectID: "39",
                 subtitleID: "18",
-                titleID: "4"
-               }
-             ],
-             teste: [{
-              id: 1,
-              quizArray: [{
-                   id: 1,
-                   testID: "1",
-                   subjectID: "39",  
-                   subtitleID: "18",
-                   titleID: "4" 
-              }]
-            }],
+                titleID: "4",
+              },
+            ],
+            teste: [
+              {
+                id: 1,
+                quizArray: [
+                  {
+                    id: 1,
+                    testID: "1",
+                    subjectID: "39",
+                    subtitleID: "18",
+                    titleID: "4",
+                  },
+                ],
+              },
+            ],
           },
         ],
         aplicatii: [
@@ -10214,7 +10459,7 @@ let temeRomana = [
                 titleID: "4",
                 barem: {
                   maxPoints: 3,
-                }
+                },
               },
               {
                 id: "2",
@@ -10223,9 +10468,9 @@ let temeRomana = [
                 titleID: "4",
                 barem: {
                   maxPoints: 3,
-                }
-              }
-            ]
+                },
+              },
+            ],
           },
           {
             id: "2",
@@ -10250,7 +10495,7 @@ let temeRomana = [
                     titleID: "4",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 2,
@@ -10260,7 +10505,7 @@ let temeRomana = [
                     titleID: "4",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 3,
@@ -10270,7 +10515,7 @@ let temeRomana = [
                     titleID: "4",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 4,
@@ -10280,7 +10525,7 @@ let temeRomana = [
                     titleID: "4",
                     barem: {
                       maxPoints: 3,
-                    }
+                    },
                   },
                   {
                     id: 5,
@@ -10290,7 +10535,7 @@ let temeRomana = [
                     titleID: "4",
                     barem: {
                       maxPoints: 4,
-                    }
+                    },
                   },
                   {
                     id: 6,
@@ -10300,7 +10545,7 @@ let temeRomana = [
                     titleID: "4",
                     barem: {
                       maxPoints: 5,
-                    }
+                    },
                   },
                   {
                     id: 7,
@@ -10310,11 +10555,11 @@ let temeRomana = [
                     titleID: "4",
                     barem: {
                       maxPoints: 5,
-                    }
-                  }
-                ]
-               },
-               {
+                    },
+                  },
+                ],
+              },
+              {
                 id: "2",
                 subiect: "2",
                 subtitleID: "18",
@@ -10328,7 +10573,7 @@ let temeRomana = [
                     titleID: "4",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 2,
@@ -10338,7 +10583,7 @@ let temeRomana = [
                     titleID: "4",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 3,
@@ -10348,7 +10593,7 @@ let temeRomana = [
                     titleID: "4",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 4,
@@ -10358,7 +10603,7 @@ let temeRomana = [
                     titleID: "4",
                     barem: {
                       maxPoints: 3,
-                    }
+                    },
                   },
                   {
                     id: 5,
@@ -10368,7 +10613,7 @@ let temeRomana = [
                     titleID: "4",
                     barem: {
                       maxPoints: 4,
-                    }
+                    },
                   },
                   {
                     id: 6,
@@ -10378,7 +10623,7 @@ let temeRomana = [
                     titleID: "4",
                     barem: {
                       maxPoints: 5,
-                    }
+                    },
                   },
                   {
                     id: 7,
@@ -10388,11 +10633,11 @@ let temeRomana = [
                     titleID: "4",
                     barem: {
                       maxPoints: 5,
-                    }
-                  }
-                ]
-              }
-            ]
+                    },
+                  },
+                ],
+              },
+            ],
           },
           {
             id: "3",
@@ -10407,10 +10652,10 @@ let temeRomana = [
                 id: "1",
                 subiect: "3",
                 subtitleID: "18",
-                titleID: "4", 
+                titleID: "4",
                 barem: {
                   maxPoints: 15,
-                }   
+                },
               },
               {
                 id: "2",
@@ -10419,17 +10664,18 @@ let temeRomana = [
                 titleID: "4",
                 barem: {
                   maxPoints: 15,
-                } 
-              }
-            ]
-          }
-        ]
+                },
+              },
+            ],
+          },
+        ],
       },
     ],
   },
   {
     id: "5",
-    title: "Integrarea experiențelor lingvistice și de lectură în contexte şcolare şi de viață.",
+    title:
+      "Integrarea experiențelor lingvistice și de lectură în contexte şcolare şi de viață.",
     disciplina: "Romana",
     ciclul: "Ciclul gimnazial",
     subtitles: [
@@ -10465,19 +10711,23 @@ let temeRomana = [
                 id: "1",
                 subjectID: "42",
                 subtitleID: "21",
-                titleID: "5"
-               }
-             ],
-             teste: [{
-              id: 1,
-              quizArray: [{
-                   id: 1,
-                   testID: "1",
-                   subjectID: "42",  
-                   subtitleID: "21",
-                   titleID: "5" 
-              }]
-            }],
+                titleID: "5",
+              },
+            ],
+            teste: [
+              {
+                id: 1,
+                quizArray: [
+                  {
+                    id: 1,
+                    testID: "1",
+                    subjectID: "42",
+                    subtitleID: "21",
+                    titleID: "5",
+                  },
+                ],
+              },
+            ],
           },
           {
             id: "43",
@@ -10501,19 +10751,23 @@ let temeRomana = [
                 id: "1",
                 subjectID: "43",
                 subtitleID: "21",
-                titleID: "5"
-               }
-             ],
-             teste: [{
-              id: 1,
-              quizArray: [{
-                   id: 1,
-                   testID: "1",
-                   subjectID: "43",  
-                   subtitleID: "21",
-                   titleID: "5" 
-              }]
-            }],
+                titleID: "5",
+              },
+            ],
+            teste: [
+              {
+                id: 1,
+                quizArray: [
+                  {
+                    id: 1,
+                    testID: "1",
+                    subjectID: "43",
+                    subtitleID: "21",
+                    titleID: "5",
+                  },
+                ],
+              },
+            ],
           },
         ],
         aplicatii: [
@@ -10533,7 +10787,7 @@ let temeRomana = [
                 titleID: "5",
                 barem: {
                   maxPoints: 3,
-                }
+                },
               },
               {
                 id: "2",
@@ -10542,9 +10796,9 @@ let temeRomana = [
                 titleID: "5",
                 barem: {
                   maxPoints: 3,
-                }
-              }
-            ]
+                },
+              },
+            ],
           },
           {
             id: "2",
@@ -10569,7 +10823,7 @@ let temeRomana = [
                     titleID: "5",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 2,
@@ -10579,7 +10833,7 @@ let temeRomana = [
                     titleID: "5",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 3,
@@ -10589,7 +10843,7 @@ let temeRomana = [
                     titleID: "5",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 4,
@@ -10599,7 +10853,7 @@ let temeRomana = [
                     titleID: "5",
                     barem: {
                       maxPoints: 3,
-                    }
+                    },
                   },
                   {
                     id: 5,
@@ -10609,7 +10863,7 @@ let temeRomana = [
                     titleID: "5",
                     barem: {
                       maxPoints: 4,
-                    }
+                    },
                   },
                   {
                     id: 6,
@@ -10619,7 +10873,7 @@ let temeRomana = [
                     titleID: "5",
                     barem: {
                       maxPoints: 5,
-                    }
+                    },
                   },
                   {
                     id: 7,
@@ -10629,11 +10883,11 @@ let temeRomana = [
                     titleID: "5",
                     barem: {
                       maxPoints: 5,
-                    }
-                  }
-                ]
-               },
-               {
+                    },
+                  },
+                ],
+              },
+              {
                 id: "2",
                 subiect: "2",
                 subtitleID: "21",
@@ -10647,7 +10901,7 @@ let temeRomana = [
                     titleID: "5",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 2,
@@ -10657,7 +10911,7 @@ let temeRomana = [
                     titleID: "5",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 3,
@@ -10667,7 +10921,7 @@ let temeRomana = [
                     titleID: "5",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 4,
@@ -10677,7 +10931,7 @@ let temeRomana = [
                     titleID: "5",
                     barem: {
                       maxPoints: 3,
-                    }
+                    },
                   },
                   {
                     id: 5,
@@ -10687,7 +10941,7 @@ let temeRomana = [
                     titleID: "5",
                     barem: {
                       maxPoints: 4,
-                    }
+                    },
                   },
                   {
                     id: 6,
@@ -10697,7 +10951,7 @@ let temeRomana = [
                     titleID: "5",
                     barem: {
                       maxPoints: 5,
-                    }
+                    },
                   },
                   {
                     id: 7,
@@ -10707,11 +10961,11 @@ let temeRomana = [
                     titleID: "5",
                     barem: {
                       maxPoints: 5,
-                    }
-                  }
-                ]
-              }
-            ]
+                    },
+                  },
+                ],
+              },
+            ],
           },
           {
             id: "3",
@@ -10726,10 +10980,10 @@ let temeRomana = [
                 id: "1",
                 subiect: "3",
                 subtitleID: "21",
-                titleID: "5", 
+                titleID: "5",
                 barem: {
                   maxPoints: 15,
-                }   
+                },
               },
               {
                 id: "2",
@@ -10738,11 +10992,11 @@ let temeRomana = [
                 titleID: "5",
                 barem: {
                   maxPoints: 15,
-                } 
-              }
-            ]
-          }
-        ]
+                },
+              },
+            ],
+          },
+        ],
       },
       {
         id: "22",
@@ -10776,19 +11030,23 @@ let temeRomana = [
                 id: "1",
                 subjectID: "44",
                 subtitleID: "22",
-                titleID: "5"
-               }
-             ],
-             teste: [{
-              id: 1,
-              quizArray: [{
-                   id: 1,
-                   testID: "1",
-                   subjectID: "44",  
-                   subtitleID: "22",
-                   titleID: "5" 
-              }]
-            }],
+                titleID: "5",
+              },
+            ],
+            teste: [
+              {
+                id: 1,
+                quizArray: [
+                  {
+                    id: 1,
+                    testID: "1",
+                    subjectID: "44",
+                    subtitleID: "22",
+                    titleID: "5",
+                  },
+                ],
+              },
+            ],
           },
           {
             id: "45",
@@ -10812,19 +11070,23 @@ let temeRomana = [
                 id: "1",
                 subjectID: "45",
                 subtitleID: "22",
-                titleID: "5"
-               }
-             ],
-             teste: [{
-              id: 1,
-              quizArray: [{
-                   id: 1,
-                   testID: "1",
-                   subjectID: "45",  
-                   subtitleID: "22",
-                   titleID: "5" 
-              }]
-            }],
+                titleID: "5",
+              },
+            ],
+            teste: [
+              {
+                id: 1,
+                quizArray: [
+                  {
+                    id: 1,
+                    testID: "1",
+                    subjectID: "45",
+                    subtitleID: "22",
+                    titleID: "5",
+                  },
+                ],
+              },
+            ],
           },
         ],
         aplicatii: [
@@ -10844,7 +11106,7 @@ let temeRomana = [
                 titleID: "5",
                 barem: {
                   maxPoints: 3,
-                }
+                },
               },
               {
                 id: "2",
@@ -10853,9 +11115,9 @@ let temeRomana = [
                 titleID: "5",
                 barem: {
                   maxPoints: 3,
-                }
-              }
-            ]
+                },
+              },
+            ],
           },
           {
             id: "2",
@@ -10880,7 +11142,7 @@ let temeRomana = [
                     titleID: "5",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 2,
@@ -10890,7 +11152,7 @@ let temeRomana = [
                     titleID: "5",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 3,
@@ -10900,7 +11162,7 @@ let temeRomana = [
                     titleID: "5",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 4,
@@ -10910,7 +11172,7 @@ let temeRomana = [
                     titleID: "5",
                     barem: {
                       maxPoints: 3,
-                    }
+                    },
                   },
                   {
                     id: 5,
@@ -10920,7 +11182,7 @@ let temeRomana = [
                     titleID: "5",
                     barem: {
                       maxPoints: 4,
-                    }
+                    },
                   },
                   {
                     id: 6,
@@ -10930,7 +11192,7 @@ let temeRomana = [
                     titleID: "5",
                     barem: {
                       maxPoints: 5,
-                    }
+                    },
                   },
                   {
                     id: 7,
@@ -10940,11 +11202,11 @@ let temeRomana = [
                     titleID: "5",
                     barem: {
                       maxPoints: 5,
-                    }
-                  }
-                ]
-               },
-               {
+                    },
+                  },
+                ],
+              },
+              {
                 id: "2",
                 subiect: "2",
                 subtitleID: "22",
@@ -10958,7 +11220,7 @@ let temeRomana = [
                     titleID: "5",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 2,
@@ -10968,7 +11230,7 @@ let temeRomana = [
                     titleID: "5",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 3,
@@ -10978,7 +11240,7 @@ let temeRomana = [
                     titleID: "5",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 4,
@@ -10988,7 +11250,7 @@ let temeRomana = [
                     titleID: "5",
                     barem: {
                       maxPoints: 3,
-                    }
+                    },
                   },
                   {
                     id: 5,
@@ -10998,7 +11260,7 @@ let temeRomana = [
                     titleID: "5",
                     barem: {
                       maxPoints: 4,
-                    }
+                    },
                   },
                   {
                     id: 6,
@@ -11008,7 +11270,7 @@ let temeRomana = [
                     titleID: "5",
                     barem: {
                       maxPoints: 5,
-                    }
+                    },
                   },
                   {
                     id: 7,
@@ -11018,11 +11280,11 @@ let temeRomana = [
                     titleID: "5",
                     barem: {
                       maxPoints: 5,
-                    }
-                  }
-                ]
-              }
-            ]
+                    },
+                  },
+                ],
+              },
+            ],
           },
           {
             id: "3",
@@ -11037,10 +11299,10 @@ let temeRomana = [
                 id: "1",
                 subiect: "3",
                 subtitleID: "22",
-                titleID: "5", 
+                titleID: "5",
                 barem: {
                   maxPoints: 15,
-                }   
+                },
               },
               {
                 id: "2",
@@ -11049,11 +11311,11 @@ let temeRomana = [
                 titleID: "5",
                 barem: {
                   maxPoints: 15,
-                } 
-              }
-            ]
-          }
-        ]
+                },
+              },
+            ],
+          },
+        ],
       },
       {
         id: "23",
@@ -11087,19 +11349,23 @@ let temeRomana = [
                 id: "1",
                 subjectID: "48",
                 subtitleID: "23",
-                titleID: "5"
-               }
-             ],
-             teste: [{
-              id: 1,
-              quizArray: [{
-                   id: 1,
-                   testID: "1",
-                   subjectID: "48",  
-                   subtitleID: "23",
-                   titleID: "5" 
-              }]
-            }],
+                titleID: "5",
+              },
+            ],
+            teste: [
+              {
+                id: 1,
+                quizArray: [
+                  {
+                    id: 1,
+                    testID: "1",
+                    subjectID: "48",
+                    subtitleID: "23",
+                    titleID: "5",
+                  },
+                ],
+              },
+            ],
           },
           {
             id: "49",
@@ -11123,19 +11389,23 @@ let temeRomana = [
                 id: "1",
                 subjectID: "49",
                 subtitleID: "23",
-                titleID: "5"
-               }
-             ],
-             teste: [{
-              id: 1,
-              quizArray: [{
-                   id: 1,
-                   testID: "1",
-                   subjectID: "49",  
-                   subtitleID: "23",
-                   titleID: "5" 
-              }]
-            }],
+                titleID: "5",
+              },
+            ],
+            teste: [
+              {
+                id: 1,
+                quizArray: [
+                  {
+                    id: 1,
+                    testID: "1",
+                    subjectID: "49",
+                    subtitleID: "23",
+                    titleID: "5",
+                  },
+                ],
+              },
+            ],
           },
         ],
         aplicatii: [
@@ -11155,7 +11425,7 @@ let temeRomana = [
                 titleID: "5",
                 barem: {
                   maxPoints: 3,
-                }
+                },
               },
               {
                 id: "2",
@@ -11164,9 +11434,9 @@ let temeRomana = [
                 titleID: "5",
                 barem: {
                   maxPoints: 3,
-                }
-              }
-            ]
+                },
+              },
+            ],
           },
           {
             id: "2",
@@ -11191,7 +11461,7 @@ let temeRomana = [
                     titleID: "5",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 2,
@@ -11201,7 +11471,7 @@ let temeRomana = [
                     titleID: "5",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 3,
@@ -11211,7 +11481,7 @@ let temeRomana = [
                     titleID: "5",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 4,
@@ -11221,7 +11491,7 @@ let temeRomana = [
                     titleID: "5",
                     barem: {
                       maxPoints: 3,
-                    }
+                    },
                   },
                   {
                     id: 5,
@@ -11231,7 +11501,7 @@ let temeRomana = [
                     titleID: "5",
                     barem: {
                       maxPoints: 4,
-                    }
+                    },
                   },
                   {
                     id: 6,
@@ -11241,7 +11511,7 @@ let temeRomana = [
                     titleID: "5",
                     barem: {
                       maxPoints: 5,
-                    }
+                    },
                   },
                   {
                     id: 7,
@@ -11251,11 +11521,11 @@ let temeRomana = [
                     titleID: "5",
                     barem: {
                       maxPoints: 5,
-                    }
-                  }
-                ]
-               },
-               {
+                    },
+                  },
+                ],
+              },
+              {
                 id: "2",
                 subiect: "2",
                 subtitleID: "23",
@@ -11269,7 +11539,7 @@ let temeRomana = [
                     titleID: "5",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 2,
@@ -11279,7 +11549,7 @@ let temeRomana = [
                     titleID: "5",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 3,
@@ -11289,7 +11559,7 @@ let temeRomana = [
                     titleID: "5",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 4,
@@ -11299,7 +11569,7 @@ let temeRomana = [
                     titleID: "5",
                     barem: {
                       maxPoints: 3,
-                    }
+                    },
                   },
                   {
                     id: 5,
@@ -11309,7 +11579,7 @@ let temeRomana = [
                     titleID: "5",
                     barem: {
                       maxPoints: 4,
-                    }
+                    },
                   },
                   {
                     id: 6,
@@ -11319,7 +11589,7 @@ let temeRomana = [
                     titleID: "5",
                     barem: {
                       maxPoints: 5,
-                    }
+                    },
                   },
                   {
                     id: 7,
@@ -11329,11 +11599,11 @@ let temeRomana = [
                     titleID: "5",
                     barem: {
                       maxPoints: 5,
-                    }
-                  }
-                ]
-              }
-            ]
+                    },
+                  },
+                ],
+              },
+            ],
           },
           {
             id: "3",
@@ -11348,10 +11618,10 @@ let temeRomana = [
                 id: "1",
                 subiect: "3",
                 subtitleID: "23",
-                titleID: "5", 
+                titleID: "5",
                 barem: {
                   maxPoints: 15,
-                }   
+                },
               },
               {
                 id: "2",
@@ -11360,11 +11630,11 @@ let temeRomana = [
                 titleID: "5",
                 barem: {
                   maxPoints: 15,
-                } 
-              }
-            ]
-          }
-        ]
+                },
+              },
+            ],
+          },
+        ],
       },
       {
         id: "24",
@@ -11398,19 +11668,23 @@ let temeRomana = [
                 id: "1",
                 subjectID: "12",
                 subtitleID: "24",
-                titleID: "5"
-               }
-             ],
-             teste: [{
-              id: 1,
-              quizArray: [{
-                   id: 1,
-                   testID: "1",
-                   subjectID: "12",  
-                   subtitleID: "24",
-                   titleID: "5" 
-              }]
-            }],
+                titleID: "5",
+              },
+            ],
+            teste: [
+              {
+                id: 1,
+                quizArray: [
+                  {
+                    id: 1,
+                    testID: "1",
+                    subjectID: "12",
+                    subtitleID: "24",
+                    titleID: "5",
+                  },
+                ],
+              },
+            ],
           },
           {
             id: "13",
@@ -11434,19 +11708,23 @@ let temeRomana = [
                 id: "1",
                 subjectID: "13",
                 subtitleID: "24",
-                titleID: "5"
-               }
-             ],
-             teste: [{
-              id: 1,
-              quizArray: [{
-                   id: 1,
-                   testID: "1",
-                   subjectID: "13",  
-                   subtitleID: "24",
-                   titleID: "5" 
-              }]
-            }],
+                titleID: "5",
+              },
+            ],
+            teste: [
+              {
+                id: 1,
+                quizArray: [
+                  {
+                    id: 1,
+                    testID: "1",
+                    subjectID: "13",
+                    subtitleID: "24",
+                    titleID: "5",
+                  },
+                ],
+              },
+            ],
           },
         ],
         aplicatii: [
@@ -11466,7 +11744,7 @@ let temeRomana = [
                 titleID: "5",
                 barem: {
                   maxPoints: 3,
-                }
+                },
               },
               {
                 id: "2",
@@ -11475,9 +11753,9 @@ let temeRomana = [
                 titleID: "5",
                 barem: {
                   maxPoints: 3,
-                }
-              }
-            ]
+                },
+              },
+            ],
           },
           {
             id: "2",
@@ -11502,7 +11780,7 @@ let temeRomana = [
                     titleID: "5",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 2,
@@ -11512,7 +11790,7 @@ let temeRomana = [
                     titleID: "5",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 3,
@@ -11522,7 +11800,7 @@ let temeRomana = [
                     titleID: "5",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 4,
@@ -11532,7 +11810,7 @@ let temeRomana = [
                     titleID: "5",
                     barem: {
                       maxPoints: 3,
-                    }
+                    },
                   },
                   {
                     id: 5,
@@ -11542,7 +11820,7 @@ let temeRomana = [
                     titleID: "5",
                     barem: {
                       maxPoints: 4,
-                    }
+                    },
                   },
                   {
                     id: 6,
@@ -11552,7 +11830,7 @@ let temeRomana = [
                     titleID: "5",
                     barem: {
                       maxPoints: 5,
-                    }
+                    },
                   },
                   {
                     id: 7,
@@ -11562,11 +11840,11 @@ let temeRomana = [
                     titleID: "5",
                     barem: {
                       maxPoints: 5,
-                    }
-                  }
-                ]
-               },
-               {
+                    },
+                  },
+                ],
+              },
+              {
                 id: "2",
                 subiect: "2",
                 subtitleID: "24",
@@ -11580,7 +11858,7 @@ let temeRomana = [
                     titleID: "5",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 2,
@@ -11590,7 +11868,7 @@ let temeRomana = [
                     titleID: "5",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 3,
@@ -11600,7 +11878,7 @@ let temeRomana = [
                     titleID: "5",
                     barem: {
                       maxPoints: 2,
-                    }
+                    },
                   },
                   {
                     id: 4,
@@ -11610,7 +11888,7 @@ let temeRomana = [
                     titleID: "5",
                     barem: {
                       maxPoints: 3,
-                    }
+                    },
                   },
                   {
                     id: 5,
@@ -11620,7 +11898,7 @@ let temeRomana = [
                     titleID: "5",
                     barem: {
                       maxPoints: 4,
-                    }
+                    },
                   },
                   {
                     id: 6,
@@ -11630,7 +11908,7 @@ let temeRomana = [
                     titleID: "5",
                     barem: {
                       maxPoints: 5,
-                    }
+                    },
                   },
                   {
                     id: 7,
@@ -11640,11 +11918,11 @@ let temeRomana = [
                     titleID: "5",
                     barem: {
                       maxPoints: 5,
-                    }
-                  }
-                ]
-              }
-            ]
+                    },
+                  },
+                ],
+              },
+            ],
           },
           {
             id: "3",
@@ -11659,10 +11937,10 @@ let temeRomana = [
                 id: "1",
                 subiect: "3",
                 subtitleID: "24",
-                titleID: "5", 
+                titleID: "5",
                 barem: {
                   maxPoints: 15,
-                }   
+                },
               },
               {
                 id: "2",
@@ -11671,11 +11949,11 @@ let temeRomana = [
                 titleID: "5",
                 barem: {
                   maxPoints: 15,
-                } 
-              }
-            ]
-          }
-         ]
+                },
+              },
+            ],
+          },
+        ],
       },
     ],
   },
