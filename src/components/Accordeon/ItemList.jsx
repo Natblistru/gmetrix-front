@@ -44,8 +44,8 @@ const ItemList = ({ list, className, results, onItemClick }) => {
             <div className="title-item"> 
               <div className="num-item">{subtitle.id}.</div>
               <div className="name-item">
-                {console.log(subtitle, dynamicPath)}
-                {console.log(subtitle.name)}
+                {/* {console.log(subtitle, dynamicPath)}
+                {console.log(subtitle.name)} */}
                 {subtitle.path == null ? (
                   subtitle.anul == null ? (
                     <div className="text-block">{subtitle.name}</div>

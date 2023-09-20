@@ -163,8 +163,8 @@ const SubTopicItem = ({subTit,idx,results,tests,exams, allTems}) => {
   
     return procSum / filteredItems.length;
   };
-console.log(subtitle.addressDisciplina);
-console.log(subtitle.address);
+// console.log(subtitle.addressDisciplina);
+// console.log(subtitle.address);
   return (
     <li key={idx}>
       <div className="subtopic-header">

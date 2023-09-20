@@ -7,6 +7,8 @@ import ItemTable from "./ItemTable";
 import SimpleSlider from "../Slider/SimpleSlider";
 import Audio from "../AudioPlayer";
 import ProgressSteps from "../ProgressSteps/ProgressSteps";
+import FlipCardNou from "../FlipCards/FlipCardNou";
+import '../FlipCards/flipCardNou.scss';
 
 const ListSubAccordeon = (props) => {
 const [currentSubject, setCurrentSubject] = useState(0);
@@ -39,7 +41,7 @@ const handleItemClick = (idx) => {
         <ItemList {...props} list={arraySubject} onItemClick={handleItemClick}/>
       </ItemAccordeon>
       <ItemAccordeon
-        titlu="Studiaza interactiv"
+        titlu="Studiaza prin scheme"
         {...props}
         className="blockPB50" open={true}
         name="video"
@@ -50,13 +52,15 @@ const handleItemClick = (idx) => {
           <ProgressSteps list={arraySubject} onClick={clickSubjectHandler} activeCircle={currentSubject+1}/>
         </div>
       </ItemAccordeon>
-      {arraySubject?.map((subj) => (
-        <ItemAccordeon titlu={subj.name} {...props} key={subj.id} open={false}>
-          {subj.raspuns.split('\n').map((line, index) => (
-            <ItemText {...props} key={index} className="text-raspuns">{line}</ItemText>
-          ))}
-        </ItemAccordeon>
-      ))}
+      <ItemAccordeon titlu="Repetă cu cartele-flip" {...props} open={true}>
+      <div className="Cards">
+        {arraySubject.map((subject, subjectIndex) => (
+          subject.raspuns.map((line, lineIndex) => (
+            <FlipCardNou title={line.sarcina} key={lineIndex} dangerousHTML={line.rezolvare}/>
+          ))
+        ))}
+      </div>
+      </ItemAccordeon>
       <ItemAccordeon titlu="Evaluare (teste)" {...props} open={true}>
         <ItemTable {...props} list={arrayTests} />
       </ItemAccordeon>

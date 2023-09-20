@@ -1,0 +1,118 @@
+$card-size: 12rem;
+$flip-duration: 1s;
+$perspective: 15rem;
+$degree: 90deg;
+$scale: 2;
+
+.Card {
+  margin: 1rem;
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
+  .Card-Front,
+  .Card-Back {
+    width: $card-size;
+    height: $card-size;
+    text-align: center;
+    // margin-bottom: -$card-size / 2;
+    
+    p {
+      margin: 0;
+      padding: 0.5rem;
+    }
+    h3 {
+      padding: 0 2rem;
+      position: relative;
+      top: 2rem;
+    }
+  }
+  
+  .Card-Front {
+    position: relative;
+    z-index: 1;
+    color: #69969C;
+    background-color: #0E464E;
+    
+    // Animations
+    &.Card-Back-Flip {
+      animation: back-flip-1 $flip-duration 1 forwards;
+      @keyframes back-flip-1 {
+        0% {transform: rotateY(0deg); z-index: 1}
+        50% {transform: rotateY($degree) perspective($perspective); z-index: 1}
+        100% {transform: rotateY($degree); z-index: -1}
+      }
+
+    }
+    
+    &.Card-Front-Flip {
+      animation: front-flip-1 $flip-duration 1 forwards;
+      @keyframes front-flip-1 {
+        0% {transform: rotateY(-$degree) ; z-index: -1 }
+        50% {transform: rotateY(-$degree) perspective($perspective); z-index: -1}
+        100% {transform: rotateY(0deg); z-index: 1;}
+      }
+
+    }
+  }
+  
+  .Card-Back {
+    font-size: 0.9rem;
+    position: absolute;
+    z-index: 2;
+    // top: -$card-size / 2;
+    top: 0;   
+    color: #012E34;
+    background-color: #69969C;
+    width: 500px;
+    height: auto;
+    min-height: $card-size;
+    // Animations
+    transform: rotateY(-$degree);
+    transform-origin: 20% 40%; 
+    &.Card-Back-Flip {
+      animation: back-flip-2 $flip-duration 1 forwards;
+      @keyframes back-flip-2 {
+        0% {z-index: -1}
+        50% {transform: rotateY(-$degree) translate(-15%) perspective($perspective); z-index: -1}
+        100% {transform: rotate(0deg) translate(-30%); z-index: 3;}
+      }
+    }
+    
+    &.Card-Front-Flip {
+      animation: front-flip-2 $flip-duration 1 forwards;
+      @keyframes front-flip-2 {
+        0% {transform: rotate(0deg) translate(-30%); z-index: 3}
+        50% {transform: rotateY($degree) perspective($perspective); z-index: 3}
+        100% {transform: rotateY($degree); z-index: -1}
+      }
+    }
+  }
+}
+
+.Cards {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  
+  .Card:nth-child(5n+1) {
+    .Card-Front { background-color: #e84c3d; color: #fff; }
+    .Card-Back { background-color: #fff; color: #495057; border: 2px solid #495057;}
+  }
+  .Card:nth-child(5n+2) {
+    .Card-Front { background-color: #2a80b9; color: #fff; }
+    .Card-Back { background-color: #fff; color: #495057; border: 2px solid #495057; }
+  }
+  .Card:nth-child(5n+3) {
+    .Card-Front { background-color: #16a086; color: #fff; }
+    .Card-Back { background-color: #fff; color: #495057; border: 2px solid #495057; }
+  }
+  .Card:nth-child(5n+4) {
+    .Card-Front { background-color: #9b58b5;; color: #fff; }
+    .Card-Back { background-color: #fff; color: #495057; border: 2px solid #495057; }
+  }
+  .Card:nth-child(5n+5) {
+    .Card-Front { background-color: #f39c11; color: #fff; }
+    .Card-Back { background-color: #fff; color: #495057; border: 2px solid #495057; }
+  }
+}
