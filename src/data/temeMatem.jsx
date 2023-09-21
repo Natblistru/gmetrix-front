@@ -1561,7 +1561,54 @@ let temeMatem = [
                 id: "1",
                 subjectID: "2",
                 subtitleID: "1",
-                titleID: "1"
+                titleID: "1",
+                name: "Adunarea și scăderea numerelor naturale. Proprietăți",
+                raspuns: [{sarcina:"Proprietățile adunării", rezolvare: "<p style='padding:15px;text-indent:20px;'>Adunarea este:<br>• <b>Comutativa</b> - la schimbarea locului termenilor suma nu se schimbă;<br>• <b>Asociativa</b> - oricum am grupa termenii, suma nu se schimbă;<br>• <b>Neutră la 0</b> - adunând un număr cu zero, obținem același număr.</p>"}],
+                audio: "/sound/audio-joiner1_31.mp3",
+                images: [
+                  "/images/NumereNaturaleAddPropr.jpg",
+                  "/images/NumereNaturaleScadPropr.jpg",
+                ],
+               },
+               {
+                id: "2",
+                subjectID: "2",
+                subtitleID: "1",
+                titleID: "1",
+                name: "Înmulțirea numerelor naturale. Proprietăți. Factorul comun.",
+                raspuns: [{sarcina:"Proprietățile înmulțirii", rezolvare: "<p style='padding:15px;text-indent:20px;'>Înmulțirea este:<br>• <b>Comutativa</b> - La schimbarea locului factorilor produsul nu se schimbă;<br>• <b>Asociativa</b> - Oricum am grupa factorii, produsul nu se schimbă;<br>• <b>Neutră la 1</b> - Înmulțind un număr cu 1, obținem același număr;<br>• <b>Distribuitivă față de adunare</b> - Pentru a înmulți un număr cu o sumă, putem înmulți numărul cu fiecare termen al sumei, apoi să adunăm produsele obținute;<br>• <b>Distribuitivă față de scădere</b> - Pentru a înmulți un număr cu o diferență, putem înmulți numărul cu descăzutul și cu scăzătorul, apoi să scădem produsele obținute.</p>"}],
+                audio: "/sound/audio-joiner1_31.mp3",
+                images: [
+                  "/images/NumereNaturaleImnultPropr.jpg",
+                  "/images/NumereNaturaleImnultTehnica.jpg",
+                ],
+               },
+               {
+                id: "3",
+                subjectID: "2",
+                subtitleID: "1",
+                titleID: "1",
+                name: "Puterea cu exponent număr natural. Proprietăți.",
+                raspuns: [{sarcina:"Proprietățile puterii cu exponent natural", rezolvare: "<p style='padding:15px;'>• <b>Înmulțirea puterilor cu aceeași bază</b> - scriem baza și adunăm exponenții;<br>• <b>Împărțirea puterilor cu aceeași bază</b> - scriem baza și scădem exponenții;<br>• <b>Puterea unei puteri</b> - scriem baza și înmulțim exponenții;<br>• <b>Ridicare la putere a unui produs</b> - ridicăm fiecare factor la puterea respectivă.</p>"}],
+                audio: "/sound/audio-joiner1_31.mp3",
+                images: [
+                  "/images/NumereNaturalePuterePropr.jpg",
+                  "/images/NumereNaturalePutereCub.jpg",
+                ],
+               },
+               {
+                id: "4",
+                subjectID: "2",
+                subtitleID: "1",
+                titleID: "1",
+                name: "Împărțirea numerelor naturale. Împărțirea cu rest.",
+                raspuns: [{sarcina:"Teorema împărțirii cu rest", rezolvare: "<p style='padding:15px;'>Oricare ar fi numerele naturale <b>a</b> și <b>b</b>, există 2 numere naturale <b>c</b> și <b>r</b>, numite respective cât și rest, care satisfac condițiile:<br><b>a = c × b + r, unde  r > b</b></p>"}],
+                audio: "/sound/audio-joiner1_31.mp3",
+                images: [
+                  "/images/NumereNaturaleImpartire.jpg",
+                  "/images/NumereNaturaleImpRest.jpg",
+                  "/images/NumereNaturaleImpTehnica.jpg",
+                ],
                }
              ],
              teste: [{
@@ -1598,8 +1645,38 @@ let temeMatem = [
                 id: "1",
                 subjectID: "3",
                 subtitleID: "1",
-                titleID: "1"
-               }
+                titleID: "1",
+                name: "Divizor. Mulțimea divizorilor unui număr natural",
+                raspuns: [{sarcina:"Definiția divizorului", rezolvare: "<p style='padding:15px;'>Numărul A este <b>divizor</b> al numărului natural C, dacă există numărul natural B astfel, încât A×B = C<br>Numărul natural nenul A este <b>divizor</b> al numărului C, dacă C se împarte exact la A.</p>"}],
+                audio: "/sound/audio-joiner1_31.mp3",
+                images: [
+                  "/images/DivizorDef.jpg",
+                ],                
+               },
+               {
+                id: "2",
+                subjectID: "3",
+                subtitleID: "1",
+                titleID: "1",
+                name: "Multiplu. Mulțimea multiplilor unui număr natural.",
+                raspuns: [{sarcina:"Definiția numărului multiplu", rezolvare: "<p style='padding:15px;'>Numărul natural C este <b>multiplu</b> al numărului natural A, dacă C se împarte exact la A</p>"}],
+                audio: "/sound/audio-joiner1_31.mp3",
+                images: [
+                  "/images/MultipluDef.jpg",
+                ],                
+               },
+               {
+                id: "3",
+                subjectID: "3",
+                subtitleID: "1",
+                titleID: "1",
+                name: "Numere prime, numere compuse.",
+                raspuns: [{sarcina:"Definește numerele prime, numerele compuse", rezolvare: "<p style='padding:15px 15px 5px;text-indent:20px;'><b>Numere prime</b> sunt numerele naturale > 1 care au doar 2 divizori pozitivi: 1 și ele însuși.<br>Exemplu: 2, 3, 5, 7, 11, 13, 17, etc</p><p style='padding:5px 15px 15px;text-indent:20px;'><b>Numere compuse</b> sunt numerele naturale > 1 care au mai mulți divizori pozitivi în afară de 1 și el însuși.<br>Exemplu: 4, 6, 8, 9, etc</p>"}],
+                audio: "/sound/audio-joiner1_31.mp3",
+                images: [
+                  "/images/NumerePrimeCompuse.jpg",
+                ],                
+               },
              ],
              teste: [{
               id: 1,
