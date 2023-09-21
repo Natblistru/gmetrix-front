@@ -39,7 +39,7 @@ let temeMatem = [
                 subjectID: "1",
                 subtitleID: "1",
                 titleID: "1",
-                raspuns: "Totalitate de obiecte bine determinate și distincte, numite elementele mulțimii.",
+                raspuns: [{sarcina:"Definiția mulțimii", rezolvare: "<p style='padding:15px;text-indent:20px;'><b>Mulțimea</b> este o totalitate de obiecte bine determinate și distincte, numite elementele mulțimii.<p>"}],
                 audio: "/sound/audio-joiner1_31.mp3",
                 images: [
                   "/images/multimiDef.jpg",
@@ -51,8 +51,7 @@ let temeMatem = [
                 subjectID: "1",
                 subtitleID: "1",
                 titleID: "1",
-                raspuns:
-                  "1) prin enumerarea elementelor mulțimii (între acolade): A = {1,4, 9, 16, 25, 36, 49}\n2) prin descriere verbală: 'B este mulțimea fetelor din clasa V-a'\n3) prin diagrama Venn-Euler\n4) prin definiția mulțimii: C = {x | x∈N,x<5}"
+                raspuns: [{sarcina:"Modurile de reprezentare a mulțimii", rezolvare:"<p style='padding:15px;'>1) prin <b>enumerarea</b> elementelor mulțimii (între acolade): A = {1,4, 9, 16, 25, 36, 49}<br>2) prin <b>descriere verbală</b>: 'B este mulțimea fetelor din clasa V-a'<br>3) prin <b>diagrama Venn-Euler</b><br>4) prin <b>definiția mulțimii</b>: C = {x | x∈N,x<5}"}]
                   ,
                 audio: "/sound/soundsample.mp3",
                 images: [
@@ -65,8 +64,7 @@ let temeMatem = [
                 subjectID: "1",
                 subtitleID: "1",
                 titleID: "1",
-                raspuns:
-                  "un element aparţine unei mulţimi dacă acel element este conţinut în mulţimea respectivă, se notează '∈'\nEx: pentru A = {2,3,5} 2 ∈ A; 4 ∉ A"
+                raspuns: [{sarcina:"Relația de apartenență la mulțime", rezolvare:"<p style='padding:15px;text-indent:20px;'>Un element aparţine unei mulţimi dacă acel element este conţinut în mulţimea respectivă, se notează '∈'<br>Ex: pentru A = {2,3,5} 2 ∈ A; 4 ∉ A</p>"}]
                   ,
                 audio: "/sound/soundsample.mp3",
                 images: [
@@ -79,8 +77,7 @@ let temeMatem = [
                 subjectID: "1",
                 subtitleID: "1",
                 titleID: "1",
-                raspuns:
-                  "=  mulţimile care au aceleaşi elemente, indiferent de ordinea în care apar aceste elemente\nEx: {2,3,5} = {3,5,2}"
+                raspuns: [{sarcina:"Mulțimi egale", rezolvare:"<p style='padding:15px;text-indent:20px;'><b>Mulțimi egale</b> sunt mulţimile care au aceleaşi elemente, indiferent de ordinea în care apar aceste elemente<br>Ex: {2,3,5} = {3,5,2}</p>"}]
                   ,
                 audio: "/sound/soundsample.mp3",
                 images: [
@@ -93,8 +90,7 @@ let temeMatem = [
                 subjectID: "1",
                 subtitleID: "1",
                 titleID: "1",
-                raspuns:
-                  "= mulţime inclusă în mulţimea iniţială\nEx: Dacă A = {2,3,5} ,atunci submulțimile lui A sunt: {2,3}, {2,5}, {3,5}, {2}, {3}, {5}, ∅\n Includerea (incluziunea) unei submulțimi în mulțimea inițială, se notează '⊂'\nEx: {2,3} ⊂  {2,3,5}; \n{4} ⊄  {2,3,5};\n {2,3,5} ⊄  {2,3};\nObs1: Orice mulţime este inclusă în ea însăşi: A ⊂ A, pentru ∀ mulțime A.\n Obs2: ∅ este submulţime a oricărei mulţimi: ∅ ⊂ A, pentru  ∀ mulțime A."
+                raspuns: [{sarcina:"Submulțimi", rezolvare:"<p style='padding:15px;text-indent:20px;'><b>Submulțime</b> este o mulţime inclusă în mulţimea iniţială<br>Ex: Dacă A = {2,3,5} ,atunci submulțimile lui A sunt: {2,3}, {2,5}, {3,5}, {2}, {3}, {5}, ∅<br> Includerea (incluziunea) unei submulțimi în mulțimea inițială, se notează '⊂'<br>Ex: {2,3} ⊂  {2,3,5}; <br>{4} ⊄  {2,3,5};<br> {2,3,5} ⊄  {2,3};<br><b>Obs1</b>: Orice mulţime este inclusă în ea însăşi: A ⊂ A, pentru ∀ mulțime A.<br><b>Obs2</b>: ∅ este submulţime a oricărei mulţimi: ∅ ⊂ A, pentru  ∀ mulțime A.</p>"}]
                   ,
                 audio: "/sound/soundsample.mp3",
                 images: [
@@ -107,8 +103,7 @@ let temeMatem = [
                 subjectID: "1",
                 subtitleID: "1",
                 titleID: "1",
-                raspuns:
-                  "= numărul de elemente din mulțimea respectivă, se notează 'card': \nEx: card {2,3,5} = 3;\ncard N = ∞;\ncard ∅ = 0"
+                raspuns: [{sarcina:"Cardinalul mulțimii finite", rezolvare:"<p style='padding:15px;text-indent:20px;'><b>Cardinalul mulțimii finite</b> este numărul de elemente din mulțimea respectivă, se notează 'card': <br>Ex: card {2,3,5} = 3;<br>card N = ∞;\ncard ∅ = 0</p>"}]
                   ,
                 audio: "/sound/soundsample.mp3",
                 images: [
@@ -122,7 +117,7 @@ let temeMatem = [
                 subtitleID: "1",
                 titleID: "1",
                 raspuns:
-                  "1) Reuniunea mulțimilor A și B = toate elementele comune și necomune ale acestor mulțimi, fiecare element apărând o singură dată. \nEx: A = {2,3,5}, B = {3,4,5}, A ∪ B = {2,3,4,5}; \n2) Intersecția mulțimilor A și B = toate elementele comune ambelor mulțimi, fiecare element apărând o singură dată.\nEx: A = {2,3,5}, B = {3,4,5}, A ∩ B = {3,5};\nNotă: Mulțimi disjuncte = mulțimile ce nu au nici un element comun: A ∩ B = ∅;\n3) Diferența a 2 mulțimi A și B = toate elementele ce aparțin primei mulțimi (A) și nu aparțin celei de-a doua (B). \nEx: A = {2,3,5}, B = {3,4,5}, A \\ B = {2}; B \\ A = {4};\n4) Produs cartezian a 2 mulțimi = mulțimea formată din perechi de forma (x,y), unde x ∈ A, y ∈ B; Ex: A = {1,2}, B = {a, b, c}; \nA × B = {(1,a), (1,b), (1,c), (2,a), (2,b), (2,c)}\nB × A = {(a,1), (b,1), (c,1), (a,2), (b,2), (c,2)} "
+                [{sarcina:"Operații cu mulțimi", rezolvare: "<p style='padding:15px 15px 5px;text-indent:20px;'>1) <b>Reuniunea</b> mulțimilor A și B = toate elementele comune și necomune ale acestor mulțimi, fiecare element apărând o singură dată. <br>Ex: A = {2,3,5}, B = {3,4,5}, A ∪ B = {2,3,4,5}; </p><p style='padding:0 15px 5px;text-indent:20px;'>2) <b>Intersecția</b> mulțimilor A și B = toate elementele comune ambelor mulțimi, fiecare element apărând o singură dată.<br>Ex: A = {2,3,5}, B = {3,4,5}, A ∩ B = {3,5};<br><b><em>Notă</em></b>: <u>Mulțimi disjuncte</u> = mulțimile ce nu au nici un element comun: A ∩ B = ∅;</p><p style='padding:0 15px 5px;text-indent:20px;'>3) <b>Diferența</b> a 2 mulțimi A și B = toate elementele ce aparțin primei mulțimi (A) și nu aparțin celei de-a doua (B). <br>Ex: A = {2,3,5}, B = {3,4,5}, A \\ B = {2}; B \\ A = {4};</p><p style='padding:0 15px 15px;text-indent:20px;'>4) <b>Produs cartezian</b> a 2 mulțimi = mulțimea formată din perechi de forma (x,y), unde x ∈ A, y ∈ B; Ex: A = {1,2}, B = {a, b, c}; <br>A × B = {(1,a), (1,b), (1,c), (2,a), (2,b), (2,c)}<br>B × A = {(a,1), (b,1), (c,1), (a,2), (b,2), (c,2)} </p>"}]
                   ,
                 audio: "/sound/soundsample.mp3",
                 images: [
@@ -139,8 +134,7 @@ let temeMatem = [
                 subjectID: "1",
                 subtitleID: "1",
                 titleID: "1",
-                raspuns:
-                  "1) Numere naturale: N = {0,1,2,3, √16…}\n2) Numere întregi: Z = {-3,-2,-1,0,1,2,3,…}\nZ \\ N = {-3,-2,-1}\n3) Numere raționale = {fracții zecimale cu număr finit de zecimale} ∪ {fracții zecimale periodice} ∪ {fracții ordinare} \n= mulțimea numerelor care pot fi scrise sub formă de fracții între numerele întregi; \nQ = { -0.7, 0.(3), 0.2(67), 3/4, 0, -3, 5, 8/1..}\nQ \\ Z = { -0.7, 0.(3), 0.2(67), 3/4, }\n4) Numere reale = toate numerele\n5) Numere iraționale = {fracţiile zecimale cu un număr infinit de zecimale neperiodice} => nu pot fi exprimate ca fracții între numerele întregi\nR \\ Q = {√2, √10, π, 2.3456…}"
+                raspuns: [{sarcina:"Mulțimi de numere", rezolvare:"<p style='padding:15px 15px 5px;text-indent:20px;'>1) <b>Numere naturale</b>: N = {0,1,2,3, √16…}</p><p style='padding:0 15px 5px;text-indent:20px;'>2) <b>Numere întregi</b>: Z = {-3,-2,-1,0,1,2,3,…}, Z \\ N = {-3,-2,-1}</p><p style='padding:0 15px 5px;text-indent:20px;'>3) <b>Numere raționale</b> Q = {fracții zecimale cu număr finit de zecimale} ∪ {fracții zecimale periodice} ∪ {fracții ordinare} = mulțimea numerelor care pot fi scrise sub formă de fracții între numerele întregi; <br>Q = { -0.7, 0.(3), 0.2(67), 3/4, 0, -3, 5, 8/1..}<br>Q \\ Z = { -0.7, 0.(3), 0.2(67), 3/4, }</p><p style='padding:0 15px 5px;text-indent:20px;'>4) <b>Numere reale</b> R = toate numerele</p><p style='padding:0 15px 15px;text-indent:20px;'>5) <b>Numere iraționale</b> R \\ Q = {fracţiile zecimale cu un număr infinit de zecimale neperiodice} => nu pot fi exprimate ca fracții între numerele întregi R \\ Q = {√2, √10, π, 2.3456…}</p>"}]
                   ,
                 audio: "/sound/soundsample.mp3",
                 images: [
@@ -153,8 +147,7 @@ let temeMatem = [
                 subjectID: "1",
                 subtitleID: "1",
                 titleID: "1",
-                raspuns:
-                  "Sunt adevărate incluziunile:  N ⊂ Z ⊂ Q ⊂ R"
+                raspuns: [{sarcina:"Incluziunile  N ⊂ Z ⊂ Q ⊂ R", rezolvare:"<p style='padding:15px;'>Sunt adevărate incluziunile:  N ⊂ Z ⊂ Q ⊂ R</p>"}]
                   ,
                 audio: "/sound/soundsample.mp3",
                 images: [
