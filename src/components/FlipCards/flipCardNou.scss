@@ -13,7 +13,7 @@ $scale: 2;
   .Card-Back {
     width: $card-size;
     height: $card-size;
-    text-align: center;
+    border-radius: 3px;
     // margin-bottom: -$card-size / 2;
     
     p {
@@ -21,9 +21,9 @@ $scale: 2;
       padding: 0.5rem;
     }
     h3 {
-      padding: 0 2rem;
+      padding: 0 4px;
       position: relative;
-      top: 2rem;
+      top: 27px;
     }
   }
   
@@ -32,7 +32,7 @@ $scale: 2;
     z-index: 1;
     color: #69969C;
     background-color: #0E464E;
-    
+    text-align: center;
     // Animations
     &.Card-Back-Flip {
       animation: back-flip-1 $flip-duration 1 forwards;
@@ -61,8 +61,8 @@ $scale: 2;
     z-index: 2;
     // top: -$card-size / 2;
     top: 0;   
-    color: #012E34;
-    background-color: #69969C;
+    background-color: #fff; color: #4e4e3f; 
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
     width: 500px;
     height: auto;
     min-height: $card-size;
@@ -97,22 +97,17 @@ $scale: 2;
   
   .Card:nth-child(5n+1) {
     .Card-Front { background-color: #e84c3d; color: #fff; }
-    .Card-Back { background-color: #fff; color: #495057; border: 2px solid #495057;}
   }
   .Card:nth-child(5n+2) {
     .Card-Front { background-color: #2a80b9; color: #fff; }
-    .Card-Back { background-color: #fff; color: #495057; border: 2px solid #495057; }
   }
   .Card:nth-child(5n+3) {
     .Card-Front { background-color: #16a086; color: #fff; }
-    .Card-Back { background-color: #fff; color: #495057; border: 2px solid #495057; }
   }
   .Card:nth-child(5n+4) {
     .Card-Front { background-color: #9b58b5;; color: #fff; }
-    .Card-Back { background-color: #fff; color: #495057; border: 2px solid #495057; }
   }
   .Card:nth-child(5n+5) {
     .Card-Front { background-color: #f39c11; color: #fff; }
-    .Card-Back { background-color: #fff; color: #495057; border: 2px solid #495057; }
   }
 }
