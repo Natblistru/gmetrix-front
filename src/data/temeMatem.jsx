@@ -1677,6 +1677,19 @@ let temeMatem = [
                   "/images/NumerePrimeCompuse.jpg",
                 ],                
                },
+               {
+                id: "4",
+                subjectID: "3",
+                subtitleID: "1",
+                titleID: "1",
+                name: "Criteriile de divizibilitate cu 2, 3, 5, 9, 10. Numere pare, impare.",
+                raspuns: [{sarcina:"Criteriile de divizibilitate cu 2, 3, 5, 9, 10", rezolvare: "<p style='padding:15px 15px 5px;text-indent:20px;'>Un număr este divizibil cu:<br><b>2</b> - dacă ultima cifră este 0,2,4,6,8;<br><b>5</b> - dacă ultima cifră este 0,5;<br><b>10</b> - dacă ultima cifră este 0;<br><b>3</b> - dacă suma cifrelor sale este divizibilă cu 3;<br><b>9</b> - dacă suma cifrelor sale este divizibilă cu 9;</p>"}],
+                audio: "/sound/audio-joiner1_31.mp3",
+                images: [
+                  "/images/CriteriiDivizibilitate.jpg",
+                  "/images/NumerePareImpare.jpg",
+                ],                
+               },
              ],
              teste: [{
               id: 1,
@@ -1711,7 +1724,37 @@ let temeMatem = [
                 id: "1",
                 subjectID: "4",
                 subtitleID: "1",
-                titleID: "1"
+                titleID: "1",
+                name: "Descompunerea numerelor naturale în produs de puteri de numere prime.",
+                raspuns: [{sarcina:"Etapele descompunerii numărului în produs de factori primi", rezolvare: "<p style='padding:15px;'>1) Identificăm cel mai mic divizor prim al numărului;<br>2) Împărțim numărul la acest divizor;<br>3) Identificăm cel mai mic divizor prim al câtului obținut;<br>4) Împărțim câtul la acest divizor;<br>5) Repetăm acești pași până obținem câtul 1;<br>6) Descompunerea numărului în factori primi este egală cu produsul divizorilor identificați.</p>"}],
+                audio: "/sound/audio-joiner1_31.mp3",
+                images: [
+                  "/images/DescompunereFactori.jpg",
+                ],
+               },
+               {
+                id: "2",
+                subjectID: "4",
+                subtitleID: "1",
+                titleID: "1",
+                name: "Divizor comun al două numere naturale. C.m.m.d.c. al două numere naturale.",
+                raspuns: [{sarcina:"Cel mai mare divizor comun al numerelor naturale", rezolvare: "<p style='padding:15px;'><b>Cel mai mare divizor comun</b> al numerelor naturale a și b este cel mai mare număr natural care se împarte exact la fiecare dintre numerele a și b.<br> Se calculează ca un produs de  factorilor comuni la puterea cea mai mică<br>Se notează: (a,b)</p>"}],
+                audio: "/sound/audio-joiner1_31.mp3",
+                images: [
+                  "/images/CMMDivizorComun.jpg",
+                ],
+               },
+               {
+                id: "3",
+                subjectID: "4",
+                subtitleID: "1",
+                titleID: "1",
+                name: "Numere prime între ele.",
+                raspuns: [{sarcina:"Numere prime între ele", rezolvare: "<p style='padding:15px;'><b>Numere prime</b> - numerele care au cel mai mare divizor comun pe 1.<br>Se notează: (a,b) = 1</p>"}],
+                audio: "/sound/audio-joiner1_31.mp3",
+                images: [
+                  "/images/PrimeInreEle.jpg",
+                ],
                }
              ],
              teste: [{
@@ -1747,7 +1790,25 @@ let temeMatem = [
                 id: "1",
                 subjectID: "5",
                 subtitleID: "1",
-                titleID: "1"
+                titleID: "1",
+                name: "Multipli comuni ai două numere naturale.",
+                raspuns: [{sarcina:"Multipli comuni ai două numere naturale", rezolvare: "<p style='padding:15px;'><b>Multipli comuni ai două numere naturale</b> - mulțimea numerelor care aparțin intersecției multimii multiplilor fiecărui număr respectiv.</p>"}],
+                audio: "/sound/audio-joiner1_31.mp3",
+                images: [
+                  "/images/MultipliComuni.jpg",
+                ],
+               },
+               {
+                id: "2",
+                subjectID: "5",
+                subtitleID: "1",
+                titleID: "1",
+                name: "C.m.m.m.c. al două numere naturale.",
+                raspuns: [{sarcina:"Cel mai mic multiplu comun al numerelor naturale", rezolvare: "<p style='padding:15px;'><b>Cel mai mic multiplu comun</b> al numerelor naturale a și b - este cel mai mic număr natural nenul la care se împarte exact fiecare dintre numerele a și b.<br>Se notează: [a,b]</p>"}],
+                audio: "/sound/audio-joiner1_31.mp3",
+                images: [
+                  "/images/CMMMultipluComun.jpg",
+                ],
                }
              ],
              teste: [{
