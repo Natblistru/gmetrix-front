@@ -36,35 +36,54 @@ let temeIstoria = [
             ],
             vomAfla: [
               {
-                name: "Când a intrat România în război și de partea cui",
+                name: "Perioada de neutralitate (1914-1916)",
                 id: "1",
                 subjectID: "1",
                 subtitleID: "1",
                 titleID: "1",
-                raspuns: "România în război in 1916 și de partea Antantei",
+                raspuns: [{sarcina:"Perioada de neutralitate (1914-1916)", rezolvare: "<p style='padding:15px 15px 0;text-indent:20px;'>1.<b>Presiuni politice</b> asupra României în la începutul I Război Mondial. Germania și Austro-Ungaria exercită presiuni asupra României pentru a se alătura lor în război.</p><p style='padding:0 15px;text-indent:20px;'>2. <b>Dilema României</b> în luarea unei decizii privind alăturarea la unul din blocuri. România se confruntă cu o decizie dificilă din cauza apartenenței teritoriilor românești la cele două imperii beligerante, Rusia și Austro-Ungaria. Intrarea în război alături de un bloc ar fi implicat sacrificarea aspirațiilor naționale ale românilor din diverse regiuni.</p><p style='padding:0 15px;text-indent:20px;'>3. Consiliul de Coroană din 21 iulie/3 august 1914: <b>păstrarea neutralității</b>. Majoritatea membrilor se pronunță împotriva intrării României în război și susțin păstrarea neutralității.</p><p style='padding:0 15px;text-indent:20px;'>4. <b>Presiunile crescânde</b> ale Franței și Rusiei. Franța și Rusia sunt printre țările care exercită presiuni asupra guvernului României pentru a se alătura lor în război.</p><p style='padding:0 15px;text-indent:20px;'>5. Semnarea <b>Tratatului de alianță cu Antanta</b> (4/17 august 1916). La 4/17 august 1916, Ion I. C. Brătianu semnează tratatul cu reprezentanții Antantei, angajându-se să intre în război împotriva Puterilor Centrale. Tratatul prevede recunoașterea dreptului românilor din Austro-Ungaria la autodeterminare și la unire cu Regatul României.</p><p style='padding:0 15px 15px;text-indent:20px;'>6. <b>Declarația de război</b> Puterilor Centrale. La 14/27 august 1916, România declară război Austro-Ungariei. A doua zi, Germania declară război României.  Turcia și Bulgaria urmează, declarând război României în zilele următoare.</p>"}, {sarcina:"Ce a hotărât Consiliul de Coroană din 1914 privind implicarea în Primul Război Mondial?", rezolvare: "<p style='padding:15px;text-indent:20px;'>Consiliul de coroană din 21 iulie/3 august 1914 hotărăște neutralitatea României."},{sarcina:"Definește termenul de neutralitate", rezolvare: "<p style='padding:15px;text-indent:20px;'><b>Neutralitate</b> - politica unui stat de a nu se implica direct într-un conflict militar, păstrându-și suveranitatea și independența</p>"},{sarcina:"Explică termenul 'Consiliu de Coroană'", rezolvare: "<p style='padding:15px;text-indent:20px;'>În 1914, <b>Consiliul de Coroană</b> al României era format din membri importanți ai familiei regale și consilieri apropiați ai regelui Carol I, având rolul de a-l sfătui în chestiuni majore, inclusiv politica externă și deciziile de stat.</p>"},{sarcina:"Defineşte noțiunea 'Părți beligerante'", rezolvare: "<p style='padding:15px;text-indent:20px;'><b>'Părți beligerante'</b> se referă la țările sau grupurile care sunt implicate într-un război sau conflict militar.</p><p style='padding:0 15px;text-indent:20px;'>În timpul Primului Război Mondial, părțile beligerante au inclus <b><em>Puterile Centrale</em></b> (Germania, Austro-Ungaria, Imperiul Otoman și Bulgaria) și <b><em>Antanta</em></b> (Marea Britanie, Franța, Rusia ș.a.).</p>"}],
                 audio: "/sound/audio-joiner1_31.mp3",
                 images: [
-                  "/images/abstract01.jpg",
-                  "/images/abstract02.jpg",
-                  "/images/abstract03.jpg",
+                  "/images/PerioadaNeutralitate.jpg",
+                  "/images/NeutralitateDef.jpg"
                 ],
               },
               {
-                name: "Principalul motiv pentru care România a intrat în război",
+                name: "Motivele neutralității României în 1914-1916",
                 id: "2",
                 subjectID: "1",
                 subtitleID: "1",
                 titleID: "1",
-                raspuns:
-                  "Eliberarea teritoriilor aflate sub stăpânire austro-ungară",
+                raspuns: [{sarcina:"Motivele neutralității României în 1914-1916", rezolvare: "<p style='padding:15px 15px 0;text-indent:20px;'>1. <b>Politica de echilibru</b> și protejarea intereselor în fața Marilor Puteri. Și Antanta, și Puterile Centrale dețineau teritorii la care pretindea România. Și Antanta, și Puterile Centrale doreau să profite de poziția geostrategică a României, dar și de importantele resurse de petrol și cereale.</p><p style='padding:0 15px;text-indent:20px;'>2. <b>Dezvoltarea slabă</b> economică și militară. România era un stat relativ slab dezvoltat din punct de vedere economic și militar, iar un război ar fi avut consecințe grave pentru economia și populația sa.</p><p style='padding:0 15px 15px;text-indent:20px;'>3. <b>Absența unor alianțe</b> clare. Înainte de război, România a negociat un tratat de alianță cu Puterile Centrale, dar negocierile au eșuat din cauza refuzului Austro-Ungariei de a ceda Transilvania și Bucovina. Astfel, România a rămas fără o alianță clară pentru protecție în timpul războiului.</p>"}],
                 audio: "/sound/soundsample.mp3",
                 images: [
-                  "/images/pretext1.png",
-                  "/images/21EfecteleRazboiului.png",
-                  "/images/22FamiliaRegalăRazboi.png",
-                  "/images/24SucceseMilitare4.png",
+                  "/images/NeutralitateMotive.jpg",
                 ],
               },
+              {
+                name: "Dezbateri privind intrarea României în război",
+                id: "3",
+                subjectID: "1",
+                subtitleID: "1",
+                titleID: "1",
+                raspuns: [{sarcina:"Explicați de ce existau diferite opinii privitor la intrarea României în război?", rezolvare: "<p style='padding:15px 15px 0;text-indent:20px;'>1. <b>Interese economice și strategice</b>: Unii doreau implicarea Romaniei in razboi alaturi de Antanta pentru eliberarea Transilvaniei, alții erau pentru intrarea Romaniei in razboi de partea Puterilor Centrale, in virtutea tratatului din 1883.</p><p style='padding:0 15px;text-indent:20px;'>2.<b>Divergențe ideologice</b> în societate: În societatea românească, existau opinii divergente cu privire la intrarea în război. Unii preferau alianța cu Franța și Marea Britanie (care susțineau principiile democrăției și drepturilor omului.), în timp ce alții favorizau colaborarea cu Germania și Austro-Ungaria.</p><p style='padding:0 15px 15px;text-indent:20px;'>3. <b>Temeri legate de consecințele războiului</b>: Existau și temeri legate de impactul negativ al războiului asupra României, cum ar fi pierderile economice, distrugerea infrastructurii și suferința populației civile.</p>"}],
+                audio: "/sound/soundsample.mp3",
+                images: [
+                  "/images/NeutralitateDezbateri.jpg",
+                ],
+              },
+              {
+                name: "Ofertele combatanților pentru intrarea României în Război",
+                id: "4",
+                subjectID: "1",
+                subtitleID: "1",
+                titleID: "1",
+                raspuns: [{sarcina:"Ofertele combatanților pentru intrarea României în Război", rezolvare: "<p style='padding:15px 15px 0;text-indent:20px;'>Oferta din partea <u>Puterilor Centrale</u> (Germania și Austro-Ungaria):<br><b>Cedarea unor teritorii</b>: Austro-Ungaria a oferit să cedeze unele părți din Transilvania României.<br><b>Avantaje economice</b>: Germania a promis României promisiuni de cooperare și acces la piețele sale.</p><p style='padding:10px 15px 15px;text-indent:20px;'>Oferta din partea <u>Antantei</u> (Franța, Regatul Unit, Rusia):<br><b>Unirea teritoriilor românești</b>: Antanta a promis unirea teritoriilor românești controlate de Puterile Centrale cu Regatul României.<br><b>Avantaje economice</b>: Antanta a oferit României avantaje economice, inclusiv acces la resurse naturale (petrol) din Marea Neagră.</p>"}],
+                audio: "/sound/soundsample.mp3",
+                images: [
+                  "/images/NeutralitateOferte1.jpg",
+                ],
+              },             
             ],
             innerHTML: "",
             note: [
