@@ -70,6 +70,7 @@ let temeIstoria = [
                 audio: "/sound/soundsample.mp3",
                 images: [
                   "/images/NeutralitateDezbateri.jpg",
+                  "/images/NeutralitateRenuntare.jpg",
                 ],
               },
               {
@@ -1491,8 +1492,41 @@ let temeIstoria = [
                 id: "1",
                 subjectID: "2",
                 subtitleID: "1",
-                titleID: "1"
-               }
+                titleID: "1",
+                name: "Declarația de război Puterilor Centrale",
+                raspuns: [{sarcina:"Identifică scopurile urmărite de România în Primul Război Mondial", rezolvare: "<p style='padding:15px 15px 0;text-indent:20px;'>România, ca și alte țări, și-a definit propriile obiective și motive pentru a se alătura Primului Război Mondial.</p><p style='padding:0 15px;text-indent:20px;'>Unul dintre principalele obiective ale României în Primul Război Mondial a fost <b>unificarea teritoriilor locuite de români</b> sub un singur stat. La începutul războiului, Transilvania era sub control austro-ungar și Basarabia - sub control rusesc.</p><p style='padding:0 15px;text-indent:20px;'>Un alt obiectiv vital al României în Primul Război Mondial a fost <b>accesul la resurse naturale</b>, în special la petrolul din zona Mării Negre. Antanta a promis României cooperare economică și accesul la aceste resurse.</p><p style='padding:0 15px;text-indent:20px;'>În final, alăturarea războiului a oferit României o șansă de a-și <b>consolida poziția pe scena internațională</b>. Prin participarea activă la conflict, România a devenit un actor important în diplomația mondială și a câștigat respect și recunoaștere la nivel internațional.</p><p style='padding:0 15px 15px;text-indent:20px;'>Deși războiul a adus și suferințe și sacrificii, a avut un impact semnificativ asupra istoriei României și a contribuit la consolidarea statului român modern.</p>"}],
+                audio: "/sound/audio-joiner1_31.mp3",
+                images: [
+                  "/images/RazboiRom1916Inceput.jpg",
+                  "/images/RazboiRomScopIntrarii.jpg",
+                ],                
+               },
+              {
+                id: "2",
+                subjectID: "2",
+                subtitleID: "1",
+                titleID: "1",
+                name: "Ofensiva românească în Transilvania (august-septembrie 1916)",
+                raspuns: [{sarcina:"Identifică cauzele înfrângerii României în anul 1916", rezolvare: "<p style='padding:15px 15px 0;text-indent:20px;'>1. <b>Atacul coordonat </b>al Puterilor Centrale. Atacul bine coordonat al Germaniei, Austro-Ungariei și Bulgariei asupra României a pus țara într-o poziție defensivă și a creat o presiune majoră asupra forțelor române.</p><p style='padding:0 15px;text-indent:20px;'>2. <b>Lipsa unei alianțe</b> puternice și a pregătirii militare adecvate. România nu a avut o alianță solidă la începutul războiului și nu era complet pregătită pentru un conflict de amploare. Lipsa coordonării și a resurselor necesare au slăbit capacitatea militară a României.</p><p style='padding:0 15px;text-indent:20px;'>3. <b>Reacția slabă a Rusiei</b>. Rusia, care era aliatul principal al României, a avut propriile probleme și conflicte interne, ceea ce a dus la incapacitatea ei de a furniza sprijin militar semnificativ în timpul campaniei.</p><p style='padding:0 15px 15px;text-indent:20px;'>4. <b>Probleme logistice și de aprovizionare</b>. Armata română a întâmpinat dificultăți în ceea ce privește aprovizionarea și logistică, deoarece nu era pregătită pentru un război pe multiple fronturi. Aceasta a dus la lipsa de resurse esențiale, cum ar fi muniția și hrana, în timpul campaniei.</p>"}],
+                audio: "/sound/audio-joiner1_31.mp3",
+                images: [
+                  "/images/RazboiRomania1916_17.jpg",
+                  "/images/RazboiRom1916CauzeInfrangere.jpg",
+                ],                
+               },
+               {
+                id: "3",
+                subjectID: "2",
+                subtitleID: "1",
+                titleID: "1",
+                name: "Ofensiva austro-germană (septembrie 1916 - ianuarie 1917)",
+                raspuns: [{sarcina:"Identifică urmările înfrângerii armatei române în campania din 1916", rezolvare: "<p style='padding:15px 15px 0;text-indent:20px;'>1. <b>Pierderea teritoriilor</b>. Ca urmare a înfrângerii, România a pierdut 2/3 din teritoriile sale, care au fost ocupate de Puterile Centrale.</p><p style='padding:0 15px;text-indent:20px;'>2. <b>Jaful și exploatarea economică</b>. Jafurile și confiscarea resurselor de către Puterile Centrale au afectat producția agricolă, industrială și comerțul, contribuind la o scădere semnificativă a nivelului de trai și a capacității economice a țării.</p><p style='padding:0 15px;text-indent:20px;'>3. <b>Foamete și suferințe în teritoriile ocupate</b>. În multe zone ocupate, resursele alimentare erau confiscate în scopuri militare. Acest lucru a dus la o foamete, care a provocat suferințe și decese în rândul populației teritoriile ocupate.</p><p style='padding:0 15px 15px;text-indent:20px;'>4. <b>Refugiul și deplasările populației</b>. Înfrângerea a dus la deplasarea și refugiul a sute de mii de români, care au trebuit să-și părăsească locuințele din zonele ocupate de inamic.</p>"}, {sarcina:"Formuleaza o concluzie despre operațiile militare desfășurate pe teritorului României in 1916", rezolvare: "<p style='padding:15px;text-indent:20px;'>Operațiile militare din 1916 pe teritoriul României au fost marcate de lupte intense, dar și de o <b>înfrângere crucială a României</b>, cu ocuparea și acapararea teritoriilor semnificative de către Puterile Centrale, ceea ce a avut consecințe dramatice asupra țării.</p>"}],
+                audio: "/sound/audio-joiner1_31.mp3",
+                images: [
+                  "/images/RazboiRom1916Consecinte.jpg",
+                  "/images/RazboiRom1916.jpg",
+                ],                
+               },               
              ],
              teste: [{
               id: 1,
@@ -1528,8 +1562,28 @@ let temeIstoria = [
                 id: "1",
                 subjectID: "3",
                 subtitleID: "1",
-                titleID: "1"
-               }
+                titleID: "1",
+                name: "A doua companie - vara anului 1917",
+                raspuns: [{sarcina:"Explicați care a fost efectul victoriilor repurtate de armatele române pe frontul român în vara anului 1917", rezolvare: "<p style='padding:15px 15px 0;text-indent:20px;'>În primul rând, ele au avut <b>efect pozitiv asupra moralului</b> soldaților români. Ei au început să creadă în victorie și în valoarea luptei lor, sporind spiritul de luptă și disciplina.</p><p style='padding:0 15px;text-indent:20px;'>În al doilea rând, victoriile militare au <b>crescut prestigiul României</b> în ochii aliaților, consolidându-i statutul de forță valoroasă în lupta împotriva Puterilor Centrale și atrăgând sprijin diplomatic și militar. Această reputație a îmbunătățit poziția României în negocierile pentru pacea de după război.</p>"}],
+                audio: "/sound/audio-joiner1_31.mp3",
+                images: [
+                  "/images/RazboiRom1917.jpg",
+                  "/images/RazboiRom1917VictoriiEfect.jpg",
+                ],
+               },
+               {
+                id: "2",
+                subjectID: "3",
+                subtitleID: "1",
+                titleID: "1",
+                name: "Familia regală în timpul Primului război Mondial.",
+                raspuns: [{sarcina:"Rolul reginei Maria în timpul Primului Război Mondial", rezolvare: "<p style='padding:15px 15px 0;text-indent:20px;'>1. <b>Influiențarea deciziei de intrare a României în război</b>. Fiind rudă cu casa regală a Marii Britanii și a țarilor din Rusia, a influiențat inrarea României în război în 1916, de partea Antantei.</p><p style='padding:0 15px 15px;text-indent:20px;'>2. <b>Susținerea soldaților răniți</b>. Regina Maria a mobilizat resurse și fonduri pentru spitalizarea și tratamentul răniților. De asemenea, a încurajat participarea voluntarilor români, fiind numită deseori „mama răniților”, „regina soldat”, „îngerul păzitor al României”.</p>"}, {sarcina:"Rolul regelui Ferfinand I în timpul Primului Război Mondial", rezolvare: "<p style='padding:15px 15px 0;text-indent:20px;'>1. <b>Decizia de intrare în război</b>. În ciuda presiunilor și ofertelor contradictorii din partea Puterilor Centrale, el a susținut aderarea României la Antanta.</p><p style='padding:0 15px;text-indent:20px;'>2. <b>Moralul trupelor</b>. Regele Ferdinand a vizitat frontul, încurajând trupele române și contribuind la creșterea moralului acestora.</p><p style='padding:0 15px 15px;text-indent:20px;'>3. <b>Stabilizarea țării</b>. A adoptat reforma agrară, electorală, pentru a preveni o revoluție similară cu cea din Rusia, reducând tensiunile sociale.</p>"}],
+                audio: "/sound/audio-joiner1_31.mp3",
+                images: [
+                  "/images/RazboiRomReginaMaria.jpg",
+                  "/images/RazboiRomRegineFerdinand.jpg",
+                ],
+               },                
              ],
              teste: [{
               id: 1,
@@ -1564,8 +1618,27 @@ let temeIstoria = [
                 id: "1",
                 subjectID: "4",
                 subtitleID: "1",
-                titleID: "1"
-               }
+                titleID: "1",
+                name: "Abdicarea țarului și proclamarea Republicii în Rusia.",
+                raspuns: [{sarcina:"Care au fost evenimentele semnificative din Rusia în anul 1917 care au influiențat frontul român", rezolvare: "<p style='padding:15px;'>1. Revoluția din februarie 1917. <br>2. Abdicarea țarului Nicolae al II-lea - 2 martie 1917. <br>3. Proclamarea Republicii Ruse - 2 martie 1917</p>"}],
+                audio: "/sound/audio-joiner1_31.mp3",
+                images: [
+                  "/images/RazboiRomRusiaRevolutie.jpg",
+                ],               
+               },
+               {
+                id: "2",
+                subjectID: "4",
+                subtitleID: "1",
+                titleID: "1",
+                name: "Haosul și dezorganizarea în rândul soldaților ruși.",
+                raspuns: [{sarcina:"Consecințele proclamării Republicii Ruse in 1917 asupra frontului român", rezolvare: "<p style='padding:15px 15px 0;text-indent:20px;'>1. <b>Tensiuni și dezorganizare pe front</b>. Proclamarea Republicii și revoluția bolșevică au generat instabilitate crescută pe frontul român, ceea ce se manifesta prin dezorganizare și pierderea autorității comandanților bolșevici în rândul trupelor ruse.</p><p style='padding:0 15px;text-indent:20px;'>2. <b>Pierderea sprijinului rus</b>. Proclamarea Republicii Ruse a slăbit capacitatea de luptă a armatei ruse, afectând aprovizionarea cu muniții și alimente prin teritoriul rus, punând armatele române într-o situație dificilă.</p><p style='padding:0 15px 15px;text-indent:20px;'>3. <b>Retragerea trupelor ruse</b>. Odată cu dezorganizarea frontului rus, soldații ruși au părăsit linia frontului în masă, lăsând flancurile și spatele armatelor române vulnerabile la atacuri inamice, afectând poziția defensivă a României.</p>"}],
+                audio: "/sound/audio-joiner1_31.mp3",
+                images: [
+                  "/images/RazboiRomRusiaHaos.jpg",
+                  "/images/RazboiRomRusiaConsecinte.jpg",
+                ],               
+               },
              ],
              teste: [{
               id: 1,
@@ -1600,7 +1673,28 @@ let temeIstoria = [
                 id: "1",
                 subjectID: "5",
                 subtitleID: "1",
-                titleID: "1"
+                titleID: "1",
+                
+                name: "Armistițiul de la Focșani.",
+                raspuns: [{sarcina:"Cauzele principale care au dus la încheierea Armistițiului de la Focșani ", rezolvare: "<p style='padding:15px;'>1. <b>Ieșirea Rusiei din război</b>, în urma încheierii armistițiului de la Brest-Litovsk. <br>2. <b>Presiunile militare semnificative</b> asupra României din partea Puterilor Centrale (Austro-Ungaria și Germania).</p>"}],
+                audio: "/sound/audio-joiner1_31.mp3",
+                images: [
+                  "/images/RazboiRomSfarsit.jpg",
+                ],
+               },
+               {
+                id: "2",
+                subjectID: "5",
+                subtitleID: "1",
+                titleID: "1",
+                
+                name: "Pacea de la București.",
+                raspuns: [{sarcina:"Împrejurările politice și militare ce au determinat guvernul român să semneze Tratatul de la București", rezolvare: "<p style='padding:15px 15px 0;text-indent:20px;'>Semnarea acestui tratat a fost motivată de mai multe împrejurări politice și militare.</p><p style='padding:0 15px;text-indent:20px;'><b>Pe plan militar</b>, România se confrunta cu o situație foarte dificilă. Armatele Puterilor Centrale înaintau în Europa și reușiseră să ocupe o mare parte din teritoriul românesc. Armata română era epuizată, sub-echipată și sub-înarmată, iar eforturile de a contracara inamicul nu dădeau roade.</p><p style='padding:0 15px;text-indent:20px;'><b>Pe plan politic</b>, guvernul român se confrunta cu dificultăți în ceea ce privește susținerea internă și internațională. Populația română era epuizată de război, suferise pierderi semnificative și era deziluzionată de promisiunile nerealizate ale aliaților săi din cadrul Antantei. Aliații României, Franța și Marea Britanie, nu puteau să ofere sprijinul necesar pentru a înfrânge Puterile Centrale, iar Rusia, un alt aliat tradițional al României, se confrunta cu crize interne și nu mai putea oferi sprijin militar. </p><p style='padding:0 15px 15px;text-indent:20px;'>În aceste condiții, guvernul român a considerat că semnarea Tratatului de la București ar fi permis țării să își consolideze poziția și să evite o distrugere totală a statului.</p>"},{sarcina:"Condițiile impuse României prin Tratatul de pace de la București", rezolvare: "<p style='padding:15px 15px 0;text-indent:20px;'>1. <b>Cedarea teritoriilor</b>: <br>• Dobrogea a fost anexata Bulgariei;<br>• Austro-Ungaria a preluat o suprafata de 5600 km2 din Muntii Carpati</p><p style='padding:0 15px;text-indent:20px;'>2. <b>Cedarea controlului asupra resurselor naturale</b><br>• Petrol: Germania obține dreptul de monopol asupra extracției petrolului românesc.<br>• Grâu: Germania obține dreptul de a cumpăra cantități semnificative de grâu din România la prețuri reduse.<br>• Păduri: Germania obține dreptul de a tăia și prelucra lemnul din România pentru scopurile sale.</p><p style='padding:0 15px;text-indent:20px;'>3. <b>Demobilizarea armatei române</b>. Tratatul a impus demobilizarea a armatei române și restrângerea echipamentelor militare.	</p><p style='padding:0 15px 15px;text-indent:20px;'>4. <b>Repararea financiară</b>. România a fost obligată să plătească compensații financiare Puterilor Centrale pentru costurile războiului și ocupației teritoriale.</p>"},{sarcina:"Eseu din 10 propozitii cu tema „Participarea României la primul război mondial„", rezolvare: "<p style='padding:15px 15px 0;text-indent:20px;'>Participarea României la Primul Război Mondial a fost un moment crucial în istoria țării noastre, aducând atât victorii cât și pierderi dureroase.</p><p style='padding:0 15px;text-indent:20px;'>În ciuda faptului că România a fost neutră la începutul conflictului, ea a fost atrasă în război datorită presiunilor puterilor centrale și a dorinței de a-și extinde teritoriul.</p><p style='padding:0 15px;text-indent:20px;'>Pe 27 august 1916, România a declarat război Austro-Ungariei, însă în scurt timp, trupele române au fost înfrânte de forțele inamice și țara a fost ocupată în mare parte.</p><p style='padding:0 15px;text-indent:20px;'>Armata Română a suferit pierderi semnificative, inclusiv la bătălia de la Mărăști, considerată una dintre cele mai importante bătălii ale războiului.</p><p style='padding:0 15px;text-indent:20px;'>În 1917, intervenția Rusiei în război a fost decisivă pentru România, iar forțele țariste au reușit să recucerească o mare parte a teritoriului ocupat de inamici.</p><p style='padding:0 15px;text-indent:20px;'>Cu toate acestea, Revoluția din Octombrie a avut un impact puternic asupra frontului estic, iar Rusia a părăsit războiul, lăsând România într-o poziție dificilă.</p><p style='padding:0 15px;text-indent:20px;'>În cele din urmă, România a reușit să negocieze un armistițiu cu Puterile Centrale la sfârșitul anului 1917, urmat de semnarea Tratatului de la București în martie 1918.</p><p style='padding:0 15px;text-indent:20px;'>Tratatul de la București a adus o serie de pierderi teritoriale pentru România, dar a pus capăt oficial participării țării noastre la Primul Război Mondial.</p><p style='padding:0 15px 15px;text-indent:20px;'>Participarea României la război a adus un tribut greu în vieți omenești și resurse materiale, însă a reprezentat și un moment important în istoria națională, marcând un pas înainte spre unitatea și independența țării.</p>"},{sarcina:"Descrie succint situația economică și militară a României în 1914-1918", rezolvare: "<p style='padding:15px 15px 0;text-indent:20px;'>În perioada 1914-1918, România a fost implicată în Primul Război Mondial, iar situația sa economică și militară s-a schimbat semnificativ pe parcursul acestor ani:</p><p style='padding:5px 15px;text-indent:20px;'><b>Situația economică</b>:<br>La începutul războiului, economia României a crescut datorită exporturilor de cereale și petrol. Intrarea în conflict în 1916 a avut un impact negativ, întrerupând comerțul și provocând distrugeri semnificative la nivel național. Pierderea teritoriilor agricole productive și a resurselor naturale prin tratatul de pace de la București din 1918 a avut un efect devastator asupra economiei românești.<p style='padding:0 15px 0;text-indent:20px;'><b>Situația militară</b>:<br>La începutul războiului, România a avut o armată numeroasă, dar slab echipată și cu resurse limitate. Intrarea în conflict în 1916 a fost dificilă, soldată cu înfrângeri semnificative pentru armata română. Semnarea armistițiului de la Focșani în 1917 a adus o scurtă pauză în lupte, dar condițiile nefavorabile ale tratatului de pace de la București din 1918 au afectat serios capacitățile militare ale României.</p><p style='padding:0 15px 15px;text-indent:20px;'><b>În ansamblu</b>, România a suferit pierderi semnificative în război, atât în termeni economici, cât și militari, iar tratatele de pace care au urmat au avut consecințe dureroase pentru țară.</p>"},{sarcina:"Consecințele războiului mondial pentru statele europene, în general, și pentru România, în special", rezolvare: "<p style='padding:15px 15px 0;text-indent:20px;'>Concluzia despre consecințele Primului Război Mondial pentru statele europene, în general, și pentru România, în special, este că acest conflict a adus schimbări semnificative și adesea dureroase.</p><p style='padding:0 15px;text-indent:20px;'><b>Pentru statele europene</b>, războiul a dus la pierderi umane și materiale masive, provocând devastare și suferință. A apărut o schimbare profundă în harta politică a Europei, cu prăbușirea imperiilor și apariția unor noi state sau regimuri politice.</p><p style='padding:0 15px;text-indent:20px;'><b>România</b> nu a făcut excepție. A intrat în război cu speranța că va câștiga teritorii și va consolida statutul național, dar a suferit pierderi umane și materiale semnificative, iar economia sa a fost devastată. Mai mult, anexiunea de către Uniunea Sovietică a Basarabiei și a Bucovinei de Nord a dus la pierderea unor teritorii importante pentru România.</p><p style='padding:0 15px;text-indent:20px;'>Pe de altă parte, participarea României la Primul Război Mondial i-a permis să obțină recunoașterea internațională ca putere regională, iar unirea cu Transilvania în 1918 a dus la formarea statului național modern al României.</p><p style='padding:0 15px 15px;text-indent:20px;'> Cu toate acestea, consecințele războiului pentru România au fost, în general, negative, iar efectele sale s-au resimțit în perioada interbelică și au contribuit la dezvoltarea unui context favorabil pentru izbucnirea celui de-al Doilea Război Mondial.</p>"},{sarcina:"Caracterizează situația militară, economică și demografică a Basarabiei în anii 1914-1918", rezolvare: "<p style='padding:15px 15px 0;text-indent:20px;'>Situația militară a Basarabiei în anii 1914-1918 a fost una extrem de dificilă și distructivă din mai multe puncte de vedere.</p><p style='padding:0 15px;text-indent:20px;'><b>Impactul asupra oamenilor</b>: La începutul Primului Război Mondial, în Basarabia, parte a Imperiului Rus, a avut loc o mobilizare generală a bărbaților basarabeni care au fost recrutați în armata rusă și au suferit pierderi semnificative pe fronturile europene.</p><p style='padding:0 15px;text-indent:20px;'><b>Lupte și distrugeri</b>: Pe măsură ce fronturile se schimbau și armatele se retrăgeau sau se confruntau, Basarabia a devenit un teatru de luptă. Aceasta a dus la distrugeri masive în orașe și sate, la pierderi umane semnificative și la suferința populației civile.</p><p style='padding:0 15px;text-indent:20px;'><b>Ocupația și retragerea trupelor rusești</b>: Basarabia a fost ocupată de trupele rusești în timpul războiului. Această ocupație a avut un impact negativ asupra economiei și a vieții civile din regiune. Trupele rusești au cerut resurse și au impus măsuri de aprovizionare, lăsând în urmă populația să sufere de foamete.</p><p style='padding:0 15px 15px;text-indent:20px;'>În concluzie, Primul Război Mondial a avut un impact profund distructiv asupra economice și a vieții civile în Basarabia. Regiunea a fost martoră la distrugeri și suferință umană în acei ani tulburi.</p>"},{sarcina:"Argumentează afirmația: „Primul război mondial a afectat grav toate domeniile vieții oamenilor din România„", rezolvare: "<p style='padding:15px 15px 0;text-indent:20px;'>Primul Război Mondial a avut un impact profund și devastator asupra tuturor aspectelor vieții din România. Iată trei argumente care susțin această afirmație:</p><p style='padding:0 15px;text-indent:20px;'><b>Pierderi umane masive</b>: România a suferit pierderi umane semnificative în timpul Primului Război Mondial, cu mii de soldați români decedați în lupte. Acest conflict a adus și probleme sociale, cum ar fi creșterea șomajului și inflația, afectând calitatea vieții pentru mulți români.</p><p style='padding:0 15px;text-indent:20px;'><b>Distrugerea economică</b>: Economia României a fost puternic afectată de război. Combustibilul, alimentele și alte resurse esențiale au devenit rare și scumpe. Fabricile și infrastructura au fost distruse în urma luptelor, iar agricultura a fost grav afectată. Această distrugere economică a avut un impact negativ asupra nivelului de trai al populației și a accentuat sărăcia.</p><p style='padding:0 15px;text-indent:20px;'><b>Schimbări politice și teritoriale</b>: Primul Război Mondial schimbat granițele și structura politică a României. Prin semnarea tratatului de pace de la București din 1918, România a fost forțată să cedeze teritorii și resurse naturale, afectând economia și securitatea țării. Aceasta a generat instabilitate politică și tensiuni în societate.</p><p style='padding:0 15px 15px;text-indent:20px;'>În concluzie, Primul Război Mondial a adus suferință și dezordine pe scară largă în viața oamenilor din România, afectând profund aspectele umane, economice și politice ale țării. Acest război a lăsat o amprentă durabilă asupra istoriei și dezvoltării ulterioare a României.</p>"}],
+                audio: "/sound/audio-joiner1_31.mp3",
+                images: [
+                  "/images/RazboiRomPaceBucuresti.jpg",
+                  "/images/RazboiRomCpaitulareGermania.jpg",
+                ],
                }
              ],
              teste: [{
