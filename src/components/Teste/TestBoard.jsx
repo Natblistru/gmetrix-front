@@ -26,13 +26,12 @@ const TestBoard = forwardRef(
     const [selectedValues, setSelectedValues] = useState([]);
     const [data, setData] = useState([]);
     const [isDragDisabled, setIsDragDisabled] = useState(DragDisable);
-
     const itemsFromBackend = [];
     list.quizArray[currentIndex].answers.forEach((answer) => {
       itemsFromBackend.push({ id: uuidv4(), content: answer.text });
     });
 
-    const columnsFromBackend = list.coloane.reduce((columns, name) => {
+    const columnsFromBackend = list.quizArray[currentIndex].coloane.reduce((columns, name) => {
       columns[uuidv4()] = {
         name: name,
         items: []
@@ -89,25 +88,49 @@ const TestBoard = forwardRef(
     const checkAnswer = () => {
     let selectedValuesString="";
     let correctValuesString="";
+    let selectedValues1String="";
+    let correctValues1String="";
     const correctValues = list.quizArray[currentIndex].correctAnswer.map(
       (answer) => answer.text
     );
     let selValues = Object.values(columns)
-      .filter(column => column.name === list.coloanaRaspuns)
+      .filter(column => column.name === list.quizArray[currentIndex].coloanaRaspuns)
       .map(column => column.items.map(item => item.content))
       .flat();
-    if(list.type!=="chrono" && list.type!=="chronoDuble") {
+    if(list.type!=="chrono" && list.type!=="chronoDuble" && list.type!=="group") {
       selectedValuesString = selValues.sort().join(",");
       correctValuesString = correctValues.sort().join(","); 
+      console.log(correctValuesString);  
+      console.log(correctValues);  
+    } if(list.type ==="group") {
+      //col.III
+      selectedValuesString = selValues.sort().join("");
+      correctValuesString = correctValues.sort().join(""); 
+      //col.II
+      let selValues1 = Object.values(columns)
+        .filter(column => column.name === list.quizArray[currentIndex].coloanaRaspuns1)
+        .map(column => column.items.map(item => item.content))
+        .flat();
+      let correctValues1 = list.quizArray[currentIndex].correctAnswer.map(
+        (answer) => answer.text1
+      );
+      selectedValues1String = selValues1.sort().join("");
+      correctValues1String = correctValues1.sort().join(""); 
     } else {
       selectedValuesString = selValues.join(",");
-      correctValuesString = correctValues.join(",");       
+      correctValuesString = correctValues.join(",");     
     }
-    setSelectedValues(selValues)
+    setSelectedValues(selValues);
+
 
     // selectedValuesString = selValues.join(",");
     // correctValuesString = correctValues.sort().join(","); 
-    setCorrectAnswer(selectedValuesString === correctValuesString);
+    if(list.type ==="group") {
+      setCorrectAnswer(selectedValuesString === correctValuesString && selectedValues1String === correctValues1String);
+    } else {
+      setCorrectAnswer(selectedValuesString === correctValuesString);
+    }
+
     setIsDragDisabled(true);
   };
 
@@ -199,11 +222,17 @@ const TestBoard = forwardRef(
           }):`}
           open={true}
         >
-          <ItemText classNameChild="">
-            {list.quizArray[currentIndex].correctAnswer.map((answer, idx) => (
+        <ItemText classNameChild="">
+          {list.type !== "group" ? (
+            list.quizArray[currentIndex].correctAnswer.map((answer, idx) => (
               <div className="cardChrono" key={idx}>{answer.text}</div>
-            ))}
-          </ItemText>
+            ))
+          ) : (
+            list.quizArray[currentIndex].correctAnswerGroup.map((answer, idx) => (
+              <div className="cardChrono" key={idx}>{answer.text}</div>
+            ))
+          )}
+        </ItemText>
           <button onClick={()=> handleTryAgainClear(list.id)} className="btn-test">
             Încearcă din nou!
           </button>

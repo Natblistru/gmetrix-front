@@ -325,6 +325,8 @@ let temeIstoria = [
                     titleID: "1",
                     cerinte:
                       "Din lista prezentată selectați cauzele I Război Mondial:",
+                    coloane: ["Lista variantelor", "Cauzele"],
+                    coloanaRaspuns: "Cauzele",
                     answers: [
                       { id: "1", text: "Lupta pentru reîmpărțirea lumii" },
                       {
@@ -366,6 +368,8 @@ let temeIstoria = [
                     titleID: "1",
                     cerinte:
                       "Din lista prezentată selectați cauzele neutralității României la începutil I Război Mondial:",
+                    coloane: ["Lista variantelor", "Cauzele"],
+                    coloanaRaspuns: "Cauzele",                    
                     answers: [
                       {
                         id: "1",
@@ -444,7 +448,9 @@ let temeIstoria = [
                     titleID: "1",
                     cerinte:
                       "Din lista prezentată selectați consecințele I Război Mondial:",
-                    answers: [
+                      coloane: ["Lista variantelor", "Consecintele"],
+                      coloanaRaspuns: "Consecintele",                    
+                      answers: [
                       { id: "1", text: "Pierderi umane masive" },
                       { id: "2", text: "Schimbări teritoriale și politice" },
                       {
@@ -478,7 +484,9 @@ let temeIstoria = [
                     titleID: "1",
                     cerinte:
                       "Din lista prezentată selectați consecințele intrării Romaniei în I Război Mondial:",
-                    answers: [
+                      coloane: ["Lista variantelor", "Consecintele"],
+                      coloanaRaspuns: "Consecintele",                    
+                      answers: [
                       {
                         id: "1",
                         text: "Obținerea teritoriilor din Austro-Ungaria locuite de români",
@@ -735,6 +743,7 @@ let temeIstoria = [
                 type: "group",
                 coloane: ["Tarile", "Puterile centrale", "Antanta"],
                 coloanaRaspuns: "Antanta",
+                coloanaRaspuns1: "Puterile centrale",
                 quizArray: [
                   {
                     id: "1",
@@ -742,6 +751,9 @@ let temeIstoria = [
                     subjectID: "1",
                     subtitleID: "1",
                     titleID: "1",
+                    coloane: ["Tarile", "Puterile centrale", "Antanta"],
+                    coloanaRaspuns: "Antanta",
+                    coloanaRaspuns1: "Puterile centrale",
                     answers: [
                       { id: "1", text: "Germania" },
                       { id: "2", text: "Austro-Ungaria" },
@@ -752,25 +764,39 @@ let temeIstoria = [
                     correctAnswer: [
                       {
                         id: "1",
-                        text: "România a intrat în Primul Război Mondial",
+                        text: "Franța",
+                        text1: "Germania",
                         anul: "1916",
                       },
                       {
                         id: "2",
-                        text: "Ocuparea Bucureștelui",
+                        text: "",
+                        text1: "Austro-Ungaria",
                         anul: "23 mai 1916",
                       },
                       {
                         id: "3",
-                        text: "România a câștigat o victorie importantă în Bătălia de la Mărăști",
+                        text: "",
+                        text1: "Imperiul Otoman",
                         anul: "1917",
                       },
                       {
                         id: "4",
-                        text: "România a semnat Tratatul de la București",
+                        text: "",
+                        text1: "Bulgaria",
                         anul: "24 aprilie 1918",
                       },
                     ],
+                    correctAnswerGroup: [
+                      {
+                        id: "1",
+                        text: "Puterile centrale: Germania, Austro-Ungaria, Imporiul Otoman, Bulgaria"
+                      },
+                      {
+                        id: "2",
+                        text: "Antanta: Franța"
+                      },
+                    ]
                   },
                   {
                     id: "2",
@@ -778,47 +804,52 @@ let temeIstoria = [
                     subjectID: "1",
                     subtitleID: "1",
                     titleID: "1",
+                    coloane: ["Tarile", "Puterile centrale", "Antanta"],
+                    coloanaRaspuns: "Antanta",
+                    coloanaRaspuns1: "Puterile centrale",
                     answers: [
-                      {
-                        id: "1",
-                        text: "România a intrat în Primul Război Mondial",
-                      },
-                      {
-                        id: "2",
-                        text: "România a semnat Tratatul de la București",
-                      },
-                      {
-                        id: "3",
-                        text: "România a câștigat o victorie importantă în Bătălia de la Mărăști",
-                      },
-                      { id: "4", text: "Ocuparea Bucureștelui" },
-                      {
-                        id: "5",
-                        text: "România a semnat Tratatul de la Versailles, care a pus capăt participării sale în Primul Război Mondial",
-                      },
+                      { id: "1", text: "Germania" },
+                      { id: "2", text: "Austro-Ungaria" },
+                      { id: "3", text: "Franța" },
+                      { id: "4", text: "Imperiul Otoman" },
+                      { id: "5", text: "Bulgaria" },
                     ],
                     correctAnswer: [
                       {
                         id: "1",
-                        text: "România a intrat în Primul Război Mondial",
+                        text: "Franța",
+                        text1: "Germania",
                         anul: "1916",
                       },
                       {
                         id: "2",
-                        text: "Ocuparea Bucureștelui",
+                        text: "",
+                        text1: "Austro-Ungaria",
                         anul: "23 mai 1916",
                       },
                       {
                         id: "3",
-                        text: "România a câștigat o victorie importantă în Bătălia de la Mărăști",
+                        text: "",
+                        text1: "Imperiul Otoman",
                         anul: "1917",
                       },
                       {
                         id: "4",
-                        text: "România a semnat Tratatul de la București",
+                        text: "",
+                        text1: "Bulgaria",
                         anul: "24 aprilie 1918",
                       },
                     ],
+                    correctAnswerGroup: [
+                      {
+                        id: "1",
+                        text: "Puterile centrale: Germania, Austro-Ungaria, Imporiul Otoman, Bulgaria"
+                      },
+                      {
+                        id: "2",
+                        text: "Antanta: Franța"
+                      },
+                    ]
                   },
                 ],
               },
@@ -862,7 +893,9 @@ let temeIstoria = [
                     titleID: "1",
                     cerinte:
                       "Din lista prezentată selectați caracteristicile I Război Mondial:",
-                    answers: [
+                      coloane: ["Lista variantelor", "Caracteristicile"],
+                      coloanaRaspuns: "Caracteristicile",                    
+                      answers: [
                       { id: "1", text: "Lupta pentru reîmpărțirea lumii" },
                       {
                         id: "2",
@@ -903,7 +936,9 @@ let temeIstoria = [
                     titleID: "1",
                     cerinte:
                       "Din lista prezentată selectați caracteristicile I Război Mondial:",
-                    answers: [
+                      coloane: ["Lista variantelor", "Caracteristicile"],
+                      coloanaRaspuns: "Caracteristicile",                    
+                      answers: [
                       { id: "1", text: "Lupta pentru reîmpărțirea lumii" },
                       {
                         id: "2",
@@ -1051,6 +1086,8 @@ let temeIstoria = [
                     subjectID: "1",
                     subtitleID: "1",
                     titleID: "1",
+                    coloane: ["Evenimentele", "Text in ordine cronoligică"],
+                    coloanaRaspuns: "Text in ordine cronoligică",                    
                     answers: [
                       {
                         id: "1",
@@ -1099,6 +1136,8 @@ let temeIstoria = [
                     subjectID: "1",
                     subtitleID: "1",
                     titleID: "1",
+                    coloane: ["Evenimentele", "Text in ordine cronoligică"],
+                    coloanaRaspuns: "Text in ordine cronoligică",                    
                     answers: [
                       {
                         id: "1",
@@ -1181,6 +1220,8 @@ let temeIstoria = [
                     subjectID: "1",
                     subtitleID: "1",
                     titleID: "1",
+                    coloane: ["Evenimentele"],
+                    coloanaRaspuns: "Evenimentele",
                     answers: [
                       {
                         id: "1",
@@ -1225,6 +1266,8 @@ let temeIstoria = [
                     subjectID: "1",
                     subtitleID: "1",
                     titleID: "1",
+                    coloane: ["Evenimentele"],
+                    coloanaRaspuns: "Evenimentele",                    
                     answers: [
                       {
                         id: "1",
