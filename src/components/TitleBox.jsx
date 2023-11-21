@@ -12,6 +12,8 @@ const TitleBox = ({
   results,
   tests,
   exams,
+// Dupa deploy
+  // proc
 }) => {
   const classes = "title-box " + className;
   const [procent, setProcent] = useState(0);
@@ -20,7 +22,7 @@ const TitleBox = ({
     // console.log(results.items);
     // console.log("subjectId", subjectId);
     // console.log("subtitleId", subtitleId);
-    // console.log("list", list);
+    console.log("list", list);
 
     if (subtitleId !== null && subtitleId !== undefined) {
       const filteredIds = temeIstoriArray
@@ -351,6 +353,9 @@ const TitleBox = ({
         <img src={process.env.PUBLIC_URL + "/images/parchment.png"} alt="" />
         <h1>{children}</h1>
       </div>
+      {/* dupa Deploy */}
+      {/* <ProgressBar proc={proc} /> */}
+
       <ProgressBar proc={procent} />
     </div>
   );

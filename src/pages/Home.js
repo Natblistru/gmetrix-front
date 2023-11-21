@@ -7,19 +7,22 @@ import Wrapper from "../components/Wrapper";
 import discipline from "../data/discipline";
 
 const Home = () => {
-  const [chapters,setChapters] = useState([]);
+  //***DUPĂ DEPLOY
+  // const [discipline,setDiscipline] = useState([]);
   useEffect(()=> {
     fetchChapters();
   },[]);
   const fetchChapters = async () => {
     try {
-      const res = await axios.get("http://localhost:8000/api/subject_study_levels");
+      const res = await axios.get("http://localhost:8000/api/disciplineani?year=2022");
       console.log(res.data);
+      //***DUPĂ DEPLOY
+      // setDiscipline(res.data);
     } catch (err) {
       console.error(err);
     }
   }
-
+  console.log(discipline);
   return (
     <Wrapper>
       <Titlu>Disciplinele de absolvire a cursului gimnazial</Titlu>

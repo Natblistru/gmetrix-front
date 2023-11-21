@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory, useLocation } from "react-router-dom";
 import temeIstoriArray from "../data/temeIstoria";
 import temeMatemArray from "../data/temeMatem";
 import temeRomanaArray from "../data/temeRomana";
@@ -11,6 +11,7 @@ import "../index.css";
 
 const Tema = () => {
   const { address, disciplina } = useParams();
+  const location = useLocation();
   const [item, setItem] = useState(null);
 //  console.log(disciplina);
   const history = useHistory();
@@ -46,6 +47,17 @@ const Tema = () => {
       history.push("/error");
     }
   }, []);
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    const program = searchParams.get("program");
+    const teacher = searchParams.get("teacher");
+
+    // Poți folosi valorile program și teacher cum ai nevoie în logica componentei
+
+    console.log("Parametrul program:", program);
+    console.log("Parametrul teacher:", teacher);
+  }, [location.search]);
 
   return (
     <Wrapper>

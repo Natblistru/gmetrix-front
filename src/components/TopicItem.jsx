@@ -40,7 +40,7 @@ const TopicItem = ({ item,results,allTems }) => {
   
     return procSum / filteredItems.length;
   };
-
+console.log(tema);
   return (
     <li className="topic-item" key={tema.id}>
       <div className="topic-header">
@@ -48,6 +48,9 @@ const TopicItem = ({ item,results,allTems }) => {
           <span className="num"></span>
           <h3>{tema.title}</h3>
         </div>
+        {/* Dupa DEPLOY */}
+        {/* <ProgressBar proc={tema.capitol_media} /> */}
+
         <ProgressBar proc={procent} />
       </div>
       <ol className="subtopic-list">

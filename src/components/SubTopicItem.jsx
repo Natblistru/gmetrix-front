@@ -163,19 +163,25 @@ const SubTopicItem = ({subTit,idx,results,tests,exams, allTems}) => {
   
     return procSum / filteredItems.length;
   };
-// console.log(subtitle.addressDisciplina);
-// console.log(subtitle.address);
+console.log(subtitle.addressDisciplina);
+console.log(subtitle.address);
+console.log(subtitle);
   return (
     <li key={idx}>
       <div className="subtopic-header">
         <span className="num"></span>
         <h4>
-          {/* <Link to='/tema1'>{subtitle.name}</Link> */}
+          {/* Dupa Deploy */}
+          {/* <Link to={`${subtitle.path_tema}?teacher=1&program=${subtitle.theme_learning_programs_id}`}> */}
+
           <Link to={`${subtitle.addressDisciplina}${subtitle.address}`}>
             {subtitle.name}
           </Link>
         </h4>
       </div>
+      {/* Dupa Deploy */}
+      {/* <ProgressBar proc={subtitle.tema_media} nota={nota}/> */}
+
       <ProgressBar proc={procent} nota={nota}/>
     </li>
   );
