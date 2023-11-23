@@ -1,6 +1,8 @@
+import React from "react";
 import axios from "axios";
 import {useState, useEffect} from "react";
 import { useParams } from "react-router-dom";
+import ContextData from "../components/context/ContextData";
 
 // import temeMatem from '../data/temeMatem';
 import Breadcrumb from "../components/Breadcrumb";
@@ -12,10 +14,9 @@ import Card from '../components/Card';
 import '../index.css';
 
 const Capitole = (props) => {
+  const {stateData, dispatchData} = React.useContext(ContextData)
   console.log("Parametrul id:", props.match.params.id); //parametru din adresa /:id
-  //***DUPĂ DEPLOY
   const { id } = useParams();
-  const [capitole,setCapitole] = useState([]);
   const [denumireDisciplina,setDenumireDisciplina] = useState("");
   const [nivelStudiu,setNivelStudiu] = useState("");
   const [clasa,setClasa] = useState("");
@@ -30,9 +31,12 @@ const Capitole = (props) => {
     const fetchTodos = async () => {
         try {
             const res = await axios.get(`http://localhost:8000/api/capitoleDisciplina?level=1&disciplina=${id}&student=1`);
+
             console.log(res.data);
-            //***DUPĂ DEPLOY
-            setCapitole(res.data);
+            dispatchData({
+                type: "FETCH_CAPITOLE",
+                payload: res.data
+            })
             if (res.data.length > 0) {
               // Accesează denumirea subiectului din primul element al array-ului
               setDenumireDisciplina(res.data[0].subject_name);
@@ -45,7 +49,6 @@ const Capitole = (props) => {
             console.error(err);
         }
     }
-    console.log(capitole);
     
     return (
         <Wrapper className="large">
@@ -53,7 +56,7 @@ const Capitole = (props) => {
             <Card>
                 <Titlu className="titlu-card">{denumireDisciplina} - pregătire pentru {nivelStudiu} ({year})</Titlu>
                 <TitleBox className="teme-container" proc={proc}>{clasa}</TitleBox>
-                <TopicsList teme={capitole}/>
+                <TopicsList />
             </Card>
         </Wrapper>
     )

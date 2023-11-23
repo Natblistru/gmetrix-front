@@ -1,3 +1,4 @@
+import React from "react"
 import axios from "axios";
 import {useState, useEffect} from "react";
 
@@ -5,10 +6,11 @@ import ListDiscipline from "../components/ListDiscipline";
 import Titlu from "../components/Titlu";
 import Wrapper from "../components/Wrapper";
 import discipline from "../data/discipline";
+import ContextData from "../components/context/ContextData";
 
 const Home = () => {
-  //***DUPĂ DEPLOY
-  // const [discipline,setDiscipline] = useState([]);
+  const {dispatchData} = React.useContext(ContextData)
+
   useEffect(()=> {
     fetchChapters();
   },[]);
@@ -16,8 +18,12 @@ const Home = () => {
     try {
       const res = await axios.get("http://localhost:8000/api/disciplineani?year=2022");
       console.log(res.data);
-      //***DUPĂ DEPLOY
-      // setDiscipline(res.data);
+      dispatchData({
+        type: "FETCH_DISCIPLINE",
+        payload: res.data
+      }
+
+      )
     } catch (err) {
       console.error(err);
     }

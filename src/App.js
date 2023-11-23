@@ -1,3 +1,4 @@
+import React from "react";
 import { Redirect } from "react-router-dom";
 import {
   BrowserRouter as Router,
@@ -22,17 +23,21 @@ import ExamenSubect1 from "./components/Teste/ExamenSubect1";
 import ExamenSubect2 from "./components/Teste/ExamenSubject2";
 import ExamenSubect3 from "./components/Teste/ExamenSubject3";
 import Error from "./components/Error";
-// import Raspunsuri from "./components/context/Raspunsuri";
+import Raspunsuri from "./components/context/Raspunsuri";
 import StoreComponent from "./components/ReduxComp/StoreComponent";
+import ContextData from "./components/context/ContextData.js";
+import StateData from "./components/context/StateData.js";
+import ReducerData from "./components/context/ReducerData.js";
 
 const FlipCardsWithRouter = withRouter(FlipCards);
 const TestWithRouter = withRouter(Test);
 
 function App() {
+  const [stateData, dispatchData] = React.useReducer(ReducerData, StateData)
   return (
     <div className="App">
       <div>
-        {/* <Raspunsuri> */}
+        <ContextData.Provider value = {{stateData, dispatchData}}>
           <StoreComponent>
             <Switch>
               <Route exact path="/" render={() => <Redirect to="/home" />} />
@@ -58,7 +63,7 @@ function App() {
               <Route component={Error} />
             </Switch>
           </StoreComponent>
-        {/* </Raspunsuri> */}
+        </ContextData.Provider>
       </div>
     </div>
   );

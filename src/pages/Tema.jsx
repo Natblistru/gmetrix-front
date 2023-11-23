@@ -12,6 +12,7 @@ import "../index.css";
 const Tema = () => {
   const { address, disciplina } = useParams();
   const location = useLocation();
+  
   const [item, setItem] = useState(null);
 //  console.log(disciplina);
   const history = useHistory();
