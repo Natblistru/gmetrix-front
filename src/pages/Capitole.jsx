@@ -50,7 +50,11 @@ const Capitole = (props) => {
                     type: "UPDATE_SUBJECTNAME",
                     payload: res.data[0].subject_name
                 })
-                const newBreadcrumb = {name: `${res.data[0].subject_name}`, path: `/capitole/${id}`};
+                dispatchData({
+                    type: "UPDATE_CURRENT_SUBJECT",
+                    payload: res.data[0].subject_id
+                })
+                const newBreadcrumb = {name: `${res.data[0].subject_name}`, path: `/capitole/${id}?level=1&year=2022`};
                 dispatchData({
                   type: "UPDATE_SUBJECT_BREADCRUMB",
                   payload: newBreadcrumb

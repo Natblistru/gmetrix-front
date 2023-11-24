@@ -11,6 +11,11 @@ const ReducerData = (state, action) => {
         ...state,
         capitole: action.payload
       }
+    case "FETCH_TOPICS":
+      return {
+        ...state,
+        topics: action.payload
+      }
     case 'ADD_BREADCRUMB':
       const exists = state.breadcrumb.some(item => (
         item.name === action.payload.name && item.path === action.payload.path
@@ -39,6 +44,21 @@ const ReducerData = (state, action) => {
         breadcrumb: updatedBreadcrumb
         };
       }
+      case "UPDATE_THEME_BREADCRUMB":
+        if (state.breadcrumb.length = 2) {
+          return {
+            ...state,
+            breadcrumb: [...state.breadcrumb, action.payload]
+          }; 
+        }
+        else if (state.breadcrumb.length = 3) {
+          const updatedBreadcrumb = [...state.breadcrumb];
+          updatedBreadcrumb[2] = action.payload;
+          return {
+            ...state,
+          breadcrumb: updatedBreadcrumb
+          };
+        }  
     case "UPDATE_CURRENT_SUBJECT":
       return {
         ...state,
