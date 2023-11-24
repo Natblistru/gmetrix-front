@@ -25,8 +25,16 @@ const Capitole = (props) => {
 
     useEffect(()=> {
       console.log(id);
+        updateLevel(id);
         fetchCapitole();
     },[]);
+
+    const updateLevel = (id) => {
+        dispatchData({
+          type: "UPDATE_CURRENT_SUBJECT",
+          payload: id
+        });
+      };
 
     const fetchCapitole = async () => {
         try {
@@ -38,11 +46,20 @@ const Capitole = (props) => {
                 payload: res.data
             })
             if (res.data.length > 0) {
-              setDenumireDisciplina(res.data[0].subject_name);
-              setNivelStudiu(res.data[0].study_level_id==1?"examen clasa 9":"BAC");
-              setClasa(res.data[0].study_level_id==1?"clasa 9":"clasa 12");
-              setYear(res.data[0].year);
-              setProc(res.data[0].disciplina_media);
+                dispatchData({
+                    type: "UPDATE_SUBJECTNAME",
+                    payload: res.data[0].subject_name
+                })
+                const newBreadcrumb = {name: `${res.data[0].subject_name}`, path: `/capitole/${id}`};
+                dispatchData({
+                  type: "UPDATE_SUBJECT_BREADCRUMB",
+                  payload: newBreadcrumb
+                });
+                setDenumireDisciplina(res.data[0].subject_name);
+                setNivelStudiu(res.data[0].study_level_id==1?"examen clasa 9":"BAC");
+                setClasa(res.data[0].study_level_id==1?"clasa 9":"clasa 12");
+                setYear(res.data[0].year);
+                setProc(res.data[0].disciplina_media);
           }
         } catch (err) {
             console.error(err);
@@ -51,7 +68,7 @@ const Capitole = (props) => {
     
     return (
         <Wrapper className="large">
-            <Breadcrumb list={[{name: "Discipline", path: "/"}]}/>
+            <Breadcrumb step={0}/>
             <Card>
                 <Titlu className="titlu-card">{denumireDisciplina} - pregătire pentru {nivelStudiu} ({year})</Titlu>
                 <TitleBox className="teme-container" proc={proc}>{clasa}</TitleBox>

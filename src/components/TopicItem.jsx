@@ -5,7 +5,6 @@ import ProgressBar from "./ProgressBar";
 
 const TopicItem = ({ item,results,allTems }) => {
   const tema = item;
-  console.log(tema);
   return (
     <li className="topic-item" key={tema.id}>
       <div className="topic-header">

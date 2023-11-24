@@ -1,3 +1,6 @@
+import React from "react";
+import ContextData from "../components/context/ContextData";
+
 import { useState, useEffect } from "react";
 import { useParams, useHistory, useLocation } from "react-router-dom";
 import temeIstoriArray from "../data/temeIstoria";
@@ -10,6 +13,7 @@ import ListAccordeon from "../components/Accordeon/ListAccordeon";
 import "../index.css";
 
 const Tema = () => {
+  const {stateData, dispatchData} = React.useContext(ContextData)
   const { address, disciplina } = useParams();
   const location = useLocation();
   
@@ -41,6 +45,7 @@ const Tema = () => {
   }
 
   useEffect(() => {
+    // addBreadcrumb();
     const foundItem = findObjectWithAddress(teme);
     if (foundItem) {
       setItem(foundItem);
@@ -62,8 +67,7 @@ const Tema = () => {
     <Wrapper>
       {item && (
         <>
-          <Breadcrumb list={item.breadcrumb} />
-          {console.log(item.breadcrumb)}
+          <Breadcrumb step={1}/>
           <TitleBox className="teme-container" subtitleId={item.id} teme={teme}>{item.name}</TitleBox>
           <ListAccordeon teme={item} />
         </>

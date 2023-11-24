@@ -1,13 +1,18 @@
 import React from "react";
+import ContextData from "../components/context/ContextData";
 import { Link } from 'react-router-dom';
 
 const Breadcrumb = (props) => {
+    const {stateData} = React.useContext(ContextData)
+    const list = stateData.breadcrumb;
     return <ul className="breadcrumb">
                 {
-                    props.list?.map((item,idx) => (
-                        <li key={idx}>
-                            <Link to={item.path}><span>{item.name}</span></Link>
-                        </li>
+                    list?.map((item,idx) => (
+                        idx <= props.step && (
+                            <li key={idx}>
+                              <Link to={item.path}><span>{item.name}</span></Link>
+                            </li>
+                          )
                     ))
                 }
 

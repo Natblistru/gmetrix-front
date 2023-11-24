@@ -11,8 +11,18 @@ const Home = () => {
   const {dispatchData} = React.useContext(ContextData)
 
   useEffect(()=> {
+    updateBreadcrumb();
     fetchSubjects();
   },[]);
+
+  const updateBreadcrumb = () => {
+    const newBreadcrumb = {name: "Discipline", path: "/"};
+    dispatchData({
+      type: "ADD_BREADCRUMB",
+      payload: newBreadcrumb
+    });
+  };
+
   const fetchSubjects = async () => {
     try {
       const res = await axios.get("http://localhost:8000/api/disciplineani?year=2022");
