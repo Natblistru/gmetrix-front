@@ -54,8 +54,6 @@ const Tema = () => {
     const program = searchParams.get("program");
     const teacher = searchParams.get("teacher");
 
-    // Poți folosi valorile program și teacher cum ai nevoie în logica componentei
-
     console.log("Parametrul program:", program);
     console.log("Parametrul teacher:", teacher);
   }, [location.search]);
@@ -65,6 +63,7 @@ const Tema = () => {
       {item && (
         <>
           <Breadcrumb list={item.breadcrumb} />
+          {console.log(item.breadcrumb)}
           <TitleBox className="teme-container" subtitleId={item.id} teme={teme}>{item.name}</TitleBox>
           <ListAccordeon teme={item} />
         </>

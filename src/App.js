@@ -11,9 +11,6 @@ import "./index.css";
 import Home from "./pages/Home";
 import Tema from "./pages/Tema";
 import Subtema from "./pages/Subtema";
-import TemeRom from "./pages/TemeRom";
-import TemeMatem from "./pages/TemeMatem";
-import TemeIstoria from "./pages/TemeIstoria";
 import Capitole from "./pages/Capitole";
 import Test from "./pages/Test";
 import TestWords from "./components/Teste/TestWords.jsx";
@@ -50,11 +47,7 @@ function App() {
               <Route path="/capitole/:id" component={Capitole} />
               <Route path="/:disciplina/:address/:address1" component={Subtema} />
               <Route path="/:disciplina/:address" component={Tema} />
-              <Route path="/matem/:address" component={Tema} />  {/*dupa DEPLOY  de sters */}
               <Route exact path="/home" component={Home} />
-              <Route path="/romana" component={TemeRom} />       {/*dupa DEPLOY  de sters */}
-              <Route path="/matem" component={TemeMatem} />      {/*dupa DEPLOY  de sters */}
-              <Route path="/istoria" component={TemeIstoria} />  {/*dupa DEPLOY  de sters */}
               <Route path="/word" component={TestWords} />
               <Route path="/tema1" component={Tema} />           {/*dupa DEPLOY  de sters */}
               <Route path="/subtema1" component={Subtema} />     {/*dupa DEPLOY  de sters */}

@@ -25,10 +25,10 @@ const Capitole = (props) => {
 
     useEffect(()=> {
       console.log(id);
-        fetchTodos();
+        fetchCapitole();
     },[]);
 
-    const fetchTodos = async () => {
+    const fetchCapitole = async () => {
         try {
             const res = await axios.get(`http://localhost:8000/api/capitoleDisciplina?level=1&disciplina=${id}&student=1`);
 
@@ -38,7 +38,6 @@ const Capitole = (props) => {
                 payload: res.data
             })
             if (res.data.length > 0) {
-              // Accesează denumirea subiectului din primul element al array-ului
               setDenumireDisciplina(res.data[0].subject_name);
               setNivelStudiu(res.data[0].study_level_id==1?"examen clasa 9":"BAC");
               setClasa(res.data[0].study_level_id==1?"clasa 9":"clasa 12");

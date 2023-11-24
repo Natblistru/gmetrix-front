@@ -3,15 +3,12 @@ import ContextData from "../components/context/ContextData";
 
 import TopicItem from "./TopicItem";
 
-const TopicsList = (props) => {
+const TopicsList = () => {
     const {stateData} = React.useContext(ContextData)
-    console.log(props.teme)
     return (                
     <ol className="topic-list" type="I">
-      {/* Dupa Deploy */}      
-      {/* {stateData.capitole.map((item) => ( */}
-        {props.teme.map((tema,idx) => (
-            <TopicItem item={tema} key={idx} allTems={props.teme}/>
+      {stateData.capitole.map((tema,idx) => (
+            <TopicItem item={tema} key={idx} />
         ))}  
     </ol>)
     };
