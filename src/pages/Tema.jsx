@@ -1,5 +1,6 @@
 import React from "react";
 import ContextData from "../components/context/ContextData";
+import axios from "axios";
 
 import { useState, useEffect } from "react";
 import { useParams, useHistory, useLocation } from "react-router-dom";
@@ -18,8 +19,58 @@ const Tema = () => {
   const location = useLocation();
   
   const [item, setItem] = useState(null);
+  // const [theme,setTheme] = useState(null);
 //  console.log(disciplina);
   const history = useHistory();
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    // setTheme(searchParams.get("theme"));
+    const teacher = searchParams.get("teacher");
+
+    // console.log("Parametrul theme:", theme);
+    console.log("Parametrul teacher:", teacher);
+  }, [location.search]);
+  
+  useEffect(()=> {
+    const searchParams = new URLSearchParams(location.search);
+    const theme = searchParams.get("theme");
+    // setTheme(theme);
+    const teacher = searchParams.get("teacher");
+
+    console.log("Parametrul theme:", theme);
+    console.log("Parametrul teacher:", teacher);
+      fetchTheme(theme);
+  },[]);
+
+  const fetchTheme = async (theme) => {
+    try {
+        const res = await axios.get(`http://localhost:8000/api/teachertheme?level=1&disciplina=${stateData.currentSubject}&teacher=1&student=1&theme=${theme}`);
+
+        console.log("Parametrul disciplina(currentSubject):", stateData.currentSubject);
+        console.log("Parametrul theme:", theme);
+        console.log(res.data);
+        dispatchData({
+            type: "FETCH_TOPICS",
+            payload: res.data
+        })
+      //   if (res.data.length > 0) {
+      //       dispatchData({
+      //           type: "UPDATE_SUBJECTNAME",
+      //           payload: res.data[0].subject_name
+      //       })
+      //       const newBreadcrumb = {name: `${res.data[0].subject_name}`, path: `/capitole/${id}?level=1&year=2022`};
+      //       dispatchData({
+      //         type: "UPDATE_SUBJECT_BREADCRUMB",
+      //         payload: newBreadcrumb
+      //       });
+      // }
+    } catch (err) {
+        console.error(err);
+    }
+}
+
+
   let teme;
   if(disciplina == "istoria") {
     teme = temeIstoriArray;
@@ -28,7 +79,7 @@ const Tema = () => {
   } else if(disciplina == "romana") {
     teme = temeRomanaArray;    
   }
-  //console.log(teme);
+  console.log(stateData.topics);
 
   function findObjectWithAddress(obj) {
     for (let key in obj) {
@@ -54,14 +105,7 @@ const Tema = () => {
     }
   }, []);
 
-  useEffect(() => {
-    const searchParams = new URLSearchParams(location.search);
-    const program = searchParams.get("program");
-    const teacher = searchParams.get("teacher");
 
-    console.log("Parametrul program:", program);
-    console.log("Parametrul teacher:", teacher);
-  }, [location.search]);
 
   return (
     <Wrapper>
