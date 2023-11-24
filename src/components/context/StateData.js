@@ -1,10 +1,9 @@
 const StateData = {
-  disciplineAni: [],
   capitole: [],
-  topics: [],
+  disciplineAni: [],
   breadcrumb: [],
   currentLevel: 1,
-  currentSubject: null,
+  currentSubject: 0,
   currentSubjectName: "",
   currentStudent: 1,
   currentYear: 2022

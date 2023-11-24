@@ -10,7 +10,7 @@ const ListDiscipline = () => {
         
         <div className="manual-item" key={item.id}>
 
-          <Link to={`/capitole/${item.subject_id}?level=1&year=2022`}>
+          <Link to={`/capitole/${item.subject_id}`}>
           
             <img src={process.env.PUBLIC_URL + item.img} alt="" />
             <p>{item.name}</p>
