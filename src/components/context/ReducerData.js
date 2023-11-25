@@ -44,6 +44,21 @@ const ReducerData = (state, action) => {
         breadcrumb: updatedBreadcrumb
         };
       }
+      case "UPDATE_TOPIC_BREADCRUMB":
+        if (state.breadcrumb.length = 2) {
+          return {
+            ...state,
+            breadcrumb: [...state.breadcrumb, action.payload]
+          }; 
+        }
+        else if (state.breadcrumb.length = 3) {
+          const updatedBreadcrumb = [...state.breadcrumb];
+          updatedBreadcrumb[2] = action.payload;
+          return {
+            ...state,
+          breadcrumb: updatedBreadcrumb
+          };
+        }
       case "UPDATE_THEME_BREADCRUMB":
         if (state.breadcrumb.length = 2) {
           return {

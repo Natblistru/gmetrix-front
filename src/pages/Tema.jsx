@@ -17,7 +17,9 @@ const Tema = () => {
   const {stateData, dispatchData} = React.useContext(ContextData)
   const { address, disciplina } = useParams();
   const location = useLocation();
-  
+  console.log(address);
+  console.log(disciplina); 
+
   const [item, setItem] = useState(null);
   // const [theme,setTheme] = useState(null);
 //  console.log(disciplina);
@@ -40,7 +42,18 @@ const Tema = () => {
 
     console.log("Parametrul theme:", theme);
     console.log("Parametrul teacher:", teacher);
-      fetchTheme(theme);
+    fetchTheme(theme);
+
+    const pathToFind = `/${disciplina}/${address}`;
+    const foundElement = stateData.capitole.find(element => element.path_tema === pathToFind);
+    const temaName = foundElement ? foundElement.tema_name : null;
+    console.log(temaName);
+  
+    const newBreadcrumb = {name: temaName, path: pathToFind};
+    dispatchData({
+      type: "UPDATE_TOPIC_BREADCRUMB",
+      payload: newBreadcrumb
+    });
   },[]);
 
   const fetchTheme = async (theme) => {
@@ -69,6 +82,8 @@ const Tema = () => {
         console.error(err);
     }
 }
+
+
 
 
   let teme;

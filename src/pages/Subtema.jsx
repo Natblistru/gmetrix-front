@@ -49,7 +49,7 @@ const Subtema = ({results})  => {
     <Wrapper>
       {item && (
         <>
-          <Breadcrumb list={item.breadcrumb} />
+          <Breadcrumb step={2} />
           <TitleBox className="teme-container" subjectId={item.id}>{item.name}</TitleBox>
           <ListSubAccordeon teme={teme} subtema={item}/>
         </>

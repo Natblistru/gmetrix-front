@@ -19,8 +19,9 @@ const ParentComponent = (props) => {
   };
 
   return (
-    <div>
-      <DiagramTable {...props} openModal={openModal} />
+    <div style={{ paddingBottom: '100px' }}>
+      {/* <DiagramTable {...props} openModal={openModal} /> */}
+      <iframe style={{borderBottom: '1px solid #584949'}} width="100%" height="360" src="https://www.youtube.com/embed/qV2PSgIK-c4" title="România în Primul Război Mondial" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> 
       {isModalOpen && <Modal closeModal={closeModal} text={modalText} img={modalImg}/>}
     </div>
   );

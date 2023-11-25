@@ -1240,8 +1240,43 @@ transition: color 150ms ease-in-out;
     align-items: center;
     gap: 5px;
    }
+
+.video-breakpoints-container {
+  padding: 20px;
+}
+
+.h3-orange {
+  color: #f3520c;
+  text-transform: uppercase;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.video-breakpoints-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 15px;
+}
+
+.video-breakpoints-container .video-breakpoints-item {
+  display: flex;
+  width: 50%;
+  margin-bottom: 5px;
+  font-size: 15px;
+  cursor: pointer;
+  gap: 5px;
+}
    
 
+.video-breakpoints-container .video-breakpoints-item::before {
+  content: '';
+  background: #52c3b0;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  margin-right: 4px;
+  margin-top: 6px;
+}
 
 
 
