@@ -30,7 +30,7 @@ let temeRomana = [
             path: "/subtema1",
             addressDisciplina: "/romana",
             addressSubtitle: "/limba-romana",
-            addressSubject: "/limba-materna",
+            addressSubject: "/limba-romana-limba-materna",
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Romana", path: "/romana" },

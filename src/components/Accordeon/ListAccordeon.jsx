@@ -1,4 +1,6 @@
 import React, { useEffect, useRef } from 'react';
+
+import ContextData from '../context/ContextData';
 import { withRouter, Link } from "react-router-dom";
 import '../../index.css';
 import ParentComponent from "../Modal/ParentComponent";
@@ -9,6 +11,7 @@ import ItemList from "./ItemList";
 import { scroller } from 'react-scroll';
 
 const ListAccordeon = (props) => {
+  const {stateData, dispatchData} = React.useContext(ContextData)
   useEffect(() => {
     if (props.location.hash === '#ani') {
         scroller.scrollTo('ani', {
@@ -24,7 +27,10 @@ const ListAccordeon = (props) => {
   }, [props.location.hash]);
 
   const classes = " " + props.className;
-  let titleList = props.teme.subjects;
+  // let titleList = props.teme.subjects;
+  let titleList = stateData.topics;
+  console.log(titleList)
+  
   let repereList = props.teme.repere;
   let aplicatiiList = props.teme.aplicatii;
   let termeniList = props.teme.termeni;
@@ -43,7 +49,7 @@ const ListAccordeon = (props) => {
     {"time":"0:26:52","seconds":"1612","name":"Pacea de la București 1918"},
     {"time":"0:28:36","seconds":"1716","name":"Actul Unirii"}
   ];
-
+  console.log(stateData.topics); 
   return (
     <div className={classes}>
       <ItemAccordeon titlu="Teorie" {...props} open={true}>

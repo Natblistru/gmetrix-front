@@ -5,7 +5,8 @@ const StateData = {
   breadcrumb: [],
   currentLevel: 1,
   currentSubject: null,
-  currentSubjectName: "",
+  currentTheme: null,
+  currentTopic: null,
   currentStudent: 1,
   currentYear: 2022
 }

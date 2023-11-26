@@ -59,30 +59,20 @@ const ReducerData = (state, action) => {
           breadcrumb: updatedBreadcrumb
           };
         }
-      case "UPDATE_THEME_BREADCRUMB":
-        if (state.breadcrumb.length = 2) {
-          return {
-            ...state,
-            breadcrumb: [...state.breadcrumb, action.payload]
-          }; 
-        }
-        else if (state.breadcrumb.length = 3) {
-          const updatedBreadcrumb = [...state.breadcrumb];
-          updatedBreadcrumb[2] = action.payload;
-          return {
-            ...state,
-          breadcrumb: updatedBreadcrumb
-          };
-        }  
     case "UPDATE_CURRENT_SUBJECT":
       return {
         ...state,
         currentSubject: action.payload
       };
-      case "UPDATE_SUBJECTNAME":
+    case "UPDATE_CURRENT_THEME":
+      return {
+        ...state,
+        currentTheme: action.payload
+      };
+      case "UPDATE_CURRENT_TOPIC":
         return {
           ...state,
-          currentSubjectName: action.payload
+          currentTopic: action.payload
         };
       
     default: 

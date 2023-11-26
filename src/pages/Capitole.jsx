@@ -25,16 +25,9 @@ const Capitole = (props) => {
 
     useEffect(()=> {
       console.log(id);
-        updateLevel(id);
         fetchCapitole();
     },[]);
 
-    const updateLevel = (id) => {
-        dispatchData({
-          type: "UPDATE_CURRENT_SUBJECT",
-          payload: id
-        });
-      };
 
     const fetchCapitole = async () => {
         try {
@@ -47,12 +40,8 @@ const Capitole = (props) => {
             })
             if (res.data.length > 0) {
                 dispatchData({
-                    type: "UPDATE_SUBJECTNAME",
-                    payload: res.data[0].subject_name
-                })
-                dispatchData({
                     type: "UPDATE_CURRENT_SUBJECT",
-                    payload: res.data[0].subject_id
+                    payload: res.data[0]
                 })
                 const newBreadcrumb = {name: `${res.data[0].subject_name}`, path: `/capitole/${id}?level=1&year=2022`};
                 dispatchData({

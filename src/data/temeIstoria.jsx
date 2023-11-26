@@ -23,7 +23,7 @@ let temeIstoria = [
             path: "/subtema1",
             addressDisciplina: "/istoria",
             addressSubtitle: "/romania-in-primul-razboi",
-            addressSubject: "/optiuni-politice-in-perioada-neutralitatii",
+            addressSubject: "/optiunile-politice-in-perioada-neutralitatii",
             address:
               "/dis/history/class-9/primul-razboi-mondial/romania-in-primul-razboi/neutralitate",
             breadcrumb: [
@@ -108,10 +108,10 @@ let temeIstoria = [
                 addressTestDisciplina: "/istoria",
                 addressTestSubtitle: "/romania-in-primul-razboi",
                 addressTestSubject:
-                  "/optiuni-politice-in-perioada-neutralitatii",
+                  "/optiunile-politice-in-perioada-neutralitatii",
                 addressTest: "/alege-afirmatia-corecta",
                 addressTestId:
-                  "/optiuni-politice-in-perioada-neutralitatii/alege-afirmatia-corecta",
+                  "/optiunile-politice-in-perioada-neutralitatii/alege-afirmatia-corecta",
                 breadcrumb: [
                   { name: "Discipline", path: "/" },
                   { name: "Istoria", path: "/istoria" },
@@ -121,7 +121,7 @@ let temeIstoria = [
                   },
                   {
                     name: "Opțiunile politice în perioada neutralității",
-                    path: "/istoria/romania-in-primul-razboi/optiuni-politice-in-perioada-neutralitatii",
+                    path: "/istoria/romania-in-primul-razboi/optiunile-politice-in-perioada-neutralitatii",
                   },
                 ],
                 type: "quiz",
@@ -298,10 +298,10 @@ let temeIstoria = [
                 addressTestDisciplina: "/istoria",
                 addressTestSubtitle: "/romania-in-primul-razboi",
                 addressTestSubject:
-                  "/optiuni-politice-in-perioada-neutralitatii",
+                  "/optiunile-politice-in-perioada-neutralitatii",
                 addressTest: "/stabileste-cauzele",
                 addressTestId:
-                  "/optiuni-politice-in-perioada-neutralitatii/stabileste-cauzele",
+                  "/optiunile-politice-in-perioada-neutralitatii/stabileste-cauzele",
                 breadcrumb: [
                   { name: "Discipline", path: "/" },
                   { name: "Istoria", path: "/istoria" },
@@ -311,7 +311,7 @@ let temeIstoria = [
                   },
                   {
                     name: "Opțiunile politice în perioada neutralității",
-                    path: "/istoria/romania-in-primul-razboi/optiuni-politice-in-perioada-neutralitatii",
+                    path: "/istoria/romania-in-primul-razboi/optiunile-politice-in-perioada-neutralitatii",
                   },
                 ],
                 coloane: ["Lista variantelor", "Cauzele"],
@@ -421,10 +421,10 @@ let temeIstoria = [
                 addressTestDisciplina: "/istoria",
                 addressTestSubtitle: "/romania-in-primul-razboi",
                 addressTestSubject:
-                  "/optiuni-politice-in-perioada-neutralitatii",
+                  "/optiunile-politice-in-perioada-neutralitatii",
                 addressTest: "/stabileste-consecintele",
                 addressTestId:
-                  "/optiuni-politice-in-perioada-neutralitatii/stabileste-consecintele",
+                  "/optiunile-politice-in-perioada-neutralitatii/stabileste-consecintele",
                 breadcrumb: [
                   { name: "Discipline", path: "/" },
                   { name: "Istoria", path: "/istoria" },
@@ -434,7 +434,7 @@ let temeIstoria = [
                   },
                   {
                     name: "Opțiunile politice în perioada neutralității",
-                    path: "/istoria/romania-in-primul-razboi/optiuni-politice-in-perioada-neutralitatii",
+                    path: "/istoria/romania-in-primul-razboi/optiunile-politice-in-perioada-neutralitatii",
                   },
                 ],
                 coloane: ["Lista variantelor", "Consecintele"],
@@ -537,10 +537,10 @@ let temeIstoria = [
                 addressTestDisciplina: "/istoria",
                 addressTestSubtitle: "/romania-in-primul-razboi",
                 addressTestSubject:
-                  "/optiuni-politice-in-perioada-neutralitatii",
+                  "/optiunile-politice-in-perioada-neutralitatii",
                 addressTest: "/verifica-corectitudinea",
                 addressTestId:
-                  "/optiuni-politice-in-perioada-neutralitatii/verifica-corectitudinea",
+                  "/optiunile-politice-in-perioada-neutralitatii/verifica-corectitudinea",
                 breadcrumb: [
                   { name: "Discipline", path: "/" },
                   { name: "Istoria", path: "/istoria" },
@@ -550,7 +550,7 @@ let temeIstoria = [
                   },
                   {
                     name: "Opțiunile politice în perioada neutralității",
-                    path: "/istoria/romania-in-primul-razboi/optiuni-politice-in-perioada-neutralitatii",
+                    path: "/istoria/romania-in-primul-razboi/optiunile-politice-in-perioada-neutralitatii",
                   },
                 ],
                 coloane: [],
@@ -640,10 +640,10 @@ let temeIstoria = [
                 addressTestDisciplina: "/istoria",
                 addressTestSubtitle: "/romania-in-primul-razboi",
                 addressTestSubject:
-                  "/optiuni-politice-in-perioada-neutralitatii",
+                  "/optiunile-politice-in-perioada-neutralitatii",
                 addressTest: "/formeaza-perechi",
                 addressTestId:
-                  "/optiuni-politice-in-perioada-neutralitatii/formeaza-perechi",
+                  "/optiunile-politice-in-perioada-neutralitatii/formeaza-perechi",
                 breadcrumb: [
                   { name: "Discipline", path: "/" },
                   { name: "Istoria", path: "/istoria" },
@@ -653,7 +653,7 @@ let temeIstoria = [
                   },
                   {
                     name: "Opțiunile politice în perioada neutralității",
-                    path: "/istoria/romania-in-primul-razboi/optiuni-politice-in-perioada-neutralitatii",
+                    path: "/istoria/romania-in-primul-razboi/optiunile-politice-in-perioada-neutralitatii",
                   },
                 ],
                 type: "snap",
@@ -724,10 +724,10 @@ let temeIstoria = [
                 addressTestDisciplina: "/istoria",
                 addressTestSubtitle: "/romania-in-primul-razboi",
                 addressTestSubject:
-                  "/optiuni-politice-in-perioada-neutralitatii",
+                  "/optiunile-politice-in-perioada-neutralitatii",
                 addressTest: "/grupeaza-elementele",
                 addressTestId:
-                  "/optiuni-politice-in-perioada-neutralitatii/grupeaza-elementele",
+                  "/optiunile-politice-in-perioada-neutralitatii/grupeaza-elementele",
                 breadcrumb: [
                   { name: "Discipline", path: "/" },
                   { name: "Istoria", path: "/istoria" },
@@ -737,7 +737,7 @@ let temeIstoria = [
                   },
                   {
                     name: "Opțiunile politice în perioada neutralității",
-                    path: "/istoria/romania-in-primul-razboi/optiuni-politice-in-perioada-neutralitatii",
+                    path: "/istoria/romania-in-primul-razboi/optiunile-politice-in-perioada-neutralitatii",
                   },
                 ],
                 type: "group",
@@ -866,10 +866,10 @@ let temeIstoria = [
                 addressTestDisciplina: "/istoria",
                 addressTestSubtitle: "/romania-in-primul-razboi",
                 addressTestSubject:
-                  "/optiuni-politice-in-perioada-neutralitatii",
+                  "/optiunile-politice-in-perioada-neutralitatii",
                 addressTest: "/caracteristicile-evenimentelor",
                 addressTestId:
-                  "/optiuni-politice-in-perioada-neutralitatii/caracteristicile-evenimentelor",
+                  "/optiunile-politice-in-perioada-neutralitatii/caracteristicile-evenimentelor",
                 breadcrumb: [
                   { name: "Discipline", path: "/" },
                   { name: "Istoria", path: "/istoria" },
@@ -879,7 +879,7 @@ let temeIstoria = [
                   },
                   {
                     name: "Opțiunile politice în perioada neutralității",
-                    path: "/istoria/romania-in-primul-razboi/optiuni-politice-in-perioada-neutralitatii",
+                    path: "/istoria/romania-in-primul-razboi/optiunile-politice-in-perioada-neutralitatii",
                   },
                 ],
                 coloane: ["Lista variantelor", "Caracteristicile"],
@@ -987,10 +987,10 @@ let temeIstoria = [
                 addressTestDisciplina: "/istoria",
                 addressTestSubtitle: "/romania-in-primul-razboi",
                 addressTestSubject:
-                  "/optiuni-politice-in-perioada-neutralitatii",
+                  "/optiunile-politice-in-perioada-neutralitatii",
                 addressTest: "/completeaza-propozitia",
                 addressTestId:
-                  "/optiuni-politice-in-perioada-neutralitatii/completeaza-propozitia",
+                  "/optiunile-politice-in-perioada-neutralitatii/completeaza-propozitia",
                 breadcrumb: [
                   { name: "Discipline", path: "/" },
                   { name: "Istoria", path: "/istoria" },
@@ -1000,7 +1000,7 @@ let temeIstoria = [
                   },
                   {
                     name: "Opțiunile politice în perioada neutralității",
-                    path: "/istoria/romania-in-primul-razboi/optiuni-politice-in-perioada-neutralitatii",
+                    path: "/istoria/romania-in-primul-razboi/optiunile-politice-in-perioada-neutralitatii",
                   },
                 ],
                 quizArray: [
@@ -1061,10 +1061,10 @@ let temeIstoria = [
                 addressTestDisciplina: "/istoria",
                 addressTestSubtitle: "/romania-in-primul-razboi",
                 addressTestSubject:
-                  "/optiuni-politice-in-perioada-neutralitatii",
+                  "/optiunile-politice-in-perioada-neutralitatii",
                 addressTest: "/elaboreaza-text",
                 addressTestId:
-                  "/optiuni-politice-in-perioada-neutralitatii/elaboreaza-text",
+                  "/optiunile-politice-in-perioada-neutralitatii/elaboreaza-text",
                 breadcrumb: [
                   { name: "Discipline", path: "/" },
                   { name: "Istoria", path: "/istoria" },
@@ -1074,7 +1074,7 @@ let temeIstoria = [
                   },
                   {
                     name: "Opțiunile politice în perioada neutralității",
-                    path: "/istoria/romania-in-primul-razboi/optiuni-politice-in-perioada-neutralitatii",
+                    path: "/istoria/romania-in-primul-razboi/optiunile-politice-in-perioada-neutralitatii",
                   },
                 ],
                 coloane: ["Evenimentele", "Text in ordine cronoligică"],
@@ -1195,10 +1195,10 @@ let temeIstoria = [
                 addressTestDisciplina: "/istoria",
                 addressTestSubtitle: "/romania-in-primul-razboi",
                 addressTestSubject:
-                  "/optiuni-politice-in-perioada-neutralitatii",
+                  "/optiunile-politice-in-perioada-neutralitatii",
                 addressTest: "/succesiunea-cronologica",
                 addressTestId:
-                  "/optiuni-politice-in-perioada-neutralitatii/succesiunea-cronologica",
+                  "/optiunile-politice-in-perioada-neutralitatii/succesiunea-cronologica",
                 breadcrumb: [
                   { name: "Discipline", path: "/" },
                   { name: "Istoria", path: "/istoria" },
@@ -1208,7 +1208,7 @@ let temeIstoria = [
                   },
                   {
                     name: "Opțiunile politice în perioada neutralității",
-                    path: "/istoria/romania-in-primul-razboi/optiuni-politice-in-perioada-neutralitatii",
+                    path: "/istoria/romania-in-primul-razboi/optiunile-politice-in-perioada-neutralitatii",
                   },
                 ],
                 coloane: ["Evenimentele"],
@@ -1321,10 +1321,10 @@ let temeIstoria = [
                 addressTestDisciplina: "/istoria",
                 addressTestSubtitle: "/romania-in-primul-razboi",
                 addressTestSubject:
-                  "/optiuni-politice-in-perioada-neutralitatii",
+                  "/optiunile-politice-in-perioada-neutralitatii",
                 addressTest: "/test-de-totalizare",
                 addressTestId:
-                  "/optiuni-politice-in-perioada-neutralitatii/test-de-totalizare",
+                  "/optiunile-politice-in-perioada-neutralitatii/test-de-totalizare",
                 breadcrumb: [
                   { name: "Discipline", path: "/" },
                   { name: "Istoria", path: "/istoria" },
@@ -1334,7 +1334,7 @@ let temeIstoria = [
                   },
                   {
                     name: "Opțiunile politice în perioada neutralității",
-                    path: "/istoria/romania-in-primul-razboi/optiuni-politice-in-perioada-neutralitatii",
+                    path: "/istoria/romania-in-primul-razboi/optiunile-politice-in-perioada-neutralitatii",
                   },
                 ],
                 type: "testGeneralizator",
@@ -11943,7 +11943,7 @@ let temeIstoria = [
             name: "Cucerirea spațiului cosmic",
             path: "/subtema1",
             addressDisciplina: "/istoria",
-            addressSubtitle: "/ultura-si-stiinta-in-epoca-contemporana",
+            addressSubtitle: "/cultura-si-stiinta-in-epoca-contemporana",
             addressSubject: "/cucerirea-spațiului-cosmic",
             breadcrumb: [
               { name: "Discipline", path: "/" },
@@ -11979,7 +11979,7 @@ let temeIstoria = [
             name: "Arta și industria cinematografică",
             path: "/subtema1",
             addressDisciplina: "/istoria",
-            addressSubtitle: "/ultura-si-stiinta-in-epoca-contemporana",
+            addressSubtitle: "/cultura-si-stiinta-in-epoca-contemporana",
             addressSubject: "/arta-si-industria-cinematografica",
             breadcrumb: [
               { name: "Discipline", path: "/" },

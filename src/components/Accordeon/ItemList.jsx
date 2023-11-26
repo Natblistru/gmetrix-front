@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import ContextData from "../context/ContextData";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 const ItemList = ({ list, className, results, onItemClick }) => {
+  const {stateData, dispatchData} = React.useContext(ContextData)
   let listItems = list;
   const classes = "subjects-container " + className;
   let procProgress = 0;
@@ -24,7 +26,6 @@ const ItemList = ({ list, className, results, onItemClick }) => {
     if (!userItems) return 0;
     // console.log(userItems.subject);
     // console.log(subjectId);
-    // console.log(subtitle);   
     const filteredItems = userItems.subject.filter(item =>
       subtitle.vomAfla.some(subtitleItem =>
         item.id == subtitleItem.subjectID && item.audio == subtitleItem.id
@@ -34,18 +35,23 @@ const ItemList = ({ list, className, results, onItemClick }) => {
 
     return procSum / filteredItems.length;
   };
+  console.log(stateData.currentTheme); 
 
+  const parts = stateData.currentTheme.path_tema.split("/");
+  const addressDisciplina = "/" + parts[1];
+  const addressSubtitle = "/" + parts.slice(2).join("/");
   return (
     <div className={classes}>
       {listItems?.map((subtitle, idx) => {
-        const dynamicPath = `${subtitle.addressDisciplina}${subtitle.addressSubtitle}${subtitle.addressSubject}`;
+        // const dynamicPath = `${subtitle.addressDisciplina}${subtitle.addressSubtitle}${subtitle.addressSubject}`;
+        const dynamicPath = `${addressDisciplina}${addressSubtitle}${subtitle.path}?teacher=1&level=1&disciplina=${stateData.currentSubject.subject_id}&theme=${stateData.currentTheme.tema_id}`;       
         return (
           <div key={idx} className="subject-item" onClick={() => onItemClick && onItemClick(idx)}>
             <div className="title-item"> 
               <div className="num-item">{subtitle.id}.</div>
               <div className="name-item">
-                {/* {console.log(subtitle, dynamicPath)}
-                {console.log(subtitle.name)} */}
+                {console.log(dynamicPath)}
+                {/* {console.log(subtitle.name)} */}
                 {subtitle.path == null ? (
                   subtitle.anul == null ? (
                     <div className="text-block">{subtitle.name}</div>
@@ -56,7 +62,7 @@ const ItemList = ({ list, className, results, onItemClick }) => {
                   )
                 ) : (
 
-                  <Link to={dynamicPath}>{subtitle.name}</Link>
+                  <Link to={dynamicPath}>{subtitle.name}</Link> 
                 )}
               </div>
             </div>

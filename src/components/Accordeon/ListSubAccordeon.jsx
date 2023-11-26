@@ -1,4 +1,5 @@
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
+import ContextData from "../context/ContextData";
 import { scroller } from 'react-scroll'
 import ItemAccordeon from "./ItemAccordeon";
 import ItemList from "./ItemList";
@@ -11,11 +12,18 @@ import FlipCardNou from "../FlipCards/FlipCardNou";
 import '../FlipCards/flipCardNou.scss';
 
 const ListSubAccordeon = (props) => {
+const {stateData, dispatchData} = React.useContext(ContextData)
 const [currentSubject, setCurrentSubject] = useState(0);
 
 const classes = " " + props.className;
 let arraySubject = props.subtema.vomAfla;
 let arrayTests = props.subtema.teste;
+
+useEffect(()=> {
+
+console.log(stateData.currentTopic)
+
+},[]);
 
 const clickSubjectHandler = (idx) => {
   setCurrentSubject(idx);

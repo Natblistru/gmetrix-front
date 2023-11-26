@@ -46,10 +46,16 @@ const Tema = () => {
 
     const pathToFind = `/${disciplina}/${address}`;
     const foundElement = stateData.capitole.find(element => element.path_tema === pathToFind);
-    const temaName = foundElement ? foundElement.tema_name : null;
-    console.log(temaName);
-  
-    const newBreadcrumb = {name: temaName, path: pathToFind};
+    const tema = foundElement ? foundElement : null;
+    dispatchData({
+      type: "UPDATE_CURRENT_THEME",
+      payload: tema
+    })
+    const temaName = foundElement ? tema.tema_name : null;
+    console.log(stateData.currentSubject);
+
+    const addressPath = `/${disciplina}/${address}?teacher=1&level=1&disciplina=${stateData.currentSubject.subject_id}&theme=${tema.tema_id}`;
+    const newBreadcrumb = {name: temaName, path: addressPath};
     dispatchData({
       type: "UPDATE_TOPIC_BREADCRUMB",
       payload: newBreadcrumb
@@ -58,7 +64,7 @@ const Tema = () => {
 
   const fetchTheme = async (theme) => {
     try {
-        const res = await axios.get(`http://localhost:8000/api/teachertheme?level=1&disciplina=${stateData.currentSubject}&teacher=1&student=1&theme=${theme}`);
+        const res = await axios.get(`http://localhost:8000/api/teachertheme?level=1&disciplina=${stateData.currentSubject.subject_id}&teacher=1&student=1&theme=${theme}`);
 
         console.log("Parametrul disciplina(currentSubject):", stateData.currentSubject);
         console.log("Parametrul theme:", theme);
