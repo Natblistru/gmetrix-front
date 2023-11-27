@@ -3818,7 +3818,7 @@ let temeRomana = [
         id: "2",
         name: "Personalitățile neamului.",
         addressDisciplina: "/romana",
-        address: "/personalitatile-neamului.",
+        address: "/personalitatile-neamului",
         breadcrumb: [
           { name: "Discipline", path: "/" },
           { name: "Romana", path: "/romana" },
@@ -3831,14 +3831,14 @@ let temeRomana = [
             name: "Patria, patriotism",
             path: "/subtema1",
             addressDisciplina: "/romana",
-            addressSubtitle: "/personalitatile-neamului.",
+            addressSubtitle: "/personalitatile-neamului",
             addressSubject: "/patria-patriotism",
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Romana", path: "/romana" },
               {
                 name: "Personalitățile neamului",
-                path: "/romana/personalitatile-neamului.",
+                path: "/romana/personalitatile-neamului",
               },
             ],
             vomAfla: [
@@ -3902,14 +3902,14 @@ let temeRomana = [
             name: "Personalitățile neamului",
             path: "/subtema1",
             addressDisciplina: "/romana",
-            addressSubtitle: "/personalitatile-neamului.",
+            addressSubtitle: "/personalitatile-neamului",
             addressSubject: "/personalitatile-neamului",
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Romana", path: "/romana" },
               {
                 name: "Personalitățile neamului",
-                path: "/romana/personalitatile-neamului.",
+                path: "/romana/personalitatile-neamului",
               },
             ],
             vomAfla: [
@@ -4230,7 +4230,7 @@ let temeRomana = [
         id: "3",
         name: "Comunitatea vorbitorilor de limbă română.",
         addressDisciplina: "/romana",
-        address: "/Comunitatea-vorbitorilor-de-limba-romana",
+        address: "/comunitatea-vorbitorilor-de-limba-romana",
         breadcrumb: [
           { name: "Discipline", path: "/" },
           { name: "Romana", path: "/romana" },
@@ -4250,7 +4250,7 @@ let temeRomana = [
               { name: "Romana", path: "/romana" },
               {
                 name: "Comunitatea vorbitorilor de limbă română.",
-                path: "/romana/Comunitatea-vorbitorilor-de-limba-romana",
+                path: "/romana/comunitatea-vorbitorilor-de-limba-romana",
               },
             ],
             vomAfla: [
@@ -4300,14 +4300,14 @@ let temeRomana = [
             name: "Ziua Limbii Române",
             path: "/subtema1",
             addressDisciplina: "/romana",
-            addressSubtitle: "/Comunitatea-vorbitorilor-de-limba-romana",
+            addressSubtitle: "/comunitatea-vorbitorilor-de-limba-romana",
             addressSubject: "/ziua-limbii-romane",
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Romana", path: "/romana" },
               {
                 name: "Comunitatea vorbitorilor de limbă română.",
-                path: "/romana/Comunitatea-vorbitorilor-de-limba-romana",
+                path: "/romana/comunitatea-vorbitorilor-de-limba-romana",
               },
             ],
             vomAfla: [
@@ -4973,7 +4973,7 @@ let temeRomana = [
         id: "5",
         name: "Elemente de fonetică şi ortografie.",
         addressDisciplina: "/romana",
-        address: "/Elemente-de-fonetica-si-ortografie",
+        address: "/elemente-de-fonetica-si-ortografie",
         breadcrumb: [
           { name: "Discipline", path: "/" },
           { name: "Romana", path: "/romana" },
@@ -4986,14 +4986,14 @@ let temeRomana = [
             name: "SUA după Primul Război Mondial",
             path: "/subtema1",
             addressDisciplina: "/romana",
-            addressSubtitle: "/Elemente-de-fonetica-si-ortografie",
+            addressSubtitle: "/elemente-de-fonetica-si-ortografie",
             addressSubject: "/sua-dupa-primul-razboi-mondial",
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Romana", path: "/romana" },
               {
                 name: "Elemente de fonetică şi ortografie.",
-                path: "/romana/Elemente-de-fonetica-si-ortografie",
+                path: "/romana/elemente-de-fonetica-si-ortografie",
               },
             ],
             vomAfla: [
@@ -5026,14 +5026,14 @@ let temeRomana = [
             name: "Marea criză economică și consecințele ei",
             path: "/subtema1",
             addressDisciplina: "/romana",
-            addressSubtitle: "/Elemente-de-fonetica-si-ortografie",
+            addressSubtitle: "/elemente-de-fonetica-si-ortografie",
             addressSubject: "/marea-criza-economica",
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Romana", path: "/romana" },
               {
                 name: "Elemente de fonetică şi ortografie.",
-                path: "/romana/Elemente-de-fonetica-si-ortografie",
+                path: "/romana/elemente-de-fonetica-si-ortografie",
               },
             ],
             vomAfla: [

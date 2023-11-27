@@ -16,6 +16,11 @@ const ReducerData = (state, action) => {
         ...state,
         topics: action.payload
       }
+    case "FETCH_THEME_VIDEO":
+        return {
+          ...state,
+          themeVideo: action.payload
+        }
     case 'ADD_BREADCRUMB':
       const exists = state.breadcrumb.some(item => (
         item.name === action.payload.name && item.path === action.payload.path

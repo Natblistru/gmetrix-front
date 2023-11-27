@@ -43,16 +43,28 @@ const Tema = () => {
     console.log("Parametrul theme:", theme);
     console.log("Parametrul teacher:", teacher);
     fetchTheme(theme);
+    fetchThemeVideo(theme);
 
     const pathToFind = `/${disciplina}/${address}`;
     const foundElement = stateData.capitole.find(element => element.path_tema === pathToFind);
-    const tema = foundElement ? foundElement : null;
+    // const tema = foundElement ? foundElement : null;
+
+    const tema = stateData.capitole.reduce(
+      (result, item) => result || (item.subtitles || []).find(subtitle => subtitle.path_tema === pathToFind),
+      null
+    );
+    
+    console.log(tema);
+
+
     dispatchData({
       type: "UPDATE_CURRENT_THEME",
       payload: tema
     })
-    const temaName = foundElement ? tema.tema_name : null;
-    console.log(stateData.currentSubject);
+    const temaName = tema ? tema.tema_name : "";
+    console.log(tema);
+    console.log(pathToFind);
+    console.log(stateData.capitole);
 
     const addressPath = `/${disciplina}/${address}?teacher=1&level=1&disciplina=${stateData.currentSubject.subject_id}&theme=${tema.tema_id}`;
     const newBreadcrumb = {name: temaName, path: addressPath};
@@ -87,6 +99,31 @@ const Tema = () => {
     } catch (err) {
         console.error(err);
     }
+}
+
+const fetchThemeVideo = async (theme) => {
+  try {
+      const res = await axios.get(`http://localhost:8000/api/teacherthemevideo?level=1&disciplina=${stateData.currentSubject.subject_id}&teacher=1&theme=${theme}`);
+
+      console.log(res.data);
+      dispatchData({
+          type: "FETCH_THEME_VIDEO",
+          payload: res.data
+      })
+    //   if (res.data.length > 0) {
+    //       dispatchData({
+    //           type: "UPDATE_SUBJECTNAME",
+    //           payload: res.data[0].subject_name
+    //       })
+    //       const newBreadcrumb = {name: `${res.data[0].subject_name}`, path: `/capitole/${id}?level=1&year=2022`};
+    //       dispatchData({
+    //         type: "UPDATE_SUBJECT_BREADCRUMB",
+    //         payload: newBreadcrumb
+    //       });
+    // }
+  } catch (err) {
+      console.error(err);
+  }
 }
 
 

@@ -38,6 +38,10 @@ const Capitole = (props) => {
                 type: "FETCH_CAPITOLE",
                 payload: res.data
             })
+            dispatchData({
+                type: "FETCH_THEME_VIDEO",
+                payload: null
+            })
             if (res.data.length > 0) {
                 dispatchData({
                     type: "UPDATE_CURRENT_SUBJECT",

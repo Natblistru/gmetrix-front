@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 import ContextData from '../context/ContextData';
 import { withRouter, Link } from "react-router-dom";
@@ -12,6 +12,10 @@ import { scroller } from 'react-scroll';
 
 const ListAccordeon = (props) => {
   const {stateData, dispatchData} = React.useContext(ContextData)
+
+  const [videoBreakpoints, setVideoBreakpoints] = useState();
+  const [videoSource, setVideoSource] = useState("");
+  const [videoTitle, setVideoTitle] = useState("");
   useEffect(() => {
     if (props.location.hash === '#ani') {
         scroller.scrollTo('ani', {
@@ -50,29 +54,33 @@ const ListAccordeon = (props) => {
     {"time":"0:28:36","seconds":"1716","name":"Actul Unirii"}
   ];
   console.log(stateData.topics); 
+
+  useEffect(() => {
+    console.log(stateData.themeVideo); 
+
+    if (stateData.themeVideo && stateData.themeVideo.length > 0) {
+      setVideoBreakpoints(stateData.themeVideo[0].breakpoints);
+      setVideoSource(stateData.themeVideo[0].video_source);
+      setVideoTitle(stateData.themeVideo[0].video_title);
+    }
+  }, [stateData.themeVideo]);
+
   return (
     <div className={classes}>
       <ItemAccordeon titlu="Teorie" {...props} open={true}>
         <ItemList {...props} list={titleList} />
       </ItemAccordeon>
 
+      {videoBreakpoints && (
+        <>
+        <ItemAccordeon titlu="Lecție video" {...props} /*className="schema-recapitulativa"*/ open={true}>
+          <VideoLesson video= {videoSource} title={videoTitle} breakpoints={videoBreakpoints} />
+        </ItemAccordeon>
+        </>
+      )}
 
-      <ItemAccordeon titlu="Lecție video" {...props} /*className="schema-recapitulativa"*/ open={true}>
-        <VideoLesson video="https://www.youtube.com/embed/qV2PSgIK-c4" title="România în Primul Război Mondial" breakpoints={breakpoints} />
-      </ItemAccordeon>
 
-      <div id="ani"></div>
-      <ItemAccordeon titlu="Repere cronoligice" {...props} open={true}>
-        <ItemList {...props} list={repereList} />
-        <Link to={{ pathname: props.teme.addressDisciplina + props.teme.address+"/flipCards/ani", state: { list: repereList, anchor: "ani", item: props.teme } }} className="custom-link">Exerseaza</Link>
-        {/* <Link to={{ pathname: props.teme.addressDisciplina + props.teme.address+"/flipCards", state: { list: termeniList, anchor: "termeni", item: props.teme} }} className="custom-link">Exerseaza</Link>      */}
-      </ItemAccordeon>
-      <div id="termeni"></div>
-      <ItemAccordeon titlu="Termeni-cheie" {...props} open={true}>
-        {/* {console.log(props.teme.addressDisciplina + props.teme.address)} */}
-        <ItemList {...props} list={termeniList} />
-        <Link to={{ pathname: props.teme.addressDisciplina + props.teme.address+"/flipCards/termeni", state: { list: termeniList, anchor: "termeni", item: props.teme} }} className="custom-link">Exerseaza</Link>
-      </ItemAccordeon>
+
       <ItemAccordeon titlu="Aplicații (teste de examen)" {...props} open={true}>
         <ItemList {...props} list={aplicatiiList} />
       </ItemAccordeon>
@@ -80,3 +88,19 @@ const ListAccordeon = (props) => {
   );
 };
 export default withRouter(ListAccordeon);
+
+
+
+
+// <div id="ani"></div>
+//<ItemAccordeon titlu="Repere cronoligice" {...props} open={true}>
+//  <ItemList {...props} list={repereList} />
+//  <Link to={{ pathname: props.teme.addressDisciplina + props.teme.address+"/flipCards/ani", state: { list: repereList, anchor: "ani", item: props.teme } }} className="custom-link">Exerseaza</Link>
+//  {/* <Link to={{ pathname: props.teme.addressDisciplina + props.teme.address+"/flipCards", state: { list: termeniList, anchor: "termeni", item: props.teme} }} className="custom-link">Exerseaza</Link>      */}
+//</ItemAccordeon>
+//<div id="termeni"></div>
+//<ItemAccordeon titlu="Termeni-cheie" {...props} open={true}>
+//  {/* {console.log(props.teme.addressDisciplina + props.teme.address)} */}
+//  <ItemList {...props} list={termeniList} />
+//  <Link to={{ pathname: props.teme.addressDisciplina + props.teme.address+"/flipCards/termeni", state: { list: termeniList, anchor: "termeni", item: props.teme} }} className="custom-link">Exerseaza</Link>
+//</ItemAccordeon> 

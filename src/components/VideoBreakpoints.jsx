@@ -14,7 +14,7 @@ const VideoBreakpoints = ({ breakpoints, onBreakpointClick }) => {
             onClick={() => onBreakpointClick(breakpoint.seconds)}
           >
             <div>
-              <span>{breakpoint.time}</span>
+              <span style={{fontWeight: '700'}}>{breakpoint.time}</span>
             </div>
             <div >
               <div>{breakpoint.name}</div>

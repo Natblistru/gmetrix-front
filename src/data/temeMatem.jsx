@@ -10161,7 +10161,7 @@ let temeMatem = [
         id: "22",
         name: "Inecuaţii de gradul I cu o necunoscută",
         addressDisciplina: "/matem",
-        address: "/Inecuatii-de-gradul-1-cu-1-necunoscuta",
+        address: "/inecuatii-de-gradul-1-cu-1-necunoscuta",
         breadcrumb: [
           { name: "Discipline", path: "/" },
           { name: "Matematica", path: "/matem" },
@@ -10783,7 +10783,7 @@ let temeMatem = [
         id: "24",
         name: "Sisteme de două ecuaţii de gradul I cu două necunoscute.",
         addressDisciplina: "/matem",
-        address: "/sisteme-de-2-ecuatii-de-gradul-1-cu-2-necunoscute",
+        address: "/sisteme-de-ecuatii-de-gradul-1-cu-2-necunoscute",
         breadcrumb: [
           { name: "Discipline", path: "/" },
           { name: "Matematica", path: "/matem" },

@@ -8,6 +8,7 @@ const StateData = {
   currentTheme: null,
   currentTopic: null,
   currentStudent: 1,
-  currentYear: 2022
+  currentYear: 2022,
+  themeVideo: null,
 }
 export default StateData
