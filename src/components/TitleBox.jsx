@@ -12,8 +12,7 @@ const TitleBox = ({
   results,
   tests,
   exams,
-// Dupa deploy
-  // proc
+  proc
 }) => {
   const classes = "title-box " + className;
   const [procent, setProcent] = useState(0);
@@ -353,10 +352,9 @@ const TitleBox = ({
         <img src={process.env.PUBLIC_URL + "/images/parchment.png"} alt="" />
         <h1>{children}</h1>
       </div>
-      {/* dupa Deploy */}
-      {/* <ProgressBar proc={proc} /> */}
+      <ProgressBar proc={proc} />
 
-      <ProgressBar proc={procent} />
+      {/* <ProgressBar proc={procent} /> */}
     </div>
   );
 };

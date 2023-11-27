@@ -21,6 +21,7 @@ const Tema = () => {
   console.log(disciplina); 
 
   const [item, setItem] = useState(null);
+  const [proc, setProc] = useState(0);
   // const [theme,setTheme] = useState(null);
 //  console.log(disciplina);
   const history = useHistory();
@@ -55,7 +56,7 @@ const Tema = () => {
     );
     
     console.log(tema);
-
+    setProc(tema? tema.tema_media : 0)
 
     dispatchData({
       type: "UPDATE_CURRENT_THEME",
@@ -73,6 +74,7 @@ const Tema = () => {
       payload: newBreadcrumb
     });
   },[]);
+
 
   const fetchTheme = async (theme) => {
     try {
@@ -170,7 +172,7 @@ const fetchThemeVideo = async (theme) => {
       {item && (
         <>
           <Breadcrumb step={1}/>
-          <TitleBox className="teme-container" subtitleId={item.id} teme={teme}>{item.name}</TitleBox>
+          <TitleBox className="teme-container" proc={proc} subtitleId={item.id} teme={teme}>{item.name}</TitleBox>
           <ListAccordeon teme={item} />
         </>
       )}

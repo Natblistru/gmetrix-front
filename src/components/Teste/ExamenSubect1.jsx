@@ -176,7 +176,7 @@ const ExamenSubect1 = ({ raspunsuri, exams, addExam, updateExam}) => {
     <Wrapper>
       {item && (
         <>
-          <Breadcrumb list={item.breadcrumb} />
+          <Breadcrumb list={item.breadcrumb}  step={2} />
           <TitleBox className="teme-container" list={item.quizArray[currentIndex]}>{item.name}</TitleBox>
           <ItemAccordeon
             titlu={`Cerințele sarcinii (${currentIndex + 1}/${

@@ -44,13 +44,18 @@ const ItemList = ({ list, className, results, onItemClick }) => {
     <div className={classes}>
       {listItems?.map((subtitle, idx) => {
         // const dynamicPath = `${subtitle.addressDisciplina}${subtitle.addressSubtitle}${subtitle.addressSubject}`;
-        const dynamicPath = `${addressDisciplina}${addressSubtitle}${subtitle.path}?teacher=1&level=1&disciplina=${stateData.currentSubject.subject_id}&theme=${stateData.currentTheme.tema_id}`;       
+        let subtitle_path = subtitle.path;
+        if (subtitle.path == "/subtema1") {
+          const partsApp = subtitle.addressAplicatie.split("/");
+          subtitle_path = "/" + partsApp.slice(2).join("/");
+        }
+        const dynamicPath = `${addressDisciplina}${addressSubtitle}${subtitle_path}?teacher=1&level=1&disciplina=${stateData.currentSubject.subject_id}&theme=${stateData.currentTheme.tema_id}`;       
         return (
           <div key={idx} className="subject-item" onClick={() => onItemClick && onItemClick(idx)}>
             <div className="title-item"> 
               <div className="num-item">{subtitle.id}.</div>
               <div className="name-item">
-                {console.log(dynamicPath)}
+                {console.log(subtitle.procentSubtopic)}
                 {/* {console.log(subtitle.name)} */}
                 {subtitle.path == null ? (
                   subtitle.anul == null ? (
@@ -69,9 +74,8 @@ const ItemList = ({ list, className, results, onItemClick }) => {
             {subtitle.path && subtitle.vomAfla && sumProc(subtitle.subjectID,subtitle) == 100 && (
               <div className="svg-sprite-vs-small result-perfect"></div>
             )}
-            {!subtitle.anul &&
-              !subtitle.path &&
-              proc(subtitle.subjectID, subtitle.id) == 100 && (
+            {subtitle.procentTopic &&
+              subtitle.procentTopic == 100 && (
                 <div className="svg-sprite-vs-small result-perfect"></div>
               )}
           </div>

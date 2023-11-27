@@ -1674,7 +1674,7 @@ let temeMatem = [
             path: "/subtema1",
             addressDisciplina: "/matem",
             addressSubtitle: "/multimea-numerelor-naturale",
-            addressSubject: "/divizibilitate",
+            addressSubject: "/divizibilitate-in-n",
             breadcrumb: [
               { name: "Discipline", path: "/" },
               { name: "Matematica", path: "/matem" },
