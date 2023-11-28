@@ -45,6 +45,8 @@ const Tema = () => {
     console.log("Parametrul teacher:", teacher);
     fetchTheme(theme);
     fetchThemeVideo(theme);
+    fetchEvaluations(theme);
+    fetchEvaluations1(theme);
 
     const pathToFind = `/${disciplina}/${address}`;
     const foundElement = stateData.capitole.find(element => element.path_tema === pathToFind);
@@ -128,7 +130,59 @@ const fetchThemeVideo = async (theme) => {
   }
 }
 
+const fetchEvaluations = async (theme) => {
+  try {
+      // const res = await axios.get(`http://localhost:8000/api/themeevaluations1?level=1&disciplina=${stateData.currentSubject.subject_id}&theme=${theme}`);
+      const res = await axios.get(`http://localhost:8000/api/themeevaluations?level=1&disciplina=3&theme=33`);
 
+      console.log("Parametrul theme:", theme);
+      console.log(res.data);
+      dispatchData({
+          type: "FETCH_EVALUATIONS",
+          payload: res.data
+      })
+    //   if (res.data.length > 0) {
+    //       dispatchData({
+    //           type: "UPDATE_SUBJECTNAME",
+    //           payload: res.data[0].subject_name
+    //       })
+    //       const newBreadcrumb = {name: `${res.data[0].subject_name}`, path: `/capitole/${id}?level=1&year=2022`};
+    //       dispatchData({
+    //         type: "UPDATE_SUBJECT_BREADCRUMB",
+    //         payload: newBreadcrumb
+    //       });
+    // }
+  } catch (err) {
+      console.error(err);
+  }
+}
+
+const fetchEvaluations1 = async (theme) => {
+  try {
+      // const res = await axios.get(`http://localhost:8000/api/themeevaluations1?level=1&disciplina=${stateData.currentSubject.subject_id}&theme=${theme}`);
+      const res = await axios.get(`http://localhost:8000/api/themeevaluation1?level=1&disciplina=3&theme=33`);
+
+      console.log("Parametrul theme:", theme);
+      console.log(res.data);
+      dispatchData({
+          type: "FETCH_EVALUATIONS_1",
+          payload: res.data
+      })
+    //   if (res.data.length > 0) {
+    //       dispatchData({
+    //           type: "UPDATE_SUBJECTNAME",
+    //           payload: res.data[0].subject_name
+    //       })
+    //       const newBreadcrumb = {name: `${res.data[0].subject_name}`, path: `/capitole/${id}?level=1&year=2022`};
+    //       dispatchData({
+    //         type: "UPDATE_SUBJECT_BREADCRUMB",
+    //         payload: newBreadcrumb
+    //       });
+    // }
+  } catch (err) {
+      console.error(err);
+  }
+}
 
 
   let teme;

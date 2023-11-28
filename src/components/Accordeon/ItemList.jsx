@@ -36,6 +36,7 @@ const ItemList = ({ list, className, results, onItemClick }) => {
     return procSum / filteredItems.length;
   };
   console.log(stateData.currentTheme); 
+  
 
   const parts = stateData.currentTheme.path_tema.split("/");
   const addressDisciplina = "/" + parts[1];
