@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import ContextData from "../context/ContextData";
+import { useParams, useHistory, useLocation } from "react-router-dom";
 import { connect } from "react-redux";
 import temeIstoriArray from "../../data/temeIstoria";
 import Wrapper from "../Wrapper";
@@ -11,7 +12,12 @@ import ModalForm from "../Modal/ModalForm";
 import ModalCalculator from "../Modal/ModalCalculator";
 
 const ExamenSubect1 = ({ raspunsuri, exams, addExam, updateExam}) => {
+  const {stateData, dispatchData} = React.useContext(ContextData)
   const { address } = useParams();
+  const location = useLocation();
+  const [theme,setTheme] = useState(null);
+  // const [quizArray,setQuizArray] = useState([]);
+
   const [idRaspuns, setIdRaspuns] = useState(null);
   const [item, setItem] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -45,8 +51,11 @@ const ExamenSubect1 = ({ raspunsuri, exams, addExam, updateExam}) => {
     }
     return null;
   }
-
+  const quizArray = stateData.evaluations1;
   useEffect(() => {
+    console.log(stateData.evaluations1);
+
+
     const foundItem = findObjectWithAddress(temeIstoriArray);
     if (foundItem) {
       setItem(foundItem);
@@ -55,7 +64,17 @@ const ExamenSubect1 = ({ raspunsuri, exams, addExam, updateExam}) => {
     }
   }, []);
 
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    setTheme(searchParams.get("theme"));
+    const teacher = searchParams.get("teacher");
+
+    console.log("Parametrul theme:", theme);
+    console.log("Parametrul teacher:", teacher);
+  }, [location.search]);
+
   const initialization = () => {
+    console.log(quizArray[currentIndex]);
     const newArray = Array(item?.quizArray[currentIndex].forma.length).fill("");
     setTextArray([...newArray]);
   };
@@ -118,7 +137,8 @@ const ExamenSubect1 = ({ raspunsuri, exams, addExam, updateExam}) => {
 
   const handleTryAgain = () => {
     setCurrentIndex(
-      item.quizArray.length - 1 === currentIndex ? 0 : currentIndex + 1
+      // item.quizArray.length - 1 === currentIndex ? 0 : currentIndex + 1
+      quizArray.length - 1 === currentIndex ? 0 : currentIndex + 1
     );
     setIsAnswered(false);
     setShowResponse(false);
@@ -157,7 +177,7 @@ const ExamenSubect1 = ({ raspunsuri, exams, addExam, updateExam}) => {
             subiect: "1",
             superitem: currentIndex + 1,
             item: currentIndex + 1,            
-            proc: Math.round(notaResult*100/item.quizArray[currentIndex].barem.maxPoints),
+            proc: Math.round(notaResult*100/quizArray[currentIndex].maxPoints),
           });
         } else {
           addExam({
@@ -165,7 +185,7 @@ const ExamenSubect1 = ({ raspunsuri, exams, addExam, updateExam}) => {
             subiect: "1",
             superitem: currentIndex + 1,
             item: currentIndex + 1,            
-            proc: Math.round(notaResult*100/item.quizArray[currentIndex].barem.maxPoints),
+            proc: Math.round(notaResult*100/quizArray[currentIndex]?.maxPoints),
           });
         }
       }
@@ -177,17 +197,17 @@ const ExamenSubect1 = ({ raspunsuri, exams, addExam, updateExam}) => {
       {item && (
         <>
           <Breadcrumb list={item.breadcrumb}  step={2} />
-          <TitleBox className="teme-container" list={item.quizArray[currentIndex]}>{item.name}</TitleBox>
+          <TitleBox className="teme-container" proc={quizArray[currentIndex]?.student_procent} list={item.quizArray[currentIndex]} >{quizArray[currentIndex]?.name}</TitleBox>
           <ItemAccordeon
             titlu={`Cerințele sarcinii (${currentIndex + 1}/${
-              item.quizArray.length
-            }) - ${item.quizArray[currentIndex].barem.maxPoints} puncte:`}
+              quizArray.length
+            }) - ${quizArray[currentIndex]?.maxPoints} puncte:`}
             open={true}
           >
             <ItemText>
-              <p>{item.quizArray[currentIndex].cerinte[0]}</p>
+              <p>{quizArray[currentIndex]?.cerinta}</p>
               <div className="subject1-container">
-                <div className="paper" style={{ width: item.quizArray[currentIndex].procent_paper }}>
+                <div className="paper" style={{ width: quizArray[currentIndex]?.procent_paper }}>
                   <div className="lines">
                     <div className="text">
                       {currentTextIndex !== null &&
@@ -221,7 +241,7 @@ const ExamenSubect1 = ({ raspunsuri, exams, addExam, updateExam}) => {
                 <img
                   className="img-subject"
                   src={
-                    process.env.PUBLIC_URL + item.quizArray[currentIndex].img
+                    process.env.PUBLIC_URL + quizArray[currentIndex]?.img
                   }
                   alt=""
                 />
@@ -230,7 +250,8 @@ const ExamenSubect1 = ({ raspunsuri, exams, addExam, updateExam}) => {
             {isOpen && (
               <ModalForm
                 onClick={closeModal}
-                forma={item.quizArray[currentIndex].forma}
+                // forma={item.quizArray[currentIndex].forma}
+                forma={quizArray[currentIndex].form}
                 idRaspuns={idRaspuns}
               />
             )}
@@ -243,14 +264,22 @@ const ExamenSubect1 = ({ raspunsuri, exams, addExam, updateExam}) => {
           {showResponse && (
             <ItemAccordeon
               titlu={`Rezolvarea sarcinii (${currentIndex + 1}/${
-                item.quizArray.length
+                quizArray.length
               }):`}
               open={true}
             >
-              <ItemText classNameChild="">
+              {/* <ItemText classNameChild="">
                 {item.quizArray[currentIndex].raspuns[0]}
                 <br />
                 {item.quizArray[currentIndex].raspuns[1]}
+              </ItemText> */}
+              <ItemText classNameChild="">
+                {quizArray[currentIndex]?.answers.map(answer => (
+                  <React.Fragment key={answer.answer_id}>
+                    {answer.answer_text}
+                    <br />
+                  </React.Fragment>
+                ))}
               </ItemText>
               <button onClick={handleAutoevaluare} className="btn-test">
                 Autoevaluiaza raspunsul!

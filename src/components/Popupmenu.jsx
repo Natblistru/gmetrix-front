@@ -13,17 +13,22 @@ const Popupmenu = (props) => {
       setIsShown(true);
     }
   };
+  console.log(props.hint)
+  const hintObject = JSON.parse(props.hint);
+
+  const hintArray = Object.values(hintObject);
+
   return (
     <>
       {props.hint.length >
         0 && (
         <div className={classes}>
           <button className="btn-reper" onClick={handleButtonClick}>
-            Cuvinte de refetință
+            Sugestii
           </button>
           <div className={`popup-menu ${isShown ? "shown" : ""}`}>
             <div style={{ display: "flex", flexDirection: "column" }}>
-              {props.hint.map((cuv, idx) => (
+              {hintArray.map((cuv, idx) => (
                 <span key={idx}>{cuv}</span>
               ))}
             </div>

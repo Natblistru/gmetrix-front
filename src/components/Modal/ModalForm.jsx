@@ -100,7 +100,7 @@ const ModalForm = ({forma,onClick,idRaspuns,raspunsuri,add,update}) => {
           {forma.map((elem, idx) => (
             <div className={activeTab === idx + 1 ? "active" : ""} key={idx}>
               <div>
-                <div style={{ display: "flex" }}>
+                <div style={{ display: "flex", justifyContent: "space-around", alignItems: "center" }}>
                   <label>
                     {elem.cerinte}
                   </label>
