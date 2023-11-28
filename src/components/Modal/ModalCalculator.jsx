@@ -1,4 +1,5 @@
 import React, { useState, useContext, useEffect, useRef } from "react";
+import ContextData from "../context/ContextData";
 import { connect } from "react-redux";
 import "./ModalCalculator.css";
 import "./ModalForm.css";
@@ -15,14 +16,14 @@ const SelectBox = ({ options, activeTab, setActiveTab,nota, setNota,idx }) => {
   };
 
   const onOptionClick = (option) => {
-    setValue(option.value);
+    setValue(option.points);
     setLabel(option.label);
     setShowing(false);
     // console.log("idx", idx)
     // console.log("option.subPoint", option.subPoint)
     setNota(nota.map((n, index) => {
       if (index === idx) {
-        return option.subPoint;
+        return option.points;
       } else {
         return n;
       }
@@ -34,14 +35,14 @@ const SelectBox = ({ options, activeTab, setActiveTab,nota, setNota,idx }) => {
 
   const renderOptions = (option,i) => {
     let classNames = "selectbox-option";
-    classNames += option.value === value ? " selected" : "";
+    classNames += option.points === value ? " selected" : "";
 
     return (
       <div
         className={classNames}
         role="option"
         onClick={() => onOptionClick(option)}
-        key={Number(option.value)}
+        key={Number(option.points)}
       >
         {option.label}
       </div>
@@ -65,10 +66,16 @@ const SelectBox = ({ options, activeTab, setActiveTab,nota, setNota,idx }) => {
   );
 };
 
-const ModalCalculator = ({ barem, onClick, idRaspuns, raspunsuri, update }) => {
-  const raspInitialArr = Array(barem.subitems.length).fill(0);
+const ModalCalculator = ({ barem, currentIndex, onClick, idRaspuns, raspunsuri, update }) => {
+  const {stateData, dispatchData} = React.useContext(ContextData)
+  const quizArray = stateData.evaluations1;
+  const currentItem = quizArray[currentIndex];
+  console.log(currentItem);
+  console.log(currentItem.answers.length);
+
+  const raspInitialArr = Array(currentItem.answers.length).fill(0);
   const [rasp, SetRasp] = useState([]);
-  const initialNoteArray = Array(barem.subitems.length).fill(0);
+  const initialNoteArray = Array(currentItem.answers.length).fill(0);
   const [nota, setNota] = useState(initialNoteArray);
   const [activeTab, setActiveTab] = useState(0);
   const [modalPosition, setModalPosition] = useState({ x: 370, y: 270 });
@@ -80,9 +87,10 @@ const ModalCalculator = ({ barem, onClick, idRaspuns, raspunsuri, update }) => {
       // const foundRaspuns = raspunsuri.items.find(item => item.id === idRaspuns);
       // const valuesArray = Object.values(foundRaspuns).filter(value => value !== foundRaspuns.id);
       // SetRasp(valuesArray)
-      SetRasp(Array(barem.subitems.length).fill(0));
-    } else SetRasp(Array(barem.subitems.length).fill(0));
+      SetRasp(Array(currentItem.answers.length).fill(0));
+    } else SetRasp(Array(currentItem.answers.length).fill(0));
   }, []);
+
 
 
   const handleResponse = () => {
@@ -112,15 +120,15 @@ const ModalCalculator = ({ barem, onClick, idRaspuns, raspunsuri, update }) => {
         <div className="progress-bar">
           <div
             className="progress-bar-fill"
-            style={{ width: `${(activeTab / barem.subitems.length) * 100}%` }}
+            style={{ width: `${(activeTab / currentItem.answers.length) * 100}%` }}
           >
-            Step {activeTab} of {barem.subitems.length}
+            Step {activeTab} of {currentItem.answers.length}
           </div>
         </div>
         <div className="modal-content-select">
-          {barem.subitems.map((item, idx) => (
+          {currentItem.answers.map((item, idx) => (
             <div className="selectbox-container" key={idx}>
-              <p>{item.nameSubItem}</p>
+              <p>{item.task}</p>
               <SelectBox
                 options={item.options}
                 setActiveTab={setActiveTab}

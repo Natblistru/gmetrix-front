@@ -11,7 +11,7 @@ import ItemText from "../Accordeon/ItemText";
 import ModalForm from "../Modal/ModalForm";
 import ModalCalculator from "../Modal/ModalCalculator";
 
-const ExamenSubect1 = ({ raspunsuri, exams, addExam, updateExam}) => {
+const ExamenSubect1 = ({ raspunsuri }) => {
   const {stateData, dispatchData} = React.useContext(ContextData)
   const { address } = useParams();
   const location = useLocation();
@@ -75,13 +75,13 @@ const ExamenSubect1 = ({ raspunsuri, exams, addExam, updateExam}) => {
 
   const initialization = () => {
     console.log(quizArray[currentIndex]);
-    const newArray = Array(item?.quizArray[currentIndex].forma.length).fill("");
+    const newArray = Array(quizArray[currentIndex]?.form.length).fill("");
     setTextArray([...newArray]);
   };
 
   useEffect(() => {
     initialization();
-  }, [item]);
+  }, [currentIndex]);
 
   useEffect(() => {
     if (currentTextIndex !== null) {
@@ -137,7 +137,6 @@ const ExamenSubect1 = ({ raspunsuri, exams, addExam, updateExam}) => {
 
   const handleTryAgain = () => {
     setCurrentIndex(
-      // item.quizArray.length - 1 === currentIndex ? 0 : currentIndex + 1
       quizArray.length - 1 === currentIndex ? 0 : currentIndex + 1
     );
     setIsAnswered(false);
@@ -157,47 +156,14 @@ const ExamenSubect1 = ({ raspunsuri, exams, addExam, updateExam}) => {
 
   const onCloseAutoevaluare = (notaResult) => {
     setShowAutoevaluare(false);
-
-     if(notaResult!==undefined){
-   //   console.log(notaResult)
-      const userItems = exams.items.find(
-        (el) => el.user === "Current user"
-      );
-      if (userItems) {
-        const resultItem = userItems.exams.find(
-          (el) =>
-            el.id == item.quizArray[currentIndex].subtitleID &&
-            el.subiect == "1" &&
-            el.superitem == currentIndex + 1 &&
-            el.item == currentIndex + 1
-        );
-        if (resultItem) {
-          updateExam({
-            id: item.quizArray[currentIndex].subtitleID,
-            subiect: "1",
-            superitem: currentIndex + 1,
-            item: currentIndex + 1,            
-            proc: Math.round(notaResult*100/quizArray[currentIndex].maxPoints),
-          });
-        } else {
-          addExam({
-            id: item.quizArray[currentIndex].subtitleID,
-            subiect: "1",
-            superitem: currentIndex + 1,
-            item: currentIndex + 1,            
-            proc: Math.round(notaResult*100/quizArray[currentIndex]?.maxPoints),
-          });
-        }
-      }
-     }
   }
 
   return (
     <Wrapper>
-      {item && (
+      {quizArray[currentIndex] && (
         <>
-          <Breadcrumb list={item.breadcrumb}  step={2} />
-          <TitleBox className="teme-container" proc={quizArray[currentIndex]?.student_procent} list={item.quizArray[currentIndex]} >{quizArray[currentIndex]?.name}</TitleBox>
+          <Breadcrumb step={2} />
+          <TitleBox className="teme-container" proc={quizArray[currentIndex]?.student_procent} list={quizArray[currentIndex]} >{quizArray[currentIndex]?.name}</TitleBox>
           <ItemAccordeon
             titlu={`Cerințele sarcinii (${currentIndex + 1}/${
               quizArray.length
@@ -250,7 +216,6 @@ const ExamenSubect1 = ({ raspunsuri, exams, addExam, updateExam}) => {
             {isOpen && (
               <ModalForm
                 onClick={closeModal}
-                // forma={item.quizArray[currentIndex].forma}
                 forma={quizArray[currentIndex].form}
                 idRaspuns={idRaspuns}
               />
@@ -268,11 +233,6 @@ const ExamenSubect1 = ({ raspunsuri, exams, addExam, updateExam}) => {
               }):`}
               open={true}
             >
-              {/* <ItemText classNameChild="">
-                {item.quizArray[currentIndex].raspuns[0]}
-                <br />
-                {item.quizArray[currentIndex].raspuns[1]}
-              </ItemText> */}
               <ItemText classNameChild="">
                 {quizArray[currentIndex]?.answers.map(answer => (
                   <React.Fragment key={answer.answer_id}>
@@ -287,8 +247,8 @@ const ExamenSubect1 = ({ raspunsuri, exams, addExam, updateExam}) => {
               {showAutoevaluare && (
                 <ModalCalculator
                   onClick={onCloseAutoevaluare}
-                  barem={item.quizArray[currentIndex].barem}
                   idRaspuns={idRaspuns}
+                  currentIndex={currentIndex}
                 />
               )}
               <button onClick={handleTryAgain} className="btn-test">
@@ -304,10 +264,5 @@ const ExamenSubect1 = ({ raspunsuri, exams, addExam, updateExam}) => {
 
 const reduxState = (state) => ({
   raspunsuri: state.raspunsuri,
-  exams: state.exams
 });
-const reduxFunctions = (dispatch) => ({
-  addExam: (item) => dispatch({ type: "ADD_EXAM", payload: item }),
-  updateExam: (item) => dispatch({ type: "UPDATE_EXAM", payload: item }),
-});
-export default connect(reduxState, reduxFunctions)(ExamenSubect1);
+export default connect(reduxState)(ExamenSubect1);
