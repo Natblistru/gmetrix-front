@@ -104,9 +104,11 @@ const ModalForm = ({forma,onClick,idRaspuns,raspunsuri,add,update}) => {
                   <label>
                     {elem.cerinte}
                   </label>
-                  <Popupmenu
-                    hint={elem.hint}
-                  />
+                  {elem.hint !== "[]" && (
+                    <Popupmenu
+                      hint={elem.hint}
+                    />
+                  )}
                 </div>
                 <textarea
                   value={rasp[idx]}

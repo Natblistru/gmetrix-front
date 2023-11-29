@@ -20,6 +20,11 @@ const ReducerData = (state, action) => {
         ...state,
         evaluations1: action.payload
       }  
+    case "FETCH_EVALUATIONS_2":
+      return {
+        ...state,
+        evaluations2: action.payload
+      } 
     case "FETCH_EVALUATIONS_3":
       return {
         ...state,

@@ -33,7 +33,7 @@ const AccordionSurse = ({ data }) => {
                 item.open ? "content-surse-text-open" : ""
               }`}
             >
-              {item.content.map((paragraf, idx) => (
+              {Object.values(JSON.parse(item.content)).map((paragraf, idx) => (
                 <span key={idx}>{paragraf}</span>
               ))}
             </div>

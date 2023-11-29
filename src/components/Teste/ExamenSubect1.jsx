@@ -247,6 +247,7 @@ const ExamenSubect1 = ({ raspunsuri }) => {
                   onClick={onCloseAutoevaluare}
                   idRaspuns={idRaspuns}
                   currentIndex={currentIndex}
+                  subject={1}
                 />
               )}
               <button onClick={handleTryAgain} className="btn-test">

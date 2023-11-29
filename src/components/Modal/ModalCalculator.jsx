@@ -66,9 +66,15 @@ const SelectBox = ({ options, activeTab, setActiveTab,nota, setNota,idx }) => {
   );
 };
 
-const ModalCalculator = ({ barem, currentIndex, onClick, idRaspuns, raspunsuri, update }) => {
+const ModalCalculator = ({ subject, currentIndex, onClick, idRaspuns, raspunsuri, update }) => {
   const {stateData, dispatchData} = React.useContext(ContextData)
-  const quizArray = stateData.evaluations1;
+  let quizArray;
+  if(subject == 1) {
+    quizArray = stateData.evaluations1;
+  } else if(subject == 3) {
+    quizArray = stateData.evaluations3;    
+  }
+
   const currentItem = quizArray[currentIndex];
   // console.log(currentItem);
   // console.log(currentItem.answers.length);
