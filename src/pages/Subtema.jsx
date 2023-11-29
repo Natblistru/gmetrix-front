@@ -14,8 +14,8 @@ const Subtema = ({results})  => {
   const {stateData, dispatchData} = React.useContext(ContextData)
   const { address1, disciplina } = useParams();
   const [item, setItem] = useState(null);
-  console.log("address1", address1);
-  console.log(stateData.currentSubject.subject_name == "Limba română"); 
+  // console.log("address1", address1);
+  // console.log(stateData.currentSubject.subject_name == "Limba română"); 
   const history = useHistory();
   let subElement = null;
 
@@ -60,11 +60,11 @@ const Subtema = ({results})  => {
 
   useEffect(() => {
     const temaCurrenta = stateData.topics;
-    console.log(temaCurrenta)
+    // console.log(temaCurrenta)
     const addressToFind = "/"+address1;
-    console.log(addressToFind)
+    // console.log(addressToFind)
     const mainElement = temaCurrenta?.find(element => element.path === addressToFind);
-    console.log(mainElement)
+    // console.log(mainElement)
     // if (mainElement && mainElement.subtitles && mainElement.subtitles.length > 0) {
     //   subElement = mainElement.subtitles.find(sub => sub.path === "/"+address1);
     //   console.log(subElement);

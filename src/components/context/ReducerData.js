@@ -1,7 +1,6 @@
 const ReducerData = (state, action) => {
   switch (action.type) {
     case "FETCH_DISCIPLINE":
-    console.log(action)
     return {
       ...state,
       disciplineAni: action.payload
@@ -21,6 +20,11 @@ const ReducerData = (state, action) => {
         ...state,
         evaluations1: action.payload
       }  
+    case "FETCH_EVALUATIONS_3":
+      return {
+        ...state,
+        evaluations3: action.payload
+      } 
     case "FETCH_EVALUATIONS":
         return {
           ...state,

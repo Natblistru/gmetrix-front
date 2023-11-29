@@ -70,8 +70,8 @@ const ModalCalculator = ({ barem, currentIndex, onClick, idRaspuns, raspunsuri, 
   const {stateData, dispatchData} = React.useContext(ContextData)
   const quizArray = stateData.evaluations1;
   const currentItem = quizArray[currentIndex];
-  console.log(currentItem);
-  console.log(currentItem.answers.length);
+  // console.log(currentItem);
+  // console.log(currentItem.answers.length);
 
   const raspInitialArr = Array(currentItem.answers.length).fill(0);
   const [rasp, SetRasp] = useState([]);

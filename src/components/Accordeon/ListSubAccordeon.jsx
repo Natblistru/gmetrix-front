@@ -21,7 +21,7 @@ let arrayTests = props.subtema.teste;
 
 useEffect(()=> {
 
-console.log(stateData.currentTopic)
+// console.log(stateData.currentTopic)
 
 },[]);
 

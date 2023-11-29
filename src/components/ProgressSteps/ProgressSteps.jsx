@@ -15,7 +15,7 @@ const ProgressSteps = (props) => {
     props.onClick(idx);
   }
   const progressWidth = `${(currentActive - 1) / (circlesLength - 1) * 100}%`;
-  console.log(currentActive);
+  // console.log(currentActive);
     return (
         <div className="container">
         <div className="progress-container">

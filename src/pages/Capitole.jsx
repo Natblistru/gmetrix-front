@@ -15,7 +15,7 @@ import '../index.css';
 
 const Capitole = (props) => {
   const {stateData, dispatchData} = React.useContext(ContextData)
-  console.log("Parametrul id:", props.match.params.id); //parametru din adresa /:id
+//   console.log("Parametrul id:", props.match.params.id); //parametru din adresa /:id
   const { id } = useParams();
   const [denumireDisciplina,setDenumireDisciplina] = useState("");
   const [nivelStudiu,setNivelStudiu] = useState("");
@@ -24,7 +24,7 @@ const Capitole = (props) => {
   const [proc,setProc] = useState(0);
 
     useEffect(()=> {
-      console.log(id);
+    //   console.log(id);
         fetchCapitole();
     },[]);
 
@@ -33,7 +33,7 @@ const Capitole = (props) => {
         try {
             const res = await axios.get(`http://localhost:8000/api/capitoleDisciplina?level=1&disciplina=${id}&student=1`);
 
-            console.log(res.data);
+            // console.log(res.data);
             dispatchData({
                 type: "FETCH_CAPITOLE",
                 payload: res.data

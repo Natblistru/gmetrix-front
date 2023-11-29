@@ -100,8 +100,8 @@ const TestBoard = forwardRef(
     if(list.type!=="chrono" && list.type!=="chronoDuble" && list.type!=="group") {
       selectedValuesString = selValues.sort().join(",");
       correctValuesString = correctValues.sort().join(","); 
-      console.log(correctValuesString);  
-      console.log(correctValues);  
+      // console.log(correctValuesString);  
+      // console.log(correctValues);  
     } if(list.type ==="group") {
       //col.III
       selectedValuesString = selValues.sort().join("");

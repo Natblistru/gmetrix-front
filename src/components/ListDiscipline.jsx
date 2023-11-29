@@ -3,7 +3,7 @@ import ContextData from "../components/context/ContextData";
 import { Link } from 'react-router-dom';
 const ListDiscipline = () => {
   const {stateData} = React.useContext(ContextData)
-  console.log(stateData);
+  // console.log(stateData);
   return (
     <div className="manuale-container">
       {stateData.disciplineAni.map((item) => (

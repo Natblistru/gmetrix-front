@@ -26,7 +26,7 @@ const Home = () => {
   const fetchSubjects = async () => {
     try {
       const res = await axios.get("http://localhost:8000/api/disciplineani?year=2022");
-      console.log(res.data);
+      // console.log(res.data);
       dispatchData({
         type: "FETCH_DISCIPLINE",
         payload: res.data

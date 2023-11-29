@@ -15,7 +15,6 @@ const ExamenSubect1 = ({ raspunsuri }) => {
   const {stateData, dispatchData} = React.useContext(ContextData)
   const { address } = useParams();
   const location = useLocation();
-  const [theme,setTheme] = useState(null);
   // const [quizArray,setQuizArray] = useState([]);
 
   const [idRaspuns, setIdRaspuns] = useState(null);
@@ -34,6 +33,7 @@ const ExamenSubect1 = ({ raspunsuri }) => {
   const speed = 50;
 
   const history = useHistory();
+  let theme;
 
   function findObjectWithAddress(obj) {
     for (let key in obj) {
@@ -51,22 +51,21 @@ const ExamenSubect1 = ({ raspunsuri }) => {
     }
     return null;
   }
-  const quizArray = stateData.evaluations1;
+  let quizArray = stateData.evaluations1;
   useEffect(() => {
-    console.log(stateData.evaluations1);
-
-
-    const foundItem = findObjectWithAddress(temeIstoriArray);
-    if (foundItem) {
-      setItem(foundItem);
-    } else {
-      history.push("/error");
-    }
+    quizArray = stateData.evaluations1;
+    console.log(quizArray)
+    // const foundItem = findObjectWithAddress(temeIstoriArray);
+    // if (foundItem) {
+    //   setItem(foundItem);
+    // } else {
+    //   history.push("/error");
+    // }
   }, []);
 
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
-    setTheme(searchParams.get("theme"));
+    theme = searchParams.get("theme");
     const teacher = searchParams.get("teacher");
 
     console.log("Parametrul theme:", theme);
@@ -74,7 +73,6 @@ const ExamenSubect1 = ({ raspunsuri }) => {
   }, [location.search]);
 
   const initialization = () => {
-    console.log(quizArray[currentIndex]);
     const newArray = Array(quizArray[currentIndex]?.form.length).fill("");
     setTextArray([...newArray]);
   };
@@ -160,7 +158,7 @@ const ExamenSubect1 = ({ raspunsuri }) => {
 
   return (
     <Wrapper>
-      {quizArray[currentIndex] && (
+      {quizArray && (
         <>
           <Breadcrumb step={2} />
           <TitleBox className="teme-container" proc={quizArray[currentIndex]?.student_procent} list={quizArray[currentIndex]} >{quizArray[currentIndex]?.name}</TitleBox>

@@ -13,7 +13,7 @@ const Popupmenu = (props) => {
       setIsShown(true);
     }
   };
-  console.log(props.hint)
+  // console.log(props.hint)
   const hintObject = JSON.parse(props.hint);
 
   const hintArray = Object.values(hintObject);

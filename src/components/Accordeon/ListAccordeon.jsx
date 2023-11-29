@@ -31,9 +31,8 @@ const ListAccordeon = (props) => {
   }, [props.location.hash]);
 
   const classes = " " + props.className;
-  // let titleList = props.teme.subjects;
   let titleList = stateData.topics;
-  console.log(titleList)
+
   
   let repereList = props.teme.repere;
   let aplicatiiList = props.teme.aplicatii;
@@ -41,11 +40,11 @@ const ListAccordeon = (props) => {
   let termeniList = props.teme.termeni;
   let diagramData = props.teme.diagramData;
 
-  console.log(stateData.topics); 
-  console.log(aplicatiiList); 
+  // console.log(stateData.topics); 
+  // console.log(aplicatiiList); 
 
   useEffect(() => {
-    console.log(stateData.themeVideo); 
+    // console.log(stateData.themeVideo); 
 
     if (stateData.themeVideo && stateData.themeVideo.length > 0) {
       setVideoBreakpoints(stateData.themeVideo[0].breakpoints);

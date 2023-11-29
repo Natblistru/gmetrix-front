@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import ContextData from "../context/ContextData";
+import { useParams, useHistory, useLocation  } from "react-router-dom";
 import { connect } from "react-redux"
 import temeIstoriArray from "../../data/temeIstoria";
 import Wrapper from "../Wrapper";
@@ -12,7 +13,9 @@ import ModalForm from "../Modal/ModalForm";
 import ModalCalculator from "../Modal/ModalCalculator";
 
 const ExamenSubect3 = ({raspunsuri, exams, addExam, updateExam}) => {
+  const {stateData, dispatchData} = React.useContext(ContextData)
   const { address } = useParams();
+  const location = useLocation();
   const [idRaspuns, setIdRaspuns] = useState(null);
   const [item, setItem] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -27,7 +30,7 @@ const ExamenSubect3 = ({raspunsuri, exams, addExam, updateExam}) => {
   const [showResponse, setShowResponse] = useState(false);
   const [showAutoevaluare, setShowAutoevaluare] = useState(false)
   const speed = 50;
-
+  let theme;
   const history = useHistory();
 
   function findObjectWithAddress(obj) {
@@ -46,7 +49,7 @@ const ExamenSubect3 = ({raspunsuri, exams, addExam, updateExam}) => {
     }
     return null;
   }
-
+  let quizArray = stateData.evaluations3;
   useEffect(() => {
     const foundItem = findObjectWithAddress(temeIstoriArray);
     if (foundItem) {
@@ -55,6 +58,15 @@ const ExamenSubect3 = ({raspunsuri, exams, addExam, updateExam}) => {
       history.push("/error");
     }
   }, []);
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    theme = searchParams.get("theme");
+    const teacher = searchParams.get("teacher");
+
+    console.log("Parametrul theme:", theme);
+    console.log("Parametrul teacher:", teacher);
+  }, [location.search]);
 
   const initialization = () => {
     const newArray = Array(item?.quizArray[currentIndex].forma.length).fill("");
@@ -185,7 +197,7 @@ const ExamenSubect3 = ({raspunsuri, exams, addExam, updateExam}) => {
             open={true}
           >
             <ItemText>
-              <p>{item.quizArray[currentIndex].cerinte[0]}</p>
+              <p>Studiază sursele:</p>
               <AccordionSurse data={item.quizArray[currentIndex].sursa} />
               <p>
                 {item.quizArray[currentIndex].cerinte[1]}{" "}

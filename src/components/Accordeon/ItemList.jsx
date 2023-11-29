@@ -35,7 +35,7 @@ const ItemList = ({ list, className, results, onItemClick }) => {
 
     return procSum / filteredItems.length;
   };
-  console.log(stateData.currentTheme); 
+  // console.log(stateData.currentTheme); 
   
 
   const parts = stateData.currentTheme.path_tema.split("/");
@@ -56,7 +56,7 @@ const ItemList = ({ list, className, results, onItemClick }) => {
             <div className="title-item"> 
               <div className="num-item">{subtitle.id}.</div>
               <div className="name-item">
-                {console.log(subtitle.procentSubtopic)}
+                {/* {console.log(subtitle.procentSubtopic)} */}
                 {/* {console.log(subtitle.name)} */}
                 {subtitle.path == null ? (
                   subtitle.anul == null ? (

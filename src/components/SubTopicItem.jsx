@@ -7,7 +7,7 @@ import ProgressBar from "./ProgressBar";
 const SubTopicItem = ({subTit,idx,results,tests,exams, allTems}) => {
   const {stateData} = React.useContext(ContextData)
   const subtitle = subTit;
-  console.log(subtitle)
+  // console.log(subtitle)
   return (
     <li key={idx}>
       <div className="subtopic-header">
