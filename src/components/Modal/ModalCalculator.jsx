@@ -71,6 +71,8 @@ const ModalCalculator = ({ subject, currentIndex, onClick, idRaspuns, raspunsuri
   let quizArray;
   if(subject == 1) {
     quizArray = stateData.evaluations1;
+  } else if(subject == 2) {
+    quizArray = stateData.evaluations2;    
   } else if(subject == 3) {
     quizArray = stateData.evaluations3;    
   }

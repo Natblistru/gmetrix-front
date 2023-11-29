@@ -47,8 +47,9 @@ const Tema = () => {
     fetchTheme(theme);
     fetchThemeVideo(theme);
     fetchEvaluations(theme);
-    fetchEvaluations1(theme);
-    fetchEvaluations3(theme);
+    fetchEvaluation1(theme);
+    fetchEvaluation2(theme);
+    fetchEvaluation3(theme);
 
     const pathToFind = `/${disciplina}/${address}`;
     const foundElement = stateData.capitole.find(element => element.path_tema === pathToFind);
@@ -148,7 +149,7 @@ const fetchEvaluations = async (theme) => {
   }
 }
 
-const fetchEvaluations1 = async (theme) => {
+const fetchEvaluation1 = async (theme) => {
   try {
     console.log("Parametrul stateData.currentSubject.subject_id:", stateData.currentSubject.subject_id);
     console.log("Parametrul theme:", theme);
@@ -166,7 +167,25 @@ const fetchEvaluations1 = async (theme) => {
   }
 }
 
-const fetchEvaluations3 = async (theme) => {
+const fetchEvaluation2 = async (theme) => {
+  try {
+    console.log("Parametrul stateData.currentSubject.subject_id:", stateData.currentSubject.subject_id);
+    console.log("Parametrul theme:", theme);
+
+      const res = await axios.get(`http://localhost:8000/api/themeevaluation2?level=1&disciplina=${stateData.currentSubject.subject_id}&theme=${theme}`);
+
+
+      console.log(res.data);
+      dispatchData({
+          type: "FETCH_EVALUATIONS_2",
+          payload: res.data
+      })
+  } catch (err) {
+      console.error(err);
+  }
+}
+
+const fetchEvaluation3 = async (theme) => {
   try {
     console.log("Parametrul stateData.currentSubject.subject_id:", stateData.currentSubject.subject_id);
     console.log("Parametrul theme:", theme);

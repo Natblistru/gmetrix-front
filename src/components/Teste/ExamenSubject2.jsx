@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
+import ContextData from "../context/ContextData";
 import { useParams, useHistory } from "react-router-dom";
 // import { RaspunsuriCtx } from "../context/Raspunsuri";
 import { connect } from "react-redux"
@@ -14,6 +15,7 @@ import ModalCalculator from "../Modal/ModalCalculator";
 import Draw from "../CanvasDrawing/Draw";
 
 const ExamenSubect2 = ({raspunsuri, exams, addExam, updateExam}) => {
+  const {stateData, dispatchData} = React.useContext(ContextData)
   const { address } = useParams();
   const [idRaspuns, setIdRaspuns] = useState(null);
   const [item, setItem] = useState(null);
@@ -50,6 +52,8 @@ const ExamenSubect2 = ({raspunsuri, exams, addExam, updateExam}) => {
     return null;
   }
 
+  let quizArray = stateData.evaluations2;
+  console.log(quizArray[currentIndex])
   useEffect(() => {
     const foundItem = findObjectWithAddress(temeIstoriArray);
     if (foundItem) {
@@ -61,14 +65,14 @@ const ExamenSubect2 = ({raspunsuri, exams, addExam, updateExam}) => {
 
   const initialization = () => {
     const newArray = Array(
-      item?.quizArray[currentIndex].item[currentItem].forma.length
+      quizArray[currentIndex]?.form.length
     ).fill("");
     setTextArray([...newArray]);
   };
 
   useEffect(() => {
     initialization();
-  }, [item]);
+  }, [currentIndex]);
 
   useEffect(() => {
     if (currentTextIndex !== null) {
@@ -124,7 +128,7 @@ const ExamenSubect2 = ({raspunsuri, exams, addExam, updateExam}) => {
 
   const handleTryAgain = () => {
     setCurrentItem(
-      item.quizArray[currentIndex].item.length - 1 === currentItem ? 0 : currentItem + 1
+      quizArray[currentIndex].length - 1 === currentItem ? 0 : currentItem + 1
     );
     setIsAnswered(false);
     setShowResponse(false);
@@ -135,7 +139,7 @@ const ExamenSubect2 = ({raspunsuri, exams, addExam, updateExam}) => {
 
   const handleIndexTryAgain = () => {
     setCurrentIndex(
-      item.quizArray.length - 1 === currentIndex ? 0 : currentIndex + 1
+      quizArray?.length - 1 === currentIndex ? 0 : currentIndex + 1
    );
    setIsAnswered(false);
    setShowResponse(false);
@@ -191,30 +195,30 @@ const ExamenSubect2 = ({raspunsuri, exams, addExam, updateExam}) => {
 
   return (
     <Wrapper>
-      {item && (
+      {quizArray && item && (
         <>
-          <Breadcrumb list={item.breadcrumb} />
-          <TitleBox className="teme-container" list={item.quizArray[currentIndex].item[currentItem]}>{item.name}</TitleBox>
+          <Breadcrumb step={2} />
+          <TitleBox className="teme-container" proc={quizArray[currentIndex]?.student_procent}>{quizArray[currentIndex]?.name}</TitleBox>
           <ItemAccordeon
             titlu={`Cerințele sarcinii (${currentIndex + 1}/${
-              item.quizArray.length
-            }) - ${item.quizArray[currentIndex].item[currentItem].barem.maxPoints} puncte:`}
+              quizArray.length
+            }) - ${quizArray[currentIndex]?.maxPoints} puncte:`}
             open={true}
           >
             <ItemText>
-              <p>{item.quizArray[currentIndex].cerinte[0]}</p>
-              <AccordionSurse data={item.quizArray[currentIndex].sursa} />
-              <h3 style={{ textAlign: 'center'}}>
+              <p>Studiază materialul suport și realizează sarcinile propuse.</p>
+              <AccordionSurse data={quizArray[currentIndex].source} />
+              {/* <h3 style={{ textAlign: 'center'}}>
                 {`Item (${currentItem + 1}/${
                   item.quizArray[currentIndex].item.length
                 }):`}
-              </h3>
-              <h4>{item.quizArray[currentIndex].item[currentItem].sursa}</h4>
-              <p>{item.quizArray[currentIndex].item[currentItem].cerinte[0]} <span style={{fontStyle: 'italic'}}>{item.quizArray[currentIndex].item[currentItem].afirmatia} </span> {item.quizArray[currentIndex].item[currentItem].cerinte[1]}</p>              
+              </h3> */}
+              <h4>{quizArray[currentIndex].cerinta}</h4>
+              <p>{quizArray[currentIndex].afirmatie} </p> 
               {item.quizArray[currentIndex].item[currentItem].harta && item.quizArray[currentIndex].item[currentItem].harta.length>0 && <Draw item={item.quizArray[currentIndex].item[currentItem]} disable={showResponse}/>}
               <div className="subject1-container">
               
-                <div className="paper" style={{ width: "100%", height: '267px'}}>
+                <div className="paper" style={{ width: quizArray[currentIndex]?.procent_paper, height: '267px'}}>
                   <div className="lines">
                     <div className="text">
                       {currentTextIndex !== null &&
@@ -251,7 +255,7 @@ const ExamenSubect2 = ({raspunsuri, exams, addExam, updateExam}) => {
             {isOpen && (
               <ModalForm
                 onClick={closeModal}
-                forma={item.quizArray[currentIndex].item[currentItem].forma}
+                forma={quizArray[currentIndex].form}
                 idRaspuns={idRaspuns}
               />
             )}
@@ -264,14 +268,23 @@ const ExamenSubect2 = ({raspunsuri, exams, addExam, updateExam}) => {
           {showResponse && (
             <ItemAccordeon
               titlu={`Rezolvarea item (${currentItem + 1}/${
-                item.quizArray[currentIndex].item.length
+                quizArray[currentIndex].length
               }):`}
               open={true}
             >
 
               <ItemText classNameChild="">
               {item.quizArray[currentIndex].item[currentItem].raspuns_harta && (<img src={item.quizArray[currentIndex].item[currentItem].raspuns_harta} />)}
-                {item.quizArray[currentIndex].item[currentItem].raspuns}
+              {quizArray[currentIndex]?.answers.map(answer => (
+                <React.Fragment key={answer.answer_id}>
+                  {answer.answer_text.split('\\n').map((line, index) => (
+                    <React.Fragment key={index}>
+                      {line}
+                      <br />
+                    </React.Fragment>
+                  ))}
+                </React.Fragment>
+              ))}
               </ItemText>
               <button onClick={handleAutoevaluare} className="btn-test">
                 Autoevaluiaza raspunsul!
@@ -279,16 +292,17 @@ const ExamenSubect2 = ({raspunsuri, exams, addExam, updateExam}) => {
               {showAutoevaluare && (
                 <ModalCalculator
                   onClick={onCloseAutoevaluare}
-                  barem={item.quizArray[currentIndex].item[currentItem].barem}
                   idRaspuns={idRaspuns}
+                  currentIndex={currentIndex}
+                  subject={2}
                 />
               )}
               <button onClick={handleTryAgain} className="btn-test">
                 Urmatorul item!
               </button>
-              {item.quizArray[currentIndex].item.length - 1 === currentItem && (<button onClick={handleIndexTryAgain} className="btn-test">
+              {/* {item.quizArray[currentIndex].item.length - 1 === currentItem && (<button onClick={handleIndexTryAgain} className="btn-test">
                 Urmatoarea sarcina!
-              </button>) }             
+              </button>) }              */}
             </ItemAccordeon>
           )}
         </>
