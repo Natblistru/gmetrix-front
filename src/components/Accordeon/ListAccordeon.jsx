@@ -34,11 +34,11 @@ const ListAccordeon = (props) => {
   let titleList = stateData.topics;
 
   
-  let repereList = props.teme.repere;
-  let aplicatiiList = props.teme.aplicatii;
+  // let repereList = props.teme.repere;
+  // let aplicatiiList = props.teme.aplicatii;
   let aplicatiiListBD = stateData.evaluations;
-  let termeniList = props.teme.termeni;
-  let diagramData = props.teme.diagramData;
+  // let termeniList = props.teme.termeni;
+  // let diagramData = props.teme.diagramData;
 
   // console.log(stateData.topics); 
   // console.log(aplicatiiList); 
@@ -56,7 +56,7 @@ const ListAccordeon = (props) => {
   return (
     <div className={classes}>
       <ItemAccordeon titlu="Teorie" {...props} open={true}>
-        <ItemList {...props} list={titleList} />
+        <ItemList list={titleList} type={"topic"}/>
       </ItemAccordeon>
 
       {videoBreakpoints && (
@@ -70,7 +70,7 @@ const ListAccordeon = (props) => {
 
 
       <ItemAccordeon titlu="Itemii examenului de absolvire (conform temei)" {...props} open={true}>
-        <ItemList {...props} list={aplicatiiListBD} />
+        <ItemList {...props} list={aplicatiiListBD} type={"exam"}/>
       </ItemAccordeon>
     </div>
   );

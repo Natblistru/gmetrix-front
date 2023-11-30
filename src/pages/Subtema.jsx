@@ -14,6 +14,7 @@ const Subtema = ({results})  => {
   const {stateData, dispatchData} = React.useContext(ContextData)
   const { address1, disciplina } = useParams();
   const [item, setItem] = useState(null);
+  const [topic, setTopic] = useState(null);
   // console.log("address1", address1);
   // console.log(stateData.currentSubject.subject_name == "Limba română"); 
   const history = useHistory();
@@ -60,7 +61,7 @@ const Subtema = ({results})  => {
 
   useEffect(() => {
     const temaCurrenta = stateData.topics;
-    // console.log(temaCurrenta)
+    console.log(temaCurrenta)
     const addressToFind = "/"+address1;
     // console.log(addressToFind)
     const mainElement = temaCurrenta?.find(element => element.path === addressToFind);
@@ -74,6 +75,8 @@ const Subtema = ({results})  => {
       payload: mainElement
     });
 
+    console.log(mainElement);
+    setTopic(mainElement);
     const foundItem = findObjectWithAddress(teme);
     if (foundItem) {
       setItem(foundItem);
@@ -84,11 +87,11 @@ const Subtema = ({results})  => {
 
   return (
     <Wrapper>
-      {item && 
+      {topic && 
       (
         <>
           <Breadcrumb step={2} />
-          <TitleBox className="teme-container" subjectId={item.id}>{item.name}</TitleBox>
+          <TitleBox className="teme-container" proc={topic.procentTopic}>{topic.name}</TitleBox>
           <ListSubAccordeon teme={teme} subtema={item}/>
         </>
       )

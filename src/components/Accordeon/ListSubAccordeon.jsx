@@ -17,11 +17,20 @@ const [currentSubject, setCurrentSubject] = useState(0);
 
 const classes = " " + props.className;
 let arraySubject = props.subtema.vomAfla;
+
 let arrayTests = props.subtema.teste;
+console.log(stateData.currentTopic);
+let currentTopic = stateData.currentTopic;
+let arraySubtitles = stateData.currentTopic.subtitles; 
+console.log(arraySubtitles);
+console.log(arraySubtitles[currentSubject].images);
+const transformedArrayImages = arraySubtitles[currentSubject].images.map(function(item) {
+  return item.path;
+});
 
 useEffect(()=> {
 
-// console.log(stateData.currentTopic)
+
 
 },[]);
 
@@ -38,7 +47,7 @@ const handleItemClick = (idx) => {
     smooth: 'easeInOutQuart'
   });
 };
-  if (!arraySubject || !arrayTests) {
+  if (!stateData.currentTopic || !arrayTests) {
     return null; // Возвращаем null или другой компонент-заглушку
   }
 
@@ -46,7 +55,7 @@ const handleItemClick = (idx) => {
     <div className={classes}>
       <ItemAccordeon titlu="La aceasta lectie vom afla:" {...props} open={true}>
 
-        <ItemList {...props} list={arraySubject} onItemClick={handleItemClick}/>
+        <ItemList {...props} list={arraySubtitles} type={"subtopic"} onItemClick={handleItemClick}/>
       </ItemAccordeon>
       <ItemAccordeon
         titlu="Studiaza prin scheme"
@@ -55,17 +64,15 @@ const handleItemClick = (idx) => {
         name="video"
       > 
         <div id="video">
-          <SimpleSlider {...props} images={arraySubject[currentSubject].images} />
-          <Audio path={arraySubject[currentSubject].audio} currentSubject={currentSubject} subjectID={props.subtema.id} arrayAudioLength={arraySubject.length}/>
-          <ProgressSteps list={arraySubject} onClick={clickSubjectHandler} activeCircle={currentSubject+1}/>
+          <SimpleSlider {...props} images={transformedArrayImages} />
+          <Audio path={arraySubtitles[currentSubject].audio_path} />
+          <ProgressSteps list={arraySubtitles} onClick={clickSubjectHandler} activeCircle={currentSubject+1}/>
         </div>
       </ItemAccordeon>
       <ItemAccordeon titlu="Repetă cu cartele-flip" {...props} open={true}>
       <div className="Cards">
-        {arraySubject.map((subject, subjectIndex) => (
-          subject.raspuns.map((line, lineIndex) => (
-            <FlipCardNou title={line.sarcina} key={lineIndex} dangerousHTML={line.rezolvare}/>
-          ))
+        {currentTopic.flip_cards.map((subject, subjectIndex) => (
+           <FlipCardNou title={subject.sarcina} key={subjectIndex} dangerousHTML={subject.rezolvare}/>
         ))}
       </div>
       </ItemAccordeon>

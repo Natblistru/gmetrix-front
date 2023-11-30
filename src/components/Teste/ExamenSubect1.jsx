@@ -161,7 +161,7 @@ const ExamenSubect1 = ({ raspunsuri }) => {
       {quizArray && (
         <>
           <Breadcrumb step={2} />
-          <TitleBox className="teme-container" proc={quizArray[currentIndex]?.student_procent} list={quizArray[currentIndex]} >{quizArray[currentIndex]?.name}</TitleBox>
+          <TitleBox className="teme-container" proc={quizArray[currentIndex]?.student_procent} >{quizArray[currentIndex]?.name}</TitleBox>
           <ItemAccordeon
             titlu={`Cerințele sarcinii (${currentIndex + 1}/${
               quizArray.length

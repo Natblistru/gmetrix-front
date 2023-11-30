@@ -3,7 +3,7 @@ import ContextData from "../context/ContextData";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
-const ItemList = ({ list, className, results, onItemClick }) => {
+const ItemList = ({ list, className, type, results, onItemClick }) => {
   const {stateData, dispatchData} = React.useContext(ContextData)
   let listItems = list;
   const classes = "subjects-container " + className;
@@ -35,8 +35,10 @@ const ItemList = ({ list, className, results, onItemClick }) => {
 
     return procSum / filteredItems.length;
   };
-  // console.log(stateData.currentTheme); 
-  
+  //  console.log(stateData.currentTheme); 
+  //  console.log(stateData.currentTopic);   
+  //  console.log(listItems);
+
 
   const parts = stateData.currentTheme.path_tema.split("/");
   const addressDisciplina = "/" + parts[1];
@@ -46,21 +48,28 @@ const ItemList = ({ list, className, results, onItemClick }) => {
       {listItems?.map((subtitle, idx) => {
         // const dynamicPath = `${subtitle.addressDisciplina}${subtitle.addressSubtitle}${subtitle.addressSubject}`;
         let subtitle_path = subtitle.path;
-        if (subtitle.path == "/subtema1") {
-          const partsApp = subtitle.addressAplicatie.split("/");
-          subtitle_path = "/" + partsApp.slice(2).join("/");
+        
+        let procent = 0;
+        let classNameProcent = "";
+        if(type == "topic") {
+          procent = subtitle.procentTopic;
+        } else if(type == "subtopic") {
+          procent = subtitle.procentSubtopic;
+        } else if (type == "exam") {
         }
+        if(procent == 100) {
+          classNameProcent = "svg-sprite-vs-small result-perfect";
+        }
+        // console.log(subtitle)
         const dynamicPath = `${addressDisciplina}${addressSubtitle}${subtitle_path}?teacher=1&level=1&disciplina=${stateData.currentSubject.subject_id}&theme=${stateData.currentTheme.tema_id}`;       
         return (
           <div key={idx} className="subject-item" onClick={() => onItemClick && onItemClick(idx)}>
             <div className="title-item"> 
-              <div className="num-item">{subtitle.id}.</div>
+              <div className="num-item">{type === "subtopic" ? subtitle.subtopic_id : subtitle.id}.</div>
               <div className="name-item">
-                {/* {console.log(subtitle.procentSubtopic)} */}
-                {/* {console.log(subtitle.name)} */}
-                {subtitle.path == null ? (
+              {subtitle.path == null ? (
                   subtitle.anul == null ? (
-                    <div className="text-block">{subtitle.name}</div>
+                    <div className="text-block">{subtitle.subtopic_name}</div>
                   ) : (
                     <div className="text-block">
                       <strong>{subtitle.anul}</strong> - {subtitle.eveniment}
@@ -68,17 +77,11 @@ const ItemList = ({ list, className, results, onItemClick }) => {
                   )
                 ) : (
 
-                  <Link to={dynamicPath}>{subtitle.name}</Link> 
+                  <Link to={dynamicPath}>{type == "subtopic" ? subtitle.subtopic_name : subtitle.name}</Link>
                 )}
               </div>
             </div>
-            {subtitle.path && subtitle.vomAfla && sumProc(subtitle.subjectID,subtitle) == 100 && (
-              <div className="svg-sprite-vs-small result-perfect"></div>
-            )}
-            {subtitle.procentTopic &&
-              subtitle.procentTopic == 100 && (
-                <div className="svg-sprite-vs-small result-perfect"></div>
-              )}
+            <div className={classNameProcent}></div>
           </div>
         );
       })}
