@@ -14,7 +14,7 @@ import ModalForm from "../Modal/ModalForm";
 import ModalCalculator from "../Modal/ModalCalculator";
 import Draw from "../CanvasDrawing/Draw";
 
-const ExamenSubect2 = ({raspunsuri, exams, addExam, updateExam}) => {
+const ExamenSubect2 = ({raspunsuri}) => {
   const {stateData, dispatchData} = React.useContext(ContextData)
   const { address } = useParams();
   const [idRaspuns, setIdRaspuns] = useState(null);
@@ -55,12 +55,12 @@ const ExamenSubect2 = ({raspunsuri, exams, addExam, updateExam}) => {
   let quizArray = stateData.evaluations2;
   console.log(quizArray[currentIndex])
   useEffect(() => {
-    const foundItem = findObjectWithAddress(temeIstoriArray);
-    if (foundItem) {
-      setItem(foundItem);
-    } else {
-      history.push("/error");
-    }
+    // const foundItem = findObjectWithAddress(temeIstoriArray);
+    // if (foundItem) {
+    //   setItem(foundItem);
+    // } else {
+    //   history.push("/error");
+    // }
   }, []);
 
   const initialization = () => {
@@ -159,43 +159,42 @@ const ExamenSubect2 = ({raspunsuri, exams, addExam, updateExam}) => {
 
   const onCloseAutoevaluare = (notaResult) => {
     setShowAutoevaluare(false);
-    if(notaResult!==undefined){
-   //   console.log(notaResult)
-      const userItems = exams.items.find(
-        (el) => el.user === "Current user"
-      );
-      if (userItems) {
-        const resultItem = userItems.exams.find(
-          (el) =>
-            el.id == item.subtitleID &&
-            el.subiect == "2" &&
-            el.superitem == currentIndex + 1 &&
-            el.item == currentItem + 1
-        );
-        if (resultItem) {
-          updateExam({
-            id: item.subtitleID,
-            subiect: "2",
-            superitem: currentIndex + 1,
-            item: currentItem + 1,            
-            proc: Math.round(notaResult*100/item.quizArray[currentIndex].item[currentItem].barem.maxPoints),
-          });
-        } else {
-          addExam({
-            id: item.subtitleID,
-            subiect: "2",
-            superitem: currentIndex + 1,
-            item: currentItem + 1,            
-            proc: Math.round(notaResult*100/item.quizArray[currentIndex].item[currentItem].barem.maxPoints),
-          });
-        }
-      }
-     }
+    // if(notaResult!==undefined){
+    //   const userItems = exams.items.find(
+    //     (el) => el.user === "Current user"
+    //   );
+    //   if (userItems) {
+    //     const resultItem = userItems.exams.find(
+    //       (el) =>
+    //         el.id == item.subtitleID &&
+    //         el.subiect == "2" &&
+    //         el.superitem == currentIndex + 1 &&
+    //         el.item == currentItem + 1
+    //     );
+    //     if (resultItem) {
+    //       updateExam({
+    //         id: item.subtitleID,
+    //         subiect: "2",
+    //         superitem: currentIndex + 1,
+    //         item: currentItem + 1,            
+    //         proc: Math.round(notaResult*100/item.quizArray[currentIndex].item[currentItem].barem.maxPoints),
+    //       });
+    //     } else {
+    //       addExam({
+    //         id: item.subtitleID,
+    //         subiect: "2",
+    //         superitem: currentIndex + 1,
+    //         item: currentItem + 1,            
+    //         proc: Math.round(notaResult*100/item.quizArray[currentIndex].item[currentItem].barem.maxPoints),
+    //       });
+    //     }
+    //   }
+    //  }
   }
 
   return (
     <Wrapper>
-      {quizArray && item && (
+      {quizArray && (
         <>
           <Breadcrumb step={2} />
           <TitleBox className="teme-container" proc={quizArray[currentIndex]?.student_procent}>{quizArray[currentIndex]?.name}</TitleBox>
@@ -215,7 +214,7 @@ const ExamenSubect2 = ({raspunsuri, exams, addExam, updateExam}) => {
               </h3> */}
               <h4>{quizArray[currentIndex].cerinta}</h4>
               <p>{quizArray[currentIndex].afirmatie} </p> 
-              {item.quizArray[currentIndex].item[currentItem].harta && item.quizArray[currentIndex].item[currentItem].harta.length>0 && <Draw item={item.quizArray[currentIndex].item[currentItem]} disable={showResponse}/>}
+              {quizArray[currentIndex].harta && quizArray[currentIndex].harta.length>0 && <Draw item={quizArray[currentIndex]} disable={showResponse}/>}
               <div className="subject1-container">
               
                 <div className="paper" style={{ width: quizArray[currentIndex]?.procent_paper, height: '267px'}}>
@@ -274,7 +273,7 @@ const ExamenSubect2 = ({raspunsuri, exams, addExam, updateExam}) => {
             >
 
               <ItemText classNameChild="">
-              {item.quizArray[currentIndex].item[currentItem].raspuns_harta && (<img src={item.quizArray[currentIndex].item[currentItem].raspuns_harta} />)}
+              {quizArray[currentIndex].img && (<img src={quizArray[currentIndex].img} />)}
               {quizArray[currentIndex]?.answers.map(answer => (
                 <React.Fragment key={answer.answer_id}>
                   {answer.answer_text.split('\\n').map((line, index) => (
@@ -312,10 +311,6 @@ const ExamenSubect2 = ({raspunsuri, exams, addExam, updateExam}) => {
 };
 const reduxState = (state) => ({
   raspunsuri: state.raspunsuri,
-  exams: state.exams
 });
-const reduxFunctions = (dispatch) => ({
-  addExam: (item) => dispatch({ type: "ADD_EXAM", payload: item }),
-  updateExam: (item) => dispatch({ type: "UPDATE_EXAM", payload: item }),
-});
-export default connect(reduxState, reduxFunctions)(ExamenSubect2);
+
+export default connect(reduxState)(ExamenSubect2);
