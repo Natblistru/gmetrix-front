@@ -1,14 +1,23 @@
 import React, { useEffect } from "react";
+import ContextData from "../context/ContextData";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import temeIstoriArray from "../../data/temeIstoria";
 import "../../index.css";
 
 const TableRow = (props) => {
+  const {stateData, dispatchData} = React.useContext(ContextData)
+
   const rowData = props.rowData;
   const idx = props.ind;
   const classes = "row " + props.className;
-  const dynamicPath = `${rowData.addressTestDisciplina}${rowData.addressTestSubtitle}${rowData.addressTestSubject}${rowData.addressTest}/1`;
+
+  const parts = stateData.currentTheme.path_tema.split("/");
+  const addressDisciplina = "/" + parts[1];
+  const addressSubtitle = "/" + parts.slice(2).join("/");
+
+  const dynamicPath = `${addressDisciplina}${addressSubtitle}${rowData.path}${rowData.addressTest}/1?teacher=1&level=1&disciplina=${stateData.currentSubject.subject_id}&theme=${stateData.currentTheme.tema_id}`;       
+  // const dynamicPath = `${rowData.addressTestDisciplina}${rowData.addressTestSubtitle}${rowData.addressTestSubject}${rowData.addressTest}/1`;
 
   const sumProc = (subjectId, testID, subtitle) => {
     const user = "Current user";
@@ -59,59 +68,58 @@ const TableRow = (props) => {
         </div>
       </div>
       {/* //test cu raspuns maximal */}
-      {sumProc(rowData.subjectID, rowData.id, rowData) == 100 && (
+      {rowData.testResult == (rowData.length * rowData.complexityNumber) && (
         <div className="tbl-points" title="Cel mai bun rezultat">
           <div className="svg-sprite-vs-points profile-point-full"></div>
           <span className="points">
             <span className="earned">
               {" "}
-              {rowData.quizArray.length * rowData.complexityNumber}
+              {rowData.length * rowData.complexityNumber}
             </span>{" "}
             /{" "}
             <span className="max">
-              {rowData.quizArray.length * rowData.complexityNumber}
+              {rowData.length * rowData.complexityNumber}
             </span>
           </span>
         </div>
       )}
       {/* //test cu raspuns partial */}
-      {sumProc(rowData.subjectID, rowData.id, rowData) > 0 &&
-        sumProc(rowData.subjectID, rowData.id, rowData) < 100 &&
-          (
+      {rowData.testResult < (rowData.length** rowData.complexityNumber) && rowData.testResult > 0 && (
             <div className="tbl-points" title="Cel mai bun rezultat">
               <div className="svg-sprite-vs-points profile-point-half"></div>
               <span className="points">
                 <span className="earned">
                   {" "}
-                  {Math.round(sumProc(rowData.subjectID, rowData.id, rowData) * (rowData.quizArray.length * rowData.complexityNumber) / 100)}
+                  {Math.round(rowData.testResult * (rowData.length * rowData.complexityNumber) / 100)}
+                  {/* {Math.round(sumProc(rowData.subjectID, rowData.id, rowData) * (rowData.quizArray.length * rowData.complexityNumber) / 100)} */}
                 </span>{" "}
                 /{" "}
                 <span className="max">
-                  {rowData.quizArray.length * rowData.complexityNumber}
+                  {rowData.length * rowData.complexityNumber}
                 </span>
               </span>
             </div>
           )}
       {/* //test cu raspuns minimal=0 */}
-      {sumProc(rowData.subjectID, rowData.id, rowData) == 0 && (
+      {rowData.testResult == 0 && (
         <div className="tbl-points" title="Cel mai bun rezultat">
           <div className="svg-sprite-vs-points profile-point-empty"></div>
           <span className="points">
             <span className="earned"> 0</span> /{" "}
             <span className="max">
-              {rowData.quizArray.length * rowData.complexityNumber}
+              {rowData.length * rowData.complexityNumber}
             </span>
           </span>
         </div>
       )}
       {/* //test cu fara raspuns */}
-      {sumProc(rowData.subjectID, rowData.id, rowData) == null && (
+      {rowData.testResult == null && (
         <div className="tbl-points" title="Cel mai bun rezultat">
           <div className="svg-sprite-vs-points profile-point-empty"></div>
           <span className="points">
             <span className="earned">
               {" "}
-              {rowData.quizArray.length * rowData.complexityNumber}
+              {rowData.length * rowData.complexityNumber}
             </span>
           </span>
         </div>
@@ -120,16 +128,17 @@ const TableRow = (props) => {
   );
 };
 
-const ItemTable = ({ list, className, tests }) => {
-  const data = list;
+const ItemTable = ({ list, className, tests, list1 }) => {
+  // const data = list;
   const classes = "table subjects-container " + className;
-
+  const data = list1;
+  console.log(data);
   return (
     <div className={classes}>
       {data.map((rowData, idx) => {
-        rowData.quizArray.forEach((item) =>
-          item.answers?.sort(() => Math.random() - 0.5)
-        );
+        // rowData.quizArray.forEach((item) =>
+        //   item.answers?.sort(() => Math.random() - 0.5)
+        // );
         return (
           <TableRow
             rowData={rowData}

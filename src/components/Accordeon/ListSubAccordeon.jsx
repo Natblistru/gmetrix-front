@@ -24,15 +24,13 @@ let currentTopic = stateData.currentTopic;
 let arraySubtitles = stateData.currentTopic.subtitles; 
 console.log(arraySubtitles);
 console.log(arraySubtitles[currentSubject].images);
-const transformedArrayImages = arraySubtitles[currentSubject].images.map(function(item) {
+let transformedArrayImages = arraySubtitles[currentSubject].images.map(function(item) {
   return item.path;
 });
 
 useEffect(()=> {
 
-
-
-},[]);
+},[currentSubject]);
 
 const clickSubjectHandler = (idx) => {
   setCurrentSubject(idx);
@@ -50,7 +48,7 @@ const handleItemClick = (idx) => {
   if (!stateData.currentTopic || !arrayTests) {
     return null; // Возвращаем null или другой компонент-заглушку
   }
-
+console.log(transformedArrayImages)
   return (
     <div className={classes}>
       <ItemAccordeon titlu="La aceasta lectie vom afla:" {...props} open={true}>
@@ -77,7 +75,7 @@ const handleItemClick = (idx) => {
       </div>
       </ItemAccordeon>
       <ItemAccordeon titlu="Evaluare (teste)" {...props} open={true}>
-        <ItemTable {...props} list={arrayTests} />
+        <ItemTable {...props} list={arrayTests} list1={currentTopic.tests} />
       </ItemAccordeon>
     </div>
   );
