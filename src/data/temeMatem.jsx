@@ -368,9 +368,9 @@ let temeMatem = [
                 addressTestSubtitle: "/multimea-numerelor-naturale",
                 addressTestSubject:
                   "/mulţimi-operatii-cu-multimi",
-                addressTest: "/stabileste-cauzele",
+                addressTest: "/stabileste-cauzele-evenimentelor",
                 addressTestId:
-                  "/mulţimi-operatii-cu-multimi/stabileste-cauzele",
+                  "/mulţimi-operatii-cu-multimi/stabileste-cauzele-evenimentelor",
                 breadcrumb: [
                   { name: "Discipline", path: "/" },
                   { name: "Matematica", path: "/matem" },
@@ -491,9 +491,9 @@ let temeMatem = [
                 addressTestSubtitle: "/multimea-numerelor-naturale",
                 addressTestSubject:
                   "/mulţimi-operatii-cu-multimi",
-                addressTest: "/stabileste-consecintele",
+                addressTest: "/stabileste-consecintele-evenimentelor",
                 addressTestId:
-                  "/mulţimi-operatii-cu-multimi/stabileste-consecintele",
+                  "/mulţimi-operatii-cu-multimi/stabileste-consecintele-evenimentelor",
                 breadcrumb: [
                   { name: "Discipline", path: "/" },
                   { name: "Matematica", path: "/matem" },
@@ -607,9 +607,9 @@ let temeMatem = [
                 addressTestSubtitle: "/multimea-numerelor-naturale",
                 addressTestSubject:
                   "/mulţimi-operatii-cu-multimi",
-                addressTest: "/verifica-corectitudinea",
+                addressTest: "/verifica-corectitudinea-afirmatiilor",
                 addressTestId:
-                  "/mulţimi-operatii-cu-multimi/verifica-corectitudinea",
+                  "/mulţimi-operatii-cu-multimi/verifica-corectitudinea-afirmatiilor",
                 breadcrumb: [
                   { name: "Discipline", path: "/" },
                   { name: "Matematica", path: "/matem" },
@@ -710,9 +710,9 @@ let temeMatem = [
                 addressTestSubtitle: "/multimea-numerelor-naturale",
                 addressTestSubject:
                   "/mulţimi-operatii-cu-multimi",
-                addressTest: "/formeaza-perechi",
+                addressTest: "/formeaza-perechi-logice",
                 addressTestId:
-                  "/mulţimi-operatii-cu-multimi/formeaza-perechi",
+                  "/mulţimi-operatii-cu-multimi/formeaza-perechi-logice",
                 breadcrumb: [
                   { name: "Discipline", path: "/" },
                   { name: "Matematica", path: "/matem" },
@@ -1131,9 +1131,9 @@ let temeMatem = [
                 addressTestSubtitle: "/multimea-numerelor-naturale",
                 addressTestSubject:
                   "/mulţimi-operatii-cu-multimi",
-                addressTest: "/elaboreaza-text",
+                addressTest: "/elaboreaza-un-fragment-de-text",
                 addressTestId:
-                  "/mulţimi-operatii-cu-multimi/elaboreaza-text",
+                  "/mulţimi-operatii-cu-multimi/elaboreaza-un-fragment-de-text",
                 breadcrumb: [
                   { name: "Discipline", path: "/" },
                   { name: "Matematica", path: "/matem" },
@@ -1265,9 +1265,9 @@ let temeMatem = [
                 addressTestSubtitle: "/multimea-numerelor-naturale",
                 addressTestSubject:
                   "/mulţimi-operatii-cu-multimi",
-                addressTest: "/succesiunea-cronologica",
+                addressTest: "/succesiunea-cronologica-a-evenimentelor",
                 addressTestId:
-                  "/mulţimi-operatii-cu-multimi/succesiunea-cronologica",
+                  "/mulţimi-operatii-cu-multimi/succesiunea-cronologica-a-evenimentelor",
                 breadcrumb: [
                   { name: "Discipline", path: "/" },
                   { name: "Matematica", path: "/matem" },

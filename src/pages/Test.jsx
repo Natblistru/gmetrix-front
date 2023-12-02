@@ -135,6 +135,8 @@ const TestWrapper = ({ tests, add, update }) => {
       testBoardRef.current.handleTryAgainClear(testId);
     }
   };
+  console.log(currentList);
+  console.log(addressTest)
   return (
     <Wrapper>
       {currentList && (

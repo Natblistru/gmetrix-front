@@ -299,9 +299,9 @@ let temeIstoria = [
                 addressTestSubtitle: "/romania-in-primul-razboi",
                 addressTestSubject:
                   "/optiunile-politice-in-perioada-neutralitatii",
-                addressTest: "/stabileste-cauzele",
+                addressTest: "/stabileste-cauzele-evenimentelor",
                 addressTestId:
-                  "/optiunile-politice-in-perioada-neutralitatii/stabileste-cauzele",
+                  "/optiunile-politice-in-perioada-neutralitatii/stabileste-cauzele-evenimentelor",
                 breadcrumb: [
                   { name: "Discipline", path: "/" },
                   { name: "Istoria", path: "/istoria" },
@@ -373,7 +373,7 @@ let temeIstoria = [
                     answers: [
                       {
                         id: "1",
-                        text: "România a semnat un tratat de neutralitate",
+                        text: "Dezvoltarea relativ slabă a României din punct de vedere economic și militar",
                       },
                       {
                         id: "2",
@@ -422,9 +422,9 @@ let temeIstoria = [
                 addressTestSubtitle: "/romania-in-primul-razboi",
                 addressTestSubject:
                   "/optiunile-politice-in-perioada-neutralitatii",
-                addressTest: "/stabileste-consecintele",
+                addressTest: "/stabileste-consecintele-evenimentelor",
                 addressTestId:
-                  "/optiunile-politice-in-perioada-neutralitatii/stabileste-consecintele",
+                  "/optiunile-politice-in-perioada-neutralitatii/stabileste-consecintele-evenimentelor",
                 breadcrumb: [
                   { name: "Discipline", path: "/" },
                   { name: "Istoria", path: "/istoria" },
@@ -538,9 +538,9 @@ let temeIstoria = [
                 addressTestSubtitle: "/romania-in-primul-razboi",
                 addressTestSubject:
                   "/optiunile-politice-in-perioada-neutralitatii",
-                addressTest: "/verifica-corectitudinea",
+                addressTest: "/verifica-corectitudinea-afirmatiilor",
                 addressTestId:
-                  "/optiunile-politice-in-perioada-neutralitatii/verifica-corectitudinea",
+                  "/optiunile-politice-in-perioada-neutralitatii/verifica-corectitudinea-afirmatiilor",
                 breadcrumb: [
                   { name: "Discipline", path: "/" },
                   { name: "Istoria", path: "/istoria" },
@@ -641,9 +641,9 @@ let temeIstoria = [
                 addressTestSubtitle: "/romania-in-primul-razboi",
                 addressTestSubject:
                   "/optiunile-politice-in-perioada-neutralitatii",
-                addressTest: "/formeaza-perechi",
+                addressTest: "/formeaza-perechi-logice",
                 addressTestId:
-                  "/optiunile-politice-in-perioada-neutralitatii/formeaza-perechi",
+                  "/optiunile-politice-in-perioada-neutralitatii/formeaza-perechi-logice",
                 breadcrumb: [
                   { name: "Discipline", path: "/" },
                   { name: "Istoria", path: "/istoria" },
@@ -1062,9 +1062,9 @@ let temeIstoria = [
                 addressTestSubtitle: "/romania-in-primul-razboi",
                 addressTestSubject:
                   "/optiunile-politice-in-perioada-neutralitatii",
-                addressTest: "/elaboreaza-text",
+                addressTest: "/elaboreaza-un-fragment-de-text",
                 addressTestId:
-                  "/optiunile-politice-in-perioada-neutralitatii/elaboreaza-text",
+                  "/optiunile-politice-in-perioada-neutralitatii/elaboreaza-un-fragment-de-text",
                 breadcrumb: [
                   { name: "Discipline", path: "/" },
                   { name: "Istoria", path: "/istoria" },
@@ -1196,9 +1196,9 @@ let temeIstoria = [
                 addressTestSubtitle: "/romania-in-primul-razboi",
                 addressTestSubject:
                   "/optiunile-politice-in-perioada-neutralitatii",
-                addressTest: "/succesiunea-cronologica",
+                addressTest: "/succesiunea-cronologica-a-evenimentelor",
                 addressTestId:
-                  "/optiunile-politice-in-perioada-neutralitatii/succesiunea-cronologica",
+                  "/optiunile-politice-in-perioada-neutralitatii/succesiunea-cronologica-a-evenimentelor",
                 breadcrumb: [
                   { name: "Discipline", path: "/" },
                   { name: "Istoria", path: "/istoria" },
