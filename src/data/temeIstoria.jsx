@@ -687,7 +687,7 @@ let temeIstoria = [
                       "C.'Rege unificator'",
                       "D. Greva regală",
                     ],
-                    correctAnswer: [[5, 0], [3, 4], [1, 6], [7, 2]],
+                    correctAnswer: [[0, 5], [3, 4], [1, 6], [7, 2]],
                   },
                   {
                     id: "2",

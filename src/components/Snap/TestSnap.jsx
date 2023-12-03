@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState, useLayoutEffect } from "react";
+import ContextData from "../context/ContextData";
 import Snap from "snapsvg-cjs";
 import "./TestSnap.css";
 import ItemAccordeon from "../Accordeon/ItemAccordeon";
@@ -28,6 +29,70 @@ const TestSnap = ({
   handleTryAgain,
 }) => {
   const svgboxRef = useRef();
+  const {stateData, dispatchData} = React.useContext(ContextData)
+
+  console.log(stateData.currentTests)
+  console.log(stateData.currentTests[stateData.currentIndexTest].order_number_options);
+
+  console.log(stateData.currentIndexTest);
+
+  const listItems = stateData.currentTests[stateData.currentIndexTest].order_number_options;
+
+  const textAdditionalArray = listItems[currentIndex].test_item_options.map(option => JSON.parse(option.text_additional));
+
+  console.log(textAdditionalArray);
+
+    // Creează array-ul de forma dorită
+  const transformedArray = textAdditionalArray.reduce((acc, item) => {
+    // Adaugă perechea x, y pentru x1, y1
+    acc.push({ x: parseInt(item.x1), y: parseInt(item.y1) });
+
+    // Adaugă perechea x, y pentru x2, y2
+    acc.push({ x: parseInt(item.x2), y: parseInt(item.y2) });
+
+    return acc;
+  }, []);
+
+  // Sortează array-ul în funcție de x și apoi de y
+  transformedArray.sort((a, b) => {
+    if (a.x !== b.x) {
+      return a.x - b.x;
+    } else {
+      return a.y - b.y;
+    }
+  });
+
+  console.log(transformedArray);
+
+  // Creează matricea răspunsurilor corecte
+  const matriceRaspunsuri = textAdditionalArray.map(coordonate => {
+    const indexStart = transformedArray.findIndex(punct => punct.x === parseInt(coordonate.x1) && punct.y === parseInt(coordonate.y1));
+    const indexEnd = transformedArray.findIndex(punct => punct.x === parseInt(coordonate.x2) && punct.y === parseInt(coordonate.y2));
+
+    return [indexStart, indexEnd];
+  });
+
+  console.log(matriceRaspunsuri);
+
+  const sortedOptions = listItems[currentIndex].test_item_options.map(item => {
+    const parts = item.option.split('|').map(part => part.trim());
+    return parts;
+  }).flat();
+  
+  // Sortează array-ul în funcție de primul caracter al fiecărui element
+  sortedOptions.sort((a, b) => {
+    const aFirstChar = a.charAt(0);
+    const bFirstChar = b.charAt(0);
+
+    if (aFirstChar.match(/[0-9]/) && bFirstChar.match(/[0-9]/)) {
+      return aFirstChar - bFirstChar;
+    } else {
+      return a.localeCompare(b);
+    }
+  });
+
+  console.log(sortedOptions);
+
 
   const gRef = useRef(null);
   const [connectedZones, setConnectedZones] = useState([]);
@@ -61,8 +126,8 @@ const TestSnap = ({
     });
   };
   const getPinZoneIndex = (x, y) => {
-    for (let i = 0; i < list.points.length; i++) {
-      const point = list.points[i];
+    for (let i = 0; i < transformedArray.length; i++) {
+      const point = transformedArray[i];
       if (x > point.x && x < point.x + 48 && y > point.y && y < point.y + 48) {
         return i;
       }
@@ -71,9 +136,9 @@ const TestSnap = ({
   };
 
   const getCentre = (idx) => {
-    if (idx >= 0 && idx < list.points.length) {
-      const originX = list.points[idx].x;
-      const originY = list.points[idx].y;
+    if (idx >= 0 && idx < transformedArray.length) {
+      const originX = transformedArray[idx].x;
+      const originY = transformedArray[idx].y;
       const width = 48;
       const X = originX + width / 2;
       const Y = originY + width / 2;
@@ -85,7 +150,7 @@ const TestSnap = ({
   };
 
   const isCorrespondingZone = (index1, index2) => {
-    const halfLength = list.points.length / 2;
+    const halfLength = transformedArray.length / 2;
 
     if (
       (index1 < halfLength && index2 >= halfLength) ||
@@ -144,7 +209,7 @@ const TestSnap = ({
   const checkLines = () => {
     const centrePoints = [];
 
-    for (let i = 0; i < list.points.length; i++) {
+    for (let i = 0; i < transformedArray.length; i++) {
       centrePoints.push(getCentre(i));
     }
 
@@ -390,14 +455,14 @@ const TestSnap = ({
   };
 
   const checkAnswer = () => {
-    const correctAnswers = [
-      [5, 0],
-      [3, 4],
-      [1, 6],
-      [7, 2],
-    ];
+    // const correctAnswers = [
+    //   [0, 5],
+    //   [3, 4],
+    //   [1, 6],
+    //   [2, 7],
+    // ];
 
-    const isAnswersCorrect = list.quizArray[currentIndex].correctAnswer.every(
+    const isAnswersCorrect = matriceRaspunsuri.every(
       (correctAnswer) =>
         connectedZones.some(
           (userAnswer) =>
@@ -415,17 +480,19 @@ const TestSnap = ({
     }
   };
 
-  const halfIndex = Math.ceil(list.quizArray[currentIndex].text.length / 2);
-
+  const halfIndex = Math.ceil(sortedOptions.length / 2);
+// console.log(halfIndex);
+// console.log(sortedOptions);
+// console.log(Math.ceil(sortedOptions.length / 2));
   return (
     <>
       <ItemAccordeon
         titlu={
           correctAnswer === null
             ? `Cerințele sarcinii (${currentIndex + 1}/${
-                list.quizArray.length
+              listItems.length
               }):`
-            : `Rezultat (${currentIndex + 1}/${list.quizArray.length}):`
+            : `Rezultat (${currentIndex + 1}/${listItems.length}):`
         }
         correctAnswer={correctAnswer}
         additionalContent={additionalContent}
@@ -440,14 +507,14 @@ const TestSnap = ({
               : " incorrect"
           }
         >
-          <p>{list.quizArray[currentIndex].cerinte}</p>
+          <p>Formează perechi logice, unind prin săgeţi, conţinuturile din prima și a doua coloană:</p>
 
           <div className="content-snap">
             <div>
               <div className="grid-container-snap">
                 <div>
                   <div>
-                    {list.quizArray[currentIndex].text
+                    {sortedOptions
                       .slice(0, halfIndex)
                       .map((text, index) => (
                         <RowText key={index} indx={index} text={text} />
@@ -467,7 +534,7 @@ const TestSnap = ({
                 </div>
                 <div>
                   <div>
-                    {list.quizArray[currentIndex].text
+                    {sortedOptions
                       .slice(halfIndex)
                       .map((text, index) => (
                         <RowText
@@ -504,10 +571,10 @@ const TestSnap = ({
                   </>
                 )} */}
               </g>
-              {list.points.map((p, index) => (
+              {transformedArray.map((p, index) => (
                 <Pinzone
                   key={index}
-                  transformMatrix={`matrix(1, 0, 0, 1, ${list.points[index].x}, ${list.points[index].y})`}
+                  transformMatrix={`matrix(1, 0, 0, 1, ${transformedArray[index].x}, ${transformedArray[index].y})`}
                   onPointMousedown={(event) =>
                     handlePointMousedown(event, index)
                   }
@@ -526,17 +593,17 @@ const TestSnap = ({
       {correctAnswer !== null && (
         <ItemAccordeon
           titlu={`Rezolvarea sarcinii (${currentIndex + 1}/${
-            list.quizArray.length
+            listItems.length
           }):`}
           open={true}
         >
           <ItemText classNameChild="">
-            {list.quizArray[currentIndex].correctAnswer.map(
+            {matriceRaspunsuri.map(
               ([index1, index2]) => {
                 const answer1 =
-                  list.quizArray[currentIndex].text[Math.min(index1, index2)];
+                  sortedOptions[Math.min(index1, index2)];
                 const answer2 =
-                  list.quizArray[currentIndex].text[Math.max(index1, index2)];
+                  sortedOptions[Math.max(index1, index2)];
                 return (
                   <p key={`${index1}-${index2}`}>
                     {answer1} - {answer2}
