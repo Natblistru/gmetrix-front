@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import ContextData from "../context/ContextData";
 import CheckBox from "../CheckBox";
 
 import ItemAccordeon from "../Accordeon/ItemAccordeon";
@@ -13,7 +14,16 @@ const TestCheck = ({
   additionalContent,
   handleTryAgain,
 }) => {
+  const {stateData, dispatchData} = React.useContext(ContextData)
   const [selectedValues, setSelectedValues] = useState([]);
+
+  console.log(stateData.currentTests)
+  console.log(stateData.currentTests[stateData.currentIndexTest].order_number_options);
+
+  console.log(stateData.currentIndexTest);
+
+  const listItems = stateData.currentTests[stateData.currentIndexTest].order_number_options;
+
 
   const handleCheckBoxChange = (value) => {
     const updatedValues = [...selectedValues];
@@ -27,9 +37,9 @@ const TestCheck = ({
   };
 
   const checkAnswer = () => {
-    const correctValues = list.quizArray[currentIndex].answers
-      .filter((answer) => answer.correct)
-      .map((answer) => answer.text);
+    const correctValues = listItems[currentIndex].test_item_options
+      .filter((answer) => answer.correct==1)
+      .map((answer) => answer.option);
     const selectedValuesString = selectedValues.sort().join(",");
     const correctValuesString = correctValues.sort().join(","); 
     setCorrectAnswer(selectedValuesString === correctValuesString);
@@ -44,8 +54,8 @@ const TestCheck = ({
       <ItemAccordeon
         titlu={
           correctAnswer === null
-            ? `Cerințele sarcinii (${currentIndex + 1}/${list.quizArray.length}):`
-            : `Rezultat (${currentIndex + 1}/${list.quizArray.length}):`
+            ? `Cerințele sarcinii (${currentIndex + 1}/${listItems.length}):`
+            : `Rezultat (${currentIndex + 1}/${listItems.length}):`
         }
         correctAnswer={correctAnswer}
         additionalContent={additionalContent}
@@ -60,14 +70,14 @@ const TestCheck = ({
               : " incorrect"
           }
         >
-          <p>{list.quizArray[currentIndex].cerinte}</p>
+          <p>{listItems[currentIndex].test_item_task}</p>
           <Puzzle />
-          {list.quizArray[currentIndex].answers.map((answer, idx) => {
+          {listItems[currentIndex].test_item_options.map((answer, idx) => {
             return (
               <CheckBox
                 key={idx}
-                value={answer.text}
-                checked={selectedValues.includes(answer.text)}
+                value={answer.option}
+                checked={selectedValues.includes(answer.option)}
                 onChange={
                   correctAnswer === null ? handleCheckBoxChange : () => {}
                 }
@@ -83,15 +93,15 @@ const TestCheck = ({
       </ItemAccordeon>
       {correctAnswer !== null && (
         <ItemAccordeon
-          titlu={`Rezolvarea sarcinii (${currentIndex + 1}/${list.quizArray.length}):`}
+          titlu={`Rezolvarea sarcinii (${currentIndex + 1}/${listItems.length}):`}
           open={true}
         >
           <ItemText classNameChild="">
-            {list.quizArray[currentIndex].answers.map((answer, idx) => (
+            {listItems[currentIndex].test_item_options.map((answer, idx) => (
               <CheckBox
                 key={idx}
-                value={answer.rezolvare}
-                checked={answer.correct}
+                value={answer.explanation}
+                checked={answer.correct==1}
                 onChange={() => {}}
               />
             ))}

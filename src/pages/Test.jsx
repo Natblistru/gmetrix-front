@@ -54,7 +54,7 @@ console.log(stateData.currentTopic)
     dispatchData({
       type: "FETCH_CURRENT_INDEX_TEST",
       payload: indexElementCautat
-  })
+    })
 
     const foundItem = findObjectWithAddress(temeIstoriArray);
     if (foundItem) {
