@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import ContextData from "../context/ContextData";
 import SentenceBox from "../DragWords/SentenceBox";
 import AnswerBox from "../DragWords/AnswerBox";
 import { getSentence, getAnswers } from "../DragWords/TextConverter";
@@ -26,13 +27,26 @@ const TestWords = ({
   additionalContent,
   handleTryAgain,
 }) => {
+  const {stateData, dispatchData} = React.useContext(ContextData)
   const [showResults, setShowResults] = useState(false);
   const [question, setQuestion] = useState("");
   const [answers, setAnswers] = useState([]);
   const [sentence, setSentence] = useState([]);
 
-  const text = list.quizArray[currentIndex].answers[0].text;
-  const textAdd = list.quizArray[currentIndex].answers[0].textAdditional;
+  console.log(stateData.currentTests)
+  console.log(stateData.currentTests[stateData.currentIndexTest].order_number_options);
+
+
+  console.log(stateData.currentIndexTest);
+
+  const listItems = stateData.currentTests[stateData.currentIndexTest].order_number_options;
+
+  const text = listItems[currentIndex].test_item_options[0].option;
+  // Parsare JSON
+  const dataObject = JSON.parse(listItems[currentIndex].test_item_options[0].text_additional);
+  // Extrage valorile într-un array
+  const textAdd = Object.values(dataObject);
+  
   useEffect(() => {
     setShowResults(false);
     setAnswers(shuffleArray(getAnswers(text).concat(textAdd)));
@@ -78,9 +92,9 @@ const TestWords = ({
         titlu={
           correctAnswer === null
             ? `Cerințele sarcinii (${currentIndex + 1}/${
-                list.quizArray.length
+              listItems.length
               }):`
-            : `Rezultat (${currentIndex + 1}/${list.quizArray.length}):`
+            : `Rezultat (${currentIndex + 1}/${listItems.length}):`
         }
         correctAnswer={correctAnswer}
         additionalContent={additionalContent}
@@ -114,12 +128,12 @@ const TestWords = ({
       {correctAnswer !== null && (
         <ItemAccordeon
           titlu={`Rezolvarea sarcinii (${currentIndex + 1}/${
-            list.quizArray.length
+            listItems.length
           }):`}
           open={true}
         >
           <ItemText classNameChild="">
-            {list.quizArray[currentIndex].answers[0].rezolvare}
+            {listItems[currentIndex].test_item_options[0].explanation}
           </ItemText>
           <button onClick={handleTryAgain} className="btn-test">
             Încearcă din nou!
