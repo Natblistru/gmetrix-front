@@ -23,6 +23,7 @@ const StateData = {
   currentTheme: null,
   currentTopic: null,
   currentTests: [],
+  currentIndexTest: 0,
   currentStudent: 1,
   currentYear: 2022,
   themeVideo: null,

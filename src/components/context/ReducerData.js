@@ -158,6 +158,11 @@ const ReducerData = (state, action) => {
         ...state,
         currentTests: action.payload
       } 
+    case "FETCH_CURRENT_INDEX_TEST":
+      return {
+        ...state,
+        currentIndexTest: action.payload
+      } 
     default: 
     return state
   }

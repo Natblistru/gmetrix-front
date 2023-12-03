@@ -16,9 +16,11 @@ const TestQuiz = ({
   const [selectedValue, setSelectedValue] = useState("");
 
   console.log(stateData.currentTests)
-  console.log(stateData.currentTests[0].order_number_options);
+  console.log(stateData.currentTests[stateData.currentIndexTest].order_number_options);
 
-  const listItems = stateData.currentTests[0].order_number_options;
+  console.log(stateData.currentIndexTest);
+
+  const listItems = stateData.currentTests[stateData.currentIndexTest].order_number_options;
 
   const correctAnswerText = listItems[currentIndex].test_item_options.find(item => item.correct === 1)?.option;
 

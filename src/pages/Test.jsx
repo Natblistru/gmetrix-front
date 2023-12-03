@@ -46,6 +46,16 @@ console.log(stateData.currentTopic)
   }
 
   useEffect(() => {
+    const pathCautat = "/" + addressTest;
+
+    const indexElementCautat = stateData.currentTests.findIndex(element => element.path === pathCautat);
+
+    console.log(indexElementCautat);
+    dispatchData({
+      type: "FETCH_CURRENT_INDEX_TEST",
+      payload: indexElementCautat
+  })
+
     const foundItem = findObjectWithAddress(temeIstoriArray);
     if (foundItem) {
       setCurrentList(foundItem);
@@ -141,8 +151,8 @@ console.log(stateData.currentTopic)
       testBoardRef.current.handleTryAgainClear(testId);
     }
   };
-  console.log(currentList);
-  console.log(addressTest)
+  console.log("currentList",currentList);
+  console.log("addressTest",addressTest)
   console.log(stateData.currentTests)
   return (
     <Wrapper>

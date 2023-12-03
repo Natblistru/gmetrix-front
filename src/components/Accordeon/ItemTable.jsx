@@ -84,7 +84,7 @@ const TableRow = (props) => {
         </div>
       )}
       {/* //test cu raspuns partial */}
-      {rowData.testResult < (rowData.length** rowData.complexityNumber) && rowData.testResult > 0 && (
+      {rowData.testResult < (rowData.length * rowData.complexityNumber) && rowData.testResult > 0 && (
             <div className="tbl-points" title="Cel mai bun rezultat">
               <div className="svg-sprite-vs-points profile-point-half"></div>
               <span className="points">
