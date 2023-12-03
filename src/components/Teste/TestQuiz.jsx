@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import ContextData from "../context/ContextData";
 import RadioButton from "../RadioButton";
 import ItemAccordeon from "../Accordeon/ItemAccordeon";
 import ItemText from "../Accordeon/ItemText";
@@ -11,27 +12,37 @@ const TestQuiz = ({
   additionalContent,
   handleTryAgain,
 }) => {
+  const {stateData, dispatchData} = React.useContext(ContextData)
   const [selectedValue, setSelectedValue] = useState("");
+
+  console.log(stateData.currentTests)
+  console.log(stateData.currentTests[0].order_number_options);
+
+  const listItems = stateData.currentTests[0].order_number_options;
+
+  const correctAnswerText = listItems[currentIndex].test_item_options.find(item => item.correct === 1)?.option;
+
 
   const handleRadioButtonChange = (value) => {
     setSelectedValue(value);
   };
 
   const checkAnswer = () => {
-    if (selectedValue === list.quizArray[currentIndex].correctAnswer) {
+      if (selectedValue === correctAnswerText) {
       setCorrectAnswer(true);
     } else {
       setCorrectAnswer(false);
     }
   };
 
+
   return (
     <>
     <ItemAccordeon
       titlu={
         correctAnswer === null
-          ? `Cerințele sarcinii (${currentIndex + 1}/${list.quizArray.length}):`
-          : `Rezultat (${currentIndex + 1}/${list.quizArray.length}):`
+          ? `Cerințele sarcinii (${currentIndex + 1}/${listItems.length}):`
+          : `Rezultat (${currentIndex + 1}/${listItems.length}):`
       }
       correctAnswer={correctAnswer}
       additionalContent={additionalContent}
@@ -46,16 +57,16 @@ const TestQuiz = ({
             : " incorrect"
         }
       >
-        {list.quizArray[currentIndex].answers.map((answer, idx) => {
+        {listItems[currentIndex].test_item_options.map((answer, idx) => {
           return (
             <RadioButton
               key={idx}
-              value={answer.text}
-              checked={selectedValue === answer.text}
+              value={answer.option}
+              checked={selectedValue === answer.option}
               onChange={
                 correctAnswer === null ? handleRadioButtonChange : () => {}
               }
-              correctAnswer={list.quizArray[currentIndex].correctAnswer}
+              correctAnswer={correctAnswerText}              
             />
           );
         })}
@@ -69,17 +80,17 @@ const TestQuiz = ({
     {correctAnswer !== null && (
       
         <ItemAccordeon
-          titlu={`Rezolvarea sarcinii (${currentIndex + 1}/${list.quizArray.length}):`}
+          titlu={`Rezolvarea sarcinii (${currentIndex + 1}/${listItems.length}):`}
           open={true}
         >
           <ItemText classNameChild="">
-            {list.quizArray[currentIndex].answers.map((answer, idx) => (
+            {listItems[currentIndex].test_item_options.map((answer, idx) => (
               <RadioButton
                 key={idx}
-                value={answer.rezolvare}
-                checked={answer.text === list.quizArray[currentIndex].correctAnswer}
+                value={answer.explanation}
+                checked={answer.option === correctAnswerText}
                 onChange={() => {}}
-                correctAnswer={list.quizArray[currentIndex].correctAnswer}
+                correctAnswer={correctAnswerText}
               />
             ))}
           </ItemText>

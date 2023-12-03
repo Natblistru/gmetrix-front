@@ -148,12 +148,16 @@ const ReducerData = (state, action) => {
         ...state,
         currentTheme: action.payload
       };
-      case "UPDATE_CURRENT_TOPIC":
-        return {
-          ...state,
-          currentTopic: action.payload
-        };
-      
+    case "UPDATE_CURRENT_TOPIC":
+      return {
+        ...state,
+        currentTopic: action.payload
+      };
+    case "FETCH_CURRENT_TESTS":
+      return {
+        ...state,
+        currentTests: action.payload
+      } 
     default: 
     return state
   }

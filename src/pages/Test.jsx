@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import ContextData from "../components/context/ContextData";
 import { withRouter, useParams, useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import temeIstoriArray from "../data/temeIstoria";
@@ -15,12 +16,17 @@ import TestGeneralizator from "../components/Teste/TestGeneralizator";
 import "../index.css";
 
 const TestWrapper = ({ tests, add, update }) => {
+  const {stateData, dispatchData} = React.useContext(ContextData)
   const { address1, addressTest, idTest } = useParams();
   // console.log(addressTest);
   const [currentList, setCurrentList] = useState(null);
   // const [currentTest, setcurrentTest] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const history = useHistory();
+
+console.log(stateData.currentTopic.tests)
+console.log(stateData.currentTopic)
+
 
   function findObjectWithAddress(obj) {
     for (let key in obj) {
@@ -137,6 +143,7 @@ const TestWrapper = ({ tests, add, update }) => {
   };
   console.log(currentList);
   console.log(addressTest)
+  console.log(stateData.currentTests)
   return (
     <Wrapper>
       {currentList && (

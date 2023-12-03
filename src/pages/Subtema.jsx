@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import ContextData from "../components/context/ContextData";
 import { useParams, useHistory } from "react-router-dom";
 import temeIstoriArray from "../data/temeIstoria";
@@ -77,6 +78,9 @@ const Subtema = ({results})  => {
 
     console.log(mainElement);
     setTopic(mainElement);
+
+    fetchTest()
+
     const foundItem = findObjectWithAddress(teme);
     if (foundItem) {
       setItem(foundItem);
@@ -84,6 +88,21 @@ const Subtema = ({results})  => {
       history.push("/error");
     }
   }, []);
+
+  const fetchTest = async (theme) => {
+    try {
+  
+        const res = await axios.get(`http://localhost:8000/api/formativetest?topic=15`);
+  
+        console.log(res.data);
+        dispatchData({
+            type: "FETCH_CURRENT_TESTS",
+            payload: res.data
+        })
+    } catch (err) {
+        console.error(err);
+    }
+  }
 
   return (
     <Wrapper>
