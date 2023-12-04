@@ -1,4 +1,5 @@
 import React, { useState, forwardRef, useImperativeHandle } from "react";
+import ContextData from "../context/ContextData";
 import { DragDropContext } from "react-beautiful-dnd";
 import Column from "../DragAndDrop/Column";
 import { v4 as uuidv4 } from "uuid";
@@ -26,12 +27,21 @@ const TestBoard = forwardRef(
     const [selectedValues, setSelectedValues] = useState([]);
     const [data, setData] = useState([]);
     const [isDragDisabled, setIsDragDisabled] = useState(DragDisable);
+
+    const {stateData, dispatchData} = React.useContext(ContextData)
+    const listItems = stateData.currentTests[stateData.currentIndexTest].order_number_options;
+    console.log(listItems)
+    console.log(listItems[currentIndex])
     const itemsFromBackend = [];
-    list.quizArray[currentIndex].answers.forEach((answer) => {
-      itemsFromBackend.push({ id: uuidv4(), content: answer.text });
+    listItems[currentIndex].test_item_options.forEach((answer) => {
+      itemsFromBackend.push({ id: uuidv4(), content: answer.option });
     });
 
-    const columnsFromBackend = list.quizArray[currentIndex].coloane.reduce((columns, name) => {
+    const columnArray = stateData.currentTests[stateData.currentIndexTest].column_title.split(", ");
+
+ 
+    
+    const columnsFromBackend = columnArray.reduce((columns, name) => {
       columns[uuidv4()] = {
         name: name,
         items: []
@@ -42,6 +52,38 @@ const TestBoard = forwardRef(
     const columnIds = Object.keys(columnsFromBackend);
     columnsFromBackend[columnIds[0]].items = itemsFromBackend;
     const [columns, setColumns] = useState(columnsFromBackend);
+
+    console.log(stateData.currentTests)
+
+    const currentTest = stateData.currentTests[stateData.currentIndexTest];
+
+    console.log(stateData.currentTests[stateData.currentIndexTest].column_title)
+
+    console.log(stateData.currentTests[stateData.currentIndexTest])
+    console.log(stateData.currentTests[stateData.currentIndexTest].order_number_options[currentIndex]);
+  
+  
+    console.log(stateData.currentIndexTest);
+  
+    const correctAnswers = listItems[currentIndex].test_item_options
+      .filter(item => item.correct === 1);
+
+    const correctAnswers1 = listItems[currentIndex].test_item_options
+    .filter(item => item.correct === 2);
+
+    const correctAnswersValues = correctAnswers.map(item => item.option);
+    const correctAnswersValuesConcat = correctAnswersValues.join(', ');
+
+    const correctAnswers1Values = correctAnswers1.map(item => item.option);
+    const correctAnswers1ValuesConcat = correctAnswers1Values.join(', ');
+
+    const coloanaRaspuns = columnArray[columnArray.length - 1];
+    const raspunsUltimaColoana = `${coloanaRaspuns}: ${correctAnswersValuesConcat}`
+
+    const coloanaRaspuns1 = columnArray[columnArray.length - 2];
+    const raspunsPenUltimaColoana = `${coloanaRaspuns1}: ${correctAnswers1ValuesConcat}`
+
+    console.log(correctAnswers);
 
     // let cc = getColumnsFromBackend(list.id);
     // console.log("cc",cc);
@@ -90,29 +132,29 @@ const TestBoard = forwardRef(
     let correctValuesString="";
     let selectedValues1String="";
     let correctValues1String="";
-    const correctValues = list.quizArray[currentIndex].correctAnswer.map(
-      (answer) => answer.text
+    const correctValues = correctAnswers.map(
+      (answer) => answer.option
     );
     let selValues = Object.values(columns)
-      .filter(column => column.name === list.quizArray[currentIndex].coloanaRaspuns)
+      .filter(column => column.name === coloanaRaspuns)
       .map(column => column.items.map(item => item.content))
       .flat();
-    if(list.type!=="chrono" && list.type!=="chronoDuble" && list.type!=="group") {
+    if(currentTest.type!=="dnd_chrono" && currentTest.type!=="dnd_chronoDuble" && currentTest.type!=="dnd_group") {
       selectedValuesString = selValues.sort().join(",");
       correctValuesString = correctValues.sort().join(","); 
       // console.log(correctValuesString);  
       // console.log(correctValues);  
-    } if(list.type ==="group") {
+    } if(currentTest.type ==="dnd_group") {
       //col.III
       selectedValuesString = selValues.sort().join("");
       correctValuesString = correctValues.sort().join(""); 
       //col.II
       let selValues1 = Object.values(columns)
-        .filter(column => column.name === list.quizArray[currentIndex].coloanaRaspuns1)
+        .filter(column => column.name === coloanaRaspuns1)
         .map(column => column.items.map(item => item.content))
         .flat();
-      let correctValues1 = list.quizArray[currentIndex].correctAnswer.map(
-        (answer) => answer.text1
+      let correctValues1 = correctAnswers1.map(
+        (answer) => answer.option
       );
       selectedValues1String = selValues1.sort().join("");
       correctValues1String = correctValues1.sort().join(""); 
@@ -125,7 +167,7 @@ const TestBoard = forwardRef(
 
     // selectedValuesString = selValues.join(",");
     // correctValuesString = correctValues.sort().join(","); 
-    if(list.type ==="group") {
+    if(currentTest.type ==="dnd_group") {
       setCorrectAnswer(selectedValuesString === correctValuesString && selectedValues1String === correctValues1String);
     } else {
       setCorrectAnswer(selectedValuesString === correctValuesString);
@@ -153,9 +195,9 @@ const TestBoard = forwardRef(
         titlu={
           correctAnswer === null
             ? `Cerințele sarcinii (${currentIndex + 1}/${
-                list.quizArray.length
+              listItems.length
               }):`
-            : `Rezultat (${currentIndex + 1}/${list.quizArray.length}):`
+            : `Rezultat (${currentIndex + 1}/${listItems.length}):`
         }
         correctAnswer={correctAnswer}
         additionalContent={additionalContent}
@@ -174,7 +216,7 @@ const TestBoard = forwardRef(
                 paddingBottom: "20px",
                 // textAlign: "center",
                 fontWeight: "500",
-              }}>{list.quizArray[currentIndex].cerinte}</p>
+              }}>{listItems[currentIndex].test_item_task}</p>
 
     <div
       style={{
@@ -196,7 +238,7 @@ const TestBoard = forwardRef(
               index={index}
               column={column}
               isDragDisabled={isDragDisabled}
-              typeList={list.type}
+              typeList={currentTest.type}
               style={{
                 display: "flex",
                 flexDirection: "column",
@@ -218,22 +260,24 @@ const TestBoard = forwardRef(
       {correctAnswer !== null && (
         <ItemAccordeon
           titlu={`Rezolvarea sarcinii (${currentIndex + 1}/${
-            list.quizArray.length
+            listItems.length
           }):`}
           open={true}
         >
-        <ItemText classNameChild="">
-          {list.type !== "group" ? (
-            list.quizArray[currentIndex].correctAnswer.map((answer, idx) => (
-              <div className="cardChrono" key={idx}>{answer.text}</div>
-            ))
-          ) : (
-            list.quizArray[currentIndex].correctAnswerGroup.map((answer, idx) => (
-              <div className="cardChrono" key={idx}>{answer.text}</div>
-            ))
-          )}
-        </ItemText>
-          <button onClick={()=> handleTryAgainClear(list.id)} className="btn-test">
+          <ItemText classNameChild="">
+            {console.log(currentTest.type)}
+            {currentTest.type !== "dnd_group" ? (
+              correctAnswers.map((answer, idx) => (
+                <div className="cardChrono" key={idx}>{answer.option}</div>
+              ))
+            ) : (
+              <>
+                <div className="cardChrono">{raspunsUltimaColoana}</div>
+                <div className="cardChrono">{raspunsPenUltimaColoana}</div>
+              </>
+            )}
+          </ItemText>
+          <button onClick={()=> handleTryAgainClear(listItems.formative_test_id)} className="btn-test">
             Încearcă din nou!
           </button>
         </ItemAccordeon>
