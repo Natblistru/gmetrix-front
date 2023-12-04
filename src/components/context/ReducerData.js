@@ -138,6 +138,21 @@ const ReducerData = (state, action) => {
           breadcrumb: updatedBreadcrumb
           };
         }
+    case "UPDATE_SUBTOPIC_BREADCRUMB":
+      if (state.breadcrumb.length = 3) {
+        return {
+          ...state,
+          breadcrumb: [...state.breadcrumb, action.payload]
+        }; 
+      }
+      else if (state.breadcrumb.length = 4) {
+        const updatedBreadcrumb = [...state.breadcrumb];
+        updatedBreadcrumb[3] = action.payload;
+        return {
+          ...state,
+        breadcrumb: updatedBreadcrumb
+        };
+      }
     case "UPDATE_CURRENT_SUBJECT":
       return {
         ...state,
@@ -157,6 +172,11 @@ const ReducerData = (state, action) => {
       return {
         ...state,
         currentTests: action.payload
+      } 
+    case "FETCH_CURRENT_SUMMATIVE_TESTS":
+      return {
+        ...state,
+        currentSummativeTests: action.payload
       } 
     case "FETCH_CURRENT_INDEX_TEST":
       return {

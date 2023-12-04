@@ -132,9 +132,16 @@ const TestBoard = forwardRef(
     let correctValuesString="";
     let selectedValues1String="";
     let correctValues1String="";
-    const correctValues = correctAnswers.map(
+    let correctValues = correctAnswers.map(
       (answer) => answer.option
     );
+    if(currentTest.type!=="dnd_chrono" || currentTest.type!=="dnd_chronoDuble") {
+      correctValues = correctAnswers
+      .filter(item => item.correct === 1)
+      .sort((a, b) => parseInt(a.explanation) - parseInt(b.explanation))
+      .map(item => item.option);
+    }
+    console.log(correctValues)
     let selValues = Object.values(columns)
       .filter(column => column.name === coloanaRaspuns)
       .map(column => column.items.map(item => item.content))
@@ -265,7 +272,7 @@ const TestBoard = forwardRef(
           open={true}
         >
           <ItemText classNameChild="">
-            {console.log(currentTest.type)}
+            {console.log(correctAnswers)}
             {currentTest.type !== "dnd_group" ? (
               correctAnswers.map((answer, idx) => (
                 <div className="cardChrono" key={idx}>{answer.option}</div>

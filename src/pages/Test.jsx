@@ -158,7 +158,7 @@ console.log(stateData.currentTopic)
     <Wrapper>
       {currentList && (
         <>
-          <Breadcrumb list={currentList.breadcrumb} />
+          <Breadcrumb step={3} />
           {/* {console.log("currentList", currentList)} */}
           <TitleBox className="teme-container" list={currentList}>
             {currentList.type === "testGeneralizator"? currentList.name+ "  "+ `  ${currentIndex+1} / ${currentList.quizArray.length}`:currentList.name }
@@ -223,7 +223,7 @@ console.log(stateData.currentTopic)
               list={currentList}
               currentIndex={currentIndex}
               correctAnswer={correctAnswer}
-              setCorrectAnswer={setCorrectAnswer}
+              setCorrectAnswer={setCorrectAnswer}setCurrentList
               additionalContent={additionalContent}
               handleTryAgain={handleTryAgain}
               DragDisable={false}

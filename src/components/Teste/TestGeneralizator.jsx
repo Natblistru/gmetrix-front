@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import ContextData from "../context/ContextData";
 import { connect } from "react-redux";
 import ItemAccordeon from "../Accordeon/ItemAccordeon";
 import CheckBox from "../CheckBox";
@@ -113,6 +114,7 @@ const TestGeneralizator = ({
   add,
   update,
 }) => {
+  const {stateData, dispatchData} = React.useContext(ContextData)
   // const [showHeader, setShowHeader] = useState(false);
   // const [correctAnswer, setCorrectAnswer] = useState(null);
   const [selectedValues, setSelectedValues] = useState([]);
@@ -121,6 +123,8 @@ const TestGeneralizator = ({
   const [start, setStart] = useState(null);
   const [marked, setMarked] = useState(false);
   const [nota, setNota] = useState(0);
+
+  console.log(stateData.currentSummativeTests);
 
   const [response, setResponse] = useState([0, 0, 0, 0]);
   const [modified, setModified] = useState([0, 0, 0, 0]);
@@ -138,7 +142,10 @@ const TestGeneralizator = ({
   let text3 = "",
     textAdd3 = "";
   let initValues = [];
+  let dataObject = "";
   const [userAnswerCheck, setUserAnswerCheck] = useState([]);
+  const listItems = stateData.currentSummativeTests[currentIndex].order_number_options;
+  console.log(list.quizArray[currentIndex].listaSarcini);
   useEffect(() => {
     setSelectedValues([]);
     setTimerFinished(false);
@@ -150,25 +157,40 @@ const TestGeneralizator = ({
     setResponse([0, 0, 0, 0]);
     setModified([0, 0, 0, 0]);
     setResults([0, 0, 0, 0]);
-    initValues = list.quizArray[currentIndex].listaSarcini[0].answers.map(
+    console.log(stateData.currentSummativeTests)
+    initValues = listItems.map(
       (answer) => false
     );
+    
     setUserAnswerCheck(initValues);
-    text1 = list.quizArray[currentIndex].listaSarcini[1].answers[0].text;
-    textAdd1 =
-      list.quizArray[currentIndex].listaSarcini[1].answers[0].textAdditional;
+    
+    text1 = listItems[1].test_item_options[0].option;
+    dataObject = JSON.parse(listItems[1].test_item_options[0].text_additional);
+    textAdd1 = Object.values(dataObject)
+
     setAnswers1(shuffleArray(getAnswers(text1).concat(textAdd1)));
     setSentence1(getSentence(text1));
-    text2 = list.quizArray[currentIndex].listaSarcini[2].answers[0].text;
-    textAdd2 =
-      list.quizArray[currentIndex].listaSarcini[2].answers[0].textAdditional;
+
+    text2 = listItems[2].test_item_options[0].option;
+    dataObject = JSON.parse(listItems[2].test_item_options[0].text_additional);
+    textAdd2 = Object.values(dataObject)
+
     setAnswers2(shuffleArray(getAnswers(text2).concat(textAdd2)));
     setSentence2(getSentence(text2));
-    text3 = list.quizArray[currentIndex].listaSarcini[3].answers[0].text;
-    textAdd3 =
-      list.quizArray[currentIndex].listaSarcini[3].answers[0].textAdditional;
+
+    text3 = listItems[3].test_item_options[0].option;
+    dataObject = JSON.parse(listItems[3].test_item_options[0].text_additional);
+    textAdd3 = Object.values(dataObject)
+
     setAnswers3(shuffleArray(getAnswers(text3).concat(textAdd3)));
     setSentence3(getSentence(text3));
+
+    console.log(text1);
+    console.log(textAdd1);
+    console.log(text2);
+    console.log(textAdd2);
+    console.log(text3);
+    console.log(textAdd3);
   }, [currentIndex]);
 
   const sumTotalPoints = () => {

@@ -59,27 +59,41 @@ const Subtema = ({results})  => {
     }
     return null;
   }
+  const temaCurrenta = stateData.topics;
+  const parts = stateData.currentTheme.path_tema.split("/");
+  const subject_id = stateData.currentSubject.subject_id;
+  const tema_id = stateData.currentTheme.tema_id;
+   
+
 
   useEffect(() => {
-    const temaCurrenta = stateData.topics;
+
     console.log(temaCurrenta)
     const addressToFind = "/"+address1;
-    // console.log(addressToFind)
     const mainElement = temaCurrenta?.find(element => element.path === addressToFind);
-    // console.log(mainElement)
-    // if (mainElement && mainElement.subtitles && mainElement.subtitles.length > 0) {
-    //   subElement = mainElement.subtitles.find(sub => sub.path === "/"+address1);
-    //   console.log(subElement);
-    // }
-    dispatchData({
+    console.log(mainElement)
+     dispatchData({
       type: "UPDATE_CURRENT_TOPIC",
       payload: mainElement
+    });
+
+
+
+    const addressDisciplina = "/" + parts[1];
+    const addressSubtitle = "/" + parts.slice(2).join("/");
+
+    const addressPath = `/${disciplina}${addressSubtitle}${mainElement.path}?teacher=1&level=1&disciplina=${subject_id}&theme=${tema_id}`;
+    const newBreadcrumb = {name: mainElement.name, path: addressPath};
+    dispatchData({
+      type: "UPDATE_SUBTOPIC_BREADCRUMB",
+      payload: newBreadcrumb
     });
 
     console.log(mainElement);
     setTopic(mainElement);
 
-    fetchTest()
+
+
 
     const foundItem = findObjectWithAddress(teme);
     if (foundItem) {
@@ -89,10 +103,16 @@ const Subtema = ({results})  => {
     }
   }, []);
 
+  useEffect(()=>{
+    fetchTest();
+    fetchSummativeTest();
+  },[stateData.currentTopic])
+
   const fetchTest = async (theme) => {
+
+    const teacher_topic_id = stateData.currentTopic.teacher_topic_id;
     try {
-  
-        const res = await axios.get(`http://localhost:8000/api/formativetest?topic=15`);
+        const res = await axios.get(`http://localhost:8000/api/formativetest?topic=${teacher_topic_id}`);
   
         console.log(res.data);
         dispatchData({
@@ -103,6 +123,23 @@ const Subtema = ({results})  => {
         console.error(err);
     }
   }
+
+  const fetchSummativeTest = async (theme) => {
+
+    const teacher_topic_id = stateData.currentTopic.teacher_topic_id;
+    try {
+        const res = await axios.get(`http://localhost:8000/api/summativetest?topic=${teacher_topic_id}`);
+  
+        console.log(res.data);
+        dispatchData({
+            type: "FETCH_CURRENT_SUMMATIVE_TESTS",
+            payload: res.data
+        })
+    } catch (err) {
+        console.error(err);
+    }
+  }
+
 
   return (
     <Wrapper>
