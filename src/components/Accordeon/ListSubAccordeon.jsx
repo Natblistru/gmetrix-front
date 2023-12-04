@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import ContextData from "../context/ContextData";
 import { scroller } from 'react-scroll'
 import ItemAccordeon from "./ItemAccordeon";
@@ -27,6 +28,45 @@ console.log(arraySubtitles[currentSubject].images);
 let transformedArrayImages = arraySubtitles[currentSubject].images.map(function(item) {
   return item.path;
 });
+
+useEffect(()=>{
+  fetchTest();
+  fetchSummativeTest();
+},[])
+
+const fetchTest = async () => {
+
+  const teacher_topic_id = stateData.currentTopic.teacher_topic_id;
+  try {
+      const res = await axios.get(`http://localhost:8000/api/formativetest?topic=${teacher_topic_id}`);
+
+      console.log(res.data);
+      dispatchData({
+          type: "FETCH_CURRENT_TESTS",
+          payload: res.data
+      })
+  } catch (err) {
+      console.error(err);
+  }
+}
+
+const fetchSummativeTest = async (theme) => {
+
+  const teacher_topic_id = stateData.currentTopic.teacher_topic_id;
+  
+  try {
+      const res = await axios.get(`http://localhost:8000/api/summativetest?topic=${teacher_topic_id}`);
+
+      console.log(res.data);
+      dispatchData({
+          type: "FETCH_CURRENT_SUMMATIVE_TESTS",
+          payload: res.data
+      })
+  } catch (err) {
+      console.error(err);
+  }
+}
+
 
 useEffect(()=> {
 

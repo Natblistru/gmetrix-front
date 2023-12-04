@@ -103,42 +103,43 @@ const Subtema = ({results})  => {
     }
   }, []);
 
-  useEffect(()=>{
-    fetchTest();
-    fetchSummativeTest();
-  },[stateData.currentTopic])
+  // useEffect(()=>{
+  //   fetchTest();
+  //   fetchSummativeTest();
+  // },[stateData.currentTopic])
 
-  const fetchTest = async (theme) => {
+  // const fetchTest = async (theme) => {
 
-    const teacher_topic_id = stateData.currentTopic.teacher_topic_id;
-    try {
-        const res = await axios.get(`http://localhost:8000/api/formativetest?topic=${teacher_topic_id}`);
+  //   const teacher_topic_id = stateData.currentTopic.teacher_topic_id;
+  //   try {
+  //       const res = await axios.get(`http://localhost:8000/api/formativetest?topic=${teacher_topic_id}`);
   
-        console.log(res.data);
-        dispatchData({
-            type: "FETCH_CURRENT_TESTS",
-            payload: res.data
-        })
-    } catch (err) {
-        console.error(err);
-    }
-  }
+  //       console.log(res.data);
+  //       dispatchData({
+  //           type: "FETCH_CURRENT_TESTS",
+  //           payload: res.data
+  //       })
+  //   } catch (err) {
+  //       console.error(err);
+  //   }
+  // }
 
-  const fetchSummativeTest = async (theme) => {
+  // const fetchSummativeTest = async (theme) => {
 
-    const teacher_topic_id = stateData.currentTopic.teacher_topic_id;
-    try {
-        const res = await axios.get(`http://localhost:8000/api/summativetest?topic=${teacher_topic_id}`);
+  //   const teacher_topic_id = stateData.currentTopic.teacher_topic_id;
+
+  //   try {
+  //       const res = await axios.get(`http://localhost:8000/api/summativetest?topic=${teacher_topic_id}`);
   
-        console.log(res.data);
-        dispatchData({
-            type: "FETCH_CURRENT_SUMMATIVE_TESTS",
-            payload: res.data
-        })
-    } catch (err) {
-        console.error(err);
-    }
-  }
+  //       console.log(res.data);
+  //       dispatchData({
+  //           type: "FETCH_CURRENT_SUMMATIVE_TESTS",
+  //           payload: res.data
+  //       })
+  //   } catch (err) {
+  //       console.error(err);
+  //   }
+  // }
 
 
   return (

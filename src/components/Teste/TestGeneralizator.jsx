@@ -145,7 +145,8 @@ const TestGeneralizator = ({
   let dataObject = "";
   const [userAnswerCheck, setUserAnswerCheck] = useState([]);
   const listItems = stateData.currentSummativeTests[currentIndex].order_number_options;
-  console.log(list.quizArray[currentIndex].listaSarcini);
+  console.log("listItems",listItems)
+  // console.log("listaSarcini",list.quizArray[currentIndex].listaSarcini);
   useEffect(() => {
     setSelectedValues([]);
     setTimerFinished(false);
@@ -195,7 +196,7 @@ const TestGeneralizator = ({
 
   const sumTotalPoints = () => {
     let sumTotal = 0;
-    list.quizArray[currentIndex].listaSarcini?.map((item, idx) => {
+    listItems?.map((item, idx) => {
       sumTotal += totalPoint(idx);
     });
     return sumTotal;
@@ -230,20 +231,18 @@ const TestGeneralizator = ({
   };
 
   const totalPoint = (n) => {
-    if (list.quizArray[currentIndex].listaSarcini[n].type == "check")
-      return list.quizArray[currentIndex].listaSarcini[n].answers.length;
-    if (list.quizArray[currentIndex].listaSarcini[n].type == "words")
+    if (listItems[n].item_type == "check")
+      return listItems[n].test_item_options.length;
+    if (listItems[n].item_type == "words")
       return getAnswers(
-        list.quizArray[currentIndex].listaSarcini[n].answers[0].text
+        listItems[n].test_item_options[0].option
       ).length;
   };
   const checkAnswer = (updatedResults) => {
-    const correctValuesArray = list.quizArray[
-      currentIndex
-    ].listaSarcini[0].answers.map((answer) => answer.correct);
-    const correctValues = list.quizArray[currentIndex].listaSarcini[0].answers
-      .filter((answer) => answer.correct)
-      .map((answer) => answer.text);
+    const correctValuesArray = listItems [0].test_item_options.map((answer) => answer.correct == 1);
+    const correctValues = listItems[0].test_item_options
+      .filter((answer) => answer.correct == 1)
+      .map((answer) => answer.option);
     const selectedValuesString = selectedValues.sort().join(",");
     const correctValuesString = correctValues.sort().join(",");
     setCorrectAnswer(selectedValuesString === correctValuesString);
@@ -265,7 +264,7 @@ const TestGeneralizator = ({
     }, 0);
     const totalResponse =
       raspuns.length -
-      list.quizArray[currentIndex].listaSarcini[n].answers[0].textAdditional
+      listItems[n].test_item_options[0].text_additional
         .length;
     const points = (totalResult * 10) / totalResponse;
 
@@ -273,35 +272,34 @@ const TestGeneralizator = ({
     setResults(updatedResults);
   };
 
-  const updateNota = (nota) => {
-  //  console.log("nota", nota);
-    const userItems = tests.items.find((item) => item.user === "Current user");
-    if (userItems) {
-      const resultItem = userItems.tests.find(
-        (item) =>
-          item.id == list.subjectID &&
-          item.quiz == list.id &&
-          item.item == currentIndex + 1
-      );
-   //   console.log("userItems.tests", userItems.tests);
-   //   console.log("resultItem", resultItem);
-      if (resultItem) {
-        update({
-          id: list.subjectID,
-          quiz: list.id,
-          item: currentIndex + 1,
-          proc: nota,
-        });
-      } else {
-        add({
-          id: list.subjectID,
-          quiz: list.id,
-          item: currentIndex + 1,
-          proc: nota,
-        });
-      }
-    }
-  };
+  // const updateNota = (nota) => {
+  //   const userItems = tests.items.find((item) => item.user === "Current user");
+  //   if (userItems) {
+  //     const resultItem = userItems.tests.find(
+  //       (item) =>
+  //         item.id == list.subjectID &&
+  //         item.quiz == list.id &&
+  //         item.item == currentIndex + 1
+  //     );
+  //  //   console.log("userItems.tests", userItems.tests);
+  //  //   console.log("resultItem", resultItem);
+  //     if (resultItem) {
+  //       update({
+  //         id: list.subjectID,
+  //         quiz: list.id,
+  //         item: currentIndex + 1,
+  //         proc: nota,
+  //       });
+  //     } else {
+  //       add({
+  //         id: list.subjectID,
+  //         quiz: list.id,
+  //         item: currentIndex + 1,
+  //         proc: nota,
+  //       });
+  //     }
+  //   }
+  // };
 
   const calcSumArray = (updatedResults) => {
     let sumResults = 0;
@@ -319,7 +317,7 @@ const TestGeneralizator = ({
     checkTestWords(sentence3, answers3, 3, updatedResults);
     const nota = (calcSumArray(updatedResults) * 100) / sumTotalPoints();
     setNota(nota);
-    updateNota(nota);
+    // updateNota(nota);
     setMarked(true);
     setResults(updatedResults);
     setTimerFinished(true);
@@ -502,18 +500,18 @@ const TestGeneralizator = ({
           )}
         {activeButton === null && (
           <div className="subjects-container ">
-            {list.quizArray[currentIndex].listaSarcini?.map((subtitle, idx) => {
+            {listItems?.map((subtitle, idx) => {
               return (
                 <div key={idx} className="subject-item">
                   <div className="title-item">
-                    <div className="num-item">{subtitle.id}.</div>
+                    <div className="num-item">{subtitle.order_number}.</div>
                     <div
                       className="name-item"
                       onClick={
-                        start !== null ? () => handleClick(subtitle.id) : null
+                        start !== null ? () => handleClick(subtitle.order_number) : null
                       }
                     >
-                      {subtitle.name}
+                      {subtitle.test_item_task}
                     </div>
                   </div>
                   <div className="points">
@@ -575,17 +573,17 @@ const TestGeneralizator = ({
                   : " incorrect"
               }
             >
-              <p>{list.quizArray[currentIndex].listaSarcini[0].sarcina}</p>
-              {list.quizArray[currentIndex].listaSarcini[0].answers.map(
+              <p>{listItems[0].test_item_task}</p>
+              {listItems[0].test_item_options.map(
                 (answer, idx) => {
                   return (
                     <CheckBox
                       key={idx}
-                      value={answer.text}
-                      checked={selectedValues.includes(answer.text)}
+                      value={answer.option}
+                      checked={selectedValues.includes(answer.option)}
                       onChange={
                         correctAnswer === null
-                          ? () => handleCheckBoxChange(answer.text, idx)
+                          ? () => handleCheckBoxChange(answer.option, idx)
                           : () => {}
                       }
                     />
@@ -608,7 +606,7 @@ const TestGeneralizator = ({
                   : " incorrect"
               }
             >
-              <p>{list.quizArray[currentIndex].listaSarcini[1].sarcina}</p>
+              <p>{listItems[1].test_item_task}</p>
               <SentenceBox
                 marked={marked}
                 onDrop={onDrop1}
@@ -631,7 +629,7 @@ const TestGeneralizator = ({
                   : " incorrect"
               }
             >
-              <p>{list.quizArray[currentIndex].listaSarcini[2].sarcina}</p>
+              <p>{listItems[2].test_item_task}</p>
               <SentenceBox
                 marked={marked}
                 onDrop={onDrop2}
@@ -653,7 +651,7 @@ const TestGeneralizator = ({
                   : " incorrect"
               }
             >
-              <p>{list.quizArray[currentIndex].listaSarcini[3].sarcina}</p>
+              <p>{listItems[3].test_item_task}</p>
               <SentenceBox
                 marked={marked}
                 onDrop={onDrop3}
