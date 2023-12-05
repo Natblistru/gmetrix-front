@@ -15,6 +15,7 @@ const ListNavigatie = (props) => {
 
   const primul = list.id == 1;
   const ultimul = list.id == stateData.currentTopic.tests.length;
+  const utilmul_dnd = list.id == stateData.currentTests.length;
   console.log(stateData.currentTopic.tests.length)
   // props.setCurrentIndex(0);
   // console.log("currentIndex din ListNavigare - 0 urm") 
@@ -48,9 +49,10 @@ const ListNavigatie = (props) => {
   //  dynamicPathTestPrecedent = `${testPrecedent.addressTestDisciplina}${testPrecedent.addressTestSubtitle}${testPrecedent.addressTestSubject}${testPrecedent.addressTest}/1`;
   }
   if(!ultimul) {
-
-    testUrmator1 = stateData.currentTests[stateData.currentIndexTest+1];
-    console.log(testUrmator1.formative_test_id)
+    if(!utilmul_dnd) {
+      testUrmator1 = stateData.currentTests[stateData.currentIndexTest+1];
+      console.log(testUrmator1.formative_test_id);
+    }
 
     testUrmator = stateData.currentTopic.tests[list.id];
     console.log(testUrmator)
@@ -65,14 +67,14 @@ const ListNavigatie = (props) => {
     <div className="nav-container">
         <div className={`nav-link ${primul ? 'invizible' : ''}`} >
         {/* <Link to={{ pathname: list.path, state: { list: testPrecedent, correctAns:null, currInd:0} }} onClick={() => navigateToTest(testPrecedent)}> */}
-          <Link to={dynamicPathTestPrecedent} onClick={() => handleClearTestBoard(testPrecedent1.formative_test_id)}>
+          <Link to={dynamicPathTestPrecedent} onClick={() => {props.setCorrectAnswer(null);handleClearTestBoard(testPrecedent1.formative_test_id)}}>
             <img src={process.env.PUBLIC_URL + "/images/navigation-left.png"} alt="" />
             <p>Sarcina precedentă</p>
           </Link>
         </div>
         <div className={`nav-link ${ultimul? 'invizible' : ''}`} >
           {/* <Link to={{ pathname: list.path, state: { list: testUrmator, correctAns:null, currInd:0} }} onClick={() => navigateToTest(testUrmator)}> */}
-          <Link to={dynamicPathTestUrmator} onClick={() => handleClearTestBoard(testUrmator1.formative_test_id)} >        
+          <Link to={dynamicPathTestUrmator} onClick={() => {props.setCorrectAnswer(null);handleClearTestBoard(testUrmator1.formative_test_id)}} >        
             <img src={process.env.PUBLIC_URL + "/images/navigation-right.png"} alt="" />
             <p>Sarcina următoare</p>
           </Link>

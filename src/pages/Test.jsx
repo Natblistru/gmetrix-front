@@ -31,22 +31,22 @@ const TestWrapper = ({ tests, add, update }) => {
 console.log(stateData.currentTopic)
 
 
-  function findObjectWithAddress(obj) {
-    for (let key in obj) {
-      if (typeof obj[key] === "object") {
-        const found = findObjectWithAddress(obj[key]);
-        if (found) {
-          return found;
-        }
-      } else if (
-        key === "addressTestId" &&
-        obj[key] === "/" + address1 + "/" + addressTest
-      ) {
-        return obj;
-      }
-    }
-    return null;
-  }
+  // function findObjectWithAddress(obj) {
+  //   for (let key in obj) {
+  //     if (typeof obj[key] === "object") {
+  //       const found = findObjectWithAddress(obj[key]);
+  //       if (found) {
+  //         return found;
+  //       }
+  //     } else if (
+  //       key === "addressTestId" &&
+  //       obj[key] === "/" + address1 + "/" + addressTest
+  //     ) {
+  //       return obj;
+  //     }
+  //   }
+  //   return null;
+  // }
 
   useEffect(() => {
     const pathCautat = "/" + addressTest;
@@ -66,54 +66,49 @@ console.log(stateData.currentTopic)
       payload: indexElementCautat
     })
 
-    const foundItem = findObjectWithAddress(temeIstoriArray);
-    if (foundItem) {
-      setCurrentList(foundItem);
-      setCurrentIndex(0);
-      setCorrectAnswer(null);
-    } else {
-      history.push("/error");
-    }
+    // const foundItem = findObjectWithAddress(temeIstoriArray);
+    // if (foundItem) {
+    //   setCurrentList(foundItem);
+    //   setCurrentIndex(0);
+    //   setCorrectAnswer(null);
+    // } else {
+    //   history.push("/error");
+    // }
   }, [addressTest]);
 
   // console.log("correctAns ", correctAns);
   const [correctAnswer, setCorrectAnswer] = useState(null);
 
-  useEffect(() => {
-  //  console.log("Nota s-aschimbat", correctAnswer);
-  //    console.log("currentList", currentList);
-      if (correctAnswer !== null && currentList.type!= "testGeneralizator") {
-  //    console.log("currentList", currentList);
-  //    console.log("currentIndex", currentIndex);
-  //    console.log("correctAnswer", correctAnswer);
-      const userItems = tests.items.find(
-        (item) => item.user === "Current user"
-      );
-      if (userItems) {
-        const resultItem = userItems.tests.find(
-          (item) =>
-            item.id == currentList.subjectID &&
-            item.quiz == currentList.id &&
-            item.item == currentIndex + 1
-        );
-        if (resultItem) {
-          update({
-            id: currentList.subjectID,
-            quiz: currentList.id,
-            item: currentIndex + 1,
-            proc: correctAnswer ? 100 : 0,
-          });
-        } else {
-          add({
-            id: currentList.subjectID,
-            quiz: currentList.id,
-            item: currentIndex + 1,
-            proc: correctAnswer ? 100 : 0,
-          });
-        }
-      }
-    }
-  }, [correctAnswer]);
+  // useEffect(() => {
+  //     if (correctAnswer !== null && currentList.type!= "testGeneralizator") {
+  //     const userItems = tests.items.find(
+  //       (item) => item.user === "Current user"
+  //     );
+  //     if (userItems) {
+  //       const resultItem = userItems.tests.find(
+  //         (item) =>
+  //           item.id == currentList.subjectID &&
+  //           item.quiz == currentList.id &&
+  //           item.item == currentIndex + 1
+  //       );
+  //       if (resultItem) {
+  //         update({
+  //           id: currentList.subjectID,
+  //           quiz: currentList.id,
+  //           item: currentIndex + 1,
+  //           proc: correctAnswer ? 100 : 0,
+  //         });
+  //       } else {
+  //         add({
+  //           id: currentList.subjectID,
+  //           quiz: currentList.id,
+  //           item: currentIndex + 1,
+  //           proc: correctAnswer ? 100 : 0,
+  //         });
+  //       }
+  //     }
+  //   }
+  // }, [correctAnswer]);
 
   // if(currInd!==undefined) setCurrentIndex(currInd);
   const testBoardRef = useRef(null);
@@ -138,23 +133,28 @@ console.log(stateData.currentTopic)
 
   const handleTryAgain = () => {
     // console.log("handleTryAgain currInd",currInd);
+
     // if(currInd!==undefined) setCurrentIndex(currInd)
     // else
+    let itemQuantity = currentList1.length;
+    if (currentList1.type === "testGeneralizator") {
+      itemQuantity = currentList1.length / 4;
+    }
     setCurrentItemIndex(
-      currentList1.length - 1 === currentItemIndex ? 0 : currentItemIndex + 1
+      itemQuantity - 1 === currentItemIndex ? 0 : currentItemIndex + 1
     );    
-    if (currentList.type === "testGeneralizator") {
+    // if (currentList1.type === "testGeneralizator") {
    //   console.log("currentIndex",currentIndex);
-      setCurrentIndex(
-        currentList.quizArray.length - 1 === currentIndex ? 0 : currentIndex + 1
-      );
-    } else {
-      setCurrentIndex(
-        currentList.quizArray.length - 1 === currentIndex ? 0 : currentIndex + 1
-      );
+    //   setCurrentIndex(
+    //     currentList.quizArray.length - 1 === currentIndex ? 0 : currentIndex + 1
+    //   );
+    // } else {
+    //   setCurrentIndex(
+    //     currentList.quizArray.length - 1 === currentIndex ? 0 : currentIndex + 1
+    //   );
       // console.log("currentIndex din Test(handleTryAgain) ",currentIndex);
       setCorrectAnswer(null);
-    }
+    // }
   };
 
   const handleClearTestBoard = (testId) => {
@@ -164,7 +164,7 @@ console.log(stateData.currentTopic)
       testBoardRef.current.handleTryAgainClear(testId);
     }
   };
-  console.log("currentList",currentList);
+
   console.log("addressTest",addressTest)
   console.log(stateData.currentTests)
   console.log(stateData.currentSummativeTests)
@@ -177,9 +177,9 @@ console.log(stateData.currentTopic)
       {currentList1  && (
         <>
           <Breadcrumb step={3} />
-          {console.log("currentList1", currentList1)}
-          <TitleBox className="teme-container" list={currentList}>
-            {currentList.type === "testGeneralizator"? currentList.name+ "  "+ `  ${currentIndex+1} / ${currentList.quizArray.length}`:currentList.name }
+          {console.log("correctAnswer", correctAnswer)}
+          <TitleBox className="teme-container" list={currentList1}>
+            {currentList1.type === "testGeneralizator"? currentList1.name+ "  "+ `  ${currentItemIndex+1} / ${currentList1.length/4}`:currentList1.name }
           </TitleBox>
           {currentList1.type === "quiz" && (
             <TestQuiz
@@ -221,10 +221,10 @@ console.log(stateData.currentTopic)
               handleTryAgain={handleTryAgain}
             />
           )}
-          {currentList.type === "testGeneralizator" && (
+          {currentList1.type === "testGeneralizator" && (
             <TestGeneralizator
-              list={currentList}
-              currentIndex={currentIndex}
+              list={currentList1}
+              currentIndex={currentItemIndex}
               correctAnswer={correctAnswer}
               setCorrectAnswer={setCorrectAnswer}
               additionalContent={additionalContent}

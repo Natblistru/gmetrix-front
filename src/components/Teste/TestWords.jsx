@@ -52,6 +52,10 @@ const TestWords = ({
     setAnswers(shuffleArray(getAnswers(text).concat(textAdd)));
     setSentence(getSentence(text));
   }, [text]);
+
+  useEffect(() => {
+    setShowResults(false);
+  }, []);
 // console.log(answers);
   const onDrop = (ev, dropId) => {
     const text = ev.dataTransfer.getData("text/plain");
@@ -84,6 +88,13 @@ const TestWords = ({
       .map((w) => (w.type === "answer" ? w.text === w.displayed : true))
       .every(Boolean);
     setCorrectAnswer(correct);
+  };
+
+  const handleClick = () => {
+    setShowResults(false);
+    setAnswers(shuffleArray(getAnswers(text).concat(textAdd)));
+    setSentence(getSentence(text));    
+    handleTryAgain();
   };
 
   return (
@@ -135,7 +146,7 @@ const TestWords = ({
           <ItemText classNameChild="">
             {listItems[currentIndex].test_item_options[0].explanation}
           </ItemText>
-          <button onClick={handleTryAgain} className="btn-test">
+          <button onClick={handleClick} className="btn-test">
             Încearcă din nou!
           </button>
         </ItemAccordeon>
