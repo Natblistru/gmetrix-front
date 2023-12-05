@@ -54,7 +54,7 @@ const ExamenSubect1 = ({ raspunsuri }) => {
   let quizArray = stateData.evaluations1;
   useEffect(() => {
     quizArray = stateData.evaluations1;
-    console.log(quizArray)
+    // console.log(quizArray)
     // const foundItem = findObjectWithAddress(temeIstoriArray);
     // if (foundItem) {
     //   setItem(foundItem);
@@ -68,8 +68,8 @@ const ExamenSubect1 = ({ raspunsuri }) => {
     theme = searchParams.get("theme");
     const teacher = searchParams.get("teacher");
 
-    console.log("Parametrul theme:", theme);
-    console.log("Parametrul teacher:", teacher);
+    // console.log("Parametrul theme:", theme);
+    // console.log("Parametrul teacher:", teacher);
   }, [location.search]);
 
   const initialization = () => {

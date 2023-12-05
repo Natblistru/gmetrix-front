@@ -132,7 +132,7 @@ const ItemTable = ({ list, className, tests, list1 }) => {
   // const data = list;
   const classes = "table subjects-container " + className;
   const data = list1;
-  console.log(data);
+  // console.log(data);
   return (
     <div className={classes}>
       {data.map((rowData, idx) => {

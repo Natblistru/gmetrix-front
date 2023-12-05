@@ -15,10 +15,10 @@ const TestQuiz = ({
   const {stateData, dispatchData} = React.useContext(ContextData)
   const [selectedValue, setSelectedValue] = useState("");
 
-  console.log(stateData.currentTests)
-  console.log(stateData.currentTests[stateData.currentIndexTest].order_number_options);
+  // console.log(stateData.currentTests)
+  // console.log(stateData.currentTests[stateData.currentIndexTest].order_number_options);
 
-  console.log(stateData.currentIndexTest);
+  // console.log(stateData.currentIndexTest);
 
   const listItems = stateData.currentTests[stateData.currentIndexTest].order_number_options;
 

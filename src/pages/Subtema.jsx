@@ -68,10 +68,10 @@ const Subtema = ({results})  => {
 
   useEffect(() => {
 
-    console.log(temaCurrenta)
+    // console.log(temaCurrenta)
     const addressToFind = "/"+address1;
     const mainElement = temaCurrenta?.find(element => element.path === addressToFind);
-    console.log(mainElement)
+    // console.log(mainElement)
      dispatchData({
       type: "UPDATE_CURRENT_TOPIC",
       payload: mainElement
@@ -140,6 +140,15 @@ const Subtema = ({results})  => {
   //       console.error(err);
   //   }
   // }
+  const handleProgressTopicRecorded = (updatedTopicProgress) => {
+    if (topic !== null) {
+      setTopic(prevTopic => ({
+        ...prevTopic,
+        procentTopic: updatedTopicProgress
+      }));
+    }
+  };
+
 
 
   return (
@@ -149,7 +158,7 @@ const Subtema = ({results})  => {
         <>
           <Breadcrumb step={2} />
           <TitleBox className="teme-container" proc={topic.procentTopic}>{topic.name}</TitleBox>
-          <ListSubAccordeon teme={teme} subtema={item}/>
+          <ListSubAccordeon teme={teme} subtema={item} onProgressTopicRecorded={handleProgressTopicRecorded}/>
         </>
       )
       }

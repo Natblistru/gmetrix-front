@@ -124,7 +124,7 @@ const TestGeneralizator = ({
   const [marked, setMarked] = useState(false);
   const [nota, setNota] = useState(0);
 
-  console.log(stateData.currentSummativeTests);
+  // console.log(stateData.currentSummativeTests);
 
   const [response, setResponse] = useState([0, 0, 0, 0]);
   const [modified, setModified] = useState([0, 0, 0, 0]);
@@ -145,7 +145,7 @@ const TestGeneralizator = ({
   let dataObject = "";
   const [userAnswerCheck, setUserAnswerCheck] = useState([]);
   const listItems = stateData.currentSummativeTests[currentIndex].order_number_options;
-  console.log("listItems",listItems)
+  // console.log("listItems",listItems)
   // console.log("listaSarcini",list.quizArray[currentIndex].listaSarcini);
   useEffect(() => {
     setSelectedValues([]);
@@ -158,7 +158,7 @@ const TestGeneralizator = ({
     setResponse([0, 0, 0, 0]);
     setModified([0, 0, 0, 0]);
     setResults([0, 0, 0, 0]);
-    console.log(stateData.currentSummativeTests)
+    // console.log(stateData.currentSummativeTests)
     initValues = listItems.map(
       (answer) => false
     );
@@ -186,12 +186,12 @@ const TestGeneralizator = ({
     setAnswers3(shuffleArray(getAnswers(text3).concat(textAdd3)));
     setSentence3(getSentence(text3));
 
-    console.log(text1);
-    console.log(textAdd1);
-    console.log(text2);
-    console.log(textAdd2);
-    console.log(text3);
-    console.log(textAdd3);
+    // console.log(text1);
+    // console.log(textAdd1);
+    // console.log(text2);
+    // console.log(textAdd2);
+    // console.log(text3);
+    // console.log(textAdd3);
   }, [currentIndex]);
 
   const sumTotalPoints = () => {

@@ -53,7 +53,7 @@ const ExamenSubect2 = ({raspunsuri}) => {
   }
 
   let quizArray = stateData.evaluations2;
-  console.log(quizArray[currentIndex])
+  // console.log(quizArray[currentIndex])
   useEffect(() => {
     // const foundItem = findObjectWithAddress(temeIstoriArray);
     // if (foundItem) {

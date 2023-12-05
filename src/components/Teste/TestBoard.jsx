@@ -30,18 +30,18 @@ const TestBoard = forwardRef(
 
     const {stateData, dispatchData} = React.useContext(ContextData)
     const listItems = stateData.currentTests[stateData.currentIndexTest].order_number_options;
-    console.log(listItems)
-    console.log(listItems[currentIndex])
+    // console.log(listItems)
+    // console.log(listItems[currentIndex])
     const itemsFromBackend = [];
     listItems[currentIndex].test_item_options.forEach((answer) => {
       itemsFromBackend.push({ id: uuidv4(), content: answer.option });
     });
 
     const columnArray = stateData.currentTests[stateData.currentIndexTest].column_title.split(", ");
-    console.log(stateData.currentTests)
-    console.log(stateData.currentIndexTest)
-    console.log(stateData.currentTests[stateData.currentIndexTest])
-    console.log(columnArray)
+    // console.log(stateData.currentTests)
+    // console.log(stateData.currentIndexTest)
+    // console.log(stateData.currentTests[stateData.currentIndexTest])
+    // console.log(columnArray)
  
     
     const columnsFromBackend = columnArray.reduce((columns, name) => {
@@ -56,17 +56,17 @@ const TestBoard = forwardRef(
     columnsFromBackend[columnIds[0]].items = itemsFromBackend;
     const [columns, setColumns] = useState(columnsFromBackend);
 
-    console.log(stateData.currentTests)
+    // console.log(stateData.currentTests)
 
     const currentTest = stateData.currentTests[stateData.currentIndexTest];
 
-    console.log(stateData.currentTests[stateData.currentIndexTest].column_title)
+    // console.log(stateData.currentTests[stateData.currentIndexTest].column_title)
 
-    console.log(stateData.currentTests[stateData.currentIndexTest])
-    console.log(stateData.currentTests[stateData.currentIndexTest].order_number_options[currentIndex]);
+    // console.log(stateData.currentTests[stateData.currentIndexTest])
+    // console.log(stateData.currentTests[stateData.currentIndexTest].order_number_options[currentIndex]);
   
   
-    console.log(stateData.currentIndexTest);
+    // console.log(stateData.currentIndexTest);
   
     const correctAnswers = listItems[currentIndex].test_item_options
       .filter(item => item.correct === 1);
@@ -86,7 +86,7 @@ const TestBoard = forwardRef(
     const coloanaRaspuns1 = columnArray[columnArray.length - 2];
     const raspunsPenUltimaColoana = `${coloanaRaspuns1}: ${correctAnswers1ValuesConcat}`
 
-    console.log(correctAnswers);
+    // console.log(correctAnswers);
 
     // let cc = getColumnsFromBackend(list.id);
     // console.log("cc",cc);
@@ -144,7 +144,7 @@ const TestBoard = forwardRef(
       .sort((a, b) => parseInt(a.explanation) - parseInt(b.explanation))
       .map(item => item.option);
     }
-    console.log(correctValues)
+    // console.log(correctValues)
     let selValues = Object.values(columns)
       .filter(column => column.name === coloanaRaspuns)
       .map(column => column.items.map(item => item.content))
@@ -191,7 +191,7 @@ const TestBoard = forwardRef(
     setSelectedValues([]); 
     setCorrectAnswer(null);
     setIsDragDisabled(false);
-    console.log(testId)
+    // console.log(testId)
     setColumns(getColumnsFromBackend(testId));
     handleTryAgain();
   };
@@ -199,8 +199,8 @@ const TestBoard = forwardRef(
     handleTryAgainClear: handleTryAgainClear
   }));
 
-  console.log(columns)
-  console.log(currentTest)
+  // console.log(columns)
+  // console.log(currentTest)
 
   return columns && (
 
@@ -279,7 +279,7 @@ const TestBoard = forwardRef(
           open={true}
         >
           <ItemText classNameChild="">
-            {console.log(correctAnswers)}
+            {/* {console.log(correctAnswers)} */}
             {currentTest.type !== "dnd_group" ? (
               correctAnswers.map((answer, idx) => (
                 <div className="cardChrono" key={idx}>{answer.option}</div>

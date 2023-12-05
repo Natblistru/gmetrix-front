@@ -16,6 +16,19 @@ const ListAccordeon = (props) => {
   const [videoBreakpoints, setVideoBreakpoints] = useState();
   const [videoSource, setVideoSource] = useState("");
   const [videoTitle, setVideoTitle] = useState("");
+
+  const classes = " " + props.className;
+  let titleList = stateData.topics;
+
+  useEffect(() => {
+    console.log()
+    if (props.onProgressThemaRecorded) {
+      if(stateData.topics.length > 0) {
+        props.onProgressThemaRecorded(stateData.topics[0].procentTema);
+      }
+    }
+  },[stateData.topics])
+
   useEffect(() => {
     if (props.location.hash === '#ani') {
         scroller.scrollTo('ani', {
@@ -30,8 +43,6 @@ const ListAccordeon = (props) => {
   }
   }, [props.location.hash]);
 
-  const classes = " " + props.className;
-  let titleList = stateData.topics;
 
   
   // let repereList = props.teme.repere;

@@ -5,7 +5,8 @@ import { connect } from "react-redux";
 
 const ItemList = ({ list, className, type, results, onItemClick }) => {
   const {stateData, dispatchData} = React.useContext(ContextData)
-  let listItems = list;
+  let listItems = [...list];
+  // console.log(listItems)
   const classes = "subjects-container " + className;
   let procProgress = 0;
 
@@ -45,7 +46,9 @@ const ItemList = ({ list, className, type, results, onItemClick }) => {
   const addressSubtitle = "/" + parts.slice(2).join("/");
   return (
     <div className={classes}>
-      {listItems?.map((subtitle, idx) => {
+      {listItems
+        ?.sort((a, b) => a.subtopic_id - b.subtopic_id)
+        .map((subtitle, idx) => {
         // const dynamicPath = `${subtitle.addressDisciplina}${subtitle.addressSubtitle}${subtitle.addressSubject}`;
         let subtitle_path = subtitle.path;
         
@@ -65,7 +68,8 @@ const ItemList = ({ list, className, type, results, onItemClick }) => {
         return (
           <div key={idx} className="subject-item" onClick={() => onItemClick && onItemClick(idx)}>
             <div className="title-item"> 
-              <div className="num-item">{type === "subtopic" ? subtitle.subtopic_id : subtitle.id}.</div>
+              <div className="num-item">{idx+1}.</div>
+              {/* <div className="num-item">{type === "subtopic" ? subtitle.subtopic_id : subtitle.id}.</div>               */}
               <div className="name-item">
               {subtitle.path == null ? (
                   subtitle.anul == null ? (

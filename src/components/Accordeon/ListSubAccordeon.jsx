@@ -16,15 +16,28 @@ const ListSubAccordeon = (props) => {
 const {stateData, dispatchData} = React.useContext(ContextData)
 const [currentSubject, setCurrentSubject] = useState(0);
 
+const [arraySubtitles, setArraySubtitles] = useState(stateData.currentTopic.subtitles);
+
+// console.log(arraySubtitles)
+const handleProgressRecorded = (updatedTopic) => {
+  // console.log(updatedTopic)
+  setArraySubtitles(updatedTopic);
+  if (props.onProgressTopicRecorded) {
+    const sum = updatedTopic.reduce((acc, current) => acc + current.procentSubtopic, 0);
+    const average = sum / updatedTopic.length;
+    props.onProgressTopicRecorded(average);
+  }
+};
+
 const classes = " " + props.className;
 let arraySubject = props.subtema.vomAfla;
 
 let arrayTests = props.subtema.teste;
-console.log(stateData.currentTopic);
+// console.log(stateData.currentTopic);
 let currentTopic = stateData.currentTopic;
-let arraySubtitles = stateData.currentTopic.subtitles; 
-console.log(arraySubtitles);
-console.log(arraySubtitles[currentSubject].images);
+// let arraySubtitles = stateData.currentTopic.subtitles; 
+// console.log(arraySubtitles);
+// console.log(arraySubtitles[currentSubject].images);
 let transformedArrayImages = arraySubtitles[currentSubject].images.map(function(item) {
   return item.path;
 });
@@ -40,7 +53,7 @@ const fetchTest = async () => {
   try {
       const res = await axios.get(`http://localhost:8000/api/formativetest?topic=${teacher_topic_id}`);
 
-      console.log(res.data);
+      // console.log(res.data);
       dispatchData({
           type: "FETCH_CURRENT_TESTS",
           payload: res.data
@@ -57,7 +70,7 @@ const fetchSummativeTest = async (theme) => {
   try {
       const res = await axios.get(`http://localhost:8000/api/summativetest?topic=${teacher_topic_id}`);
 
-      console.log(res.data);
+      // console.log(res.data);
       dispatchData({
           type: "FETCH_CURRENT_SUMMATIVE_TESTS",
           payload: res.data
@@ -88,7 +101,7 @@ const handleItemClick = (idx) => {
   if (!stateData.currentTopic || !arrayTests) {
     return null; // Возвращаем null или другой компонент-заглушку
   }
-console.log(transformedArrayImages)
+// console.log(transformedArrayImages)
   return (
     <div className={classes}>
       <ItemAccordeon titlu="La aceasta lectie vom afla:" {...props} open={true}>
@@ -103,7 +116,11 @@ console.log(transformedArrayImages)
       > 
         <div id="video">
           <SimpleSlider {...props} images={transformedArrayImages} />
-          <Audio path={arraySubtitles[currentSubject].audio_path} />
+          <Audio 
+            path={arraySubtitles[currentSubject].audio_path} 
+            currentSubject={currentSubject} 
+            arraySubtitles = {arraySubtitles}
+            onProgressRecorded={handleProgressRecorded}/>
           <ProgressSteps list={arraySubtitles} onClick={clickSubjectHandler} activeCircle={currentSubject+1}/>
         </div>
       </ItemAccordeon>

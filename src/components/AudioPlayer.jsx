@@ -1,10 +1,20 @@
 import React, { useEffect, useRef, useState } from 'react';
+import axios from "axios";
+import ContextData from './context/ContextData';
 import { connect } from "react-redux";
 
-const AudioPlayer = ({currentSubject,path,subjectID,arrayAudioLength, results,update, add}) => {
+const AudioPlayer = ({currentSubject, arraySubtitles, path,subjectID,arrayAudioLength, results,update, add, onProgressRecorded}) => {
+  const {stateData, dispatchData} = React.useContext(ContextData)
   const audioRef = useRef(null);
   const [progress, setProgress] = useState(0);
   const [currentResult, setCurrentResult] = useState(null);
+  const [isRecording, setIsRecording] = useState(false);
+
+  // console.log(currentSubject)
+  // console.log(arraySubtitles) 
+  // const currentSubtitle = arraySubtitles.filter((item) => item.subtopic_id === currentSubject)[0];
+  const currentSubtitle = arraySubtitles[currentSubject]; 
+  // console.log(currentSubtitle)
 
   useEffect(() => {
     audioRef.current.src = process.env.PUBLIC_URL + path;
@@ -48,9 +58,42 @@ const AudioPlayer = ({currentSubject,path,subjectID,arrayAudioLength, results,up
     const currentTime = audioElement.currentTime;
     const duration = audioElement.duration;
 
-    // Рассчитываем процент прогресса
     const progressPercentage = (currentTime / duration) * 100;
-    setProgress(progressPercentage);
+    // setProgress(progressPercentage);
+
+    if (progressPercentage === 100 && !isRecording) {
+      recordProgressInDatabase();
+      setIsRecording(true);
+    }
+  };
+
+  const recordProgressInDatabase = async () => {
+    // console.log(stateData.currentStudent)
+    // console.log(currentSubtitle.subtopic_id)
+    try {
+      const response = await axios.post('http://localhost:8000/api/student-subtopic-progress', {
+        student_id: stateData.currentStudent,
+        subtopic_id: currentSubtitle.subtopic_id,
+        progress_percentage: 100
+      });
+      console.log('Progres înregistrat în baza de date:', response.data)
+      if (onProgressRecorded) {
+
+        // console.log(currentSubject)
+        // console.log(arraySubtitles) 
+        // console.log(currentSubtitle)
+        const updatedArraySubtitles = arraySubtitles.map((item) => {
+          if (item.subtopic_id === currentSubtitle.subtopic_id) {
+            return { ...item, procentSubtopic: 100 };
+          }
+          return item;
+        });
+        onProgressRecorded(updatedArraySubtitles);
+        setIsRecording(false);
+      }
+    } catch (error) {
+      console.error('Eroare la înregistrarea progresului în baza de date:', error);
+    }
   };
 
    

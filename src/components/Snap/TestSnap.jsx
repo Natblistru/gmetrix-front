@@ -31,16 +31,16 @@ const TestSnap = ({
   const svgboxRef = useRef();
   const {stateData, dispatchData} = React.useContext(ContextData)
 
-  console.log(stateData.currentTests)
-  console.log(stateData.currentTests[stateData.currentIndexTest].order_number_options);
+  // console.log(stateData.currentTests)
+  // console.log(stateData.currentTests[stateData.currentIndexTest].order_number_options);
 
-  console.log(stateData.currentIndexTest);
+  // console.log(stateData.currentIndexTest);
 
   const listItems = stateData.currentTests[stateData.currentIndexTest].order_number_options;
 
   const textAdditionalArray = listItems[currentIndex].test_item_options.map(option => JSON.parse(option.text_additional));
 
-  console.log(textAdditionalArray);
+  // console.log(textAdditionalArray);
 
     // Creează array-ul de forma dorită
   const transformedArray = textAdditionalArray.reduce((acc, item) => {
@@ -62,7 +62,7 @@ const TestSnap = ({
     }
   });
 
-  console.log(transformedArray);
+  // console.log(transformedArray);
 
   // Creează matricea răspunsurilor corecte
   const matriceRaspunsuri = textAdditionalArray.map(coordonate => {
@@ -72,7 +72,7 @@ const TestSnap = ({
     return [indexStart, indexEnd];
   });
 
-  console.log(matriceRaspunsuri);
+  //console.log(matriceRaspunsuri);
 
   const sortedOptions = listItems[currentIndex].test_item_options.map(item => {
     const parts = item.option.split('|').map(part => part.trim());
@@ -91,7 +91,7 @@ const TestSnap = ({
     }
   });
 
-  console.log(sortedOptions);
+  // console.log(sortedOptions);
 
 
   const gRef = useRef(null);

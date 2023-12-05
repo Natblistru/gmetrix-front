@@ -28,7 +28,7 @@ const TestWrapper = ({ tests, add, update }) => {
   const history = useHistory();
 
 
-console.log(stateData.currentTopic)
+// console.log(stateData.currentTopic)
 
 
   // function findObjectWithAddress(obj) {
@@ -54,12 +54,12 @@ console.log(stateData.currentTopic)
     // const indexElementCautat = stateData.currentTests.findIndex(element => element.path === pathCautat);
     const indexElementCautat = stateData.currentTopic.tests.findIndex(element => element.addressTest === pathCautat);
     
-    console.log(stateData.currentTopic.tests);
+    // console.log(stateData.currentTopic.tests);
 
     setCurrentTestIndex(indexElementCautat);
     setCurrentList1(stateData.currentTopic.tests[indexElementCautat]);
 
-    console.log(stateData.currentTopic.tests[indexElementCautat]);
+    // console.log(stateData.currentTopic.tests[indexElementCautat]);
     setCurrentItemIndex(0)
     dispatchData({
       type: "FETCH_CURRENT_INDEX_TEST",
@@ -165,19 +165,19 @@ console.log(stateData.currentTopic)
     }
   };
 
-  console.log("addressTest",addressTest)
-  console.log(stateData.currentTests)
-  console.log(stateData.currentSummativeTests)
-  console.log(stateData.currentTests[currentTestIndex])
-  console.log(stateData.currentTopic.tests[currentTestIndex])
-  console.log(currentList1)
-  console.log(currentItemIndex)
+  // console.log("addressTest",addressTest)
+  // console.log(stateData.currentTests)
+  // console.log(stateData.currentSummativeTests)
+  // console.log(stateData.currentTests[currentTestIndex])
+  // console.log(stateData.currentTopic.tests[currentTestIndex])
+  // console.log(currentList1)
+  // console.log(currentItemIndex)
   return (
     <Wrapper>
       {currentList1  && (
         <>
           <Breadcrumb step={3} />
-          {console.log("correctAnswer", correctAnswer)}
+          {/* {console.log("correctAnswer", correctAnswer)} */}
           <TitleBox className="teme-container" list={currentList1}>
             {currentList1.type === "testGeneralizator"? currentList1.name+ "  "+ `  ${currentItemIndex+1} / ${currentList1.length/4}`:currentList1.name }
           </TitleBox>

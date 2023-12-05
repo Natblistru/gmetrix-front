@@ -15,61 +15,6 @@ const ReducerData = (state, action) => {
         ...state,
         topics: action.payload
       }
-    case "FETCH_TESTS1":
-      return {
-        ...state,
-        tests1: action.payload
-      }  
-    case "FETCH_TESTS2":
-      return {
-        ...state,
-        tests2: action.payload
-      }
-    case "FETCH_TESTS3":
-      return {
-        ...state,
-        tests3: action.payload
-      }
-    case "FETCH_TESTS4":
-      return {
-        ...state,
-        tests4: action.payload
-      }
-    case "FETCH_TESTS5":
-      return {
-        ...state,
-        tests5: action.payload
-      }
-    case "FETCH_TESTS6":
-      return {
-        ...state,
-        tests6: action.payload
-      }
-    case "FETCH_TESTS7":
-      return {
-        ...state,
-        tests7: action.payload
-      }
-    case "FETCH_TESTS8":
-      return {
-        ...state,
-        tests8: action.payload
-      }
-    case "FETCH_TESTS9":
-      return {
-        ...state,
-        tests9: action.payload
-      }
-    case "FETCH_TESTS10":
-      return {
-        ...state,
-        tests10: action.payload
-      }
-    case "FETCH_TESTS11":
-      return {
-        ...state,
-        tests11: action.payload
-      }         
     case "FETCH_EVALUATIONS_1":
       return {
         ...state,

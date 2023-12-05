@@ -258,7 +258,9 @@ const fetchEvaluation3 = async (theme) => {
     // }
   }, []);
 
-
+  const handleProgressThemaRecorded = (updatedThemaProgress) => {
+    setProc(updatedThemaProgress)
+  };
 
   return (
     <Wrapper>
@@ -266,7 +268,7 @@ const fetchEvaluation3 = async (theme) => {
         <>
           <Breadcrumb step={1}/>
           <TitleBox className="teme-container" proc={proc}>{temaObject.tema_name}</TitleBox>
-          <ListAccordeon />
+          <ListAccordeon onProgressThemaRecorded={handleProgressThemaRecorded}/>
         </>
       )}
     </Wrapper>

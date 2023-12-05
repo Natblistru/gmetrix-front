@@ -7,8 +7,8 @@ const ProgressSteps = (props) => {
   useEffect(() => {
     setcurrentActive(props.activeCircle)
   })
-  let arraySubject = props.list;
-
+  let arraySubject = [...props.list];
+  // console.log(arraySubject)
   const circlesLength = arraySubject.length;
   const clickStepHandler = (idx) => {
     setcurrentActive(idx+1);
@@ -21,7 +21,9 @@ const ProgressSteps = (props) => {
         <div className="progress-container">
           <div className="progress" style={{ width: progressWidth }}></div>
           {
-            arraySubject.map(circle => (
+            arraySubject
+              .sort((a, b) => a.id - b.id)
+              .map(circle => (
               <Circle className={(+circle.id) == currentActive ? "active":""} 
                       index={+circle.id} 
                       onClick = {() => clickStepHandler(+circle.id-1)}

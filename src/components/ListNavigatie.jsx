@@ -16,7 +16,7 @@ const ListNavigatie = (props) => {
   const primul = list.id == 1;
   const ultimul = list.id == stateData.currentTopic.tests.length;
   const utilmul_dnd = list.id == stateData.currentTests.length;
-  console.log(stateData.currentTopic.tests.length)
+  // console.log(stateData.currentTopic.tests.length)
   // props.setCurrentIndex(0);
   // console.log("currentIndex din ListNavigare - 0 urm") 
   // const NavigateHandle = () => {
@@ -51,11 +51,11 @@ const ListNavigatie = (props) => {
   if(!ultimul) {
     if(!utilmul_dnd) {
       testUrmator1 = stateData.currentTests[stateData.currentIndexTest+1];
-      console.log(testUrmator1.formative_test_id);
+      // console.log(testUrmator1.formative_test_id);
     }
 
     testUrmator = stateData.currentTopic.tests[list.id];
-    console.log(testUrmator)
+    // console.log(testUrmator)
     dynamicPathTestUrmator = `${addressDisciplina}${addressSubtitle}${testUrmator.path}${testUrmator.addressTest}/1?teacher=1&level=1&disciplina=${stateData.currentSubject.subject_id}&theme=${stateData.currentTheme.tema_id}`;       
 
     // dynamicPathTestUrmator = `${testUrmator.addressTestDisciplina}${testUrmator.addressTestSubtitle}${testUrmator.addressTestSubject}${testUrmator.addressTest}/1`;
