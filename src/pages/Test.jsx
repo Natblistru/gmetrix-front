@@ -20,11 +20,14 @@ const TestWrapper = ({ tests, add, update }) => {
   const { address1, addressTest, idTest } = useParams();
   // console.log(addressTest);
   const [currentList, setCurrentList] = useState(null);
+  const [currentList1, setCurrentList1] = useState(null);
   // const [currentTest, setcurrentTest] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentTestIndex, setCurrentTestIndex] = useState(0);
+  const [currentItemIndex, setCurrentItemIndex] = useState(0);
   const history = useHistory();
 
-console.log(stateData.currentTopic.tests)
+
 console.log(stateData.currentTopic)
 
 
@@ -48,9 +51,16 @@ console.log(stateData.currentTopic)
   useEffect(() => {
     const pathCautat = "/" + addressTest;
 
-    const indexElementCautat = stateData.currentTests.findIndex(element => element.path === pathCautat);
+    // const indexElementCautat = stateData.currentTests.findIndex(element => element.path === pathCautat);
+    const indexElementCautat = stateData.currentTopic.tests.findIndex(element => element.addressTest === pathCautat);
+    
+    console.log(stateData.currentTopic.tests);
 
-    console.log(indexElementCautat);
+    setCurrentTestIndex(indexElementCautat);
+    setCurrentList1(stateData.currentTopic.tests[indexElementCautat]);
+
+    console.log(stateData.currentTopic.tests[indexElementCautat]);
+    setCurrentItemIndex(0)
     dispatchData({
       type: "FETCH_CURRENT_INDEX_TEST",
       payload: indexElementCautat
@@ -130,6 +140,9 @@ console.log(stateData.currentTopic)
     // console.log("handleTryAgain currInd",currInd);
     // if(currInd!==undefined) setCurrentIndex(currInd)
     // else
+    setCurrentItemIndex(
+      currentList1.length - 1 === currentItemIndex ? 0 : currentItemIndex + 1
+    );    
     if (currentList.type === "testGeneralizator") {
    //   console.log("currentIndex",currentIndex);
       setCurrentIndex(
@@ -154,49 +167,54 @@ console.log(stateData.currentTopic)
   console.log("currentList",currentList);
   console.log("addressTest",addressTest)
   console.log(stateData.currentTests)
+  console.log(stateData.currentSummativeTests)
+  console.log(stateData.currentTests[currentTestIndex])
+  console.log(stateData.currentTopic.tests[currentTestIndex])
+  console.log(currentList1)
+  console.log(currentItemIndex)
   return (
     <Wrapper>
-      {currentList && (
+      {currentList1  && (
         <>
           <Breadcrumb step={3} />
-          {/* {console.log("currentList", currentList)} */}
+          {console.log("currentList1", currentList1)}
           <TitleBox className="teme-container" list={currentList}>
             {currentList.type === "testGeneralizator"? currentList.name+ "  "+ `  ${currentIndex+1} / ${currentList.quizArray.length}`:currentList.name }
           </TitleBox>
-          {currentList.type === "quiz" && (
+          {currentList1.type === "quiz" && (
             <TestQuiz
-              list={currentList}
-              currentIndex={currentIndex}
+              list={currentList1}
+              currentIndex={currentItemIndex}
               correctAnswer={correctAnswer}
               setCorrectAnswer={setCorrectAnswer}
               additionalContent={additionalContent}
               handleTryAgain={handleTryAgain}
             />
           )}
-          {currentList.type === "check" && (
+          {currentList1.type === "check" && (
             <TestCheck
-              list={currentList}
-              currentIndex={currentIndex}
+              list={currentList1}
+              currentIndex={currentItemIndex}
               correctAnswer={correctAnswer}
               setCorrectAnswer={setCorrectAnswer}
               additionalContent={additionalContent}
               handleTryAgain={handleTryAgain}
             />
           )}
-          {currentList.type === "words" && (
+          {currentList1.type === "words" && (
             <TestWords
-              list={currentList}
-              currentIndex={currentIndex}
+              list={currentList1}
+              currentIndex={currentItemIndex}
               correctAnswer={correctAnswer}
               setCorrectAnswer={setCorrectAnswer}
               additionalContent={additionalContent}
               handleTryAgain={handleTryAgain}
             />
           )}
-          {currentList.type === "snap" && (
+          {currentList1.type === "snap" && (
             <TestSnap
-              list={currentList}
-              currentIndex={currentIndex}
+              list={currentList1}
+              currentIndex={currentItemIndex}
               correctAnswer={correctAnswer}
               setCorrectAnswer={setCorrectAnswer}
               additionalContent={additionalContent}
@@ -213,17 +231,17 @@ console.log(stateData.currentTopic)
               handleTryAgain={handleTryAgain}
             />
           )}
-          {(currentList.type === "cauze" ||
-            currentList.type === "consecinte" ||
-            currentList.type === "caracteristica" ||
-            currentList.type === "chrono" ||
-            currentList.type === "chronoDuble" ||
-            currentList.type === "group") && (
+          {(currentList1.type === "dnd" ||
+            // currentList.type === "consecinte" ||
+            // currentList.type === "caracteristica" ||
+            currentList1.type === "dnd_chrono" ||
+            currentList1.type === "dnd_chrono_double" ||
+            currentList1.type === "dnd_group") && (
             <TestBoard
-              list={currentList}
-              currentIndex={currentIndex}
+              list={currentList1}
+              currentIndex={currentItemIndex}
               correctAnswer={correctAnswer}
-              setCorrectAnswer={setCorrectAnswer}setCurrentList
+              setCorrectAnswer={setCorrectAnswer}
               additionalContent={additionalContent}
               handleTryAgain={handleTryAgain}
               DragDisable={false}
@@ -231,11 +249,11 @@ console.log(stateData.currentTopic)
             />
           )}
           <ListNavigatie
-            list={currentList}
-            setCurrentList={setCurrentList}
+            list={currentList1}
+            setCurrentList={setCurrentList1}
             correctAnswer={correctAnswer}
             setCorrectAnswer={setCorrectAnswer}
-            setCurrentIndex={setCurrentIndex}
+            setCurrentIndex={setCurrentItemIndex}
             handleClearTestBoard={handleClearTestBoard}
           />
         </>

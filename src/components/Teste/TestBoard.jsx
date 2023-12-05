@@ -38,7 +38,10 @@ const TestBoard = forwardRef(
     });
 
     const columnArray = stateData.currentTests[stateData.currentIndexTest].column_title.split(", ");
-
+    console.log(stateData.currentTests)
+    console.log(stateData.currentIndexTest)
+    console.log(stateData.currentTests[stateData.currentIndexTest])
+    console.log(columnArray)
  
     
     const columnsFromBackend = columnArray.reduce((columns, name) => {
@@ -188,12 +191,16 @@ const TestBoard = forwardRef(
     setSelectedValues([]); 
     setCorrectAnswer(null);
     setIsDragDisabled(false);
+    console.log(testId)
     setColumns(getColumnsFromBackend(testId));
     handleTryAgain();
   };
   useImperativeHandle(ref, () => ({
     handleTryAgainClear: handleTryAgainClear
   }));
+
+  console.log(columns)
+  console.log(currentTest)
 
   return columns && (
 
@@ -284,7 +291,7 @@ const TestBoard = forwardRef(
               </>
             )}
           </ItemText>
-          <button onClick={()=> handleTryAgainClear(listItems.formative_test_id)} className="btn-test">
+          <button onClick={()=> handleTryAgainClear(currentTest.formative_test_id)} className="btn-test">
             Încearcă din nou!
           </button>
         </ItemAccordeon>
