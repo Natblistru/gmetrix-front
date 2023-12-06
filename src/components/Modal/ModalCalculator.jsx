@@ -1,4 +1,5 @@
 import React, { useState, useContext, useEffect, useRef } from "react";
+import axios from "axios";
 import ContextData from "../context/ContextData";
 import { connect } from "react-redux";
 import "./ModalCalculator.css";
@@ -6,7 +7,7 @@ import "./ModalForm.css";
 import DraggableElement from "../DndTest/DraggableElement";
 import ModalArrows from "./ModalArrows";
 
-const SelectBox = ({ options, activeTab, setActiveTab,nota, setNota,idx }) => {
+const SelectBox = ({ options, activeTab, setActiveTab,nota, setNota, selectedOptions, setSelectedOptions, idx }) => {
   const [value, setValue] = useState(null);
   const [label, setLabel] = useState("Please select...");
   const [showing, setShowing] = useState(false);
@@ -14,11 +15,27 @@ const SelectBox = ({ options, activeTab, setActiveTab,nota, setNota,idx }) => {
   const onSelectorClick = () => {
     setShowing(!showing);
   };
-
+   console.log(options)
   const onOptionClick = (option) => {
+
+    // console.log(option)
+    // console.log(nota)
     setValue(option.points);
     setLabel(option.label);
     setShowing(false);
+    setSelectedOptions(selectedOptions.map((obj, index) => {
+      if (index === idx) {
+        return {
+          ...obj,
+          points: option.points,
+          option_id: option.option_id,
+          evaluation_answer_option_id: option.evaluation_answer_id
+        };
+      } else {
+        return obj;
+      }
+    }));
+    
     // console.log("idx", idx)
     // console.log("option.subPoint", option.subPoint)
     setNota(nota.map((n, index) => {
@@ -78,19 +95,28 @@ const ModalCalculator = ({ subject, currentIndex, onClick, idRaspuns, raspunsuri
   }
 
   const currentItem = quizArray[currentIndex];
-  // console.log(currentItem);
+  console.log(currentItem);
   // console.log(currentItem.answers.length);
 
   const raspInitialArr = Array(currentItem.answers.length).fill(0);
   const [rasp, SetRasp] = useState([]);
   const initialNoteArray = Array(currentItem.answers.length).fill(0);
   const [nota, setNota] = useState(initialNoteArray);
+
+  const initialSelectedOptions = [];
+
+  currentItem.answers.forEach(element => {
+    const options_element = element.options[0]; 
+    initialSelectedOptions.push({ "option_id": options_element.option_id, 
+                                   "points": options_element.points,
+                                   "evaluation_answer_option_id": options_element.evaluation_answer_id,
+                                   "answer_id": element.answer_id});
+  });
+  const [selectedOptions, setSelectedOptions] = useState(initialSelectedOptions)
   const [activeTab, setActiveTab] = useState(0);
   const [modalPosition, setModalPosition] = useState({ x: 370, y: 270 });
 
    useEffect(() => {
-    // console.log(idRaspuns);
-    // console.log(raspunsuri);
     if (idRaspuns !== null) {
       // const foundRaspuns = raspunsuri.items.find(item => item.id === idRaspuns);
       // const valuesArray = Object.values(foundRaspuns).filter(value => value !== foundRaspuns.id);
@@ -99,13 +125,42 @@ const ModalCalculator = ({ subject, currentIndex, onClick, idRaspuns, raspunsuri
     } else SetRasp(Array(currentItem.answers.length).fill(0));
   }, []);
 
-
-
   const handleResponse = () => {
+    // console.log(selectedOptions)
+    const selectedOptionsToDB = selectedOptions.map(item => {
+      const { option_id, ...rest } = item;
+      return { ...rest, student_id: stateData.currentStudent };
+    });
+    console.log(selectedOptionsToDB);
+    trimiteDateLaBackend(selectedOptionsToDB);
+
     update({ ...rasp, id: idRaspuns });
+
     SetRasp(raspInitialArr);
+    setSelectedOptions(initialSelectedOptions);
     const notaResult = nota.reduce((accumulator, currentValue) => accumulator + currentValue, 0)
     onClick(notaResult);
+  };
+
+
+  const trimiteDateLaBackend = async (selectedOptionsToDB) => {
+    try {
+      for (const element of selectedOptionsToDB) {
+        const response = await axios.post('http://localhost:8000/api/student-evaluation-answers', element);
+
+        if (response.status === 200) {
+          console.log('Success:', response.data.message);
+        } else {
+          console.error('Error');
+        }
+      }
+    } catch (error) {
+      if (error.response && error.response.status === 422) {
+        console.log('Validation Errors:', error.response.data.errors);
+      } else {
+        console.error('Error:', error);
+      }
+    }
   };
 
   const handleChange = (e, idx) => {
@@ -143,6 +198,8 @@ const ModalCalculator = ({ subject, currentIndex, onClick, idRaspuns, raspunsuri
                 activeTab={activeTab}
                 nota={nota} 
                 setNota={setNota}
+                selectedOptions={selectedOptions}               
+                setSelectedOptions={setSelectedOptions}
                 idx={idx}
               />
             </div>
