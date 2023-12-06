@@ -89,7 +89,7 @@ const Subtema = ({results})  => {
       payload: newBreadcrumb
     });
 
-    console.log(mainElement);
+    // console.log(mainElement);
     setTopic(mainElement);
 
 

@@ -21,7 +21,6 @@ const ListAccordeon = (props) => {
   let titleList = stateData.topics;
 
   useEffect(() => {
-    console.log()
     if (props.onProgressThemaRecorded) {
       if(stateData.topics.length > 0) {
         props.onProgressThemaRecorded(stateData.topics[0].procentTema);

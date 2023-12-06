@@ -76,7 +76,7 @@ const AudioPlayer = ({currentSubject, arraySubtitles, path,subjectID,arrayAudioL
         subtopic_id: currentSubtitle.subtopic_id,
         progress_percentage: 100
       });
-      console.log('Progres înregistrat în baza de date:', response.data)
+      // console.log('Progres înregistrat în baza de date:', response.data)
       if (onProgressRecorded) {
 
         // console.log(currentSubject)

@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 
-const RadioButton = ({ value, checked, onChange, correctAnswer }) => {
+const RadioButton = ({value, checked, onChange, correctAnswer  }) => {
+  
+  
   const handleClick = () => {
     if (!checked) {
       onChange(value);
-
     }
   };
 

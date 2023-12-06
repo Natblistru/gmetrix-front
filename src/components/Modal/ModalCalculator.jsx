@@ -15,7 +15,7 @@ const SelectBox = ({ options, activeTab, setActiveTab,nota, setNota, selectedOpt
   const onSelectorClick = () => {
     setShowing(!showing);
   };
-   console.log(options)
+  //  console.log(options)
   const onOptionClick = (option) => {
 
     // console.log(option)
@@ -95,7 +95,7 @@ const ModalCalculator = ({ subject, currentIndex, onClick, idRaspuns, raspunsuri
   }
 
   const currentItem = quizArray[currentIndex];
-  console.log(currentItem);
+  // console.log(currentItem);
   // console.log(currentItem.answers.length);
 
   const raspInitialArr = Array(currentItem.answers.length).fill(0);
@@ -131,7 +131,7 @@ const ModalCalculator = ({ subject, currentIndex, onClick, idRaspuns, raspunsuri
       const { option_id, ...rest } = item;
       return { ...rest, student_id: stateData.currentStudent };
     });
-    console.log(selectedOptionsToDB);
+    // console.log(selectedOptionsToDB);
     trimiteDateLaBackend(selectedOptionsToDB);
 
     update({ ...rasp, id: idRaspuns });

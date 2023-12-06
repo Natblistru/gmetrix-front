@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import ContextData from "../context/ContextData";
 import RadioButton from "../RadioButton";
 import ItemAccordeon from "../Accordeon/ItemAccordeon";
@@ -14,6 +15,15 @@ const TestQuiz = ({
 }) => {
   const {stateData, dispatchData} = React.useContext(ContextData)
   const [selectedValue, setSelectedValue] = useState("");
+  const [selectedOptions, setSelectedOptions] = useState([])
+
+  useEffect(()=>{
+    setSelectedOptions([{ "option": "", 
+        "score": 0,
+        "test_item_complexity": listItems[currentIndex].test_item_complexity,
+        "formative_test_id": listItems[currentIndex].formative_test_id,
+        "test_item_id": listItems[currentIndex].test_item_id}])
+  },[])
 
   // console.log(stateData.currentTests)
   // console.log(stateData.currentTests[stateData.currentIndexTest].order_number_options);
@@ -24,16 +34,72 @@ const TestQuiz = ({
 
   const correctAnswerText = listItems[currentIndex].test_item_options.find(item => item.correct === 1)?.option;
 
+  console.log(listItems[currentIndex]);
 
   const handleRadioButtonChange = (value) => {
     setSelectedValue(value);
+    setSelectedOptions(selectedOptions.map((obj, index) => {
+        return {
+          ...obj,
+          option: value,
+          score: 0,
+          test_item_complexity: listItems[currentIndex].test_item_complexity,
+          formative_test_id: listItems[currentIndex].formative_test_id,
+          test_item_id: listItems[currentIndex].test_item_id  
+        };
+    }));
   };
 
+
   const checkAnswer = () => {
+    // console.log(selectedValue)
+    // console.log(listItems[stateData.currentIndexTest])
       if (selectedValue === correctAnswerText) {
       setCorrectAnswer(true);
     } else {
       setCorrectAnswer(false);
+    }
+    console.log(selectedOptions);
+    const selectedOptionsCalculate = selectedOptions.map(item => {
+      let score;
+      if (item.option === correctAnswerText) {
+        score = item.test_item_complexity;
+      } else {
+        score = 0;
+      }
+      return {
+        ...item,
+        score: score
+      };
+    });
+
+    const selectedOptionsToDB = selectedOptionsCalculate.map(item => {
+      const { test_item_complexity, ...rest } = item;
+      return { ...rest, student_id: stateData.currentStudent };
+    });
+
+    trimiteDateLaBackend([...selectedOptionsToDB]);
+
+  };
+
+  const trimiteDateLaBackend = async (selectedOptionsToDB) => {
+    // console.log(selectedOptionsToDB)
+    try {
+      for (const element of selectedOptionsToDB) {
+        const response = await axios.post('http://localhost:8000/api/student-formative-test-options', element);
+
+        if (response.status === 200) {
+          console.log('Success:', response.data.message);
+        } else {
+          console.error('Error');
+        }
+      }
+    } catch (error) {
+      if (error.response && error.response.status === 422) {
+        console.log('Validation Errors:', error.response.data.errors);
+      } else {
+        console.error('Error:', error);
+      }
     }
   };
 
@@ -68,7 +134,7 @@ const TestQuiz = ({
               onChange={
                 correctAnswer === null ? handleRadioButtonChange : () => {}
               }
-              correctAnswer={correctAnswerText}              
+              correctAnswer={correctAnswerText}  
             />
           );
         })}
