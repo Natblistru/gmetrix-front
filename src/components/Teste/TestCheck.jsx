@@ -21,20 +21,7 @@ const TestCheck = ({
 
   const [selectedOptions, setSelectedOptions] = useState([])
   console.log(currentItemIndex)
-  // useEffect(()=>{
-  //   const initialSelectedOptions = [];
 
-  //   listItems[currentItemIndex].test_item_options.forEach(element => {
-  //     initialSelectedOptions.push({ "option": element.option, 
-  //                                    "score": 0,
-  //                                    "correct": element.correct,
-  //                                    "selected": false,
-  //                                    "test_item_complexity": listItems[currentItemIndex].test_item_complexity,
-  //                                    "formative_test_id": listItems[currentItemIndex].formative_test_id,
-  //                                    "test_item_id": listItems[currentItemIndex].test_item_id});
-  //   });
-  //   setSelectedOptions(initialSelectedOptions)
-  // },[])
   useEffect(()=>{
     const initialSelectedOptions = [];
 

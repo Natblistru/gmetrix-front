@@ -1,13 +1,9 @@
-import React, { useState, forwardRef, useImperativeHandle } from "react";
+import React, { useState, useEffect, forwardRef, useImperativeHandle } from "react";
+import axios from "axios";
 import ContextData from "../context/ContextData";
 import { DragDropContext } from "react-beautiful-dnd";
 import Column from "../DragAndDrop/Column";
 import { v4 as uuidv4 } from "uuid";
-import temeIstoriArray from "../../data/temeIstoria";
-import getColumnsFromBackend from "../../utils/getColumnsFromBackend";
-
-
-
 import ItemAccordeon from "../Accordeon/ItemAccordeon";
 import ItemText from "../Accordeon/ItemText";
 
@@ -25,20 +21,76 @@ const TestBoard = forwardRef(
     },
     ref
   ) => {
+    const {stateData, dispatchData} = React.useContext(ContextData)
     const [selectedValues, setSelectedValues] = useState([]);
     const [data, setData] = useState([]);
     const [isDragDisabled, setIsDragDisabled] = useState(DragDisable);
 
-    const {stateData, dispatchData} = React.useContext(ContextData)
-    const listItems = stateData.currentTests[stateData.currentIndexTest].order_number_options;
-    // console.log(listItems)
-    // console.log(listItems[currentIndex])
+    const [selectedOptions, setSelectedOptions] = useState([])
+
+    const [listItems, setListItems] = useState(stateData.currentTests[stateData.currentIndexTest].order_number_options)
+
+    const [columnArray, setColumnArray] = useState(stateData.currentTests[stateData.currentIndexTest].column_title.split(", "));
+    console.log(listItems)
+    console.log(listItems[currentItemIndex])
+
+    useEffect(()=>{
+      setListItems(stateData.currentTests[stateData.currentIndexTest].order_number_options);
+      setColumnArray(stateData.currentTests[stateData.currentIndexTest].column_title.split(", "))
+
+      const initialSelectedOptions = [];
+      listItems[currentItemIndex].test_item_options.forEach(element => {
+        initialSelectedOptions.push({ "option": element.option, 
+                                       "score": 0,
+                                       "correct": element.correct,
+                                       "user_column": 0,
+                                       "test_item_complexity": listItems[currentItemIndex].test_item_complexity,
+                                       "formative_test_id": listItems[currentItemIndex].formative_test_id,
+                                       "test_item_id": listItems[currentItemIndex].test_item_id});
+      });
+      setSelectedOptions(initialSelectedOptions)
+
+      setColumns(getColumnsFromBackend());
+    },[currentItemIndex])
+
+    const getColumnsFromBackend = () => {
+
+      let columnsFromBackendNext = null;
+      // console.log(stateData.currentTests[stateData.currentIndexTest].order_number_options);
+      // temeIstoriArray[0].subtitles[0].subjects[0].teste.forEach(test => {
+      //   console.log("test.id", test.id)
+      //   console.log("testID", testID)
+      //   if(test.id==testID&&test.coloane.length) {
+    
+          const itemsFromBackendNext = [];
+          listItems[currentItemIndex].test_item_options.forEach((answer) => {
+              itemsFromBackendNext.push({ id: uuidv4(), content: answer.option });
+            });
+        
+            columnsFromBackendNext = columnArray.reduce((columns, name) => {
+              columns[uuidv4()] = {
+                name: name,
+                items: []
+              };
+              return columns;
+            }, {});
+        
+            const columnIds = Object.keys(columnsFromBackendNext);
+            columnsFromBackendNext[columnIds[0]].items = itemsFromBackendNext;
+            
+            // console.log(test.id, columnsFromBackendNext);
+        // }
+      // })
+      return columnsFromBackendNext;
+    }
+
     const itemsFromBackend = [];
-    listItems[currentIndex].test_item_options.forEach((answer) => {
+    listItems[currentItemIndex].test_item_options.forEach((answer) => {
+      // console.log(answer.option)
       itemsFromBackend.push({ id: uuidv4(), content: answer.option });
     });
 
-    const columnArray = stateData.currentTests[stateData.currentIndexTest].column_title.split(", ");
+
     // console.log(stateData.currentTests)
     // console.log(stateData.currentIndexTest)
     // console.log(stateData.currentTests[stateData.currentIndexTest])
@@ -55,6 +107,7 @@ const TestBoard = forwardRef(
 
     const columnIds = Object.keys(columnsFromBackend);
     columnsFromBackend[columnIds[0]].items = itemsFromBackend;
+    // console.log(itemsFromBackend)
     const [columns, setColumns] = useState(columnsFromBackend);
 
     // console.log(stateData.currentTests)
@@ -64,15 +117,15 @@ const TestBoard = forwardRef(
     // console.log(stateData.currentTests[stateData.currentIndexTest].column_title)
 
     // console.log(stateData.currentTests[stateData.currentIndexTest])
-    // console.log(stateData.currentTests[stateData.currentIndexTest].order_number_options[currentIndex]);
+    // console.log(stateData.currentTests[stateData.currentIndexTest].order_number_options[currentItemIndex]);
   
   
     // console.log(stateData.currentIndexTest);
   
-    const correctAnswers = listItems[currentIndex].test_item_options
+    const correctAnswers = listItems[currentItemIndex].test_item_options
       .filter(item => item.correct === 1);
 
-    const correctAnswers1 = listItems[currentIndex].test_item_options
+    const correctAnswers1 = listItems[currentItemIndex].test_item_options
     .filter(item => item.correct === 2);
 
     const correctAnswersValues = correctAnswers.map(item => item.option);
@@ -97,6 +150,9 @@ const TestBoard = forwardRef(
       if (!result.destination) return;
       const { source, destination } = result;
 
+      console.log(selectedOptions);
+      console.log(destination);      
+
       if (source.droppableId !== destination.droppableId) {
         const sourceColumn = columns[source.droppableId];
         const destColumn = columns[destination.droppableId];
@@ -104,6 +160,10 @@ const TestBoard = forwardRef(
         const destItems = [...destColumn.items];
         const [removed] = sourceItems.splice(source.index, 1);
         destItems.splice(destination.index, 0, removed);
+        console.log(sourceItems);
+        console.log(destItems); 
+        console.log(destColumn.name);     
+        console.log(columnArray);     
         setColumns({
           ...columns,
           [source.droppableId]: {
@@ -113,6 +173,31 @@ const TestBoard = forwardRef(
           [destination.droppableId]: {
             ...destColumn,
             items: destItems
+          }
+        });
+
+        sourceItems.forEach(sourceItem => {
+          const selectedOption = selectedOptions.find(option => option.option === sourceItem.content);
+          if (selectedOption) {
+            setSelectedOptions(prevOptions => {
+              const updatedOptions = prevOptions.map(option =>
+                option.option === selectedOption.option ? { ...option, user_column: 0 } : option
+              );
+              return updatedOptions;
+            });
+          }
+        });
+
+        const columnIndex = columnArray.indexOf(destColumn.name);
+        destItems.forEach(destItem => {
+          const selectedOption = selectedOptions.find(option => option.option === destItem.content);
+          if (selectedOption) {
+            setSelectedOptions(prevOptions => {
+              const updatedOptions = prevOptions.map(option =>
+                option.option === selectedOption.option ? { ...option, user_column: columnIndex } : option
+              );
+              return updatedOptions;
+            });
           }
         });
       } else {
@@ -132,6 +217,29 @@ const TestBoard = forwardRef(
     };
 
     const checkAnswer = () => {
+
+    console.log(selectedOptions);
+    const selectedOptionsCalculate = selectedOptions.map(item => {
+      let score;
+      if (item.correct == item.user_column) {
+        score = item.test_item_complexity;
+      } else {
+        score = 0;
+      }
+      return {
+        ...item,
+        score: score
+      };
+    });
+    const selectedOptionsToDB = selectedOptionsCalculate.map(item => {
+      const { test_item_complexity, user_column, correct, ...rest } = item;
+      return { ...rest, student_id: stateData.currentStudent, type: 'check' };
+    });
+    for (const element of selectedOptionsToDB) {
+      trimiteDateLaBackend(element);
+    }
+
+
     let selectedValuesString="";
     let correctValuesString="";
     let selectedValues1String="";
@@ -187,14 +295,35 @@ const TestBoard = forwardRef(
     setIsDragDisabled(true);
   };
 
+  const trimiteDateLaBackend = async (element) => {
+    try {
+        // console.log(element)
+        const response = await axios.post('http://localhost:8000/api/student-formative-test-options', element);
+
+        if (response.status === 200) {
+          console.log('Success:', response.data.message);
+        } else {
+          console.error('Error');
+        }
+    } catch (error) {
+      if (error.response && error.response.status === 422) {
+        console.log('Validation Errors:', error.response.data.errors);
+      } else {
+        console.error('Error:', error);
+      }
+    }
+  };
+
+
   const handleTryAgainClear = (testId) => {
     // console.log("handleTryAgainClear testId",testId);    
     setSelectedValues([]); 
     setCorrectAnswer(null);
     setIsDragDisabled(false);
     // console.log(testId)
-    setColumns(getColumnsFromBackend(testId));
     handleTryAgain();
+    setColumns(getColumnsFromBackend())
+    // setColumns(getColumnsFromBackend(testId));
   };
   useImperativeHandle(ref, () => ({
     handleTryAgainClear: handleTryAgainClear
@@ -209,10 +338,10 @@ const TestBoard = forwardRef(
       <ItemAccordeon
         titlu={
           correctAnswer === null
-            ? `Cerințele sarcinii (${currentIndex + 1}/${
+            ? `Cerințele sarcinii (${currentItemIndex + 1}/${
               listItems.length
               }):`
-            : `Rezultat (${currentIndex + 1}/${listItems.length}):`
+            : `Rezultat (${currentItemIndex + 1}/${listItems.length}):`
         }
         correctAnswer={correctAnswer}
         additionalContent={additionalContent}
@@ -231,7 +360,7 @@ const TestBoard = forwardRef(
                 paddingBottom: "20px",
                 // textAlign: "center",
                 fontWeight: "500",
-              }}>{listItems[currentIndex].test_item_task}</p>
+              }}>{listItems[currentItemIndex].test_item_task}</p>
 
     <div
       style={{
@@ -274,7 +403,7 @@ const TestBoard = forwardRef(
       </ItemAccordeon>
       {correctAnswer !== null && (
         <ItemAccordeon
-          titlu={`Rezolvarea sarcinii (${currentIndex + 1}/${
+          titlu={`Rezolvarea sarcinii (${currentItemIndex + 1}/${
             listItems.length
           }):`}
           open={true}
