@@ -113,6 +113,7 @@ const TestGeneralizator = ({
   tests,
   add,
   update,
+  currentItemIndex
 }) => {
   const {stateData, dispatchData} = React.useContext(ContextData)
   // const [showHeader, setShowHeader] = useState(false);

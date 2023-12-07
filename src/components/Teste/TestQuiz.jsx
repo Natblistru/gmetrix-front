@@ -12,6 +12,7 @@ const TestQuiz = ({
   setCorrectAnswer,
   additionalContent,
   handleTryAgain,
+  currentItemIndex
 }) => {
   const {stateData, dispatchData} = React.useContext(ContextData)
   const [selectedValue, setSelectedValue] = useState("");
@@ -20,9 +21,9 @@ const TestQuiz = ({
   useEffect(()=>{
     setSelectedOptions([{ "option": "", 
         "score": 0,
-        "test_item_complexity": listItems[currentIndex].test_item_complexity,
-        "formative_test_id": listItems[currentIndex].formative_test_id,
-        "test_item_id": listItems[currentIndex].test_item_id}])
+        "test_item_complexity": listItems[currentItemIndex].test_item_complexity,
+        "formative_test_id": listItems[currentItemIndex].formative_test_id,
+        "test_item_id": listItems[currentItemIndex].test_item_id}])
   },[])
 
   // console.log(stateData.currentTests)
@@ -32,9 +33,9 @@ const TestQuiz = ({
 
   const listItems = stateData.currentTests[stateData.currentIndexTest].order_number_options;
 
-  const correctAnswerText = listItems[currentIndex].test_item_options.find(item => item.correct === 1)?.option;
+  const correctAnswerText = listItems[currentItemIndex].test_item_options.find(item => item.correct === 1)?.option;
 
-  console.log(listItems[currentIndex]);
+  console.log(listItems[currentItemIndex]);
 
   const handleRadioButtonChange = (value) => {
     setSelectedValue(value);
@@ -43,9 +44,9 @@ const TestQuiz = ({
           ...obj,
           option: value,
           score: 0,
-          test_item_complexity: listItems[currentIndex].test_item_complexity,
-          formative_test_id: listItems[currentIndex].formative_test_id,
-          test_item_id: listItems[currentIndex].test_item_id  
+          test_item_complexity: listItems[currentItemIndex].test_item_complexity,
+          formative_test_id: listItems[currentItemIndex].formative_test_id,
+          test_item_id: listItems[currentItemIndex].test_item_id  
         };
     }));
   };
@@ -75,7 +76,7 @@ const TestQuiz = ({
 
     const selectedOptionsToDB = selectedOptionsCalculate.map(item => {
       const { test_item_complexity, ...rest } = item;
-      return { ...rest, student_id: stateData.currentStudent };
+      return { ...rest, student_id: stateData.currentStudent, type: 'quiz' };
     });
 
     trimiteDateLaBackend([...selectedOptionsToDB]);
@@ -109,8 +110,8 @@ const TestQuiz = ({
     <ItemAccordeon
       titlu={
         correctAnswer === null
-          ? `Cerințele sarcinii (${currentIndex + 1}/${listItems.length}):`
-          : `Rezultat (${currentIndex + 1}/${listItems.length}):`
+          ? `Cerințele sarcinii (${currentItemIndex + 1}/${listItems.length}):`
+          : `Rezultat (${currentItemIndex + 1}/${listItems.length}):`
       }
       correctAnswer={correctAnswer}
       additionalContent={additionalContent}
@@ -125,7 +126,7 @@ const TestQuiz = ({
             : " incorrect"
         }
       >
-        {listItems[currentIndex].test_item_options.map((answer, idx) => {
+        {listItems[currentItemIndex].test_item_options.map((answer, idx) => {
           return (
             <RadioButton
               key={idx}
@@ -148,11 +149,11 @@ const TestQuiz = ({
     {correctAnswer !== null && (
       
         <ItemAccordeon
-          titlu={`Rezolvarea sarcinii (${currentIndex + 1}/${listItems.length}):`}
+          titlu={`Rezolvarea sarcinii (${currentItemIndex + 1}/${listItems.length}):`}
           open={true}
         >
           <ItemText classNameChild="">
-            {listItems[currentIndex].test_item_options.map((answer, idx) => (
+            {listItems[currentItemIndex].test_item_options.map((answer, idx) => (
               <RadioButton
                 key={idx}
                 value={answer.explanation}

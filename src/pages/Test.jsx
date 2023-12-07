@@ -189,6 +189,7 @@ const TestWrapper = ({ tests, add, update }) => {
               setCorrectAnswer={setCorrectAnswer}
               additionalContent={additionalContent}
               handleTryAgain={handleTryAgain}
+              currentItemIndex={currentItemIndex}
             />
           )}
           {currentList1.type === "check" && (
@@ -199,6 +200,7 @@ const TestWrapper = ({ tests, add, update }) => {
               setCorrectAnswer={setCorrectAnswer}
               additionalContent={additionalContent}
               handleTryAgain={handleTryAgain}
+              currentItemIndex={currentItemIndex}
             />
           )}
           {currentList1.type === "words" && (
@@ -209,6 +211,7 @@ const TestWrapper = ({ tests, add, update }) => {
               setCorrectAnswer={setCorrectAnswer}
               additionalContent={additionalContent}
               handleTryAgain={handleTryAgain}
+              currentItemIndex={currentItemIndex}
             />
           )}
           {currentList1.type === "snap" && (
@@ -219,6 +222,7 @@ const TestWrapper = ({ tests, add, update }) => {
               setCorrectAnswer={setCorrectAnswer}
               additionalContent={additionalContent}
               handleTryAgain={handleTryAgain}
+              currentItemIndex={currentItemIndex}
             />
           )}
           {currentList1.type === "testGeneralizator" && (
@@ -229,6 +233,7 @@ const TestWrapper = ({ tests, add, update }) => {
               setCorrectAnswer={setCorrectAnswer}
               additionalContent={additionalContent}
               handleTryAgain={handleTryAgain}
+              currentItemIndex={currentItemIndex}
             />
           )}
           {(currentList1.type === "dnd" ||
@@ -246,6 +251,7 @@ const TestWrapper = ({ tests, add, update }) => {
               handleTryAgain={handleTryAgain}
               DragDisable={false}
               ref={testBoardRef}
+              currentItemIndex={currentItemIndex}
             />
           )}
           <ListNavigatie

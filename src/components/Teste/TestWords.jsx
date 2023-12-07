@@ -26,6 +26,7 @@ const TestWords = ({
   setCorrectAnswer,
   additionalContent,
   handleTryAgain,
+  currentItemIndex
 }) => {
   const {stateData, dispatchData} = React.useContext(ContextData)
   const [showResults, setShowResults] = useState(false);

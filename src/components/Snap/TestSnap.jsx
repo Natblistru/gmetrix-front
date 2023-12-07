@@ -27,6 +27,7 @@ const TestSnap = ({
   setCorrectAnswer,
   additionalContent,
   handleTryAgain,
+  currentItemIndex
 }) => {
   const svgboxRef = useRef();
   const {stateData, dispatchData} = React.useContext(ContextData)

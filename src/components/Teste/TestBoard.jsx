@@ -20,7 +20,8 @@ const TestBoard = forwardRef(
       setCorrectAnswer,
       additionalContent,
       handleTryAgain,
-      DragDisable
+      DragDisable,
+      currentItemIndex
     },
     ref
   ) => {
