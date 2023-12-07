@@ -44,6 +44,7 @@ const TestBoard = forwardRef(
                                        "score": 0,
                                        "correct": element.correct,
                                        "user_column": 0,
+                                       "explanation": element.explanation,
                                        "test_item_complexity": listItems[currentItemIndex].test_item_complexity,
                                        "formative_test_id": listItems[currentItemIndex].formative_test_id,
                                        "test_item_id": listItems[currentItemIndex].test_item_id});
@@ -122,9 +123,13 @@ const TestBoard = forwardRef(
   
     // console.log(stateData.currentIndexTest);
   
-    const correctAnswers = listItems[currentItemIndex].test_item_options
+    let correctAnswers = [];
+    if(currentTest.type == "dnd_chrono") {
+      correctAnswers = listItems[currentItemIndex].test_item_options;
+    } else {
+      correctAnswers = listItems[currentItemIndex].test_item_options
       .filter(item => item.correct === 1);
-
+    }
     const correctAnswers1 = listItems[currentItemIndex].test_item_options
     .filter(item => item.correct === 2);
 
@@ -189,13 +194,20 @@ const TestBoard = forwardRef(
         });
 
         const columnIndex = columnArray.indexOf(destColumn.name);
-        destItems.forEach(destItem => {
+        const isChronoDubleTest = currentTest.type === "dnd_chrono_double";
+
+        destItems.forEach((destItem, index) => {
           const selectedOption = selectedOptions.find(option => option.option === destItem.content);
+        
           if (selectedOption) {
             setSelectedOptions(prevOptions => {
-              const updatedOptions = prevOptions.map(option =>
-                option.option === selectedOption.option ? { ...option, user_column: columnIndex } : option
-              );
+              const updatedOptions = prevOptions.map(option => {
+                if (isChronoDubleTest) {
+                  return option.option === selectedOption.option ? { ...option, user_column: index + 1 } : option;
+                } else {
+                  return option.option === selectedOption.option ? { ...option, user_column: columnIndex } : option;
+                }
+              });
               return updatedOptions;
             });
           }
@@ -206,11 +218,25 @@ const TestBoard = forwardRef(
         const copiedItems = [...column.items];
         const [removed] = copiedItems.splice(source.index, 1);
         copiedItems.splice(destination.index, 0, removed);
+        console.log(copiedItems); 
         setColumns({
           ...columns,
           [source.droppableId]: {
             ...column,
             items: copiedItems
+          }
+        });
+
+        copiedItems.forEach((copiedItem, index) => {
+          const selectedOption = selectedOptions.find(option => option.option === copiedItem.content);
+        
+          if (selectedOption) {
+            setSelectedOptions(prevOptions => {
+              const updatedOptions = prevOptions.map(option =>
+                option.option === selectedOption.option ? { ...option, user_column: index + 1 } : option
+              );
+              return updatedOptions;
+            });
           }
         });
       }
@@ -219,20 +245,39 @@ const TestBoard = forwardRef(
     const checkAnswer = () => {
 
     console.log(selectedOptions);
-    const selectedOptionsCalculate = selectedOptions.map(item => {
-      let score;
-      if (item.correct == item.user_column) {
-        score = item.test_item_complexity;
-      } else {
-        score = 0;
-      }
-      return {
-        ...item,
-        score: score
-      };
-    });
+    let selectedOptionsCalculate = [];
+    console.log(currentTest)
+    if(currentTest.type =="dnd_chrono" || currentTest.type =="dnd_chrono_double") {
+      selectedOptionsCalculate = selectedOptions.map(item => {
+        let score;
+        console.log(item.explanation == item.user_column)
+        if (item.explanation == item.user_column) {
+          score = item.test_item_complexity;
+        } else {
+          score = 0;
+        }
+        return {
+          ...item,
+          score: score
+        };
+      });      
+    } else {
+      selectedOptionsCalculate = selectedOptions.map(item => {
+        let score;
+        if (item.correct == item.user_column) {
+          score = item.test_item_complexity;
+        } else {
+          score = 0;
+        }
+        return {
+          ...item,
+          score: score
+        };
+      });
+    }
+    console.log(selectedOptionsCalculate)
     const selectedOptionsToDB = selectedOptionsCalculate.map(item => {
-      const { test_item_complexity, user_column, correct, ...rest } = item;
+      const { test_item_complexity, user_column, correct, explanation, ...rest } = item;
       return { ...rest, student_id: stateData.currentStudent, type: 'check' };
     });
     for (const element of selectedOptionsToDB) {
@@ -247,9 +292,14 @@ const TestBoard = forwardRef(
     let correctValues = correctAnswers.map(
       (answer) => answer.option
     );
-    if(currentTest.type!=="dnd_chrono" || currentTest.type!=="dnd_chronoDuble") {
+    if(currentTest.type == "dnd_chrono_double") {
       correctValues = correctAnswers
       .filter(item => item.correct === 1)
+      .sort((a, b) => parseInt(a.explanation) - parseInt(b.explanation))
+      .map(item => item.option);
+    }
+    if(currentTest.type == "dnd_chrono") {
+      correctValues = correctAnswers
       .sort((a, b) => parseInt(a.explanation) - parseInt(b.explanation))
       .map(item => item.option);
     }
@@ -258,11 +308,11 @@ const TestBoard = forwardRef(
       .filter(column => column.name === coloanaRaspuns)
       .map(column => column.items.map(item => item.content))
       .flat();
-    if(currentTest.type!=="dnd_chrono" && currentTest.type!=="dnd_chronoDuble" && currentTest.type!=="dnd_group") {
+    if(currentTest.type!=="dnd_chrono" && currentTest.type!=="dnd_chrono_double" && currentTest.type!=="dnd_group") {
       selectedValuesString = selValues.sort().join(",");
       correctValuesString = correctValues.sort().join(","); 
+      // console.log(selectedValuesString);  
       // console.log(correctValuesString);  
-      // console.log(correctValues);  
     } if(currentTest.type ==="dnd_group") {
       //col.III
       selectedValuesString = selValues.sort().join("");
