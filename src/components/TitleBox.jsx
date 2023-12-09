@@ -21,7 +21,7 @@ const TitleBox = ({
     // console.log(results.items);
     // console.log("subjectId", subjectId);
     // console.log("subtitleId", subtitleId);
-    console.log("list", list);
+    // console.log("list", list);
 
     if (subtitleId !== null && subtitleId !== undefined) {
       const filteredIds = temeIstoriArray

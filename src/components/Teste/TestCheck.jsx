@@ -20,7 +20,7 @@ const TestCheck = ({
   const [selectedValues, setSelectedValues] = useState([]);
 
   const [selectedOptions, setSelectedOptions] = useState([])
-  console.log(currentItemIndex)
+  // console.log(currentItemIndex)
 
   useEffect(()=>{
     const initialSelectedOptions = [];
@@ -43,7 +43,7 @@ const TestCheck = ({
   // console.log(stateData.currentIndexTest);
 
   const listItems = stateData.currentTests[stateData.currentIndexTest].order_number_options;
-console.log(listItems[currentItemIndex].test_item_options)
+// console.log(listItems[currentItemIndex].test_item_options)
 
   const handleCheckBoxChange = (value) => {
     const updatedValues = [...selectedValues];
@@ -77,7 +77,7 @@ console.log(listItems[currentItemIndex].test_item_options)
   };
 
   const checkAnswer = () => {
-    console.log(selectedOptions)
+    // console.log(selectedOptions)
     const correctValues = listItems[currentItemIndex].test_item_options
       .filter((answer) => answer.correct==1)
       .map((answer) => answer.option);
@@ -105,12 +105,12 @@ console.log(listItems[currentItemIndex].test_item_options)
     for (const element of selectedOptionsToDB) {
       trimiteDateLaBackend(element);
     }
-    console.log(selectedOptionsToDB)
+    // console.log(selectedOptionsToDB)
   };
 
   const trimiteDateLaBackend = async (element) => {
     try {
-        console.log(element)
+        // console.log(element)
         const response = await axios.post('http://localhost:8000/api/student-formative-test-options', element);
 
         if (response.status === 200) {

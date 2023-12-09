@@ -31,8 +31,8 @@ const TestBoard = forwardRef(
     const [listItems, setListItems] = useState(stateData.currentTests[stateData.currentIndexTest].order_number_options)
 
     const [columnArray, setColumnArray] = useState(stateData.currentTests[stateData.currentIndexTest].column_title.split(", "));
-    console.log(listItems)
-    console.log(listItems[currentItemIndex])
+    // console.log(listItems)
+    // console.log(listItems[currentItemIndex])
 
     useEffect(()=>{
       setListItems(stateData.currentTests[stateData.currentIndexTest].order_number_options);
@@ -155,8 +155,8 @@ const TestBoard = forwardRef(
       if (!result.destination) return;
       const { source, destination } = result;
 
-      console.log(selectedOptions);
-      console.log(destination);      
+      // console.log(selectedOptions);
+      // console.log(destination);      
 
       if (source.droppableId !== destination.droppableId) {
         const sourceColumn = columns[source.droppableId];
@@ -165,10 +165,10 @@ const TestBoard = forwardRef(
         const destItems = [...destColumn.items];
         const [removed] = sourceItems.splice(source.index, 1);
         destItems.splice(destination.index, 0, removed);
-        console.log(sourceItems);
-        console.log(destItems); 
-        console.log(destColumn.name);     
-        console.log(columnArray);     
+        // console.log(sourceItems);
+        // console.log(destItems); 
+        // console.log(destColumn.name);     
+        // console.log(columnArray);     
         setColumns({
           ...columns,
           [source.droppableId]: {
@@ -218,7 +218,7 @@ const TestBoard = forwardRef(
         const copiedItems = [...column.items];
         const [removed] = copiedItems.splice(source.index, 1);
         copiedItems.splice(destination.index, 0, removed);
-        console.log(copiedItems); 
+        // console.log(copiedItems); 
         setColumns({
           ...columns,
           [source.droppableId]: {
@@ -244,13 +244,13 @@ const TestBoard = forwardRef(
 
     const checkAnswer = () => {
 
-    console.log(selectedOptions);
+    // console.log(selectedOptions);
     let selectedOptionsCalculate = [];
-    console.log(currentTest)
+    // console.log(currentTest)
     if(currentTest.type =="dnd_chrono" || currentTest.type =="dnd_chrono_double") {
       selectedOptionsCalculate = selectedOptions.map(item => {
         let score;
-        console.log(item.explanation == item.user_column)
+        // console.log(item.explanation == item.user_column)
         if (item.explanation == item.user_column) {
           score = item.test_item_complexity;
         } else {
@@ -275,7 +275,7 @@ const TestBoard = forwardRef(
         };
       });
     }
-    console.log(selectedOptionsCalculate)
+    // console.log(selectedOptionsCalculate)
     const selectedOptionsToDB = selectedOptionsCalculate.map(item => {
       const { test_item_complexity, user_column, correct, explanation, ...rest } = item;
       return { ...rest, student_id: stateData.currentStudent, type: 'check' };

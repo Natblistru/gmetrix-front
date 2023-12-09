@@ -35,7 +35,7 @@ const TestQuiz = ({
 
   const correctAnswerText = listItems[currentItemIndex].test_item_options.find(item => item.correct === 1)?.option;
 
-  console.log(listItems[currentItemIndex]);
+  // console.log(listItems[currentItemIndex]);
 
   const handleRadioButtonChange = (value) => {
     setSelectedValue(value);
@@ -60,7 +60,7 @@ const TestQuiz = ({
     } else {
       setCorrectAnswer(false);
     }
-    console.log(selectedOptions);
+    // console.log(selectedOptions);
     const selectedOptionsCalculate = selectedOptions.map(item => {
       let score;
       if (item.option === correctAnswerText) {
