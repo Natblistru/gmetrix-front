@@ -44,7 +44,7 @@ const TestBoard = forwardRef(
                                        "score": 0,
                                        "correct": element.correct,
                                        "user_column": 0,
-                                       "explanation": element.explanation,
+                                       "explanation": "explanation",
                                        "test_item_complexity": listItems[currentItemIndex].test_item_complexity,
                                        "formative_test_id": listItems[currentItemIndex].formative_test_id,
                                        "test_item_id": listItems[currentItemIndex].test_item_id});
@@ -277,7 +277,7 @@ const TestBoard = forwardRef(
     }
     // console.log(selectedOptionsCalculate)
     const selectedOptionsToDB = selectedOptionsCalculate.map(item => {
-      const { test_item_complexity, user_column, correct, explanation, ...rest } = item;
+      const { test_item_complexity, user_column, correct, ...rest } = item;
       return { ...rest, student_id: stateData.currentStudent, type: 'check' };
     });
     for (const element of selectedOptionsToDB) {

@@ -1,10 +1,12 @@
 import React, { useEffect, useRef, useState, useLayoutEffect } from "react";
+import axios from "axios";
 import ContextData from "../context/ContextData";
 import Snap from "snapsvg-cjs";
 import "./TestSnap.css";
 import ItemAccordeon from "../Accordeon/ItemAccordeon";
 import ItemText from "../Accordeon/ItemText";
 import Pinzone from "./Pinzone";
+import temeIstoriArray from "../../data/temeIstoria";
 
 const RowText = ({ indx, text }) => {
   return (
@@ -32,14 +34,20 @@ const TestSnap = ({
   const svgboxRef = useRef();
   const {stateData, dispatchData} = React.useContext(ContextData)
 
+  const [selectedOptions, setSelectedOptions] = useState([])
+
+  const [listItems, setListItems] = useState(stateData.currentTests[stateData.currentIndexTest].order_number_options)
+
   // console.log(stateData.currentTests)
   // console.log(stateData.currentTests[stateData.currentIndexTest].order_number_options);
 
   // console.log(stateData.currentIndexTest);
 
-  const listItems = stateData.currentTests[stateData.currentIndexTest].order_number_options;
+  let list1 = temeIstoriArray[0].subtitles[0].subjects[0].teste[4];
 
-  const textAdditionalArray = listItems[currentIndex].test_item_options.map(option => JSON.parse(option.text_additional));
+   const textAdditionalArray = listItems[currentIndex].test_item_options
+  .filter(option => option.correct === 1)
+  .map(option => JSON.parse(option.text_additional));
 
   // console.log(textAdditionalArray);
 
@@ -54,6 +62,26 @@ const TestSnap = ({
     return acc;
   }, []);
 
+  useEffect(()=>{
+    setListItems(stateData.currentTests[stateData.currentIndexTest].order_number_options);
+
+    const initialSelectedOptions = [];
+    listItems[currentItemIndex].test_item_options.forEach(element => {
+      initialSelectedOptions.push({ "option": element.option, 
+                                     "score": 0,
+                                     "correct": element.correct,
+                                     "user_column": "",
+                                     "explanation": element.explanation,
+                                     "test_item_complexity": listItems[currentItemIndex].test_item_complexity,
+                                     "formative_test_id": listItems[currentItemIndex].formative_test_id,
+                                     "test_item_id": listItems[currentItemIndex].test_item_id});
+    });
+    setSelectedOptions(initialSelectedOptions)
+
+  },[currentItemIndex])
+
+  console.log(selectedOptions)
+
   // Sortează array-ul în funcție de x și apoi de y
   transformedArray.sort((a, b) => {
     if (a.x !== b.x) {
@@ -63,7 +91,7 @@ const TestSnap = ({
     }
   });
 
-  // console.log(transformedArray);
+  console.log(transformedArray);
 
   // Creează matricea răspunsurilor corecte
   const matriceRaspunsuri = textAdditionalArray.map(coordonate => {
@@ -73,7 +101,7 @@ const TestSnap = ({
     return [indexStart, indexEnd];
   });
 
-  //console.log(matriceRaspunsuri);
+  console.log(matriceRaspunsuri);
 
   const sortedOptions = listItems[currentIndex].test_item_options.map(item => {
     const parts = item.option.split('|').map(part => part.trim());
@@ -129,6 +157,9 @@ const TestSnap = ({
   const getPinZoneIndex = (x, y) => {
     for (let i = 0; i < transformedArray.length; i++) {
       const point = transformedArray[i];
+      // for (let i = 0; i < list1.points.length; i++) {
+      //   const point = list1.points[i];    
+
       if (x > point.x && x < point.x + 48 && y > point.y && y < point.y + 48) {
         return i;
       }
@@ -140,6 +171,9 @@ const TestSnap = ({
     if (idx >= 0 && idx < transformedArray.length) {
       const originX = transformedArray[idx].x;
       const originY = transformedArray[idx].y;
+      // if (idx >= 0 && idx < list1.points.length) {
+      //   const originX = list1.points[idx].x;
+      //   const originY = list1.points[idx].y;
       const width = 48;
       const X = originX + width / 2;
       const Y = originY + width / 2;
@@ -152,6 +186,7 @@ const TestSnap = ({
 
   const isCorrespondingZone = (index1, index2) => {
     const halfLength = transformedArray.length / 2;
+    // const halfLength = list1.points.length / 2;
 
     if (
       (index1 < halfLength && index2 >= halfLength) ||
@@ -211,6 +246,7 @@ const TestSnap = ({
     const centrePoints = [];
 
     for (let i = 0; i < transformedArray.length; i++) {
+    // for (let i = 0; i < list1.points.length; i++) {
       centrePoints.push(getCentre(i));
     }
 
@@ -455,6 +491,8 @@ const TestSnap = ({
     }
   };
 
+  const uniqueOptions = [...new Set(sortedOptions)];
+
   const checkAnswer = () => {
     // const correctAnswers = [
     //   [0, 5],
@@ -463,7 +501,41 @@ const TestSnap = ({
     //   [2, 7],
     // ];
 
+    const resultPair = connectedZones.map(obj => {
+      const sortedIndices = [obj.zone1, obj.zone2].sort((a, b) => a - b);
+      const values = [uniqueOptions[sortedIndices[0]], uniqueOptions[sortedIndices[1]]];
+      return values.join("|");
+    });
+    
+
+    console.log(resultPair)
+    console.log(connectedZones)
+
+    const selectedOptionsCopy = [...selectedOptions];
+    for (const option of resultPair) {
+      const matchingItem = selectedOptionsCopy.find(item => item.option === option);
+      if (matchingItem) {
+        matchingItem.user_column = option;
+        if(matchingItem.correct == 1) {
+          matchingItem.score = matchingItem.test_item_complexity;
+        }
+      }
+    }
+    const filteredOptions = selectedOptionsCopy.filter(option => option.user_column !== "");
+
+    console.log(filteredOptions)
+
+    const selectedOptionsToDB = filteredOptions.map(item => {
+      const { test_item_complexity, user_column, correct, ...rest } = item;
+      return { ...rest, student_id: stateData.currentStudent, type: 'snap' };
+    });
+    for (const element of selectedOptionsToDB) {
+      console.log(element)
+      trimiteDateLaBackend(element);
+    }
+
     const isAnswersCorrect = matriceRaspunsuri.every(
+      // const isAnswersCorrect = list1.quizArray[0].correctAnswer.every(  
       (correctAnswer) =>
         connectedZones.some(
           (userAnswer) =>
@@ -481,8 +553,32 @@ const TestSnap = ({
     }
   };
 
-  const halfIndex = Math.ceil(sortedOptions.length / 2);
-// console.log(halfIndex);
+  const halfIndex = textAdditionalArray.length;
+  // const halfIndex = Math.ceil(list1.quizArray[0].text.length / 2);
+
+  
+  const trimiteDateLaBackend = async (element) => {
+    try {
+        // console.log(element)
+        const response = await axios.post('http://localhost:8000/api/student-formative-test-options', element);
+
+        if (response.status === 200) {
+          console.log('Success:', response.data.message);
+        } else {
+          console.error('Error');
+        }
+    } catch (error) {
+      if (error.response && error.response.status === 422) {
+        console.log('Validation Errors:', error.response.data.errors);
+      } else {
+        console.error('Error:', error);
+      }
+    }
+  };
+
+
+console.log(uniqueOptions);
+// console.log(Math.ceil(list1.quizArray[0].text.length / 2));
 // console.log(sortedOptions);
 // console.log(Math.ceil(sortedOptions.length / 2));
   return (
@@ -494,6 +590,10 @@ const TestSnap = ({
               listItems.length
               }):`
             : `Rezultat (${currentIndex + 1}/${listItems.length}):`
+          //   ? `Cerințele sarcinii (${currentIndex + 1}/${
+          //     list1.quizArray.length
+          //   }):`
+          // : `Rezultat (${currentIndex + 1}/${list1.quizArray.length}):`
         }
         correctAnswer={correctAnswer}
         additionalContent={additionalContent}
@@ -515,7 +615,8 @@ const TestSnap = ({
               <div className="grid-container-snap">
                 <div>
                   <div>
-                    {sortedOptions
+                    {uniqueOptions
+                    // {list1.quizArray[currentIndex].text
                       .slice(0, halfIndex)
                       .map((text, index) => (
                         <RowText key={index} indx={index} text={text} />
@@ -535,7 +636,9 @@ const TestSnap = ({
                 </div>
                 <div>
                   <div>
-                    {sortedOptions
+                    {/* {list1.quizArray[currentIndex].text */}
+                    {console.log(sortedOptions)}
+                    {uniqueOptions
                       .slice(halfIndex)
                       .map((text, index) => (
                         <RowText
@@ -573,9 +676,11 @@ const TestSnap = ({
                 )} */}
               </g>
               {transformedArray.map((p, index) => (
+              // {list1.points.map((p, index) => (
                 <Pinzone
                   key={index}
                   transformMatrix={`matrix(1, 0, 0, 1, ${transformedArray[index].x}, ${transformedArray[index].y})`}
+                  // transformMatrix={`matrix(1, 0, 0, 1, ${list1.points[index].x}, ${list1.points[index].y})`}
                   onPointMousedown={(event) =>
                     handlePointMousedown(event, index)
                   }
@@ -594,17 +699,26 @@ const TestSnap = ({
       {correctAnswer !== null && (
         <ItemAccordeon
           titlu={`Rezolvarea sarcinii (${currentIndex + 1}/${
+            // list1.quizArray.length
             listItems.length
           }):`}
           open={true}
         >
           <ItemText classNameChild="">
+            {/* {console.log(list1.quizArray[currentIndex].correctAnswer)} */}
+            {console.log(matriceRaspunsuri)}
             {matriceRaspunsuri.map(
               ([index1, index2]) => {
                 const answer1 =
-                  sortedOptions[Math.min(index1, index2)];
+                  uniqueOptions[Math.min(index1, index2)];
                 const answer2 =
-                  sortedOptions[Math.max(index1, index2)];
+                  uniqueOptions[Math.max(index1, index2)];
+              // {list1.quizArray[currentIndex].correctAnswer.map(
+              // ([index1, index2]) => {
+              //   const answer1 =
+              //     list1.quizArray[currentIndex].text[Math.min(index1, index2)];
+              //   const answer2 =
+              //     list1.quizArray[currentIndex].text[Math.max(index1, index2)];
                 return (
                   <p key={`${index1}-${index2}`}>
                     {answer1} - {answer2}

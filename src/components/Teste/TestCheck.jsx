@@ -30,6 +30,7 @@ const TestCheck = ({
                                      "score": 0,
                                      "correct": element.correct,
                                      "selected": false,
+                                     "explanation": element.explanation,
                                      "test_item_complexity": listItems[currentItemIndex].test_item_complexity,
                                      "formative_test_id": listItems[currentItemIndex].formative_test_id,
                                      "test_item_id": listItems[currentItemIndex].test_item_id});

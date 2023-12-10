@@ -21,6 +21,7 @@ const TestQuiz = ({
   useEffect(()=>{
     setSelectedOptions([{ "option": "", 
         "score": 0,
+        "explanation": "explanation",
         "test_item_complexity": listItems[currentItemIndex].test_item_complexity,
         "formative_test_id": listItems[currentItemIndex].formative_test_id,
         "test_item_id": listItems[currentItemIndex].test_item_id}])
@@ -44,6 +45,7 @@ const TestQuiz = ({
           ...obj,
           option: value,
           score: 0,
+          explanation: "explanation",
           test_item_complexity: listItems[currentItemIndex].test_item_complexity,
           formative_test_id: listItems[currentItemIndex].formative_test_id,
           test_item_id: listItems[currentItemIndex].test_item_id  
@@ -84,7 +86,7 @@ const TestQuiz = ({
   };
 
   const trimiteDateLaBackend = async (selectedOptionsToDB) => {
-    // console.log(selectedOptionsToDB)
+    console.log(selectedOptionsToDB)
     try {
       for (const element of selectedOptionsToDB) {
         const response = await axios.post('http://localhost:8000/api/student-formative-test-options', element);
