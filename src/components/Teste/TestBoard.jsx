@@ -36,8 +36,16 @@ const TestBoard = forwardRef(
 
     useEffect(()=>{
       setListItems(stateData.currentTests[stateData.currentIndexTest].order_number_options);
-      setColumnArray(stateData.currentTests[stateData.currentIndexTest].column_title.split(", "))
 
+      // let array = stateData.currentTests[stateData.currentIndexTest].column_title.split(", ");
+      // let columnDBArray = []
+      // if (array.length > 2) {
+      //     columnDBArray = [array[0], ...array.slice(1).reverse()];
+      // } else {
+      //   columnDBArray = array;
+      // }
+      // setColumnArray(columnDBArray)
+      setColumnArray(stateData.currentTests[stateData.currentIndexTest].column_title.split(", "))
       const initialSelectedOptions = [];
       listItems[currentItemIndex].test_item_options.forEach(element => {
         initialSelectedOptions.push({ "option": element.option, 
@@ -115,6 +123,7 @@ const TestBoard = forwardRef(
 
     const currentTest = stateData.currentTests[stateData.currentIndexTest];
 
+    console.log(columnArray)
     // console.log(stateData.currentTests[stateData.currentIndexTest].column_title)
 
     // console.log(stateData.currentTests[stateData.currentIndexTest])
@@ -139,13 +148,26 @@ const TestBoard = forwardRef(
     const correctAnswers1Values = correctAnswers1.map(item => item.option);
     const correctAnswers1ValuesConcat = correctAnswers1Values.join(', ');
 
-    const coloanaRaspuns = columnArray[columnArray.length - 1];
+    const coloanaRaspuns = (columnArray.length === 1) ? columnArray[0] : columnArray[1];
     const raspunsUltimaColoana = `${coloanaRaspuns}: ${correctAnswersValuesConcat}`
 
-    const coloanaRaspuns1 = columnArray[columnArray.length - 2];
-    const raspunsPenUltimaColoana = `${coloanaRaspuns1}: ${correctAnswers1ValuesConcat}`
+    let coloanaRaspuns1 = null
+    let raspunsPenUltimaColoana = ""
+    if(currentTest.type ==="dnd_group") {
+      coloanaRaspuns1 = columnArray[2];
+      raspunsPenUltimaColoana = `${coloanaRaspuns1}: ${correctAnswers1ValuesConcat}`
+    }
+    console.log("correctAnswers",correctAnswers);
+    console.log("correctAnswersValues",correctAnswersValues);
+    console.log("correctAnswersValuesConcat",correctAnswersValues);
+    console.log("coloanaRaspuns",coloanaRaspuns);
+    console.log("raspunsUltimaColoana",raspunsUltimaColoana);    
 
-    // console.log(correctAnswers);
+    console.log("correctAnswers1",correctAnswers1);
+    console.log("correctAnswers1Values",correctAnswers1Values);
+    console.log("correctAnswers1ValuesConcat",correctAnswers1Values);
+    console.log("coloanaRaspuns1",coloanaRaspuns1);
+    console.log("raspunsPenUltimaColoana",raspunsPenUltimaColoana); 
 
     // let cc = getColumnsFromBackend(list.id);
     // console.log("cc",cc);
@@ -275,7 +297,7 @@ const TestBoard = forwardRef(
         };
       });
     }
-    // console.log(selectedOptionsCalculate)
+    console.log(selectedOptionsCalculate)
     const selectedOptionsToDB = selectedOptionsCalculate.map(item => {
       const { test_item_complexity, user_column, correct, ...rest } = item;
       return { ...rest, student_id: stateData.currentStudent, type: 'check' };
