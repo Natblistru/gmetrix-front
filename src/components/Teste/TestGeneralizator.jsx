@@ -158,11 +158,6 @@ const TestGeneralizator = ({
   console.log("listItems[0]",listItems[0])
   // console.log("listaSarcini",list.quizArray[currentIndex].listaSarcini);
 
-  
-  
-
-
-
   useEffect(() => {
     setSelectedValues([]);
     setTimerFinished(false);
@@ -181,10 +176,6 @@ const TestGeneralizator = ({
     
     setUserAnswerCheck(initValues);
     
-    // text1 = listItems[1].test_item_options[0].option;
-    // dataObject = JSON.parse(listItems[1].test_item_options[0].text_additional);
-    // textAdd1 = Object.values(dataObject)
-
     text1 = JSON.parse(listItems[1].test_item_options[0].text_additional).trim();
     // Elimină ghilimelele de la început și sfârșit
     text1 = text1.slice(1, -1);
@@ -197,10 +188,6 @@ const TestGeneralizator = ({
 
     setAnswers1(shuffleArray(getAnswers(text1).concat(textAdd1)));
     setSentence1(getSentence(text1));
-
-    // text2 = listItems[2].test_item_options[0].option;
-    // dataObject = JSON.parse(listItems[2].test_item_options[0].text_additional);
-    // textAdd2 = Object.values(dataObject)
 
     text2 = JSON.parse(listItems[2].test_item_options[0].text_additional).trim();
     // Elimină ghilimelele de la început și sfârșit
@@ -215,10 +202,6 @@ const TestGeneralizator = ({
     setAnswers2(shuffleArray(getAnswers(text2).concat(textAdd2)));
     setSentence2(getSentence(text2));
 
-    // text3 = listItems[3].test_item_options[0].option;
-    // dataObject = JSON.parse(listItems[3].test_item_options[0].text_additional);
-    // textAdd3 = Object.values(dataObject)
-
     text3 = JSON.parse(listItems[3].test_item_options[0].text_additional).trim();
     // Elimină ghilimelele de la început și sfârșit
     text3 = text3.slice(1, -1);
@@ -232,12 +215,6 @@ const TestGeneralizator = ({
     setAnswers3(shuffleArray(getAnswers(text3).concat(textAdd3)));
     setSentence3(getSentence(text3));
 
-    // console.log(text1);
-    // console.log(textAdd1);
-    // console.log(text2);
-    // console.log(textAdd2);
-    // console.log(text3);
-    // console.log(textAdd3);
     const initialSelectedOption1 = [];
 
     listItems[0].test_item_options.forEach(element => {
@@ -346,13 +323,7 @@ const TestGeneralizator = ({
   };
 
   const totalPoint = (n) => {
-    // if (listItems[n].item_type == "check")
       return listItems[n].test_item_options.length;
-    // if (listItems[n].item_type == "words")
-    //   console.log(listItems[n])
-    //   return getAnswers(
-    //     listItems[n].test_item_options[0].option
-    //   ).length;
   };
   const checkAnswer = (updatedResults) => {
 
@@ -484,35 +455,6 @@ const TestGeneralizator = ({
     }
   };
 
-  // const updateNota = (nota) => {
-  //   const userItems = tests.items.find((item) => item.user === "Current user");
-  //   if (userItems) {
-  //     const resultItem = userItems.tests.find(
-  //       (item) =>
-  //         item.id == list.subjectID &&
-  //         item.quiz == list.id &&
-  //         item.item == currentIndex + 1
-  //     );
-  //  //   console.log("userItems.tests", userItems.tests);
-  //  //   console.log("resultItem", resultItem);
-  //     if (resultItem) {
-  //       update({
-  //         id: list.subjectID,
-  //         quiz: list.id,
-  //         item: currentIndex + 1,
-  //         proc: nota,
-  //       });
-  //     } else {
-  //       add({
-  //         id: list.subjectID,
-  //         quiz: list.id,
-  //         item: currentIndex + 1,
-  //         proc: nota,
-  //       });
-  //     }
-  //   }
-  // };
-
   const calcSumArray = (updatedResults) => {
     let sumResults = 0;
     for (let i = 0; i < updatedResults.length; i++) {
@@ -524,15 +466,11 @@ const TestGeneralizator = ({
   const handleFinish = () => {
     const updatedResults = [...results];
     checkAnswer(updatedResults);
-    // console.log(sentence1)
-    // console.log(answers1)   
-    // console.log(updatedResults)     
     checkTestWords(sentence1, answers1, 1, updatedResults);
     checkTestWords(sentence2, answers2, 2, updatedResults);
     checkTestWords(sentence3, answers3, 3, updatedResults);
     const nota = (calcSumArray(updatedResults) * 100) / sumTotalPoints();
     setNota(nota);
-    // updateNota(nota);
     setMarked(true);
     setResults(updatedResults);
     setTimerFinished(true);
