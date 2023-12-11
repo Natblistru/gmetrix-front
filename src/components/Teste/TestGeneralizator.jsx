@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import ContextData from "../context/ContextData";
 import { connect } from "react-redux";
 import ItemAccordeon from "../Accordeon/ItemAccordeon";
@@ -136,6 +137,12 @@ const TestGeneralizator = ({
   const [sentence2, setSentence2] = useState([]);
   const [answers3, setAnswers3] = useState([]);
   const [sentence3, setSentence3] = useState([]);
+
+  const [selectedOptions1, setSelectedOptions1] = useState([])
+  const [selectedOptions2, setSelectedOptions2] = useState([])
+  const [selectedOptions3, setSelectedOptions3] = useState([])
+  const [selectedOptions4, setSelectedOptions4] = useState([])
+
   let text1 = "",
     textAdd1 = "";
   let text2 = "",
@@ -145,9 +152,17 @@ const TestGeneralizator = ({
   let initValues = [];
   let dataObject = "";
   const [userAnswerCheck, setUserAnswerCheck] = useState([]);
-  const listItems = stateData.currentSummativeTests[currentIndex].order_number_options;
-  // console.log("listItems",listItems)
+   const listItems = stateData.currentSummativeTests[currentIndex].order_number_options;
+  console.log("listItems",listItems)
+  console.log("currentIndex",currentIndex)
+  console.log("listItems[0]",listItems[0])
   // console.log("listaSarcini",list.quizArray[currentIndex].listaSarcini);
+
+  
+  
+
+
+
   useEffect(() => {
     setSelectedValues([]);
     setTimerFinished(false);
@@ -166,23 +181,53 @@ const TestGeneralizator = ({
     
     setUserAnswerCheck(initValues);
     
-    text1 = listItems[1].test_item_options[0].option;
-    dataObject = JSON.parse(listItems[1].test_item_options[0].text_additional);
-    textAdd1 = Object.values(dataObject)
+    // text1 = listItems[1].test_item_options[0].option;
+    // dataObject = JSON.parse(listItems[1].test_item_options[0].text_additional);
+    // textAdd1 = Object.values(dataObject)
+
+    text1 = JSON.parse(listItems[1].test_item_options[0].text_additional).trim();
+    // Elimină ghilimelele de la început și sfârșit
+    text1 = text1.slice(1, -1);
+    const filteredElements1 = listItems[1].test_item_options.filter(function(element) {
+      return element.correct == 0;
+    });
+    textAdd1 = filteredElements1.map(function(element) {
+      return element.option;
+    });
 
     setAnswers1(shuffleArray(getAnswers(text1).concat(textAdd1)));
     setSentence1(getSentence(text1));
 
-    text2 = listItems[2].test_item_options[0].option;
-    dataObject = JSON.parse(listItems[2].test_item_options[0].text_additional);
-    textAdd2 = Object.values(dataObject)
+    // text2 = listItems[2].test_item_options[0].option;
+    // dataObject = JSON.parse(listItems[2].test_item_options[0].text_additional);
+    // textAdd2 = Object.values(dataObject)
+
+    text2 = JSON.parse(listItems[2].test_item_options[0].text_additional).trim();
+    // Elimină ghilimelele de la început și sfârșit
+    text2 = text2.slice(1, -1);
+    const filteredElements2 = listItems[2].test_item_options.filter(function(element) {
+      return element.correct == 0;
+    });
+    textAdd2 = filteredElements2.map(function(element) {
+      return element.option;
+    });
 
     setAnswers2(shuffleArray(getAnswers(text2).concat(textAdd2)));
     setSentence2(getSentence(text2));
 
-    text3 = listItems[3].test_item_options[0].option;
-    dataObject = JSON.parse(listItems[3].test_item_options[0].text_additional);
-    textAdd3 = Object.values(dataObject)
+    // text3 = listItems[3].test_item_options[0].option;
+    // dataObject = JSON.parse(listItems[3].test_item_options[0].text_additional);
+    // textAdd3 = Object.values(dataObject)
+
+    text3 = JSON.parse(listItems[3].test_item_options[0].text_additional).trim();
+    // Elimină ghilimelele de la început și sfârșit
+    text3 = text3.slice(1, -1);
+    const filteredElements3 = listItems[3].test_item_options.filter(function(element) {
+      return element.correct == 0;
+    });
+    textAdd3 = filteredElements3.map(function(element) {
+      return element.option;
+    });
 
     setAnswers3(shuffleArray(getAnswers(text3).concat(textAdd3)));
     setSentence3(getSentence(text3));
@@ -193,6 +238,60 @@ const TestGeneralizator = ({
     // console.log(textAdd2);
     // console.log(text3);
     // console.log(textAdd3);
+    const initialSelectedOption1 = [];
+
+    listItems[0].test_item_options.forEach(element => {
+      initialSelectedOption1.push({ "option": element.option, 
+                                     "score": 0,
+                                     "correct": element.correct,
+                                     "selected": false,
+                                     "explanation": element.explanation,
+                                     "test_item_complexity": listItems[0].test_item_complexity,
+                                     "summative_test_id": listItems[0].summative_test_id,
+                                     "test_item_id": listItems[0].test_item_id});
+    });
+    setSelectedOptions1(initialSelectedOption1)
+    console.log("initialSelectedOption1",initialSelectedOption1)
+
+    const initialSelectedOptions2 = [];
+    listItems[1].test_item_options.forEach(element => {
+      initialSelectedOptions2.push({ "option": element.option, 
+                                     "score": 0,
+                                     "correct": element.correct - 1,
+                                     "user_column": -1,
+                                     "explanation": element.explanation,
+                                     "test_item_complexity": listItems[1].test_item_complexity,
+                                     "summative_test_id": listItems[1].summative_test_id,
+                                     "test_item_id": listItems[1].test_item_id});
+    });
+    setSelectedOptions2(initialSelectedOptions2)
+
+    const initialSelectedOptions3 = [];
+    listItems[2].test_item_options.forEach(element => {
+      initialSelectedOptions3.push({ "option": element.option, 
+                                     "score": 0,
+                                     "correct": element.correct - 1,
+                                     "user_column": -1,
+                                     "explanation": element.explanation,
+                                     "test_item_complexity": listItems[2].test_item_complexity,
+                                     "summative_test_id": listItems[2].summative_test_id,
+                                     "test_item_id": listItems[2].test_item_id});
+    });
+    setSelectedOptions3(initialSelectedOptions3)
+
+    const initialSelectedOptions4 = [];
+    listItems[3].test_item_options.forEach(element => {
+      initialSelectedOptions4.push({ "option": element.option, 
+                                     "score": 0,
+                                     "correct": element.correct - 1,
+                                     "user_column": -1,
+                                     "explanation": element.explanation,
+                                     "test_item_complexity": listItems[3].test_item_complexity,
+                                     "summative_test_id": listItems[3].summative_test_id,
+                                     "test_item_id": listItems[3].test_item_id});
+    });
+    setSelectedOptions4(initialSelectedOptions4)
+
   }, [currentIndex]);
 
   const sumTotalPoints = () => {
@@ -213,6 +312,21 @@ const TestGeneralizator = ({
   };
 
   const handleCheckBoxChange = (value, idx) => {
+
+    setSelectedOptions1((prevOptions) =>
+    prevOptions.map((option) => {
+      if (option.option === value) {
+        return {
+          ...option,
+          selected: !option.selected,
+        };
+      }
+      return {
+          ...option,
+        };
+    })
+   );
+
     const updatedResponse = [...response];
     updatedResponse[activeButton - 1] = 1;
     setResponse(updatedResponse);
@@ -232,14 +346,37 @@ const TestGeneralizator = ({
   };
 
   const totalPoint = (n) => {
-    if (listItems[n].item_type == "check")
+    // if (listItems[n].item_type == "check")
       return listItems[n].test_item_options.length;
-    if (listItems[n].item_type == "words")
-      return getAnswers(
-        listItems[n].test_item_options[0].option
-      ).length;
+    // if (listItems[n].item_type == "words")
+    //   console.log(listItems[n])
+    //   return getAnswers(
+    //     listItems[n].test_item_options[0].option
+    //   ).length;
   };
   const checkAnswer = (updatedResults) => {
+
+    const selectedOptionsCalculate = selectedOptions1.map(item => {
+      let score;
+      if (item.correct == item.selected) {
+        score = item.test_item_complexity;
+      } else {
+        score = 0;
+      }
+      return {
+        ...item,
+        score: score
+      };
+    });
+    const selectedOptionsToDB = selectedOptionsCalculate.map(item => {
+      const { test_item_complexity, selected, correct, ...rest } = item;
+      return { ...rest, student_id: stateData.currentStudent, type: 'check' };
+    });
+
+    for (const element of selectedOptionsToDB) {
+      trimiteDateLaBackend(element);
+    }
+
     const correctValuesArray = listItems [0].test_item_options.map((answer) => answer.correct == 1);
     const correctValues = listItems[0].test_item_options
       .filter((answer) => answer.correct == 1)
@@ -256,6 +393,60 @@ const TestGeneralizator = ({
   };
 
   const checkTestWords = (propozitie, raspuns, n, updatedResults) => {
+    let sumaScore = 0
+    let selectedOptionsCalculate = []
+    if(n==1) {
+      selectedOptionsCalculate = selectedOptions2.map(item => {
+        let score;
+        if (item.correct == item.user_column) {
+          score = item.test_item_complexity;
+        } else {
+          score = 0;
+        }
+        return {
+          ...item,
+          score: score
+        };
+      });
+    } else if(n==2) {
+      selectedOptionsCalculate = selectedOptions3.map(item => {
+        let score;
+        if (item.correct == item.user_column) {
+          score = item.test_item_complexity;
+        } else {
+          score = 0;
+        }
+        return {
+          ...item,
+          score: score
+        };
+      });
+    } else if(n==3) {
+      selectedOptionsCalculate = selectedOptions4.map(item => {
+        let score;
+        if (item.correct == item.user_column) {
+          score = item.test_item_complexity;
+        } else {
+          score = 0;
+        }
+        return {
+          ...item,
+          score: score
+        };
+      });
+    }
+    // console.log(selectedOptionsCalculate)
+    sumaScore = selectedOptionsCalculate.reduce((accumulator, element) => accumulator + element.score, 0);
+    // console.log(sumaScore);
+
+    const selectedOptionsToDB = selectedOptionsCalculate.map(item => {
+      const { test_item_complexity, user_column, correct, explanation, ...rest } = item;
+      return { ...rest, student_id: stateData.currentStudent, type: 'check' };
+    });
+    for (const element of selectedOptionsToDB) {
+      trimiteDateLaBackend(element);
+    }
+    
     const totalResult = propozitie.reduce((sum, obj) => {
       if (obj.type === "answer" && obj.text === obj.displayed) {
         return sum + 1;
@@ -269,8 +460,28 @@ const TestGeneralizator = ({
         .length;
     const points = (totalResult * 10) / totalResponse;
 
-    updatedResults[n] = totalResult;
+    // updatedResults[n] = totalResult;
+    updatedResults[n] = sumaScore;
     setResults(updatedResults);
+  };
+
+  const trimiteDateLaBackend = async (element) => {
+    try {
+        console.log(element)
+        const response = await axios.post('http://localhost:8000/api/student-summative-test-options', element);
+
+        if (response.status === 200) {
+          console.log('Success:', response.data.message);
+        } else {
+          console.error('Error');
+        }
+    } catch (error) {
+      if (error.response && error.response.status === 422) {
+        console.log('Validation Errors:', error.response.data.errors);
+      } else {
+        console.error('Error:', error);
+      }
+    }
   };
 
   // const updateNota = (nota) => {
@@ -313,6 +524,9 @@ const TestGeneralizator = ({
   const handleFinish = () => {
     const updatedResults = [...results];
     checkAnswer(updatedResults);
+    // console.log(sentence1)
+    // console.log(answers1)   
+    // console.log(updatedResults)     
     checkTestWords(sentence1, answers1, 1, updatedResults);
     checkTestWords(sentence2, answers2, 2, updatedResults);
     checkTestWords(sentence3, answers3, 3, updatedResults);
@@ -343,6 +557,14 @@ const TestGeneralizator = ({
     setResponse(updatedResponse);
 
     const text = ev.dataTransfer.getData("text/plain");
+
+    setSelectedOptions2(prevOptions => {
+      const updatedOptions = prevOptions.map(option => {
+          return option.option === text ? { ...option, user_column: Math.floor(dropId/2) } : option;
+      });
+      return updatedOptions;
+    });
+
     handleModified();
     const updatedSentence = sentence1.map((w) => {
       if (w.id === dropId) {
@@ -360,6 +582,14 @@ const TestGeneralizator = ({
     setResponse(updatedResponse);
 
     const text = ev.dataTransfer.getData("text/plain");
+
+    setSelectedOptions3(prevOptions => {
+      const updatedOptions = prevOptions.map(option => {
+          return option.option === text ? { ...option, user_column: Math.floor(dropId/2) } : option;
+      });
+      return updatedOptions;
+    });
+
     handleModified();
     const updatedSentence = sentence2.map((w) => {
       if (w.id === dropId) {
@@ -376,6 +606,14 @@ const TestGeneralizator = ({
     updatedResponse[activeButton - 1] = 1;
     setResponse(updatedResponse);
     const text = ev.dataTransfer.getData("text/plain");
+
+    setSelectedOptions4(prevOptions => {
+      const updatedOptions = prevOptions.map(option => {
+          return option.option === text ? { ...option, user_column: Math.floor(dropId/2) } : option;
+      });
+      return updatedOptions;
+    });
+
     handleModified();
     const updatedSentence = sentence3.map((w) => {
       if (w.id === dropId) {
