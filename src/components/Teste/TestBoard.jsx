@@ -52,13 +52,13 @@ const TestBoard = forwardRef(
                                        "score": 0,
                                        "correct": element.correct,
                                        "user_column": 0,
-                                       "explanation": "explanation",
+                                       "explanation": (element.explanation !== "") ? element.explanation : "explanation",
                                        "test_item_complexity": listItems[currentItemIndex].test_item_complexity,
                                        "formative_test_id": listItems[currentItemIndex].formative_test_id,
                                        "test_item_id": listItems[currentItemIndex].test_item_id});
       });
       setSelectedOptions(initialSelectedOptions)
-
+      console.log(initialSelectedOptions)
       setColumns(getColumnsFromBackend());
     },[currentItemIndex])
 
