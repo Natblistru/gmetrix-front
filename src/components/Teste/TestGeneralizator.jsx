@@ -153,9 +153,9 @@ const TestGeneralizator = ({
   let dataObject = "";
   const [userAnswerCheck, setUserAnswerCheck] = useState([]);
    const listItems = stateData.currentSummativeTests[currentIndex].order_number_options;
-  console.log("listItems",listItems)
-  console.log("currentIndex",currentIndex)
-  console.log("listItems[0]",listItems[0])
+  // console.log("listItems",listItems)
+  // console.log("currentIndex",currentIndex)
+  // console.log("listItems[0]",listItems[0])
   // console.log("listaSarcini",list.quizArray[currentIndex].listaSarcini);
 
   useEffect(() => {
@@ -228,7 +228,7 @@ const TestGeneralizator = ({
                                      "test_item_id": listItems[0].test_item_id});
     });
     setSelectedOptions1(initialSelectedOption1)
-    console.log("initialSelectedOption1",initialSelectedOption1)
+    // console.log("initialSelectedOption1",initialSelectedOption1)
 
     const initialSelectedOptions2 = [];
     listItems[1].test_item_options.forEach(element => {
@@ -417,6 +417,27 @@ const TestGeneralizator = ({
     for (const element of selectedOptionsToDB) {
       trimiteDateLaBackend(element);
     }
+
+    const groupedArray = selectedOptionsToDB.reduce((accumulator, currentObject) => {
+      const key = `${currentObject.student_id}_${currentObject.test_item_id}_${currentObject.type}_${currentObject.summative_test_id}`;
+      
+      if (!accumulator[key]) {
+        accumulator[key] = {
+          student_id: currentObject.student_id,
+          test_item_id: currentObject.test_item_id,
+          type: currentObject.type,
+          summative_test_id: currentObject.summative_test_id
+        };
+      }
+    
+      return accumulator;
+    }, {});
+    
+    const selectedResultsToDB = Object.values(groupedArray);
+  console.log(selectedResultsToDB)
+    for (const element of selectedResultsToDB) {
+      trimiteResultsLaBackend(element);
+    }
     
     const totalResult = propozitie.reduce((sum, obj) => {
       if (obj.type === "answer" && obj.text === obj.displayed) {
@@ -438,7 +459,7 @@ const TestGeneralizator = ({
 
   const trimiteDateLaBackend = async (element) => {
     try {
-        console.log(element)
+        // console.log(element)
         const response = await axios.post('http://localhost:8000/api/student-summative-test-options', element);
 
         if (response.status === 200) {
@@ -454,6 +475,26 @@ const TestGeneralizator = ({
       }
     }
   };
+
+  const trimiteResultsLaBackend = async (element) => {
+    try {
+        // console.log(element)
+        const response = await axios.post('http://localhost:8000/api/student-summative-test-results', element);
+
+        if (response.status === 200) {
+          console.log('Success:', response.data.message);
+        } else {
+          console.error('Error');
+        }
+    } catch (error) {
+      if (error.response && error.response.status === 422) {
+        console.log('Validation Errors:', error.response.data.errors);
+      } else {
+        console.error('Error:', error);
+      }
+    }
+  };
+
 
   const calcSumArray = (updatedResults) => {
     let sumResults = 0;

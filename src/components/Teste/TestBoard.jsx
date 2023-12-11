@@ -58,7 +58,7 @@ const TestBoard = forwardRef(
                                        "test_item_id": listItems[currentItemIndex].test_item_id});
       });
       setSelectedOptions(initialSelectedOptions)
-      console.log(initialSelectedOptions)
+      // console.log(initialSelectedOptions)
       setColumns(getColumnsFromBackend());
     },[currentItemIndex])
 
@@ -123,7 +123,7 @@ const TestBoard = forwardRef(
 
     const currentTest = stateData.currentTests[stateData.currentIndexTest];
 
-    console.log(columnArray)
+    // console.log(columnArray)
     // console.log(stateData.currentTests[stateData.currentIndexTest].column_title)
 
     // console.log(stateData.currentTests[stateData.currentIndexTest])
@@ -157,17 +157,17 @@ const TestBoard = forwardRef(
       coloanaRaspuns1 = columnArray[2];
       raspunsPenUltimaColoana = `${coloanaRaspuns1}: ${correctAnswers1ValuesConcat}`
     }
-    console.log("correctAnswers",correctAnswers);
-    console.log("correctAnswersValues",correctAnswersValues);
-    console.log("correctAnswersValuesConcat",correctAnswersValues);
-    console.log("coloanaRaspuns",coloanaRaspuns);
-    console.log("raspunsUltimaColoana",raspunsUltimaColoana);    
+    // console.log("correctAnswers",correctAnswers);
+    // console.log("correctAnswersValues",correctAnswersValues);
+    // console.log("correctAnswersValuesConcat",correctAnswersValues);
+    // console.log("coloanaRaspuns",coloanaRaspuns);
+    // console.log("raspunsUltimaColoana",raspunsUltimaColoana);    
 
-    console.log("correctAnswers1",correctAnswers1);
-    console.log("correctAnswers1Values",correctAnswers1Values);
-    console.log("correctAnswers1ValuesConcat",correctAnswers1Values);
-    console.log("coloanaRaspuns1",coloanaRaspuns1);
-    console.log("raspunsPenUltimaColoana",raspunsPenUltimaColoana); 
+    // console.log("correctAnswers1",correctAnswers1);
+    // console.log("correctAnswers1Values",correctAnswers1Values);
+    // console.log("correctAnswers1ValuesConcat",correctAnswers1Values);
+    // console.log("coloanaRaspuns1",coloanaRaspuns1);
+    // console.log("raspunsPenUltimaColoana",raspunsPenUltimaColoana); 
 
     // let cc = getColumnsFromBackend(list.id);
     // console.log("cc",cc);
@@ -297,13 +297,35 @@ const TestBoard = forwardRef(
         };
       });
     }
-    console.log(selectedOptionsCalculate)
+
     const selectedOptionsToDB = selectedOptionsCalculate.map(item => {
       const { test_item_complexity, user_column, correct, ...rest } = item;
       return { ...rest, student_id: stateData.currentStudent, type: 'check' };
     });
+    console.log(selectedOptionsToDB)
     for (const element of selectedOptionsToDB) {
       trimiteDateLaBackend(element);
+    }
+
+    const groupedArray = selectedOptionsToDB.reduce((accumulator, currentObject) => {
+      const key = `${currentObject.student_id}_${currentObject.test_item_id}_${currentObject.type}_${currentObject.formative_test_id}`;
+      
+      if (!accumulator[key]) {
+        accumulator[key] = {
+          student_id: currentObject.student_id,
+          test_item_id: currentObject.test_item_id,
+          type: currentObject.type,
+          formative_test_id: currentObject.formative_test_id
+        };
+      }
+    
+      return accumulator;
+    }, {});
+    
+    const selectedResultsToDB = Object.values(groupedArray);
+  
+    for (const element of selectedResultsToDB) {
+      trimiteResultsLaBackend(element);
     }
 
 
@@ -371,6 +393,25 @@ const TestBoard = forwardRef(
     try {
         // console.log(element)
         const response = await axios.post('http://localhost:8000/api/student-formative-test-options', element);
+
+        if (response.status === 200) {
+          console.log('Success:', response.data.message);
+        } else {
+          console.error('Error');
+        }
+    } catch (error) {
+      if (error.response && error.response.status === 422) {
+        console.log('Validation Errors:', error.response.data.errors);
+      } else {
+        console.error('Error:', error);
+      }
+    }
+  };
+
+  const trimiteResultsLaBackend = async (element) => {
+    try {
+        // console.log(element)
+        const response = await axios.post('http://localhost:8000/api/student-formative-test-results', element);
 
         if (response.status === 200) {
           console.log('Success:', response.data.message);

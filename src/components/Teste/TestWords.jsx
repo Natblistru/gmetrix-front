@@ -145,6 +145,27 @@ const TestWords = ({
       trimiteDateLaBackend(element);
     }
 
+    const groupedArray = selectedOptionsToDB.reduce((accumulator, currentObject) => {
+      const key = `${currentObject.student_id}_${currentObject.test_item_id}_${currentObject.type}_${currentObject.formative_test_id}`;
+      
+      if (!accumulator[key]) {
+        accumulator[key] = {
+          student_id: currentObject.student_id,
+          test_item_id: currentObject.test_item_id,
+          type: currentObject.type,
+          formative_test_id: currentObject.formative_test_id
+        };
+      }
+    
+      return accumulator;
+    }, {});
+    
+    const selectedResultsToDB = Object.values(groupedArray);
+  
+    for (const element of selectedResultsToDB) {
+      trimiteResultsLaBackend(element);
+    }
+
     const correct = sentence
       .map((w) => (w.type === "answer" ? w.text === w.displayed : true))
       .every(Boolean);
@@ -155,6 +176,25 @@ const TestWords = ({
     try {
         // console.log(element)
         const response = await axios.post('http://localhost:8000/api/student-formative-test-options', element);
+
+        if (response.status === 200) {
+          console.log('Success:', response.data.message);
+        } else {
+          console.error('Error');
+        }
+    } catch (error) {
+      if (error.response && error.response.status === 422) {
+        console.log('Validation Errors:', error.response.data.errors);
+      } else {
+        console.error('Error:', error);
+      }
+    }
+  };
+
+  const trimiteResultsLaBackend = async (element) => {
+    try {
+        // console.log(element)
+        const response = await axios.post('http://localhost:8000/api/student-formative-test-results', element);
 
         if (response.status === 200) {
           console.log('Success:', response.data.message);

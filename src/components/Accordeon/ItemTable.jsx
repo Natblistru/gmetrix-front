@@ -68,7 +68,8 @@ const TableRow = (props) => {
         </div>
       </div>
       {/* //test cu raspuns maximal */}
-      {rowData.testResult == (rowData.length * rowData.complexityNumber) && (
+      {/* {console.log(rowData)} */}
+      {rowData.testResult == rowData.complexityNumber && (
         <div className="tbl-points" title="Cel mai bun rezultat">
           <div className="svg-sprite-vs-points profile-point-full"></div>
           <span className="points">
@@ -84,13 +85,14 @@ const TableRow = (props) => {
         </div>
       )}
       {/* //test cu raspuns partial */}
-      {rowData.testResult < (rowData.length * rowData.complexityNumber) && rowData.testResult > 0 && (
+      {console.log(rowData.testResult < rowData.complexityNumber && rowData.testResult > 0)}
+      {rowData.testResult < rowData.complexityNumber && rowData.testResult > 0 && (
             <div className="tbl-points" title="Cel mai bun rezultat">
               <div className="svg-sprite-vs-points profile-point-half"></div>
               <span className="points">
                 <span className="earned">
                   {" "}
-                  {Math.round(rowData.testResult * (rowData.length * rowData.complexityNumber) / 100)}
+                  {Math.round(rowData.testResult * (rowData.length * rowData.complexityNumber))}
                   {/* {Math.round(sumProc(rowData.subjectID, rowData.id, rowData) * (rowData.quizArray.length * rowData.complexityNumber) / 100)} */}
                 </span>{" "}
                 /{" "}

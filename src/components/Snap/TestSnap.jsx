@@ -80,7 +80,7 @@ const TestSnap = ({
 
   },[currentItemIndex])
 
-  console.log(selectedOptions)
+  // console.log(selectedOptions)
 
   // Sortează array-ul în funcție de x și apoi de y
   transformedArray.sort((a, b) => {
@@ -91,7 +91,7 @@ const TestSnap = ({
     }
   });
 
-  console.log(transformedArray);
+  // console.log(transformedArray);
 
   // Creează matricea răspunsurilor corecte
   const matriceRaspunsuri = textAdditionalArray.map(coordonate => {
@@ -101,7 +101,7 @@ const TestSnap = ({
     return [indexStart, indexEnd];
   });
 
-  console.log(matriceRaspunsuri);
+  // console.log(matriceRaspunsuri);
 
   const sortedOptions = listItems[currentIndex].test_item_options.map(item => {
     const parts = item.option.split('|').map(part => part.trim());
@@ -508,8 +508,8 @@ const TestSnap = ({
     });
     
 
-    console.log(resultPair)
-    console.log(connectedZones)
+    // console.log(resultPair)
+    // console.log(connectedZones)
 
     const selectedOptionsCopy = [...selectedOptions];
     for (const option of resultPair) {
@@ -523,15 +523,36 @@ const TestSnap = ({
     }
     const filteredOptions = selectedOptionsCopy.filter(option => option.user_column !== "");
 
-    console.log(filteredOptions)
+    // console.log(filteredOptions)
 
     const selectedOptionsToDB = filteredOptions.map(item => {
       const { test_item_complexity, user_column, correct, ...rest } = item;
       return { ...rest, student_id: stateData.currentStudent, type: 'snap' };
     });
     for (const element of selectedOptionsToDB) {
-      console.log(element)
+      // console.log(element)
       trimiteDateLaBackend(element);
+    }
+
+    const groupedArray = selectedOptionsToDB.reduce((accumulator, currentObject) => {
+      const key = `${currentObject.student_id}_${currentObject.test_item_id}_${currentObject.type}_${currentObject.formative_test_id}`;
+      
+      if (!accumulator[key]) {
+        accumulator[key] = {
+          student_id: currentObject.student_id,
+          test_item_id: currentObject.test_item_id,
+          type: currentObject.type,
+          formative_test_id: currentObject.formative_test_id
+        };
+      }
+    
+      return accumulator;
+    }, {});
+    
+    const selectedResultsToDB = Object.values(groupedArray);
+  
+    for (const element of selectedResultsToDB) {
+      trimiteResultsLaBackend(element);
     }
 
     const isAnswersCorrect = matriceRaspunsuri.every(
@@ -561,6 +582,25 @@ const TestSnap = ({
     try {
         // console.log(element)
         const response = await axios.post('http://localhost:8000/api/student-formative-test-options', element);
+
+        if (response.status === 200) {
+          console.log('Success:', response.data.message);
+        } else {
+          console.error('Error');
+        }
+    } catch (error) {
+      if (error.response && error.response.status === 422) {
+        console.log('Validation Errors:', error.response.data.errors);
+      } else {
+        console.error('Error:', error);
+      }
+    }
+  };
+
+  const trimiteResultsLaBackend = async (element) => {
+    try {
+        // console.log(element)
+        const response = await axios.post('http://localhost:8000/api/student-formative-test-results', element);
 
         if (response.status === 200) {
           console.log('Success:', response.data.message);
@@ -637,7 +677,7 @@ console.log(uniqueOptions);
                 <div>
                   <div>
                     {/* {list1.quizArray[currentIndex].text */}
-                    {console.log(sortedOptions)}
+                    {/* {console.log(sortedOptions)} */}
                     {uniqueOptions
                       .slice(halfIndex)
                       .map((text, index) => (
@@ -706,7 +746,7 @@ console.log(uniqueOptions);
         >
           <ItemText classNameChild="">
             {/* {console.log(list1.quizArray[currentIndex].correctAnswer)} */}
-            {console.log(matriceRaspunsuri)}
+            {/* {console.log(matriceRaspunsuri)} */}
             {matriceRaspunsuri.map(
               ([index1, index2]) => {
                 const answer1 =

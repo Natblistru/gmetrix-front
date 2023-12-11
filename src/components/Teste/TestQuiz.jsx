@@ -86,7 +86,7 @@ const TestQuiz = ({
   };
 
   const trimiteDateLaBackend = async (selectedOptionsToDB) => {
-    console.log(selectedOptionsToDB)
+    // console.log(selectedOptionsToDB)
     try {
       for (const element of selectedOptionsToDB) {
         const response = await axios.post('http://localhost:8000/api/student-formative-test-options', element);
