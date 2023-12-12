@@ -29,19 +29,18 @@ const Tema = () => {
   let theme;
   let teacher;
   useEffect(() => {
+    if (!stateData.currentSubject) {
+      return;
+    }
+  
     const searchParams = new URLSearchParams(location.search);
     // setTheme(searchParams.get("theme"));
-    const teacher = searchParams.get("teacher");
+    teacher = searchParams.get("teacher");
 
     // console.log("Parametrul theme:", theme);
     // console.log("Parametrul teacher:", teacher);
-  }, [location.search]);
-  
-  useEffect(()=> {
-    const searchParams = new URLSearchParams(location.search);
+ 
     theme = searchParams.get("theme");
-    // setTheme(theme);
-    teacher = searchParams.get("teacher");
 
     // console.log("Parametrul theme:", theme);
     // console.log("Parametrul teacher:", teacher);
@@ -85,18 +84,7 @@ const Tema = () => {
         payload: newBreadcrumb
       });
     }
-    // const temaName = tema ? tema.tema_name : "";
-    // // console.log(tema);
-    // // console.log(pathToFind);
-    // // console.log(stateData.capitole);
-
-    // const addressPath = `/${disciplina}/${address}?teacher=1&level=1&disciplina=${stateData.currentSubject.subject_id}&theme=${tema.tema_id}`;
-    // const newBreadcrumb = {name: temaName, path: addressPath};
-    // dispatchData({
-    //   type: "UPDATE_TOPIC_BREADCRUMB",
-    //   payload: newBreadcrumb
-    // });
-  },[]);
+  },[stateData.currentSubject, location.search]);
 
 
 
@@ -224,30 +212,6 @@ const fetchEvaluation3 = async (theme) => {
 }
 
 
-  // let teme;
-  // if(disciplina == "istoria") {
-  //   teme = temeIstoriArray;
-  // } else if(disciplina == "matem") {
-  //   teme = temeMatemArray;    
-  // } else if(disciplina == "romana") {
-  //   teme = temeRomanaArray;    
-  // }
-  // console.log(stateData.topics);
-
-  // function findObjectWithAddress(obj) {
-  //   for (let key in obj) {
-  //     if (typeof obj[key] === "object") {
-  //       const found = findObjectWithAddress(obj[key]);
-  //       if (found) {
-  //         return found;
-  //       }
-  //     } else if (key === "address" && obj[key] === "/" + address) {
-  //       return obj;
-  //     }
-  //   }
-  //   return null;
-  // }
-
   useEffect(() => {
     // addBreadcrumb();
     // const foundItem = findObjectWithAddress(teme);
@@ -259,7 +223,8 @@ const fetchEvaluation3 = async (theme) => {
   }, []);
 
   const handleProgressThemaRecorded = (updatedThemaProgress) => {
-    setProc(updatedThemaProgress)
+    if(temaObject)
+      setProc(updatedThemaProgress);
   };
 
   return (

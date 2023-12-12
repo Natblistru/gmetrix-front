@@ -26,6 +26,9 @@ import ContextData from "./components/context/ContextData.js";
 import StateData from "./components/context/StateData.js";
 import ReducerData from "./components/context/ReducerData.js";
 import MasterLayout from "./layouts/admin/MasterLayout.js";
+import Dashboard from "./components/admin/Dashboard.js";
+import Profile from "./components/admin/Profile.js";
+
 
 const FlipCardsWithRouter = withRouter(FlipCards);
 const TestWithRouter = withRouter(Test);
@@ -38,8 +41,12 @@ function App() {
         <ContextData.Provider value = {{stateData, dispatchData}}>
           <StoreComponent>
             <Switch>
+
               <Route exact path="/" render={() => <Redirect to="/home" />} />
-              <Route exact path="/admin/dashboard" component={MasterLayout} />
+              {/* <Route exact path="/admin/" component={MasterLayout} /> 
+              <Route exact path="/admin/dashboard" component={Dashboard} />
+              <Route exact path="/admin/profile" component={Profile} />  */}            
+              <Route path="/admin" name="Admin" render={(props) => <MasterLayout {...props}/>} />
               <Route path="/istoria/:address/examen-subiect1" component={ExamenSubect1} />
               <Route path="/istoria/:address/examen-subiect2" component={ExamenSubect2} />
               <Route path="/istoria/:address/examen-subiect3" component={ExamenSubect3} />
