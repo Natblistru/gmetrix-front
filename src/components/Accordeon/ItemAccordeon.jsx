@@ -32,7 +32,6 @@ const ItemAccordeon = (props) => {
             </div>
           ) : (
             <div>
-              {/* Старое содержимое */}
               {props.children}
             </div>
           )}
