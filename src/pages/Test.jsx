@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import ContextData from "../components/context/ContextData";
 import { withRouter, useParams, useHistory } from "react-router-dom";
 import { connect } from "react-redux";
-import temeIstoriArray from "../data/temeIstoria";
+// import temeIstoriArray from "../data/temeIstoria";
 import Breadcrumb from "../components/Breadcrumb";
 import Wrapper from "../components/Wrapper";
 import TitleBox from "../components/TitleBox";
@@ -159,8 +159,8 @@ const TestWrapper = ({ tests, add, update }) => {
 
   const handleClearTestBoard = (testId) => {
     if (testBoardRef.current && testBoardRef.current.handleTryAgainClear) {
-      // console.log("handleClearTestBoard testId",testId);
-      // console.log("testBoardRef",testBoardRef.current);
+      console.log("handleClearTestBoard testId",testId);
+      console.log("testBoardRef",testBoardRef.current);
       testBoardRef.current.handleTryAgainClear(testId);
     }
   };
@@ -254,14 +254,14 @@ const TestWrapper = ({ tests, add, update }) => {
               currentItemIndex={currentItemIndex}
             />
           )}
-          <ListNavigatie
+          {/* <ListNavigatie
             list={currentList1}
             setCurrentList={setCurrentList1}
             correctAnswer={correctAnswer}
             setCorrectAnswer={setCorrectAnswer}
             setCurrentIndex={setCurrentItemIndex}
             handleClearTestBoard={handleClearTestBoard}
-          />
+          /> */}
         </>
       )}
     </Wrapper>

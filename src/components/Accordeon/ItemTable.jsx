@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import ContextData from "../context/ContextData";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import temeIstoriArray from "../../data/temeIstoria";
+// import temeIstoriArray from "../../data/temeIstoria";
 import "../../index.css";
 
 const TableRow = (props) => {
@@ -19,41 +19,41 @@ const TableRow = (props) => {
   const dynamicPath = `${addressDisciplina}${addressSubtitle}${rowData.path}${rowData.addressTest}/1?teacher=1&level=1&disciplina=${stateData.currentSubject.subject_id}&theme=${stateData.currentTheme.tema_id}`;       
   // const dynamicPath = `${rowData.addressTestDisciplina}${rowData.addressTestSubtitle}${rowData.addressTestSubject}${rowData.addressTest}/1`;
 
-  const sumProc = (subjectId, testID, subtitle) => {
-    const user = "Current user";
-    const userItems = props.testsItems.find((item) => item.user === user);
-    if (!userItems) return null;
-    // Используем метод flatMap() для получения всех элементов quizArray
-    const allQuizArray = temeIstoriArray.flatMap((item) =>
-      item.subtitles.flatMap((subtitle) =>
-        subtitle.subjects.flatMap((subject) =>
-          subject.teste.flatMap((test) => test.quizArray)
-        )
-      )
-    );
-    const filteredQuizArray = allQuizArray.filter(
-      (item) => item.testID == testID && item.subjectID == subjectId
-    );
+  // const sumProc = (subjectId, testID, subtitle) => {
+  //   const user = "Current user";
+  //   const userItems = props.testsItems.find((item) => item.user === user);
+  //   if (!userItems) return null;
+  //   // Используем метод flatMap() для получения всех элементов quizArray
+  //   const allQuizArray = temeIstoriArray.flatMap((item) =>
+  //     item.subtitles.flatMap((subtitle) =>
+  //       subtitle.subjects.flatMap((subject) =>
+  //         subject.teste.flatMap((test) => test.quizArray)
+  //       )
+  //     )
+  //   );
+  //   const filteredQuizArray = allQuizArray.filter(
+  //     (item) => item.testID == testID && item.subjectID == subjectId
+  //   );
 
-    //console.log("userItems.tests",userItems.tests);
-    //console.log("filteredQuizArray",filteredQuizArray)
-    let SumProcValue = 0;
-    let iterration = 0;
-    let foundedItem;
-    filteredQuizArray.forEach((el) => {
-      foundedItem = userItems.tests.find(
-        (item) =>
-          item.id == el.subjectID &&
-          item.quiz == el.testID &&
-          item.item == el.id
-      );
-      if (foundedItem) {SumProcValue += foundedItem.proc; iterration++}
-    });
-   // console.log("userItems.tests",userItems.tests)
-    // console.log("idx",idx)
-    if (foundedItem == undefined && iterration==0) return null;
-    return Math.round(SumProcValue / filteredQuizArray.length);
-  };
+  //   //console.log("userItems.tests",userItems.tests);
+  //   //console.log("filteredQuizArray",filteredQuizArray)
+  //   let SumProcValue = 0;
+  //   let iterration = 0;
+  //   let foundedItem;
+  //   filteredQuizArray.forEach((el) => {
+  //     foundedItem = userItems.tests.find(
+  //       (item) =>
+  //         item.id == el.subjectID &&
+  //         item.quiz == el.testID &&
+  //         item.item == el.id
+  //     );
+  //     if (foundedItem) {SumProcValue += foundedItem.proc; iterration++}
+  //   });
+  //  // console.log("userItems.tests",userItems.tests)
+  //   // console.log("idx",idx)
+  //   if (foundedItem == undefined && iterration==0) return null;
+  //   return Math.round(SumProcValue / filteredQuizArray.length);
+  // };
 
   return (
     <div className={classes}>
@@ -85,7 +85,7 @@ const TableRow = (props) => {
         </div>
       )}
       {/* //test cu raspuns partial */}
-      {console.log(rowData.testResult < rowData.complexityNumber && rowData.testResult > 0)}
+      {/* {console.log(rowData.testResult < rowData.complexityNumber && rowData.testResult > 0)} */}
       {rowData.testResult < rowData.complexityNumber && rowData.testResult > 0 && (
             <div className="tbl-points" title="Cel mai bun rezultat">
               <div className="svg-sprite-vs-points profile-point-half"></div>

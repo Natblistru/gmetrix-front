@@ -6,7 +6,7 @@ import "./TestSnap.css";
 import ItemAccordeon from "../Accordeon/ItemAccordeon";
 import ItemText from "../Accordeon/ItemText";
 import Pinzone from "./Pinzone";
-import temeIstoriArray from "../../data/temeIstoria";
+// import temeIstoriArray from "../../data/temeIstoria";
 
 const RowText = ({ indx, text }) => {
   return (
@@ -43,7 +43,7 @@ const TestSnap = ({
 
   // console.log(stateData.currentIndexTest);
 
-  let list1 = temeIstoriArray[0].subtitles[0].subjects[0].teste[4];
+  // let list1 = temeIstoriArray[0].subtitles[0].subjects[0].teste[4];
 
    const textAdditionalArray = listItems[currentIndex].test_item_options
   .filter(option => option.correct === 1)

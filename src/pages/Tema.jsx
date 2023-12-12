@@ -4,9 +4,9 @@ import axios from "axios";
 
 import { useState, useEffect } from "react";
 import { useParams, useHistory, useLocation } from "react-router-dom";
-import temeIstoriArray from "../data/temeIstoria";
-import temeMatemArray from "../data/temeMatem";
-import temeRomanaArray from "../data/temeRomana";
+// import temeIstoriArray from "../data/temeIstoria";
+// import temeMatemArray from "../data/temeMatem";
+// import temeRomanaArray from "../data/temeRomana";
 import Breadcrumb from "../components/Breadcrumb";
 import Wrapper from "../components/Wrapper";
 import TitleBox from "../components/TitleBox";
@@ -224,29 +224,29 @@ const fetchEvaluation3 = async (theme) => {
 }
 
 
-  let teme;
-  if(disciplina == "istoria") {
-    teme = temeIstoriArray;
-  } else if(disciplina == "matem") {
-    teme = temeMatemArray;    
-  } else if(disciplina == "romana") {
-    teme = temeRomanaArray;    
-  }
+  // let teme;
+  // if(disciplina == "istoria") {
+  //   teme = temeIstoriArray;
+  // } else if(disciplina == "matem") {
+  //   teme = temeMatemArray;    
+  // } else if(disciplina == "romana") {
+  //   teme = temeRomanaArray;    
+  // }
   // console.log(stateData.topics);
 
-  function findObjectWithAddress(obj) {
-    for (let key in obj) {
-      if (typeof obj[key] === "object") {
-        const found = findObjectWithAddress(obj[key]);
-        if (found) {
-          return found;
-        }
-      } else if (key === "address" && obj[key] === "/" + address) {
-        return obj;
-      }
-    }
-    return null;
-  }
+  // function findObjectWithAddress(obj) {
+  //   for (let key in obj) {
+  //     if (typeof obj[key] === "object") {
+  //       const found = findObjectWithAddress(obj[key]);
+  //       if (found) {
+  //         return found;
+  //       }
+  //     } else if (key === "address" && obj[key] === "/" + address) {
+  //       return obj;
+  //     }
+  //   }
+  //   return null;
+  // }
 
   useEffect(() => {
     // addBreadcrumb();

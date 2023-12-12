@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ContextData from "../components/context/ContextData";
-import temeIstoriArray from "../data/temeIstoria";
+// import temeIstoriArray from "../data/temeIstoria";
 import '../index.css'
 import { Link } from 'react-router-dom';
 const ListNavigatie = (props) => {
@@ -37,11 +37,11 @@ const ListNavigatie = (props) => {
   let testPrecedent = list;
   let testUrmator = list;
 
-  let testPrecedent1 = stateData.currentTests[stateData.currentIndexTest];
-  let testUrmator1 = stateData.currentTests[stateData.currentIndexTest];
+  let testPrecedent1 = stateData.currentTopic.tests[stateData.currentIndexTest];
+  let testUrmator1 = stateData.currentTopic.tests[stateData.currentIndexTest];
   if (!primul) {
   
-    testPrecedent1 = stateData.currentTests[stateData.currentIndexTest-1];
+    testPrecedent1 = stateData.currentTopic.tests[stateData.currentIndexTest-1];
 
     testPrecedent = stateData.currentTopic.tests[list.id-2]; 
     dynamicPathTestPrecedent = `${addressDisciplina}${addressSubtitle}${testPrecedent.path}${testPrecedent.addressTest}/1?teacher=1&level=1&disciplina=${stateData.currentSubject.subject_id}&theme=${stateData.currentTheme.tema_id}`;       
@@ -50,8 +50,8 @@ const ListNavigatie = (props) => {
   }
   if(!ultimul) {
     if(!utilmul_dnd) {
-      testUrmator1 = stateData.currentTests[stateData.currentIndexTest+1];
-      // console.log(testUrmator1.formative_test_id);
+      testUrmator1 = stateData.currentTopic.tests[stateData.currentIndexTest+1];
+      console.log(testUrmator1.id);
     }
 
     testUrmator = stateData.currentTopic.tests[list.id];
@@ -67,14 +67,14 @@ const ListNavigatie = (props) => {
     <div className="nav-container">
         <div className={`nav-link ${primul ? 'invizible' : ''}`} >
         {/* <Link to={{ pathname: list.path, state: { list: testPrecedent, correctAns:null, currInd:0} }} onClick={() => navigateToTest(testPrecedent)}> */}
-          <Link to={dynamicPathTestPrecedent} onClick={() => {props.setCorrectAnswer(null);handleClearTestBoard(testPrecedent1.formative_test_id)}}>
+          <Link to={dynamicPathTestPrecedent} onClick={() => {props.setCorrectAnswer(null);handleClearTestBoard(testPrecedent1.id)}}>
             <img src={process.env.PUBLIC_URL + "/images/navigation-left.png"} alt="" />
             <p>Sarcina precedentă</p>
           </Link>
         </div>
         <div className={`nav-link ${ultimul? 'invizible' : ''}`} >
           {/* <Link to={{ pathname: list.path, state: { list: testUrmator, correctAns:null, currInd:0} }} onClick={() => navigateToTest(testUrmator)}> */}
-          <Link to={dynamicPathTestUrmator} onClick={() => {props.setCorrectAnswer(null);handleClearTestBoard(testUrmator1.formative_test_id)}} >        
+          <Link to={dynamicPathTestUrmator} onClick={() => {props.setCorrectAnswer(null);handleClearTestBoard(testUrmator1.id)}} >        
             <img src={process.env.PUBLIC_URL + "/images/navigation-right.png"} alt="" />
             <p>Sarcina următoare</p>
           </Link>

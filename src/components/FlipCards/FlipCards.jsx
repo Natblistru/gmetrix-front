@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { withRouter } from "react-router-dom";
 import FlipCard from "./FlipCard";
 import "./flipCards.css";
-import temeIstoriArray from "../../data/temeIstoria";
+// import temeIstoriArray from "../../data/temeIstoria";
 import Switch from "../Switch";
 import { Link } from 'react-router-dom';
 

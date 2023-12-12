@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import ContextData from "../context/ContextData";
 import { useParams, useHistory, useLocation } from "react-router-dom";
 import { connect } from "react-redux";
-import temeIstoriArray from "../../data/temeIstoria";
+// import temeIstoriArray from "../../data/temeIstoria";
 import Wrapper from "../Wrapper";
 import Breadcrumb from "../Breadcrumb";
 import TitleBox from "../TitleBox";

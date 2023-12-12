@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ContextData from "../components/context/ContextData";
 import { useParams, useHistory } from "react-router-dom";
-import temeIstoriArray from "../data/temeIstoria";
-import temeMatemArray from "../data/temeMatem";
-import temeRomanaArray from "../data/temeRomana";
+// import temeIstoriArray from "../data/temeIstoria";
+// import temeMatemArray from "../data/temeMatem";
+// import temeRomanaArray from "../data/temeRomana";
 import Breadcrumb from "../components/Breadcrumb";
 import Wrapper from "../components/Wrapper";
 import TitleBox from "../components/TitleBox";
@@ -36,29 +36,29 @@ const Subtema = ({results})  => {
   // });
 
 
-  const disciplinaNume = stateData.currentSubject.subject_name;
-  let teme;
-  if(disciplinaNume == "Istoria") {
-    teme = temeIstoriArray;
-  } else if(disciplinaNume == "Matematica") {
-    teme = temeMatemArray;    
-  } else if(disciplinaNume == "Limba română") {
-    teme = temeRomanaArray;    
-  }
+  // const disciplinaNume = stateData.currentSubject.subject_name;
+  // let teme;
+  // if(disciplinaNume == "Istoria") {
+  //   teme = temeIstoriArray;
+  // } else if(disciplinaNume == "Matematica") {
+  //   teme = temeMatemArray;    
+  // } else if(disciplinaNume == "Limba română") {
+  //   teme = temeRomanaArray;    
+  // }
 
-  function findObjectWithAddress(obj) {
-    for (let key in obj) {
-      if (typeof obj[key] === "object") {
-        const found = findObjectWithAddress(obj[key]);
-        if (found) {
-          return found;
-        }
-      } else if (key === "addressSubject" && obj[key] === "/" + address1) {
-        return obj;
-      }
-    }
-    return null;
-  }
+  // function findObjectWithAddress(obj) {
+  //   for (let key in obj) {
+  //     if (typeof obj[key] === "object") {
+  //       const found = findObjectWithAddress(obj[key]);
+  //       if (found) {
+  //         return found;
+  //       }
+  //     } else if (key === "addressSubject" && obj[key] === "/" + address1) {
+  //       return obj;
+  //     }
+  //   }
+  //   return null;
+  // }
   const temaCurrenta = stateData.topics;
   const parts = stateData.currentTheme.path_tema.split("/");
   const subject_id = stateData.currentSubject.subject_id;
@@ -95,12 +95,12 @@ const Subtema = ({results})  => {
 
 
 
-    const foundItem = findObjectWithAddress(teme);
-    if (foundItem) {
-      setItem(foundItem);
-    } else {
-      history.push("/error");
-    }
+    // const foundItem = findObjectWithAddress(teme);
+    // if (foundItem) {
+    //   setItem(foundItem);
+    // } else {
+    //   history.push("/error");
+    // }
   }, []);
 
   // useEffect(()=>{
@@ -158,7 +158,7 @@ const Subtema = ({results})  => {
         <>
           <Breadcrumb step={2} />
           <TitleBox className="teme-container" proc={topic.procentTopic}>{topic.name}</TitleBox>
-          <ListSubAccordeon teme={teme} subtema={item} onProgressTopicRecorded={handleProgressTopicRecorded}/>
+          <ListSubAccordeon onProgressTopicRecorded={handleProgressTopicRecorded}/>
         </>
       )
       }
@@ -171,7 +171,7 @@ const Subtema = ({results})  => {
   //       <>
   //         <Breadcrumb step={2} />
   //         <TitleBox className="teme-container" subjectId={subElement.id}>{subElement.name}</TitleBox>
-  //         <ListSubAccordeon teme={teme} subtema={subElement}/>
+  //         <ListSubAccordeon teme={teme} subtema={item} onProgressTopicRecorded={handleProgressTopicRecorded}/>
   //       </>
 
 

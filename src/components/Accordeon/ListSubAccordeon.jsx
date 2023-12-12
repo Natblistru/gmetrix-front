@@ -30,9 +30,9 @@ const handleProgressRecorded = (updatedTopic) => {
 };
 
 const classes = " " + props.className;
-let arraySubject = props.subtema.vomAfla;
+// let arraySubject = props.subtema.vomAfla;
 
-let arrayTests = props.subtema.teste;
+// let arrayTests = props.subtema.teste;
 // console.log(stateData.currentTopic);
 let currentTopic = stateData.currentTopic;
 // let arraySubtitles = stateData.currentTopic.subtitles; 
@@ -98,9 +98,9 @@ const handleItemClick = (idx) => {
     smooth: 'easeInOutQuart'
   });
 };
-  if (!stateData.currentTopic || !arrayTests) {
-    return null; // Возвращаем null или другой компонент-заглушку
-  }
+  // if (!stateData.currentTopic || !arrayTests) {
+  //   return null; // Возвращаем null или другой компонент-заглушку
+  // }
 // console.log(transformedArrayImages)
   return (
     <div className={classes}>
@@ -132,10 +132,12 @@ const handleItemClick = (idx) => {
       </div>
       </ItemAccordeon>
       <ItemAccordeon titlu="Evaluare (teste)" {...props} open={true}>
-        <ItemTable {...props} list={arrayTests} list1={currentTopic.tests} />
+        <ItemTable {...props} list1={currentTopic.tests} />
       </ItemAccordeon>
     </div>
   );
 };
 
 export default ListSubAccordeon;
+
+{/* <ItemTable {...props} list={arrayTests} list1={currentTopic.tests} /> */}
