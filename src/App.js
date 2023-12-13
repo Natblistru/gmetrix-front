@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import { Redirect } from "react-router-dom";
 import {
   BrowserRouter as Router,
@@ -33,6 +34,11 @@ import Password from "./components/auth/Password.js";
 
 const FlipCardsWithRouter = withRouter(FlipCards);
 const TestWithRouter = withRouter(Test);
+
+axios.defaults.withCredentials = true;
+axios.defaults.withXSRFToken = true;
+axios.defaults.headers.post['Content-Type'] = 'application/json';
+axios.defaults.headers.post['Accept'] = 'application/json';
 
 function App() {
   const [stateData, dispatchData] = React.useReducer(ReducerData, StateData)

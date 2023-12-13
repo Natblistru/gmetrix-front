@@ -1,19 +1,23 @@
 import React,  { useState } from 'react';
 import Navbar from '../layouts/Navbar';
 import axios from "axios";
+import Swal from 'sweetalert2'
 
 import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 function Register() {
+
+  const history = useHistory();
   const [registerInput, setRegisterInput] = useState({
-    firstName: '',
-    lastName: '',
+    name: '',
     email: '',
     password: '',
+    error_list: [],
   });
 
   const handleInput = (e) => {
-    e.presist();
+    e.persist();
     setRegisterInput({...registerInput, [e.target.name]: e.target.value});
   }
 
@@ -21,14 +25,26 @@ function Register() {
     e.preventDefault();
 
     const data = {
-      firstName: registerInput.firstName,
-      lastName: registerInput.lastName,
+      name: registerInput.name,
       email: registerInput.email,
       password: registerInput.password,
     }
 
-    axios.post('api/register', data).then(res => {
-
+    axios.get('http://localhost:8000/sanctum/csrf-cookie').then(response => {
+      axios.post('http://localhost:8000/api/register', data).then(res => {
+        if(res.data.status === 200){
+          localStorage.setItem('auth_token', res.data.token);
+          localStorage.setItem('auth_name', res.data.username);
+          Swal.fire({
+            title: "Succes",
+            text: res.data.message,
+            icon: "success"
+          });
+          history.push("/")
+        }else {
+          setRegisterInput({...registerInput, error_list: res.data.validation_errors })
+        }
+      });
     });
 
 
@@ -46,13 +62,14 @@ function Register() {
                               <div className="rowBts mb-3">
                                   <div className="col-md-6">
                                       <div className="form-floating mb-3 mb-md-0">
-                                          <input name="firstName" onChange={handleInput} value={registerInput.firstname} className="form-control" id="inputFirstName" type="text" placeholder="Enter your first name" />
+                                          <input name="name" onChange={handleInput} value={registerInput.name} className="form-control" id="inputFirstName" type="text" placeholder="Enter your first name" />
                                           <label htmlFor="inputFirstName">First name</label>
+                                          <span>{registerInput.error_list.name}</span>
                                       </div>
                                   </div>
                                   <div className="col-md-6">
                                       <div className="form-floating">
-                                          <input name="lastName" onChange={handleInput} value={registerInput.lastname} className="form-control" id="inputLastName" type="text" placeholder="Enter your last name" />
+                                          <input className="form-control" id="inputLastName" type="text" placeholder="Enter your last name" />
                                           <label htmlFor="inputLastName">Last name</label>
                                       </div>
                                   </div>
@@ -60,12 +77,14 @@ function Register() {
                               <div className="form-floating mb-3">
                                   <input name="email" onChange={handleInput} value={registerInput.email} className="form-control" id="inputEmail" type="email" placeholder="name@example.com" />
                                   <label htmlFor="inputEmail">Email address</label>
+                                  <span>{registerInput.error_list.email}</span>
                               </div>
                               <div className="rowBts mb-3">
                                   <div className="col-md-6">
                                       <div className="form-floating mb-3 mb-md-0">
                                           <input name="password" onChange={handleInput} value={registerInput.password} className="form-control" id="inputPassword" type="password" placeholder="Create a password" />
                                           <label htmlFor="inputPassword">Password</label>
+                                          <span>{registerInput.error_list.password}</span>
                                       </div>
                                   </div>
                                   <div className="col-md-6">
