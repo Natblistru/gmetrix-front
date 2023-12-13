@@ -26,8 +26,9 @@ import ContextData from "./components/context/ContextData.js";
 import StateData from "./components/context/StateData.js";
 import ReducerData from "./components/context/ReducerData.js";
 import MasterLayout from "./layouts/admin/MasterLayout.js";
-import Dashboard from "./components/admin/Dashboard.js";
-import Profile from "./components/admin/Profile.js";
+import Login from "./components/auth/Login.js";
+import Register from "./components/auth/Register.js";
+import Password from "./components/auth/Password.js";
 
 
 const FlipCardsWithRouter = withRouter(FlipCards);
@@ -43,9 +44,9 @@ function App() {
             <Switch>
 
               <Route exact path="/" render={() => <Redirect to="/home" />} />
-              {/* <Route exact path="/admin/" component={MasterLayout} /> 
-              <Route exact path="/admin/dashboard" component={Dashboard} />
-              <Route exact path="/admin/profile" component={Profile} />  */}            
+              <Route path="/login" component={Login} />
+              <Route path="/register" component={Register} />    
+              <Route path="/password" component={Password} />  
               <Route path="/admin" name="Admin" render={(props) => <MasterLayout {...props}/>} />
               <Route path="/istoria/:address/examen-subiect1" component={ExamenSubect1} />
               <Route path="/istoria/:address/examen-subiect2" component={ExamenSubect2} />

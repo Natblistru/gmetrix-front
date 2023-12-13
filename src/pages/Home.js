@@ -6,6 +6,7 @@ import ListDiscipline from "../components/ListDiscipline";
 import Titlu from "../components/Titlu";
 import Wrapper from "../components/Wrapper";
 import ContextData from "../components/context/ContextData";
+import Navbar from "../components/layouts/Navbar";
 
 const Home = () => {
   const {dispatchData} = React.useContext(ContextData)
@@ -37,10 +38,14 @@ const Home = () => {
   }
 
   return (
+    <>
+    <Navbar />
     <Wrapper>
       <Titlu>Disciplinele de absolvire a cursului gimnazial</Titlu>
       <ListDiscipline/>
     </Wrapper>
+    </>
+
   );
 };
 export default Home;
