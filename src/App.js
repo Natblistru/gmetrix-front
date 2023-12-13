@@ -39,6 +39,18 @@ axios.defaults.withCredentials = true;
 axios.defaults.withXSRFToken = true;
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 axios.defaults.headers.post['Accept'] = 'application/json';
+axios.interceptors.request.use((config) => {
+  // if (!config) {
+  //   config = {};
+  // }
+  // if (!config.headers) {
+  //     config.headers = {};
+  // }
+  const token = localStorage.getItem('auth_token');
+  config.headers.Authorization = token ? `Bearer ${token}` : '';
+  return config;
+});
+
 
 function App() {
   const [stateData, dispatchData] = React.useReducer(ReducerData, StateData)
@@ -50,8 +62,12 @@ function App() {
             <Switch>
 
               <Route exact path="/" render={() => <Redirect to="/home" />} />
-              <Route path="/login" component={Login} />
-              <Route path="/register" component={Register} />    
+              <Route path="/login">
+                {localStorage.getItem('auth_token') ? <Redirect to="/" /> : <Login />}
+              </Route>
+              <Route path="/register">
+                {localStorage.getItem('auth_token') ? <Redirect to="/" /> : <Register />}
+              </Route>
               <Route path="/password" component={Password} />  
               <Route path="/admin" name="Admin" render={(props) => <MasterLayout {...props}/>} />
               <Route path="/istoria/:address/examen-subiect1" component={ExamenSubect1} />
