@@ -31,6 +31,8 @@ import Login from "./components/auth/Login.js";
 import Register from "./components/auth/Register.js";
 import Password from "./components/auth/Password.js";
 import AdminPrivateRoute from "./routes/AdminPrivateRoute.js";
+import Page403 from "./components/errors/Page403.js";
+import Page404 from "./components/errors/Page404.js";
 
 
 const FlipCardsWithRouter = withRouter(FlipCards);
@@ -63,6 +65,8 @@ function App() {
             <Switch>
 
               <Route exact path="/" render={() => <Redirect to="/home" />} />
+              <Route path="/403" component={Page403} />
+              <Route path="/404" component={Page404} />
               <Route path="/login">
                 {localStorage.getItem('auth_token') ? <Redirect to="/" /> : <Login />}
               </Route>

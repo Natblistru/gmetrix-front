@@ -44,8 +44,8 @@ function AdminPrivateRoute({...rest}) {
         text: error.response.data.message,
         icon: "warning",
       });
-      history.push("/");
-      return Promise.resolve({ redirectTo: "/" });
+      history.push("/403");
+      return Promise.resolve({ redirectTo: "/403" });
     }
     else if(error.response.status === 404)
     {
@@ -54,14 +54,14 @@ function AdminPrivateRoute({...rest}) {
         text: "URL/Page not found",
         icon: "warning",
       });
-      history.push("/");
-      return Promise.resolve({ redirectTo: "/" });
+      history.push("/404");
+      return Promise.resolve({ redirectTo: "/404" });
     }
     return Promise.reject(error);
   });
 
   if(loading) {
-    return <h1>loading...</h1>
+    return <p>loading...</p>
   }
 
 
