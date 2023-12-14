@@ -30,6 +30,7 @@ import MasterLayout from "./layouts/admin/MasterLayout.js";
 import Login from "./components/auth/Login.js";
 import Register from "./components/auth/Register.js";
 import Password from "./components/auth/Password.js";
+import AdminPrivateRoute from "./routes/AdminPrivateRoute.js";
 
 
 const FlipCardsWithRouter = withRouter(FlipCards);
@@ -69,7 +70,8 @@ function App() {
                 {localStorage.getItem('auth_token') ? <Redirect to="/" /> : <Register />}
               </Route>
               <Route path="/password" component={Password} />  
-              <Route path="/admin" name="Admin" render={(props) => <MasterLayout {...props}/>} />
+              {/* <Route path="/admin" name="Admin" render={(props) => <MasterLayout {...props}/>} /> */}
+              <AdminPrivateRoute path="/admin" name="Admin" />
               <Route path="/istoria/:address/examen-subiect1" component={ExamenSubect1} />
               <Route path="/istoria/:address/examen-subiect2" component={ExamenSubect2} />
               <Route path="/istoria/:address/examen-subiect3" component={ExamenSubect3} />
