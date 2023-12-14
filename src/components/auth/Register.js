@@ -10,7 +10,8 @@ function Register() {
 
   const history = useHistory();
   const [registerInput, setRegisterInput] = useState({
-    name: '',
+    first_name: '',
+    last_name: '',
     email: '',
     password: '',
     error_list: [],
@@ -25,7 +26,8 @@ function Register() {
     e.preventDefault();
 
     const data = {
-      name: registerInput.name,
+      first_name: registerInput.first_name,
+      last_name: registerInput.last_name,
       email: registerInput.email,
       password: registerInput.password,
     }
@@ -62,15 +64,16 @@ function Register() {
                               <div className="rowBts mb-3">
                                   <div className="col-md-6">
                                       <div className="form-floating mb-3 mb-md-0">
-                                          <input name="name" onChange={handleInput} value={registerInput.name} className="form-control" id="inputFirstName" type="text" placeholder="Enter your first name" />
+                                          <input name="first_name" onChange={handleInput} value={registerInput.first_name} className="form-control" id="inputFirstName" type="text" placeholder="Enter your first name" />
                                           <label htmlFor="inputFirstName">First name</label>
-                                          <span>{registerInput.error_list.name}</span>
+                                          <span>{registerInput.error_list.first_name}</span>
                                       </div>
                                   </div>
                                   <div className="col-md-6">
                                       <div className="form-floating">
-                                          <input className="form-control" id="inputLastName" type="text" placeholder="Enter your last name" />
+                                          <input name="last_name" onChange={handleInput} value={registerInput.last_name} className="form-control" id="inputLastName" type="text" placeholder="Enter your last name" />
                                           <label htmlFor="inputLastName">Last name</label>
+                                          <span>{registerInput.error_list.last_name}</span>
                                       </div>
                                   </div>
                               </div>
