@@ -35,9 +35,36 @@ function AdminPrivateRoute({...rest}) {
     return Promise.reject(err);
   });
 
+  axios.interceptors.response.use(function (response) {
+    return response;
+  }, function (error){
+    if(error.response.status === 403){
+      Swal.fire({
+        title: "Forbidden",
+        text: error.response.data.message,
+        icon: "warning",
+      });
+      history.push("/");
+      return Promise.resolve({ redirectTo: "/" });
+    }
+    else if(error.response.status === 404)
+    {
+      Swal.fire({
+        title: "404 Error",
+        text: "URL/Page not found",
+        icon: "warning",
+      });
+      history.push("/");
+      return Promise.resolve({ redirectTo: "/" });
+    }
+    return Promise.reject(error);
+  });
+
   if(loading) {
     return <h1>loading...</h1>
   }
+
+
 
   return (
     <Route {...rest}

@@ -39,7 +39,12 @@ function Login() {
             text: res.data.message,
             icon: "success"
           });
-          history.push("/")
+          if(res.data.role === 'admin'){
+            history.push("/admin/dashboard");
+          }
+          else {
+            history.push("/");
+          }
         }
         else if(res.data.status === 401)
         {
