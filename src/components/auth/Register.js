@@ -14,8 +14,10 @@ function Register() {
     last_name: '',
     email: '',
     password: '',
+    confirmPassword: '',
     error_list: [],
   });
+  const [passwordMatch, setPasswordMatch] = useState(true);
 
   const handleInput = (e) => {
     e.persist();
@@ -25,30 +27,37 @@ function Register() {
   const registerSubmit = (e) => {
     e.preventDefault();
 
-    const data = {
-      first_name: registerInput.first_name,
-      last_name: registerInput.last_name,
-      email: registerInput.email,
-      password: registerInput.password,
-    }
+    if (registerInput.password === registerInput.confirmPassword) {
 
-    axios.get('http://localhost:8000/sanctum/csrf-cookie').then(response => {
-      axios.post('http://localhost:8000/api/register', data).then(res => {
-        if(res.data.status === 200){
-          localStorage.setItem('auth_token', res.data.token);
-          localStorage.setItem('auth_name', res.data.username);
-          Swal.fire({
-            title: "Succes",
-            text: res.data.message,
-            icon: "success"
-          });
-          history.push("/")
-        }else {
-          setRegisterInput({...registerInput, error_list: res.data.validation_errors })
-        }
+      const data = {
+        first_name: registerInput.first_name,
+        last_name: registerInput.last_name,
+        email: registerInput.email,
+        password: registerInput.password,
+      }
+
+      axios.get('http://localhost:8000/sanctum/csrf-cookie').then(response => {
+        axios.post('http://localhost:8000/api/register', data).then(res => {
+          if(res.data.status === 200){
+            localStorage.setItem('auth_token', res.data.token);
+            localStorage.setItem('auth_name', res.data.username);
+            Swal.fire({
+              title: "Succes",
+              text: res.data.message,
+              icon: "success"
+            });
+            history.push("/")
+          }else {
+            setRegisterInput({...registerInput, error_list: res.data.validation_errors })
+          }
+        });
       });
-    });
-
+    } 
+    else
+    {
+      console.error('Parolele nu se potrivesc');
+      setPasswordMatch(false);
+    }
 
   }
   return (
@@ -66,34 +75,35 @@ function Register() {
                                       <div className="form-floating mb-3 mb-md-0">
                                           <input name="first_name" onChange={handleInput} value={registerInput.first_name} className="form-control" id="inputFirstName" type="text" placeholder="Enter your first name" />
                                           <label htmlFor="inputFirstName">First name</label>
-                                          <span>{registerInput.error_list.first_name}</span>
+                                          <span style={{ color: 'red', fontSize: '0.8rem' }}>{registerInput.error_list.first_name}</span>
                                       </div>
                                   </div>
                                   <div className="col-md-6">
                                       <div className="form-floating">
                                           <input name="last_name" onChange={handleInput} value={registerInput.last_name} className="form-control" id="inputLastName" type="text" placeholder="Enter your last name" />
                                           <label htmlFor="inputLastName">Last name</label>
-                                          <span>{registerInput.error_list.last_name}</span>
+                                          <span style={{ color: 'red', fontSize: '0.8rem' }}>{registerInput.error_list.last_name}</span>
                                       </div>
                                   </div>
                               </div>
                               <div className="form-floating mb-3">
                                   <input name="email" onChange={handleInput} value={registerInput.email} className="form-control" id="inputEmail" type="email" placeholder="name@example.com" />
                                   <label htmlFor="inputEmail">Email address</label>
-                                  <span>{registerInput.error_list.email}</span>
+                                  <span style={{ color: 'red', fontSize: '0.8rem' }}>{registerInput.error_list.email}</span>
                               </div>
                               <div className="rowBts mb-3">
                                   <div className="col-md-6">
                                       <div className="form-floating mb-3 mb-md-0">
                                           <input name="password" onChange={handleInput} value={registerInput.password} className="form-control" id="inputPassword" type="password" placeholder="Create a password" />
                                           <label htmlFor="inputPassword">Password</label>
-                                          <span>{registerInput.error_list.password}</span>
+                                          <span style={{ color: 'red', fontSize: '0.8rem' }}>{registerInput.error_list.password}</span>
                                       </div>
                                   </div>
                                   <div className="col-md-6">
                                       <div className="form-floating mb-3 mb-md-0">
-                                          <input className="form-control" id="inputPasswordConfirm" type="password" placeholder="Confirm password" />
+                                          <input name="confirmPassword" onChange={handleInput} value={registerInput.confirmPassword} className="form-control" id="inputPasswordConfirm" type="password" placeholder="Confirm password" />
                                           <label htmlFor="inputPasswordConfirm">Confirm Password</label>
+                                          {!passwordMatch && <p style={{ color: 'red', fontSize: '0.8rem' }}>Parolele nu se potrivesc!</p>}
                                       </div>
                                   </div>
                               </div>
