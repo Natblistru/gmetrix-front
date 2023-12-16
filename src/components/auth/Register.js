@@ -18,6 +18,7 @@ function Register() {
     error_list: [],
   });
   const [passwordMatch, setPasswordMatch] = useState(true);
+  const [passwordFocused, setPasswordFocused] = useState(false);
 
   const handleInput = (e) => {
     e.persist();
@@ -38,7 +39,7 @@ function Register() {
 
       axios.get('http://localhost:8000/sanctum/csrf-cookie').then(response => {
         axios.post('http://localhost:8000/api/register', data).then(res => {
-          if(res.data.status === 200){
+          if(res.data.status === 201){
             localStorage.setItem('auth_token', res.data.token);
             localStorage.setItem('auth_name', res.data.username);
             Swal.fire({
@@ -60,6 +61,15 @@ function Register() {
     }
 
   }
+
+  const handleFocus = () => {
+    setPasswordFocused(true)
+  };
+
+  const handleBlur = () => {
+    setPasswordFocused(false)
+  };
+
   return (
     <div>
       <Navbar />
@@ -94,8 +104,8 @@ function Register() {
                               <div className="rowBts mb-3">
                                   <div className="col-md-6">
                                       <div className="form-floating mb-3 mb-md-0">
-                                          <input name="password" onChange={handleInput} value={registerInput.password} className="form-control" id="inputPassword" type="password" placeholder="Create a password" />
-                                          <label htmlFor="inputPassword">Password</label>
+                                          <input name="password" onChange={handleInput} value={registerInput.password} className="form-control" onFocus={handleFocus} onBlur={handleBlur} id="inputPassword" type="password" placeholder="Create a password" />
+                                          <label htmlFor="inputPassword">{passwordFocused ? 'Password (at least 8 characters)': 'Password'}</label>
                                           <span style={{ color: 'red', fontSize: '0.8rem' }}>{registerInput.error_list.password}</span>
                                       </div>
                                   </div>

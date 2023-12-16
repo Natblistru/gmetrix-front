@@ -29,10 +29,11 @@ import ReducerData from "./components/context/ReducerData.js";
 import MasterLayout from "./layouts/admin/MasterLayout.js";
 import Login from "./components/auth/Login.js";
 import Register from "./components/auth/Register.js";
-import Password from "./components/auth/Password.js";
+import ForgotPassword from "./components/auth/ForgotPassword.js";
 import AdminPrivateRoute from "./routes/AdminPrivateRoute.js";
 import Page403 from "./components/errors/Page403.js";
 import Page404 from "./components/errors/Page404.js";
+import ResetPassword from "./components/auth/ResetPassword.js";
 
 
 const FlipCardsWithRouter = withRouter(FlipCards);
@@ -73,7 +74,8 @@ function App() {
               <Route path="/register">
                 {localStorage.getItem('auth_token') ? <Redirect to="/" /> : <Register />}
               </Route>
-              <Route path="/password" component={Password} />  
+              <Route path="/forgot-password" component={ForgotPassword} />  
+              <Route path="/reset-password/:token" component={ResetPassword} /> 
               {/* <Route path="/admin" name="Admin" render={(props) => <MasterLayout {...props}/>} /> */}
               <AdminPrivateRoute path="/admin" name="Admin" />
               <Route path="/istoria/:address/examen-subiect1" component={ExamenSubect1} />

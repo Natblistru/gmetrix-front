@@ -87,7 +87,7 @@ function Login() {
                                   <label className="form-check-label" htmlFor="inputRememberPassword">Remember Password</label>
                               </div>
                               <div className="d-flex align-items-center justify-content-between mt-4 mb-0">
-                                  <Link className="small" to="/password">Forgot Password?</Link>
+                                  <Link className="small" to="/forgot-password">Forgot Password?</Link>
                                   <button type="submit" className="btnBts btn-primary" >Login</button>
                               </div>
                           </form>
