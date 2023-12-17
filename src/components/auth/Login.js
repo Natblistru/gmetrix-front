@@ -82,10 +82,10 @@ function Login() {
                                   <label htmlFor="inputPassword">Password</label>
                                   <span>{loginInput.error_list.password}</span>
                               </div>
-                              <div className="form-check mb-3">
+                              {/* <div className="form-check mb-3">
                                   <input className="form-check-input" id="inputRememberPassword" type="checkbox" value="" />
                                   <label className="form-check-label" htmlFor="inputRememberPassword">Remember Password</label>
-                              </div>
+                              </div> */}
                               <div className="d-flex align-items-center justify-content-between mt-4 mb-0">
                                   <Link className="small" to="/forgot-password">Forgot Password?</Link>
                                   <button type="submit" className="btnBts btn-primary" >Login</button>

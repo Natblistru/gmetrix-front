@@ -4,7 +4,7 @@ import Navbar from '../layouts/Navbar';
 
 import { Link } from 'react-router-dom';
 
-function Password() {
+function ForgotPassword() {
 
   const [forgotInput, setForgotInput] = useState({
     email: '',
@@ -92,4 +92,4 @@ function Password() {
   )
 }
 
-export default Password;
+export default ForgotPassword;
