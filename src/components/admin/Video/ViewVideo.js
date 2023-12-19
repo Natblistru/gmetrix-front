@@ -26,19 +26,25 @@ function ViewVideo() {
   }
   else
   {
+    let prodStatus = '';
     viewVideo_HTMLTABLE = 
     videoList.map((item) => {
+      if(item.status == 0) {
+        prodStatus = "Shown";
+      }
+      else if(item.status == 1) {
+        prodStatus = "Hidden";
+      }
       return (
         <tr key={item.id}>
           <td>{item.id}</td>
           <td>{item.title}</td>
           <td>{item.source}</td>
-          <td>{item.status}</td>
           <td>
             <Link to={`/admin/edit-video/${item.id}`} className="btnBts btn-success btn-small">Edit</Link>
           </td>
           <td>
-            <button type="button" className="btnBts btn-danger btn-small">Delete</button>
+            {prodStatus}
           </td>
         </tr>
       )
@@ -60,9 +66,8 @@ function ViewVideo() {
               <th>ID</th>
               <th>Title</th>
               <th>Source</th>
-              <th>Status</th>
               <th>Edit</th>
-              <th>Delete</th>
+              <th>Status</th>
             </tr>
           </thead>
           <tbody>
