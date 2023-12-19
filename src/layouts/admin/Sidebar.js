@@ -46,6 +46,17 @@ const Sidebar = () => {
                                 <Link className="nav-linkSide" to="password.html">Forgot Password</Link>
                             </nav>
                         </div>
+                        {/* Video */}
+                        <Link className="nav-linkSide collapsed" to="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseVideo" aria-expanded="false" aria-controls="pagesCollapseVideo">
+                            Videos
+                            <div className="sb-sidenav-collapse-arrow"><i className="fas fa-angle-down"></i></div>
+                        </Link>
+                        <div className="collapse" id="pagesCollapseVideo" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+                            <nav className="sb-sidenav-menu-nested navSide">
+                                <Link className="nav-linkSide" to="/admin/add-video">Add Video</Link>
+                                <Link className="nav-linkSide" to="/admin/view-video">Videos</Link>
+                            </nav>
+                        </div>
                         <Link className="nav-linkSide collapsed" to="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
                             Error
                             <div className="sb-sidenav-collapse-arrow"><i className="fas fa-angle-down"></i></div>
