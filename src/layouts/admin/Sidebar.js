@@ -55,6 +55,7 @@ const Sidebar = () => {
                             <nav className="sb-sidenav-menu-nested navSide">
                                 <Link className="nav-linkSide" to="/admin/add-video">Add Video</Link>
                                 <Link className="nav-linkSide" to="/admin/view-video">Videos</Link>
+                                <Link className="nav-linkSide" to="/admin/add-breakpoint">Add Breakpoint</Link>
                             </nav>
                         </div>
                         <Link className="nav-linkSide collapsed" to="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
