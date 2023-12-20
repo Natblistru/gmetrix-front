@@ -59,6 +59,17 @@ const Sidebar = () => {
                                 <Link className="nav-linkSide" to="/admin/view-breakpoint">Breakpoints</Link>
                             </nav>
                         </div>
+                        {/* Teacher's */}
+                        <Link className="nav-linkSide collapsed" to="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseTeachers" aria-expanded="false" aria-controls="pagesCollapseTeachers">
+                            Teacher's
+                            <div className="sb-sidenav-collapse-arrow"><i className="fas fa-angle-down"></i></div>
+                        </Link>
+                        <div className="collapse" id="pagesCollapseTeachers" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+                            <nav className="sb-sidenav-menu-nested navSide">
+                                <Link className="nav-linkSide" to="/admin/add-teacher-topic">Add Teacher's Topics</Link>
+                                <Link className="nav-linkSide" to="/admin/view-teacher-topic">Teacher's Topics</Link>
+                            </nav>
+                        </div>
                         <Link className="nav-linkSide collapsed" to="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
                             Error
                             <div className="sb-sidenav-collapse-arrow"><i className="fas fa-angle-down"></i></div>
