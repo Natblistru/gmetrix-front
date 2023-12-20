@@ -82,6 +82,7 @@ function Breakpoint() {
         title: excelData[index]?.title || '', 
         time: excelData[index]?.time || '',
         video_id: excelData[index]?.video_id || '',
+        video_name: excelData[index]?.video_name || '',
         status: excelData[index]?.status || '',
       };
       return updatedAdditionalData;
@@ -99,50 +100,80 @@ function Breakpoint() {
     if (excelData && excelData.length > 0) {
       const selectedData = additionalData.filter(item => item.chosen);
       if (selectedData.length > 0) {
-        const formDataArray = selectedData.map(selectedItem => {
-          const formData = new FormData();
-          formData.append('name', selectedItem.title);
-          formData.append('time', selectedItem.time);
-          formData.append('video_id', selectedItem.video_id );
-          formData.append('status', 0); 
-          return formData;
-        });
-        console.log(formDataArray)
-        // Trimitem fiecare set de date către server utilizând axios.all
-        axios.all(formDataArray.map(formData => axios.post('http://localhost:8000/api/store-video', formData)))
-            .then(axios.spread((...responses) => {
-              const successResponses = responses.filter(response => response.data.status === 201);
-              const errorResponses = responses.filter(response => response.data.status === 422);
-              console.log(responses)
-              console.log(successResponses.length)              
-              if (successResponses.length > 0) {
-                Swal.fire({
-                  title: "Success",
-                  text: `Successfully processed ${successResponses.length} out of ${responses.length} requests.`,
-                  icon: "success"
-                });
-              }
 
-              errorResponses.forEach(response => {
-                Swal.fire({
-                  title: "Error",
-                  text: Object.values(response.data.errors).flat().join(' '),
-                  icon: "error"
-                });
-              });
-              setExcelData(null);
-              setAdditionalData([]);
-              setExcelFile(null);
-              document.getElementById('fileExcel').value = '';
-            }))
-            .catch(error => {
-              console.error(error);
+        let notFoundTitles = [];
+
+        selectedData.forEach((selectedItem) => {
+          const foundVideo = videoList.find((video) => video.title === selectedItem.video_name);
+        
+          if (foundVideo) {
+            selectedItem.video_id = foundVideo.id;
+          }
+          else {
+            notFoundTitles.push(selectedItem.video_name);
+          }
         });
+
+        if(notFoundTitles.length === 0) {
+
+          console.log(selectedData)
+          const formDataArray = selectedData.map(selectedItem => {
+            const formData = new FormData();
+            formData.append('name', selectedItem.title);
+            formData.append('time', selectedItem.time);
+            formData.append('video_id', selectedItem.video_id );
+            formData.append('status', 0); 
+            return formData;
+          });
+          console.log(formDataArray)
+          // Trimitem fiecare set de date către server utilizând axios.all
+          axios.all(formDataArray.map(formData => axios.post('http://localhost:8000/api/store-breakpoint', formData)))
+              .then(axios.spread((...responses) => {
+                const successResponses = responses.filter(response => response.data.status === 201);
+                const errorResponses = responses.filter(response => response.data.status === 422);
+                if (successResponses.length > 0) {
+                  Swal.fire({
+                    title: "Success",
+                    text: `Successfully processed ${successResponses.length} out of ${responses.length} requests.`,
+                    icon: "success"
+                  });
+                }
+
+                errorResponses.forEach(response => {
+                  Swal.fire({
+                    title: "Error",
+                    text: Object.values(response.data.errors).flat().join(' '),
+                    icon: "error"
+                  });
+                });
+                setExcelData(null);
+                setAdditionalData([]);
+                setExcelFile(null);
+                document.getElementById('fileExcel').value = '';
+              }))
+              .catch(error => {
+                console.error(error);
+          });
+        } else {
+          Swal.fire({
+            title: "Unfound video titles:",
+            text: Object.values(notFoundTitles).flat().join(' '),
+            icon: "error"
+          });
+        }
       } else {
-        console.log('Niciun rând bifat pentru a fi adăugat în baza de date.');
+        Swal.fire({
+          title: "Error",
+          text: 'Niciun rând bifat pentru a fi adăugat în baza de date.',
+          icon: "error"
+        });
       }
     } else {
-      console.log('Nu există date din Excel disponibile.');
+      Swal.fire({
+        title: "Error",
+        text: 'Nu există date din Excel disponibile.',
+        icon: "error"
+      });
   }
 };
   const [errorList, setErrors] = useState([]);
