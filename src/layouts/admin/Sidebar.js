@@ -56,6 +56,7 @@ const Sidebar = () => {
                                 <Link className="nav-linkSide" to="/admin/add-video">Add Video</Link>
                                 <Link className="nav-linkSide" to="/admin/view-video">Videos</Link>
                                 <Link className="nav-linkSide" to="/admin/add-breakpoint">Add Breakpoint</Link>
+                                <Link className="nav-linkSide" to="/admin/view-breakpoint">Breakpoints</Link>
                             </nav>
                         </div>
                         <Link className="nav-linkSide collapsed" to="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">

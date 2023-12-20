@@ -4,6 +4,8 @@ import Video from "../components/admin/Video/Video.js";
 import ViewVideo from "../components/admin/Video/ViewVideo.js";
 import EditVideo from "../components/admin/Video/EditVideo.js";
 import Breakpoint from "../components/admin/Video/Breakpoint.js";
+import ViewBreakpoint from "../components/admin/Video/ViewBreakpoint.js";
+import EditBreakpoint from "../components/admin/Video/EditBreakpoint.js";
 
 const routes = [
   { path: '/admin', exact: true, name: 'Admin'},
@@ -14,6 +16,8 @@ const routes = [
   { path: '/admin/edit-video/:id', exact: true, name: 'EditVideo', component: EditVideo }, 
 
   { path: '/admin/add-breakpoint', exact: true, name: 'Breakpoint', component: Breakpoint },  
+  { path: '/admin/view-breakpoint', exact: true, name: 'ViewBreakpoint', component: ViewBreakpoint },
+  { path: '/admin/edit-breakpoint/:id', exact: true, name: 'EditBreakpoint', component: EditBreakpoint },  
 ];
 
 export default routes;

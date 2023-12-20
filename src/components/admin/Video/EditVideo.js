@@ -73,7 +73,7 @@ function EditVideo(props) {
       {
         Swal.fire({
           title: "All fields are mandatory",
-          text: res.data.message,
+          text: Object.values(res.data.errors).flat().join(' '),
           icon: "error",
         });
         setErrors(res.data.errors);
@@ -103,9 +103,9 @@ function EditVideo(props) {
           <li className="nav-item" role="presentation">
             <button className="nav-linkSide active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Home</button>
           </li>
-          <li className="nav-item" role="presentation">
+          {/* <li className="nav-item" role="presentation">
             <button className="nav-linkSide" id="seo-tags-tab" data-bs-toggle="tab" data-bs-target="#seo-tags" type="button" role="tab" aria-controls="seo-tags" aria-selected="false">SEO Tags</button>
-          </li>
+          </li> */}
         </ul>
         <div className="tab-content" id="myTabContent">
           <div className="tab-pane card-body border fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
@@ -124,7 +124,7 @@ function EditVideo(props) {
               <input type="checkbox" name="status" onChange={handleCheckbox} defaultChecked={allCheckboxes.status == 1 ? true: false}/> (0=shown, 1=hidden)
             </div>
           </div>
-          <div className="tab-pane card-body border fade" id="seo-tags" role="tabpanel" aria-labelledby="seo-tags-tab">b</div>
+          {/* <div className="tab-pane card-body border fade" id="seo-tags" role="tabpanel" aria-labelledby="seo-tags-tab">b</div> */}
         </div>
         <button type="submit" className="btnBts btn-success px-4 m-3 float-end">Update</button>
       </form>
