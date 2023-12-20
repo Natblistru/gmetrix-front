@@ -7,6 +7,8 @@ import Breakpoint from "../components/admin/Video/Breakpoint.js";
 import ViewBreakpoint from "../components/admin/Video/ViewBreakpoint.js";
 import EditBreakpoint from "../components/admin/Video/EditBreakpoint.js";
 import ViewTeacherTopic from "../components/admin/Teacher/ViewTeacherTopic.js";
+import AddTeacherTopic from "../components/admin/Teacher/AddTeacherTopic.js";
+import EditTeacherTopic from "../components/admin/Teacher/EditTeacherTopic.js";
 
 const routes = [
   { path: '/admin', exact: true, name: 'Admin'},
@@ -21,6 +23,8 @@ const routes = [
   { path: '/admin/edit-breakpoint/:id', exact: true, name: 'EditBreakpoint', component: EditBreakpoint },  
 
   { path: '/admin/view-teacher-topic', exact: true, name: 'ViewTeacherTopic', component: ViewTeacherTopic },
+  { path: '/admin/add-teacher-topic', exact: true, name: 'AddTeacherTopic', component: AddTeacherTopic },
+  { path: '/admin/edit-teacher-topic/:id', exact: true, name: 'EditTeacherTopic', component: EditTeacherTopic },
 ];
 
 export default routes;
