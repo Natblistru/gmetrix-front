@@ -64,8 +64,8 @@ const Sidebar = () => {
                         </Link>
                         <div className="collapse" id="pagesCollapseTeachers" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
                             <nav className="sb-sidenav-menu-nested navSide">
-                                <Link className="nav-linkSide" to="/admin/add-teacher-topic">Add Teacher's Topics</Link>
                                 <Link className="nav-linkSide" to="/admin/view-teacher-topic">Teacher's Topics</Link>
+                                <Link className="nav-linkSide" to="/admin/view-teacher-video">Teacher's Videos</Link>
                             </nav>
                         </div>
                         <Link className="nav-linkSide collapsed" to="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">

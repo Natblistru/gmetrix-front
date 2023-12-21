@@ -9,6 +9,10 @@ import EditBreakpoint from "../components/admin/Video/EditBreakpoint.js";
 import ViewTeacherTopic from "../components/admin/Teacher/ViewTeacherTopic.js";
 import AddTeacherTopic from "../components/admin/Teacher/AddTeacherTopic.js";
 import EditTeacherTopic from "../components/admin/Teacher/EditTeacherTopic.js";
+import ViewTeacherVideo from "../components/admin/Teacher/ViewTeacherVideo.js";
+import AddTeacherVideo from "../components/admin/Teacher/AddTeacherVideo.js";
+import EditTeacherVideo from "../components/admin/Teacher/EditTeacherVideo.js";
+
 
 const routes = [
   { path: '/admin', exact: true, name: 'Admin'},
@@ -25,6 +29,11 @@ const routes = [
   { path: '/admin/view-teacher-topic', exact: true, name: 'ViewTeacherTopic', component: ViewTeacherTopic },
   { path: '/admin/add-teacher-topic', exact: true, name: 'AddTeacherTopic', component: AddTeacherTopic },
   { path: '/admin/edit-teacher-topic/:id', exact: true, name: 'EditTeacherTopic', component: EditTeacherTopic },
+
+  { path: '/admin/view-teacher-video', exact: true, name: 'ViewTeacherVideo', component: ViewTeacherVideo }, 
+  { path: '/admin/add-teacher-video', exact: true, name: 'AddTeacherVideo', component: AddTeacherVideo }, 
+  { path: '/admin/edit-teacher-video/:id', exact: true, name: 'EditTeacherVideo', component: EditTeacherVideo },
+
 ];
 
 export default routes;

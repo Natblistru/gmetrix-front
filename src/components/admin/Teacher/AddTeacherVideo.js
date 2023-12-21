@@ -1,23 +1,42 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'; 
 import * as XLSX from 'xlsx';
-import InputMask from 'react-input-mask';
 import { Link } from 'react-router-dom';
 
 
 import Swal from 'sweetalert2'
 
-function Breakpoint() {
+function AddTeacherVideo() {
 
+  const [learningProgramList, setLearningProgramList] = useState([]);
+  const [themeList, setThemeList] = useState([]);
   const [videoList, setVideoList] = useState([]);
-
+  const [teacherList, setTeacherList] = useState([]);
+  
   useEffect(() => {
+
+    axios.get('http://localhost:8000/api/all-learningPrograms').then(res=>{
+      if(res.data.status === 200){
+        setLearningProgramList(res.data.learningProgram);
+      }
+    });
+
+    axios.get('http://localhost:8000/api/all-themeLearningPrograms').then(res=>{
+      if(res.data.status === 200){
+        setThemeList(res.data.theme);
+      }
+    });
 
     axios.get('http://localhost:8000/api/all-videos').then(res=>{
       if(res.data.status === 200){
         setVideoList(res.data.video);
       }
+    });
 
+    axios.get('http://localhost:8000/api/all-teachers').then(res=>{
+      if(res.data.status === 200){
+        setTeacherList(res.data.teachers);
+      }
     });
 
   },[])
@@ -79,10 +98,13 @@ function Breakpoint() {
       const updatedAdditionalData = [...prevAdditionalData];
       updatedAdditionalData[index] = {
         chosen: isChecked,
-        title: excelData[index]?.title || '', 
-        time: excelData[index]?.time || '',
-        video_id: excelData[index]?.video_id || '',
         video_name: excelData[index]?.video_name || '',
+        video_id: excelData[index]?.video_id || '',
+        teacher_name: excelData[index]?.teacher_name || '',      
+        teacher_id: excelData[index]?.teacher_id || '',
+        theme_learning_program_name: excelData[index]?.theme_learning_program_name || '',
+        theme_learning_program_id: excelData[index]?.theme_learning_program_id || '',    
+        learning_program_name: excelData[index]?.learning_program_name || '',    
         status: excelData[index]?.status || '',
       };
       return updatedAdditionalData;
@@ -95,39 +117,65 @@ function Breakpoint() {
     });
   };
 
-  const submitBreakpoints = (e) => {
+  const submitTeacherVideos = (e) => {
     e.preventDefault();
     if (excelData && excelData.length > 0) {
       const selectedData = additionalData.filter(item => item.chosen);
       if (selectedData.length > 0) {
 
-        let notFoundTitles = [];
+        let notFoundTeachers = [];
+        let notFoundVideos = [];
+        let notFoundThems = [];   
+        let notFoundprograms = [];      
 
         selectedData.forEach((selectedItem) => {
-          const foundVideo = videoList.find((video) => video.title.trim() === selectedItem.video_name.trim());
-        
+          const foundTeacher = teacherList.find((teacher) => teacher.name.trim() == selectedItem.teacher_name.trim());
+          const foundVideo = videoList.find((video) => video.title.trim() == selectedItem.video_name.trim());
+          const foundTheme = themeList.find((theme) => theme.name.trim() == selectedItem.theme_learning_program_name.trim());
+          const foundProgram = learningProgramList.find((program) => program.name.trim() == selectedItem.learning_program_name.trim());
+          console.log(learningProgramList);
+          if (foundTeacher) {
+            selectedItem.teacher_id = foundTeacher.id;
+          }
+          else {
+            notFoundTeachers.push(selectedItem.teacher_name);
+          }
           if (foundVideo) {
             selectedItem.video_id = foundVideo.id;
           }
           else {
-            notFoundTitles.push(selectedItem.video_name);
+            notFoundVideos.push(selectedItem.video_name);
           }
+          if (foundTheme) {
+            selectedItem.theme_learning_program_id = foundTheme.id;
+          }
+          else {
+            notFoundThems.push(selectedItem.theme_learning_program_name);
+          }
+          if (!foundProgram) {
+            notFoundprograms.push(selectedItem.learning_program_name);
+          }
+
+
         });
 
-        if(notFoundTitles.length === 0) {
-
+        if(notFoundTeachers.length === 0  && 
+           notFoundVideos.length === 0 && 
+           notFoundThems.length === 0 && 
+           notFoundprograms.length === 0)  {
           console.log(selectedData)
           const formDataArray = selectedData.map(selectedItem => {
             const formData = new FormData();
-            formData.append('name', selectedItem.title);
-            formData.append('time', selectedItem.time);
+            formData.append('name', `${selectedItem.video_name} (${selectedItem.learning_program_name}, ${selectedItem.teacher_name})`);
+            formData.append('teacher_id', selectedItem.teacher_id);
             formData.append('video_id', selectedItem.video_id );
+            formData.append('theme_learning_program_id', selectedItem.theme_learning_program_id);
             formData.append('status', 0); 
             return formData;
           });
           console.log(formDataArray)
           // Trimitem fiecare set de date către server utilizând axios.all
-          axios.all(formDataArray.map(formData => axios.post('http://localhost:8000/api/store-breakpoint', formData)))
+          axios.all(formDataArray.map(formData => axios.post('http://localhost:8000/api/store-teacherVideo', formData)))
               .then(axios.spread((...responses) => {
                 const successResponses = responses.filter(response => response.data.status === 201);
                 const errorResponses = responses.filter(response => response.data.status === 422);
@@ -138,7 +186,6 @@ function Breakpoint() {
                     icon: "success"
                   });
                 }
-
                 errorResponses.forEach(response => {
                   Swal.fire({
                     title: "Error",
@@ -155,11 +202,34 @@ function Breakpoint() {
                 console.error(error);
           });
         } else {
-          Swal.fire({
-            title: "Unfound video titles:",
-            text: Object.values(notFoundTitles).flat().join(' '),
-            icon: "error"
-          });
+          if(notFoundTeachers.length > 0 ) {
+            Swal.fire({
+              title: "Unfound teacher name:",
+              text: Object.values(notFoundTeachers).flat().join(' '),
+              icon: "error"
+            });
+          }
+          if(notFoundVideos.length > 0 ){
+            Swal.fire({
+              title: "Unfound video name:",
+              text: Object.values(notFoundVideos).flat().join(' '),
+              icon: "error"
+            });
+          }
+          if(notFoundThems.length > 0 ){
+            Swal.fire({
+              title: "Unfound theme name:",
+              text: Object.values(notFoundThems).flat().join(' '),
+              icon: "error"
+            });
+          }
+          if(notFoundprograms.length > 0 ){
+            Swal.fire({
+              title: "Unfound program name:",
+              text: Object.values(notFoundprograms).flat().join(' '),
+              icon: "error"
+            });
+          }
         }
       } else {
         Swal.fire({
@@ -174,14 +244,34 @@ function Breakpoint() {
         text: 'Nu există date din Excel disponibile.',
         icon: "error"
       });
-  }
-};
+    }
+  };
+
   const [errorList, setErrors] = useState([]);
-  const [breakpointInput, setBreakpointInput] = useState({
-    title: '',
-    time: '',
+  const [teacherVideoInput, setTeacherVideoInput] = useState({
+    learning_program_id: '',
+    theme_learning_program_id: '',
     video_id: '',
+    teacher_id: '',
+    name: '',
   })
+
+  useEffect(() => {
+    const selectedTopic = videoList.find((video) => video.id == teacherVideoInput.video_id);
+    const videoName = selectedTopic ? selectedTopic.title : '';
+    const selectedTeacher = teacherList.find((teacher) => teacher.id == teacherVideoInput.teacher_id);
+    const teacherName = selectedTeacher ? selectedTeacher.name : '';
+    const selectedStudyLevel = learningProgramList.find((program) => program.id == teacherVideoInput.learning_program_id);
+    const studyLevelName = selectedStudyLevel ? selectedStudyLevel.name : '';
+
+
+    const concatenatedName =
+    videoName !== '' && teacherName !== '' && studyLevelName !== '' ? `${videoName} (${studyLevelName}, ${teacherName})` : '';
+    setTeacherVideoInput((prevInput) => ({
+      ...prevInput,
+      name: concatenatedName,
+    }));
+  }, [teacherVideoInput.video_id, teacherVideoInput.teacher_id], teacherVideoInput.learning_program_id);
 
   const [allCheckboxes, setAllCheckboxes] = useState({
     status: false,
@@ -189,7 +279,7 @@ function Breakpoint() {
 
   const handleInput = (e) => {
     e.persist();
-    setBreakpointInput({...breakpointInput, [e.target.name]: e.target.value})
+    setTeacherVideoInput({...teacherVideoInput, [e.target.name]: e.target.value})
   }
 
   const handleCheckbox = (e) => {
@@ -197,18 +287,19 @@ function Breakpoint() {
     setAllCheckboxes({...allCheckboxes, [e.target.name]: e.target.checked})
   }
 
-  const submitBreakpoint = (e) => {
+  const submitTeacherVideo = (e) => {
     e.preventDefault();
 
     const formData = new FormData();
-    formData.append('name',breakpointInput.title );
-    formData.append('time',breakpointInput.time );
-    formData.append('video_id',breakpointInput.video_id );
+    formData.append('name',teacherVideoInput.name );
+    formData.append('teacher_id',teacherVideoInput.teacher_id );
+    formData.append('video_id',teacherVideoInput.video_id );
+    formData.append('theme_learning_program_id',teacherVideoInput.theme_learning_program_id );
     formData.append('status',allCheckboxes.status == true ? 1 : 0);
 
     console.log(formData)
 
-    axios.post(`http://localhost:8000/api/store-breakpoint`, formData).then(res => {
+    axios.post(`http://localhost:8000/api/store-teacherVideo`, formData).then(res => {
       if(res.data.status === 201)
       {
         Swal.fire({
@@ -216,10 +307,12 @@ function Breakpoint() {
           text: res.data.message,
           icon: "success"
         });
-        setBreakpointInput({
-          title: '',
-          time: '',
+        setTeacherVideoInput({
+          learning_program_id: '',
+          theme_learning_program_id: '',
           video_id: '',
+          teacher_id: '',
+          name: '',
         });
         setAllCheckboxes({
           status: false,
@@ -240,8 +333,8 @@ function Breakpoint() {
 
   return (
     <div className="container-fluid px4">
-      <h2 className="m-3">Add Breakpoint
-        <Link to="/admin/view-breakpoint" type="button" className="btnBts btn-primary text-white px-4 m-3 float-end">BACK to List</Link>
+      <h2 className="m-3">Add Teacher Video
+        <Link to="/admin/view-teacher-video" type="button" className="btnBts btn-primary text-white px-4 m-3 float-end">BACK to List</Link>
       </h2>
 
         <ul className="navSide nav-tabs" id="myTab" role="tablist">
@@ -255,42 +348,84 @@ function Breakpoint() {
         <div className="tab-content" id="myTabContent">
         
           <div className="tab-pane card-body border fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-          <form className="form-group custom-form" onSubmit={submitBreakpoint} >
-            <div className="form-group m-3">
-              <label>Title</label>
-              <input type="text" name="title" onChange={handleInput} value={breakpointInput.title} className="form-control" />
-              <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.title}</span>
-            </div>
-            <div className="rowBts">
-              <div className="col-md-6">
+          <form className="form-group custom-form" onSubmit={submitTeacherVideo} >
+
+          <div className="rowBts">
+              <div className="col-md-4">
                 <div className="form-group m-3">
-                  <label>Time</label>
-                  <InputMask
-                      name="time"
-                      mask="99:99:99"
-                      maskChar="_"
-                      placeholder="HH:MM:SS"
-                      className="form-control"
-                      onChange={handleInput} 
-                      value={breakpointInput.time}
-                    />
-                  <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.time}</span>
-                </div>
-              </div>  
-              <div className="col-md-6">          
-                <div className="form-group m-3">
-                  <label>Select Video</label>
-                  <select name="video_id" onChange={handleInput} value={breakpointInput.video_id} className="form-control">  
-                    <option>Select Video</option>
+                  <label>Learn Program</label>
+                  <select name="learning_program_id" onChange={handleInput} value={teacherVideoInput.learning_program_id} className="form-control">  
+                    <option>Select program</option>
                     {
-                      videoList.map((item)=> {
+                      learningProgramList.map((item)=> {
                         return (
-                          <option value={item.id} key={item.id}>{item.title}</option>
+                          <option value={item.id} key={item.id}>{item.name}</option>
                         )
                       })
                     }
                   </select>            
+                  <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.learning_program_id}</span>
+                </div>
+              </div>  
+              <div className="col-md-8">          
+                <div className="form-group m-3">
+                  <label>Theme</label>
+                  <select name="theme_learning_program_id" onChange={handleInput} value={teacherVideoInput.theme_learning_program_id} className="form-control">  
+                    <option>Select Theme</option>
+                    {themeList
+                      .filter((item) => item.learning_program_id == teacherVideoInput.learning_program_id)
+                      .map((item) => (
+                        <option value={item.id} key={item.id}>
+                          {item.name}
+                        </option>
+                    ))}
+                  </select>            
+                  <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.theme_learning_program_id}</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="rowBts">
+              <div className="col-md-12">
+              <div className="form-group m-3">
+                  <label>Video</label>
+                  <select name="video_id" onChange={handleInput} value={teacherVideoInput.video_id} className="form-control">  
+                    <option>Select Video</option>
+                    {videoList
+                      // .filter((item) => item.theme_learning_program_id == teacherVideoInput.theme_learning_program_id)
+                      .map((item) => (
+                        <option value={item.id} key={item.id}>
+                          {item.title} (source - {item.source})
+                        </option>
+                    ))}
+                  </select>            
                   <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.video_id}</span>
+                </div>
+              </div>  
+            </div>
+
+            <div className="rowBts">
+              <div className="col-md-4">
+                <div className="form-group m-3">
+                  <label>Teacher</label>
+                  <select name="teacher_id" onChange={handleInput} value={teacherVideoInput.teacher_id} className="form-control">  
+                    <option>Select Teacher</option>
+                    {
+                      teacherList.map((item)=> {
+                        return (
+                          <option value={item.id} key={item.id}>{item.name}</option>
+                        )
+                      })
+                    }
+                  </select>            
+                  <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.teacher_id}</span>
+                </div>
+              </div>  
+              <div className="col-md-8">          
+                <div className="form-group m-3">
+                  <label>Teacher's Topic Title</label>
+                  <input type="text" name="name" onChange={handleInput} value={teacherVideoInput.name}className="form-control" />
+                  <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.name}</span>
                 </div>
               </div>
             </div>
@@ -321,7 +456,7 @@ function Breakpoint() {
             </div>
             </form>
             <div className="containerBts">
-              <form onSubmit={submitBreakpoints}>
+              <form onSubmit={submitTeacherVideos}>
               {excelData?(
                 <div className="table-responsive">
                   <table className="table table-primary table-bordered table-striped">
@@ -374,4 +509,4 @@ function Breakpoint() {
   )
 }
 
-export default Breakpoint;
+export default AddTeacherVideo;

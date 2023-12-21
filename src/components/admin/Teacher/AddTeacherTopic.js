@@ -124,8 +124,8 @@ function AddTeacherTopic() {
         let notFoundTopics = [];
 
         selectedData.forEach((selectedItem) => {
-          const foundTeacher = teacherList.find((teacher) => teacher.name == selectedItem.teacher_name);
-          const foundTopic = topicList.find((topic) => topic.name == selectedItem.topic_name);
+          const foundTeacher = teacherList.find((teacher) => teacher.name.trim() == selectedItem.teacher_name.trim());
+          const foundTopic = topicList.find((topic) => topic.name.trim() == selectedItem.topic_name.trim());
         
           if (foundTeacher) {
             selectedItem.teacher_id = foundTeacher.id;
