@@ -29,14 +29,14 @@ function ForgotPassword() {
 
       axios.get('http://localhost:8000/sanctum/csrf-cookie').then(response => {
         axios.post('http://localhost:8000/api/forgot-password', data).then(res => {
-            console.log(res);
+            // console.log(res);
           if(res.data.status === 200){
-            console.log(res.data.message);
+            // console.log(res.data.message);
             setMessage(res.data.message);
             setStatus("200");
             setMessageIsChanged(true)
           }else if(res.data.status === 404){
-            console.log(res.data.message);
+            // console.log(res.data.message);
             setMessage(res.data.message);
             setMessageIsChanged(true);
             setStatus("error");

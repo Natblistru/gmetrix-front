@@ -302,7 +302,7 @@ const TestBoard = forwardRef(
       const { test_item_complexity, user_column, correct, ...rest } = item;
       return { ...rest, student_id: stateData.currentStudent, type: 'check' };
     });
-    console.log(selectedOptionsToDB)
+    // console.log(selectedOptionsToDB)
     for (const element of selectedOptionsToDB) {
       trimiteDateLaBackend(element);
     }

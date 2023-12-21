@@ -142,7 +142,7 @@ function AddTeacherTopic() {
         });
 
         if(notFoundTeachers.length === 0  && notFoundTopics.length === 0)  {
-          console.log(selectedData)
+          // console.log(selectedData)
           const formDataArray = selectedData.map(selectedItem => {
             const formData = new FormData();
             formData.append('name', `${selectedItem.topic_name} (${selectedItem.teacher_name})`);
@@ -151,7 +151,7 @@ function AddTeacherTopic() {
             formData.append('status', 0); 
             return formData;
           });
-          console.log(formDataArray)
+          // console.log(formDataArray)
           // Trimitem fiecare set de date către server utilizând axios.all
           axios.all(formDataArray.map(formData => axios.post('http://localhost:8000/api/store-teacherTopic', formData)))
               .then(axios.spread((...responses) => {
@@ -257,7 +257,7 @@ function AddTeacherTopic() {
     formData.append('topic_id',teacherTopicInput.topic_id );
     formData.append('status',allCheckboxes.status == true ? 1 : 0);
 
-    console.log(formData)
+    // console.log(formData)
 
     axios.post(`http://localhost:8000/api/store-teacherTopic`, formData).then(res => {
       if(res.data.status === 201)

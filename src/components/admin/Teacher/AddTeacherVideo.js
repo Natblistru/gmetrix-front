@@ -133,7 +133,7 @@ function AddTeacherVideo() {
           const foundVideo = videoList.find((video) => video.title.trim() == selectedItem.video_name.trim());
           const foundTheme = themeList.find((theme) => theme.name.trim() == selectedItem.theme_learning_program_name.trim());
           const foundProgram = learningProgramList.find((program) => program.name.trim() == selectedItem.learning_program_name.trim());
-          console.log(learningProgramList);
+          // console.log(learningProgramList);
           if (foundTeacher) {
             selectedItem.teacher_id = foundTeacher.id;
           }
@@ -163,7 +163,7 @@ function AddTeacherVideo() {
            notFoundVideos.length === 0 && 
            notFoundThems.length === 0 && 
            notFoundprograms.length === 0)  {
-          console.log(selectedData)
+          // console.log(selectedData)
           const formDataArray = selectedData.map(selectedItem => {
             const formData = new FormData();
             formData.append('name', `${selectedItem.video_name} (${selectedItem.learning_program_name}, ${selectedItem.teacher_name})`);
@@ -173,7 +173,7 @@ function AddTeacherVideo() {
             formData.append('status', 0); 
             return formData;
           });
-          console.log(formDataArray)
+          // console.log(formDataArray)
           // Trimitem fiecare set de date către server utilizând axios.all
           axios.all(formDataArray.map(formData => axios.post('http://localhost:8000/api/store-teacherVideo', formData)))
               .then(axios.spread((...responses) => {
@@ -297,7 +297,7 @@ function AddTeacherVideo() {
     formData.append('theme_learning_program_id',teacherVideoInput.theme_learning_program_id );
     formData.append('status',allCheckboxes.status == true ? 1 : 0);
 
-    console.log(formData)
+    // console.log(formData)
 
     axios.post(`http://localhost:8000/api/store-teacherVideo`, formData).then(res => {
       if(res.data.status === 201)

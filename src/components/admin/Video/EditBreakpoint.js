@@ -33,7 +33,7 @@ function EditBreakpoint(props) {
     });
     const breakpoint_id = props.match.params.id;
     axios.get(`http://localhost:8000/api/edit-breakpoint/${breakpoint_id}`).then(res=>{
-      console.log(res.data.breakpoint)
+      // console.log(res.data.breakpoint)
       if(res.data.status === 200){
         setBreakpointInput(res.data.breakpoint)
         setAllCheckboxes(res.data.breakpoint)
@@ -70,7 +70,7 @@ function EditBreakpoint(props) {
     formData.append('video_id',breakpointInput.video_id );
     formData.append('status',allCheckboxes.status == true ? 1 : 0);
 
-    console.log(formData)
+    // console.log(formData)
 
     const breakpoint_id = props.match.params.id;
     axios.post(`http://localhost:8000/api/update-breakpoint/${breakpoint_id}`, formData).then(res => {

@@ -159,8 +159,8 @@ const TestWrapper = ({ tests, add, update }) => {
 
   const handleClearTestBoard = (testId) => {
     if (testBoardRef.current && testBoardRef.current.handleTryAgainClear) {
-      console.log("handleClearTestBoard testId",testId);
-      console.log("testBoardRef",testBoardRef.current);
+      // console.log("handleClearTestBoard testId",testId);
+      // console.log("testBoardRef",testBoardRef.current);
       testBoardRef.current.handleTryAgainClear(testId);
     }
   };

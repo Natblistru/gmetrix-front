@@ -57,7 +57,7 @@ function EditTeacherVideo(props) {
     const teacherVideo_id = props.match.params.id;
     axios.get(`http://localhost:8000/api/edit-teacherVideo/${teacherVideo_id}`).then(res=>{
       if(res.data.status === 200){
-        console.log(res.data.teacherVideos)
+        // console.log(res.data.teacherVideos)
         const teacherVideoData = res.data.teacherVideos;
 
         setTeacherVideoInput({
@@ -123,7 +123,7 @@ function EditTeacherVideo(props) {
     formData.append('theme_learning_program_id',teacherVideoInput.theme_learning_program_id );
     formData.append('status',allCheckboxes.status == true ? 1 : 0);
 
-    console.log(formData)
+    // console.log(formData)
 
     const teacherVideo_id = props.match.params.id;
     axios.post(`http://localhost:8000/api/update-teacherVideo/${teacherVideo_id}`, formData).then(res => {

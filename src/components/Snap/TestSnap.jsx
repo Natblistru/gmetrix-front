@@ -617,7 +617,7 @@ const TestSnap = ({
   };
 
 
-console.log(uniqueOptions);
+// console.log(uniqueOptions);
 // console.log(Math.ceil(list1.quizArray[0].text.length / 2));
 // console.log(sortedOptions);
 // console.log(Math.ceil(sortedOptions.length / 2));

@@ -10,7 +10,7 @@ function ViewVideo() {
 
   useEffect(()=>{
     axios.get(`http://localhost:8000/api/view-videos`).then(res=> {
-      console.log(res.data.video);
+      // console.log(res.data.video);
       if(res.data.status === 200){
         setVideoList(res.data.video)
       } else {

@@ -116,7 +116,7 @@ function Breakpoint() {
 
         if(notFoundTitles.length === 0) {
 
-          console.log(selectedData)
+          // console.log(selectedData)
           const formDataArray = selectedData.map(selectedItem => {
             const formData = new FormData();
             formData.append('name', selectedItem.title);
@@ -125,7 +125,7 @@ function Breakpoint() {
             formData.append('status', 0); 
             return formData;
           });
-          console.log(formDataArray)
+          // console.log(formDataArray)
           // Trimitem fiecare set de date către server utilizând axios.all
           axios.all(formDataArray.map(formData => axios.post('http://localhost:8000/api/store-breakpoint', formData)))
               .then(axios.spread((...responses) => {
@@ -206,7 +206,7 @@ function Breakpoint() {
     formData.append('video_id',breakpointInput.video_id );
     formData.append('status',allCheckboxes.status == true ? 1 : 0);
 
-    console.log(formData)
+    // console.log(formData)
 
     axios.post(`http://localhost:8000/api/store-breakpoint`, formData).then(res => {
       if(res.data.status === 201)

@@ -434,7 +434,7 @@ const TestGeneralizator = ({
     }, {});
     
     const selectedResultsToDB = Object.values(groupedArray);
-  console.log(selectedResultsToDB)
+  // console.log(selectedResultsToDB)
     for (const element of selectedResultsToDB) {
       trimiteResultsLaBackend(element);
     }

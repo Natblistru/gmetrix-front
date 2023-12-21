@@ -51,7 +51,7 @@ const ListNavigatie = (props) => {
   if(!ultimul) {
     if(!utilmul_dnd) {
       testUrmator1 = stateData.currentTopic.tests[stateData.currentIndexTest+1];
-      console.log(testUrmator1.id);
+      // console.log(testUrmator1.id);
     }
 
     testUrmator = stateData.currentTopic.tests[list.id];

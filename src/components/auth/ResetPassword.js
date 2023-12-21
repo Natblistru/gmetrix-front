@@ -18,7 +18,7 @@ function ResetPassword() {
   const [passwordFocused, setPasswordFocused] = useState(false)
   const [passwordMatch, setPasswordMatch] = useState(true);
 
-  console.log(token)
+  // console.log(token)
 
   const handleInput = (e) => {
     e.persist();

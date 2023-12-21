@@ -117,7 +117,7 @@ function EditTeacherTopic(props) {
     formData.append('topic_id',teacherTopicInput.topic_id );
     formData.append('status',allCheckboxes.status == true ? 1 : 0);
 
-    console.log(formData)
+    // console.log(formData)
 
     const teacherTopic_id = props.match.params.id;
     axios.post(`http://localhost:8000/api/update-teacherTopic/${teacherTopic_id}`, formData).then(res => {
