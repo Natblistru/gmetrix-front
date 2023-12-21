@@ -5,6 +5,7 @@ import { useParams, useHistory } from "react-router-dom";
 // import temeIstoriArray from "../data/temeIstoria";
 // import temeMatemArray from "../data/temeMatem";
 // import temeRomanaArray from "../data/temeRomana";
+import Navbar from "../components/layouts/Navbar";
 import Breadcrumb from "../components/Breadcrumb";
 import Wrapper from "../components/Wrapper";
 import TitleBox from "../components/TitleBox";
@@ -152,17 +153,20 @@ const Subtema = ({results})  => {
 
 
   return (
-    <Wrapper>
-      {topic && 
-      (
-        <>
-          <Breadcrumb step={2} />
-          <TitleBox className="teme-container" proc={topic.procentTopic}>{topic.name}</TitleBox>
-          <ListSubAccordeon onProgressTopicRecorded={handleProgressTopicRecorded}/>
-        </>
-      )
-      }
-    </Wrapper>
+    <div>
+      <Navbar />
+      <Wrapper>
+        {topic &&
+        (
+          <>
+            <Breadcrumb step={2} />
+            <TitleBox className="teme-container" proc={topic.procentTopic}>{topic.name}</TitleBox>
+            <ListSubAccordeon onProgressTopicRecorded={handleProgressTopicRecorded}/>
+          </>
+        )
+        }
+      </Wrapper>
+    </div>
   );
   // return (
   //   <Wrapper>

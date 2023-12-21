@@ -7,6 +7,7 @@ import { useParams, useHistory, useLocation } from "react-router-dom";
 // import temeIstoriArray from "../data/temeIstoria";
 // import temeMatemArray from "../data/temeMatem";
 // import temeRomanaArray from "../data/temeRomana";
+import Navbar from "../components/layouts/Navbar";
 import Breadcrumb from "../components/Breadcrumb";
 import Wrapper from "../components/Wrapper";
 import TitleBox from "../components/TitleBox";
@@ -228,15 +229,18 @@ const fetchEvaluation3 = async (theme) => {
   };
 
   return (
-    <Wrapper>
-      {temaObject && (
-        <>
-          <Breadcrumb step={1}/>
-          <TitleBox className="teme-container" proc={proc}>{temaObject.tema_name}</TitleBox>
-          <ListAccordeon onProgressThemaRecorded={handleProgressThemaRecorded}/>
-        </>
-      )}
-    </Wrapper>
+    <>
+      <Navbar />
+      <Wrapper>
+        {temaObject && (
+          <>
+            <Breadcrumb step={1}/>
+            <TitleBox className="teme-container" proc={proc}>{temaObject.tema_name}</TitleBox>
+            <ListAccordeon onProgressThemaRecorded={handleProgressThemaRecorded}/>
+          </>
+        )}
+      </Wrapper>
+    </>
   );
 };
 export default Tema;

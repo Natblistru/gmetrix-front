@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect} from 'react';
 import axios from "axios";
 import Swal from 'sweetalert2'
 
@@ -11,6 +11,14 @@ import './../../assets/admin/js/scripts.js'
 function Navbar() {
 
   const history = useHistory();
+  const [authName, setAuthName] = useState('');
+
+  const isAuthenticated = localStorage.getItem('auth_log') !== null;
+
+  useEffect(() => {
+    const storedAuthName = localStorage.getItem('auth_name');
+    setAuthName(storedAuthName);
+  }, []);
 
   const logoutSubmit = (e) => {
     e.preventDefault();
@@ -19,6 +27,8 @@ function Navbar() {
       {
         localStorage.removeItem('auth_token');
         localStorage.removeItem('auth_name');
+        localStorage.removeItem('auth_log');
+
         Swal.fire({
           title: "Succes",
           text: res.data.message,
@@ -52,13 +62,16 @@ function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg shadow sticky-top" style={{backgroundColor: '#e3f2fd'}}>
       <div className="containerBts">
-        <Link className="navbar-brand" to="#">Navbar</Link>
+        <Link className="navbar-brand" to="#">ExamenGimnazial.md</Link>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0 lh-lg gap-3">
-          <li className="nav-item">
+            <li className="nav-item">
+            {isAuthenticated && <span>Bine ai venit, {authName}!</span>}
+            </li>
+            <li className="nav-item">
               <Link className="nav-link active" to="/">Home</Link>
             </li>
             <li className="nav-item">

@@ -13,6 +13,7 @@ function Register() {
     first_name: '',
     last_name: '',
     email: '',
+    role: '',
     password: '',
     confirmPassword: '',
     error_list: [],
@@ -34,6 +35,7 @@ function Register() {
         first_name: registerInput.first_name,
         last_name: registerInput.last_name,
         email: registerInput.email,
+        role: registerInput.role,
         password: registerInput.password,
       }
 
@@ -47,7 +49,7 @@ function Register() {
               text: res.data.message,
               icon: "success"
             });
-            history.push("/")
+            history.push("/login")
           }else {
             setRegisterInput({...registerInput, error_list: res.data.validation_errors })
           }
@@ -96,10 +98,24 @@ function Register() {
                                       </div>
                                   </div>
                               </div>
-                              <div className="form-floating mb-3">
-                                  <input name="email" onChange={handleInput} value={registerInput.email} className="form-control" id="inputEmail" type="email" placeholder="name@example.com" />
-                                  <label htmlFor="inputEmail">Email address</label>
-                                  <span style={{ color: 'red', fontSize: '0.8rem' }}>{registerInput.error_list.email}</span>
+                              <div className="rowBts mb-3">
+                                <div className="col-md-6">
+                                  <div className="form-floating mb-3">
+                                      <input name="email" onChange={handleInput} value={registerInput.email} className="form-control" id="inputEmail" type="email" placeholder="name@example.com" />
+                                      <label htmlFor="inputEmail">Email address</label>
+                                      <span style={{ color: 'red', fontSize: '0.8rem' }}>{registerInput.error_list.email}</span>
+                                  </div>
+                                </div>
+                                <div className="col-md-6">
+                                  <div className="form-floating mb-3">
+                                    <select name="role" onChange={handleInput} value={registerInput.name} className="form-control" style={{color: '#4e4e3f', paddingTop: '2px'}}>  
+                                      <option>Select role</option>
+                                      <option value="student">Student</option>
+                                      <option value="teacher">Teacher</option>
+                                    </select> 
+                                      <span style={{ color: 'red', fontSize: '0.8rem' }}>{registerInput.error_list.role}</span>
+                                  </div>
+                                </div>
                               </div>
                               <div className="rowBts mb-3">
                                   <div className="col-md-6">

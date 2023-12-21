@@ -34,6 +34,7 @@ function Login() {
         {
           localStorage.setItem('auth_token', res.data.token);
           localStorage.setItem('auth_name', res.data.username);
+          localStorage.setItem('auth_log', res.data.token);
           Swal.fire({
             title: "Succes",
             text: res.data.message,

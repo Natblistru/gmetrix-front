@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import ContextData from "../components/context/ContextData";
 
 // import temeMatem from '../data/temeMatem';
+import Navbar from "../components/layouts/Navbar";
 import Breadcrumb from "../components/Breadcrumb";
 import Titlu from "../components/Titlu";
 import Wrapper from "../components/Wrapper";
@@ -64,14 +65,17 @@ const Capitole = (props) => {
     }
     
     return (
-        <Wrapper className="large">
-            <Breadcrumb step={0}/>
-            <Card>
-                <Titlu className="titlu-card">{denumireDisciplina} - pregătire pentru {nivelStudiu} ({year})</Titlu>
-                <TitleBox className="teme-container" proc={proc}>{clasa}</TitleBox>
-                <TopicsList />
-            </Card>
-        </Wrapper>
+        <>
+            <Navbar />
+            <Wrapper className="large">
+                <Breadcrumb step={0}/>
+                <Card>
+                    <Titlu className="titlu-card">{denumireDisciplina} - pregătire pentru {nivelStudiu} ({year})</Titlu>
+                    <TitleBox className="teme-container" proc={proc}>{clasa}</TitleBox>
+                    <TopicsList />
+                </Card>
+            </Wrapper>
+        </>
     )
 }
 export default Capitole;
