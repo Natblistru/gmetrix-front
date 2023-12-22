@@ -9,7 +9,7 @@ import ProgressBar from "./ProgressBar";
 const SubTopicItem = ({subTit,idx, teachers, results,tests,exams, allTems}) => {
   const {stateData} = React.useContext(ContextData)
   const subtitle = subTit;
-console.log(teachers)
+// console.log(teachers)
   const [isModalOpen, setModalOpen] = useState(false);
 
   const [selectedTeacher, setSelectedTeacher] = useState({
@@ -52,7 +52,7 @@ console.log(teachers)
   };
 
   
-  console.log(teachers)
+  // console.log(teachers)
 
   let linkTo = `${subtitle.path_tema}?theme=${subtitle.tema_id}&level=1&disciplina=${stateData.currentSubject.subject_id}`;
 
