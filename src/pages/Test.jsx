@@ -3,6 +3,7 @@ import ContextData from "../components/context/ContextData";
 import { withRouter, useParams, useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 // import temeIstoriArray from "../data/temeIstoria";
+import Navbar from "../components/layouts/Navbar";
 import Breadcrumb from "../components/Breadcrumb";
 import Wrapper from "../components/Wrapper";
 import TitleBox from "../components/TitleBox";
@@ -173,98 +174,101 @@ const TestWrapper = ({ tests, add, update }) => {
   // console.log(currentList1)
   // console.log(currentItemIndex)
   return (
-    <Wrapper>
-      {currentList1  && (
-        <>
-          <Breadcrumb step={3} />
-          {/* {console.log("correctAnswer", correctAnswer)} */}
-          <TitleBox className="teme-container" list={currentList1}>
-            {currentList1.type === "testGeneralizator"? currentList1.name+ "  "+ `  ${currentItemIndex+1} / ${currentList1.length/4}`:currentList1.name }
-          </TitleBox>
-          {currentList1.type === "quiz" && (
-            <TestQuiz
+    <>
+      <Navbar />
+      <Wrapper>
+        {currentList1  && (
+          <>
+            <Breadcrumb step={3} />
+            {/* {console.log("correctAnswer", correctAnswer)} */}
+            <TitleBox className="teme-container" list={currentList1}>
+              {currentList1.type === "testGeneralizator"? currentList1.name+ "  "+ `  ${currentItemIndex+1} / ${currentList1.length/4}`:currentList1.name }
+            </TitleBox>
+            {currentList1.type === "quiz" && (
+              <TestQuiz
+                list={currentList1}
+                currentIndex={currentItemIndex}
+                correctAnswer={correctAnswer}
+                setCorrectAnswer={setCorrectAnswer}
+                additionalContent={additionalContent}
+                handleTryAgain={handleTryAgain}
+                currentItemIndex={currentItemIndex}
+              />
+            )}
+            {currentList1.type === "check" && (
+              <TestCheck
+                list={currentList1}
+                currentIndex={currentItemIndex}
+                correctAnswer={correctAnswer}
+                setCorrectAnswer={setCorrectAnswer}
+                additionalContent={additionalContent}
+                handleTryAgain={handleTryAgain}
+                currentItemIndex={currentItemIndex}
+              />
+            )}
+            {currentList1.type === "words" && (
+              <TestWords
+                list={currentList1}
+                currentIndex={currentItemIndex}
+                correctAnswer={correctAnswer}
+                setCorrectAnswer={setCorrectAnswer}
+                additionalContent={additionalContent}
+                handleTryAgain={handleTryAgain}
+                currentItemIndex={currentItemIndex}
+              />
+            )}
+            {currentList1.type === "snap" && (
+              <TestSnap
+                list={currentList1}
+                currentIndex={currentItemIndex}
+                correctAnswer={correctAnswer}
+                setCorrectAnswer={setCorrectAnswer}
+                additionalContent={additionalContent}
+                handleTryAgain={handleTryAgain}
+                currentItemIndex={currentItemIndex}
+              />
+            )}
+            {currentList1.type === "testGeneralizator" && (
+              <TestGeneralizator
+                list={currentList1}
+                currentIndex={currentItemIndex}
+                correctAnswer={correctAnswer}
+                setCorrectAnswer={setCorrectAnswer}
+                additionalContent={additionalContent}
+                handleTryAgain={handleTryAgain}
+                currentItemIndex={currentItemIndex}
+              />
+            )}
+            {(currentList1.type === "dnd" ||
+              // currentList.type === "consecinte" ||
+              // currentList.type === "caracteristica" ||
+              currentList1.type === "dnd_chrono" ||
+              currentList1.type === "dnd_chrono_double" ||
+              currentList1.type === "dnd_group") && (
+              <TestBoard
+                list={currentList1}
+                currentIndex={currentItemIndex}
+                correctAnswer={correctAnswer}
+                setCorrectAnswer={setCorrectAnswer}
+                additionalContent={additionalContent}
+                handleTryAgain={handleTryAgain}
+                DragDisable={false}
+                ref={testBoardRef}
+                currentItemIndex={currentItemIndex}
+              />
+            )}
+            {/* <ListNavigatie
               list={currentList1}
-              currentIndex={currentItemIndex}
+              setCurrentList={setCurrentList1}
               correctAnswer={correctAnswer}
               setCorrectAnswer={setCorrectAnswer}
-              additionalContent={additionalContent}
-              handleTryAgain={handleTryAgain}
-              currentItemIndex={currentItemIndex}
-            />
-          )}
-          {currentList1.type === "check" && (
-            <TestCheck
-              list={currentList1}
-              currentIndex={currentItemIndex}
-              correctAnswer={correctAnswer}
-              setCorrectAnswer={setCorrectAnswer}
-              additionalContent={additionalContent}
-              handleTryAgain={handleTryAgain}
-              currentItemIndex={currentItemIndex}
-            />
-          )}
-          {currentList1.type === "words" && (
-            <TestWords
-              list={currentList1}
-              currentIndex={currentItemIndex}
-              correctAnswer={correctAnswer}
-              setCorrectAnswer={setCorrectAnswer}
-              additionalContent={additionalContent}
-              handleTryAgain={handleTryAgain}
-              currentItemIndex={currentItemIndex}
-            />
-          )}
-          {currentList1.type === "snap" && (
-            <TestSnap
-              list={currentList1}
-              currentIndex={currentItemIndex}
-              correctAnswer={correctAnswer}
-              setCorrectAnswer={setCorrectAnswer}
-              additionalContent={additionalContent}
-              handleTryAgain={handleTryAgain}
-              currentItemIndex={currentItemIndex}
-            />
-          )}
-          {currentList1.type === "testGeneralizator" && (
-            <TestGeneralizator
-              list={currentList1}
-              currentIndex={currentItemIndex}
-              correctAnswer={correctAnswer}
-              setCorrectAnswer={setCorrectAnswer}
-              additionalContent={additionalContent}
-              handleTryAgain={handleTryAgain}
-              currentItemIndex={currentItemIndex}
-            />
-          )}
-          {(currentList1.type === "dnd" ||
-            // currentList.type === "consecinte" ||
-            // currentList.type === "caracteristica" ||
-            currentList1.type === "dnd_chrono" ||
-            currentList1.type === "dnd_chrono_double" ||
-            currentList1.type === "dnd_group") && (
-            <TestBoard
-              list={currentList1}
-              currentIndex={currentItemIndex}
-              correctAnswer={correctAnswer}
-              setCorrectAnswer={setCorrectAnswer}
-              additionalContent={additionalContent}
-              handleTryAgain={handleTryAgain}
-              DragDisable={false}
-              ref={testBoardRef}
-              currentItemIndex={currentItemIndex}
-            />
-          )}
-          {/* <ListNavigatie
-            list={currentList1}
-            setCurrentList={setCurrentList1}
-            correctAnswer={correctAnswer}
-            setCorrectAnswer={setCorrectAnswer}
-            setCurrentIndex={setCurrentItemIndex}
-            handleClearTestBoard={handleClearTestBoard}
-          /> */}
-        </>
-      )}
-    </Wrapper>
+              setCurrentIndex={setCurrentItemIndex}
+              handleClearTestBoard={handleClearTestBoard}
+            /> */}
+          </>
+        )}
+      </Wrapper>
+    </>
   );
 };
 

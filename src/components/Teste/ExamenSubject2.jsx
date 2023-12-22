@@ -4,6 +4,7 @@ import { useParams, useHistory } from "react-router-dom";
 // import { RaspunsuriCtx } from "../context/Raspunsuri";
 import { connect } from "react-redux"
 // import temeIstoriArray from "../../data/temeIstoria";
+import Navbar from "../layouts/Navbar";
 import Wrapper from "../Wrapper";
 import Breadcrumb from "../Breadcrumb";
 import TitleBox from "../TitleBox";
@@ -193,120 +194,121 @@ const ExamenSubect2 = ({raspunsuri}) => {
   }
 
   return (
-    <Wrapper>
-      {quizArray && (
-        <>
-          <Breadcrumb step={2} />
-          <TitleBox className="teme-container" proc={quizArray[currentIndex]?.student_procent}>{quizArray[currentIndex]?.name}</TitleBox>
-          <ItemAccordeon
-            titlu={`Cerințele sarcinii (${currentIndex + 1}/${
-              quizArray.length
-            }) - ${quizArray[currentIndex]?.maxPoints} puncte:`}
-            open={true}
-          >
-            <ItemText>
-              <p>Studiază materialul suport și realizează sarcinile propuse.</p>
-              <AccordionSurse data={quizArray[currentIndex].source} />
-              {/* <h3 style={{ textAlign: 'center'}}>
-                {`Item (${currentItem + 1}/${
-                  item.quizArray[currentIndex].item.length
-                }):`}
-              </h3> */}
-              <h4>{quizArray[currentIndex].cerinta}</h4>
-              <p>{quizArray[currentIndex].afirmatie} </p> 
-              {quizArray[currentIndex].harta && quizArray[currentIndex].harta.length>0 && <Draw item={quizArray[currentIndex]} disable={showResponse}/>}
-              <div className="subject1-container">
-              
-                <div className="paper" style={{ width: quizArray[currentIndex]?.procent_paper, height: '267px'}}>
-                  <div className="lines">
-                    <div className="text">
-                      {currentTextIndex !== null &&
-                        isAnswered &&
-                        textArray.map((textElem, ind) =>
-                          currentTextIndex >= ind ? (
-                            <React.Fragment key={ind}>
-                              {textElem.slice(
-                                0,
-                                currentTextIndex == ind &&
-                                  indx < textElem.length
-                                  ? indx
-                                  : textElem.length
-                              )}
-                              <br />
-                            </React.Fragment>
-                          ) : null
-                        )}
-                    </div>
-                  </div>
-                  <div className="holes hole-top"></div>
-                  <div className="holes hole-middle"></div>
-                  <div className="holes hole-bottom"></div>
-                  <img
-                    className="edit-img"
-                    src={process.env.PUBLIC_URL + "/images/edit-button.png"}
-                    onClick={openModal}
-                    alt=""
-                  />
-                </div>
-              </div>
-            </ItemText>
-
-            {isOpen && (
-              <ModalForm
-                onClick={closeModal}
-                forma={quizArray[currentIndex].form}
-                idRaspuns={idRaspuns}
-              />
-            )}
-            {isAnswered === true && (
-              <button onClick={handleVerifica} className="btn-test">
-                Verifică răspunsul
-              </button>
-            )}
-          </ItemAccordeon>
-          {showResponse && (
+    <>
+      <Navbar />
+      <Wrapper>
+        {quizArray && (
+          <>
+            <Breadcrumb step={2} />
+            <TitleBox className="teme-container" proc={quizArray[currentIndex]?.student_procent}>{quizArray[currentIndex]?.name}</TitleBox>
             <ItemAccordeon
-              titlu={`Rezolvarea item (${currentItem + 1}/${
-                quizArray[currentIndex].length
-              }):`}
+              titlu={`Cerințele sarcinii (${currentIndex + 1}/${
+                quizArray.length
+              }) - ${quizArray[currentIndex]?.maxPoints} puncte:`}
               open={true}
             >
-
-              <ItemText classNameChild="">
-              {quizArray[currentIndex].img && (<img src={quizArray[currentIndex].img} />)}
-              {quizArray[currentIndex]?.answers.map(answer => (
-                <React.Fragment key={answer.answer_id}>
-                  {answer.answer_text.split('\\n').map((line, index) => (
-                    <React.Fragment key={index}>
-                      {line}
-                      <br />
-                    </React.Fragment>
-                  ))}
-                </React.Fragment>
-              ))}
+              <ItemText>
+                <p>Studiază materialul suport și realizează sarcinile propuse.</p>
+                <AccordionSurse data={quizArray[currentIndex].source} />
+                {/* <h3 style={{ textAlign: 'center'}}>
+                  {`Item (${currentItem + 1}/${
+                    item.quizArray[currentIndex].item.length
+                  }):`}
+                </h3> */}
+                <h4>{quizArray[currentIndex].cerinta}</h4>
+                <p>{quizArray[currentIndex].afirmatie} </p>
+                {quizArray[currentIndex].harta && quizArray[currentIndex].harta.length>0 && <Draw item={quizArray[currentIndex]} disable={showResponse}/>}
+                <div className="subject1-container">
+      
+                  <div className="paper" style={{ width: quizArray[currentIndex]?.procent_paper, height: '267px'}}>
+                    <div className="lines">
+                      <div className="text">
+                        {currentTextIndex !== null &&
+                          isAnswered &&
+                          textArray.map((textElem, ind) =>
+                            currentTextIndex >= ind ? (
+                              <React.Fragment key={ind}>
+                                {textElem.slice(
+                                  0,
+                                  currentTextIndex == ind &&
+                                    indx < textElem.length
+                                    ? indx
+                                    : textElem.length
+                                )}
+                                <br />
+                              </React.Fragment>
+                            ) : null
+                          )}
+                      </div>
+                    </div>
+                    <div className="holes hole-top"></div>
+                    <div className="holes hole-middle"></div>
+                    <div className="holes hole-bottom"></div>
+                    <img
+                      className="edit-img"
+                      src={process.env.PUBLIC_URL + "/images/edit-button.png"}
+                      onClick={openModal}
+                      alt=""
+                    />
+                  </div>
+                </div>
               </ItemText>
-              <button onClick={handleAutoevaluare} className="btn-test">
-                Autoevaluiaza raspunsul!
-              </button>
-              {showAutoevaluare && (
-                <ModalCalculator
-                  onClick={onCloseAutoevaluare}
+              {isOpen && (
+                <ModalForm
+                  onClick={closeModal}
+                  forma={quizArray[currentIndex].form}
                   idRaspuns={idRaspuns}
-                  currentIndex={currentIndex}
-                  subject={2}
                 />
               )}
-              <button onClick={handleTryAgain} className="btn-test">
-                Urmatorul item!
-              </button>
-              {/* {item.quizArray[currentIndex].item.length - 1 === currentItem && (<button onClick={handleIndexTryAgain} className="btn-test">
-                Urmatoarea sarcina!
-              </button>) }              */}
+              {isAnswered === true && (
+                <button onClick={handleVerifica} className="btn-test">
+                  Verifică răspunsul
+                </button>
+              )}
             </ItemAccordeon>
-          )}
-        </>
-      )}
-    </Wrapper>
+            {showResponse && (
+              <ItemAccordeon
+                titlu={`Rezolvarea item (${currentItem + 1}/${
+                  quizArray[currentIndex].length
+                }):`}
+                open={true}
+              >
+                <ItemText classNameChild="">
+                {quizArray[currentIndex].img && (<img src={quizArray[currentIndex].img} />)}
+                {quizArray[currentIndex]?.answers.map(answer => (
+                  <React.Fragment key={answer.answer_id}>
+                    {answer.answer_text.split('\n').map((line, index) => (
+                      <React.Fragment key={index}>
+                        {line}
+                        <br />
+                      </React.Fragment>
+                    ))}
+                  </React.Fragment>
+                ))}
+                </ItemText>
+                <button onClick={handleAutoevaluare} className="btn-test">
+                  Autoevaluiaza raspunsul!
+                </button>
+                {showAutoevaluare && (
+                  <ModalCalculator
+                    onClick={onCloseAutoevaluare}
+                    idRaspuns={idRaspuns}
+                    currentIndex={currentIndex}
+                    subject={2}
+                  />
+                )}
+                <button onClick={handleTryAgain} className="btn-test">
+                  Urmatorul item!
+                </button>
+                {/* {item.quizArray[currentIndex].item.length - 1 === currentItem && (<button onClick={handleIndexTryAgain} className="btn-test">
+                  Urmatoarea sarcina!
+                </button>) }              */}
+              </ItemAccordeon>
+            )}
+          </>
+        )}
+      </Wrapper>
+    </>
   );
 };
 const reduxState = (state) => ({

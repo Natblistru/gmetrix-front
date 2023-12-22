@@ -3,6 +3,7 @@ import ContextData from "../context/ContextData";
 import { useParams, useHistory, useLocation } from "react-router-dom";
 import { connect } from "react-redux";
 // import temeIstoriArray from "../../data/temeIstoria";
+import Navbar from "../layouts/Navbar";
 import Wrapper from "../Wrapper";
 import Breadcrumb from "../Breadcrumb";
 import TitleBox from "../TitleBox";
@@ -157,107 +158,110 @@ const ExamenSubect1 = ({ raspunsuri }) => {
   }
 
   return (
-    <Wrapper>
-      {quizArray && (
-        <>
-          <Breadcrumb step={2} />
-          <TitleBox className="teme-container" proc={quizArray[currentIndex]?.student_procent} >{quizArray[currentIndex]?.name}</TitleBox>
-          <ItemAccordeon
-            titlu={`Cerințele sarcinii (${currentIndex + 1}/${
-              quizArray.length
-            }) - ${quizArray[currentIndex]?.maxPoints} puncte:`}
-            open={true}
-          >
-            <ItemText>
-              <p>{quizArray[currentIndex]?.cerinta}</p>
-              <div className="subject1-container">
-                <div className="paper" style={{ width: quizArray[currentIndex]?.procent_paper }}>
-                  <div className="lines">
-                    <div className="text">
-                      {currentTextIndex !== null &&
-                        isAnswered &&
-                        textArray.map((textElem, ind) =>
-                          currentTextIndex >= ind ? (
-                            <React.Fragment key={ind}>
-                              {textElem.slice(
-                                0,
-                                currentTextIndex == ind &&
-                                  indx < textElem.length
-                                  ? indx
-                                  : textElem.length
-                              )}
-                              <br />
-                            </React.Fragment>
-                          ) : null
-                        )}{" "}
+    <>
+      <Navbar />
+      <Wrapper>
+        {quizArray && (
+          <>
+            <Breadcrumb step={2} />
+            <TitleBox className="teme-container" proc={quizArray[currentIndex]?.student_procent} >{quizArray[currentIndex]?.name}</TitleBox>
+            <ItemAccordeon
+              titlu={`Cerințele sarcinii (${currentIndex + 1}/${
+                quizArray.length
+              }) - ${quizArray[currentIndex]?.maxPoints} puncte:`}
+              open={true}
+            >
+              <ItemText>
+                <p>{quizArray[currentIndex]?.cerinta}</p>
+                <div className="subject1-container">
+                  <div className="paper" style={{ width: quizArray[currentIndex]?.procent_paper }}>
+                    <div className="lines">
+                      <div className="text">
+                        {currentTextIndex !== null &&
+                          isAnswered &&
+                          textArray.map((textElem, ind) =>
+                            currentTextIndex >= ind ? (
+                              <React.Fragment key={ind}>
+                                {textElem.slice(
+                                  0,
+                                  currentTextIndex == ind &&
+                                    indx < textElem.length
+                                    ? indx
+                                    : textElem.length
+                                )}
+                                <br />
+                              </React.Fragment>
+                            ) : null
+                          )}{" "}
+                      </div>
                     </div>
+                    <div className="holes hole-top"></div>
+                    <div className="holes hole-middle"></div>
+                    <div className="holes hole-bottom"></div>
+                    <img
+                      className="edit-img"
+                      src={process.env.PUBLIC_URL + "/images/edit-button.png"}
+                      onClick={openModal}
+                      alt=""
+                    />
                   </div>
-                  <div className="holes hole-top"></div>
-                  <div className="holes hole-middle"></div>
-                  <div className="holes hole-bottom"></div>
                   <img
-                    className="edit-img"
-                    src={process.env.PUBLIC_URL + "/images/edit-button.png"}
-                    onClick={openModal}
+                    className="img-subject"
+                    src={
+                      process.env.PUBLIC_URL + quizArray[currentIndex]?.img
+                    }
                     alt=""
                   />
                 </div>
-                <img
-                  className="img-subject"
-                  src={
-                    process.env.PUBLIC_URL + quizArray[currentIndex]?.img
-                  }
-                  alt=""
-                />
-              </div>
-            </ItemText>
-            {isOpen && (
-              <ModalForm
-                onClick={closeModal}
-                forma={quizArray[currentIndex].form}
-                idRaspuns={idRaspuns}
-              />
-            )}
-            {isAnswered === true && (
-              <button onClick={handleVerifica} className="btn-test">
-                Verifică răspunsul
-              </button>
-            )}
-          </ItemAccordeon>
-          {showResponse && (
-            <ItemAccordeon
-              titlu={`Rezolvarea sarcinii (${currentIndex + 1}/${
-                quizArray.length
-              }):`}
-              open={true}
-            >
-              <ItemText classNameChild="">
-                {quizArray[currentIndex]?.answers.map(answer => (
-                  <React.Fragment key={answer.answer_id}>
-                    {answer.answer_text}
-                    <br />
-                  </React.Fragment>
-                ))}
               </ItemText>
-              <button onClick={handleAutoevaluare} className="btn-test">
-                Autoevaluiaza raspunsul!
-              </button>
-              {showAutoevaluare && (
-                <ModalCalculator
-                  onClick={onCloseAutoevaluare}
+              {isOpen && (
+                <ModalForm
+                  onClick={closeModal}
+                  forma={quizArray[currentIndex].form}
                   idRaspuns={idRaspuns}
-                  currentIndex={currentIndex}
-                  subject={1}
                 />
               )}
-              <button onClick={handleTryAgain} className="btn-test">
-                Încearcă din nou!
-              </button>
+              {isAnswered === true && (
+                <button onClick={handleVerifica} className="btn-test">
+                  Verifică răspunsul
+                </button>
+              )}
             </ItemAccordeon>
-          )}
-        </>
-      )}
-    </Wrapper>
+            {showResponse && (
+              <ItemAccordeon
+                titlu={`Rezolvarea sarcinii (${currentIndex + 1}/${
+                  quizArray.length
+                }):`}
+                open={true}
+              >
+                <ItemText classNameChild="">
+                  {quizArray[currentIndex]?.answers.map(answer => (
+                    <React.Fragment key={answer.answer_id}>
+                      {answer.answer_text}
+                      <br />
+                    </React.Fragment>
+                  ))}
+                </ItemText>
+                <button onClick={handleAutoevaluare} className="btn-test">
+                  Autoevaluiaza raspunsul!
+                </button>
+                {showAutoevaluare && (
+                  <ModalCalculator
+                    onClick={onCloseAutoevaluare}
+                    idRaspuns={idRaspuns}
+                    currentIndex={currentIndex}
+                    subject={1}
+                  />
+                )}
+                <button onClick={handleTryAgain} className="btn-test">
+                  Încearcă din nou!
+                </button>
+              </ItemAccordeon>
+            )}
+          </>
+        )}
+      </Wrapper>
+    </>
   );
 };
 
