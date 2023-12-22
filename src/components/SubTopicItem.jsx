@@ -17,7 +17,6 @@ console.log(teachers)
     teacher_name: teachers && teachers[0] ? teachers[0].teacher_name : ''
   });
 
-  // Efect pentru a actualiza selectedTeacher atunci când teachers se schimbă
   useEffect(() => {
     if (teachers && teachers.length > 0) {
       setSelectedTeacher({
@@ -67,7 +66,7 @@ console.log(teachers)
         <span className="num"></span>
         <h4>
         {teachers.length > 1 ? (
-            <Link to="#" onClick={handleLinkClick}>
+            <Link to={location => ({ ...location })} onClick={handleLinkClick}>
               {subtitle.tema_name}
             </Link>
           ) : (

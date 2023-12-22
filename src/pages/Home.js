@@ -14,6 +14,7 @@ const Home = () => {
   useEffect(()=> {
     updateBreadcrumb();
     fetchSubjects();
+    fetchSubtitleTeachers();
   },[]);
 
   const updateBreadcrumb = () => {
@@ -31,6 +32,19 @@ const Home = () => {
       dispatchData({
         type: "FETCH_DISCIPLINE",
         payload: res.data
+      })
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  const fetchSubtitleTeachers = async () => {
+    try {
+      const res = await axios.get(`http://localhost:8000/api/teachers-with-themes`);
+      // console.log(res.data);
+      dispatchData({
+        type: "FETCH_SUBTITLE_TEACHERS",
+        payload: res.data.groupedTeacherThemes
       })
     } catch (err) {
       console.error(err);

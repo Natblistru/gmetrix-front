@@ -128,6 +128,11 @@ const ReducerData = (state, action) => {
         ...state,
         currentIndexTest: action.payload
       } 
+    case "FETCH_SUBTITLE_TEACHERS":
+      return {
+        ...state,
+        teachersForSubtitle: action.payload
+      };
     default: 
     return state
   }

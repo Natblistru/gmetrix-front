@@ -1,30 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import axios from 'axios'; 
+import ContextData from "../components/context/ContextData";
 import SubTopicItem from "./SubTopicItem";
 import ProgressBar from "./ProgressBar";
 
 const TopicItem = ({ item,results,allTems }) => {
+  const {stateData} = React.useContext(ContextData)
   const tema = item;
 
-  const [teachers, setTeachers] = useState([]);
-
-  useEffect(() => {
-    axios.get(`http://localhost:8000/api/teachers-with-themes`)
-      .then(response => {
-        setTeachers(response.data.groupedTeacherThemes);
-      })
-      .catch(error => {
-        console.error('Error fetching data:', error);
-      });
-  }, []);
-
   const filterTeachersForSubtitle = (themeLearningProgramsId) => {
-    if (!teachers || !themeLearningProgramsId) {
+    if (!stateData.teachersForSubtitle || !themeLearningProgramsId) {
       return [];
     }
 
-    return teachers[themeLearningProgramsId] || [];
+    return stateData.teachersForSubtitle[themeLearningProgramsId] || [];
   };
 
   return (
@@ -42,6 +32,7 @@ const TopicItem = ({ item,results,allTems }) => {
 
           const teachersForSubtitle = filterTeachersForSubtitle(subtitle.theme_learning_programs_id);
           // console.log(teachersForSubtitle);
+
           return <SubTopicItem subTit={subtitle} idx={idx} key={idx} teachers={teachersForSubtitle}/>
         })}
       </ol>
