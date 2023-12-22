@@ -119,6 +119,7 @@ function AddEvaluation() {
           console.log(selectedData)
           const formDataArray = selectedData.map(selectedItem => {
             const formData = new FormData();
+            formData.append('name', `${selectedItem.type}, ${selectedItem.subject_study_level_name}, (${selectedItem.year})` );
             formData.append('year', selectedItem.year);
             formData.append('type', selectedItem.type);
             formData.append('subject_study_level_id', selectedItem.subject_study_level_id );
@@ -200,7 +201,15 @@ function AddEvaluation() {
   const submitEvaluation = (e) => {
     e.preventDefault();
 
+    let subject_study_level_name = "";
+    const foundSubject = subjectList.find((subject) => subject.id == evaluationInput.subject_study_level_id);
+        
+    if (foundSubject) {
+      subject_study_level_name = foundSubject.name;
+    }
+
     const formData = new FormData();
+    formData.append('name', `${evaluationInput.type}, ${subject_study_level_name}, (${evaluationInput.year})` );
     formData.append('year',evaluationInput.year );
     formData.append('type',evaluationInput.type );
     formData.append('subject_study_level_id',evaluationInput.subject_study_level_id );

@@ -67,8 +67,15 @@ function EditEvaluation(props) {
 
   const submitEvaluation = (e) => {
     e.preventDefault();
+    let subject_study_level_name = "";
+    const foundSubject = subjectList.find((subject) => subject.id == evaluationInput.subject_study_level_id);
+        
+    if (foundSubject) {
+      subject_study_level_name = foundSubject.name;
+    }
 
     const formData = new FormData();
+    formData.append('name', `${evaluationInput.type}, ${subject_study_level_name}, (${evaluationInput.year})` );
     formData.append('year',evaluationInput.year );
     formData.append('type',evaluationInput.type );
     formData.append('subject_study_level_id',evaluationInput.subject_study_level_id );
@@ -149,7 +156,7 @@ function EditEvaluation(props) {
                     <option value="Pretestare">Pretestare</option>
                     <option value="Teste pentru exersare1">Teste pentru exersare1</option>
                     <option value="Teste pentru exersare2">Teste pentru exersare2</option>
-                    <option value="Suplimentara">Suplimentara</option>
+                    <option value="Evaluare suplimentara">Evaluare suplimentara</option>
                   </select>
               </div>
             </div>
