@@ -80,7 +80,7 @@ const Tema = () => {
       // console.log(pathToFind);
       // console.log(stateData.capitole);
     
-      const addressPath = `/${disciplina}/${address}?teacher=1&level=1&disciplina=${stateData.currentSubject.subject_id}&theme=${temaid}`;
+      const addressPath = `/${disciplina}/${address}?teacher=${teacherVideo}&level=1&disciplina=${stateData.currentSubject.subject_id}&theme=${temaid}`;
       const newBreadcrumb = {name: temaName, path: addressPath};
       dispatchData({
         type: "UPDATE_TOPIC_BREADCRUMB",
@@ -94,7 +94,7 @@ const Tema = () => {
 
   const fetchTheme = async (theme) => {
     try {
-        const res = await axios.get(`http://localhost:8000/api/teachertheme?level=1&disciplina=${stateData.currentSubject.subject_id}&teacher=1&student=1&theme=${theme}`);
+        const res = await axios.get(`http://localhost:8000/api/teachertheme?level=1&disciplina=${stateData.currentSubject.subject_id}&teacher=${teacherVideo}&student=1&theme=${theme}`);
 
         // console.log("Parametrul disciplina(currentSubject):", stateData.currentSubject);
         // console.log("Parametrul theme:", theme);

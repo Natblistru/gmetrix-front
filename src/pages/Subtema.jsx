@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ContextData from "../components/context/ContextData";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory, useLocation } from "react-router-dom";
 // import temeIstoriArray from "../data/temeIstoria";
 // import temeMatemArray from "../data/temeMatem";
 // import temeRomanaArray from "../data/temeRomana";
@@ -15,6 +15,10 @@ import StateData from "../components/context/StateData";
 const Subtema = ({results})  => {
   const {stateData, dispatchData} = React.useContext(ContextData)
   const { address1, disciplina } = useParams();
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const teacherVideo = searchParams.get('teacher');
+
   const [item, setItem] = useState(null);
   const [topic, setTopic] = useState(null);
   // console.log("address1", address1);
@@ -83,7 +87,7 @@ const Subtema = ({results})  => {
     const addressDisciplina = "/" + parts[1];
     const addressSubtitle = "/" + parts.slice(2).join("/");
 
-    const addressPath = `/${disciplina}${addressSubtitle}${mainElement.path}?teacher=1&level=1&disciplina=${subject_id}&theme=${tema_id}`;
+    const addressPath = `/${disciplina}${addressSubtitle}${mainElement.path}?teacher=${teacherVideo}&level=1&disciplina=${subject_id}&theme=${tema_id}`;
     const newBreadcrumb = {name: mainElement.name, path: addressPath};
     dispatchData({
       type: "UPDATE_SUBTOPIC_BREADCRUMB",

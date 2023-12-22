@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import ContextData from "../context/ContextData";
-import { Link } from "react-router-dom";
+import { Link, useLocation  } from "react-router-dom";
 import { connect } from "react-redux";
 
 const ItemList = ({ list, className, type, results, onItemClick }) => {
   const {stateData, dispatchData} = React.useContext(ContextData)
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const teacherVideo = searchParams.get('teacher');
+
   let listItems = [...list];
   // console.log(listItems)
   const classes = "subjects-container " + className;
@@ -64,7 +68,7 @@ const ItemList = ({ list, className, type, results, onItemClick }) => {
           classNameProcent = "svg-sprite-vs-small result-perfect";
         }
         // console.log(subtitle)
-        const dynamicPath = `${addressDisciplina}${addressSubtitle}${subtitle_path}?teacher=1&level=1&disciplina=${stateData.currentSubject.subject_id}&theme=${stateData.currentTheme.tema_id}`;       
+        const dynamicPath = `${addressDisciplina}${addressSubtitle}${subtitle_path}?teacher=${teacherVideo}&level=1&disciplina=${stateData.currentSubject.subject_id}&theme=${stateData.currentTheme.tema_id}`;       
         return (
           <div key={idx} className="subject-item" onClick={() => onItemClick && onItemClick(idx)}>
             <div className="title-item"> 

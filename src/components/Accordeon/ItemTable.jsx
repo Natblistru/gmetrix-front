@@ -1,12 +1,15 @@
 import React, { useEffect } from "react";
 import ContextData from "../context/ContextData";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { connect } from "react-redux";
 // import temeIstoriArray from "../../data/temeIstoria";
 import "../../index.css";
 
 const TableRow = (props) => {
   const {stateData, dispatchData} = React.useContext(ContextData)
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const teacherVideo = searchParams.get('teacher');
 
   const rowData = props.rowData;
   const idx = props.ind;
@@ -16,7 +19,7 @@ const TableRow = (props) => {
   const addressDisciplina = "/" + parts[1];
   const addressSubtitle = "/" + parts.slice(2).join("/");
 
-  const dynamicPath = `${addressDisciplina}${addressSubtitle}${rowData.path}${rowData.addressTest}/1?teacher=1&level=1&disciplina=${stateData.currentSubject.subject_id}&theme=${stateData.currentTheme.tema_id}`;       
+  const dynamicPath = `${addressDisciplina}${addressSubtitle}${rowData.path}${rowData.addressTest}/1?teacher=${teacherVideo}&level=1&disciplina=${stateData.currentSubject.subject_id}&theme=${stateData.currentTheme.tema_id}`;       
   // const dynamicPath = `${rowData.addressTestDisciplina}${rowData.addressTestSubtitle}${rowData.addressTestSubject}${rowData.addressTest}/1`;
 
   // const sumProc = (subjectId, testID, subtitle) => {
