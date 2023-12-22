@@ -1,10 +1,32 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
+import axios from 'axios'; 
 import SubTopicItem from "./SubTopicItem";
 import ProgressBar from "./ProgressBar";
 
 const TopicItem = ({ item,results,allTems }) => {
   const tema = item;
+
+  const [teachers, setTeachers] = useState([]);
+
+  useEffect(() => {
+    axios.get(`http://localhost:8000/api/teachers-with-themes`)
+      .then(response => {
+        setTeachers(response.data.groupedTeacherThemes);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+  }, []);
+
+  const filterTeachersForSubtitle = (themeLearningProgramsId) => {
+    if (!teachers || !themeLearningProgramsId) {
+      return [];
+    }
+
+    return teachers[themeLearningProgramsId] || [];
+  };
+
   return (
     <li className="topic-item" key={tema.id}>
       <div className="topic-header">
@@ -16,9 +38,12 @@ const TopicItem = ({ item,results,allTems }) => {
 
       </div>
       <ol className="subtopic-list">
-        {tema?.subtitles?.map((subtitle, idx) => (
-          <SubTopicItem subTit={subtitle} idx={idx} key={idx}/>
-        ))}
+        {tema?.subtitles?.map((subtitle, idx) => {
+
+          const teachersForSubtitle = filterTeachersForSubtitle(subtitle.theme_learning_programs_id);
+          // console.log(teachersForSubtitle);
+          return <SubTopicItem subTit={subtitle} idx={idx} key={idx} teachers={teachersForSubtitle}/>
+        })}
       </ol>
     </li>
   );
