@@ -15,6 +15,9 @@ import EditTeacherVideo from "../components/admin/Teacher/EditTeacherVideo.js";
 import AddEvaluation from "../components/admin/Evaluation/AddEvaluation.js";
 import ViewEvaluation from "../components/admin/Evaluation/ViewEvaluation.js";
 import EditEvaluation from "../components/admin/Evaluation/EditEvaluation.js";
+import AddEvaluationSubject from "../components/admin/Evaluation/AddEvaluationSubject.js";
+import ViewEvaluationSubject from "../components/admin/Evaluation/ViewEvaluationSubject.js";
+import EditEvaluationSubject from "../components/admin/Evaluation/EditEvaluationSubject.js";
 
 const routes = [
   { path: '/admin', exact: true, name: 'Admin'},
@@ -39,6 +42,10 @@ const routes = [
   { path: '/admin/add-evaluation', exact: true, name: 'AddEvaluation', component: AddEvaluation },
   { path: '/admin/view-evaluation', exact: true, name: 'ViewEvaluation', component: ViewEvaluation }, 
   { path: '/admin/edit-evaluation/:id', exact: true, name: 'EditEvaluation', component: EditEvaluation },
+
+  { path: '/admin/add-evaluation-subject', exact: true, name: 'AddEvaluationSubject', component: AddEvaluationSubject },
+  { path: '/admin/view-evaluation-subject', exact: true, name: 'ViewEvaluationSubject', component: ViewEvaluationSubject },
+  { path: '/admin/edit-evaluation-subject/:id', exact: true, name: 'EditEvaluationSubject', component: EditEvaluationSubject },
 ];
 
 export default routes;
