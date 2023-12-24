@@ -80,6 +80,7 @@ const Sidebar = () => {
                                 <Link className="nav-linkSide" to="/admin/view-evaluation-subject">Evaluation Subjects</Link>
                                 <Link className="nav-linkSide" to="/admin/view-evaluation-source">Evaluation Sources</Link>
                                 <Link className="nav-linkSide" to="/admin/view-evaluation-subject-source">Evaluation Subject Sources</Link>                           
+                                <Link className="nav-linkSide" to="/admin/view-evaluation-item">Evaluation Items</Link>                               
                             </nav>
                         </div>
 

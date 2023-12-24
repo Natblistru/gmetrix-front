@@ -24,6 +24,9 @@ import EditEvaluationSource from "../components/admin/Evaluation/EditEvaluationS
 import AddEvaluationSubjectSource from "../components/admin/Evaluation/AddEvaluationSubjectSource.js";
 import ViewEvaluationSubjectSource from "../components/admin/Evaluation/ViewEvaluationSubjectSource.js";
 import EditEvaluationSubjectSource from "../components/admin/Evaluation/EditEvaluationSubjectSource.js";
+import AddEvaluationItem from "../components/admin/Evaluation/AddEvaluationItem.js";
+import ViewEvaluationItem from "../components/admin/Evaluation/ViewEvaluationItem.js";
+import EditEvaluationItem from "../components/admin/Evaluation/EditEvaluationItem.js";
 
 const routes = [
   { path: '/admin', exact: true, name: 'Admin'},
@@ -60,6 +63,10 @@ const routes = [
   { path: '/admin/add-evaluation-subject-source', exact: true, name: 'AddEvaluationSubjectSource', component: AddEvaluationSubjectSource },
   { path: '/admin/view-evaluation-subject-source', exact: true, name: 'ViewEvaluationSubjectSource', component: ViewEvaluationSubjectSource },
   { path: '/admin/edit-evaluation-subject-source/:id', exact: true, name: 'EditEvaluationSubjectSource', component: EditEvaluationSubjectSource },
+
+  { path: '/admin/add-evaluation-item', exact: true, name: 'AddEvaluationItem', component: AddEvaluationItem },
+  { path: '/admin/view-evaluation-item', exact: true, name: 'ViewEvaluationItem', component: ViewEvaluationItem },
+  { path: '/admin/edit-evaluation-item/:id', exact: true, name: 'EditEvaluationItem', component: EditEvaluationItem },
 
 ];
 

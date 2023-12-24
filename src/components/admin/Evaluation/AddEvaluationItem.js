@@ -7,13 +7,12 @@ import { Link } from 'react-router-dom';
 
 import Swal from 'sweetalert2'
 
-function AddEvaluationSubjectSource() {
+function AddEvaluationItem() {
 
   const [subjectList, setSubjectList] = useState([]);
   const [chapterList, setChapterList] = useState([]);
   const [themeList, setThemeList] = useState([]);
   const [evaluationSubjectList, setEvaluationSubjectList] = useState([]);
-  const [evaluationSourceList, setEvaluationSourceList] = useState([]);
 
   useEffect(() => {
 
@@ -38,12 +37,6 @@ function AddEvaluationSubjectSource() {
     axios.get('http://localhost:8000/api/all-evaluation-subjects').then(res=>{
       if(res.data.status === 200){
         setEvaluationSubjectList(res.data.evaluationSubjects);
-      }
-    });
-
-    axios.get('http://localhost:8000/api/all-evaluation-sources').then(res=>{
-      if(res.data.status === 200){
-        setEvaluationSourceList(res.data.evaluationSources);
       }
     });
 
@@ -110,10 +103,16 @@ function AddEvaluationSubjectSource() {
       updatedAdditionalData[index] = {
         chosen: isChecked,
         order_number: excelData[index]?.order_number || '', 
+        task: excelData[index]?.task || '',
+        statement: excelData[index]?.statement || '',
+        image_path: excelData[index]?.image_path || '',
+        editable_image_path: excelData[index]?.editable_image_path || '',
+        procent_paper: excelData[index]?.procent_paper || '',
+        nota: excelData[index]?.nota || '',
         evaluation_subject_id: excelData[index]?.evaluation_subject_id || '', 
         evaluation_subject_name: excelData[index]?.evaluation_subject_name || '', 
-        evaluation_source_id: excelData[index]?.evaluation_source_id || '', 
-        evaluation_source_name: excelData[index]?.evaluation_source_name || '', 
+        theme_id: excelData[index]?.theme_id || '', 
+        theme_name: excelData[index]?.theme_name || '', 
         status: excelData[index]?.status || '',
       };
       return updatedAdditionalData;
@@ -133,11 +132,11 @@ function AddEvaluationSubjectSource() {
       if (selectedData.length > 0) {
 
         let notFoundEvaluationSubject = [];   
-        let notFoundEvaluationSource = [];  
+        let notFoundTheme = [];  
 
         selectedData.forEach((selectedItem) => {
           const foundEvaluationSubject = evaluationSubjectList.find((subject) => subject.title === selectedItem.evaluation_subject_name);
-          const foundEvaluationSource = evaluationSourceList.find((source) => source.name === selectedItem.evaluation_source_name);
+          const foundTheme = themeList.find((theme) => theme.name === selectedItem.theme_name);
 
           if (foundEvaluationSubject) {
             selectedItem.evaluation_subject_id = foundEvaluationSubject.id;
@@ -145,28 +144,34 @@ function AddEvaluationSubjectSource() {
           else {
             notFoundEvaluationSubject.push(selectedItem.evaluation_subject_name);
           }
-          if (foundEvaluationSource) {
-            selectedItem.evaluation_source_id = foundEvaluationSource.id;
+          if (foundTheme) {
+            selectedItem.theme_id = foundTheme.id;
           }
           else {
-            notFoundEvaluationSource.push(selectedItem.evaluation_source_name);
+            notFoundTheme.push(selectedItem.theme_name);
           }
         });
 
-        if(notFoundEvaluationSubject.length === 0 && notFoundEvaluationSource.length === 0) {
+        if(notFoundEvaluationSubject.length === 0 && notFoundTheme.length === 0) {
 
           const formDataArray = selectedData.map(selectedItem => {
 
             const formData = new FormData();
             formData.append('order_number', selectedItem.order_number );
+            formData.append('task', selectedItem.task );
+            formData.append('statement', selectedItem.statement );
+            formData.append('image_path', selectedItem.image_path );
+            formData.append('editable_image_path', selectedItem.editable_image_path );
+            formData.append('procent_paper', selectedItem.procent_paper );
+            formData.append('nota', selectedItem.nota );
             formData.append('evaluation_subject_id', selectedItem.evaluation_subject_id );
-            formData.append('evaluation_source_id', selectedItem.evaluation_source_id );    
+            formData.append('theme_id', selectedItem.theme_id );    
             formData.append('status', 0); 
             return formData;
           });
           console.log(formDataArray)
           // Trimitem fiecare set de date către server utilizând axios.all
-          axios.all(formDataArray.map(formData => axios.post('http://localhost:8000/api/store-evaluation-subject-source', formData)))
+          axios.all(formDataArray.map(formData => axios.post('http://localhost:8000/api/store-evaluation-item', formData)))
               .then(axios.spread((...responses) => {
                 const successResponses = responses.filter(response => response.data.status === 201);
                 const errorResponses = responses.filter(response => response.data.status === 422);
@@ -201,10 +206,10 @@ function AddEvaluationSubjectSource() {
               icon: "error"
             });
           }
-          if(notFoundEvaluationSource.length > 0 ) {
+          if(notFoundTheme.length > 0 ) {
             Swal.fire({
-              title: "Unfound evaluation source name:",
-              text: Object.values(notFoundEvaluationSource).flat().join(' '),
+              title: "Unfound theme name:",
+              text: Object.values(notFoundTheme).flat().join(' '),
               icon: "error"
             });
           }
@@ -224,15 +229,21 @@ function AddEvaluationSubjectSource() {
       });
   }
 };
+
   const [errorList, setErrors] = useState([]);
-  const [evaluationSubjectSourceInput, setEvaluationSubjectSourceInput] = useState({
+  const [evaluationItemInput, setEvaluationItemInput] = useState({
     subject_study_level_id: '',
     chapter_id: '',
     theme_id: '',
     year: '',
     evaluation_subject_id: '',
-    evaluation_source_id: '',
     order_number: '',
+    task: '',
+    statement: '',
+    image_path: '',
+    editable_image_path: '',
+    procent_paper: '',
+    nota: '',
   })
 
   const [allCheckboxes, setAllCheckboxes] = useState({
@@ -241,7 +252,7 @@ function AddEvaluationSubjectSource() {
 
   const handleInput = (e) => {
     e.persist();
-    setEvaluationSubjectSourceInput({...evaluationSubjectSourceInput, [e.target.name]: e.target.value})
+    setEvaluationItemInput({...evaluationItemInput, [e.target.name]: e.target.value})
   }
 
   const handleCheckbox = (e) => {
@@ -253,14 +264,21 @@ function AddEvaluationSubjectSource() {
     e.preventDefault();
 
     const formData = new FormData();
-    formData.append('evaluation_subject_id',evaluationSubjectSourceInput.evaluation_subject_id );
-    formData.append('evaluation_source_id',evaluationSubjectSourceInput.evaluation_source_id );
-    formData.append('order_number',evaluationSubjectSourceInput.order_number );
+    formData.append('evaluation_subject_id',evaluationItemInput.evaluation_subject_id );
+    formData.append('theme_id',evaluationItemInput.theme_id );
+    formData.append('order_number',evaluationItemInput.order_number );
+    formData.append('task',evaluationItemInput.task );
+    formData.append('statement',evaluationItemInput.statement );
+    formData.append('image_path',evaluationItemInput.image_path );
+    formData.append('editable_image_path',evaluationItemInput.editable_image_path );
+    formData.append('procent_paper',evaluationItemInput.procent_paper );
+    formData.append('nota',evaluationItemInput.nota );
     formData.append('status',allCheckboxes.status == true ? 1 : 0);
 
     console.log(formData)
 
-    axios.post(`http://localhost:8000/api/store-evaluation-subject-source`, formData).then(res => {
+    axios.post(`http://localhost:8000/api/store-evaluation-item`, formData).then(res => {
+      console.log(res)
       if(res.data.status === 201)
       {
         Swal.fire({
@@ -268,14 +286,19 @@ function AddEvaluationSubjectSource() {
           text: res.data.message,
           icon: "success"
         });
-        setEvaluationSubjectSourceInput({
+        setEvaluationItemInput({
           subject_study_level_id: '',
           chapter_id: '',
           theme_id: '',
           year: '',
           evaluation_subject_id: '',
-          evaluation_source_id: '',
           order_number: '',
+          task: '',
+          statement: '',
+          image_path: '',
+          editable_image_path: '',
+          procent_paper: '',
+          nota: '',
         });
         setAllCheckboxes({
           status: false,
@@ -296,8 +319,8 @@ function AddEvaluationSubjectSource() {
 
   return (
     <div className="container-fluid px4">
-      <h2 className="m-3">Add Evaluation Subject Source
-        <Link to="/admin/view-evaluation-subject-source" type="button" className="btnBts btn-primary text-white px-4 m-3 float-end">BACK to List</Link>
+      <h2 className="m-3">Add Evaluation Item
+        <Link to="/admin/view-evaluation-item" type="button" className="btnBts btn-primary text-white px-4 m-3 float-end">BACK to List</Link>
       </h2>
 
         <ul className="navSide nav-tabs" id="myTab" role="tablist">
@@ -317,7 +340,7 @@ function AddEvaluationSubjectSource() {
           <div className="col-md-3">          
             <div className="form-group m-3">
               <label>Select Subject Study Level</label>
-              <select name="subject_study_level_id" onChange={handleInput} value={evaluationSubjectSourceInput.subject_study_level_id} className="form-control">  
+              <select name="subject_study_level_id" onChange={handleInput} value={evaluationItemInput.subject_study_level_id} className="form-control">  
                 <option>Select Subject Study Level</option>
                 {
                   subjectList.map((item)=> {
@@ -334,7 +357,7 @@ function AddEvaluationSubjectSource() {
           <div className="col-md-2">
             <div className="form-group m-3">
               <label>Year</label>
-              <input type="text" name="year" onChange={handleInput} value={evaluationSubjectSourceInput.year} className="form-control" />
+              <input type="text" name="year" onChange={handleInput} value={evaluationItemInput.year} className="form-control" />
               <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.year}</span>
             </div>
           </div>
@@ -342,12 +365,12 @@ function AddEvaluationSubjectSource() {
           <div className="col-md-7">          
             <div className="form-group m-3">
               <label>Select Evaluation Subject</label>
-              <select name="evaluation_subject_id" onChange={handleInput} value={evaluationSubjectSourceInput.evaluation_subject_id} className="form-control">  
+              <select name="evaluation_subject_id" onChange={handleInput} value={evaluationItemInput.evaluation_subject_id} className="form-control">  
                 <option>Select Evaluation Subject</option>
                 {
                   evaluationSubjectList
-                  .filter((item) => item.evaluation.subject_study_level_id == evaluationSubjectSourceInput.subject_study_level_id)
-                  .filter((item) => item.evaluation.year == evaluationSubjectSourceInput.year)                  
+                  .filter((item) => item.evaluation.subject_study_level_id == evaluationItemInput.subject_study_level_id)
+                  .filter((item) => item.evaluation.year == evaluationItemInput.year)                  
                   .map((item)=> {
                     return (
                       <option value={item.id} key={item.id}>{item.title}</option>
@@ -362,11 +385,11 @@ function AddEvaluationSubjectSource() {
           <div className="col-md-5">          
             <div className="form-group m-3">
               <label>Select Chapter</label>
-              <select name="chapter_id" onChange={handleInput} value={evaluationSubjectSourceInput.chapter_id} className="form-control">  
+              <select name="chapter_id" onChange={handleInput} value={evaluationItemInput.chapter_id} className="form-control">  
                 <option>Select Chapter</option>
                 {
                   chapterList
-                  .filter((item) => item.subject_study_level_id == evaluationSubjectSourceInput.subject_study_level_id)
+                  .filter((item) => item.subject_study_level_id == evaluationItemInput.subject_study_level_id)
                   .map((item)=> {
                     return (
                       <option value={item.id} key={item.id}>{item.name}</option>
@@ -381,11 +404,11 @@ function AddEvaluationSubjectSource() {
           <div className="col-md-7">          
             <div className="form-group m-3">
               <label>Select Theme</label>
-              <select name="theme_id" onChange={handleInput} value={evaluationSubjectSourceInput.theme_id} className="form-control">  
+              <select name="theme_id" onChange={handleInput} value={evaluationItemInput.theme_id} className="form-control">  
                 <option>Select Theme</option>
                 {
                   themeList
-                  .filter((item) => item.chapter_id == evaluationSubjectSourceInput.chapter_id)
+                  .filter((item) => item.chapter_id == evaluationItemInput.chapter_id)
                   .map((item)=> {
                     return (
                       <option value={item.id} key={item.id}>{item.name}</option>
@@ -397,14 +420,14 @@ function AddEvaluationSubjectSource() {
             </div>
           </div>
 
-          <div className="col-md-10">          
+          {/* <div className="col-md-10">          
             <div className="form-group m-3">
               <label>Select Source</label>
-              <select name="evaluation_source_id" onChange={handleInput} value={evaluationSubjectSourceInput.evaluation_source_id} className="form-control">  
+              <select name="evaluation_source_id" onChange={handleInput} value={evaluationItemInput.evaluation_source_id} className="form-control">  
                 <option>Select Source</option>
                 {
                   evaluationSourceList
-                  .filter((item) => item.theme_id == evaluationSubjectSourceInput.theme_id)
+                  .filter((item) => item.theme_id == evaluationItemInput.theme_id)
                   .map((item)=> {
                     return (
                       <option value={item.id} key={item.id}>{item.name}</option>
@@ -414,23 +437,71 @@ function AddEvaluationSubjectSource() {
               </select>            
               <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.evaluation_source_id}</span>
             </div>
-          </div>
+          </div> */}
 
+          <div className="col-md-10">
+            <div className="form-group m-3">
+              <label>Task</label>
+              <input type="text" name="task" onChange={handleInput} value={evaluationItemInput.task} className="form-control" />
+              <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.task}</span>
+            </div>
+          </div>
   
           <div className="col-md-2">
+            <div className="form-group m-3">
+              <label>Order number</label>
+              <input type="text" name="order_number" onChange={handleInput} value={evaluationItemInput.order_number} className="form-control" />
+              <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.order_number}</span>
+            </div>
+          </div>
+
+          </div> 
+          <div className="rowBts">   
+            <div className="col-md-10">
               <div className="form-group m-3">
-                <label>Order number</label>
-                <input type="text" name="order_number" onChange={handleInput} value={evaluationSubjectSourceInput.order_number} className="form-control" />
-                <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.order_number}</span>
+                <label>Statement</label>
+                <input type="text" name="statement" onChange={handleInput} value={evaluationItemInput.statement} className="form-control" />
+                <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.statement}</span>
+              </div>
+            </div>
+
+            <div className="col-md-2">
+              <div className="form-group m-3">
+                <label>% Paper</label>
+                <input type="text" name="procent_paper" onChange={handleInput} value={evaluationItemInput.procent_paper} className="form-control" />
+                <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.procent_paper}</span>
               </div>
             </div>
 
           </div> 
+
           <div className="rowBts">   
+            <div className="col-md-3">
+              <div className="form-group m-3">
+                <label>Image Path</label>
+                <input type="text" name="image_path" onChange={handleInput} value={evaluationItemInput.image_path} className="form-control" />
+                <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.image_path}</span>
+              </div>
+            </div>
 
+            <div className="col-md-4">
+              <div className="form-group m-3">
+                <label>Editable Image Path</label>
+                <input type="text" name="editable_image_path" onChange={handleInput} value={evaluationItemInput.editable_image_path} className="form-control" />
+                <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.editable_image_path}</span>
+              </div>
+            </div>
 
+            <div className="col-md-5">
+              <div className="form-group m-3">
+                <label>Nota</label>
+                <textarea name="nota" onChange={handleInput} value={evaluationItemInput.nota} className="form-control" />
+                <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.nota}</span>
+              </div>
+            </div>
 
           </div> 
+
           <div className="rowBts">   
           <div className="col-md-4">
               <div className="form-group m-3">
@@ -461,6 +532,7 @@ function AddEvaluationSubjectSource() {
             </form>
             <div className="containerBts">
               <form onSubmit={submitEvaluationSources}>
+                {console.log(excelData)}
               {excelData?(
                 <div className="table-responsive">
                   <table className="table table-primary table-bordered table-striped">
@@ -474,7 +546,7 @@ function AddEvaluationSubjectSource() {
                           />
                           Check All
                           </th>
-                          {allKeys.map((key)=>(
+                        {allKeys.map((key)=>(
                           <th key={key}>{key}</th>
                         ))}
                       </tr>
@@ -490,7 +562,7 @@ function AddEvaluationSubjectSource() {
                                 onChange={(e) => handleCheckboxChange(index, e.target.checked)}
                               />
                               </td>
-                              {allKeys.map((key)=>(
+                          {allKeys.map((key)=>(
                             <td key={key}>{individualExcelData[key]}</td>
                           ))}
                         </tr>
@@ -513,4 +585,4 @@ function AddEvaluationSubjectSource() {
   )
 }
 
-export default AddEvaluationSubjectSource;
+export default AddEvaluationItem;

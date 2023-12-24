@@ -42,6 +42,7 @@ function AddTeacherVideo() {
   },[])
 
   const [excelFile, setExcelFile] = useState(null);
+  const [allKeys, setAllKeys] = useState(null);
   const [typeError, setTypeError] = useState(null);
 
   const [excelData, setExcelData] = useState(null);
@@ -76,7 +77,9 @@ function AddTeacherVideo() {
       const worksheetName = workbook.SheetNames[0];
       const worksheet = workbook.Sheets[worksheetName];
       const data = XLSX.utils.sheet_to_json(worksheet);
-      setExcelData(data.slice(0,50));
+      const dataRestricted = data.slice(0,50);
+      setExcelData(dataRestricted);
+      setAllKeys([...new Set(dataRestricted.flatMap(row => Object.keys(row)))]);
     }
   }
 
@@ -194,6 +197,7 @@ function AddTeacherVideo() {
                   });
                 });
                 setExcelData(null);
+                setAllKeys(null);
                 setAdditionalData([]);
                 setExcelFile(null);
                 document.getElementById('fileExcel').value = '';
@@ -470,7 +474,7 @@ function AddTeacherVideo() {
                           />
                           Check All
                           </th>
-                        {Object.keys(excelData[0]).map((key)=>(
+                          {allKeys.map((key)=>(
                           <th key={key}>{key}</th>
                         ))}
                       </tr>
@@ -486,7 +490,7 @@ function AddTeacherVideo() {
                                 onChange={(e) => handleCheckboxChange(index, e.target.checked)}
                               />
                               </td>
-                          {Object.keys(individualExcelData).map((key)=>(
+                              {allKeys.map((key)=>(
                             <td key={key}>{individualExcelData[key]}</td>
                           ))}
                         </tr>

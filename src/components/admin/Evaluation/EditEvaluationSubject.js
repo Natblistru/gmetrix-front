@@ -133,7 +133,7 @@ function EditEvaluationSubject(props) {
           text: res.data.message,
           icon: "error",
         });
-        history.push("/admin/evaluation-subject");
+        history.push("/admin/view-evaluation-subject");
       }
     });
   }
