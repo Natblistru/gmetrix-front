@@ -78,6 +78,7 @@ const Sidebar = () => {
                             <nav className="sb-sidenav-menu-nested navSide">
                                 <Link className="nav-linkSide" to="/admin/view-evaluation">Evaluations</Link>
                                 <Link className="nav-linkSide" to="/admin/view-evaluation-subject">Evaluation Subjects</Link>
+                                <Link className="nav-linkSide" to="/admin/view-evaluation-source">Evaluation Sources</Link>
                             </nav>
                         </div>
 
