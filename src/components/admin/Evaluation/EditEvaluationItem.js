@@ -177,7 +177,7 @@ function EditEvaluationItem(props) {
 
   return (
     <div className="container-fluid px4">
-      <h2 className="m-3">Add Evaluation Item
+      <h2 className="m-3">Edit Evaluation Item
         <Link to="/admin/view-evaluation-item" type="button" className="btnBts btn-primary text-white px-4 m-3 float-end">BACK to List</Link>
       </h2>
 
@@ -338,7 +338,7 @@ function EditEvaluationItem(props) {
                 <img
                   src={`http://localhost:8000/${evaluationItemInput.image_path}`}
                   width='50px'
-                  alt={evaluationItemInput.task ? '' : ''}
+                  alt={evaluationItemInput.image_path || ''}
                 />
                 <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.image_path}</span>
               </div>
@@ -351,7 +351,7 @@ function EditEvaluationItem(props) {
                 <img
                   src={`http://localhost:8000/${evaluationItemInput.editable_image_path}`}
                   width='50px'
-                  alt={evaluationItemInput.task ? '' : ''}
+                  alt={evaluationItemInput.editable_image_path || ''}
                 />
                 <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.editable_image_path}</span>
               </div>
