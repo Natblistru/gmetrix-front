@@ -275,7 +275,9 @@ const ExamenSubect3 = ({raspunsuri}) => {
                 open={true}
               >
                 <ItemText classNameChild="">
-                {quizArray[currentIndex]?.answers.map(answer => (
+                {quizArray[currentIndex]?.answers
+                  .filter(answer => answer !== null && answer.answer_text !== null) // Filtrarea elementelor care nu sunt nule
+                  .map(answer => (
                   <React.Fragment key={answer.answer_id}>
                     {answer.answer_text.split('\n').map((line, index) => (
                       <React.Fragment key={index}>
