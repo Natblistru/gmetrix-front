@@ -254,6 +254,19 @@ function AddEvaluationItem() {
     nota: '',
   })
 
+  const [picture, setPicture] = useState([])
+  const [editablePicture, setEditablePicture] = useState([])
+
+  const handleImage = (e) => {
+    const file = e.target.files[0];
+    setPicture(file);
+  }
+
+  const handleEditableImage = (e) => {
+    const file = e.target.files[0];
+    setEditablePicture(file);
+  }
+
   const [allCheckboxes, setAllCheckboxes] = useState({
     status: false,
   })
@@ -270,14 +283,15 @@ function AddEvaluationItem() {
 
   const submitEvaluationSource = (e) => {
     e.preventDefault();
-
     const formData = new FormData();
     formData.append('evaluation_subject_id',evaluationItemInput.evaluation_subject_id );
     formData.append('theme_id',evaluationItemInput.theme_id );
     formData.append('order_number',evaluationItemInput.order_number );
     formData.append('task',evaluationItemInput.task );
     formData.append('statement',evaluationItemInput.statement );
+    formData.append('image',picture );
     formData.append('image_path',evaluationItemInput.image_path );
+    formData.append('editableImage',editablePicture ); 
     formData.append('editable_image_path',evaluationItemInput.editable_image_path );
     formData.append('procent_paper',evaluationItemInput.procent_paper );
     formData.append('nota',evaluationItemInput.nota );
@@ -285,7 +299,11 @@ function AddEvaluationItem() {
 
     console.log(formData)
 
-    axios.post(`http://localhost:8000/api/store-evaluation-item`, formData).then(res => {
+    axios.post(`http://localhost:8000/api/store-evaluation-item`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    }).then(res => {
       console.log(res)
       if(res.data.status === 201)
       {
@@ -315,6 +333,7 @@ function AddEvaluationItem() {
       }
       else if(res.data.status === 422)
       {
+        console.log(res.data.errors);
         Swal.fire({
           title: "All fields are mandatory",
           text: Object.values(res.data.errors).flat().join(' '),
@@ -342,7 +361,7 @@ function AddEvaluationItem() {
         <div className="tab-content" id="myTabContent">
         
           <div className="tab-pane card-body border fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-          <form className="form-group custom-form" onSubmit={submitEvaluationSource} >
+          <form className="form-group custom-form" onSubmit={submitEvaluationSource} encType="multipart/form-data">
           <div className="rowBts">
 
           <div className="col-md-3">          
@@ -486,17 +505,17 @@ function AddEvaluationItem() {
           <div className="rowBts">   
             <div className="col-md-3">
               <div className="form-group m-3">
-                <label>Image Path</label>
-                <input type="text" name="image_path" onChange={handleInput} value={evaluationItemInput.image_path} className="form-control" />
-                <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.image_path}</span>
+                <label>Image</label>
+                <input type="file" accept="image/*" name="image" onChange={handleImage} className="form-control" />
+                <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.image}</span>
               </div>
             </div>
 
             <div className="col-md-4">
               <div className="form-group m-3">
-                <label>Editable Image Path</label>
-                <input type="text" name="editable_image_path" onChange={handleInput} value={evaluationItemInput.editable_image_path} className="form-control" />
-                <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.editable_image_path}</span>
+                <label>Editable Image</label>
+                <input type="file" accept="image/*" name="editableImage" onChange={handleEditableImage} className="form-control" />
+                <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.editableImage}</span>
               </div>
             </div>
 

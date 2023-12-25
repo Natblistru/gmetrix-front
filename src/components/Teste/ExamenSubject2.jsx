@@ -274,7 +274,7 @@ const ExamenSubect2 = ({raspunsuri}) => {
                 open={true}
               >
                 <ItemText classNameChild="">
-                {quizArray[currentIndex].img && (<img src={quizArray[currentIndex].img} />)}
+                {quizArray[currentIndex].img && (<img src={`http://localhost:8000/${process.env.PUBLIC_URL + quizArray[currentIndex]?.img}`} />)}
                 {quizArray[currentIndex]?.answers.map(answer => (
                   <React.Fragment key={answer.answer_id}>
                     {answer.answer_text.split('\n').map((line, index) => (

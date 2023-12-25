@@ -207,9 +207,7 @@ const ExamenSubect1 = ({ raspunsuri }) => {
                   </div>
                   <img
                     className="img-subject"
-                    src={
-                      process.env.PUBLIC_URL + quizArray[currentIndex]?.img
-                    }
+                    src={`http://localhost:8000/${process.env.PUBLIC_URL + quizArray[currentIndex]?.img}`}
                     alt=""
                   />
                 </div>
