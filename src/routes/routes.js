@@ -30,6 +30,10 @@ import EditEvaluationItem from "../components/admin/Evaluation/EditEvaluationIte
 import AddEvaluationAnswer from "../components/admin/Evaluation/AddEvaluationAnswer.js";
 import ViewEvaluationAnswer from "../components/admin/Evaluation/ViewEvaluationAnswer.js";
 import EditEvaluationAnswer from "../components/admin/Evaluation/EditEvaluationAnswer.js";
+import AddEvaluationOption from "../components/admin/Evaluation/AddEvaluationOption.js";
+import ViewEvaluationOption from "../components/admin/Evaluation/ViewEvaluationOption.js";
+import EditEvaluationOption from "../components/admin/Evaluation/EditEvaluationOption.js";
+
 
 const routes = [
   { path: '/admin', exact: true, name: 'Admin'},
@@ -74,6 +78,10 @@ const routes = [
   { path: '/admin/add-evaluation-answer', exact: true, name: 'AddEvaluationAnswer', component: AddEvaluationAnswer },
   { path: '/admin/view-evaluation-answer', exact: true, name: 'ViewEvaluationAnswer', component: ViewEvaluationAnswer },
   { path: '/admin/edit-evaluation-answer/:id', exact: true, name: 'EditEvaluationAnswer', component: EditEvaluationAnswer },
+
+  { path: '/admin/add-evaluation-option', exact: true, name: 'AddEvaluationOption', component: AddEvaluationOption },
+  { path: '/admin/view-evaluation-option', exact: true, name: 'ViewEvaluationOption', component: ViewEvaluationOption },
+  { path: '/admin/edit-evaluation-option/:id', exact: true, name: 'EditEvaluationOption', component: EditEvaluationOption },
 
 
 ];
