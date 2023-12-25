@@ -4,7 +4,6 @@ import * as XLSX from 'xlsx';
 import InputMask from 'react-input-mask';
 import { Link } from 'react-router-dom';
 
-
 import Swal from 'sweetalert2'
 
 function AddEvaluationItem() {
@@ -77,10 +76,19 @@ function AddEvaluationItem() {
       const workbook = XLSX.read(excelFile,{type: 'buffer'});
       const worksheetName = workbook.SheetNames[0];
       const worksheet = workbook.Sheets[worksheetName];
-      const data = XLSX.utils.sheet_to_json(worksheet);
-      const dataRestricted = data.slice(0,50);
+      const data = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+
+      const columns = data[0];
+      const formattedData = data.slice(1).map((row) => {
+        const rowData = {};
+        columns.forEach((column, index) => {
+          rowData[column] = row[index];
+        });
+        return rowData;
+      });
+      const dataRestricted = formattedData.slice(0,50);
       setExcelData(dataRestricted);
-      setAllKeys([...new Set(dataRestricted.flatMap(row => Object.keys(row)))]);
+      setAllKeys(columns);
     }
   }
 
