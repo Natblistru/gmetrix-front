@@ -6,12 +6,13 @@ import { Link } from 'react-router-dom';
 
 import Swal from 'sweetalert2'
 
-function AddEvaluationItem() {
+function AddEvaluationFormPage() {
 
   const [subjectList, setSubjectList] = useState([]);
   const [chapterList, setChapterList] = useState([]);
   const [themeList, setThemeList] = useState([]);
   const [evaluationSubjectList, setEvaluationSubjectList] = useState([]);
+  const [evaluationItemList, setEvaluationItemList] = useState([]);
 
   useEffect(() => {
 
@@ -36,6 +37,12 @@ function AddEvaluationItem() {
     axios.get('http://localhost:8000/api/all-evaluation-subjects').then(res=>{
       if(res.data.status === 200){
         setEvaluationSubjectList(res.data.evaluationSubjects);
+      }
+    });
+
+    axios.get('http://localhost:8000/api/all-evaluation-items').then(res=>{
+      if(res.data.status === 200){
+        setEvaluationItemList(res.data.evaluationItems);
       }
     });
 
@@ -112,15 +119,11 @@ function AddEvaluationItem() {
         chosen: isChecked,
         order_number: excelData[index]?.order_number || '', 
         task: excelData[index]?.task || '',
-        statement: excelData[index]?.statement || '',
-        image_path: excelData[index]?.image_path || '',
-        editable_image_path: excelData[index]?.editable_image_path || '',
-        procent_paper: excelData[index]?.procent_paper || '',
-        nota: excelData[index]?.nota || '',
-        evaluation_subject_id: excelData[index]?.evaluation_subject_id || '', 
-        evaluation_subject_name: excelData[index]?.evaluation_subject_name || '', 
-        theme_id: excelData[index]?.theme_id || '', 
-        theme_name: excelData[index]?.theme_name || '', 
+        hint: excelData[index]?.hint || '',
+        evaluation_item_id: excelData[index]?.evaluation_item_id || '', 
+        evaluation_item_task: excelData[index]?.evaluation_item_task || '', 
+        evaluation_subject_title: excelData[index]?.evaluation_subject_title || '', 
+        evaluation_subject_id: excelData[index]?.evaluation_subject_id || '',
         status: excelData[index]?.status || '',
       };
       return updatedAdditionalData;
@@ -133,56 +136,65 @@ function AddEvaluationItem() {
     });
   };
 
-  const submitEvaluationSources = (e) => {
+  const submitEvaluationAnswers = (e) => {
     e.preventDefault();
     if (excelData && excelData.length > 0) {
       const selectedData = additionalData.filter(item => item.chosen);
       if (selectedData.length > 0) {
 
-        let notFoundEvaluationSubject = [];   
-        let notFoundTheme = [];  
+        let notFoundEvaluationSubject = [];  
+        let notFoundEvaluationItem = [];   
+ 
 
         selectedData.forEach((selectedItem) => {
-          const foundEvaluationSubject = evaluationSubjectList.find((subject) => subject.title === selectedItem.evaluation_subject_name);
-          const foundTheme = themeList.find((theme) => theme.name === selectedItem.theme_name);
-
+          const foundEvaluationSubject = evaluationSubjectList.find((item) => item.title === selectedItem.evaluation_subject_title );
+          let foundEvaluationItem = null;
+         
           if (foundEvaluationSubject) {
             selectedItem.evaluation_subject_id = foundEvaluationSubject.id;
+            foundEvaluationItem = evaluationItemList.find((item) => item.task === selectedItem.evaluation_item_task && item.evaluation_subject_id == selectedItem.evaluation_subject_id);
           }
           else {
-            notFoundEvaluationSubject.push(selectedItem.evaluation_subject_name);
+            notFoundEvaluationSubject.push(selectedItem.evaluation_subject_title);
           }
-          if (foundTheme) {
-            selectedItem.theme_id = foundTheme.id;
+
+          if (foundEvaluationItem) {
+            selectedItem.evaluation_item_id = foundEvaluationItem.id;
           }
           else {
-            notFoundTheme.push(selectedItem.theme_name);
+            notFoundEvaluationItem.push(selectedItem.evaluation_item_task);
           }
         });
 
-        if(notFoundEvaluationSubject.length === 0 && notFoundTheme.length === 0) {
+        if(notFoundEvaluationSubject.length === 0 && notFoundEvaluationItem.length === 0) {
 
           const formDataArray = selectedData.map(selectedItem => {
+
+            const lines = selectedItem.hint.split('\n');
+
+            const hintObject = {};
+            lines.forEach((line, index) => {
+              hintObject[index + 1] = line.trim();
+            });
+
+            console.log(JSON.stringify(hintObject))
 
             const formData = new FormData();
             formData.append('order_number', selectedItem.order_number );
             formData.append('task', selectedItem.task );
-            formData.append('statement', selectedItem.statement );
-            formData.append('image_path', selectedItem.image_path );
-            formData.append('editable_image_path', selectedItem.editable_image_path );
-            formData.append('procent_paper', selectedItem.procent_paper );
-            formData.append('nota', selectedItem.nota );
-            formData.append('evaluation_subject_id', selectedItem.evaluation_subject_id );
-            formData.append('theme_id', selectedItem.theme_id );    
+            formData.append('hint', (hintObject.hasOwnProperty("1") && hintObject["1"] === "") ? '[]' : JSON.stringify(hintObject) );
+            formData.append('evaluation_item_id', selectedItem.evaluation_item_id );   
             formData.append('status', 0); 
             return formData;
           });
           console.log(formDataArray)
           // Trimitem fiecare set de date către server utilizând axios.all
-          axios.all(formDataArray.map(formData => axios.post('http://localhost:8000/api/store-evaluation-item', formData)))
+          axios.all(formDataArray.map(formData => axios.post('http://localhost:8000/api/store-evaluation-form-page', formData)))
               .then(axios.spread((...responses) => {
                 const successResponses = responses.filter(response => response.data.status === 201);
                 const errorResponses = responses.filter(response => response.data.status === 422);
+                console.log(successResponses)
+                console.log(errorResponses)                
                 if (successResponses.length > 0) {
                   Swal.fire({
                     title: "Success",
@@ -209,15 +221,15 @@ function AddEvaluationItem() {
         } else {
           if(notFoundEvaluationSubject.length > 0 ) {
             Swal.fire({
-              title: "Unfound evaluation subject name:",
+              title: "Unfound evaluation item name:",
               text: Object.values(notFoundEvaluationSubject).flat().join(' '),
               icon: "error"
             });
           }
-          if(notFoundTheme.length > 0 ) {
+          if(notFoundEvaluationItem.length > 0 ) {
             Swal.fire({
-              title: "Unfound theme name:",
-              text: Object.values(notFoundTheme).flat().join(' '),
+              title: "Unfound evaluation item name:",
+              text: Object.values(notFoundEvaluationItem).flat().join(' '),
               icon: "error"
             });
           }
@@ -245,27 +257,11 @@ function AddEvaluationItem() {
     theme_id: '',
     year: '',
     evaluation_subject_id: '',
+    evaluation_item_id: '',
     order_number: '',
     task: '',
-    statement: '',
-    image_path: '',
-    editable_image_path: '',
-    procent_paper: '',
-    nota: '',
+    hint: '',
   })
-
-  const [picture, setPicture] = useState([])
-  const [editablePicture, setEditablePicture] = useState([])
-
-  const handleImage = (e) => {
-    const file = e.target.files[0];
-    setPicture(file);
-  }
-
-  const handleEditableImage = (e) => {
-    const file = e.target.files[0];
-    setEditablePicture(file);
-  }
 
   const [allCheckboxes, setAllCheckboxes] = useState({
     status: false,
@@ -281,29 +277,26 @@ function AddEvaluationItem() {
     setAllCheckboxes({...allCheckboxes, [e.target.name]: e.target.checked})
   }
 
-  const submitEvaluationSource = (e) => {
+  const submitEvaluationAnswer = (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append('evaluation_subject_id',evaluationItemInput.evaluation_subject_id );
-    formData.append('theme_id',evaluationItemInput.theme_id );
+
+    const lines = evaluationItemInput.hint.split('\n');
+
+    const hintObject = {};
+    lines.forEach((line, index) => {
+      hintObject[index + 1] = line.trim();
+    });
+
+    formData.append('evaluation_item_id',evaluationItemInput.evaluation_item_id );
     formData.append('order_number',evaluationItemInput.order_number );
     formData.append('task',evaluationItemInput.task );
-    formData.append('statement',evaluationItemInput.statement );
-    formData.append('image',picture );
-    formData.append('image_path',evaluationItemInput.image_path );
-    formData.append('editableImage',editablePicture ); 
-    formData.append('editable_image_path',evaluationItemInput.editable_image_path );
-    formData.append('procent_paper',evaluationItemInput.procent_paper );
-    formData.append('nota',evaluationItemInput.nota );
+    formData.append('hint', JSON.stringify(hintObject));
     formData.append('status',allCheckboxes.status == true ? 1 : 0);
 
     console.log(formData)
 
-    axios.post(`http://localhost:8000/api/store-evaluation-item`, formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    }).then(res => {
+    axios.post(`http://localhost:8000/api/store-evaluation-form-page`, formData).then(res => {
       console.log(res)
       if(res.data.status === 201)
       {
@@ -318,13 +311,10 @@ function AddEvaluationItem() {
           theme_id: '',
           year: '',
           evaluation_subject_id: '',
+          evaluation_item_id: '',
           order_number: '',
           task: '',
-          statement: '',
-          image_path: '',
-          editable_image_path: '',
-          procent_paper: '',
-          nota: '',
+          hint: '',
         });
         setAllCheckboxes({
           status: false,
@@ -346,8 +336,8 @@ function AddEvaluationItem() {
 
   return (
     <div className="container-fluid px4">
-      <h2 className="m-3">Add Evaluation Item
-        <Link to="/admin/view-evaluation-item" type="button" className="btnBts btn-primary text-white px-4 m-3 float-end">BACK to List</Link>
+      <h2 className="m-3">Add Evaluation Form Page
+        <Link to="/admin/view-evaluation-answer" type="button" className="btnBts btn-primary text-white px-4 m-3 float-end">BACK to List</Link>
       </h2>
 
         <ul className="navSide nav-tabs" id="myTab" role="tablist">
@@ -361,7 +351,7 @@ function AddEvaluationItem() {
         <div className="tab-content" id="myTabContent">
         
           <div className="tab-pane card-body border fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-          <form className="form-group custom-form" onSubmit={submitEvaluationSource} encType="multipart/form-data">
+          <form className="form-group custom-form" onSubmit={submitEvaluationAnswer} encType="multipart/form-data">
           <div className="rowBts">
 
           <div className="col-md-3">          
@@ -447,24 +437,25 @@ function AddEvaluationItem() {
             </div>
           </div>
 
-          {/* <div className="col-md-10">          
+          <div className="col-md-12">          
             <div className="form-group m-3">
-              <label>Select Source</label>
-              <select name="evaluation_source_id" onChange={handleInput} value={evaluationItemInput.evaluation_source_id} className="form-control">  
-                <option>Select Source</option>
+              <label>Select Evaluation Item</label>
+              <select name="evaluation_item_id" onChange={handleInput} value={evaluationItemInput.evaluation_item_id} className="form-control">  
+                <option>Select Evaluation Item</option>
                 {
-                  evaluationSourceList
+                  evaluationItemList
                   .filter((item) => item.theme_id == evaluationItemInput.theme_id)
+                  .filter((item) => item.evaluation_subject_id == evaluationItemInput.evaluation_subject_id)
                   .map((item)=> {
                     return (
-                      <option value={item.id} key={item.id}>{item.name}</option>
+                      <option value={item.id} key={item.id}>{item.order_number}. {item.task}</option>
                     )
                   })
                 }
               </select>            
-              <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.evaluation_source_id}</span>
+              <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.evaluation_item_id}</span>
             </div>
-          </div> */}
+          </div>
 
           <div className="col-md-10">
             <div className="form-group m-3">
@@ -484,49 +475,14 @@ function AddEvaluationItem() {
 
           </div> 
           <div className="rowBts">   
-            <div className="col-md-10">
+
+          <div className="col-md-12">
               <div className="form-group m-3">
-                <label>Statement</label>
-                <input type="text" name="statement" onChange={handleInput} value={evaluationItemInput.statement} className="form-control" />
-                <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.statement}</span>
+                <label>Hint</label>
+                <textarea name="hint" onChange={handleInput} value={evaluationItemInput.hint} className="form-control" />
+                <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.hint}</span>
               </div>
             </div>
-
-            <div className="col-md-2">
-              <div className="form-group m-3">
-                <label>% Paper</label>
-                <input type="text" name="procent_paper" onChange={handleInput} value={evaluationItemInput.procent_paper} className="form-control" />
-                <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.procent_paper}</span>
-              </div>
-            </div>
-
-          </div> 
-
-          <div className="rowBts">   
-            <div className="col-md-3">
-              <div className="form-group m-3">
-                <label>Image</label>
-                <input type="file" accept="image/*" name="image" onChange={handleImage} className="form-control" />
-                <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.image}</span>
-              </div>
-            </div>
-
-            <div className="col-md-4">
-              <div className="form-group m-3">
-                <label>Editable Image</label>
-                <input type="file" accept="image/*" name="editableImage" onChange={handleEditableImage} className="form-control" />
-                <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.editableImage}</span>
-              </div>
-            </div>
-
-            <div className="col-md-5">
-              <div className="form-group m-3">
-                <label>Nota</label>
-                <textarea name="nota" onChange={handleInput} value={evaluationItemInput.nota} className="form-control" />
-                <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.nota}</span>
-              </div>
-            </div>
-
           </div> 
 
           <div className="rowBts">   
@@ -558,7 +514,7 @@ function AddEvaluationItem() {
             </div>
             </form>
             <div className="containerBts">
-              <form onSubmit={submitEvaluationSources}>
+              <form onSubmit={submitEvaluationAnswers}>
                 {console.log(excelData)}
               {excelData?(
                 <div className="table-responsive">
@@ -612,4 +568,4 @@ function AddEvaluationItem() {
   )
 }
 
-export default AddEvaluationItem;
+export default AddEvaluationFormPage;

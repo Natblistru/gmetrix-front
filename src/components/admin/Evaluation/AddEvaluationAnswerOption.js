@@ -168,13 +168,6 @@ function AddEvaluationAnswerOption() {
           let foundEvaluationAnswer = null;
           const foundEvaluationOption = evaluationOptionList.find((item) => item.label === selectedItem.evaluation_option_label );
 
-          if (foundEvaluationSubject) {
-            selectedItem.evaluation_subject_id = foundEvaluationSubject.id;
-            foundEvaluationItem = evaluationItemList.find((item) => item.task === selectedItem.evaluation_item_task && item.evaluation_subject_id == selectedItem.evaluation_subject_id);
-          }
-          else {
-            notFoundEvaluationSubject.push(selectedItem.evaluation_subject_title);
-          }
           if (foundEvaluationItem) {
             selectedItem.evaluation_item_id = foundEvaluationItem.id;
             foundEvaluationAnswer = evaluationAnswerList.find((item) => item.task === selectedItem.evaluation_answer_task && item.evaluation_item_id == selectedItem.evaluation_item_id );

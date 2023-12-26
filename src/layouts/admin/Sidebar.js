@@ -84,7 +84,7 @@ const Sidebar = () => {
                                 <Link className="nav-linkSide" to="/admin/view-evaluation-answer">Evaluation Answers</Link>                            
                                 <Link className="nav-linkSide" to="/admin/view-evaluation-option">Evaluation Options</Link>                             
                                 <Link className="nav-linkSide" to="/admin/view-evaluation-answer-option">Evaluation Answer Options</Link>                               
-                            </nav>
+                                <Link className="nav-linkSide" to="/admin/view-evaluation-form-page">Evaluation Form Pages</Link>                                </nav>
                         </div>
 
                         <Link className="nav-linkSide collapsed" to="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">

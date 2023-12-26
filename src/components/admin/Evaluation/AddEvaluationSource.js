@@ -251,8 +251,6 @@ function AddEvaluationSource() {
     });
 
     const formData = new FormData();
-    // formData.append('subject_study_level_id', evaluationSourceInput.subject_study_level_id );
-    // formData.append('chapter_id',evaluationSourceInput.chapter_id );
     formData.append('theme_id',evaluationSourceInput.theme_id );
     formData.append('name',evaluationSourceInput.name );
     formData.append('title',evaluationSourceInput.title );

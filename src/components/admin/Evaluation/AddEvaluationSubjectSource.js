@@ -429,7 +429,7 @@ function AddEvaluationSubjectSource() {
           <div className="col-md-2">
               <div className="form-group m-3">
                 <label>Order number</label>
-                <input type="text" name="order_number" onChange={handleInput} value={evaluationSubjectSourceInput.order_number} className="form-control" />
+                <input type="number" name="order_number" onChange={handleInput} value={evaluationSubjectSourceInput.order_number} className="form-control" />
                 <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.order_number}</span>
               </div>
             </div>

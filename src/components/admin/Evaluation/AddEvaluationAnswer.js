@@ -123,7 +123,8 @@ function AddEvaluationAnswer() {
         content: excelData[index]?.content || '',
         evaluation_item_id: excelData[index]?.evaluation_item_id || '', 
         evaluation_item_task: excelData[index]?.evaluation_item_task || '', 
-        evaluation_item_order_number: excelData[index]?.evaluation_item_order_number || '', 
+        evaluation_subject_title: excelData[index]?.evaluation_subject_title || '', 
+        evaluation_subject_id: excelData[index]?.evaluation_subject_id || '',
         status: excelData[index]?.status || '',
       };
       return updatedAdditionalData;
@@ -142,11 +143,20 @@ function AddEvaluationAnswer() {
       const selectedData = additionalData.filter(item => item.chosen);
       if (selectedData.length > 0) {
 
+        let notFoundEvaluationSubject = [];  
         let notFoundEvaluationItem = [];   
-        let notFoundTheme = [];  
 
         selectedData.forEach((selectedItem) => {
-          const foundEvaluationItem = evaluationItemList.find((item) => item.task === selectedItem.evaluation_item_task && item.order_number == selectedItem.evaluation_item_order_number );
+          const foundEvaluationSubject = evaluationSubjectList.find((item) => item.title === selectedItem.evaluation_subject_title );
+          let foundEvaluationItem = null;
+
+          if (foundEvaluationSubject) {
+            selectedItem.evaluation_subject_id = foundEvaluationSubject.id;
+            foundEvaluationItem = evaluationItemList.find((item) => item.task === selectedItem.evaluation_item_task && item.evaluation_subject_id == selectedItem.evaluation_subject_id);
+          }
+          else {
+            notFoundEvaluationSubject.push(selectedItem.evaluation_subject_title);
+          }
 
           if (foundEvaluationItem) {
             selectedItem.evaluation_item_id = foundEvaluationItem.id;
@@ -156,7 +166,7 @@ function AddEvaluationAnswer() {
           }
         });
 
-        if(notFoundEvaluationItem.length === 0) {
+        if(notFoundEvaluationSubject.length === 0 && notFoundEvaluationItem.length === 0) {
 
           const formDataArray = selectedData.map(selectedItem => {
             const formData = new FormData();
@@ -200,6 +210,13 @@ function AddEvaluationAnswer() {
                 console.error(error);
           });
         } else {
+          if(notFoundEvaluationSubject.length > 0 ) {
+            Swal.fire({
+              title: "Unfound evaluation item name:",
+              text: Object.values(notFoundEvaluationSubject).flat().join(' '),
+              icon: "error"
+            });
+          }
           if(notFoundEvaluationItem.length > 0 ) {
             Swal.fire({
               title: "Unfound evaluation item name:",
@@ -438,7 +455,7 @@ function AddEvaluationAnswer() {
           <div className="col-md-2">
             <div className="form-group m-3">
               <label>Order number</label>
-              <input type="text" name="order_number" onChange={handleInput} value={evaluationItemInput.order_number} className="form-control" />
+              <input type="number" name="order_number" onChange={handleInput} value={evaluationItemInput.order_number} className="form-control" />
               <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.order_number}</span>
             </div>
           </div>
