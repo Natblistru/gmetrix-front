@@ -27,6 +27,14 @@ function EditSubtopic(props) {
     audio_path: '',
   })
 
+  const [audio, setAudio] = useState([])
+
+  const handleAudio = (e) => {
+    const file = e.target.files[0];
+    console.log(file)
+    setAudio(file);
+  }
+
   const [allCheckboxes, setAllCheckboxes] = useState({
     status: false,
   })
@@ -109,12 +117,17 @@ function EditSubtopic(props) {
     const formData = new FormData();
     formData.append('name',subtopicInput.name );
     formData.append('teacher_topic_id',subtopicInput.teacher_topic_id );
+    formData.append('audio',audio );  
     formData.append('audio_path',subtopicInput.audio_path );
     formData.append('status',allCheckboxes.status == true ? 1 : 0);
 
     // console.log(formData)
     const subtopic_id = props.match.params.id;
-    axios.post(`http://localhost:8000/api/update-subtopic/${subtopic_id}`, formData).then(res => {
+    axios.post(`http://localhost:8000/api/update-subtopic/${subtopic_id}`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    }).then(res => {
       if(res.data.status === 200)
       {
         Swal.fire({
@@ -163,7 +176,7 @@ function EditSubtopic(props) {
         <div className="tab-content" id="myTabContent">
         
           <div className="tab-pane card-body border fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-          <form className="form-group custom-form" onSubmit={submitTeacherTopic} >
+          <form className="form-group custom-form" onSubmit={submitTeacherTopic} encType="multipart/form-data">
 
           <div className="rowBts">
               <div className="col-md-4">
@@ -248,13 +261,24 @@ function EditSubtopic(props) {
                 </div>
               </div>
 
-              <div className="col-md-4">          
+              <div className="col-md-4">
                 <div className="form-group m-3">
-                  <label>Audio Path</label>
-                  <input type="text" name="audio_path" onChange={handleInput} value={subtopicInput.audio_path}className="form-control" />
-                  <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.audio_path}</span>
+                  <label>Audio</label>
+                  <input type="file" accept="audio/*" name="audio" onChange={handleAudio} className="form-control" />
+                  <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.audio}</span>
+                  {subtopicInput.audio_path && subtopicInput.audio_path.startsWith('uploads/audioSubtopic/') ? (
+                    <div>
+                      <audio controls>
+                        <source src={`http://localhost:8000/${subtopicInput.audio_path}`} type="audio/mp3" />
+                        Your browser does not support the audio element.
+                      </audio>
+                      <br />
+                    </div>
+                  ) : <span>{subtopicInput.audio_path}</span>}
                 </div>
               </div>
+
+
             </div>
 
             

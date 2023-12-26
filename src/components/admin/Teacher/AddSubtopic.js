@@ -226,6 +226,8 @@ function AddSubtopic() {
     audio_path: '',
   })
 
+  const [audio, setAudio] = useState([])
+
   const [allCheckboxes, setAllCheckboxes] = useState({
     status: false,
   })
@@ -234,6 +236,13 @@ function AddSubtopic() {
     e.persist();
     setSubtopicInput({...subtopicInput, [e.target.name]: e.target.value})
   }
+
+  const handleAudio = (e) => {
+    const file = e.target.files[0];
+    console.log(file)
+    setAudio(file);
+  }
+
 
   const handleCheckbox = (e) => {
     e.persist();
@@ -246,12 +255,17 @@ function AddSubtopic() {
     const formData = new FormData();
     formData.append('name',subtopicInput.name );
     formData.append('teacher_topic_id',subtopicInput.teacher_topic_id );
+    formData.append('audio',audio );   
     formData.append('audio_path',subtopicInput.audio_path );
     formData.append('status',allCheckboxes.status == true ? 1 : 0);
 
     // console.log(formData)
 
-    axios.post(`http://localhost:8000/api/store-subtopic`, formData).then(res => {
+    axios.post(`http://localhost:8000/api/store-subtopic`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+      }).then(res => {
       if(res.data.status === 201)
       {
         Swal.fire({
@@ -301,7 +315,7 @@ function AddSubtopic() {
         <div className="tab-content" id="myTabContent">
         
           <div className="tab-pane card-body border fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-          <form className="form-group custom-form" onSubmit={submitTeacherTopic} >
+          <form className="form-group custom-form" onSubmit={submitTeacherTopic} encType="multipart/form-data">
 
           <div className="rowBts">
               <div className="col-md-4">
@@ -386,16 +400,25 @@ function AddSubtopic() {
                 </div>
               </div>
 
-              <div className="col-md-4">          
+              {/* <div className="col-md-4">          
                 <div className="form-group m-3">
                   <label>Audio Path</label>
                   <input type="text" name="audio_path" onChange={handleInput} value={subtopicInput.audio_path}className="form-control" />
                   <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.audio_path}</span>
                 </div>
+              </div> */}
+            
+            <div className="col-md-4">
+              <div className="form-group m-3">
+                <label>Audio Path</label>
+                <input type="file" accept="audio/*" name="audio" onChange={handleAudio} className="form-control" />
+                <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.audio}</span>
               </div>
             </div>
+          </div>
 
-            
+
+
 
             <div className="form-group m-3">
               <label>Status</label>
