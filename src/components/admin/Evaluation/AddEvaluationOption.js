@@ -195,7 +195,7 @@ function AddEvaluationOption() {
 
   return (
     <div className="container-fluid px4">
-      <h2 className="m-3">Add Video
+      <h2 className="m-3">Add Evaluation Option
         <Link to="/admin/view-evaluation-option" type="button" className="btnBts btn-primary text-white px-4 m-3 float-end">BACK to List</Link>
       </h2>
 

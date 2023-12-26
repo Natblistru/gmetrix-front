@@ -33,7 +33,9 @@ import EditEvaluationAnswer from "../components/admin/Evaluation/EditEvaluationA
 import AddEvaluationOption from "../components/admin/Evaluation/AddEvaluationOption.js";
 import ViewEvaluationOption from "../components/admin/Evaluation/ViewEvaluationOption.js";
 import EditEvaluationOption from "../components/admin/Evaluation/EditEvaluationOption.js";
-
+import AddEvaluationAnswerOption from "../components/admin/Evaluation/AddEvaluationAnswerOption.js";
+import ViewEvaluationAnswerOption from "../components/admin/Evaluation/ViewEvaluationAnswerOption.js";
+import EditEvaluationAnswerOption from "../components/admin/Evaluation/EditEvaluationAnswerOption.js";
 
 const routes = [
   { path: '/admin', exact: true, name: 'Admin'},
@@ -83,6 +85,9 @@ const routes = [
   { path: '/admin/view-evaluation-option', exact: true, name: 'ViewEvaluationOption', component: ViewEvaluationOption },
   { path: '/admin/edit-evaluation-option/:id', exact: true, name: 'EditEvaluationOption', component: EditEvaluationOption },
 
+  { path: '/admin/add-evaluation-answer-option', exact: true, name: 'AddEvaluationAnswerOption', component: AddEvaluationAnswerOption },
+  { path: '/admin/view-evaluation-answer-option', exact: true, name: 'ViewEvaluationAnswerOption', component: ViewEvaluationAnswerOption },
+  { path: '/admin/edit-evaluation-answer-option/:id', exact: true, name: 'EditEvaluationAnswerOption', component: EditEvaluationAnswerOption },
 
 ];
 

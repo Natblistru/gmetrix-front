@@ -83,6 +83,7 @@ const Sidebar = () => {
                                 <Link className="nav-linkSide" to="/admin/view-evaluation-item">Evaluation Items</Link>     
                                 <Link className="nav-linkSide" to="/admin/view-evaluation-answer">Evaluation Answers</Link>                            
                                 <Link className="nav-linkSide" to="/admin/view-evaluation-option">Evaluation Options</Link>                             
+                                <Link className="nav-linkSide" to="/admin/view-evaluation-answer-option">Evaluation Answer Options</Link>                               
                             </nav>
                         </div>
 

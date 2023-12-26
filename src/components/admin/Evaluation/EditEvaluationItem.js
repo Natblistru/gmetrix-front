@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'; 
-import * as XLSX from 'xlsx';
-import InputMask from 'react-input-mask';
 import { Link, useHistory  } from 'react-router-dom';
 
 
