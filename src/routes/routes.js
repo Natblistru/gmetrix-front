@@ -39,6 +39,9 @@ import EditEvaluationAnswerOption from "../components/admin/Evaluation/EditEvalu
 import AddEvaluationFormPage from "../components/admin/Evaluation/AddEvaluationFormPage.js";
 import ViewEvaluationFormPage from "../components/admin/Evaluation/ViewEvaluationFormPage.js";
 import EditEvaluationFormPage from "../components/admin/Evaluation/EditEvaluationFormPage.js";
+import AddSubtopic from "../components/admin/Teacher/AddSubtopic.js";
+import ViewSubtopic from "../components/admin/Teacher/ViewSubtopic.js";
+import EditSubtopic from "../components/admin/Teacher/EditSubtopic.js";
 
 
 const routes = [
@@ -97,6 +100,9 @@ const routes = [
   { path: '/admin/view-evaluation-form-page', exact: true, name: 'ViewEvaluationFormPage', component: ViewEvaluationFormPage },
   { path: '/admin/edit-evaluation-form-page/:id', exact: true, name: 'EditEvaluationFormPage', component: EditEvaluationFormPage },
 
+  { path: '/admin/add-subtopic', exact: true, name: 'AddSubtopic', component: AddSubtopic },
+  { path: '/admin/view-subtopic', exact: true, name: 'ViewSubtopic', component: ViewSubtopic },
+  { path: '/admin/edit-subtopic/:id', exact: true, name: 'EditSubtopic', component: EditSubtopic },
 
 ];
 

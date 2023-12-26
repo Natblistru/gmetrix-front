@@ -145,6 +145,15 @@ function EditTeacherVideo(props) {
         });
         setErrors(res.data.errors);
       }
+      else if(res.data.status === 404)
+      {
+        Swal.fire({
+          title: "404 Error",
+          text: res.data.message,
+          icon: "error",
+        });
+        history.push("/admin/view-teacher-video");
+      }
     });
   }
 

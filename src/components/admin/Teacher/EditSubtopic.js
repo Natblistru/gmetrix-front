@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'; 
+import * as XLSX from 'xlsx';
 import { Link, useHistory  } from 'react-router-dom';
 
 
 import Swal from 'sweetalert2'
 
-function EditTeacherTopic(props) {
+function EditSubtopic(props) {
 
   const history = useHistory();
   const [loading, setLoading] = useState(true);
@@ -14,14 +15,16 @@ function EditTeacherTopic(props) {
   const [themeList, setThemeList] = useState([]);
   const [topicList, setTopicList] = useState([]);
   const [teacherList, setTeacherList] = useState([]);
+  const [teacherTopicList, setTeacherTopicList] = useState([]);
 
   const [errorList, setErrors] = useState([]);
-  const [teacherTopicInput, setTeacherTopicInput] = useState({
+  const [subtopicInput, setSubtopicInput] = useState({
     learning_program_id: '',
     theme_learning_program_id: '',
-    topic_id: '',
+    teacher_topic_id: '',
     teacher_id: '',
     name: '',
+    audio_path: '',
   })
 
   const [allCheckboxes, setAllCheckboxes] = useState({
@@ -54,18 +57,26 @@ function EditTeacherTopic(props) {
       }
     });
 
-    const teacherTopic_id = props.match.params.id;
-    axios.get(`http://localhost:8000/api/edit-teacherTopic/${teacherTopic_id}`).then(res=>{
+    axios.get('http://localhost:8000/api/all-teacher-topics').then(res=>{
       if(res.data.status === 200){
-        const teacherTopicData = res.data.teacherTopics;
-        setTeacherTopicInput({
+        setTeacherTopicList(res.data.teacherTopics);
+      }
+    });
+
+    const subtopic_id = props.match.params.id;
+    axios.get(`http://localhost:8000/api/edit-subtopic/${subtopic_id}`).then(res=>{
+      if(res.data.status === 200){
+        const teacherTopicData = res.data.subtopics;
+        console.log(teacherTopicData)
+        setSubtopicInput({
           ...teacherTopicData,
-          learning_program_id: teacherTopicData.topic.theme_learning_program.learning_program_id,
-          theme_learning_program_id: teacherTopicData.topic.theme_learning_program.id,
-          topic_id: teacherTopicData.topic.id,
+          learning_program_id: teacherTopicData.teacher_topic.topic.theme_learning_program.learning_program_id,
+          theme_learning_program_id: teacherTopicData.teacher_topic.topic.theme_learning_program.id,
+          teacher_id: teacherTopicData.teacher_topic.teacher_id,
+          teacher_topic_id: teacherTopicData.teacher_topic_id,
         });
 
-        setAllCheckboxes(res.data.teacherTopics)
+        setAllCheckboxes(res.data.subtopics)
       }
       else if(res.data.status === 404)
       {
@@ -74,32 +85,17 @@ function EditTeacherTopic(props) {
           text: res.data.message,
           icon: "error",
         });
-        history.push("/admin/view-teacher-topic");
+        history.push("/admin/view-subtopic");
       }
       setLoading(false);
     })
   },[props.match.params.id,history])
 
 
-  useEffect(() => {
-    const selectedTopic = topicList.find((topic) => topic.id == teacherTopicInput.topic_id);
-    const topicName = selectedTopic ? selectedTopic.name : '';
-    const selectedTeacher = teacherList.find((teacher) => teacher.id == teacherTopicInput.teacher_id);
-    const teacherName = selectedTeacher ? selectedTeacher.name : '';
-
-    const concatenatedName =
-    topicName !== '' && teacherName !== '' ? `${topicName} (${teacherName})` : '';
-    setTeacherTopicInput((prevInput) => ({
-      ...prevInput,
-      name: concatenatedName,
-    }));
-  }, [teacherTopicInput.topic_id, teacherTopicInput.teacher_id]);
-
-
 
   const handleInput = (e) => {
     e.persist();
-    setTeacherTopicInput({...teacherTopicInput, [e.target.name]: e.target.value})
+    setSubtopicInput({...subtopicInput, [e.target.name]: e.target.value})
   }
 
   const handleCheckbox = (e) => {
@@ -111,16 +107,15 @@ function EditTeacherTopic(props) {
     e.preventDefault();
 
     const formData = new FormData();
-    formData.append('name',teacherTopicInput.name );
-    formData.append('teacher_id',teacherTopicInput.teacher_id );
-    formData.append('topic_id',teacherTopicInput.topic_id );
+    formData.append('name',subtopicInput.name );
+    formData.append('teacher_topic_id',subtopicInput.teacher_topic_id );
+    formData.append('audio_path',subtopicInput.audio_path );
     formData.append('status',allCheckboxes.status == true ? 1 : 0);
 
     // console.log(formData)
-
-    const teacherTopic_id = props.match.params.id;
-    axios.post(`http://localhost:8000/api/update-teacherTopic/${teacherTopic_id}`, formData).then(res => {
-      if(res.data.status === 201)
+    const subtopic_id = props.match.params.id;
+    axios.post(`http://localhost:8000/api/update-subtopic/${subtopic_id}`, formData).then(res => {
+      if(res.data.status === 200)
       {
         Swal.fire({
           title: "Succes",
@@ -145,17 +140,19 @@ function EditTeacherTopic(props) {
           text: res.data.message,
           icon: "error",
         });
-        history.push("/admin/view-teacher-topic");
+        history.push("/admin/view-evaluation");
       }
     });
   }
+
   if(loading) {
-    return <h4>Loading Edited Teacher Topic ...</h4>
+    return <h4>Loading Edited Subopic ...</h4>
   }
+
   return (
     <div className="container-fluid px4">
-      <h2 className="m-3">Edit Teacher Topic
-        <Link to="/admin/view-teacher-topic" type="button" className="btnBts btn-primary text-white px-4 m-3 float-end">BACK to List</Link>
+      <h2 className="m-3">Edit Subtopic
+        <Link to="/admin/view-subtopic" type="button" className="btnBts btn-primary text-white px-4 m-3 float-end">BACK to List</Link>
       </h2>
 
         <ul className="navSide nav-tabs" id="myTab" role="tablist">
@@ -172,7 +169,7 @@ function EditTeacherTopic(props) {
               <div className="col-md-4">
                 <div className="form-group m-3">
                   <label>Learn Program</label>
-                  <select name="learning_program_id" onChange={handleInput} value={teacherTopicInput.learning_program_id} className="form-control">  
+                  <select name="learning_program_id" onChange={handleInput} value={subtopicInput.learning_program_id} className="form-control">  
                     <option>Select program</option>
                     {
                       learningProgramList.map((item)=> {
@@ -188,10 +185,10 @@ function EditTeacherTopic(props) {
               <div className="col-md-8">          
                 <div className="form-group m-3">
                   <label>Theme</label>
-                  <select name="theme_learning_program_id" onChange={handleInput} value={teacherTopicInput.theme_learning_program_id} className="form-control">  
+                  <select name="theme_learning_program_id" onChange={handleInput} value={subtopicInput.theme_learning_program_id} className="form-control">  
                     <option>Select Theme</option>
                     {themeList
-                      .filter((item) => item.learning_program_id == teacherTopicInput.learning_program_id)
+                      .filter((item) => item.learning_program_id == subtopicInput.learning_program_id)
                       .map((item) => (
                         <option value={item.id} key={item.id}>
                           {item.name}
@@ -204,29 +201,10 @@ function EditTeacherTopic(props) {
             </div>
 
             <div className="rowBts">
-              <div className="col-md-12">
-              <div className="form-group m-3">
-                  <label>Topic</label>
-                  <select name="topic_id" onChange={handleInput} value={teacherTopicInput.topic_id} className="form-control">  
-                    <option>Select Topic</option>
-                    {topicList
-                      .filter((item) => item.theme_learning_program_id == teacherTopicInput.theme_learning_program_id)
-                      .map((item) => (
-                        <option value={item.id} key={item.id}>
-                          {item.name}
-                        </option>
-                    ))}
-                  </select>            
-                  <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.topic_id}</span>
-                </div>
-              </div>  
-            </div>
-
-            <div className="rowBts">
               <div className="col-md-4">
                 <div className="form-group m-3">
                   <label>Teacher</label>
-                  <select name="teacher_id" onChange={handleInput} value={teacherTopicInput.teacher_id} className="form-control">  
+                  <select name="teacher_id" onChange={handleInput} value={subtopicInput.teacher_id} className="form-control">  
                     <option>Select Teacher</option>
                     {
                       teacherList.map((item)=> {
@@ -239,14 +217,47 @@ function EditTeacherTopic(props) {
                   <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.teacher_id}</span>
                 </div>
               </div>  
+
+              <div className="col-md-8">
+                <div className="form-group m-3">
+                  <label>Topics</label>
+                  <select name="teacher_topic_id" onChange={handleInput} value={subtopicInput.teacher_topic_id} className="form-control">  
+                    <option>Select Topic</option>
+                    {
+                      teacherTopicList
+                      .filter((item) => item.teacher_id == subtopicInput.teacher_id)
+                      .filter((item) => item.topic.theme_learning_program_id == subtopicInput.theme_learning_program_id)                      
+                      .map((item)=> {
+                        return (
+                          <option value={item.id} key={item.id}>{item.name}</option>
+                        )
+                      })
+                    }
+                  </select>            
+                  <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.teacher_topic_id}</span>
+                </div>
+              </div> 
+
+            </div>
+            <div className="rowBts">
               <div className="col-md-8">          
                 <div className="form-group m-3">
-                  <label>Teacher's Topic Title</label>
-                  <input type="text" name="name" onChange={handleInput} value={teacherTopicInput.name}className="form-control" />
+                  <label>Subtopic Title</label>
+                  <input type="text" name="name" onChange={handleInput} value={subtopicInput.name}className="form-control" />
                   <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.name}</span>
                 </div>
               </div>
+
+              <div className="col-md-4">          
+                <div className="form-group m-3">
+                  <label>Audio Path</label>
+                  <input type="text" name="audio_path" onChange={handleInput} value={subtopicInput.audio_path}className="form-control" />
+                  <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.audio_path}</span>
+                </div>
+              </div>
             </div>
+
+            
 
             <div className="form-group m-3">
               <label>Status</label>
@@ -262,4 +273,4 @@ function EditTeacherTopic(props) {
   )
 }
 
-export default EditTeacherTopic;
+export default EditSubtopic;
