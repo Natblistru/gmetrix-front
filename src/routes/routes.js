@@ -48,6 +48,9 @@ import EditSubtopicImage from "../components/admin/Teacher/EditSubtopicImage.js"
 import AddFlipCard from "../components/admin/Teacher/AddFlipCard.js";
 import ViewFlipCard from "../components/admin/Teacher/ViewFlipCard.js";
 import EditFlipCard from "../components/admin/Teacher/EditFlipCard.js";
+import AddTestItem from "../components/admin/Test/AddTestItem.js";
+import ViewTestItem from "../components/admin/Test/ViewTestItem.js";
+import EditTestItem from "../components/admin/Test/EditTestItem.js";
 
 
 const routes = [
@@ -117,6 +120,10 @@ const routes = [
   { path: '/admin/add-flip-card', exact: true, name: 'AddFlipCard', component: AddFlipCard },
   { path: '/admin/view-flip-card', exact: true, name: 'ViewFlipCard', component: ViewFlipCard },
   { path: '/admin/edit-flip-card/:id', exact: true, name: 'EditFlipCard', component: EditFlipCard },
+
+  { path: '/admin/add-test-item', exact: true, name: 'AddTestItem', component: AddTestItem },
+  { path: '/admin/view-test-item', exact: true, name: 'ViewTestItem', component: ViewTestItem },
+  { path: '/admin/edit-test-item/:id', exact: true, name: 'EditTestItem', component: EditTestItem },
 
 ];
 
