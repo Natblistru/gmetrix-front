@@ -21,6 +21,7 @@ function EditTeacherTopic(props) {
     theme_learning_program_id: '',
     topic_id: '',
     teacher_id: '',
+    order_number: '',
     name: '',
   })
 
@@ -112,6 +113,7 @@ function EditTeacherTopic(props) {
 
     const formData = new FormData();
     formData.append('name',teacherTopicInput.name );
+    formData.append('order_number',teacherTopicInput.order_number );
     formData.append('teacher_id',teacherTopicInput.teacher_id );
     formData.append('topic_id',teacherTopicInput.topic_id );
     formData.append('status',allCheckboxes.status == true ? 1 : 0);
@@ -120,7 +122,7 @@ function EditTeacherTopic(props) {
 
     const teacherTopic_id = props.match.params.id;
     axios.post(`http://localhost:8000/api/update-teacherTopic/${teacherTopic_id}`, formData).then(res => {
-      if(res.data.status === 201)
+      if(res.data.status === 200)
       {
         Swal.fire({
           title: "Succes",
@@ -223,7 +225,7 @@ function EditTeacherTopic(props) {
             </div>
 
             <div className="rowBts">
-              <div className="col-md-4">
+              <div className="col-md-3">
                 <div className="form-group m-3">
                   <label>Teacher</label>
                   <select name="teacher_id" onChange={handleInput} value={teacherTopicInput.teacher_id} className="form-control">  
@@ -239,13 +241,22 @@ function EditTeacherTopic(props) {
                   <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.teacher_id}</span>
                 </div>
               </div>  
-              <div className="col-md-8">          
+              <div className="col-md-7">          
                 <div className="form-group m-3">
                   <label>Teacher's Topic Title</label>
                   <input type="text" name="name" onChange={handleInput} value={teacherTopicInput.name}className="form-control" />
                   <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.name}</span>
                 </div>
               </div>
+
+              <div className="col-md-2">
+                <div className="form-group m-3">
+                  <label>Order number</label>
+                  <input type="number" name="order_number" onChange={handleInput} value={teacherTopicInput.order_number} className="form-control" />
+                  <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.order_number}</span>
+                </div>
+              </div>
+
             </div>
 
             <div className="form-group m-3">

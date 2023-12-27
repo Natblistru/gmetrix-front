@@ -35,6 +35,7 @@ const classes = " " + props.className;
 // let arrayTests = props.subtema.teste;
 // console.log(stateData.currentTopic);
 let currentTopic = stateData.currentTopic;
+console.log(currentTopic)
 // let arraySubtitles = stateData.currentTopic.subtitles; 
 // console.log(arraySubtitles);
 // console.log(arraySubtitles[currentSubject].images);

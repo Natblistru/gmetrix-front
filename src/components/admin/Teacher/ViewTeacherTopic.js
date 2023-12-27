@@ -34,6 +34,7 @@ function ViewTeacherTopic() {
       return (
         <tr key={item.id}>
           <td>{item.id}</td>
+          <td>{item.order_number}</td>
           <td>{item.name}</td>
           <td>{item.topic.theme_learning_program.name}</td>
           <td>
@@ -58,6 +59,7 @@ function ViewTeacherTopic() {
           <thead>
             <tr>
               <th>ID</th>
+              <th>Order</th>
               <th>Title</th>
               <th>Theme</th>
               <th>Edit</th>

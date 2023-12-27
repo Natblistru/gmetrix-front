@@ -110,6 +110,7 @@ function AddTeacherTopic() {
       const updatedAdditionalData = [...prevAdditionalData];
       updatedAdditionalData[index] = {
         chosen: isChecked,
+        order_number: excelData[index]?.order_number || '', 
         topic_name: excelData[index]?.topic_name || '',
         topic_id: excelData[index]?.topic_id || '',
         teacher_name: excelData[index]?.teacher_name || '',
@@ -158,6 +159,7 @@ function AddTeacherTopic() {
           const formDataArray = selectedData.map(selectedItem => {
             const formData = new FormData();
             formData.append('name', `${selectedItem.topic_name} (${selectedItem.teacher_name})`);
+            formData.append('order_number', selectedItem.order_number);
             formData.append('teacher_id', selectedItem.teacher_id);
             formData.append('topic_id', selectedItem.topic_id );
             formData.append('status', 0); 
@@ -230,6 +232,7 @@ function AddTeacherTopic() {
     theme_learning_program_id: '',
     topic_id: '',
     teacher_id: '',
+    order_number: '',
     name: '',
   })
 
@@ -266,6 +269,7 @@ function AddTeacherTopic() {
 
     const formData = new FormData();
     formData.append('name',teacherTopicInput.name );
+    formData.append('order_number',teacherTopicInput.order_number );
     formData.append('teacher_id',teacherTopicInput.teacher_id );
     formData.append('topic_id',teacherTopicInput.topic_id );
     formData.append('status',allCheckboxes.status == true ? 1 : 0);
@@ -285,6 +289,7 @@ function AddTeacherTopic() {
           theme_learning_program_id: '',
           topic_id: '',
           teacher_id: '',
+          order_number: '',
           name: '',
         });
         setAllCheckboxes({
@@ -324,7 +329,7 @@ function AddTeacherTopic() {
           <form className="form-group custom-form" onSubmit={submitTeacherTopic} >
 
           <div className="rowBts">
-              <div className="col-md-4">
+              <div className="col-md-3">
                 <div className="form-group m-3">
                   <label>Learn Program</label>
                   <select name="learning_program_id" onChange={handleInput} value={teacherTopicInput.learning_program_id} className="form-control">  
@@ -340,7 +345,7 @@ function AddTeacherTopic() {
                   <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.learning_program_id}</span>
                 </div>
               </div>  
-              <div className="col-md-8">          
+              <div className="col-md-9">          
                 <div className="form-group m-3">
                   <label>Theme</label>
                   <select name="theme_learning_program_id" onChange={handleInput} value={teacherTopicInput.theme_learning_program_id} className="form-control">  
@@ -378,7 +383,7 @@ function AddTeacherTopic() {
             </div>
 
             <div className="rowBts">
-              <div className="col-md-4">
+              <div className="col-md-3">
                 <div className="form-group m-3">
                   <label>Teacher</label>
                   <select name="teacher_id" onChange={handleInput} value={teacherTopicInput.teacher_id} className="form-control">  
@@ -394,11 +399,19 @@ function AddTeacherTopic() {
                   <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.teacher_id}</span>
                 </div>
               </div>  
-              <div className="col-md-8">          
+              <div className="col-md-7">          
                 <div className="form-group m-3">
                   <label>Teacher's Topic Title</label>
                   <input type="text" name="name" onChange={handleInput} value={teacherTopicInput.name}className="form-control" />
                   <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.name}</span>
+                </div>
+              </div>
+
+              <div className="col-md-2">
+                <div className="form-group m-3">
+                  <label>Order number</label>
+                  <input type="number" name="order_number" onChange={handleInput} value={teacherTopicInput.order_number} className="form-control" />
+                  <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.order_number}</span>
                 </div>
               </div>
             </div>
