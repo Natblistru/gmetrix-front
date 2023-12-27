@@ -17,7 +17,7 @@ const AudioPlayer = ({currentSubject, arraySubtitles, path,subjectID,arrayAudioL
   // console.log(currentSubtitle)
 
   useEffect(() => {
-    audioRef.current.src = process.env.PUBLIC_URL + path;
+    audioRef.current.src = `http://localhost:8000/${process.env.PUBLIC_URL + path}`;
     // audioRef.current.currentTime = 10;
     setProgress(0);
     const userItems = results.items.find(item => item.user === "Current user");
@@ -108,7 +108,7 @@ const AudioPlayer = ({currentSubject, arraySubtitles, path,subjectID,arrayAudioL
   return (
     <div className="audio">
       <audio ref={audioRef} onTimeUpdate={handleTimeUpdate} controls preload="auto">
-        <source src={process.env.PUBLIC_URL + path} type="audio/mpeg" />
+        <source src={`http://localhost:8000/${process.env.PUBLIC_URL + path}`} type="audio/mpeg" />
       </audio>
     </div>
   );

@@ -42,7 +42,9 @@ import EditEvaluationFormPage from "../components/admin/Evaluation/EditEvaluatio
 import AddSubtopic from "../components/admin/Teacher/AddSubtopic.js";
 import ViewSubtopic from "../components/admin/Teacher/ViewSubtopic.js";
 import EditSubtopic from "../components/admin/Teacher/EditSubtopic.js";
-
+import AddSubtopicImage from "../components/admin/Teacher/AddSubtopicImage.js";
+import ViewSubtopicImage from "../components/admin/Teacher/ViewSubtopicImage.js";
+import EditSubtopicImage from "../components/admin/Teacher/EditSubtopicImage.js";
 
 const routes = [
   { path: '/admin', exact: true, name: 'Admin'},
@@ -103,6 +105,11 @@ const routes = [
   { path: '/admin/add-subtopic', exact: true, name: 'AddSubtopic', component: AddSubtopic },
   { path: '/admin/view-subtopic', exact: true, name: 'ViewSubtopic', component: ViewSubtopic },
   { path: '/admin/edit-subtopic/:id', exact: true, name: 'EditSubtopic', component: EditSubtopic },
+
+  { path: '/admin/add-subtopic-image', exact: true, name: 'AddSubtopicImage', component: AddSubtopicImage },
+  { path: '/admin/view-subtopic-image', exact: true, name: 'ViewSubtopicImage', component: ViewSubtopicImage },
+  { path: '/admin/edit-subtopic-image/:id', exact: true, name: 'EditSubtopicImage', component: EditSubtopicImage },
+
 
 ];
 

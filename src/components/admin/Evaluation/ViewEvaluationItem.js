@@ -35,9 +35,24 @@ function ViewEvaluationItem() {
         <tr key={item.id}>
           <td>{item.id}</td>
           <td>{item.task}</td>
-          <td><img src={`http://localhost:8000/${item.image_path}`} width='50px' alt={item.image_path || ''} /></td>
-          <td><img src={`http://localhost:8000/${item.editable_image_path}`} width='70px' alt={item.editable_image_path || ''} /></td>
-
+          <td>
+            {item.image_path && (
+              item.image_path.startsWith('uploads/evaluationItem/') ? (
+                <img src={`http://localhost:8000/${item.image_path}`} width='50px' alt={item.image_path || ''} />
+              ) : (
+                <span>{item.image_path || ''}</span>
+              )
+            )}
+          </td>
+          <td>
+            {item.editable_image_path && (
+              item.editable_image_path.startsWith('uploads/evaluationItem/') ? (
+                <img src={`http://localhost:8000/${item.editable_image_path}`} width='50px' alt={item.editable_image_path || ''} />
+              ) : (
+                <span>{item.editable_image_path || ''}</span>
+              )
+            )}
+          </td>
           <td>{item.evaluation_subject.title}</td>
           <td>{item.order_number}</td>
           <td>{item.theme.name}</td>

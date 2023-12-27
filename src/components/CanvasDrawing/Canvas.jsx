@@ -15,7 +15,7 @@ const Canvas = ({item, disable}) => {
   const [undoStack, setUndoStack] = useState([]);
   const [action, setAction] = useState("none");
   const [positionText, setPositionText] = useState(null);
-
+  const [imageBackground, setImageBackground] = useState("");
   const [tool, setTool] = useState("");
   const textAreaRef = useRef();
 
@@ -23,7 +23,7 @@ const Canvas = ({item, disable}) => {
     const canvas = canvasRef.current;
     canvas.width = 674;
     canvas.height = 500;
-
+    setImageBackground(`http://localhost:8000/${process.env.PUBLIC_URL +item.harta}`)
     const context = canvas.getContext("2d");
     if(contextRef.current) {contextRef.current.clearRect(
       0,
@@ -136,7 +136,7 @@ const Canvas = ({item, disable}) => {
     }
   };
 
-  const backgroundImageSrc = "/images/Romania_1938.png";
+  // const backgroundImageSrc = "/images/Romania_1938.png";
 
   const saveImageToLocal = async (e) => {
     const canvas = canvasRef.current;
@@ -146,7 +146,8 @@ const Canvas = ({item, disable}) => {
     const loadImage = () => {
       return new Promise((resolve, reject) => {
         const image = new Image();
-        image.src = backgroundImageSrc;
+        // image.src = backgroundImageSrc;
+        image.src = imageBackground;
         image.onload = () => resolve(image);
         image.onerror = (error) => reject(error);
       });
@@ -305,9 +306,8 @@ const Canvas = ({item, disable}) => {
     }
   };
   const canvasStyle = {
-    backgroundImage: `url(${
-      process.env.PUBLIC_URL + "/images/Romania_1938.png"
-    })`,
+    // backgroundImage: `url(${process.env.PUBLIC_URL + "/images/Romania_1938.png"})`,
+    backgroundImage: `url(${imageBackground})`,
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
     width: "100%",
