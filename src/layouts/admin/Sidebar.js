@@ -68,6 +68,7 @@ const Sidebar = () => {
                                 <Link className="nav-linkSide" to="/admin/view-subtopic">Teacher's Subopics</Link>
                                 <Link className="nav-linkSide" to="/admin/view-subtopic-image">Subopic Images</Link>
                                 <Link className="nav-linkSide" to="/admin/view-teacher-video">Teacher's Videos</Link>
+                                <Link className="nav-linkSide" to="/admin/view-flip-card">Teacher's Flip Cards</Link>
                             </nav>
                         </div>
 

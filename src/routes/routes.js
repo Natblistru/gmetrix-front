@@ -45,6 +45,10 @@ import EditSubtopic from "../components/admin/Teacher/EditSubtopic.js";
 import AddSubtopicImage from "../components/admin/Teacher/AddSubtopicImage.js";
 import ViewSubtopicImage from "../components/admin/Teacher/ViewSubtopicImage.js";
 import EditSubtopicImage from "../components/admin/Teacher/EditSubtopicImage.js";
+import AddFlipCard from "../components/admin/Teacher/AddFlipCard.js";
+import ViewFlipCard from "../components/admin/Teacher/ViewFlipCard.js";
+import EditFlipCard from "../components/admin/Teacher/EditFlipCard.js";
+
 
 const routes = [
   { path: '/admin', exact: true, name: 'Admin'},
@@ -110,6 +114,9 @@ const routes = [
   { path: '/admin/view-subtopic-image', exact: true, name: 'ViewSubtopicImage', component: ViewSubtopicImage },
   { path: '/admin/edit-subtopic-image/:id', exact: true, name: 'EditSubtopicImage', component: EditSubtopicImage },
 
+  { path: '/admin/add-flip-card', exact: true, name: 'AddFlipCard', component: AddFlipCard },
+  { path: '/admin/view-flip-card', exact: true, name: 'ViewFlipCard', component: ViewFlipCard },
+  { path: '/admin/edit-flip-card/:id', exact: true, name: 'EditFlipCard', component: EditFlipCard },
 
 ];
 

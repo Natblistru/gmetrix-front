@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'; 
+import * as XLSX from 'xlsx';
 import { Link, useHistory  } from 'react-router-dom';
-
-
 import Swal from 'sweetalert2'
 
-function EditSubtopic(props) {
+function EditFlipCard(props) {
 
   const history = useHistory();
   const [loading, setLoading] = useState(true);
@@ -17,22 +16,14 @@ function EditSubtopic(props) {
   const [teacherTopicList, setTeacherTopicList] = useState([]);
 
   const [errorList, setErrors] = useState([]);
-  const [subtopicInput, setSubtopicInput] = useState({
+  const [flipCardInput, setFlipCardInput] = useState({
     learning_program_id: '',
     theme_learning_program_id: '',
     teacher_topic_id: '',
     teacher_id: '',
-    name: '',
-    audio_path: '',
+    task: '',
+    answer: '',
   })
-
-  const [audio, setAudio] = useState([])
-
-  const handleAudio = (e) => {
-    const file = e.target.files[0];
-    console.log(file)
-    setAudio(file);
-  }
 
   const [allCheckboxes, setAllCheckboxes] = useState({
     status: false,
@@ -70,20 +61,20 @@ function EditSubtopic(props) {
       }
     });
 
-    const subtopic_id = props.match.params.id;
-    axios.get(`http://localhost:8000/api/edit-subtopic/${subtopic_id}`).then(res=>{
+    const flipCard_id = props.match.params.id;
+    axios.get(`http://localhost:8000/api/edit-flip-card/${flipCard_id}`).then(res=>{
       if(res.data.status === 200){
-        const teacherTopicData = res.data.subtopics;
+        const teacherTopicData = res.data.flipCard;
         console.log(teacherTopicData)
-        setSubtopicInput({
+        setFlipCardInput({
           ...teacherTopicData,
-          learning_program_id: teacherTopicData.teacher_topic.topic.theme_learning_program.learning_program_id,
-          theme_learning_program_id: teacherTopicData.teacher_topic.topic.theme_learning_program.id,
-          teacher_id: teacherTopicData.teacher_topic.teacher_id,
-          teacher_topic_id: teacherTopicData.teacher_topic_id,
+          // learning_program_id: teacherTopicData.teacher_topic.topic.theme_learning_program.learning_program_id,
+          // theme_learning_program_id: teacherTopicData.teacher_topic.topic.theme_learning_program.id,
+          // teacher_id: teacherTopicData.teacher_topic.teacher_id,
+          // teacher_topic_id: teacherTopicData.teacher_topic_id,
         });
 
-        setAllCheckboxes(res.data.subtopics)
+        setAllCheckboxes(res.data.flipCard)
       }
       else if(res.data.status === 404)
       {
@@ -92,17 +83,15 @@ function EditSubtopic(props) {
           text: res.data.message,
           icon: "error",
         });
-        history.push("/admin/view-subtopic");
+        history.push("/admin/view-flip-card");
       }
       setLoading(false);
     })
   },[props.match.params.id,history])
 
-
-
   const handleInput = (e) => {
     e.persist();
-    setSubtopicInput({...subtopicInput, [e.target.name]: e.target.value})
+    setFlipCardInput({...flipCardInput, [e.target.name]: e.target.value})
   }
 
   const handleCheckbox = (e) => {
@@ -114,19 +103,15 @@ function EditSubtopic(props) {
     e.preventDefault();
 
     const formData = new FormData();
-    formData.append('name',subtopicInput.name );
-    formData.append('teacher_topic_id',subtopicInput.teacher_topic_id );
-    formData.append('audio',audio );  
-    formData.append('audio_path',subtopicInput.audio_path );
+    formData.append('task',flipCardInput.task );
+    formData.append('teacher_topic_id',flipCardInput.teacher_topic_id );
+    formData.append('answer',flipCardInput.answer );
     formData.append('status',allCheckboxes.status == true ? 1 : 0);
 
     // console.log(formData)
-    const subtopic_id = props.match.params.id;
-    axios.post(`http://localhost:8000/api/update-subtopic/${subtopic_id}`, formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    }).then(res => {
+
+    const flipCard_id = props.match.params.id;
+    axios.post(`http://localhost:8000/api/update-flip-card/${flipCard_id}`, formData).then(res => {
       if(res.data.status === 200)
       {
         Swal.fire({
@@ -152,19 +137,19 @@ function EditSubtopic(props) {
           text: res.data.message,
           icon: "error",
         });
-        history.push("/admin/view-evaluation");
+        history.push("/admin/view-flip-card");
       }
     });
   }
 
   if(loading) {
-    return <h4>Loading Edited Subopic ...</h4>
+    return <h4>Loading Edited Flip Card ...</h4>
   }
 
   return (
     <div className="container-fluid px4">
-      <h2 className="m-3">Edit Subtopic
-        <Link to="/admin/view-subtopic" type="button" className="btnBts btn-primary text-white px-4 m-3 float-end">BACK to List</Link>
+      <h2 className="m-3">Edit Flip Card
+        <Link to="/admin/view-flip-card" type="button" className="btnBts btn-primary text-white px-4 m-3 float-end">BACK to List</Link>
       </h2>
 
         <ul className="navSide nav-tabs" id="myTab" role="tablist">
@@ -175,13 +160,13 @@ function EditSubtopic(props) {
         <div className="tab-content" id="myTabContent">
         
           <div className="tab-pane card-body border fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-          <form className="form-group custom-form" onSubmit={submitTeacherTopic} encType="multipart/form-data">
+          <form className="form-group custom-form" onSubmit={submitTeacherTopic}>
 
           <div className="rowBts">
               <div className="col-md-4">
                 <div className="form-group m-3">
                   <label>Learn Program</label>
-                  <select name="learning_program_id" onChange={handleInput} value={subtopicInput.learning_program_id} className="form-control">  
+                  <select name="learning_program_id" onChange={handleInput} value={flipCardInput.learning_program_id} className="form-control">  
                     <option>Select program</option>
                     {
                       learningProgramList.map((item)=> {
@@ -197,10 +182,10 @@ function EditSubtopic(props) {
               <div className="col-md-8">          
                 <div className="form-group m-3">
                   <label>Theme</label>
-                  <select name="theme_learning_program_id" onChange={handleInput} value={subtopicInput.theme_learning_program_id} className="form-control">  
+                  <select name="theme_learning_program_id" onChange={handleInput} value={flipCardInput.theme_learning_program_id} className="form-control">  
                     <option>Select Theme</option>
                     {themeList
-                      .filter((item) => item.learning_program_id == subtopicInput.learning_program_id)
+                      .filter((item) => item.learning_program_id == flipCardInput.learning_program_id)
                       .map((item) => (
                         <option value={item.id} key={item.id}>
                           {item.name}
@@ -216,7 +201,7 @@ function EditSubtopic(props) {
               <div className="col-md-4">
                 <div className="form-group m-3">
                   <label>Teacher</label>
-                  <select name="teacher_id" onChange={handleInput} value={subtopicInput.teacher_id} className="form-control">  
+                  <select name="teacher_id" onChange={handleInput} value={flipCardInput.teacher_id} className="form-control">  
                     <option>Select Teacher</option>
                     {
                       teacherList.map((item)=> {
@@ -233,12 +218,12 @@ function EditSubtopic(props) {
               <div className="col-md-8">
                 <div className="form-group m-3">
                   <label>Topics</label>
-                  <select name="teacher_topic_id" onChange={handleInput} value={subtopicInput.teacher_topic_id} className="form-control">  
+                  <select name="teacher_topic_id" onChange={handleInput} value={flipCardInput.teacher_topic_id} className="form-control">  
                     <option>Select Topic</option>
                     {
                       teacherTopicList
-                      .filter((item) => item.teacher_id == subtopicInput.teacher_id)
-                      .filter((item) => item.topic.theme_learning_program_id == subtopicInput.theme_learning_program_id)                      
+                      .filter((item) => item.teacher_id == flipCardInput.teacher_id)
+                      .filter((item) => item.topic.theme_learning_program_id == flipCardInput.theme_learning_program_id)                      
                       .map((item)=> {
                         return (
                           <option value={item.id} key={item.id}>{item.name}</option>
@@ -252,37 +237,25 @@ function EditSubtopic(props) {
 
             </div>
             <div className="rowBts">
-              <div className="col-md-8">          
+              <div className="col-md-4">          
                 <div className="form-group m-3">
-                  <label>Subtopic Title</label>
-                  <input type="text" name="name" onChange={handleInput} value={subtopicInput.name}className="form-control" />
-                  <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.name}</span>
+                  <label>Title</label>
+                  <input type="text" name="task" onChange={handleInput} value={flipCardInput.task}className="form-control" />
+                  <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.task}</span>
                 </div>
               </div>
 
-              <div className="col-md-4">
-                <div className="form-group m-3">
-                  <label>Audio</label>
-                  <input type="file" accept="audio/*" name="audio" onChange={handleAudio} className="form-control" />
-                  <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.audio}</span>
-                  {subtopicInput.audio_path && subtopicInput.audio_path.startsWith('uploads/audioSubtopic/') ? (
-                    <div>
-                      <audio controls>
-                        <source src={`http://localhost:8000/${subtopicInput.audio_path}`} type="audio/mp3" />
-                        Your browser does not support the audio element.
-                      </audio>
-                      <br />
-                    </div>
-                  ) : <span>{subtopicInput.audio_path}</span>}
-                </div>
+            <div className="col-md-8">
+              <div className="form-group m-3">
+                <label>Answer</label>
+                <textarea name="answer" onChange={handleInput} value={flipCardInput.answer} className="form-control" />
+                <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.answer}</span>
               </div>
-
-
             </div>
 
-            
+          </div>
 
-            <div className="form-group m-3">
+          <div className="form-group m-3">
               <label>Status</label>
               <input type="checkbox" name="status" onChange={handleCheckbox} defaultChecked={allCheckboxes.status == 1 ? true: false}/> (0=shown, 1=hidden)
            
@@ -296,4 +269,4 @@ function EditSubtopic(props) {
   )
 }
 
-export default EditSubtopic;
+export default EditFlipCard;
