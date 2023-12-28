@@ -51,6 +51,10 @@ import EditFlipCard from "../components/admin/Teacher/EditFlipCard.js";
 import AddTestItem from "../components/admin/Test/AddTestItem.js";
 import ViewTestItem from "../components/admin/Test/ViewTestItem.js";
 import EditTestItem from "../components/admin/Test/EditTestItem.js";
+import AddTestItemColumn from "../components/admin/Test/AddTestItemColumn.js";
+import ViewTestItemColumn from "../components/admin/Test/ViewTestItemColumn.js";
+import EditTestItemColumn from "../components/admin/Test/EditTestItemColumn.js";
+
 
 
 const routes = [
@@ -124,6 +128,11 @@ const routes = [
   { path: '/admin/add-test-item', exact: true, name: 'AddTestItem', component: AddTestItem },
   { path: '/admin/view-test-item', exact: true, name: 'ViewTestItem', component: ViewTestItem },
   { path: '/admin/edit-test-item/:id', exact: true, name: 'EditTestItem', component: EditTestItem },
+
+  { path: '/admin/add-test-item-column', exact: true, name: 'AddTestItemColumn', component: AddTestItemColumn },
+  { path: '/admin/view-test-item-column', exact: true, name: 'ViewTestItemColumn', component: ViewTestItemColumn },
+  { path: '/admin/edit-test-item-column/:id', exact: true, name: 'EditTestItemColumn', component: EditTestItemColumn },
+
 
 ];
 
