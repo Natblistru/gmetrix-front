@@ -54,7 +54,9 @@ import EditTestItem from "../components/admin/Test/EditTestItem.js";
 import AddTestItemColumn from "../components/admin/Test/AddTestItemColumn.js";
 import ViewTestItemColumn from "../components/admin/Test/ViewTestItemColumn.js";
 import EditTestItemColumn from "../components/admin/Test/EditTestItemColumn.js";
-
+import AddTestItemOption from "../components/admin/Test/AddTestItemOption.js";
+import ViewTestItemOption from "../components/admin/Test/ViewTestItemOption.js";
+import EditTestItemOption from "../components/admin/Test/EditTestItemOption.js";
 
 
 const routes = [
@@ -132,6 +134,10 @@ const routes = [
   { path: '/admin/add-test-item-column', exact: true, name: 'AddTestItemColumn', component: AddTestItemColumn },
   { path: '/admin/view-test-item-column', exact: true, name: 'ViewTestItemColumn', component: ViewTestItemColumn },
   { path: '/admin/edit-test-item-column/:id', exact: true, name: 'EditTestItemColumn', component: EditTestItemColumn },
+
+  { path: '/admin/add-test-item-option', exact: true, name: 'AddTestItemOption', component: AddTestItemOption },
+  { path: '/admin/view-test-item-option', exact: true, name: 'ViewTestItemOption', component: ViewTestItemOption },
+  { path: '/admin/edit-test-item-option/:id', exact: true, name: 'EditTestItemOption', component: EditTestItemOption },
 
 
 ];
