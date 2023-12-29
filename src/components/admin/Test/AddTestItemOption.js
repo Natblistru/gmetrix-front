@@ -256,12 +256,47 @@ function AddTestItemOption() {
     option: '',
     explanation: '',
     text_additional: '',
+
+    type: '',
+
+    optionsQuiz: '',
+    explanationsQuiz: '',
+    optionCorectQuiz: '',
+
+    optionsCheck: '',
+    explanationsCheck: '',
+    optionCorectCheck: '',
+
+    optionsDnd: '',
+    optionCorectDnd: '',
+
+    optionsDndGroup: '',
+    optionCorectDndGroup1: '',
+    optionCorectDndGroup2: '',
+
+    optionsDndChrono: '',
+    optionCorectDndChrono: '',
+
+    optionsDndChronoDouble: '',
+    optionCorectDndChronoDouble: '',
+
+    optionsWords: '',
+    optionCorectWords: '',
+    explanationWords: '',
+    additionalWords: '',
   })
 
   const [allCheckboxes, setAllCheckboxes] = useState({
     status: false,
   })
 
+  const [blockQuizVisible, setBlockQuizVisible] = useState(false);
+  const [blockCheckVisible, setBlockCheckVisible] = useState(false);
+  const [blockWordsVisible, setBlockWordsVisible] = useState(false);
+  const [blockDndVisible, setBlockDndVisible] = useState(false);
+  const [blockDnd_chronoVisible, setBlockDnd_chronoVisible] = useState(false); 
+  const [blockDnd_chrono_doubleVisible, setBlockDnd_chrono_doubleVisible] = useState(false); 
+  const [blockDnd_groupVisible, setBlockDnd_groupVisible] = useState(false);   
   const [blockSnapVisible, setBlockSnapVisible] = useState(false);
 
   const [testSnapInput, setTestSnapInput] = useState({
@@ -294,10 +329,27 @@ function AddTestItemOption() {
     setTestItemInput((prevInput) => ({
       ...prevInput,
       [name]: value,
+    }));      
+  }
+
+  const handleTypeTest = (e) => {
+    e.persist();
+
+    const { name, value } = e.target;
+    setTestItemInput((prevInput) => ({
+      ...prevInput,
+      [name]: value,
     }));
 
-    const selectedTestItem = testItemList.find((item) => item.id == value);
-    setBlockSnapVisible(selectedTestItem && selectedTestItem.type === "snap");
+    const selectedItem = testItemList.find((item) => item.id == value);
+    setBlockSnapVisible(selectedItem && selectedItem.type === "snap");
+    setBlockQuizVisible(selectedItem && selectedItem.type === "quiz");
+    setBlockCheckVisible(selectedItem && selectedItem.type === "check");
+    setBlockWordsVisible(selectedItem && selectedItem.type === "words");
+    setBlockDndVisible(selectedItem && selectedItem.type === "dnd");
+    setBlockDnd_chronoVisible(selectedItem && selectedItem.type === "dnd_chrono");   
+    setBlockDnd_chrono_doubleVisible(selectedItem && selectedItem.type === "dnd_chrono_double");  
+    setBlockDnd_groupVisible(selectedItem && selectedItem.type === "dnd_group");      
   }
 
   const handleSnap = (e) => {
@@ -308,8 +360,6 @@ function AddTestItemOption() {
       ...prevInput,
       [name]: value,
     }));
-    // const selectedTestItem = testItemList.find((item) => item.id == value);
-    // setBlockSnapVisible(selectedTestItem && selectedTestItem.type === "snap");
   }
 
   const handleConcatenate = () => {
@@ -377,6 +427,7 @@ function AddTestItemOption() {
     e.preventDefault();
 
     const selectedTestItem = testItemList.find((item) => item.id == testItemInput.test_item_id);
+
     if(selectedTestItem && selectedTestItem.type === "snap") {
 
       const lines1 = resultTextAdditional1.trim().split('\n');
@@ -391,7 +442,6 @@ function AddTestItemOption() {
           formData.append('option', lines1[i]);
           formData.append('explanation', lines2[i]);
           formData.append('correct', lines1[i] === lines2[i] ? 1 : 0);
-  
           formData.append('text_additional', lines3[i]);
           formData.append('test_item_id', testItemInput.test_item_id);
           formData.append('status', allCheckboxes.status ? 1 : 0);
@@ -416,12 +466,51 @@ function AddTestItemOption() {
               text: Object.values(response.data.errors).flat().join(' '),
               icon: "error"
             });
+            setTestItemInput({
+              learning_program_id: '',
+              theme_learning_program_id: '',
+              teacher_topic_id: '',
+              teacher_id: '',
+              test_item_id: '',
+              correct: '',
+              option: '',
+              explanation: '',
+              text_additional: '',
+          
+              type: '',
+          
+              optionsQuiz: '',
+              explanationsQuiz: '',
+              optionCorectQuiz: '',
+          
+              optionsCheck: '',
+              explanationsCheck: '',
+              optionCorectCheck: '',
+          
+              optionsDnd: '',
+              optionCorectDnd: '',
+          
+              optionsDndGroup: '',
+              optionCorectDndGroup1: '',
+              optionCorectDndGroup2: '',
+          
+              optionsDndChrono: '',
+              optionCorectDndChrono: '',
+          
+              optionsDndChronoDouble: '',
+              optionCorectDndChronoDouble: '',
+          
+              optionsWords: '',
+              optionCorectWords: '',
+              explanationWords: '',
+              additionalWords: '',
+              });
+            setAllCheckboxes({
+              status: false,
+            });
+            setErrors([]);
+            setBlockSnapVisible(false);
           });
-          setExcelData(null);
-          setAllKeys(null);
-          setAdditionalData([]);
-          setExcelFile(null);
-          document.getElementById('fileExcel').value = '';
         }))
         .catch(error => {
           console.error(error);
@@ -430,54 +519,642 @@ function AddTestItemOption() {
         console.error('Numărul de rânduri nu este egal cu 16 pentru toate textele.');
       }
     }
-    else
-    {
-
-    const formData = new FormData();
-    formData.append('option',testItemInput.option );
-    formData.append('correct',testItemInput.correct );
-    formData.append('explanation',testItemInput.explanation );
-    formData.append('text_additional',testItemInput.text_additional );
-    formData.append('test_item_id',testItemInput.test_item_id );
-    formData.append('status',allCheckboxes.status == true ? 1 : 0);
-
-    // console.log(formData)
-
-    axios.post(`http://localhost:8000/api/store-test-item-option`, formData).then(res => {
-      if(res.data.status === 201)
-      {
-        Swal.fire({
-          title: "Succes",
-          text: res.data.message,
-          icon: "success"
+    else if(selectedTestItem && selectedTestItem.type === "quiz") {
+      const lines1 = testItemInput.optionsQuiz.trim().split('\n');
+      const lines2 = testItemInput.explanationsQuiz.trim().split('\n');
+   
+      if (lines1.length === lines2.length && testItemInput.optionCorectQuiz.length > 0) {
+        const formDataArray = [];
+  
+        for (let i = 0; i < lines1.length; i++) {
+          const formData = new FormData();
+          formData.append('option', lines1[i]);
+          formData.append('explanation', lines2[i]);
+          formData.append('correct', lines1[i] === testItemInput.optionCorectQuiz ? 1 : 0);
+  
+          formData.append('test_item_id', testItemInput.test_item_id);
+          formData.append('status', allCheckboxes.status ? 1 : 0);
+  
+          formDataArray.push(formData);
+        }
+        axios.all(formDataArray.map(formData => axios.post('http://localhost:8000/api/store-test-item-option', formData)))
+        .then(axios.spread((...responses) => {
+          const successResponses = responses.filter(response => response.data.status === 201);
+          const errorResponses = responses.filter(response => response.data.status === 422);
+          if (successResponses.length > 0) {
+            Swal.fire({
+              title: "Success",
+              text: `Successfully processed ${successResponses.length} out of ${responses.length} requests.`,
+              icon: "success"
+            });
+            setTestItemInput({
+              learning_program_id: '',
+              theme_learning_program_id: '',
+              teacher_topic_id: '',
+              teacher_id: '',
+              test_item_id: '',
+              correct: '',
+              option: '',
+              explanation: '',
+              text_additional: '',
+          
+              type: '',
+          
+              optionsQuiz: '',
+              explanationsQuiz: '',
+              optionCorectQuiz: '',
+          
+              optionsCheck: '',
+              explanationsCheck: '',
+              optionCorectCheck: '',
+          
+              optionsDnd: '',
+              optionCorectDnd: '',
+          
+              optionsDndGroup: '',
+              optionCorectDndGroup1: '',
+              optionCorectDndGroup2: '',
+          
+              optionsDndChrono: '',
+              optionCorectDndChrono: '',
+          
+              optionsDndChronoDouble: '',
+              optionCorectDndChronoDouble: '',
+          
+              optionsWords: '',
+              optionCorectWords: '',
+              explanationWords: '',
+              additionalWords: '',
+              });
+            setAllCheckboxes({
+              status: false,
+            });
+            setErrors([]);
+            setBlockQuizVisible(false);
+          }
+          errorResponses.forEach(response => {
+            Swal.fire({
+              title: "Error",
+              text: Object.values(response.data.errors).flat().join(' '),
+              icon: "error"
+            });
+          });
+        }))
+        .catch(error => {
+          console.error(error);
         });
-        setTestItemInput({
-          learning_program_id: '',
-          theme_learning_program_id: '',
-          teacher_topic_id: '',
-          test_item_id: '',
-          teacher_id: '',
-          correct: '',
-          option: '',
-          explanation: '',
-          text_additional: '',
-        });
-        setAllCheckboxes({
-          status: false,
-        });
-        setErrors([]);
+      } else {
+        console.error('Numărul de rânduri nu este egal pentru toate textele.');
       }
-      else if(res.data.status === 422)
-      {
-        Swal.fire({
-          title: "All fields are mandatory",
-          text: Object.values(res.data.errors).flat().join(' '),
-          icon: "error",
+    }
+    else if(selectedTestItem && selectedTestItem.type == "check") {
+      const lines1 = testItemInput.optionsCheck.trim().split('\n');
+      const lines2 = testItemInput.explanationsCheck.trim().split('\n');
+      const lines3 = testItemInput.optionCorectCheck.trim().split('\n');
+   
+      if (lines1.length === lines2.length && lines3.length > 0) {
+        const formDataArray = [];
+  
+        for (let i = 0; i < lines1.length; i++) {
+          const formData = new FormData();
+          console.log(lines1[i])
+          formData.append('option', lines1[i]);
+          formData.append('explanation', lines2[i]);
+          formData.append('correct', lines3.includes(lines1[i]) ? 1 : 0);
+  
+          formData.append('test_item_id', testItemInput.test_item_id);
+          formData.append('status', allCheckboxes.status ? 1 : 0);
+  
+          formDataArray.push(formData);
+        }
+        axios.all(formDataArray.map(formData => axios.post('http://localhost:8000/api/store-test-item-option', formData)))
+        .then(axios.spread((...responses) => {
+          const successResponses = responses.filter(response => response.data.status === 201);
+          const errorResponses = responses.filter(response => response.data.status === 422);
+          if (successResponses.length > 0) {
+            Swal.fire({
+              title: "Success",
+              text: `Successfully processed ${successResponses.length} out of ${responses.length} requests.`,
+              icon: "success"
+            });
+            setTestItemInput({
+              learning_program_id: '',
+              theme_learning_program_id: '',
+              teacher_topic_id: '',
+              teacher_id: '',
+              test_item_id: '',
+              correct: '',
+              option: '',
+              explanation: '',
+              text_additional: '',
+          
+              type: '',
+          
+              optionsQuiz: '',
+              explanationsQuiz: '',
+              optionCorectQuiz: '',
+          
+              optionsCheck: '',
+              explanationsCheck: '',
+              optionCorectCheck: '',
+          
+              optionsDnd: '',
+              optionCorectDnd: '',
+          
+              optionsDndGroup: '',
+              optionCorectDndGroup1: '',
+              optionCorectDndGroup2: '',
+          
+              optionsDndChrono: '',
+              optionCorectDndChrono: '',
+          
+              optionsDndChronoDouble: '',
+              optionCorectDndChronoDouble: '',
+          
+              optionsWords: '',
+              optionCorectWords: '',
+              explanationWords: '',
+              additionalWords: '',
+              });
+            setAllCheckboxes({
+              status: false,
+            });
+            setErrors([]);
+            setBlockCheckVisible(false);
+          }
+          errorResponses.forEach(response => {
+            Swal.fire({
+              title: "Error",
+              text: Object.values(response.data.errors).flat().join(' '),
+              icon: "error"
+            });
+          });
+        }))
+        .catch(error => {
+          console.error(error);
         });
-        setErrors(res.data.errors);
+        
+      } else {
+        console.error('Numărul de rânduri nu este egal pentru toate textele.');
       }
-    });
-   }
+    }
+    else if(selectedTestItem && selectedTestItem.type == "dnd") {
+      console.log(selectedTestItem.type)
+      const lines1 = testItemInput.optionsDnd.trim().split('\n');
+      const lines3 = testItemInput.optionCorectDnd.trim().split('\n');
+   
+      if (lines1.length > 0 && lines3.length > 0) {
+        const formDataArray = [];
+  
+        for (let i = 0; i < lines1.length; i++) {
+          const formData = new FormData();
+          console.log(lines1[i])
+          formData.append('option', lines1[i]);
+          formData.append('correct', lines3.includes(lines1[i]) ? 1 : 0);
+          formData.append('test_item_id', testItemInput.test_item_id);
+          formData.append('status', allCheckboxes.status ? 1 : 0);
+  
+          formDataArray.push(formData);
+        }
+        axios.all(formDataArray.map(formData => axios.post('http://localhost:8000/api/store-test-item-option', formData)))
+        .then(axios.spread((...responses) => {
+          const successResponses = responses.filter(response => response.data.status === 201);
+          const errorResponses = responses.filter(response => response.data.status === 422);
+          if (successResponses.length > 0) {
+            Swal.fire({
+              title: "Success",
+              text: `Successfully processed ${successResponses.length} out of ${responses.length} requests.`,
+              icon: "success"
+            });
+            setTestItemInput({
+              learning_program_id: '',
+              theme_learning_program_id: '',
+              teacher_topic_id: '',
+              teacher_id: '',
+              test_item_id: '',
+              correct: '',
+              option: '',
+              explanation: '',
+              text_additional: '',
+          
+              type: '',
+          
+              optionsQuiz: '',
+              explanationsQuiz: '',
+              optionCorectQuiz: '',
+          
+              optionsCheck: '',
+              explanationsCheck: '',
+              optionCorectCheck: '',
+          
+              optionsDnd: '',
+              optionCorectDnd: '',
+          
+              optionsDndGroup: '',
+              optionCorectDndGroup1: '',
+              optionCorectDndGroup2: '',
+          
+              optionsDndChrono: '',
+              optionCorectDndChrono: '',
+          
+              optionsDndChronoDouble: '',
+              optionCorectDndChronoDouble: '',
+          
+              optionsWords: '',
+              optionCorectWords: '',
+              explanationWords: '',
+              additionalWords: '',
+              });
+            setAllCheckboxes({
+              status: false,
+            });
+            setErrors([]);
+            setBlockDndVisible(false);
+          }
+          errorResponses.forEach(response => {
+            Swal.fire({
+              title: "Error",
+              text: Object.values(response.data.errors).flat().join(' '),
+              icon: "error"
+            });
+          });
+        }))
+        .catch(error => {
+          console.error(error);
+        });
+        
+      } else {
+        console.error('Numărul de rânduri nu poate fi zero.');
+      }
+    }
+    else if(selectedTestItem && selectedTestItem.type == "dnd_group") {
+      const lines1 = testItemInput.optionsDndGroup.trim().split('\n');
+      const lines2 = testItemInput.optionCorectDndGroup1.trim().split('\n');
+      const lines3 = testItemInput.optionCorectDndGroup2.trim().split('\n');
+   
+      if (lines1.length > 0 && lines3.length > 0) {
+        const formDataArray = [];
+  
+        for (let i = 0; i < lines1.length; i++) {
+          const formData = new FormData();
+          console.log(lines1[i])
+          formData.append('option', lines1[i]);
+          formData.append('correct', lines2.includes(lines1[i]) ? 1 : lines3.includes(lines1[i]) ? 2 : 0);
+          formData.append('test_item_id', testItemInput.test_item_id);
+          formData.append('status', allCheckboxes.status ? 1 : 0);
+  
+          formDataArray.push(formData);
+        }
+        axios.all(formDataArray.map(formData => axios.post('http://localhost:8000/api/store-test-item-option', formData)))
+        .then(axios.spread((...responses) => {
+          const successResponses = responses.filter(response => response.data.status === 201);
+          const errorResponses = responses.filter(response => response.data.status === 422);
+          if (successResponses.length > 0) {
+            Swal.fire({
+              title: "Success",
+              text: `Successfully processed ${successResponses.length} out of ${responses.length} requests.`,
+              icon: "success"
+            });
+            setTestItemInput({
+              learning_program_id: '',
+              theme_learning_program_id: '',
+              teacher_topic_id: '',
+              teacher_id: '',
+              test_item_id: '',
+              correct: '',
+              option: '',
+              explanation: '',
+              text_additional: '',
+          
+              type: '',
+          
+              optionsQuiz: '',
+              explanationsQuiz: '',
+              optionCorectQuiz: '',
+          
+              optionsCheck: '',
+              explanationsCheck: '',
+              optionCorectCheck: '',
+          
+              optionsDnd: '',
+              optionCorectDnd: '',
+          
+              optionsDndGroup: '',
+              optionCorectDndGroup1: '',
+              optionCorectDndGroup2: '',
+          
+              optionsDndChrono: '',
+              optionCorectDndChrono: '',
+          
+              optionsDndChronoDouble: '',
+              optionCorectDndChronoDouble: '',
+          
+              optionsWords: '',
+              optionCorectWords: '',
+              explanationWords: '',
+              additionalWords: '',
+              });
+            setAllCheckboxes({
+              status: false,
+            });
+            setErrors([]);
+            setBlockDnd_groupVisible(false);
+          }
+          errorResponses.forEach(response => {
+            Swal.fire({
+              title: "Error",
+              text: Object.values(response.data.errors).flat().join(' '),
+              icon: "error"
+            });
+          });
+        }))
+        .catch(error => {
+          console.error(error);
+        });
+        
+      } else {
+        console.error('Numărul de rânduri nu poate fi zero.');
+      }
+    }
+    else if(selectedTestItem && selectedTestItem.type == "dnd_chrono") {
+
+      const lines1 = testItemInput.optionsDndChrono.trim().split('\n');
+      const lines2 = testItemInput.optionCorectDndChrono.trim().split('\n');
+   
+      if (lines1.length > 0 && lines2.length > 0) {
+        const formDataArray = [];
+  
+        for (let i = 0; i < lines1.length; i++) {
+
+          let CorectDndChrono = lines2.indexOf(lines1[i]);
+          if(CorectDndChrono == -1) console.log(`Elementul ${lines1[i]} nu a fost găsit în optiunile corecte.`)
+          const formData = new FormData();
+          formData.append('option', lines1[i]);
+          formData.append('correct', 0);
+          formData.append('explanation',CorectDndChrono + 1 );
+          formData.append('test_item_id', testItemInput.test_item_id);
+          formData.append('status', allCheckboxes.status ? 1 : 0);
+  
+          formDataArray.push(formData);
+        }
+        console.log(formDataArray)
+        axios.all(formDataArray.map(formData => axios.post('http://localhost:8000/api/store-test-item-option', formData)))
+        .then(axios.spread((...responses) => {
+          const successResponses = responses.filter(response => response.data.status === 201);
+          const errorResponses = responses.filter(response => response.data.status === 422);
+          if (successResponses.length > 0) {
+            Swal.fire({
+              title: "Success",
+              text: `Successfully processed ${successResponses.length} out of ${responses.length} requests.`,
+              icon: "success"
+            });
+            setTestItemInput({
+              learning_program_id: '',
+              theme_learning_program_id: '',
+              teacher_topic_id: '',
+              teacher_id: '',
+              test_item_id: '',
+              correct: '',
+              option: '',
+              explanation: '',
+              text_additional: '',
+          
+              type: '',
+          
+              optionsQuiz: '',
+              explanationsQuiz: '',
+              optionCorectQuiz: '',
+          
+              optionsCheck: '',
+              explanationsCheck: '',
+              optionCorectCheck: '',
+          
+              optionsDnd: '',
+              optionCorectDnd: '',
+          
+              optionsDndGroup: '',
+              optionCorectDndGroup1: '',
+              optionCorectDndGroup2: '',
+          
+              optionsDndChrono: '',
+              optionCorectDndChrono: '',
+          
+              optionsDndChronoDouble: '',
+              optionCorectDndChronoDouble: '',
+          
+              optionsWords: '',
+              optionCorectWords: '',
+              explanationWords: '',
+              additionalWords: '',
+              });
+            setAllCheckboxes({
+              status: false,
+            });
+            setErrors([]);
+            setBlockDnd_chronoVisible(false);
+          }
+          errorResponses.forEach(response => {
+            Swal.fire({
+              title: "Error",
+              text: Object.values(response.data.errors).flat().join(' '),
+              icon: "error"
+            });
+          });
+        }))
+        .catch(error => {
+          console.error(error);
+        });
+        
+      } else {
+        console.error('Numărul de rânduri nu poate fi zero.');
+      }
+    }
+    else if(selectedTestItem && selectedTestItem.type == "dnd_chrono_double") {
+
+      const lines1 = testItemInput.optionsDndChronoDouble.trim().split('\n');
+      const lines2 = testItemInput.optionCorectDndChronoDouble.trim().split('\n');
+   
+      if (lines1.length > 0 && lines2.length > 0) {
+        const formDataArray = [];
+  
+        for (let i = 0; i < lines1.length; i++) {
+
+          const formData = new FormData();
+          formData.append('option', lines1[i]);
+          formData.append('correct', lines2.includes(lines1[i]) ? 1 : 0);
+          formData.append('explanation', lines2.indexOf(lines1[i]) + 1 );
+          formData.append('test_item_id', testItemInput.test_item_id);
+          formData.append('status', allCheckboxes.status ? 1 : 0);
+  
+          formDataArray.push(formData);
+        }
+        console.log(formDataArray)
+        axios.all(formDataArray.map(formData => axios.post('http://localhost:8000/api/store-test-item-option', formData)))
+        .then(axios.spread((...responses) => {
+          const successResponses = responses.filter(response => response.data.status === 201);
+          const errorResponses = responses.filter(response => response.data.status === 422);
+          if (successResponses.length > 0) {
+            Swal.fire({
+              title: "Success",
+              text: `Successfully processed ${successResponses.length} out of ${responses.length} requests.`,
+              icon: "success"
+            });
+            setTestItemInput({
+              learning_program_id: '',
+              theme_learning_program_id: '',
+              teacher_topic_id: '',
+              teacher_id: '',
+              test_item_id: '',
+              correct: '',
+              option: '',
+              explanation: '',
+              text_additional: '',
+          
+              type: '',
+          
+              optionsQuiz: '',
+              explanationsQuiz: '',
+              optionCorectQuiz: '',
+          
+              optionsCheck: '',
+              explanationsCheck: '',
+              optionCorectCheck: '',
+          
+              optionsDnd: '',
+              optionCorectDnd: '',
+          
+              optionsDndGroup: '',
+              optionCorectDndGroup1: '',
+              optionCorectDndGroup2: '',
+          
+              optionsDndChrono: '',
+              optionCorectDndChrono: '',
+          
+              optionsDndChronoDouble: '',
+              optionCorectDndChronoDouble: '',
+          
+              optionsWords: '',
+              optionCorectWords: '',
+              explanationWords: '',
+              additionalWords: '',
+              });
+            setAllCheckboxes({
+              status: false,
+            });
+            setErrors([]);
+            setBlockDnd_chrono_doubleVisible(false); 
+          }
+          errorResponses.forEach(response => {
+            Swal.fire({
+              title: "Error",
+              text: Object.values(response.data.errors).flat().join(' '),
+              icon: "error"
+            });
+          });
+        }))
+        .catch(error => {
+          console.error(error);
+        });
+        
+      } else {
+        console.error('Numărul de rânduri nu poate fi zero.');
+      }
+    }
+    else if(selectedTestItem && selectedTestItem.type == "words") {
+
+      const lines1 = testItemInput.optionsWords.trim().split('\n');
+      const lines2 = testItemInput.optionCorectWords.trim().split('\n');
+      const textWithQuotes = '"' + testItemInput.additionalWords + '"';
+
+      if (lines1.length > 0 && lines2.length > 0) {
+        const formDataArray = [];
+  
+        for (let i = 0; i < lines1.length; i++) {
+
+
+
+          const formData = new FormData();
+          formData.append('option', lines1[i]);
+          formData.append('correct', lines2.indexOf(lines1[i]) + 1 );
+          formData.append('explanation', testItemInput.explanationWords );
+          formData.append('text_additional', JSON.stringify(textWithQuotes));
+          formData.append('test_item_id', testItemInput.test_item_id);
+          formData.append('status', allCheckboxes.status ? 1 : 0);
+  
+          formDataArray.push(formData);
+        }
+        console.log(formDataArray)
+        axios.all(formDataArray.map(formData => axios.post('http://localhost:8000/api/store-test-item-option', formData)))
+        .then(axios.spread((...responses) => {
+          const successResponses = responses.filter(response => response.data.status === 201);
+          const errorResponses = responses.filter(response => response.data.status === 422);
+          if (successResponses.length > 0) {
+            Swal.fire({
+              title: "Success",
+              text: `Successfully processed ${successResponses.length} out of ${responses.length} requests.`,
+              icon: "success"
+            });
+            setTestItemInput({
+              learning_program_id: '',
+              theme_learning_program_id: '',
+              teacher_topic_id: '',
+              teacher_id: '',
+              test_item_id: '',
+              correct: '',
+              option: '',
+              explanation: '',
+              text_additional: '',
+          
+              type: '',
+          
+              optionsQuiz: '',
+              explanationsQuiz: '',
+              optionCorectQuiz: '',
+          
+              optionsCheck: '',
+              explanationsCheck: '',
+              optionCorectCheck: '',
+          
+              optionsDnd: '',
+              optionCorectDnd: '',
+          
+              optionsDndGroup: '',
+              optionCorectDndGroup1: '',
+              optionCorectDndGroup2: '',
+          
+              optionsDndChrono: '',
+              optionCorectDndChrono: '',
+          
+              optionsDndChronoDouble: '',
+              optionCorectDndChronoDouble: '',
+          
+              optionsWords: '',
+              optionCorectWords: '',
+              explanationWords: '',
+              additionalWords: '',
+              });
+            setAllCheckboxes({
+              status: false,
+            });
+            setErrors([]);
+            setBlockWordsVisible(false);
+          }
+          errorResponses.forEach(response => {
+            Swal.fire({
+              title: "Error",
+              text: Object.values(response.data.errors).flat().join(' '),
+              icon: "error"
+            });
+          });
+        }))
+        .catch(error => {
+          console.error(error);
+        });
+        
+      } else {
+        console.error('Numărul de rânduri nu poate fi zero.');
+      }
+    }
   }
 
   return (
@@ -554,7 +1231,7 @@ function AddTestItemOption() {
             <div className="rowBts">
   
 
-              <div className="col-md-6">
+              <div className="col-md-4">
                 <div className="form-group m-3">
                   <label>Topics</label>
                   <select name="teacher_topic_id" onChange={handleInput} value={testItemInput.teacher_topic_id} className="form-control">  
@@ -574,14 +1251,33 @@ function AddTestItemOption() {
                 </div>
               </div> 
 
-              <div className="col-md-6">
+              <div className="col-md-3">
+                <div className="form-group m-3">
+                  <label>Test Type</label>
+                    <select name="type" onChange={handleInput} value={testItemInput.type} className="form-control">
+                      <option>Select Type</option>
+                      <option value="quiz">Quiz</option>
+                      <option value="check">Check</option>
+                      <option value="snap">Asocierea textelor</option>
+                      <option value="words">Completarea lacunelor</option>
+                      <option value="dnd">Drag'n'drop</option>
+                      <option value="dnd_chrono">Drag'n'drop (chrono)</option>
+                      <option value="dnd_chrono_double">Drag'n'drop (chrono double)</option>
+                      <option value="dnd_group">Drag'n'drop group</option>
+                    </select>
+                </div>
+              </div>
+
+              <div className="col-md-5">
                 <div className="form-group m-3">
                   <label>Test Item</label>
-                  <select name="test_item_id" onChange={handleInput} value={testItemInput.test_item_id} className="form-control">  
+                  <select name="test_item_id" onChange={handleTypeTest} value={testItemInput.test_item_id} className="form-control">  
                     <option>Select Test Item</option>
                     {
                       testItemList
                       .filter((item) => item.teacher_topic_id == testItemInput.teacher_topic_id)
+                      .filter((item) => item.type == testItemInput.type)
+                      
                       .map((item)=> {
                         return (
                           <option value={item.id} key={item.id}>{item.task} ({item.type})</option>
@@ -595,7 +1291,7 @@ function AddTestItemOption() {
 
             </div>
             <div className="rowBts">
-              <div className="col-md-5">          
+              {/* <div className="col-md-5">          
                 <div className="form-group m-3">
                   <label>Option</label>
                   <input type="text" name="option" onChange={handleInput} value={testItemInput.option}className="form-control" />
@@ -619,7 +1315,7 @@ function AddTestItemOption() {
                 </div>
               </div>
 
-              {/* <div className="col-md-12">
+              <div className="col-md-12">
                 <div className="form-group m-3">
                   <label>Additional Text</label>
                   <textarea name="text_additional" onChange={handleInput} value={testItemInput.text_additional} className="form-control" />
@@ -789,29 +1485,255 @@ function AddTestItemOption() {
                 <div className="col-md-6">
                   <div className="form-group m-3">
                     <label>Options</label>
-                    <textarea name="text_additional1" value={resultTextAdditional1} className="form-control" />
+                    <textarea name="text_additional1" value={resultTextAdditional1} className="form-control" rows="16"/>
                   </div>
                 </div>
 
                 <div className="col-md-6">
                   <div className="form-group m-3">
                     <label>Explanation</label>
-                    <textarea name="text_additional2" value={resultTextAdditional2} className="form-control" />
+                    <textarea name="text_additional2" value={resultTextAdditional2} className="form-control" rows="16"/>
                   </div>
                 </div>
 
 
 
               </div>
-              <div className="col-md-4">
-                  <div className="form-group m-3">
+              <div className="col-md-6">
+                  <div className="form-group m-3">        
                     <label>text_additional</label>
-                    <textarea name="text_additional3" value={resultTextAdditional3}  className="form-control" />
+                    <textarea name="text_additional3" value={resultTextAdditional3}  className="form-control" rows="16"/>
                   </div>
                 </div>
             </div>
             )}
 
+            {blockQuizVisible && (
+              <div id="block_quiz" class="border mt-4 mb-4 p-3 rounded shadow-lg">
+              <h3 class="text-center p-3" style={{marginBottom: '10px'}}>Date pentru testul de tip QUIZ</h3>
+
+                {/* textareas */}
+                <div className="rowBts">
+
+                <div className="col-md-12">
+                  <div className="form-group m-3">
+                    <label>Options</label>
+                    <textarea name="optionsQuiz" onChange={handleInput} value={testItemInput.optionsQuiz} className="form-control" rows="4"/>
+                    <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.optionsQuiz}</span>
+                  </div>
+                </div>
+
+                <div className="col-md-12">          
+                  <div className="form-group m-3">
+                    <label>Option (correct)</label>
+                    <input type="text" name="optionCorectQuiz" onChange={handleInput} value={testItemInput.optionCorectQuiz}className="form-control" />
+                    <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.optionCorectQuiz}</span>
+                  </div>
+                </div>
+
+                <div className="col-md-12">
+                  <div className="form-group m-3">
+                    <label>Explanations</label>
+                    <textarea name="explanationsQuiz" onChange={handleInput} value={testItemInput.explanationsQuiz} className="form-control" rows="4"/>
+                    <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.explanationsQuiz}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            )}
+
+            {blockCheckVisible && (
+              <div id="block_quiz" class="border mt-4 mb-4 p-3 rounded shadow-lg">
+              <h3 class="text-center p-3" style={{marginBottom: '10px'}}>Date pentru testul de tip CHECK</h3>
+
+                {/* textareas */}
+                <div className="rowBts">
+
+                <div className="col-md-12">
+                  <div className="form-group m-3">
+                    <label>Options</label>
+                    <textarea name="optionsCheck" onChange={handleInput} value={testItemInput.optionsCheck} className="form-control" rows="4"/>
+                    <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.optionsCheck}</span>
+                  </div>
+                </div>
+
+                <div className="col-md-12">
+                  <div className="form-group m-3">
+                    <label>Options (corect)</label>
+                    <textarea name="optionCorectCheck" onChange={handleInput} value={testItemInput.optionCorectCheck} className="form-control" rows="4"/>
+                    <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.optionCorectCheck}</span>
+                  </div>
+                </div>
+
+                <div className="col-md-12">
+                  <div className="form-group m-3">
+                    <label>Explanations</label>
+                    <textarea name="explanationsCheck" onChange={handleInput} value={testItemInput.explanationsCheck} className="form-control" rows="4"/>
+                    <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.explanationsCheck}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            )}
+
+            {blockDndVisible && (
+              <div id="block_quiz" class="border mt-4 mb-4 p-3 rounded shadow-lg">
+              <h3 class="text-center p-3" style={{marginBottom: '10px'}}>Date pentru testul de tip DND</h3>
+
+                {/* textareas */}
+                <div className="rowBts">
+
+                <div className="col-md-12">
+                  <div className="form-group m-3">
+                    <label>Options</label>
+                    <textarea name="optionsDnd" onChange={handleInput} value={testItemInput.optionsDnd} className="form-control" rows="4"/>
+                    <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.optionsDnd}</span>
+                  </div>
+                </div>
+
+                <div className="col-md-12">
+                  <div className="form-group m-3">
+                    <label>Options (corect)</label>
+                    <textarea name="optionCorectDnd" onChange={handleInput} value={testItemInput.optionCorectDnd} className="form-control" rows="4"/>
+                    <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.optionCorectDnd}</span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            )}
+
+            {blockDnd_groupVisible && (
+              <div id="block_quiz" class="border mt-4 mb-4 p-3 rounded shadow-lg">
+              <h3 class="text-center p-3" style={{marginBottom: '10px'}}>Date pentru testul de tip DND (grupare)</h3>
+
+                {/* textareas */}
+                <div className="rowBts">
+
+                <div className="col-md-12">
+                  <div className="form-group m-3">
+                    <label>Options</label>
+                    <textarea name="optionsDndGroup" onChange={handleInput} value={testItemInput.optionsDndGroup} className="form-control" rows="4"/>
+                    <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.optionsDndGroup}</span>
+                  </div>
+                </div>
+
+                <div className="col-md-6">
+                  <div className="form-group m-3">
+                    <label>Options (corect group 1)</label>
+                    <textarea name="optionCorectDndGroup1" onChange={handleInput} value={testItemInput.optionCorectDndGroup1} className="form-control" rows="4"/>
+                    <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.optionCorectDndGroup1}</span>
+                  </div>
+                </div>
+
+                <div className="col-md-6">
+                  <div className="form-group m-3">
+                    <label>Options (corect group 2)</label>
+                    <textarea name="optionCorectDndGroup2" onChange={handleInput} value={testItemInput.optionCorectDndGroup2} className="form-control" rows="4"/>
+                    <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.optionCorectDndGroup2}</span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            )}
+
+            {blockDnd_chronoVisible && (
+              <div id="block_quiz" class="border mt-4 mb-4 p-3 rounded shadow-lg">
+              <h3 class="text-center p-3" style={{marginBottom: '10px'}}>Date pentru testul de tip DND (cronologic)</h3>
+
+                {/* textareas */}
+                <div className="rowBts">
+
+                <div className="col-md-12">
+                  <div className="form-group m-3">
+                    <label>Options</label>
+                    <textarea name="optionsDndChrono" onChange={handleInput} value={testItemInput.optionsDndChrono} className="form-control" rows="4"/>
+                    <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.optionsDndChrono}</span>
+                  </div>
+                </div>
+
+                <div className="col-md-12">
+                  <div className="form-group m-3">
+                    <label>Options (corect order)</label>
+                    <textarea name="optionCorectDndChrono" onChange={handleInput} value={testItemInput.optionCorectDndChrono} className="form-control" rows="4"/>
+                    <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.optionCorectDndChrono}</span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            )}
+
+            {blockDnd_chrono_doubleVisible && (
+              <div id="block_quiz" class="border mt-4 mb-4 p-3 rounded shadow-lg">
+              <h3 class="text-center p-3" style={{marginBottom: '10px'}}>Date pentru testul de tip DND (optiuni cronologice)</h3>
+
+                {/* textareas */}
+                <div className="rowBts">
+
+                <div className="col-md-12">
+                  <div className="form-group m-3">
+                    <label>Options</label>
+                    <textarea name="optionsDndChronoDouble" onChange={handleInput} value={testItemInput.optionsDndChronoDouble} className="form-control" rows="4"/>
+                    <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.optionsDndChronoDouble}</span>
+                  </div>
+                </div>
+
+                <div className="col-md-12">
+                  <div className="form-group m-3">
+                    <label>Options (corect order)</label>
+                    <textarea name="optionCorectDndChronoDouble" onChange={handleInput} value={testItemInput.optionCorectDndChronoDouble} className="form-control" rows="4"/>
+                    <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.optionCorectDndChronoDouble}</span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            )}
+
+            {blockWordsVisible && (
+              <div id="block_quiz" class="border mt-4 mb-4 p-3 rounded shadow-lg">
+              <h3 class="text-center p-3" style={{marginBottom: '10px'}}>Date pentru testul de tip WORDS </h3>
+
+                {/* textareas */}
+                <div className="rowBts">
+
+                <div className="col-md-6">
+                  <div className="form-group m-3">
+                    <label>Options</label>
+                    <textarea name="optionsWords" onChange={handleInput} value={testItemInput.optionsWords} className="form-control" rows="4"/>
+                    <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.optionsWords}</span>
+                  </div>
+                </div>
+
+                <div className="col-md-6">
+                  <div className="form-group m-3">
+                    <label>Options (corect order)</label>
+                    <textarea name="optionCorectWords" onChange={handleInput} value={testItemInput.optionCorectWords} className="form-control" rows="4"/>
+                    <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.optionCorectWords}</span>
+                  </div>
+                </div>
+
+                <div className="col-md-12">
+                  <div className="form-group m-3">
+                    <label>Explanation</label>
+                    <textarea name="explanationWords" onChange={handleInput} value={testItemInput.explanationWords} className="form-control" rows="4"/>
+                    <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.explanationWords}</span>
+                  </div>
+                </div>
+
+                <div className="col-md-12">
+                  <div className="form-group m-3">
+                    <label>Additional text</label>
+                    <textarea name="additionalWords" onChange={handleInput} value={testItemInput.additionalWords} className="form-control" rows="4"/>
+                    <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.additionalWords}</span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            )}
 
             <div className="rowBts">
               <div className="form-group m-3">
@@ -820,6 +1742,7 @@ function AddTestItemOption() {
               
               </div>
             </div>
+
             <button type="submit" className="btnBts btn-success px-4 m-3 float-end">Submit</button>
           </form> 
           </div>
