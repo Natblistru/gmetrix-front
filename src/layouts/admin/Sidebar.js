@@ -73,11 +73,11 @@ const Sidebar = () => {
                         </div>
 
                         {/* Evaluation's */}
-                        <Link className="nav-linkSide collapsed" to="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseTeachers" aria-expanded="false" aria-controls="pagesCollapseTeachers">
+                        <Link className="nav-linkSide collapsed" to="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseEvaluation" aria-expanded="false" aria-controls="pagesCollapseEvaluation">
                             Evaluation's
                             <div className="sb-sidenav-collapse-arrow"><i className="fas fa-angle-down"></i></div>
                         </Link>
-                        <div className="collapse" id="pagesCollapseTeachers" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+                        <div className="collapse" id="pagesCollapseEvaluation" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
                             <nav className="sb-sidenav-menu-nested navSide">
                                 <Link className="nav-linkSide" to="/admin/view-evaluation">Evaluations</Link>
                                 <Link className="nav-linkSide" to="/admin/view-evaluation-subject">Evaluation Subjects</Link>
@@ -89,12 +89,12 @@ const Sidebar = () => {
                                 <Link className="nav-linkSide" to="/admin/view-evaluation-answer-option">Evaluation Answer Options</Link>                               
                                 <Link className="nav-linkSide" to="/admin/view-evaluation-form-page">Evaluation Form Pages</Link>                                </nav>
                         </div>
-                        {/* Tset's */}
-                        <Link className="nav-linkSide collapsed" to="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseTeachers" aria-expanded="false" aria-controls="pagesCollapseTeachers">
+                        {/* Test's */}
+                        <Link className="nav-linkSide collapsed" to="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseTest" aria-expanded="false" aria-controls="pagesCollapseTest">
                             Test's
                             <div className="sb-sidenav-collapse-arrow"><i className="fas fa-angle-down"></i></div>
                         </Link>
-                        <div className="collapse" id="pagesCollapseTeachers" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
+                        <div className="collapse" id="pagesCollapseTest" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
                             <nav className="sb-sidenav-menu-nested navSide">
                                 <Link className="nav-linkSide" to="/admin/view-test-item">Test Items</Link>
                                 <Link className="nav-linkSide" to="/admin/view-test-item-column">Test Columns</Link>
