@@ -1290,39 +1290,6 @@ function AddTestItemOption() {
               </div>
 
             </div>
-            <div className="rowBts">
-              {/* <div className="col-md-5">          
-                <div className="form-group m-3">
-                  <label>Option</label>
-                  <input type="text" name="option" onChange={handleInput} value={testItemInput.option}className="form-control" />
-                  <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.option}</span>
-                </div>
-              </div>
-
-              <div className="col-md-2">
-                <div className="form-group m-3">
-                  <label>Correct</label>
-                  <input type="number" name="correct" onChange={handleInput} value={testItemInput.correct} className="form-control" />
-                  <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.correct}</span>
-                </div>
-              </div>
-
-              <div className="col-md-5">          
-                <div className="form-group m-3">
-                  <label>Explanation (correct answer)</label>
-                  <input type="text" name="explanation" onChange={handleInput} value={testItemInput.explanation}className="form-control" />
-                  <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.explanation}</span>
-                </div>
-              </div>
-
-              <div className="col-md-12">
-                <div className="form-group m-3">
-                  <label>Additional Text</label>
-                  <textarea name="text_additional" onChange={handleInput} value={testItemInput.text_additional} className="form-control" />
-                  <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.text_additional}</span>
-                </div>
-              </div> */}
-            </div>
 
             {blockSnapVisible && (
             <div id="block_snap" class="border mt-4 mb-4 p-3 rounded shadow-lg">

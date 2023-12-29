@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'; 
-import * as XLSX from 'xlsx';
 import { Link, useHistory  } from 'react-router-dom';
 
 import Swal from 'sweetalert2'
