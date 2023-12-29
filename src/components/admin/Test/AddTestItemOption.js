@@ -1292,14 +1292,14 @@ function AddTestItemOption() {
             </div>
 
             {blockSnapVisible && (
-            <div id="block_snap" class="border mt-4 mb-4 p-3 rounded shadow-lg">
-            <h3 class="text-center p-3" style={{marginBottom: '10px'}}>Date pentru testul de tip SNAP</h3>
+            <div id="block_snap" className="border mt-4 mb-4 p-3 rounded shadow-lg">
+            <h3 className="text-center p-3" style={{marginBottom: '10px'}}>Date pentru testul de tip SNAP</h3>
 
               <div className="rowBts">
 
-              <div class="col-md-2">
-                <div class="form-group">
-                  <label class="visually-hidden"></label>
+              <div className="col-md-2">
+                <div className="form-group">
+                  <label className="visually-hidden"></label>
                 </div>
               </div>
 
@@ -1311,9 +1311,9 @@ function AddTestItemOption() {
                   </div>
                 </div>
 
-                <div class="col-md-2">
-                <div class="form-group">
-                  <label class="visually-hidden" style={{marginRight: '-20px'}}></label>
+                <div className="col-md-2">
+                <div className="form-group">
+                  <label className="visually-hidden" style={{marginRight: '-20px'}}></label>
                 </div>
               </div>
 
@@ -1336,7 +1336,7 @@ function AddTestItemOption() {
                 <div className="col-md-2">
                   <div className="form-group m-3 d-flex align-items-center">
                     <label>y1</label>
-                    <input type="number" name="y1" value={17} readOnly class="form-control" />
+                    <input type="number" name="y1" value={17} readOnly className="form-control" />
                   </div>
                 </div>
                 <div className="col-md-4">
@@ -1441,8 +1441,8 @@ function AddTestItemOption() {
                   </div>
                 </div>
 
-                <div class="containerBts d-flex justify-content-center">
-                  <button type="button" onClick={handleConcatenate} class="btnBts btn-outline-secondary btn-lg">Genereaza cod</button>
+                <div className="containerBts d-flex justify-content-center">
+                  <button type="button" onClick={handleConcatenate} className="btnBts btn-outline-secondary btn-lg">Genereaza cod</button>
                 </div>
               </div>
 
@@ -1476,8 +1476,8 @@ function AddTestItemOption() {
             )}
 
             {blockQuizVisible && (
-              <div id="block_quiz" class="border mt-4 mb-4 p-3 rounded shadow-lg">
-              <h3 class="text-center p-3" style={{marginBottom: '10px'}}>Date pentru testul de tip QUIZ</h3>
+              <div id="block_quiz" className="border mt-4 mb-4 p-3 rounded shadow-lg">
+              <h3 className="text-center p-3" style={{marginBottom: '10px'}}>Date pentru testul de tip QUIZ</h3>
 
                 {/* textareas */}
                 <div className="rowBts">
@@ -1510,8 +1510,8 @@ function AddTestItemOption() {
             )}
 
             {blockCheckVisible && (
-              <div id="block_quiz" class="border mt-4 mb-4 p-3 rounded shadow-lg">
-              <h3 class="text-center p-3" style={{marginBottom: '10px'}}>Date pentru testul de tip CHECK</h3>
+              <div id="block_quiz" className="border mt-4 mb-4 p-3 rounded shadow-lg">
+              <h3 className="text-center p-3" style={{marginBottom: '10px'}}>Date pentru testul de tip CHECK</h3>
 
                 {/* textareas */}
                 <div className="rowBts">
@@ -1544,8 +1544,8 @@ function AddTestItemOption() {
             )}
 
             {blockDndVisible && (
-              <div id="block_quiz" class="border mt-4 mb-4 p-3 rounded shadow-lg">
-              <h3 class="text-center p-3" style={{marginBottom: '10px'}}>Date pentru testul de tip DND</h3>
+              <div id="block_quiz" className="border mt-4 mb-4 p-3 rounded shadow-lg">
+              <h3 className="text-center p-3" style={{marginBottom: '10px'}}>Date pentru testul de tip DND</h3>
 
                 {/* textareas */}
                 <div className="rowBts">
@@ -1571,8 +1571,8 @@ function AddTestItemOption() {
             )}
 
             {blockDnd_groupVisible && (
-              <div id="block_quiz" class="border mt-4 mb-4 p-3 rounded shadow-lg">
-              <h3 class="text-center p-3" style={{marginBottom: '10px'}}>Date pentru testul de tip DND (grupare)</h3>
+              <div id="block_quiz" className="border mt-4 mb-4 p-3 rounded shadow-lg">
+              <h3 className="text-center p-3" style={{marginBottom: '10px'}}>Date pentru testul de tip DND (grupare)</h3>
 
                 {/* textareas */}
                 <div className="rowBts">
@@ -1606,8 +1606,8 @@ function AddTestItemOption() {
             )}
 
             {blockDnd_chronoVisible && (
-              <div id="block_quiz" class="border mt-4 mb-4 p-3 rounded shadow-lg">
-              <h3 class="text-center p-3" style={{marginBottom: '10px'}}>Date pentru testul de tip DND (cronologic)</h3>
+              <div id="block_quiz" className="border mt-4 mb-4 p-3 rounded shadow-lg">
+              <h3 className="text-center p-3" style={{marginBottom: '10px'}}>Date pentru testul de tip DND (cronologic)</h3>
 
                 {/* textareas */}
                 <div className="rowBts">
@@ -1633,8 +1633,8 @@ function AddTestItemOption() {
             )}
 
             {blockDnd_chrono_doubleVisible && (
-              <div id="block_quiz" class="border mt-4 mb-4 p-3 rounded shadow-lg">
-              <h3 class="text-center p-3" style={{marginBottom: '10px'}}>Date pentru testul de tip DND (optiuni cronologice)</h3>
+              <div id="block_quiz" className="border mt-4 mb-4 p-3 rounded shadow-lg">
+              <h3 className="text-center p-3" style={{marginBottom: '10px'}}>Date pentru testul de tip DND (optiuni cronologice)</h3>
 
                 {/* textareas */}
                 <div className="rowBts">
@@ -1660,8 +1660,8 @@ function AddTestItemOption() {
             )}
 
             {blockWordsVisible && (
-              <div id="block_quiz" class="border mt-4 mb-4 p-3 rounded shadow-lg">
-              <h3 class="text-center p-3" style={{marginBottom: '10px'}}>Date pentru testul de tip WORDS </h3>
+              <div id="block_quiz" className="border mt-4 mb-4 p-3 rounded shadow-lg">
+              <h3 className="text-center p-3" style={{marginBottom: '10px'}}>Date pentru testul de tip WORDS </h3>
 
                 {/* textareas */}
                 <div className="rowBts">

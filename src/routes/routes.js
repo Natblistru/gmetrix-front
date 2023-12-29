@@ -60,6 +60,12 @@ import EditTestItemOption from "../components/admin/Test/EditTestItemOption.js";
 import AddFormativeTest from "../components/admin/Test/AddFormativeTest.js";
 import ViewFormativeTest from "../components/admin/Test/ViewFormativeTest.js";
 import EditFormativeTest from "../components/admin/Test/EditFormativeTest.js";
+import AddFormativeTestItem from "../components/admin/Test/AddFormativeTestItem.js";
+import ViewFormativeTestItem from "../components/admin/Test/ViewFormativeTestItem.js";
+import EditFormativeTestItem from "../components/admin/Test/EditFormativeTestItem.js";
+
+
+
 
 
 const routes = [
@@ -145,6 +151,10 @@ const routes = [
   { path: '/admin/add-formative-test', exact: true, name: 'AddFormativeTest', component: AddFormativeTest },
   { path: '/admin/view-formative-test', exact: true, name: 'ViewFormativeTest', component: ViewFormativeTest },
   { path: '/admin/edit-formative-test/:id', exact: true, name: 'EditFormativeTest', component: EditFormativeTest },
+
+  { path: '/admin/add-formative-test-item', exact: true, name: 'AddFormativeTestItem', component: AddFormativeTestItem },
+  { path: '/admin/view-formative-test-item', exact: true, name: 'ViewFormativeTestItem', component: ViewFormativeTestItem },
+  { path: '/admin/edit-formative-test-item/:id', exact: true, name: 'EditFormativeTestItem', component: EditFormativeTestItem },
 ];
 
 export default routes;
