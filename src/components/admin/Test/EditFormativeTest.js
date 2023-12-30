@@ -95,7 +95,7 @@ function EditFormativeTest(props) {
           text: res.data.message,
           icon: "error",
         });
-        history.push("/admin/view-test-item");
+        history.push("/admin/view-formative-test");
       }
       setLoading(false);
     })
@@ -152,7 +152,7 @@ function EditFormativeTest(props) {
           text: res.data.message,
           icon: "error",
         });
-        history.push("/admin/view-test-item");
+        history.push("/admin/view-formative-test");
       }
     });
   }

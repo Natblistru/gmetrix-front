@@ -5,7 +5,7 @@ import { Link, useHistory  } from 'react-router-dom';
 
 import Swal from 'sweetalert2'
 
-function EditFormativeTestItem(props) {
+function EditSummativeTestItem(props) {
 
   const history = useHistory();
   const [loading, setLoading] = useState(true);
@@ -16,8 +16,8 @@ function EditFormativeTestItem(props) {
   const [teacherList, setTeacherList] = useState([]);
   const [teacherTopicList, setTeacherTopicList] = useState([]);
   const [testItemList, setTestItemList] = useState([]);
-  const [formativeTestList, setformativeTestList] = useState([]);
-  
+  const [summativeTestList, setSummativeTestList] = useState([]);
+
   const [errorList, setErrors] = useState([]);
   const [testItemInput, setTestItemInput] = useState({
     learning_program_id: '',
@@ -25,7 +25,7 @@ function EditFormativeTestItem(props) {
     teacher_topic_id: '',
     teacher_id: '',
     test_item_id: '',
-    formative_test_id: '',
+    summative_test_id: '',
     order_number: '',
     type: '',
   })
@@ -33,7 +33,7 @@ function EditFormativeTestItem(props) {
   const [allCheckboxes, setAllCheckboxes] = useState({
     status: false,
   })
-
+  
   useEffect(() => {
 
     axios.get('http://localhost:8000/api/all-learningPrograms').then(res=>{
@@ -72,27 +72,27 @@ function EditFormativeTestItem(props) {
       }
     });
 
-    axios.get('http://localhost:8000/api/all-formative-tests').then(res=>{
+    axios.get('http://localhost:8000/api/all-summative-tests').then(res=>{
       if(res.data.status === 200){
-        setformativeTestList(res.data.formativeTests);
+        setSummativeTestList(res.data.summativeTests);
       }
     });
 
-    const formativeTest_id = props.match.params.id;
-    axios.get(`http://localhost:8000/api/edit-formative-test-item/${formativeTest_id}`).then(res=>{
+    const summativeTest_id = props.match.params.id;
+    axios.get(`http://localhost:8000/api/edit-summative-test-item/${summativeTest_id}`).then(res=>{
       if(res.data.status === 200){
-        const formativeTestItemData = res.data.formativeTests;
+        const formativeTestItemData = res.data.summativeTests;
         console.log(formativeTestItemData)
         setTestItemInput({
           ...formativeTestItemData,
-          learning_program_id: formativeTestItemData.formative_test.teacher_topic.topic.theme_learning_program.learning_program_id,
-          theme_learning_program_id: formativeTestItemData.formative_test.teacher_topic.topic.theme_learning_program_id,
-          teacher_id: formativeTestItemData.formative_test.teacher_topic.teacher_id,
-          teacher_topic_id: formativeTestItemData.formative_test.teacher_topic_id,
+          learning_program_id: formativeTestItemData.summative_test.teacher_topic.topic.theme_learning_program.learning_program_id,
+          theme_learning_program_id: formativeTestItemData.summative_test.teacher_topic.topic.theme_learning_program_id,
+          teacher_id: formativeTestItemData.summative_test.teacher_topic.teacher_id,
+          teacher_topic_id: formativeTestItemData.summative_test.teacher_topic_id,
           type: formativeTestItemData.test_item.type,
         });
 
-        setAllCheckboxes(res.data.formativeTests)
+        setAllCheckboxes(res.data.summativeTests)
       }
       else if(res.data.status === 404)
       {
@@ -106,6 +106,8 @@ function EditFormativeTestItem(props) {
       setLoading(false);
     })
   },[props.match.params.id,history])
+
+
 
   const handleInput = (e) => {
     e.persist();
@@ -123,12 +125,12 @@ function EditFormativeTestItem(props) {
     const formData = new FormData();
     formData.append('order_number',testItemInput.order_number );
     formData.append('test_item_id',testItemInput.test_item_id );
-    formData.append('formative_test_id',testItemInput.formative_test_id );
+    formData.append('summative_test_id',testItemInput.summative_test_id );
     formData.append('status',allCheckboxes.status == true ? 1 : 0);
 
     // console.log(formData)
-    const formativeTest_id = props.match.params.id;
-    axios.post(`http://localhost:8000/api/update-formative-test-item/${formativeTest_id}`, formData).then(res => {
+    const summativeTest_id = props.match.params.id;
+    axios.post(`http://localhost:8000/api/update-summative-test-item/${summativeTest_id}`, formData).then(res => {
       if(res.data.status === 200)
       {
         Swal.fire({
@@ -154,19 +156,19 @@ function EditFormativeTestItem(props) {
           text: res.data.message,
           icon: "error",
         });
-        history.push("/admin/view-formative-test-item");
+        history.push("/admin/view-summative-test-item");
       }
     });
   }
 
   if(loading) {
-    return <h4>Loading Edited Formative Test Item...</h4>
+    return <h4>Loading Edited Summative Test Item...</h4>
   }
 
   return (
     <div className="container-fluid px4">
-      <h2 className="m-3">Add Formative Test Item
-        <Link to="/admin/view-formative-test-item" type="button" className="btnBts btn-primary text-white px-4 m-3 float-end">BACK to List</Link>
+      <h2 className="m-3">Edit Summative Test Item
+        <Link to="/admin/view-summative-test-item" type="button" className="btnBts btn-primary text-white px-4 m-3 float-end">BACK to List</Link>
       </h2>
 
         <ul className="navSide nav-tabs" id="myTab" role="tablist">
@@ -264,11 +266,11 @@ function EditFormativeTestItem(props) {
 
               <div className="col-md-12">
                 <div className="form-group m-3">
-                  <label>Formative Test</label>
-                  <select name="formative_test_id" onChange={handleInput} value={testItemInput.formative_test_id} className="form-control">  
-                    <option>Select Formative Test</option>
+                  <label>Summative Test</label>
+                  <select name="summative_test_id" onChange={handleInput} value={testItemInput.summative_test_id} className="form-control">  
+                    <option>Select Summative Test</option>
                     {
-                      formativeTestList
+                      summativeTestList
                       .filter((item) => item.teacher_topic_id == testItemInput.teacher_topic_id)
                       // .filter((item) => item.topic.theme_learning_program_id == testItemInput.theme_learning_program_id)                      
                       .map((item)=> {
@@ -278,7 +280,7 @@ function EditFormativeTestItem(props) {
                       })
                     }
                   </select>            
-                  <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.formative_test_id}</span>
+                  <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.summative_test_id}</span>
                 </div>
               </div> 
 
@@ -343,4 +345,4 @@ function EditFormativeTestItem(props) {
   )
 }
 
-export default EditFormativeTestItem;
+export default EditSummativeTestItem;

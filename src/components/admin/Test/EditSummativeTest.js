@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'; 
+import * as XLSX from 'xlsx';
 import { Link, useHistory  } from 'react-router-dom';
 
 
 import Swal from 'sweetalert2'
 
-function EditFormativeTestItem(props) {
+function EditSummativeTest(props) {
 
   const history = useHistory();
   const [loading, setLoading] = useState(true);
@@ -15,8 +16,7 @@ function EditFormativeTestItem(props) {
   const [topicList, setTopicList] = useState([]);
   const [teacherList, setTeacherList] = useState([]);
   const [teacherTopicList, setTeacherTopicList] = useState([]);
-  const [testItemList, setTestItemList] = useState([]);
-  const [formativeTestList, setformativeTestList] = useState([]);
+  const [testComplexityList, setTestComplexityList] = useState([]);
   
   const [errorList, setErrors] = useState([]);
   const [testItemInput, setTestItemInput] = useState({
@@ -24,10 +24,10 @@ function EditFormativeTestItem(props) {
     theme_learning_program_id: '',
     teacher_topic_id: '',
     teacher_id: '',
-    test_item_id: '',
-    formative_test_id: '',
-    order_number: '',
-    type: '',
+    test_complexity_id: '',
+    time: '',
+    title: '',
+    path: '',
   })
 
   const [allCheckboxes, setAllCheckboxes] = useState({
@@ -66,33 +66,26 @@ function EditFormativeTestItem(props) {
       }
     });
 
-    axios.get('http://localhost:8000/api/all-test-items').then(res=>{
+    axios.get('http://localhost:8000/api/all-test-complexities').then(res=>{
       if(res.data.status === 200){
-        setTestItemList(res.data.testItems);
+        setTestComplexityList(res.data.testComplexities);
       }
     });
 
-    axios.get('http://localhost:8000/api/all-formative-tests').then(res=>{
+    const summativeTest_id = props.match.params.id;
+    axios.get(`http://localhost:8000/api/edit-summative-test/${summativeTest_id}`).then(res=>{
       if(res.data.status === 200){
-        setformativeTestList(res.data.formativeTests);
-      }
-    });
-
-    const formativeTest_id = props.match.params.id;
-    axios.get(`http://localhost:8000/api/edit-formative-test-item/${formativeTest_id}`).then(res=>{
-      if(res.data.status === 200){
-        const formativeTestItemData = res.data.formativeTests;
-        console.log(formativeTestItemData)
+        const summativeTestData = res.data.summativeTest;
+        console.log(summativeTestData)
         setTestItemInput({
-          ...formativeTestItemData,
-          learning_program_id: formativeTestItemData.formative_test.teacher_topic.topic.theme_learning_program.learning_program_id,
-          theme_learning_program_id: formativeTestItemData.formative_test.teacher_topic.topic.theme_learning_program_id,
-          teacher_id: formativeTestItemData.formative_test.teacher_topic.teacher_id,
-          teacher_topic_id: formativeTestItemData.formative_test.teacher_topic_id,
-          type: formativeTestItemData.test_item.type,
+          ...summativeTestData,
+          learning_program_id: summativeTestData.teacher_topic.topic.theme_learning_program.learning_program_id,
+          theme_learning_program_id: summativeTestData.teacher_topic.topic.theme_learning_program.id,
+          teacher_id: summativeTestData.teacher_topic.teacher_id,
+          topic_id: summativeTestData.teacher_topic_id,
         });
 
-        setAllCheckboxes(res.data.formativeTests)
+        setAllCheckboxes(res.data.summativeTest)
       }
       else if(res.data.status === 404)
       {
@@ -101,7 +94,7 @@ function EditFormativeTestItem(props) {
           text: res.data.message,
           icon: "error",
         });
-        history.push("/admin/view-test-item");
+        history.push("/admin/view-summative-test");
       }
       setLoading(false);
     })
@@ -121,14 +114,16 @@ function EditFormativeTestItem(props) {
     e.preventDefault();
 
     const formData = new FormData();
-    formData.append('order_number',testItemInput.order_number );
-    formData.append('test_item_id',testItemInput.test_item_id );
-    formData.append('formative_test_id',testItemInput.formative_test_id );
+    formData.append('title',testItemInput.title );
+    formData.append('path',testItemInput.path );
+    formData.append('time',testItemInput.time );
+    formData.append('test_complexity_id',testItemInput.test_complexity_id );
+    formData.append('teacher_topic_id',testItemInput.teacher_topic_id );
     formData.append('status',allCheckboxes.status == true ? 1 : 0);
 
     // console.log(formData)
-    const formativeTest_id = props.match.params.id;
-    axios.post(`http://localhost:8000/api/update-formative-test-item/${formativeTest_id}`, formData).then(res => {
+    const summativeTest_id = props.match.params.id;
+    axios.post(`http://localhost:8000/api/update-summative-test/${summativeTest_id}`, formData).then(res => {
       if(res.data.status === 200)
       {
         Swal.fire({
@@ -154,19 +149,19 @@ function EditFormativeTestItem(props) {
           text: res.data.message,
           icon: "error",
         });
-        history.push("/admin/view-formative-test-item");
+        history.push("/admin/view-summative-test");
       }
     });
   }
 
   if(loading) {
-    return <h4>Loading Edited Formative Test Item...</h4>
+    return <h4>Loading Edited Summative Test ...</h4>
   }
 
   return (
     <div className="container-fluid px4">
-      <h2 className="m-3">Add Formative Test Item
-        <Link to="/admin/view-formative-test-item" type="button" className="btnBts btn-primary text-white px-4 m-3 float-end">BACK to List</Link>
+      <h2 className="m-3">Edit Summative Test
+        <Link to="/admin/view-summative-test" type="button" className="btnBts btn-primary text-white px-4 m-3 float-end">BACK to List</Link>
       </h2>
 
         <ul className="navSide nav-tabs" id="myTab" role="tablist">
@@ -180,7 +175,7 @@ function EditFormativeTestItem(props) {
           <form className="form-group custom-form" onSubmit={submitTeacherTopic}>
 
           <div className="rowBts">
-              <div className="col-md-5">
+              <div className="col-md-4">
                 <div className="form-group m-3">
                   <label>Learn Program</label>
                   <select name="learning_program_id" onChange={handleInput} value={testItemInput.learning_program_id} className="form-control">  
@@ -196,7 +191,7 @@ function EditFormativeTestItem(props) {
                   <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.learning_program_id}</span>
                 </div>
               </div>  
-              <div className="col-md-7">          
+              <div className="col-md-8">          
                 <div className="form-group m-3">
                   <label>Theme</label>
                   <select name="theme_learning_program_id" onChange={handleInput} value={testItemInput.theme_learning_program_id} className="form-control">  
@@ -215,7 +210,7 @@ function EditFormativeTestItem(props) {
             </div>
 
             <div className="rowBts">
-              <div className="col-md-5">
+              <div className="col-md-4">
                 <div className="form-group m-3">
                   <label>Teacher</label>
                   <select name="teacher_id" onChange={handleInput} value={testItemInput.teacher_id} className="form-control">  
@@ -232,7 +227,7 @@ function EditFormativeTestItem(props) {
                 </div>
               </div>  
 
-              <div className="col-md-7">
+              <div className="col-md-8">
                 <div className="form-group m-3">
                   <label>Topics</label>
                   <select name="teacher_topic_id" onChange={handleInput} value={testItemInput.teacher_topic_id} className="form-control">  
@@ -254,76 +249,49 @@ function EditFormativeTestItem(props) {
 
             </div>
             <div className="rowBts">
-              {/* <div className="col-md-4">          
+              <div className="col-md-9">          
                 <div className="form-group m-3">
-                  <label>Column Title</label>
+                  <label>Title</label>
                   <input type="text" name="title" onChange={handleInput} value={testItemInput.title}className="form-control" />
                   <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.title}</span>
-                </div>
-              </div> */}
-
-              <div className="col-md-12">
-                <div className="form-group m-3">
-                  <label>Formative Test</label>
-                  <select name="formative_test_id" onChange={handleInput} value={testItemInput.formative_test_id} className="form-control">  
-                    <option>Select Formative Test</option>
-                    {
-                      formativeTestList
-                      .filter((item) => item.teacher_topic_id == testItemInput.teacher_topic_id)
-                      // .filter((item) => item.topic.theme_learning_program_id == testItemInput.theme_learning_program_id)                      
-                      .map((item)=> {
-                        return (
-                          <option value={item.id} key={item.id}>{item.title}</option>
-                        )
-                      })
-                    }
-                  </select>            
-                  <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.formative_test_id}</span>
-                </div>
-              </div> 
-
-              <div className="col-md-2">
-                <div className="form-group m-3">
-                  <label>Order number</label>
-                  <input type="number" name="order_number" onChange={handleInput} value={testItemInput.order_number} className="form-control" />
-                  <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.order_number}</span>
                 </div>
               </div>
 
               <div className="col-md-3">
                 <div className="form-group m-3">
-                  <label>Test Type</label>
-                    <select name="type" onChange={handleInput} value={testItemInput.type} className="form-control">
-                      <option>Select Type</option>
-                      <option value="quiz">Quiz</option>
-                      <option value="check">Check</option>
-                      <option value="snap">Asocierea textelor</option>
-                      <option value="words">Completarea lacunelor</option>
-                      <option value="dnd">Drag'n'drop</option>
-                      <option value="dnd_chrono">Drag'n'drop (chrono)</option>
-                      <option value="dnd_chrono_double">Drag'n'drop (chrono double)</option>
-                      <option value="dnd_group">Drag'n'drop group</option>
-                    </select>
-                </div>
-              </div>
-
-              <div className="col-md-7">
-                <div className="form-group m-3">
-                  <label>Test Item</label>
-                  <select name="test_item_id" onChange={handleInput} value={testItemInput.test_item_id} className="form-control">  
-                    <option>Select Test Item</option>
+                  <label>Test Complexity</label>
+                  <select name="test_complexity_id" onChange={handleInput} value={testItemInput.test_complexity_id} className="form-control">  
+                    <option>Select Test Complexity</option>
                     {
-                      testItemList
-                      .filter((item) => item.teacher_topic_id == testItemInput.teacher_topic_id)
-                      .filter((item) => item.type == testItemInput.type)
+                      testComplexityList
                       .map((item)=> {
                         return (
-                          <option value={item.id} key={item.id}>{item.task} ({item.type})</option>
+                          <option value={item.id} key={item.id}>{item.name}</option>
                         )
                       })
                     }
                   </select>            
-                  <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.test_item_id}</span>
+                  <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.test_complexity_id}</span>
+                </div>
+              </div>
+
+          </div>
+
+          <div className="rowBts">
+
+              <div className="col-md-9">          
+                <div className="form-group m-3">
+                  <label>Path</label>
+                  <input type="text" name="path" onChange={handleInput} value={testItemInput.path}className="form-control" />
+                  <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.path}</span>
+                </div>
+              </div>
+
+              <div className="col-md-3">
+                <div className="form-group m-3">
+                  <label>Time</label>
+                  <input type="number" name="time" onChange={handleInput} value={testItemInput.time} className="form-control" />
+                  <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.time}</span>
                 </div>
               </div>
 
@@ -343,4 +311,4 @@ function EditFormativeTestItem(props) {
   )
 }
 
-export default EditFormativeTestItem;
+export default EditSummativeTest;

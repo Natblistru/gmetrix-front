@@ -100,7 +100,9 @@ const Sidebar = () => {
                                 <Link className="nav-linkSide" to="/admin/view-test-item-column">Test Columns</Link>
                                 <Link className="nav-linkSide" to="/admin/view-test-item-option">Test Options</Link>
                                 <Link className="nav-linkSide" to="/admin/view-formative-test">Formative Tests</Link>   
-                                <Link className="nav-linkSide" to="/admin/view-formative-test-item">Formative Test Items</Link>                      
+                                <Link className="nav-linkSide" to="/admin/view-formative-test-item">Formative Test Items</Link>   
+                                <Link className="nav-linkSide" to="/admin/view-summative-test">Summative Tests</Link>      
+                                <Link className="nav-linkSide" to="/admin/view-summative-test-item">Summative Test Items</Link>                 
                             </nav>
                         </div>
 

@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 import Swal from 'sweetalert2'
 
-function AddFormativeTest() {
+function AddSummativeTest() {
 
   const [learningProgramList, setLearningProgramList] = useState([]);
   const [themeList, setThemeList] = useState([]);
@@ -129,9 +129,8 @@ function AddFormativeTest() {
         test_complexity_name: excelData[index]?.test_complexity_name || '',
         test_complexity_id: excelData[index]?.test_complexity_id || '',
         title: excelData[index]?.title || '',
-        order_number: excelData[index]?.order_number || '',        
         path: excelData[index]?.path || '',
-        type: excelData[index]?.type || '',
+        time: excelData[index]?.time || '',
         status: excelData[index]?.status || '',
       };
       return updatedAdditionalData;
@@ -177,9 +176,8 @@ function AddFormativeTest() {
           const formDataArray = selectedData.map(selectedItem => {
             const formData = new FormData();
             formData.append('title', selectedItem.title);
-            formData.append('order_number', selectedItem.order_number);
             formData.append('path', selectedItem.path);
-            formData.append('type', selectedItem.type);
+            formData.append('time', selectedItem.time);
             formData.append('test_complexity_id', selectedItem.test_complexity_id);
             formData.append('teacher_topic_id', selectedItem.teacher_topic_id );
             formData.append('status', 0); 
@@ -187,7 +185,7 @@ function AddFormativeTest() {
           });
           // console.log(formDataArray)
           // Trimitem fiecare set de date către server utilizând axios.all
-          axios.all(formDataArray.map(formData => axios.post('http://localhost:8000/api/store-formative-test', formData)))
+          axios.all(formDataArray.map(formData => axios.post('http://localhost:8000/api/store-summative-test', formData)))
               .then(axios.spread((...responses) => {
                 const successResponses = responses.filter(response => response.data.status === 201);
                 const errorResponses = responses.filter(response => response.data.status === 422);
@@ -253,9 +251,8 @@ function AddFormativeTest() {
     teacher_topic_id: '',
     teacher_id: '',
     test_complexity_id: '',
-    type: '',
+    time: '',
     title: '',
-    order_number: '',
     path: '',
   })
 
@@ -277,17 +274,16 @@ function AddFormativeTest() {
     e.preventDefault();
 
     const formData = new FormData();
-    formData.append('order_number',testItemInput.order_number );
     formData.append('title',testItemInput.title );
     formData.append('path',testItemInput.path );
-    formData.append('type',testItemInput.type );
+    formData.append('time',testItemInput.time );
     formData.append('test_complexity_id',testItemInput.test_complexity_id );
     formData.append('teacher_topic_id',testItemInput.teacher_topic_id );
     formData.append('status',allCheckboxes.status == true ? 1 : 0);
 
     // console.log(formData)
 
-    axios.post(`http://localhost:8000/api/store-formative-test`, formData).then(res => {
+    axios.post(`http://localhost:8000/api/store-summative-test`, formData).then(res => {
       if(res.data.status === 201)
       {
         Swal.fire({
@@ -302,7 +298,7 @@ function AddFormativeTest() {
           test_complexity_id: '',
           teacher_id: '',
           order_number: '',
-          type: '',
+          time: '',
           title: '',
           path: '',
         });
@@ -325,8 +321,8 @@ function AddFormativeTest() {
 
   return (
     <div className="container-fluid px4">
-      <h2 className="m-3">Add Formative Test
-        <Link to="/admin/view-formative-test" type="button" className="btnBts btn-primary text-white px-4 m-3 float-end">BACK to List</Link>
+      <h2 className="m-3">Add Summative Test
+        <Link to="/admin/view-summative-test" type="button" className="btnBts btn-primary text-white px-4 m-3 float-end">BACK to List</Link>
       </h2>
 
         <ul className="navSide nav-tabs" id="myTab" role="tablist">
@@ -417,7 +413,7 @@ function AddFormativeTest() {
 
             </div>
             <div className="rowBts">
-              <div className="col-md-8">          
+              <div className="col-md-9">          
                 <div className="form-group m-3">
                   <label>Title</label>
                   <input type="text" name="title" onChange={handleInput} value={testItemInput.title}className="form-control" />
@@ -425,27 +421,29 @@ function AddFormativeTest() {
                 </div>
               </div>
 
-              <div className="col-md-4">
+              <div className="col-md-3">
                 <div className="form-group m-3">
-                  <label>Test Type</label>
-                    <select name="type" onChange={handleInput} value={testItemInput.type} className="form-control">
-                      <option>Select Type</option>
-                      <option value="quiz">Quiz</option>
-                      <option value="check">Check</option>
-                      <option value="snap">Asocierea textelor</option>
-                      <option value="words">Completarea lacunelor</option>
-                      <option value="dnd">Drag'n'drop</option>
-                      <option value="dnd_chrono">Drag'n'drop (chrono)</option>
-                      <option value="dnd_chrono_double">Drag'n'drop (chrono double)</option>
-                      <option value="dnd_group">Drag'n'drop group</option>
-                    </select>
+                  <label>Test Complexity</label>
+                  <select name="test_complexity_id" onChange={handleInput} value={testItemInput.test_complexity_id} className="form-control">  
+                    <option>Select Test Complexity</option>
+                    {
+                      testComplexityList
+                      .map((item)=> {
+                        return (
+                          <option value={item.id} key={item.id}>{item.name}</option>
+                        )
+                      })
+                    }
+                  </select>            
+                  <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.test_complexity_id}</span>
                 </div>
               </div>
+
           </div>
 
           <div className="rowBts">
 
-              <div className="col-md-8">          
+              <div className="col-md-9">          
                 <div className="form-group m-3">
                   <label>Path</label>
                   <input type="text" name="path" onChange={handleInput} value={testItemInput.path}className="form-control" />
@@ -453,29 +451,11 @@ function AddFormativeTest() {
                 </div>
               </div>
 
-            <div className="col-md-2">
-              <div className="form-group m-3">
-                <label>Test Complexity</label>
-                <select name="test_complexity_id" onChange={handleInput} value={testItemInput.test_complexity_id} className="form-control">  
-                  <option>Select Test Complexity</option>
-                  {
-                    testComplexityList
-                    .map((item)=> {
-                      return (
-                        <option value={item.id} key={item.id}>{item.name}</option>
-                      )
-                    })
-                  }
-                </select>            
-                <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.test_complexity_id}</span>
-              </div>
-            </div>
-
-            <div className="col-md-2">
+              <div className="col-md-3">
                 <div className="form-group m-3">
-                  <label>Order number</label>
-                  <input type="number" name="order_number" onChange={handleInput} value={testItemInput.order_number} className="form-control" />
-                  <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.order_number}</span>
+                  <label>Time</label>
+                  <input type="number" name="time" onChange={handleInput} value={testItemInput.time} className="form-control" />
+                  <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.time}</span>
                 </div>
               </div>
 
@@ -560,4 +540,4 @@ function AddFormativeTest() {
   )
 }
 
-export default AddFormativeTest;
+export default AddSummativeTest;

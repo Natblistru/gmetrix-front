@@ -63,10 +63,12 @@ import EditFormativeTest from "../components/admin/Test/EditFormativeTest.js";
 import AddFormativeTestItem from "../components/admin/Test/AddFormativeTestItem.js";
 import ViewFormativeTestItem from "../components/admin/Test/ViewFormativeTestItem.js";
 import EditFormativeTestItem from "../components/admin/Test/EditFormativeTestItem.js";
-
-
-
-
+import AddSummativeTest from "../components/admin/Test/AddSummativeTest.js";
+import ViewSummativeTest from "../components/admin/Test/ViewSummativeTest.js";
+import EditSummativeTest from "../components/admin/Test/EditSummativeTest.js";
+import AddSummativeTestItem from "../components/admin/Test/AddSummativeTestItem.js";
+import ViewSummativeTestItem from "../components/admin/Test/ViewSummativeTestItem.js";
+import EditSummativeTestItem from "../components/admin/Test/EditSummativeTestItem.js";
 
 const routes = [
   { path: '/admin', exact: true, name: 'Admin'},
@@ -155,6 +157,14 @@ const routes = [
   { path: '/admin/add-formative-test-item', exact: true, name: 'AddFormativeTestItem', component: AddFormativeTestItem },
   { path: '/admin/view-formative-test-item', exact: true, name: 'ViewFormativeTestItem', component: ViewFormativeTestItem },
   { path: '/admin/edit-formative-test-item/:id', exact: true, name: 'EditFormativeTestItem', component: EditFormativeTestItem },
+
+  { path: '/admin/add-summative-test', exact: true, name: 'AddSummativeTest', component: AddSummativeTest },
+  { path: '/admin/view-summative-test', exact: true, name: 'ViewSummativeTest', component: ViewSummativeTest },
+  { path: '/admin/edit-summative-test/:id', exact: true, name: 'EditSummativeTest', component: EditSummativeTest },
+
+  { path: '/admin/add-summative-test-item', exact: true, name: 'AddSummativeTestItem', component: AddSummativeTestItem },
+  { path: '/admin/view-summative-test-item', exact: true, name: 'ViewSummativeTestItem', component: ViewSummativeTestItem },
+  { path: '/admin/edit-summative-test-item/:id', exact: true, name: 'EditSummativeTestItem', component: EditSummativeTestItem },
 ];
 
 export default routes;

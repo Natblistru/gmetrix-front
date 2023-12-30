@@ -6,14 +6,15 @@ import { Link } from 'react-router-dom';
 
 import Swal from 'sweetalert2'
 
-function AddFormativeTest() {
+function AddSummativeTestItem() {
 
   const [learningProgramList, setLearningProgramList] = useState([]);
   const [themeList, setThemeList] = useState([]);
   const [topicList, setTopicList] = useState([]);
   const [teacherList, setTeacherList] = useState([]);
   const [teacherTopicList, setTeacherTopicList] = useState([]);
-  const [testComplexityList, setTestComplexityList] = useState([]);
+  const [testItemList, setTestItemList] = useState([]);
+  const [summativeTestList, setSummativeTestList] = useState([]);
   
   useEffect(() => {
 
@@ -47,9 +48,15 @@ function AddFormativeTest() {
       }
     });
 
-    axios.get('http://localhost:8000/api/all-test-complexities').then(res=>{
+    axios.get('http://localhost:8000/api/all-test-items').then(res=>{
       if(res.data.status === 200){
-        setTestComplexityList(res.data.testComplexities);
+        setTestItemList(res.data.testItems);
+      }
+    });
+
+    axios.get('http://localhost:8000/api/all-summative-tests').then(res=>{
+      if(res.data.status === 200){
+        setSummativeTestList(res.data.summativeTests);
       }
     });
 
@@ -126,12 +133,11 @@ function AddFormativeTest() {
         chosen: isChecked,
         teacher_topic_name: excelData[index]?.teacher_topic_name || '',
         teacher_topic_id: excelData[index]?.teacher_topic_id || '',
-        test_complexity_name: excelData[index]?.test_complexity_name || '',
-        test_complexity_id: excelData[index]?.test_complexity_id || '',
-        title: excelData[index]?.title || '',
-        order_number: excelData[index]?.order_number || '',        
-        path: excelData[index]?.path || '',
-        type: excelData[index]?.type || '',
+        test_item_task: excelData[index]?.test_item_task || '',
+        test_item_id: excelData[index]?.test_item_id || '',
+        summative_test_id: excelData[index]?.summative_test_id || '',
+        summative_test_title: excelData[index]?.summative_test_title || '',        
+        order_number: excelData[index]?.order_number || '',
         status: excelData[index]?.status || '',
       };
       return updatedAdditionalData;
@@ -151,43 +157,50 @@ function AddFormativeTest() {
       if (selectedData.length > 0) {
 
         let notFoundTeacherTopics = [];
-        let notFoundTestComplexity = [];
+        let notFoundTestItem = [];
+        let notFoundSummativeTest = [];
 
         selectedData.forEach((selectedItem) => {
           const foundTeacherTopic = teacherTopicList.find((teacherTopic) => teacherTopic.name.trim() == selectedItem.teacher_topic_name.trim());
-          let foundTestComplexity = null;
+          let foundTestItem = null;
+          let foundFirmativeTest = null;
 
           if (foundTeacherTopic) {
             selectedItem.teacher_topic_id = foundTeacherTopic.id;
-            foundTestComplexity = testComplexityList.find((complexity) => complexity.name.trim() == selectedItem.test_complexity_name.trim());
+            foundTestItem = testItemList.find((item) => item.task.trim() == selectedItem.test_item_task.trim() && item.teacher_topic_id == selectedItem.teacher_topic_id);
+            foundFirmativeTest = summativeTestList.find((item) => item.title.trim() == selectedItem.summative_test_title.trim() && item.teacher_topic_id == selectedItem.teacher_topic_id);
+         
           }
           else {
             notFoundTeacherTopics.push(selectedItem.teacher_topic_name);
           }
-          if (foundTestComplexity) {
-            selectedItem.test_complexity_id = foundTestComplexity.id;
+          if (foundTestItem) {
+            selectedItem.test_item_id = foundTestItem.id;
           }
           else {
-            notFoundTestComplexity.push(selectedItem.test_complexity_name);
+            notFoundTestItem.push(selectedItem.test_item_task);
+          }
+          if (foundFirmativeTest) {
+            selectedItem.summative_test_id = foundFirmativeTest.id;
+          }
+          else {
+            notFoundSummativeTest.push(selectedItem.summative_test_title);
           }
         });
 
-        if(notFoundTeacherTopics.length === 0 && notFoundTestComplexity.length === 0)  {
+        if(notFoundTeacherTopics.length === 0 && notFoundTestItem.length === 0 && notFoundSummativeTest.length === 0)  {
 
           const formDataArray = selectedData.map(selectedItem => {
             const formData = new FormData();
-            formData.append('title', selectedItem.title);
-            formData.append('order_number', selectedItem.order_number);
-            formData.append('path', selectedItem.path);
-            formData.append('type', selectedItem.type);
-            formData.append('test_complexity_id', selectedItem.test_complexity_id);
-            formData.append('teacher_topic_id', selectedItem.teacher_topic_id );
+            formData.append('order_number', selectedItem.order_number || 0);
+            formData.append('test_item_id', selectedItem.test_item_id);
+            formData.append('summative_test_id', selectedItem.summative_test_id);
             formData.append('status', 0); 
             return formData;
           });
-          // console.log(formDataArray)
+          console.log(formDataArray)
           // Trimitem fiecare set de date către server utilizând axios.all
-          axios.all(formDataArray.map(formData => axios.post('http://localhost:8000/api/store-formative-test', formData)))
+          axios.all(formDataArray.map(formData => axios.post('http://localhost:8000/api/store-summative-test-item', formData)))
               .then(axios.spread((...responses) => {
                 const successResponses = responses.filter(response => response.data.status === 201);
                 const errorResponses = responses.filter(response => response.data.status === 422);
@@ -217,15 +230,15 @@ function AddFormativeTest() {
         } else {
           if(notFoundTeacherTopics.length > 0 ){
             Swal.fire({
-              title: "Unfound topic name:",
+              title: "Unfound Topic name:",
               text: Object.values(notFoundTeacherTopics).flat().join(' '),
               icon: "error"
             });
           }
-          if(notFoundTestComplexity.length > 0 ){
+          if(notFoundTestItem.length > 0 ){
             Swal.fire({
-              title: "Unfound test complexity name:",
-              text: Object.values(notFoundTestComplexity).flat().join(' '),
+              title: "Unfound Test Item task:",
+              text: Object.values(notFoundTestItem).flat().join(' '),
               icon: "error"
             });
           }
@@ -252,11 +265,10 @@ function AddFormativeTest() {
     theme_learning_program_id: '',
     teacher_topic_id: '',
     teacher_id: '',
-    test_complexity_id: '',
-    type: '',
-    title: '',
+    test_item_id: '',
+    summative_test_id: '',
     order_number: '',
-    path: '',
+    type: '',
   })
 
   const [allCheckboxes, setAllCheckboxes] = useState({
@@ -278,16 +290,13 @@ function AddFormativeTest() {
 
     const formData = new FormData();
     formData.append('order_number',testItemInput.order_number );
-    formData.append('title',testItemInput.title );
-    formData.append('path',testItemInput.path );
-    formData.append('type',testItemInput.type );
-    formData.append('test_complexity_id',testItemInput.test_complexity_id );
-    formData.append('teacher_topic_id',testItemInput.teacher_topic_id );
+    formData.append('test_item_id',testItemInput.test_item_id );
+    formData.append('summative_test_id',testItemInput.summative_test_id );
     formData.append('status',allCheckboxes.status == true ? 1 : 0);
 
     // console.log(formData)
 
-    axios.post(`http://localhost:8000/api/store-formative-test`, formData).then(res => {
+    axios.post(`http://localhost:8000/api/store-summative-test-item`, formData).then(res => {
       if(res.data.status === 201)
       {
         Swal.fire({
@@ -299,12 +308,11 @@ function AddFormativeTest() {
           learning_program_id: '',
           theme_learning_program_id: '',
           teacher_topic_id: '',
-          test_complexity_id: '',
+          summative_test_id: '',
+          test_item_id: '',
           teacher_id: '',
           order_number: '',
           type: '',
-          title: '',
-          path: '',
         });
         setAllCheckboxes({
           status: false,
@@ -325,8 +333,8 @@ function AddFormativeTest() {
 
   return (
     <div className="container-fluid px4">
-      <h2 className="m-3">Add Formative Test
-        <Link to="/admin/view-formative-test" type="button" className="btnBts btn-primary text-white px-4 m-3 float-end">BACK to List</Link>
+      <h2 className="m-3">Add Summative Test Item
+        <Link to="/admin/view-summative-test-item" type="button" className="btnBts btn-primary text-white px-4 m-3 float-end">BACK to List</Link>
       </h2>
 
         <ul className="navSide nav-tabs" id="myTab" role="tablist">
@@ -343,7 +351,7 @@ function AddFormativeTest() {
           <form className="form-group custom-form" onSubmit={submitTeacherTopic}>
 
           <div className="rowBts">
-              <div className="col-md-4">
+              <div className="col-md-5">
                 <div className="form-group m-3">
                   <label>Learn Program</label>
                   <select name="learning_program_id" onChange={handleInput} value={testItemInput.learning_program_id} className="form-control">  
@@ -359,7 +367,7 @@ function AddFormativeTest() {
                   <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.learning_program_id}</span>
                 </div>
               </div>  
-              <div className="col-md-8">          
+              <div className="col-md-7">          
                 <div className="form-group m-3">
                   <label>Theme</label>
                   <select name="theme_learning_program_id" onChange={handleInput} value={testItemInput.theme_learning_program_id} className="form-control">  
@@ -378,7 +386,7 @@ function AddFormativeTest() {
             </div>
 
             <div className="rowBts">
-              <div className="col-md-4">
+              <div className="col-md-5">
                 <div className="form-group m-3">
                   <label>Teacher</label>
                   <select name="teacher_id" onChange={handleInput} value={testItemInput.teacher_id} className="form-control">  
@@ -395,7 +403,7 @@ function AddFormativeTest() {
                 </div>
               </div>  
 
-              <div className="col-md-8">
+              <div className="col-md-7">
                 <div className="form-group m-3">
                   <label>Topics</label>
                   <select name="teacher_topic_id" onChange={handleInput} value={testItemInput.teacher_topic_id} className="form-control">  
@@ -417,15 +425,43 @@ function AddFormativeTest() {
 
             </div>
             <div className="rowBts">
-              <div className="col-md-8">          
+              {/* <div className="col-md-4">          
                 <div className="form-group m-3">
-                  <label>Title</label>
+                  <label>Column Title</label>
                   <input type="text" name="title" onChange={handleInput} value={testItemInput.title}className="form-control" />
                   <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.title}</span>
                 </div>
+              </div> */}
+
+              <div className="col-md-12">
+                <div className="form-group m-3">
+                  <label>Summative Test</label>
+                  <select name="summative_test_id" onChange={handleInput} value={testItemInput.summative_test_id} className="form-control">  
+                    <option>Select Summative Test</option>
+                    {
+                      summativeTestList
+                      .filter((item) => item.teacher_topic_id == testItemInput.teacher_topic_id)
+                      // .filter((item) => item.topic.theme_learning_program_id == testItemInput.theme_learning_program_id)                      
+                      .map((item)=> {
+                        return (
+                          <option value={item.id} key={item.id}>{item.title}</option>
+                        )
+                      })
+                    }
+                  </select>            
+                  <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.summative_test_id}</span>
+                </div>
+              </div> 
+
+              <div className="col-md-2">
+                <div className="form-group m-3">
+                  <label>Order number</label>
+                  <input type="number" name="order_number" onChange={handleInput} value={testItemInput.order_number} className="form-control" />
+                  <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.order_number}</span>
+                </div>
               </div>
 
-              <div className="col-md-4">
+              <div className="col-md-3">
                 <div className="form-group m-3">
                   <label>Test Type</label>
                     <select name="type" onChange={handleInput} value={testItemInput.type} className="form-control">
@@ -441,41 +477,24 @@ function AddFormativeTest() {
                     </select>
                 </div>
               </div>
-          </div>
 
-          <div className="rowBts">
-
-              <div className="col-md-8">          
+              <div className="col-md-7">
                 <div className="form-group m-3">
-                  <label>Path</label>
-                  <input type="text" name="path" onChange={handleInput} value={testItemInput.path}className="form-control" />
-                  <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.path}</span>
-                </div>
-              </div>
-
-            <div className="col-md-2">
-              <div className="form-group m-3">
-                <label>Test Complexity</label>
-                <select name="test_complexity_id" onChange={handleInput} value={testItemInput.test_complexity_id} className="form-control">  
-                  <option>Select Test Complexity</option>
-                  {
-                    testComplexityList
-                    .map((item)=> {
-                      return (
-                        <option value={item.id} key={item.id}>{item.name}</option>
-                      )
-                    })
-                  }
-                </select>            
-                <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.test_complexity_id}</span>
-              </div>
-            </div>
-
-            <div className="col-md-2">
-                <div className="form-group m-3">
-                  <label>Order number</label>
-                  <input type="number" name="order_number" onChange={handleInput} value={testItemInput.order_number} className="form-control" />
-                  <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.order_number}</span>
+                  <label>Test Item</label>
+                  <select name="test_item_id" onChange={handleInput} value={testItemInput.test_item_id} className="form-control">  
+                    <option>Select Test Item</option>
+                    {
+                      testItemList
+                      .filter((item) => item.teacher_topic_id == testItemInput.teacher_topic_id)
+                      .filter((item) => item.type == testItemInput.type)
+                      .map((item)=> {
+                        return (
+                          <option value={item.id} key={item.id}>{item.task} ({item.type})</option>
+                        )
+                      })
+                    }
+                  </select>            
+                  <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.test_item_id}</span>
                 </div>
               </div>
 
@@ -560,4 +579,4 @@ function AddFormativeTest() {
   )
 }
 
-export default AddFormativeTest;
+export default AddSummativeTestItem;
