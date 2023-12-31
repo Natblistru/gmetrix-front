@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { debounce } from "lodash"
+import Paginator from '../Paginator';
 
 const SORT_ASC = "asc"
 const SORT_DESC = "desc"
@@ -100,6 +101,8 @@ function ViewSummativeTestItem() {
   const [sortOrder, setSortOrder] = useState("asc"); 
   const [search, setSearch] = useState("")
   const [perPage, setPerPage] = useState(10)
+  const [pagination, setPagination] = useState({})
+  const [currentPage, setCurrentPage] = useState(1)
 
   const handleSort = (column) => {
     if (column === sortColumn) {
@@ -113,14 +116,14 @@ function ViewSummativeTestItem() {
   const handleSearch = useRef(
     debounce((query) => {
         setSearch(query)
-        // setCurrentPage(1)
+        setCurrentPage(1)
         setSortOrder(SORT_ASC)
         setSortColumn(columns[0])
     }, 500)
   ).current
 
   const handlePerPage = (perPage) => {
-    // setCurrentPage(1)
+    setCurrentPage(1)
     setPerPage(perPage)
   }
 
@@ -132,10 +135,13 @@ function ViewSummativeTestItem() {
           sortColumn: mapReactColumnToDBColumn(sortColumn),
           sortOrder: sortOrder,
           perPage: perPage,
+          page: currentPage,
         };
         const response = await axios.get('http://localhost:8000/api/view-summative-test-item', { params });
           if (response.data.status === 200) {
+            console.log(response.data)
             setTeacherTopicList(response.data.summativeTestItem);
+            setPagination(response.data.pagination)
         }
           setLoading(false);
       } catch (error) {
@@ -144,7 +150,7 @@ function ViewSummativeTestItem() {
       }
     }
     fetchData();
-  }, [sortColumn, sortOrder, search, perPage]);
+  }, [sortColumn, sortOrder, search, perPage, currentPage]);
 
   const commonColumns = {
     'editLink': (item) => (
@@ -189,16 +195,25 @@ function ViewSummativeTestItem() {
           </div>
         </div>
         <div className="card-body">
-        <table className="table table-primary table-bordered table-responsive table-striped">
-          <TableHeader
-            columns={columns_header}
-            handleSort={handleSort}
-            sortColumn={sortColumn}
-            sortOrder={sortOrder}
-          />
-          <DynamicTable data={teacherTopicList} columns={columns} commonColumns={commonColumns} loading={loading}/>
-        </table>
+          <table className="table table-primary table-bordered table-responsive table-striped">
+            <TableHeader
+              columns={columns_header}
+              handleSort={handleSort}
+              sortColumn={sortColumn}
+              sortOrder={sortOrder}
+            />
+            <DynamicTable data={teacherTopicList} columns={columns} commonColumns={commonColumns} loading={loading}/>
+          </table>
         </div>
+        {teacherTopicList.length > 0 && !loading ? (
+                <div className="mt-2">
+                    <Paginator
+                        pagination={pagination}
+                        pageChanged={(page) => setCurrentPage(page)}
+                        totalItems={teacherTopicList.length}
+                    />
+                </div>
+            ) : null}
       </div>
     </div>
   );
