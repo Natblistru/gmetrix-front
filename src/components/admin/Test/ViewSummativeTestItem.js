@@ -119,6 +119,11 @@ function ViewSummativeTestItem() {
     }, 500)
   ).current
 
+  const handlePerPage = (perPage) => {
+    // setCurrentPage(1)
+    setPerPage(perPage)
+  }
+
   useEffect(()=>{
     const fetchData = async () => {
       try {
@@ -126,6 +131,7 @@ function ViewSummativeTestItem() {
           search,
           sortColumn: mapReactColumnToDBColumn(sortColumn),
           sortOrder: sortOrder,
+          perPage: perPage,
         };
         const response = await axios.get('http://localhost:8000/api/view-summative-test-item', { params });
           if (response.data.status === 200) {
@@ -138,7 +144,7 @@ function ViewSummativeTestItem() {
       }
     }
     fetchData();
-  }, [sortColumn, sortOrder, search]);
+  }, [sortColumn, sortOrder, search, perPage]);
 
   const commonColumns = {
     'editLink': (item) => (
@@ -170,7 +176,7 @@ function ViewSummativeTestItem() {
           <div className="col-md-2">
               <div className="input-group">
                   <label className="mt-2 me-2">Per page</label>
-                  <select className="form-select" value={perPage} onChange={() => {}}>
+                  <select className="form-select" value={perPage} onChange={(e) => handlePerPage(e.target.value)}>
                       <option value="5">5</option>
                       <option value="10">10</option>
                       <option value="20">20</option>
@@ -183,7 +189,7 @@ function ViewSummativeTestItem() {
           </div>
         </div>
         <div className="card-body">
-        <table className="table table-primary table-bordered  table-striped">
+        <table className="table table-primary table-bordered table-responsive table-striped">
           <TableHeader
             columns={columns_header}
             handleSort={handleSort}
