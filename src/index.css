@@ -1344,6 +1344,18 @@ transition: color 150ms ease-in-out;
   transition-delay: 100ms;
 }
 
+.table-fixed {
+  width: 100%;
+  table-layout: fixed;
+}
+
+.table-fixed th, .table-fixed td {
+  /* width: 100px;  */
+  overflow: hidden;
+  white-space: nowrap; 
+}
+
+
 
 
 
