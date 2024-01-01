@@ -5,79 +5,12 @@ import { debounce } from "lodash"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFilter } from "@fortawesome/free-solid-svg-icons";
 import Paginator from '../Paginator';
+import TableHeader from '../TableHeader';
+import DynamicTable from '../DynamicTable';
 
 const SORT_ASC = "asc"
 const SORT_DESC = "desc"
 const PER_PAGE_OPTIONS = [5,10,20,50,100]
-
-const TableHeader = ({ columns, handleSort, sortColumn, sortOrder}) => {
-  return (
-    <thead key={`${sortColumn}_${sortOrder}`}>
-      <tr>
-        {columns.map((column) => (
-          <th key={column} onClick={(e) => handleSort(column)}>
-            {column.toUpperCase().replace("_", " ")}
-            {column === sortColumn ? (
-              <span>
-                {sortOrder === SORT_ASC ? (
-                  <i className="ms-1 fa fa-arrow-up" aria-hidden="true"></i>
-                ) : (
-                  <i className="ms-1 fa fa-arrow-down" aria-hidden="true"></i>
-                )}
-              </span>
-            ): null}
-          </th>
-        ))}
-      </tr>
-    </thead>
-  );
-};
-
-const DynamicTable = ({ data, columns, commonColumns, loading }) => {
-  const getValue = (item, column) => {
-    if (commonColumns[column]) {
-      return commonColumns[column](item);
-    }
-
-    const keys = column.split('.');
-    let value = item;
-
-    for (const key of keys) {
-      if (value && value[key] !== undefined) {
-        value = value[key];
-      } else {
-        value = '';
-        break;
-      }
-    }
-
-    return value;
-  };
-
-  return (
-    <tbody>
-    {!loading ? (
-      data.map((item, index) => (
-        <tr key={index}>
-          {columns.map((column) => (
-            <td key={column}>{getValue(item, column)}</td>
-          ))}
-        </tr>
-      ))
-    ) : (
-      <tr>
-        <td colSpan={columns.length + 1}>
-          <div className="d-flex justify-content-center">
-            <div className="spinner-border" role="status">
-              <span className="sr-only">Loading...</span>
-            </div>
-          </div>
-        </td>
-      </tr>
-    )}
-  </tbody>
-  );
-};
 
 function ViewSummativeTestItem() {
 
@@ -253,10 +186,10 @@ function ViewSummativeTestItem() {
                   </select>
               </div>
           </div>
-          <div className="col-md-4">
+          <div className="col-md-3">
 
           </div>
-          <div className="col-md-3">
+          <div className="col-md-4">
           <FontAwesomeIcon icon={faFilter} onClick={toggleblockVisible} className="btnBts btn-outline-secondary mt-1"/>
           <Link to="/admin/add-summative-test-item" className="btnBts btn-primary text-white float-end">Add Summative Test Items</Link>
           </div>
