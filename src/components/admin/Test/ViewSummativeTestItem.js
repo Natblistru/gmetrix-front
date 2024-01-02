@@ -161,41 +161,41 @@ function ViewSummativeTestItem() {
       <div className="card-title m-3">
         <h2>Summative Test Item List</h2>
       </div>
-      <div className="rowBts m-2">
+      <div className="rowBts mx-4 mt-2">
 
-          <div className="col-md-3">
-              <div className="input-group">
-                  <input
-                      className="form-control"
-                      placeholder="Search..."
-                      type="search"
-                      onChange={(e) => handleSearch(e.target.value)}
-                  />
-              </div>
-          </div>
-          <div className="col-md-2">
-              <div className="input-group">
-                  <label className="mt-2 me-2">Per page</label>
-                  <select className="form-select" value={perPage} onChange={(e) => handlePerPage(e.target.value)}>
-                      {PER_PAGE_OPTIONS.map((perPage) => {
-                        return (
-                          <option key={perPage}>{perPage}</option>
-                        )
-                      })}
-
-                  </select>
-              </div>
-          </div>
-          <div className="col-md-3">
-
-          </div>
-          <div className="col-md-4">
-          <FontAwesomeIcon icon={faFilter} onClick={toggleblockVisible} className="btnBts btn-outline-secondary mt-1"/>
-          <Link to="/admin/add-summative-test-item" className="btnBts btn-primary text-white float-end">Add Summative Test Items</Link>
-          </div>
+        <div className="col-md-3">
+            <div className="input-group">
+                <input
+                    className="form-control"
+                    placeholder="Search..."
+                    type="search"
+                    onChange={(e) => handleSearch(e.target.value)}
+                />
+            </div>
         </div>
+        <div className="col-md-3">
+            <div className="input-group">
+                <label className="mt-2 me-2">Per page</label>
+                <select className="form-select" value={perPage} onChange={(e) => handlePerPage(e.target.value)}>
+                    {PER_PAGE_OPTIONS.map((perPage) => {
+                      return (
+                        <option key={perPage}>{perPage}</option>
+                      )
+                    })}
+
+                </select>
+            </div>
+        </div>
+        <div className="col-md-2">
+          <FontAwesomeIcon icon={faFilter} onClick={toggleblockVisible} className="btnBts btn-outline-secondary mt-1" style={{ borderColor: '#cdd2d6'}}/>
+        </div>
+        <div className="col-md-4">
+
+        <Link to="/admin/add-summative-test-item" className="btnBts btn-primary text-white float-end">Add Summative Test Items</Link>
+        </div>
+      </div>
         {blockFilterVisible && 
-          <div className="rowBts m-2">
+          <div className="rowBts mx-4 mt-2">
             <div className="col-md-4">
                 <div className="form-group">
                   <select name="learning_program_id" onChange={handleInput} value={filter.learning_program_id} className="form-control">  
@@ -241,25 +241,29 @@ function ViewSummativeTestItem() {
 
           </div>
         }
-        <div className="card-body">
-        <table className={`table table-primary table-bordered table-responsive table-striped ${teacherTopicList.length == 0 ? 'table-fixed' : ''}`}>
-            <TableHeader
-              columns={columns_header}
-              handleSort={handleSort}
-              sortColumn={sortColumn}
-              sortOrder={sortOrder}
-            />
-            <DynamicTable data={teacherTopicList} columns={columns} commonColumns={commonColumns} loading={loading}/>
-          </table>
+        <div className="rowBts m-2">
+          <div className="col-md-12">
+            <div className="card-body">
+              <table className={`table table-primary table-bordered table-responsive table-striped ${teacherTopicList.length == 0 ? 'table-fixed' : ''}`}>
+                <TableHeader
+                  columns={columns_header}
+                  handleSort={handleSort}
+                  sortColumn={sortColumn}
+                  sortOrder={sortOrder}
+                />
+                <DynamicTable data={teacherTopicList} columns={columns} commonColumns={commonColumns} loading={loading}/>
+              </table>
+            </div>
+          </div>
         </div>
         {teacherTopicList.length > 0 && !loading ? (
-                <div className="mt-2">
-                    <Paginator
-                        pagination={pagination}
-                        pageChanged={(page) => setCurrentPage(page)}
-                        totalItems={teacherTopicList.length}
-                    />
-                </div>
+          <div className="my-2 mx-3">
+              <Paginator
+                  pagination={pagination}
+                  pageChanged={(page) => setCurrentPage(page)}
+                  totalItems={teacherTopicList.length}
+              />
+          </div>
             ) : null}
       </div>
     </div>
