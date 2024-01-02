@@ -60,20 +60,22 @@ function ViewVideo() {
           </h4>
         </div>
         <div className="card-body">
-        <table className="table table-primary table-bordered table-striped">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Title</th>
-              <th>Source</th>
-              <th>Edit</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            {viewVideo_HTMLTABLE}
-          </tbody>
-        </table>
+        <div className="table-responsive" style={{ width: '100%' }}>
+          <table className="table table-primary table-bordered table-striped">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Source</th>
+                <th>Edit</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {viewVideo_HTMLTABLE}
+            </tbody>
+          </table>
+        </div>
         </div>
       </div>
     </div>
