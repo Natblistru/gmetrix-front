@@ -1355,6 +1355,31 @@ transition: color 150ms ease-in-out;
   white-space: nowrap; 
 }
 
+.custom-modal {
+  width: 490px;
+  margin: 93px auto;
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 20px;
+}
+
+.custom-overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  inset: 0px;
+}
+
+.search-results-container {
+  max-height: 300px; 
+  overflow-y: auto;
+}
+
+
+.search-results-list > div {
+  margin-bottom: 10px;
+}
+
+
 
 
 

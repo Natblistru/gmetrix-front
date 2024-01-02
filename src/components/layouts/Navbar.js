@@ -7,6 +7,7 @@ import { useHistory } from 'react-router-dom';
 
 import './../../assets/admin/css/stylesBootstrap.css';
 import './../../assets/admin/js/scripts.js'
+import SearchComponent from './SearchComponent.js';
 
 function Navbar() {
 
@@ -67,6 +68,7 @@ function Navbar() {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <SearchComponent />
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0 lh-lg gap-3">
             <li className="nav-item">
             {isAuthenticated && <span>Bine ai venit, {authName}!</span>}

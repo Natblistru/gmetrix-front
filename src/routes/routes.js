@@ -165,6 +165,7 @@ const routes = [
   { path: '/admin/add-summative-test-item', exact: true, name: 'AddSummativeTestItem', component: AddSummativeTestItem },
   { path: '/admin/view-summative-test-item', exact: true, name: 'ViewSummativeTestItem', component: ViewSummativeTestItem },
   { path: '/admin/edit-summative-test-item/:id', exact: true, name: 'EditSummativeTestItem', component: EditSummativeTestItem },
+
 ];
 
 export default routes;
