@@ -160,7 +160,7 @@ function Dashboard() {
         };
         const response = await axios.get('http://localhost:8000/api/all-users', { params });
             if (response.data.status === 200) {
-            console.log(response.data)
+            // console.log(response.data)
             setUserList(response.data.users)
             setPagination(response.data.pagination)
             const updatedCountUsers = countUsers.map((user) => {
@@ -364,7 +364,7 @@ function Dashboard() {
                         Numarul de elevi si profesori (%)
                     </div>
                     <div className="card-body">
-                    {console.log(countUsers)}
+                    {/* {console.log(countUsers)} */}
                     <ResponsiveContainer width="100%" height={200}>
                     <PieChart width={300} height={300}>
                     <Pie

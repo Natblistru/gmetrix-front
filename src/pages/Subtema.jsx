@@ -30,12 +30,12 @@ const Subtema = ({results})  => {
   const tema_id = stateData.currentTheme.tema_id;
    
   useEffect(() => {
-    console.log(stateData.topics)
+    // console.log(stateData.topics)
     const addressToFind = "/"+address1;
     const mainElement = temaCurrenta?.find(element => element.path === addressToFind);
-console.log(temaCurrenta)
-console.log(mainElement)
-console.log(address1)
+// console.log(temaCurrenta)
+// console.log(mainElement)
+// console.log(address1)
      dispatchData({
       type: "UPDATE_CURRENT_TOPIC",
       payload: mainElement

@@ -69,6 +69,10 @@ import EditSummativeTest from "../components/admin/Test/EditSummativeTest.js";
 import AddSummativeTestItem from "../components/admin/Test/AddSummativeTestItem.js";
 import ViewSummativeTestItem from "../components/admin/Test/ViewSummativeTestItem.js";
 import EditSummativeTestItem from "../components/admin/Test/EditSummativeTestItem.js";
+import Login from "../components/admin/AuthForms/Login.js";
+import Register from "../components/admin/AuthForms/Register.js";
+import ForgotPassword from "../components/admin/AuthForms/ForgotPassword.js";
+import ResetPassword from "../components/admin/AuthForms/ResetPassword.js";
 
 const routes = [
   { path: '/admin', exact: true, name: 'Admin'},
@@ -166,6 +170,10 @@ const routes = [
   { path: '/admin/view-summative-test-item', exact: true, name: 'ViewSummativeTestItem', component: ViewSummativeTestItem },
   { path: '/admin/edit-summative-test-item/:id', exact: true, name: 'EditSummativeTestItem', component: EditSummativeTestItem },
 
+  { path: '/admin/login', exact: true, name: 'Login', component: Login },
+  { path: '/admin/register', exact: true, name: 'Register', component: Register },
+  { path: '/admin/forgot-password', exact: true, name: 'ForgotPassword', component: ForgotPassword },
+  { path: '/admin/reset-password', exact: true, name: 'ResetPassword', component: ResetPassword },
 ];
 
 export default routes;

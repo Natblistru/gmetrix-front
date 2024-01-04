@@ -18,7 +18,7 @@ const TableRow = (props) => {
   const parts = stateData.currentTheme.path_tema.split("/");
   const addressDisciplina = "/" + parts[1];
   const addressSubtitle = "/" + parts.slice(2).join("/");
-  console.log(rowData)
+  // console.log(rowData)
   const dynamicPath = `${addressDisciplina}${addressSubtitle}${rowData.path}${rowData.addressTest}/1?teacher=${teacherVideo}&level=1&disciplina=${stateData.currentSubject.subject_id}&theme=${stateData.currentTheme.tema_id}`;       
   // const dynamicPath = `${rowData.addressTestDisciplina}${rowData.addressTestSubtitle}${rowData.addressTestSubject}${rowData.addressTest}/1`;
 
@@ -137,7 +137,7 @@ const ItemTable = ({ list, className, tests, list1 }) => {
   // const data = list;
   const classes = "table subjects-container " + className;
   const data = list1;
-  console.log(data);
+  // console.log(data);
   return (
     <div className={classes}>
       {data.map((rowData, idx) => {

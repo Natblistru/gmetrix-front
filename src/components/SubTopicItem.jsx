@@ -37,9 +37,9 @@ const SubTopicItem = ({subTit,idx, teachers, results,tests,exams, allTems}) => {
   const handleTeacherSelect = (event) => {
     const selectedId = event.target.value;
     const selectedTeacherInfo = teachers.find(teacher => teacher.teacher_id == selectedId);
-  console.log(selectedTeacherInfo)
-  console.log(teachers)
-  console.log(selectedId)
+  // console.log(selectedTeacherInfo)
+  // console.log(teachers)
+  // console.log(selectedId)
 
     setSelectedTeacher({
       id: selectedId,
@@ -90,7 +90,7 @@ const SubTopicItem = ({subTit,idx, teachers, results,tests,exams, allTems}) => {
             </select>
           </div>
           <button onClick={handleFormSubmit} type="button" className="btnBts btn-outline-secondary mx-auto d-block">
-            {console.log(`${subtitle.path_tema}?teacher=${selectedTeacher}&theme=${subtitle.tema_id}&level=1&disciplina=${stateData.currentSubject.subject_id}`)}
+            {/* {console.log(`${subtitle.path_tema}?teacher=${selectedTeacher}&theme=${subtitle.tema_id}&level=1&disciplina=${stateData.currentSubject.subject_id}`)} */}
             <Link
               to={`${subtitle.path_tema}?teacher=${selectedTeacher.id}&theme=${subtitle.tema_id}&level=1&disciplina=${stateData.currentSubject.subject_id}&teachername=${selectedTeacher.teacher_name}`}
             >

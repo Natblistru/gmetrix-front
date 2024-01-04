@@ -128,7 +128,7 @@ function AddEvaluation() {
 
         if(notFoundTitles.length === 0) {
 
-          console.log(selectedData)
+          // console.log(selectedData)
           const formDataArray = selectedData.map(selectedItem => {
             const formData = new FormData();
             formData.append('name', `${selectedItem.type}, ${selectedItem.subject_study_level_name}, (${selectedItem.year})` );
@@ -138,7 +138,7 @@ function AddEvaluation() {
             formData.append('status', 0); 
             return formData;
           });
-          console.log(formDataArray)
+          // console.log(formDataArray)
           // Trimitem fiecare set de date către server utilizând axios.all
           axios.all(formDataArray.map(formData => axios.post('http://localhost:8000/api/store-evaluation', formData)))
               .then(axios.spread((...responses) => {
@@ -228,7 +228,7 @@ function AddEvaluation() {
     formData.append('subject_study_level_id',evaluationInput.subject_study_level_id );
     formData.append('status',allCheckboxes.status == true ? 1 : 0);
 
-    console.log(formData)
+    // console.log(formData)
 
     axios.post(`http://localhost:8000/api/store-evaluation`, formData).then(res => {
       if(res.data.status === 201)

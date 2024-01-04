@@ -1,7 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
-import ContextData from "../components/context/ContextData";
 import { withRouter, useParams, useHistory } from "react-router-dom";
 import { connect } from "react-redux";
+import ContextData from "../components/context/ContextData";
+import axios from 'axios'; 
 // import temeIstoriArray from "../data/temeIstoria";
 import Navbar from "../components/layouts/Navbar";
 import Breadcrumb from "../components/Breadcrumb";
@@ -24,6 +25,7 @@ const TestWrapper = ({ tests, add, update }) => {
   const [currentList1, setCurrentList1] = useState(null);
   // const [currentTest, setcurrentTest] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [proc, setProc] = useState(0);
   const [currentTestIndex, setCurrentTestIndex] = useState(0);
   const [currentItemIndex, setCurrentItemIndex] = useState(0);
   const history = useHistory();
@@ -77,9 +79,42 @@ const TestWrapper = ({ tests, add, update }) => {
     // }
   }, [addressTest]);
 
+
   // console.log("correctAns ", correctAns);
   const [correctAnswer, setCorrectAnswer] = useState(null);
 
+
+  useEffect(() => {
+    const fetchData = async () => {
+      if (correctAnswer) {
+        const testItemIds = stateData.currentTests[currentTestIndex].order_number_options.map(option => option.test_item_id);
+  
+        try {
+          const studentId = 1;
+          const promises = testItemIds.map(itemId => axios.post('http://localhost:8000/api/student-formative-test-score', {itemId,studentId} ));
+          const responses = await axios.all(promises);
+          const successResponses = responses.filter(response => response.data.status === 200);
+          const errorResponses = responses.filter(response => response.data.status === 404);
+          if (successResponses.length > 0) {
+            const totalScore = successResponses.reduce((accumulator, response) => {
+              const score = parseFloat(response.data.score);
+              return accumulator + score;
+            }, 0);
+            
+            const averageScore = totalScore * 100 / successResponses.length;
+            setProc(averageScore)
+
+          }
+        } catch (error) {
+          console.error(error);
+        }
+      }
+      // console.log(stateData.currentTests[currentTestIndex]);
+    };
+  
+    fetchData(); // Apelează funcția async aici
+  }, [correctAnswer, stateData.currentTests, currentTestIndex]);
+  
   // useEffect(() => {
   //     if (correctAnswer !== null && currentList.type!= "testGeneralizator") {
   //     const userItems = tests.items.find(
@@ -181,7 +216,7 @@ const TestWrapper = ({ tests, add, update }) => {
           <>
             <Breadcrumb step={3} />
             {/* {console.log("correctAnswer", correctAnswer)} */}
-            <TitleBox className="teme-container" list={currentList1}>
+            <TitleBox className="teme-container" list={currentList1} proc={proc}>
               {currentList1.type === "testGeneralizator"? currentList1.name+ "  "+ `  ${currentItemIndex+1} / ${currentList1.length/4}`:currentList1.name }
             </TitleBox>
             {currentList1.type === "quiz" && (

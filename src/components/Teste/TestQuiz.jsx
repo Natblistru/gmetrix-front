@@ -55,7 +55,7 @@ const TestQuiz = ({
 
 
   const checkAnswer = () => {
-    // console.log(selectedValue)
+    console.log(selectedValue)
     // console.log(listItems[stateData.currentIndexTest])
       if (selectedValue === correctAnswerText) {
       setCorrectAnswer(true);

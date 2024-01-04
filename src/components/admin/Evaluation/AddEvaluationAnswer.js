@@ -178,14 +178,14 @@ function AddEvaluationAnswer() {
             formData.append('status', 0); 
             return formData;
           });
-          console.log(formDataArray)
+          // console.log(formDataArray)
           // Trimitem fiecare set de date către server utilizând axios.all
           axios.all(formDataArray.map(formData => axios.post('http://localhost:8000/api/store-evaluation-answer', formData)))
               .then(axios.spread((...responses) => {
                 const successResponses = responses.filter(response => response.data.status === 201);
                 const errorResponses = responses.filter(response => response.data.status === 422);
-                console.log(successResponses)
-                console.log(errorResponses)                
+                // console.log(successResponses)
+                // console.log(errorResponses)                
                 if (successResponses.length > 0) {
                   Swal.fire({
                     title: "Success",
@@ -280,10 +280,10 @@ function AddEvaluationAnswer() {
     formData.append('content',evaluationItemInput.content );
     formData.append('status',allCheckboxes.status == true ? 1 : 0);
 
-    console.log(formData)
+    // console.log(formData)
 
     axios.post(`http://localhost:8000/api/store-evaluation-answer`, formData).then(res => {
-      console.log(res)
+      // console.log(res)
       if(res.data.status === 201)
       {
         Swal.fire({
@@ -310,7 +310,7 @@ function AddEvaluationAnswer() {
       }
       else if(res.data.status === 422)
       {
-        console.log(res.data.errors);
+        // console.log(res.data.errors);
         Swal.fire({
           title: "All fields are mandatory",
           text: Object.values(res.data.errors).flat().join(' '),
@@ -511,7 +511,7 @@ function AddEvaluationAnswer() {
             </form>
             <div className="containerBts">
               <form onSubmit={submitEvaluationAnswers}>
-                {console.log(excelData)}
+                {/* {console.log(excelData)} */}
               {excelData?(
                 <div className="table-responsive">
                   <table className="table table-primary table-bordered table-striped">

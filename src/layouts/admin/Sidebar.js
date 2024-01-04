@@ -17,7 +17,7 @@ const Sidebar = () => {
                     Profile
                 </Link>
                 <div className="sb-sidenav-menu-heading">Interface</div>
-                <Link className="nav-linkSide collapsed" to="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                {/* <Link className="nav-linkSide collapsed" to="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                     <div className="sb-nav-link-icon"><i className="fas fa-columns"></i></div>
                     Layouts
                     <div className="sb-sidenav-collapse-arrow"><i className="fas fa-angle-down"></i></div>
@@ -27,7 +27,7 @@ const Sidebar = () => {
                         <Link className="nav-linkSide" to="layout-static.html">Static Navigation</Link>
                         <Link className="nav-linkSide" to="layout-sidenav-light.html">Light Sidenav</Link>
                     </nav>
-                </div>
+                </div> */}
                 <Link className="nav-linkSide collapsed" to="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                     <div className="sb-nav-link-icon"><i className="fas fa-book-open"></i></div>
                     Pages
@@ -41,9 +41,11 @@ const Sidebar = () => {
                         </Link>
                         <div className="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
                             <nav className="sb-sidenav-menu-nested navSide">
-                                <Link className="nav-linkSide" to="login.html">Login</Link>
-                                <Link className="nav-linkSide" to="register.html">Register</Link>
-                                <Link className="nav-linkSide" to="password.html">Forgot Password</Link>
+                                <Link className="nav-linkSide" to="/admin/login">Login</Link>
+                                <Link className="nav-linkSide" to="/admin/register">Register</Link>
+                                <Link className="nav-linkSide" to="/admin/forgot-password">Forgot Password</Link>
+                                <Link className="nav-linkSide" to="/admin/reset-password">Reset Password</Link>
+
                             </nav>
                         </div>
 

@@ -123,7 +123,7 @@ const fetchThemeVideo = async (theme) => {
   try {
       const res = await axios.get(`http://localhost:8000/api/teacherthemevideo?level=1&disciplina=${stateData.currentSubject.subject_id}&teacher=${teacherVideo}&theme=${theme}`);
 
-      console.log(res.data);
+      // console.log(res.data);
       dispatchData({
           type: "FETCH_THEME_VIDEO",
           payload: res.data
