@@ -23,15 +23,6 @@ const SearchComponent = () => {
   const handleInput = (e) => {
     e.persist();
     setItemInput({...itemInput, [e.target.name]: e.target.value})
-    if (e.target.name === "subject_study_level_id" && e.target.value > 0) {
-      const details = getIdDetails(e.target.value);
-      setDetails(details);
-    } else {
-      setDetails(null);
-    }
-    console.log(details)
-    console.log(e.target.name)
-    console.log(e.target.value)   
   }
 
   useEffect(() => {
@@ -39,13 +30,26 @@ const SearchComponent = () => {
   }, []);
 
   useEffect(() => {
+    console.log(details)
+    if(details){
+      fetchCapitole()
+    }
+  }, [details]);
+
+  useEffect(() => {
+    if (itemInput.subject_study_level_id > 0) {
+      const details = getIdDetails(itemInput.subject_study_level_id);
+      setDetails(details);
+    } else {
+      setDetails(null);
+    } 
     fetchTags();
   }, [itemInput]);
 
   const fetchTags = async () => {
     if(itemInput.subject_study_level_id !==""){
       try {
-        console.log(itemInput)
+        // console.log(itemInput)
         const response = await axios.post('http://localhost:8000/api/all-tags', { subject_study_level_id: itemInput.subject_study_level_id });
         const { status, tags } = response.data;
 
@@ -76,6 +80,72 @@ const SearchComponent = () => {
     }
   };
 
+  const fetchCapitole = async () => {
+    console.log(details)
+    console.log(stateData.disciplineAni)
+    try {
+        const res = await axios.get(`http://localhost:8000/api/capitoleDisciplina?level=${details.studyLevelId}&disciplina=${details.subjectId}&student=1`);
+        dispatchData({
+            type: "FETCH_CAPITOLE",
+            payload: res.data
+        })
+        if (res.data.length > 0) {
+          dispatchData({
+              type: "UPDATE_CURRENT_SUBJECT",
+              payload: res.data[0]
+          })
+          const nivelStudiu = details.studyLevelId==1?"examen clasa 9":"BAC";
+          const clasa = details.studyLevelId==1?"clasa 9":"clasa 12";
+          const newBreadcrumb = {name: `${res.data[0].subject_name}`, path: `/capitole/${details.subjectId}?level=${details.studyLevelId}&year=2022&name=${details.subjectName}&nivel=${nivelStudiu}&clasa=${clasa}`};
+          console.log(newBreadcrumb)
+          dispatchData({
+            type: "UPDATE_SUBJECT_BREADCRUMB",
+            payload: newBreadcrumb
+          });
+        }
+     } catch (err) {
+        console.error(err);
+    }
+  } 
+
+  const fetchTheme = async (theme) => {
+    console.log(theme.tema_id)
+    try {
+        const res = await axios.get(`http://localhost:8000/api/teachertheme?level=${details.studyLevelId}&disciplina=${details.subjectId}&teacher=1&student=1&theme=${theme.tema_id}`);
+        if (res.status === 200) {
+          console.log(res.data)
+          dispatchData({
+              type: "FETCH_TOPICS",
+              payload: res.data
+          })
+        }
+    } catch (err) {
+        console.error(err);
+    }
+  }
+
+  const closeModalFromLink = (theme_path) => {
+    const tema = stateData.capitole.reduce(
+      (result, item) => result || (item.subtitles || []).find(subtitle => subtitle.path_tema === theme_path),
+      null
+    );
+console.log(tema)
+    if (tema!=null) {
+      dispatchData({
+        type: "UPDATE_CURRENT_THEME",
+        payload: tema
+      })
+    }
+    const addressPath = `${theme_path}?teacher=1&level=${details.studyLevelId}&disciplina=${details.subjectId}&theme=${tema.id}`;
+    const newBreadcrumb = {name: tema.tema_name, path: addressPath};
+    dispatchData({
+      type: "UPDATE_TOPIC_BREADCRUMB",
+      payload: newBreadcrumb
+    });
+    fetchTheme(tema)
+    closeModal();
+  }
+
   const closeModal = () => {
     if (modalIsOpen) {
       setModalIsOpen(false);
@@ -90,7 +160,7 @@ const SearchComponent = () => {
   };
 
   const handleTagChange = (selectedOptions) => {
-    console.log(selectedOptions)
+    // console.log(selectedOptions)
     setSelectedTags(selectedOptions);
   };
 
@@ -102,9 +172,9 @@ const SearchComponent = () => {
     if (selectedTags.length > 0) {
       try {
         const selectedTagIds = selectedTags.map((tag) => tag.value);
-        console.log(selectedTagIds)
+        // console.log(selectedTagIds)
         const response = await axios.post('http://localhost:8000/api/get-posts-by-tags', { tagIds: selectedTagIds });
-        console.log(response.data)        
+        // console.log(response.data)        
         if (response.data.status === 200) {
           setThemes(response.data.themes);
           setTopics(response.data.topics);
@@ -121,13 +191,15 @@ const SearchComponent = () => {
   };
 
   const getIdDetails = (id) => {
-    const item = subjectList.find(item => item.id == id);
+    const item = stateData.disciplineAni.find(item => item.id == id);
   console.log(subjectList)
+  console.log(stateData.disciplineAni)
   console.log(item) 
     if (item) {
       const studyLevelId = item.study_level_id;
       const subjectId = item.subject_id;
-      return { studyLevelId, subjectId };
+      const subjectName = item.name;
+      return { studyLevelId, subjectId, subjectName };
     }
   
     return null;
@@ -189,22 +261,21 @@ const SearchComponent = () => {
                 return (
                   <div key={idx}>
                     <h6>{result.theme.chapter.name}</h6>
-                    <Link to={linkTo} onClick={closeModal}>{result.name}</Link>
+                    <Link to={linkTo} onClick={() => closeModalFromLink(result.theme.path)}>{result.name}</Link>
                   </div>
                 );
               })}
               {topics.length>0 && topics.map((result, idx) => {
-
                 if (!details) {
                   console.log(`Detaliile pentru id-ul ${itemInput.subject_study_level_id} nu au fost găsite.`);
                   return null;
                 }
-
+                console.log(result)
                 const linkTo = `${result.topic.theme_learning_program.theme.path}${result.topic.path}?teacher=1&theme=${result.topic.theme_learning_program.theme.id}&level=${details.studyLevelId}&disciplina=${details.subjectId}&teachername=userT1%20teacher`;
                 return (
                   <div key={idx}>
                     <h6>{result.topic.theme_learning_program.theme.chapter.name}</h6>
-                    <Link to={linkTo}>{result.name}</Link>
+                    <Link to={linkTo} onClick={() => closeModalFromLink(result.topic.theme_learning_program.theme.path)}>{result.name}</Link>
                   </div>
                 );
               })}

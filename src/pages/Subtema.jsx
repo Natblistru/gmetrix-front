@@ -30,6 +30,7 @@ const Subtema = ({results})  => {
   const tema_id = stateData.currentTheme.tema_id;
    
   useEffect(() => {
+    console.log(stateData.topics)
     const addressToFind = "/"+address1;
     const mainElement = temaCurrenta?.find(element => element.path === addressToFind);
 console.log(temaCurrenta)
