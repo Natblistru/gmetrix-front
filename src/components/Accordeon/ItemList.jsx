@@ -51,8 +51,7 @@ const ItemList = ({ list, className, type, results, onItemClick }) => {
   return (
     <div className={classes}>
       {listItems
-        ?.sort((a, b) => a.subtopic_id - b.subtopic_id)
-        .map((subtitle, idx) => {
+        ?.map((subtitle, idx) => {
         // const dynamicPath = `${subtitle.addressDisciplina}${subtitle.addressSubtitle}${subtitle.addressSubject}`;
         let subtitle_path = subtitle.path;
         

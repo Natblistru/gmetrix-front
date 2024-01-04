@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
 import Select from 'react-select';
 import Modal from 'react-modal';
 import ContextData from '../context/ContextData';
 
 const SearchComponent = () => {
+  const history = useHistory();
   const {stateData, dispatchData} = React.useContext(ContextData)
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedTags, setSelectedTags] = useState([]);
@@ -124,27 +125,43 @@ const SearchComponent = () => {
     }
   }
 
-  const closeModalFromLink = (theme_path) => {
+  const closeModalFromLink = async (theme_path) => {
+    console.log(theme_path)
     const tema = stateData.capitole.reduce(
       (result, item) => result || (item.subtitles || []).find(subtitle => subtitle.path_tema === theme_path),
       null
     );
-console.log(tema)
+    console.log(tema)
     if (tema!=null) {
       dispatchData({
         type: "UPDATE_CURRENT_THEME",
         payload: tema
       })
     }
-    const addressPath = `${theme_path}?teacher=1&level=${details.studyLevelId}&disciplina=${details.subjectId}&theme=${tema.id}`;
+    const addressPath = `${theme_path}?teacher=1&level=${details.studyLevelId}&disciplina=${details.subjectId}&theme=${tema.tema_id}&teachername=userT1%20teacher`;
     const newBreadcrumb = {name: tema.tema_name, path: addressPath};
+    console.log(newBreadcrumb)
     dispatchData({
       type: "UPDATE_TOPIC_BREADCRUMB",
       payload: newBreadcrumb
     });
-    fetchTheme(tema)
+    await new Promise(async (resolve) => {
+      await fetchTheme(tema);
+      resolve();
+    });
     closeModal();
   }
+
+  const handleLinkClick = async (result) => {
+    try {
+      await closeModalFromLink(result.topic.theme_learning_program.theme.path);
+
+      const linkTo = `${result.topic.theme_learning_program.theme.path}${result.topic.path}?teacher=1&theme=${result.topic.theme_learning_program.theme.id}&level=${details.studyLevelId}&disciplina=${details.subjectId}&teachername=userT1%20teacher`;
+      history.push(linkTo);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const closeModal = () => {
     if (modalIsOpen) {
@@ -275,7 +292,7 @@ console.log(tema)
                 return (
                   <div key={idx}>
                     <h6>{result.topic.theme_learning_program.theme.chapter.name}</h6>
-                    <Link to={linkTo} onClick={() => closeModalFromLink(result.topic.theme_learning_program.theme.path)}>{result.name}</Link>
+                    <Link to="#" onClick={() => handleLinkClick(result)}>{result.name}</Link>
                   </div>
                 );
               })}
