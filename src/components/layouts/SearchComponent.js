@@ -4,6 +4,7 @@ import axios from 'axios';
 import Select from 'react-select';
 import Modal from 'react-modal';
 import ContextData from '../context/ContextData';
+import { fetchTheme } from "../../routes/api"
 
 const SearchComponent = () => {
   const history = useHistory();
@@ -109,22 +110,6 @@ const SearchComponent = () => {
     }
   } 
 
-  const fetchTheme = async (theme) => {
-    console.log(theme.tema_id)
-    try {
-        const res = await axios.get(`http://localhost:8000/api/teachertheme?level=${details.studyLevelId}&disciplina=${details.subjectId}&teacher=1&student=1&theme=${theme.tema_id}`);
-        if (res.status === 200) {
-          console.log(res.data)
-          dispatchData({
-              type: "FETCH_TOPICS",
-              payload: res.data
-          })
-        }
-    } catch (err) {
-        console.error(err);
-    }
-  }
-
   const closeModalFromLink = async (theme_path) => {
     console.log(theme_path)
     const tema = stateData.capitole.reduce(
@@ -145,8 +130,12 @@ const SearchComponent = () => {
       type: "UPDATE_TOPIC_BREADCRUMB",
       payload: newBreadcrumb
     });
+    const teacher = 1;
+    const theme = tema.tema_id;
+    const level_id= details.studyLevelId;
+    const subject_id = details.subjectId;
     await new Promise(async (resolve) => {
-      await fetchTheme(tema);
+      await fetchTheme(teacher, theme, subject_id, level_id, dispatchData);
       resolve();
     });
     closeModal();

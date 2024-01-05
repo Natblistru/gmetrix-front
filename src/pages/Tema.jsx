@@ -12,9 +12,11 @@ import Breadcrumb from "../components/Breadcrumb";
 import Wrapper from "../components/Wrapper";
 import TitleBox from "../components/TitleBox";
 import ListAccordeon from "../components/Accordeon/ListAccordeon";
+import { fetchTheme } from "../routes/api"
 import "../index.css";
 
 const Tema = () => {
+
   const {stateData, dispatchData} = React.useContext(ContextData)
   const { address, disciplina } = useParams();
   const location = useLocation();
@@ -47,7 +49,11 @@ const Tema = () => {
 
     // console.log("Parametrul theme:", theme);
     // console.log("Parametrul teacher:", teacher);
-    fetchTheme(theme);
+    // fetchTheme(theme);
+    const subject_id = stateData.currentSubject.subject_id;
+    const level_id = 1;
+
+    fetchTheme(teacher, theme, subject_id, level_id, dispatchData);
     fetchThemeVideo(theme);
     fetchEvaluations(theme);
     fetchEvaluation1(theme);
@@ -92,32 +98,20 @@ const Tema = () => {
 
 
 
-  const fetchTheme = async (theme) => {
-    try {
-        const res = await axios.get(`http://localhost:8000/api/teachertheme?level=1&disciplina=${stateData.currentSubject.subject_id}&teacher=${teacherVideo}&student=1&theme=${theme}`);
+//  const fetchTheme = async (theme) => {
+//     try {
+//         const res = await axios.get(`http://localhost:8000/api/teachertheme?level=1&disciplina=${stateData.currentSubject.subject_id}&teacher=${teacherVideo}&student=1&theme=${theme}`);
 
-        // console.log("Parametrul disciplina(currentSubject):", stateData.currentSubject);
-        // console.log("Parametrul theme:", theme);
-        // console.log(res.data);
-        dispatchData({
-            type: "FETCH_TOPICS",
-            payload: res.data
-        })
-      //   if (res.data.length > 0) {
-      //       dispatchData({
-      //           type: "UPDATE_SUBJECTNAME",
-      //           payload: res.data[0].subject_name
-      //       })
-      //       const newBreadcrumb = {name: `${res.data[0].subject_name}`, path: `/capitole/${id}?level=1&year=2022`};
-      //       dispatchData({
-      //         type: "UPDATE_SUBJECT_BREADCRUMB",
-      //         payload: newBreadcrumb
-      //       });
-      // }
-    } catch (err) {
-        console.error(err);
-    }
-}
+//         dispatchData({
+//             type: "FETCH_TOPICS",
+//             payload: res.data
+//         })
+//     } catch (err) {
+//         console.error(err);
+//     }
+// }
+
+
 
 const fetchThemeVideo = async (theme) => {
   try {

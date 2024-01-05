@@ -15,6 +15,7 @@ import TestBoard from "../components/Teste/TestBoard";
 import TestWords from "../components/Teste/TestWords";
 import TestSnap from "../components/Snap/TestSnap";
 import TestGeneralizator from "../components/Teste/TestGeneralizator";
+import { fetchTheme } from "../routes/api"
 import "../index.css";
 
 const TestWrapper = ({ tests, add, update }) => {
@@ -216,17 +217,23 @@ const TestWrapper = ({ tests, add, update }) => {
   };
 
   useEffect(() => {
+    const teacher = 1
+    const theme = stateData.currentTheme.tema_id
+    const subject_id = stateData.currentSubject.subject_id;
+    const level_id = 1;
+
+    fetchTheme(teacher, theme, subject_id, level_id, dispatchData);
     console.log('Valoarea lui proc a fost actualizată:', proc);
   }, [proc]);
 
-  // console.log("addressTest",addressTest)
-  // console.log(stateData.currentTests)
-  // console.log(stateData.currentSummativeTests)
-  // console.log(stateData.currentTests[currentTestIndex])
-  // console.log(stateData.currentTopic.tests[currentTestIndex])
-  // console.log(currentList1)
-  console.log("currentItemIndex",currentItemIndex)
-  console.log("currentTestIndex",currentTestIndex)
+  // console.log("stateData.currentTheme",stateData.currentTheme.tema_id)
+  // console.log("stateData.currentTests", stateData.currentTests)
+  // console.log("stateData.currentSummativeTests",stateData.currentSummativeTests)
+  // console.log("stateData.currentTests[currentTestIndex]",stateData.currentTests[currentTestIndex])
+  // console.log("stateData.currentTopic.tests[currentTestIndex]", stateData.currentTopic.tests[currentTestIndex])
+  // console.log("currentList1", currentList1)
+  // console.log("currentItemIndex",currentItemIndex)
+  // console.log("currentTestIndex",currentTestIndex)
   // console.log(stateData.currentTopic.tests)
   return (
     <>
