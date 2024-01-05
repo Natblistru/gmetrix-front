@@ -114,7 +114,7 @@ const TestGeneralizator = ({
   tests,
   add,
   update,
-  currentItemIndex
+  currentItemIndex,
 }) => {
   const {stateData, dispatchData} = React.useContext(ContextData)
   // const [showHeader, setShowHeader] = useState(false);
@@ -268,7 +268,6 @@ const TestGeneralizator = ({
                                      "test_item_id": listItems[3].test_item_id});
     });
     setSelectedOptions4(initialSelectedOptions4)
-
   }, [currentIndex]);
 
   const sumTotalPoints = () => {
@@ -354,7 +353,7 @@ const TestGeneralizator = ({
       .map((answer) => answer.option);
     const selectedValuesString = selectedValues.sort().join(",");
     const correctValuesString = correctValues.sort().join(",");
-    setCorrectAnswer(selectedValuesString === correctValuesString);
+    // setCorrectAnswer(selectedValuesString === correctValuesString);
     const totalResult = userAnswerCheck.reduce((sum, value, index) => {
       const result = value === correctValuesArray[index] ? 1 : 0;
       return sum + result;
@@ -515,6 +514,7 @@ const TestGeneralizator = ({
     setMarked(true);
     setResults(updatedResults);
     setTimerFinished(true);
+    setCorrectAnswer(nota);
   };
 
   const handleTryAgainClearCheck = () => {
@@ -671,6 +671,7 @@ const TestGeneralizator = ({
   ) {
     titlu = "Rezultat:";
   }
+  console.log(start)
   return (
     <>
       {!start && <HeaderInit />}

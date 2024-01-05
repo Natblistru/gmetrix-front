@@ -1,9 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
-import { withRouter, useParams, useHistory } from "react-router-dom";
+import { withRouter, useParams } from "react-router-dom";
 import { connect } from "react-redux";
 import ContextData from "../components/context/ContextData";
 import axios from 'axios'; 
-// import temeIstoriArray from "../data/temeIstoria";
 import Navbar from "../components/layouts/Navbar";
 import Breadcrumb from "../components/Breadcrumb";
 import Wrapper from "../components/Wrapper";
@@ -24,121 +23,91 @@ const TestWrapper = ({ tests, add, update }) => {
   // console.log(addressTest);
   const [currentList, setCurrentList] = useState(null);
   const [currentList1, setCurrentList1] = useState(null);
+  
   // const [currentTest, setcurrentTest] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [proc, setProc] = useState(0);
   const [currentTestIndex, setCurrentTestIndex] = useState(0);
   const [currentItemIndex, setCurrentItemIndex] = useState(0);
   const [loading, setLoading] = useState(true);
-  const history = useHistory();
 
 
 // console.log(stateData.currentTopic)
+
+useEffect(() => {
+  const teacher = 1
+  const theme = stateData.currentTheme.tema_id
+  const subject_id = stateData.currentSubject.subject_id;
+  const level_id = 1;
+
+  fetchTheme(teacher, theme, subject_id, level_id, dispatchData);
+}, []);
 
 
   useEffect(() => {
     const pathCautat = "/" + addressTest;
 
-    // const indexElementCautat = stateData.currentTests.findIndex(element => element.path === pathCautat);
     const indexElementCautat = stateData.currentTopic.tests.findIndex(element => element.addressTest === pathCautat);
     
-    // console.log(stateData.currentTopic.tests);
-
     setCurrentTestIndex(indexElementCautat);
     setCurrentList1(stateData.currentTopic.tests[indexElementCautat]);
     if(loading) {
       setProc(stateData.currentTopic.tests[indexElementCautat].testResult*100);
+      console.log(stateData.currentTopic.tests[indexElementCautat])
       setLoading(false)
     }
     setLoading(false)
-    // console.log(stateData.currentTopic.tests[indexElementCautat]);
     setCurrentItemIndex(0)
     dispatchData({
       type: "FETCH_CURRENT_INDEX_TEST",
       payload: indexElementCautat
     })
 
-    // const foundItem = findObjectWithAddress(temeIstoriArray);
-    // if (foundItem) {
-    //   setCurrentList(foundItem);
-    //   setCurrentIndex(0);
-    //   setCorrectAnswer(null);
-    // } else {
-    //   history.push("/error");
-    // }
   }, [addressTest]);
 
 
-  // console.log("correctAns ", correctAns);
   const [correctAnswer, setCorrectAnswer] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       if (correctAnswer) {
-        const testItemIds = stateData.currentTests[currentTestIndex].order_number_options.map(option => option.test_item_id);
-  
-        try {
-          const studentId = 1;
-          const promises = testItemIds.map(itemId => axios.post('http://localhost:8000/api/student-formative-test-score', {itemId,studentId} ));
-          const responses = await axios.all(promises);
-          const successResponses = responses.filter(response => response.data.status === 200);
-          const errorResponses = responses.filter(response => response.data.status === 404);
-          if (successResponses.length > 0) {
-            const totalScore = successResponses.reduce((accumulator, response) => {
-              const score = parseFloat(response.data.score);
-              return accumulator + score;
-            }, 0);
-            
-            const averageScore = totalScore * 100 / successResponses.length;
-            setProc(averageScore)
+          console.log(stateData.currentTests)
+          console.log(currentTestIndex)
+          let firstTestItemComplexity = stateData.currentTests[currentTestIndex].order_number_options[0]?.test_item_complexity;
 
+          if (firstTestItemComplexity === undefined) {
+            firstTestItemComplexity = 1
           }
-        } catch (error) {
-          console.error(error);
-        }
+          const testItemIds = stateData.currentTests[currentTestIndex].order_number_options.map(option => option.test_item_id);
+
+          try {
+            const studentId = 1;
+            const promises = testItemIds.map(itemId => axios.post('http://localhost:8000/api/student-formative-test-score', {itemId,studentId} ));
+            const responses = await axios.all(promises);
+            const successResponses = responses.filter(response => response.data.status === 200);
+            const errorResponses = responses.filter(response => response.data.status === 404);
+            if (successResponses.length > 0) {
+              const totalScore = successResponses.reduce((accumulator, response) => {
+                const score = parseFloat(response.data.score);
+
+                return accumulator + score;
+              }, 0);
+              
+              const averageScore = totalScore * 100 / (successResponses.length*firstTestItemComplexity);
+              setProc(averageScore)
+
+            }
+          } catch (error) {
+            console.error(error);
+          }
       }
-      // console.log(stateData.currentTests[currentTestIndex]);
     };
   
-    fetchData(); // Apelează funcția async aici
+    fetchData()
   }, [correctAnswer, stateData.currentTests, currentTestIndex]);
   
-  // useEffect(() => {
-  //     if (correctAnswer !== null && currentList.type!= "testGeneralizator") {
-  //     const userItems = tests.items.find(
-  //       (item) => item.user === "Current user"
-  //     );
-  //     if (userItems) {
-  //       const resultItem = userItems.tests.find(
-  //         (item) =>
-  //           item.id == currentList.subjectID &&
-  //           item.quiz == currentList.id &&
-  //           item.item == currentIndex + 1
-  //       );
-  //       if (resultItem) {
-  //         update({
-  //           id: currentList.subjectID,
-  //           quiz: currentList.id,
-  //           item: currentIndex + 1,
-  //           proc: correctAnswer ? 100 : 0,
-  //         });
-  //       } else {
-  //         add({
-  //           id: currentList.subjectID,
-  //           quiz: currentList.id,
-  //           item: currentIndex + 1,
-  //           proc: correctAnswer ? 100 : 0,
-  //         });
-  //       }
-  //     }
-  //   }
-  // }, [correctAnswer]);
-
-  // if(currInd!==undefined) setCurrentIndex(currInd);
   const testBoardRef = useRef(null);
 
-  // console.log("list din Test",list);
-  // console.log("currentIndex din Test",currentIndex);
   const additionalContent = (
     <div className="answer-result">
       <div
@@ -151,31 +120,19 @@ const TestWrapper = ({ tests, add, update }) => {
           ? "Excelent, felicitări!"
           : "Răspuns incorect, te rog să încerci din nou."}{" "}
       </h3>
-      {/* Дополнительное содержимое для correctAnswer=true */}
     </div>
   );
 
   const handleTryAgain = () => {
-    // console.log("handleTryAgain currInd",currInd);
-
-    // if(currInd!==undefined) setCurrentIndex(currInd)
-    // else
-
+    
     let itemQuantity = currentList1.length;
-    if (currentList1.type === "testGeneralizator") {
-      itemQuantity = currentList1.length / 4;
-    }
     if(itemQuantity - 1 === currentItemIndex) {
       setCurrentItemIndex(0)
-
       const testItems = stateData.currentTests[currentTestIndex].order_number_options.map(option => option);
       console.log(testItems)
       try {
         const formDataArray = testItems.map(item => {
           const formData = new FormData();
-          console.log(item.order_number)
-          console.log(item.test_item_id)
-          console.log(item.formative_test_id)
           formData.append('student_id', 1 );
           formData.append('order_number', item.order_number );
           formData.append('test_item_id', item.test_item_id );
@@ -184,7 +141,6 @@ const TestWrapper = ({ tests, add, update }) => {
           formData.append('status', 0);
           return formData;
         });
-        console.log(formDataArray)
       
         axios.all(formDataArray.map(formData => axios.post('http://localhost:8000/api/update-student-formative-test-result', formData)))
         .then(axios.spread((...responses) => {
@@ -202,16 +158,17 @@ const TestWrapper = ({ tests, add, update }) => {
       } catch (error) {
         console.error(error);
       } 
+
     } else {
       setCurrentItemIndex(currentItemIndex + 1)
     }
+
+
     setCorrectAnswer(null);
   };
 
   const handleClearTestBoard = (testId) => {
     if (testBoardRef.current && testBoardRef.current.handleTryAgainClear) {
-      // console.log("handleClearTestBoard testId",testId);
-      // console.log("testBoardRef",testBoardRef.current);
       testBoardRef.current.handleTryAgainClear(testId);
     }
   };
@@ -242,7 +199,6 @@ const TestWrapper = ({ tests, add, update }) => {
         {currentList1  && (
           <>
             <Breadcrumb step={3} />
-            {/* {console.log("correctAnswer", correctAnswer)} */}
             <TitleBox className="teme-container" list={currentList1} proc={proc}>
               {currentList1.type === "testGeneralizator"? currentList1.name+ "  "+ `  ${currentItemIndex+1} / ${currentList1.length/4}`:currentList1.name }
             </TitleBox>
@@ -290,7 +246,7 @@ const TestWrapper = ({ tests, add, update }) => {
                 currentItemIndex={currentItemIndex}
               />
             )}
-            {currentList1.type === "testGeneralizator" && (
+            {/* {currentList1.type === "testGeneralizator" && (
               <TestGeneralizator
                 list={currentList1}
                 currentIndex={currentItemIndex}
@@ -300,10 +256,8 @@ const TestWrapper = ({ tests, add, update }) => {
                 handleTryAgain={handleTryAgain}
                 currentItemIndex={currentItemIndex}
               />
-            )}
+            )} */}
             {(currentList1.type === "dnd" ||
-              // currentList.type === "consecinte" ||
-              // currentList.type === "caracteristica" ||
               currentList1.type === "dnd_chrono" ||
               currentList1.type === "dnd_chrono_double" ||
               currentList1.type === "dnd_group") && (

@@ -55,14 +55,6 @@ const TestQuiz = ({
 
 
   const checkAnswer = () => {
-    console.log(selectedValue)
-    // console.log(listItems[stateData.currentIndexTest])
-      if (selectedValue === correctAnswerText) {
-      setCorrectAnswer(true);
-    } else {
-      setCorrectAnswer(false);
-    }
-    // console.log(selectedOptions);
     const selectedOptionsCalculate = selectedOptions.map(item => {
       let score;
       if (item.option === correctAnswerText) {
@@ -83,10 +75,14 @@ const TestQuiz = ({
 
     trimiteDateLaBackend([...selectedOptionsToDB]);
 
+    if (selectedValue === correctAnswerText) {
+      setCorrectAnswer(true);
+    } else {
+      setCorrectAnswer(false);
+    }
   };
 
   const trimiteDateLaBackend = async (selectedOptionsToDB) => {
-    // console.log(selectedOptionsToDB)
     try {
       for (const element of selectedOptionsToDB) {
         const response = await axios.post('http://localhost:8000/api/student-formative-test-options', element);

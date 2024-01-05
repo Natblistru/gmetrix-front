@@ -4,9 +4,6 @@ import axios from "axios";
 
 import { useState, useEffect } from "react";
 import { useParams, useHistory, useLocation } from "react-router-dom";
-// import temeIstoriArray from "../data/temeIstoria";
-// import temeMatemArray from "../data/temeMatem";
-// import temeRomanaArray from "../data/temeRomana";
 import Navbar from "../components/layouts/Navbar";
 import Breadcrumb from "../components/Breadcrumb";
 import Wrapper from "../components/Wrapper";
@@ -22,14 +19,10 @@ const Tema = () => {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const teacherVideo = searchParams.get('teacher');
-  // console.log(address);
-  // console.log(disciplina); 
-
+ 
   const [temaObject, setTemaObject] = useState(null);
   const [item, setItem] = useState(null);
   const [proc, setProc] = useState(0);
-  // const [theme,setTheme] = useState(null);
-//  console.log(disciplina);
   const history = useHistory();
   let theme;
   let teacher;
@@ -39,17 +32,10 @@ const Tema = () => {
     }
   
     const searchParams = new URLSearchParams(location.search);
-    // setTheme(searchParams.get("theme"));
     teacher = searchParams.get("teacher");
-
-    // console.log("Parametrul theme:", theme);
-    // console.log("Parametrul teacher:", teacher);
  
     theme = searchParams.get("theme");
 
-    // console.log("Parametrul theme:", theme);
-    // console.log("Parametrul teacher:", teacher);
-    // fetchTheme(theme);
     const subject_id = stateData.currentSubject.subject_id;
     const level_id = 1;
 
@@ -59,10 +45,8 @@ const Tema = () => {
     fetchEvaluation1(theme);
     fetchEvaluation2(theme);
     fetchEvaluation3(theme);
-
+console.log("FETCH THEME")
     const pathToFind = `/${disciplina}/${address}`;
-    // const foundElement = stateData.capitole.find(element => element.path_tema === pathToFind);
-    // // const tema = foundElement ? foundElement : null;
 
     const tema = stateData.capitole.reduce(
       (result, item) => result || (item.subtitles || []).find(subtitle => subtitle.path_tema === pathToFind),
@@ -70,8 +54,6 @@ const Tema = () => {
     );
     setTemaObject(tema);
 
-    
-    // console.log(tema);
     setProc(tema? tema.tema_media : 0)
 
     if (tema!=null) {
@@ -82,10 +64,7 @@ const Tema = () => {
 
       const temaName = tema.tema_name;
       const temaid = tema.tema_id;
-      // console.log(tema);
-      // console.log(pathToFind);
-      // console.log(stateData.capitole);
-    
+
       const addressPath = `/${disciplina}/${address}?teacher=${teacherVideo}&level=1&disciplina=${stateData.currentSubject.subject_id}&theme=${temaid}`;
       const newBreadcrumb = {name: temaName, path: addressPath};
       dispatchData({
@@ -94,24 +73,6 @@ const Tema = () => {
       });
     }
   },[stateData.currentSubject, location.search]);
-
-
-
-
-//  const fetchTheme = async (theme) => {
-//     try {
-//         const res = await axios.get(`http://localhost:8000/api/teachertheme?level=1&disciplina=${stateData.currentSubject.subject_id}&teacher=${teacherVideo}&student=1&theme=${theme}`);
-
-//         dispatchData({
-//             type: "FETCH_TOPICS",
-//             payload: res.data
-//         })
-//     } catch (err) {
-//         console.error(err);
-//     }
-// }
-
-
 
 const fetchThemeVideo = async (theme) => {
   try {
@@ -122,18 +83,7 @@ const fetchThemeVideo = async (theme) => {
           type: "FETCH_THEME_VIDEO",
           payload: res.data
       })
-    //   if (res.data.length > 0) {
-    //       dispatchData({
-    //           type: "UPDATE_SUBJECTNAME",
-    //           payload: res.data[0].subject_name
-    //       })
-    //       const newBreadcrumb = {name: `${res.data[0].subject_name}`, path: `/capitole/${id}?level=1&year=2022`};
-    //       dispatchData({
-    //         type: "UPDATE_SUBJECT_BREADCRUMB",
-    //         payload: newBreadcrumb
-    //       });
-    // }
-  } catch (err) {
+   } catch (err) {
       console.error(err);
   }
 }
@@ -142,9 +92,6 @@ const fetchEvaluations = async (theme) => {
   try {
      const res = await axios.get(`http://localhost:8000/api/themeevaluations?level=1&disciplina=${stateData.currentSubject.subject_id}&theme=${theme}`);
 
-      // console.log("Parametrul stateData.currentSubject.subject_id:", stateData.currentSubject.subject_id);
-      // console.log("Parametrul theme:", theme);
-      // console.log(res.data);
       dispatchData({
           type: "FETCH_EVALUATIONS",
           payload: res.data
@@ -156,13 +103,8 @@ const fetchEvaluations = async (theme) => {
 
 const fetchEvaluation1 = async (theme) => {
   try {
-    // console.log("Parametrul stateData.currentSubject.subject_id:", stateData.currentSubject.subject_id);
-    // console.log("Parametrul theme:", theme);
 
       const res = await axios.get(`http://localhost:8000/api/themeevaluation1?level=1&disciplina=${stateData.currentSubject.subject_id}&theme=${theme}`);
-
-
-      // console.log(res.data);
       dispatchData({
           type: "FETCH_EVALUATIONS_1",
           payload: res.data
@@ -174,13 +116,9 @@ const fetchEvaluation1 = async (theme) => {
 
 const fetchEvaluation2 = async (theme) => {
   try {
-    // console.log("Parametrul stateData.currentSubject.subject_id:", stateData.currentSubject.subject_id);
-    // console.log("Parametrul theme:", theme);
 
       const res = await axios.get(`http://localhost:8000/api/themeevaluation2?level=1&disciplina=${stateData.currentSubject.subject_id}&theme=${theme}`);
 
-
-      // console.log(res.data);
       dispatchData({
           type: "FETCH_EVALUATIONS_2",
           payload: res.data
@@ -192,13 +130,8 @@ const fetchEvaluation2 = async (theme) => {
 
 const fetchEvaluation3 = async (theme) => {
   try {
-    // console.log("Parametrul stateData.currentSubject.subject_id:", stateData.currentSubject.subject_id);
-    // console.log("Parametrul theme:", theme);
 
       const res = await axios.get(`http://localhost:8000/api/themeevaluation3?level=1&disciplina=${stateData.currentSubject.subject_id}&theme=${theme}`);
-
-
-      // console.log(res.data);
       dispatchData({
           type: "FETCH_EVALUATIONS_3",
           payload: res.data
@@ -207,17 +140,6 @@ const fetchEvaluation3 = async (theme) => {
       console.error(err);
   }
 }
-
-
-  useEffect(() => {
-    // addBreadcrumb();
-    // const foundItem = findObjectWithAddress(teme);
-    // if (foundItem) {
-    //   setItem(foundItem);
-    // } else {
-    //   history.push("/error");
-    // }
-  }, []);
 
   const handleProgressThemaRecorded = (updatedThemaProgress) => {
     if(temaObject)
