@@ -28,28 +28,12 @@ const TestWrapper = ({ tests, add, update }) => {
   const [proc, setProc] = useState(0);
   const [currentTestIndex, setCurrentTestIndex] = useState(0);
   const [currentItemIndex, setCurrentItemIndex] = useState(0);
+  const [loading, setLoading] = useState(true);
   const history = useHistory();
 
 
 // console.log(stateData.currentTopic)
 
-
-  // function findObjectWithAddress(obj) {
-  //   for (let key in obj) {
-  //     if (typeof obj[key] === "object") {
-  //       const found = findObjectWithAddress(obj[key]);
-  //       if (found) {
-  //         return found;
-  //       }
-  //     } else if (
-  //       key === "addressTestId" &&
-  //       obj[key] === "/" + address1 + "/" + addressTest
-  //     ) {
-  //       return obj;
-  //     }
-  //   }
-  //   return null;
-  // }
 
   useEffect(() => {
     const pathCautat = "/" + addressTest;
@@ -61,7 +45,11 @@ const TestWrapper = ({ tests, add, update }) => {
 
     setCurrentTestIndex(indexElementCautat);
     setCurrentList1(stateData.currentTopic.tests[indexElementCautat]);
-
+    if(loading) {
+      setProc(stateData.currentTopic.tests[indexElementCautat].testResult*100);
+      setLoading(false)
+    }
+    setLoading(false)
     // console.log(stateData.currentTopic.tests[indexElementCautat]);
     setCurrentItemIndex(0)
     dispatchData({
@@ -82,7 +70,6 @@ const TestWrapper = ({ tests, add, update }) => {
 
   // console.log("correctAns ", correctAns);
   const [correctAnswer, setCorrectAnswer] = useState(null);
-
 
   useEffect(() => {
     const fetchData = async () => {
@@ -172,25 +159,52 @@ const TestWrapper = ({ tests, add, update }) => {
 
     // if(currInd!==undefined) setCurrentIndex(currInd)
     // else
+
     let itemQuantity = currentList1.length;
     if (currentList1.type === "testGeneralizator") {
       itemQuantity = currentList1.length / 4;
     }
-    setCurrentItemIndex(
-      itemQuantity - 1 === currentItemIndex ? 0 : currentItemIndex + 1
-    );    
-    // if (currentList1.type === "testGeneralizator") {
-   //   console.log("currentIndex",currentIndex);
-    //   setCurrentIndex(
-    //     currentList.quizArray.length - 1 === currentIndex ? 0 : currentIndex + 1
-    //   );
-    // } else {
-    //   setCurrentIndex(
-    //     currentList.quizArray.length - 1 === currentIndex ? 0 : currentIndex + 1
-    //   );
-      // console.log("currentIndex din Test(handleTryAgain) ",currentIndex);
-      setCorrectAnswer(null);
-    // }
+    if(itemQuantity - 1 === currentItemIndex) {
+      setCurrentItemIndex(0)
+
+      const testItems = stateData.currentTests[currentTestIndex].order_number_options.map(option => option);
+      console.log(testItems)
+      try {
+        const formDataArray = testItems.map(item => {
+          const formData = new FormData();
+          console.log(item.order_number)
+          console.log(item.test_item_id)
+          console.log(item.formative_test_id)
+          formData.append('student_id', 1 );
+          formData.append('order_number', item.order_number );
+          formData.append('test_item_id', item.test_item_id );
+          formData.append('formative_test_id', item.formative_test_id );   
+          formData.append('score', 0 );
+          formData.append('status', 0);
+          return formData;
+        });
+        console.log(formDataArray)
+      
+        axios.all(formDataArray.map(formData => axios.post('http://localhost:8000/api/update-student-formative-test-result', formData)))
+        .then(axios.spread((...responses) => {
+          const successResponses = responses.filter(response => response.data.status === 200);
+          const errorResponses = responses.filter(response => response.data.status === 404);
+          console.log(responses)
+          if (successResponses.length > 0) {
+            console.log("Successfully processed ", successResponses.lengt, " out of ", responses.length, " requests")
+            setProc(0)
+          }
+          errorResponses.forEach(response => {
+            console.log(response.data.errors)
+          })
+        }));
+      } catch (error) {
+        console.error(error);
+      } 
+    } else {
+      setCurrentItemIndex(currentItemIndex + 1)
+    }
+    setCorrectAnswer(null);
   };
 
   const handleClearTestBoard = (testId) => {
@@ -201,13 +215,21 @@ const TestWrapper = ({ tests, add, update }) => {
     }
   };
 
+  useEffect(() => {
+    // Acest useEffect va rula atunci când proc se schimbă
+    // Poți face orice alte acțiuni aici, cum ar fi apelarea altor funcții sau setarea altor stări
+    console.log('Valoarea lui proc a fost actualizată:', proc);
+  }, [proc]);
+
   // console.log("addressTest",addressTest)
   // console.log(stateData.currentTests)
   // console.log(stateData.currentSummativeTests)
   // console.log(stateData.currentTests[currentTestIndex])
   // console.log(stateData.currentTopic.tests[currentTestIndex])
   // console.log(currentList1)
-  // console.log(currentItemIndex)
+  console.log("currentItemIndex",currentItemIndex)
+  console.log("currentTestIndex",currentTestIndex)
+  // console.log(stateData.currentTopic.tests)
   return (
     <>
       <Navbar />
