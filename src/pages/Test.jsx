@@ -216,8 +216,6 @@ const TestWrapper = ({ tests, add, update }) => {
   };
 
   useEffect(() => {
-    // Acest useEffect va rula atunci când proc se schimbă
-    // Poți face orice alte acțiuni aici, cum ar fi apelarea altor funcții sau setarea altor stări
     console.log('Valoarea lui proc a fost actualizată:', proc);
   }, [proc]);
 
