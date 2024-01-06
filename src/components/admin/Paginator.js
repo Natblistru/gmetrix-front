@@ -54,7 +54,7 @@ const Paginator = ({ pagination, pageChanged, totalItems }) => {
                 })}
 
                 <li className={"page-item" + (pagination.current_page === pagination.last_page ? " disabled" : "")}>
-                    <a className="page-link" href="#" onClick={() => pageChanged(pagination.current_page + 1)}>
+                    <a className="page-link" href="#" onClick={() => pageChanged(Number(pagination.current_page) + 1)}>
                         Next
                     </a>
                 </li>

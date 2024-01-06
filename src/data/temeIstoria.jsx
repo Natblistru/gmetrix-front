@@ -597,7 +597,7 @@ let temeIstoria = [
                     subjectID: "1",
                     subtitleID: "1",
                     titleID: "1",
-                    cerinte: "Persoana reprezentată în imagine:",
+                    cerinte: "Verifică corectitudinea afirmațiilor:",
                     answers: [
                       {
                         text: "România a intrat în Primul Război Mondial în anul 1916",

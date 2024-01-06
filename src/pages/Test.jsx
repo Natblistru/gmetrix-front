@@ -70,7 +70,7 @@ useEffect(() => {
 
   useEffect(() => {
     const fetchData = async () => {
-      if (correctAnswer) {
+      if (correctAnswer !== null) {
           console.log(stateData.currentTests)
           console.log(currentTestIndex)
           let firstTestItemComplexity = stateData.currentTests[currentTestIndex].order_number_options[0]?.test_item_complexity;
