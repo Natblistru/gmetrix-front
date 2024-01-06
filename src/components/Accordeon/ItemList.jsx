@@ -48,6 +48,37 @@ const ItemList = ({ list, className, type, results, onItemClick }) => {
   const parts = stateData.currentTheme.path_tema.split("/");
   const addressDisciplina = "/" + parts[1];
   const addressSubtitle = "/" + parts.slice(2).join("/");
+
+  function getTitle(evaluation) {
+    if (evaluation.student_procent === 100) {
+      return "Cel mai bun rezultat";
+    } else if (evaluation.student_procent > 0) {
+      return "Continuă să încerci!";
+    } else {
+      return "Incearca, nu rata!";
+    }
+  }
+  
+  function getPointType(studentProcent) {
+    if (studentProcent === 100) {
+      return "full";
+    } else if (studentProcent > 0) {
+      return "half";
+    } else {
+      return "empty";
+    }
+  }
+  
+  function getEarnedPoints(studentProcent, totalPoints) {
+    if (studentProcent > 0) {
+      return Math.round(studentProcent * totalPoints / 100);
+    } else {
+      return 0;
+    }
+  }
+
+  console.log(stateData.evaluations1)
+  console.log(listItems)
   return (
     <div className={classes}>
       {listItems
@@ -62,6 +93,7 @@ const ItemList = ({ list, className, type, results, onItemClick }) => {
         } else if(type == "subtopic") {
           procent = subtitle.procentSubtopic;
         } else if (type == "exam") {
+          // classNameProcent = "svg-sprite-vs-small result-perfect";
         }
         if(procent == 100) {
           classNameProcent = "svg-sprite-vs-small result-perfect";
@@ -88,7 +120,21 @@ const ItemList = ({ list, className, type, results, onItemClick }) => {
                 )}
               </div>
             </div>
-            <div className={classNameProcent}></div>
+            <div className={classNameProcent}>
+            {subtitle.path && subtitle.path.includes("/examen-subiect") && (
+              <>
+                {stateData[`evaluations${subtitle.path.charAt(subtitle.path.length - 1)}`].map((evaluation, index) => (
+                  <div key={index} className="tbl-points" title={getTitle(evaluation)} style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+                    <div className={`svg-sprite-vs-points profile-point-${getPointType(evaluation.student_procent)}`}></div>
+                    <span className="points">
+                      <span className="earned"> {getEarnedPoints(evaluation.student_procent, stateData[`evaluations${subtitle.path.charAt(subtitle.path.length - 1)}`].length)}</span> /{" "}
+                      <span className="max">{stateData[`evaluations${subtitle.path.charAt(subtitle.path.length - 1)}`].length}</span>
+                    </span>
+                  </div>
+                ))}
+              </>
+            )}
+            </div>
           </div>
         );
       })}
