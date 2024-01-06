@@ -52,7 +52,7 @@ useEffect(() => {
     setCurrentTestIndex(indexElementCautat);
     setCurrentList1(stateData.currentTopic.tests[indexElementCautat]);
     if(loading) {
-      setProc(stateData.currentTopic.tests[indexElementCautat].testResult*100);
+      setProc(stateData.currentTopic.tests[indexElementCautat].testResult*100/stateData.currentTopic.tests[indexElementCautat].complexityNumber);
       console.log(stateData.currentTopic.tests[indexElementCautat])
       setLoading(false)
     }

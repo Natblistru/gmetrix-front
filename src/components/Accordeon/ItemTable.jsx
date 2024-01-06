@@ -90,13 +90,14 @@ const TableRow = (props) => {
       {/* //test cu raspuns partial */}
       {/* {console.log(rowData.testResult < rowData.complexityNumber && rowData.testResult > 0)} */}
       {rowData.testResult < rowData.complexityNumber && rowData.testResult > 0 && (
-            <div className="tbl-points" title="Cel mai bun rezultat">
+            <div className="tbl-points" title="Continuă să încerci!">
               <div className="svg-sprite-vs-points profile-point-half"></div>
               <span className="points">
                 <span className="earned">
                   {" "}
-                  {Math.round(rowData.testResult * (rowData.length * rowData.complexityNumber))}
-                  {/* {Math.round(sumProc(rowData.subjectID, rowData.id, rowData) * (rowData.quizArray.length * rowData.complexityNumber) / 100)} */}
+                  {Math.round(rowData.testResult * (rowData.length))}
+
+                  {/* {Math.round(rowData.testResult * (rowData.length * rowData.complexityNumber))} */}
                 </span>{" "}
                 /{" "}
                 <span className="max">
@@ -107,7 +108,7 @@ const TableRow = (props) => {
           )}
       {/* //test cu raspuns minimal=0 */}
       {rowData.testResult == 0 && (
-        <div className="tbl-points" title="Cel mai bun rezultat">
+        <div className="tbl-points" title="Incearca, nu rata!">
           <div className="svg-sprite-vs-points profile-point-empty"></div>
           <span className="points">
             <span className="earned"> 0</span> /{" "}
