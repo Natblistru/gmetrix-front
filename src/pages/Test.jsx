@@ -159,6 +159,34 @@ useEffect(() => {
         console.error(error);
       } 
 
+      try {
+        const formDataArray = testItems.map(item => {
+          const formData = new FormData();
+          formData.append('student_id', 1 );
+          formData.append('order_number', item.order_number );
+          formData.append('test_item_id', item.test_item_id );
+          formData.append('formative_test_id', item.formative_test_id );   
+          formData.append('score', 0 );
+          formData.append('status', 0);
+          return formData;
+        });
+      
+        axios.all(formDataArray.map(formData => axios.post('http://localhost:8000/api/update-student-formative-test-option', formData)))
+        .then(axios.spread((...responses) => {
+          const successResponses = responses.filter(response => response.data.status === 200);
+          const errorResponses = responses.filter(response => response.data.status === 404);
+          console.log(responses)
+          if (successResponses.length > 0) {
+            console.log("Successfully processed ", successResponses.lengt, " out of ", responses.length, " requests")
+          }
+          errorResponses.forEach(response => {
+            console.log(response.data.errors)
+          })
+        }));
+      } catch (error) {
+        console.error(error);
+      } 
+
     } else {
       setCurrentItemIndex(currentItemIndex + 1)
     }
