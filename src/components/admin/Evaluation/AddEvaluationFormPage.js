@@ -337,7 +337,7 @@ function AddEvaluationFormPage() {
   return (
     <div className="container-fluid px4">
       <h2 className="m-3">Add Evaluation Form Page
-        <Link to="/admin/view-evaluation-answer" type="button" className="btnBts btn-primary text-white px-4 m-3 float-end">BACK to List</Link>
+        <Link to="/admin/view-evaluation-form-page" type="button" className="btnBts btn-primary text-white px-4 m-3 float-end">BACK to List</Link>
       </h2>
 
         <ul className="navSide nav-tabs" id="myTab" role="tablist">

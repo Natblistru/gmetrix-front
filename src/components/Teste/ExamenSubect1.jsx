@@ -209,6 +209,11 @@ const ExamenSubect1 = ({ raspunsuri }) => {
                     className="img-subject"
                     src={`http://localhost:8000/${process.env.PUBLIC_URL + quizArray[currentIndex]?.img}`}
                     alt=""
+                    style={{
+                      width: isNaN(parseInt(quizArray[currentIndex]?.procent_paper, 10))
+                        ? '30%'
+                        : `${100 - parseInt(quizArray[currentIndex]?.procent_paper, 10)}%`
+                    }}
                   />
                 </div>
               </ItemText>

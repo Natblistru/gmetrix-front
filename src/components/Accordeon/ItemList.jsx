@@ -49,33 +49,34 @@ const ItemList = ({ list, className, type, results, onItemClick }) => {
   const addressDisciplina = "/" + parts[1];
   const addressSubtitle = "/" + parts.slice(2).join("/");
 
-  function getTitle(evaluation) {
-    if (evaluation.student_procent === 100) {
+  function getTitle(averageStudentProcent) {
+    if (averageStudentProcent == 100) {
       return "Cel mai bun rezultat";
-    } else if (evaluation.student_procent > 0) {
+    } else if (averageStudentProcent > 0) {
       return "Continuă să încerci!";
     } else {
       return "Incearca, nu rata!";
     }
   }
   
-  function getPointType(studentProcent) {
-    if (studentProcent === 100) {
+  function getPointType(averageStudentProcent) {
+    if (averageStudentProcent == 100) {
       return "full";
-    } else if (studentProcent > 0) {
+    } else if (averageStudentProcent > 0) {
       return "half";
     } else {
       return "empty";
     }
   }
   
-  function getEarnedPoints(studentProcent, totalPoints) {
-    if (studentProcent > 0) {
-      return Math.round(studentProcent * totalPoints / 100);
+  function getEarnedPoints(averageStudentProcent, totalPoints) {
+    if (averageStudentProcent > 0) {
+      return Math.round(averageStudentProcent * totalPoints / 100);
     } else {
       return 0;
     }
   }
+  
 
   console.log(stateData.evaluations1)
   console.log(listItems)
@@ -98,7 +99,7 @@ const ItemList = ({ list, className, type, results, onItemClick }) => {
         if(procent == 100) {
           classNameProcent = "svg-sprite-vs-small result-perfect";
         }
-        // console.log(subtitle)
+        console.log(stateData.evaluations1)
         const dynamicPath = `${addressDisciplina}${addressSubtitle}${subtitle_path}?teacher=${teacherVideo}&level=1&disciplina=${stateData.currentSubject.subject_id}&theme=${stateData.currentTheme.tema_id}`;       
         return (
           <div key={idx} className="subject-item" onClick={() => onItemClick && onItemClick(idx)}>
@@ -121,20 +122,29 @@ const ItemList = ({ list, className, type, results, onItemClick }) => {
               </div>
             </div>
             <div className={classNameProcent}>
-            {subtitle.path && subtitle.path.includes("/examen-subiect") && (
-              <>
-                {stateData[`evaluations${subtitle.path.charAt(subtitle.path.length - 1)}`].map((evaluation, index) => (
-                  <div key={index} className="tbl-points" title={getTitle(evaluation)} style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
-                    <div className={`svg-sprite-vs-points profile-point-${getPointType(evaluation.student_procent)}`}></div>
-                    <span className="points">
-                      <span className="earned"> {getEarnedPoints(evaluation.student_procent, stateData[`evaluations${subtitle.path.charAt(subtitle.path.length - 1)}`].length)}</span> /{" "}
-                      <span className="max">{stateData[`evaluations${subtitle.path.charAt(subtitle.path.length - 1)}`].length}</span>
-                    </span>
-                  </div>
-                ))}
-              </>
-            )}
+              {subtitle.path && subtitle.path.includes("/examen-subiect") && (
+                <>
+                  {(() => {
+                    const evaluationsArray = stateData[`evaluations${subtitle.id}`];
+
+                    // Calculăm media student_procent pentru evaluationsArray
+                    const totalStudentProcent = evaluationsArray.reduce((sum, evalItem) => sum + parseFloat(evalItem.student_procent), 0);
+                    const averageStudentProcent = totalStudentProcent / evaluationsArray.length;
+
+                    return (
+                      <div key={idx} className="tbl-points" title={getTitle(averageStudentProcent)} style={{display: 'flex', gap: '10px', alignItems: 'center'}}>
+                        <div className={`svg-sprite-vs-points profile-point-${getPointType(averageStudentProcent)}`}></div>
+                        <span className="points">
+                          <span className="earned"> {getEarnedPoints(averageStudentProcent, evaluationsArray.length)}</span> /{" "}
+                          <span className="max">{evaluationsArray.length}</span>
+                        </span>
+                      </div>
+                    );
+                  })()}
+                </>
+              )}
             </div>
+
           </div>
         );
       })}
