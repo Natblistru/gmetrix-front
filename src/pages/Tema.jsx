@@ -9,7 +9,7 @@ import Breadcrumb from "../components/Breadcrumb";
 import Wrapper from "../components/Wrapper";
 import TitleBox from "../components/TitleBox";
 import ListAccordeon from "../components/Accordeon/ListAccordeon";
-import { fetchTheme } from "../routes/api"
+import { fetchTheme, fetchEvaluation1, fetchEvaluation2, fetchEvaluation3 } from "../routes/api"
 import "../index.css";
 
 const Tema = () => {
@@ -42,9 +42,9 @@ const Tema = () => {
     fetchTheme(teacher, theme, subject_id, level_id, dispatchData);
     fetchThemeVideo(theme);
     fetchEvaluations(theme);
-    fetchEvaluation1(theme);
-    fetchEvaluation2(theme);
-    fetchEvaluation3(theme);
+    fetchEvaluation1(theme, subject_id, level_id, dispatchData);
+    fetchEvaluation2(theme, subject_id, level_id, dispatchData);
+    fetchEvaluation3(theme, subject_id, level_id, dispatchData);
 console.log("FETCH THEME")
     const pathToFind = `/${disciplina}/${address}`;
 
@@ -101,47 +101,7 @@ const fetchEvaluations = async (theme) => {
   }
 }
 
-const fetchEvaluation1 = async (theme) => {
-  try {
-
-      const res = await axios.get(`http://localhost:8000/api/themeevaluation1?level=1&disciplina=${stateData.currentSubject.subject_id}&theme=${theme}`);
-      dispatchData({
-          type: "FETCH_EVALUATIONS_1",
-          payload: res.data
-      })
-  } catch (err) {
-      console.error(err);
-  }
-}
-
-const fetchEvaluation2 = async (theme) => {
-  try {
-
-      const res = await axios.get(`http://localhost:8000/api/themeevaluation2?level=1&disciplina=${stateData.currentSubject.subject_id}&theme=${theme}`);
-
-      dispatchData({
-          type: "FETCH_EVALUATIONS_2",
-          payload: res.data
-      })
-  } catch (err) {
-      console.error(err);
-  }
-}
-
-const fetchEvaluation3 = async (theme) => {
-  try {
-
-      const res = await axios.get(`http://localhost:8000/api/themeevaluation3?level=1&disciplina=${stateData.currentSubject.subject_id}&theme=${theme}`);
-      dispatchData({
-          type: "FETCH_EVALUATIONS_3",
-          payload: res.data
-      })
-  } catch (err) {
-      console.error(err);
-  }
-}
-
-  const handleProgressThemaRecorded = (updatedThemaProgress) => {
+ const handleProgressThemaRecorded = (updatedThemaProgress) => {
     if(temaObject)
       setProc(updatedThemaProgress);
   };

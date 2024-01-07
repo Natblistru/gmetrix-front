@@ -131,7 +131,8 @@ const ModalCalculator = ({ subject, currentIndex, onClick, idRaspuns, raspunsuri
       const { option_id, ...rest } = item;
       return { ...rest, student_id: stateData.currentStudent };
     });
-    // console.log(selectedOptionsToDB);
+    const options = [...selectedOptionsToDB];
+    // console.log(options)    
     trimiteDateLaBackend(selectedOptionsToDB);
 
     update({ ...rasp, id: idRaspuns });
@@ -139,7 +140,8 @@ const ModalCalculator = ({ subject, currentIndex, onClick, idRaspuns, raspunsuri
     SetRasp(raspInitialArr);
     setSelectedOptions(initialSelectedOptions);
     const notaResult = nota.reduce((accumulator, currentValue) => accumulator + currentValue, 0)
-    onClick(notaResult);
+
+    onClick(notaResult, options);
   };
 
 
