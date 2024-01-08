@@ -127,14 +127,28 @@ const ExamenSubect1 = ({ raspunsuri }) => {
     setIsOpen(false);
   };
 
-  const handleTryAgain = () => {
+  const handleTryAgain = async () => {
 
     let itemQuantity = quizArray.length;
     if(itemQuantity - 1 == currentIndex) {
       setCurrentIndex(0)
-      console.log(selectedOptions)
+      let studentResults = []
       try {
-        const formDataArray = selectedOptions.map(column => {
+        const response = await axios.post('http://localhost:8000/api/student-evaluation-results', {
+          theme_id: stateData.currentSubject.tema_id,
+          subject_id: stateData.currentSubject.subject_id,
+          study_level_id: stateData.currentSubject.study_level_id,
+        });
+    
+        // console.log(response.data);
+        studentResults = response.data.studentEvaluationResults;
+      } catch (error) {
+        console.error('Error fetching data:', error.message);
+    
+      }
+      console.log(studentResults );
+      try {
+        const formDataArray = studentResults.map(column => {
           const formData = new FormData();
           formData.append('student_id', column.student_id );
           formData.append('points', 0 );
@@ -228,6 +242,26 @@ const ExamenSubect1 = ({ raspunsuri }) => {
     });
     setShowAutoevaluare(false);
   }
+
+  const handleNext = () => {
+
+    let itemQuantity = quizArray.length;
+    if(itemQuantity - 1 == currentIndex) {
+      setCurrentIndex(0)
+     } else {
+      setCurrentIndex(currentIndex + 1)
+    }
+  };
+
+  const handlePrevious = () => {
+    // console.log("quizArray", quizArray)
+    let itemQuantity = quizArray.length;
+    if (currentIndex === 0) {
+      setCurrentIndex(itemQuantity - 1);
+    } else {
+      setCurrentIndex(currentIndex - 1);
+    }
+  };
 
   useEffect(() => {
     const theme = stateData.currentTheme.tema_id
@@ -343,6 +377,20 @@ const ExamenSubect1 = ({ raspunsuri }) => {
                 </button>
               </ItemAccordeon>
             )}
+            <div className="nav-container">
+                <div className="nav-link" >
+                  <div onClick={handlePrevious}>
+                    <img src={process.env.PUBLIC_URL + "/images/navigation-left.png"} alt="" />
+                    <p>Sarcina precedentă</p>
+                  </div>
+                </div>
+                <div className="nav-link" >
+                  <div onClick={handleNext} >        
+                    <img src={process.env.PUBLIC_URL + "/images/navigation-right.png"} alt="" />
+                    <p>Sarcina următoare</p>
+                  </div>
+                </div>
+            </div>
           </>
         )}
       </Wrapper>

@@ -125,7 +125,7 @@ const ModalCalculator = ({ subject, currentIndex, onClick, idRaspuns, raspunsuri
     } else SetRasp(Array(currentItem.answers.length).fill(0));
   }, []);
 
-  const handleResponse = () => {
+  const handleResponse = async () => {
     // console.log(selectedOptions)
     const selectedOptionsToDB = selectedOptions.map(item => {
       const { option_id, ...rest } = item;
@@ -133,7 +133,7 @@ const ModalCalculator = ({ subject, currentIndex, onClick, idRaspuns, raspunsuri
     });
     const options = [...selectedOptionsToDB];
     // console.log(options)    
-    trimiteDateLaBackend(selectedOptionsToDB);
+    await trimiteDateLaBackend(selectedOptionsToDB);
 
     update({ ...rasp, id: idRaspuns });
 
@@ -169,7 +169,7 @@ const ModalCalculator = ({ subject, currentIndex, onClick, idRaspuns, raspunsuri
     const updatedRasp = [...rasp]; 
     updatedRasp[idx] = e.target.value; 
 
-    SetRasp(updatedRasp); // Устанавливаем обновленный массив в состояние
+    SetRasp(updatedRasp);
   };
 
   return (

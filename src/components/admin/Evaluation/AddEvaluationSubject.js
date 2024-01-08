@@ -149,6 +149,7 @@ function AddEvaluationSubject() {
             }
             const formData = new FormData();
             formData.append('name', selectedItem.name );
+            formData.append('title', `${selectedItem.name}, ${selectedItem.evaluation_name}` );
             formData.append('evaluation_id', selectedItem.evaluation_id );
             formData.append('order_number', order_number );
             formData.append('path', path );
@@ -232,11 +233,11 @@ function AddEvaluationSubject() {
   const submitEvaluation = (e) => {
     e.preventDefault();
 
-    let subject_study_level_name = "";
-    const foundEvaluation = subjectList.find((subject) => subject.id == evaluationSubjectInput.subject_study_level_id);
+    let evaluation_name = "";
+    const foundEvaluation = evaluationList.find((evaluation) => evaluation.id == evaluationSubjectInput.evaluation_id);
         
     if (foundEvaluation) {
-      subject_study_level_name = foundEvaluation.name;
+      evaluation_name = foundEvaluation.name;
     }
     let order_number = null;
     let path = "";
@@ -253,6 +254,7 @@ function AddEvaluationSubject() {
 
     const formData = new FormData();
     formData.append('name', evaluationSubjectInput.name );
+    formData.append('title', `${evaluationSubjectInput.name}, ${evaluation_name}` );
     formData.append('evaluation_id',evaluationSubjectInput.evaluation_id );
     formData.append('order_number',order_number );
     formData.append('path',path );

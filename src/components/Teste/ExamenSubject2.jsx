@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
+import axios from "axios";
 import ContextData from "../context/ContextData";
 import { useParams, useHistory } from "react-router-dom";
 // import { RaspunsuriCtx } from "../context/Raspunsuri";
 import { connect } from "react-redux"
+import { fetchEvaluation2 } from "../../routes/api"
 // import temeIstoriArray from "../../data/temeIstoria";
 import Navbar from "../layouts/Navbar";
 import Wrapper from "../Wrapper";
@@ -32,37 +34,38 @@ const ExamenSubect2 = ({raspunsuri}) => {
   const [isAnswered, setIsAnswered] = useState(false);
   const [showResponse, setShowResponse] = useState(false);
   const [showAutoevaluare, setShowAutoevaluare] = useState(false)
+  const [selectedOptions, setSelectedOptions] = useState([])
   const speed = 50;
 
   const history = useHistory();
 
-  function findObjectWithAddress(obj) {
-    for (let key in obj) {
-      if (typeof obj[key] === "object") {
-        const found = findObjectWithAddress(obj[key]);
-        if (found) {
-          return found;
-        }
-      } else if (
-        key === "addressAplicatie" &&
-        obj[key] === "/" + address + "/examen-subiect2"
-      ) {
-        return obj;
-      }
-    }
-    return null;
-  }
-
   let quizArray = stateData.evaluations2;
-  // console.log(quizArray[currentIndex])
+
   useEffect(() => {
-    // const foundItem = findObjectWithAddress(temeIstoriArray);
-    // if (foundItem) {
-    //   setItem(foundItem);
-    // } else {
-    //   history.push("/error");
-    // }
+  const fetchData = async () => {
+    try {
+      // console.log("stateData.evaluations2[1]", stateData.evaluations2);
+      const theme = stateData.currentTheme.tema_id;
+      const subject_id = stateData.currentSubject.subject_id;
+      const level_id = 1;
+
+      await fetchEvaluation2(theme, subject_id, level_id, dispatchData);
+      quizArray = stateData.evaluations2;
+      // console.log("stateData.evaluations2[2]", stateData.evaluations2);
+    } catch (error) {
+      console.error('Eroare în timpul recuperării datelor:', error);
+    }
+  };
+
+  fetchData();
   }, []);
+
+  useEffect(()=>{
+    quizArray = stateData.evaluations2;
+    // console.log("stateData.evaluations2", stateData.evaluations2)
+  },[stateData.evaluations2])
+
+  const [proc, setProc] = useState(quizArray[currentIndex]?.student_procent);
 
   const initialization = () => {
     const newArray = Array(
@@ -127,10 +130,60 @@ const ExamenSubect2 = ({raspunsuri}) => {
     setIsOpen(false);
   };
 
-  const handleTryAgain = () => {
-    setCurrentItem(
-      quizArray[currentIndex].length - 1 === currentItem ? 0 : currentItem + 1
-    );
+  const handleTryAgain = async () => {
+
+    let itemQuantity = quizArray.length;
+    if(itemQuantity - 1 == currentIndex) {
+      setCurrentIndex(0)
+
+      let studentResults = []
+      try {
+        const response = await axios.post('http://localhost:8000/api/student-evaluation-results', {
+          theme_id: stateData.currentSubject.tema_id,
+          subject_id: stateData.currentSubject.subject_id,
+          study_level_id: stateData.currentSubject.study_level_id,
+        });
+    
+        // console.log(response.data);
+        studentResults = response.data.studentEvaluationResults;
+      } catch (error) {
+        console.error('Error fetching data:', error.message);
+    
+      }
+      console.log(studentResults );
+      // try {
+        const formDataArray = studentResults.map(column => {
+          const formData = new FormData();
+          formData.append('student_id', column.student_id );
+          formData.append('points', 0 );
+          formData.append('evaluation_answer_option_id', column.evaluation_answer_option_id );
+          formData.append('evaluation_answer_id', column.answer_id );
+          formData.append('status', 0 );
+          return formData;
+        });
+        console.log(formDataArray)
+
+        axios.all(formDataArray.map(formData => axios.post('http://localhost:8000/api/update-student-evaluation-answers', formData)))
+        .then(axios.spread((...responses) => {
+          const successResponses = responses.filter(response => response.data.status === 200);
+          const errorResponses = responses.filter(response => response.data.status === 404);
+          console.log(responses)
+          if (successResponses.length > 0) {
+            console.log("Successfully processed ", successResponses.lengt, " out of ", responses.length, " requests")
+            setProc(0)
+          }
+          errorResponses.forEach(response => {
+            console.log(response.data.errors)
+          })
+        }));
+      // } catch (error) {
+      //   console.error(error);
+      // } 
+
+    } else {
+      setCurrentIndex(currentIndex + 1)
+    }
+
     setIsAnswered(false);
     setShowResponse(false);
     initialization();
@@ -138,17 +191,27 @@ const ExamenSubect2 = ({raspunsuri}) => {
     setIdRaspuns(null);
   };
 
-  const handleIndexTryAgain = () => {
-    setCurrentIndex(
-      quizArray?.length - 1 === currentIndex ? 0 : currentIndex + 1
-   );
-   setIsAnswered(false);
-   setShowResponse(false);
-   initialization();
-   setCurrentTextIndex(0);
-   setCurrentItem(0);
-   setIdRaspuns(null);
-  }
+  const handleNext = () => {
+    console.log(stateData.currentSubject.subject_id)
+    console.log(stateData.currentSubject.study_level_id)
+    console.log(stateData.currentSubject.tema_id)
+    let itemQuantity = quizArray.length;
+    if(itemQuantity - 1 == currentIndex) {
+      setCurrentIndex(0)
+     } else {
+      setCurrentIndex(currentIndex + 1)
+    }
+  };
+
+  const handlePrevious = () => {
+    // console.log("quizArray", quizArray)
+    let itemQuantity = quizArray.length;
+    if (currentIndex === 0) {
+      setCurrentIndex(itemQuantity - 1);
+    } else {
+      setCurrentIndex(currentIndex - 1);
+    }
+  };
 
   const handleVerifica = () => {
     setShowResponse(true);
@@ -158,40 +221,66 @@ const ExamenSubect2 = ({raspunsuri}) => {
     setShowAutoevaluare(true);
   }
 
-  const onCloseAutoevaluare = (notaResult) => {
+  const onCloseAutoevaluare = async (notaResult, newOptions) => {
+
+    const theme = stateData.currentTheme.tema_id
+    const subject_id = stateData.currentSubject.subject_id;
+    const level_id = 1;
+
+    await fetchEvaluation2(theme, subject_id, level_id, dispatchData);
+
+    // console.log("stateData.evaluations2",stateData.evaluations2)
+
+    const quizItem = stateData.evaluations2;
+    // console.log(quizItem)   
+
+    const totalStudentProcent = quizItem.reduce((sum, quizItem, idx) => {
+      const studentProcent = idx === currentIndex
+        ? notaResult * 100 / parseFloat(quizItem.maxPoints)
+        : parseFloat(quizItem.student_procent);
+
+      return sum + studentProcent;
+    }, 0);
+
+    const procent = Math.round(totalStudentProcent / quizArray.length);
+    setProc(procent)
+    // console.log("procent",procent)
+
+    setSelectedOptions((prevOptions) => {
+      let updatedOptions = [...prevOptions];
+
+      newOptions.forEach((newOption) => {
+        const existingIndex = updatedOptions.findIndex(
+          (option) => option.answer_id == newOption.answer_id && option.student_id == newOption.student_id
+        );
+
+        if (existingIndex !== -1) {
+          updatedOptions = updatedOptions.map((option, index) =>
+            index == existingIndex
+              ? { ...option, points: newOption.points, evaluation_answer_option_id: newOption.evaluation_answer_option_id }
+              : option
+          );
+        } else {
+          updatedOptions.push({ ...newOption });
+        }
+      });
+
+      return updatedOptions;
+    });
     setShowAutoevaluare(false);
-    // if(notaResult!==undefined){
-    //   const userItems = exams.items.find(
-    //     (el) => el.user === "Current user"
-    //   );
-    //   if (userItems) {
-    //     const resultItem = userItems.exams.find(
-    //       (el) =>
-    //         el.id == item.subtitleID &&
-    //         el.subiect == "2" &&
-    //         el.superitem == currentIndex + 1 &&
-    //         el.item == currentItem + 1
-    //     );
-    //     if (resultItem) {
-    //       updateExam({
-    //         id: item.subtitleID,
-    //         subiect: "2",
-    //         superitem: currentIndex + 1,
-    //         item: currentItem + 1,            
-    //         proc: Math.round(notaResult*100/item.quizArray[currentIndex].item[currentItem].barem.maxPoints),
-    //       });
-    //     } else {
-    //       addExam({
-    //         id: item.subtitleID,
-    //         subiect: "2",
-    //         superitem: currentIndex + 1,
-    //         item: currentItem + 1,            
-    //         proc: Math.round(notaResult*100/item.quizArray[currentIndex].item[currentItem].barem.maxPoints),
-    //       });
-    //     }
-    //   }
-    //  }
   }
+
+  useEffect(() => {
+    // console.log("stateData.evaluations2",stateData.evaluations2)
+    const theme = stateData.currentTheme.tema_id
+    const subject_id = stateData.currentSubject.subject_id;
+    const level_id = 1;
+
+    fetchEvaluation2(theme, subject_id, level_id, dispatchData);
+    console.log('Valoarea lui proc a fost actualizată:', proc);
+    // console.log("stateData.evaluations2",stateData.evaluations2)
+
+  }, [proc]);
 
   return (
     <>
@@ -200,7 +289,7 @@ const ExamenSubect2 = ({raspunsuri}) => {
         {quizArray && (
           <>
             <Breadcrumb step={2} />
-            <TitleBox className="teme-container" proc={quizArray[currentIndex]?.student_procent}>{quizArray[currentIndex]?.name}</TitleBox>
+            <TitleBox className="teme-container" proc={proc}>{quizArray[currentIndex]?.name}</TitleBox>
             <ItemAccordeon
               titlu={`Cerințele sarcinii (${currentIndex + 1}/${
                 quizArray.length
@@ -268,8 +357,8 @@ const ExamenSubect2 = ({raspunsuri}) => {
             </ItemAccordeon>
             {showResponse && (
               <ItemAccordeon
-                titlu={`Rezolvarea item (${currentItem + 1}/${
-                  quizArray[currentIndex].length
+                titlu={`Rezolvarea item (${currentIndex + 1}/${
+                  quizArray.length
                 }):`}
                 open={true}
               >
@@ -300,11 +389,22 @@ const ExamenSubect2 = ({raspunsuri}) => {
                 <button onClick={handleTryAgain} className="btn-test">
                   Urmatorul item!
                 </button>
-                {/* {item.quizArray[currentIndex].item.length - 1 === currentItem && (<button onClick={handleIndexTryAgain} className="btn-test">
-                  Urmatoarea sarcina!
-                </button>) }              */}
               </ItemAccordeon>
             )}
+            <div className="nav-container">
+                <div className="nav-link" >
+                  <div onClick={handlePrevious}>
+                    <img src={process.env.PUBLIC_URL + "/images/navigation-left.png"} alt="" />
+                    <p>Sarcina precedentă</p>
+                  </div>
+                </div>
+                <div className="nav-link" >
+                  <div onClick={handleNext} >        
+                    <img src={process.env.PUBLIC_URL + "/images/navigation-right.png"} alt="" />
+                    <p>Sarcina următoare</p>
+                  </div>
+                </div>
+            </div>
           </>
         )}
       </Wrapper>

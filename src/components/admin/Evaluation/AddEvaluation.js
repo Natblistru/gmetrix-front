@@ -228,7 +228,7 @@ function AddEvaluation() {
     formData.append('subject_study_level_id',evaluationInput.subject_study_level_id );
     formData.append('status',allCheckboxes.status == true ? 1 : 0);
 
-    // console.log(formData)
+    console.log(formData)
 
     axios.post(`http://localhost:8000/api/store-evaluation`, formData).then(res => {
       if(res.data.status === 201)
@@ -306,12 +306,14 @@ function AddEvaluation() {
               <div className="form-group m-3">
                 <label>Select Type</label>
                   <select name="type" onChange={handleInput} value={evaluationInput.type} className="form-control">
+                    <option>Select Type</option>
                     <option value="Testare de baza">Testare de baza</option>
                     <option value="Pretestare">Pretestare</option>
                     <option value="Teste pentru exersare1">Teste pentru exersare1</option>
                     <option value="Teste pentru exersare2">Teste pentru exersare2</option>
                     <option value="Suplimentara">Suplimentara</option>
                   </select>
+                  <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.type}</span>
               </div>
             </div>
           </div> 
