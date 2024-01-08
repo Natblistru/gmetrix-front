@@ -138,6 +138,8 @@ const ExamenSubect1 = ({ raspunsuri }) => {
           theme_id: stateData.currentSubject.tema_id,
           subject_id: stateData.currentSubject.subject_id,
           study_level_id: stateData.currentSubject.study_level_id,
+          order_number: 1,
+          studentId: stateData.currentStudent,
         });
     
         // console.log(response.data);
@@ -251,6 +253,7 @@ const ExamenSubect1 = ({ raspunsuri }) => {
      } else {
       setCurrentIndex(currentIndex + 1)
     }
+    setShowResponse(false);
   };
 
   const handlePrevious = () => {
@@ -261,6 +264,7 @@ const ExamenSubect1 = ({ raspunsuri }) => {
     } else {
       setCurrentIndex(currentIndex - 1);
     }
+    setShowResponse(false);
   };
 
   useEffect(() => {

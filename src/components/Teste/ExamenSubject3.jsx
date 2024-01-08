@@ -2,6 +2,8 @@ import React, { useState, useEffect, useContext } from "react";
 import ContextData from "../context/ContextData";
 import { useParams, useHistory, useLocation  } from "react-router-dom";
 import { connect } from "react-redux"
+import { fetchEvaluation3 } from "../../routes/api"
+import axios from "axios";
 // import temeIstoriArray from "../../data/temeIstoria";
 import Navbar from "../layouts/Navbar";
 import Wrapper from "../Wrapper";
@@ -30,45 +32,35 @@ const ExamenSubect3 = ({raspunsuri}) => {
   const [isAnswered, setIsAnswered] = useState(false);
   const [showResponse, setShowResponse] = useState(false);
   const [showAutoevaluare, setShowAutoevaluare] = useState(false)
+  const [selectedOptions, setSelectedOptions] = useState([])
   const speed = 50;
   let theme;
   const history = useHistory();
 
-  function findObjectWithAddress(obj) {
-    for (let key in obj) {
-      if (typeof obj[key] === "object") {
-        const found = findObjectWithAddress(obj[key]);
-        if (found) {
-          return found;
-        }
-      } else if (
-        key === "addressAplicatie" &&
-        obj[key] === "/" + address + "/examen-subiect3"
-      ) {
-        return obj;
-      }
-    }
-    return null;
-  }
+
   let quizArray = stateData.evaluations3;
   // console.log(quizArray[currentIndex])
+
   useEffect(() => {
-    // const foundItem = findObjectWithAddress(temeIstoriArray);
-    // if (foundItem) {
-    //   setItem(foundItem);
-    // } else {
-    //   history.push("/error");
-    // }
+    const fetchData = async () => {
+      try {
+
+        const theme = stateData.currentTheme.tema_id;
+        const subject_id = stateData.currentSubject.subject_id;
+        const level_id = 1;
+  
+        await fetchEvaluation3(theme, subject_id, level_id, dispatchData);
+        quizArray = stateData.evaluations3;
+
+      } catch (error) {
+        console.error('Eroare în timpul recuperării datelor:', error);
+      }
+    };
+  
+    fetchData();
   }, []);
 
-  useEffect(() => {
-    const searchParams = new URLSearchParams(location.search);
-    theme = searchParams.get("theme");
-    const teacher = searchParams.get("teacher");
-
-    // console.log("Parametrul theme:", theme);
-    // console.log("Parametrul teacher:", teacher);
-  }, [location.search]);
+  const [proc, setProc] = useState(quizArray[currentIndex]?.student_procent);
 
   const initialization = () => {
     const newArray = Array(quizArray[currentIndex].form.length).fill("");
@@ -131,10 +123,60 @@ const ExamenSubect3 = ({raspunsuri}) => {
     setIsOpen(false);
   };
 
-  const handleTryAgain = () => {
-    setCurrentIndex(
-      quizArray.length - 1 === currentIndex ? 0 : currentIndex + 1
-    );
+  const handleTryAgain = async () => {
+
+    let itemQuantity = quizArray.length;
+    if(itemQuantity - 1 == currentIndex) {
+      setCurrentIndex(0)
+
+      let studentResults = []
+      try {
+        const response = await axios.post('http://localhost:8000/api/student-evaluation-results', {
+          theme_id: stateData.currentSubject.tema_id,
+          subject_id: stateData.currentSubject.subject_id,
+          study_level_id: stateData.currentSubject.study_level_id,
+          order_number: 3,
+          studentId: stateData.currentStudent,
+        });
+
+        // console.log(response.data);
+        studentResults = response.data.studentEvaluationResults;
+      } catch (error) {
+        console.error('Error fetching data:', error.message);
+
+      }
+      console.log(studentResults );
+
+      const formDataArray = studentResults.map(column => {
+        const formData = new FormData();
+        formData.append('student_id', column.student_id );
+        formData.append('points', 0 );
+        formData.append('evaluation_answer_option_id', column.evaluation_answer_option_id );
+        formData.append('evaluation_answer_id', column.answer_id );
+        formData.append('status', 0 );
+        return formData;
+      });
+      console.log(formDataArray)
+
+      axios.all(formDataArray.map(formData => axios.post('http://localhost:8000/api/update-student-evaluation-answers', formData)))
+      .then(axios.spread((...responses) => {
+        const successResponses = responses.filter(response => response.data.status === 200);
+        const errorResponses = responses.filter(response => response.data.status === 404);
+        console.log(responses)
+        if (successResponses.length > 0) {
+          console.log("Successfully processed ", successResponses.lengt, " out of ", responses.length, " requests")
+          setProc(0)
+        }
+        errorResponses.forEach(response => {
+          console.log(response.data.errors)
+        })
+      }));
+
+
+    } else {
+      setCurrentIndex(currentIndex + 1)
+    }
+
     setIsAnswered(false);
     setShowResponse(false);
     initialization();
@@ -150,40 +192,84 @@ const ExamenSubect3 = ({raspunsuri}) => {
     setShowAutoevaluare(true);
   }
 
-  const onCloseAutoevaluare = (notaResult) => {
+  const onCloseAutoevaluare = async (notaResult, newOptions) => {
+
+    const theme = stateData.currentTheme.tema_id
+    const subject_id = stateData.currentSubject.subject_id;
+    const level_id = 1;
+
+    await fetchEvaluation3(theme, subject_id, level_id, dispatchData);
+
+    // console.log("stateData.evaluations2",stateData.evaluations2)
+
+    const quizItem = stateData.evaluations3;
+    // console.log(quizItem)   
+
+    const totalStudentProcent = quizItem.reduce((sum, quizItem, idx) => {
+      const studentProcent = idx === currentIndex
+        ? notaResult * 100 / parseFloat(quizItem.maxPoints)
+        : parseFloat(quizItem.student_procent);
+
+      return sum + studentProcent;
+    }, 0);
+
+    const procent = Math.round(totalStudentProcent / quizArray.length);
+    setProc(procent)
+    // console.log("procent",procent)
+
+    setSelectedOptions((prevOptions) => {
+      let updatedOptions = [...prevOptions];
+
+      newOptions.forEach((newOption) => {
+        const existingIndex = updatedOptions.findIndex(
+          (option) => option.answer_id == newOption.answer_id && option.student_id == newOption.student_id
+        );
+
+        if (existingIndex !== -1) {
+          updatedOptions = updatedOptions.map((option, index) =>
+            index == existingIndex
+              ? { ...option, points: newOption.points, evaluation_answer_option_id: newOption.evaluation_answer_option_id }
+              : option
+          );
+        } else {
+          updatedOptions.push({ ...newOption });
+        }
+      });
+
+      return updatedOptions;
+    });
     setShowAutoevaluare(false);
-    // if(notaResult!==undefined){
-    //   const userItems = exams.items.find(
-    //     (el) => el.user === "Current user"
-    //   );
-    //   if (userItems) {
-    //     const resultItem = userItems.exams.find(
-    //       (el) =>
-    //         el.id == item.quizArray[currentIndex].subtitleID &&
-    //         el.subiect == "3" &&
-    //         el.superitem == currentIndex + 1 &&
-    //         el.item == currentIndex + 1
-    //     );
-    //     if (resultItem) {
-    //       updateExam({
-    //         id: item.quizArray[currentIndex].subtitleID,
-    //         subiect: "3",
-    //         superitem: currentIndex + 1,
-    //         item: currentIndex + 1,            
-    //         proc: Math.round(notaResult*100/item.quizArray[currentIndex].barem.maxPoints),
-    //       });
-    //     } else {
-    //       addExam({
-    //         id: item.quizArray[currentIndex].subtitleID,
-    //         subiect: "3",
-    //         superitem: currentIndex + 1,
-    //         item: currentIndex + 1,            
-    //         proc: Math.round(notaResult*100/item.quizArray[currentIndex].barem.maxPoints),
-    //       });
-    //     }
-    //   }
-    // }
   }
+
+  const handleNext = () => {
+    let itemQuantity = quizArray.length;
+    if(itemQuantity - 1 == currentIndex) {
+      setCurrentIndex(0)
+     } else {
+      setCurrentIndex(currentIndex + 1)
+    }
+    setShowResponse(false);
+  };
+
+  const handlePrevious = () => {
+    // console.log("quizArray", quizArray)
+    let itemQuantity = quizArray.length;
+    if (currentIndex === 0) {
+      setCurrentIndex(itemQuantity - 1);
+    } else {
+      setCurrentIndex(currentIndex - 1);
+    }
+    setShowResponse(false);
+  };
+
+  useEffect(() => {
+    const theme = stateData.currentTheme.tema_id
+    const subject_id = stateData.currentSubject.subject_id;
+    const level_id = 1;
+
+    fetchEvaluation3(theme, subject_id, level_id, dispatchData);
+    console.log('Valoarea lui proc a fost actualizată:', proc);
+  }, [proc]);
 
   return (
     <>
@@ -192,7 +278,7 @@ const ExamenSubect3 = ({raspunsuri}) => {
         {quizArray && (
           <>
             <Breadcrumb step={2} />
-            <TitleBox className="teme-container" proc={quizArray[currentIndex]?.student_procent}>{quizArray[currentIndex]?.name}</TitleBox>
+            <TitleBox className="teme-container" proc={proc}>{quizArray[currentIndex]?.name}</TitleBox>
             <ItemAccordeon
               titlu={`Cerințele sarcinii (${currentIndex + 1}/${
                 quizArray.length
@@ -203,9 +289,9 @@ const ExamenSubect3 = ({raspunsuri}) => {
                 <p>Studiază sursele:</p>
                 <AccordionSurse data={quizArray[currentIndex].source} />
                 <p>
-                  {quizArray[currentIndex].cerinta}{" "}
+                  {quizArray[currentIndex].afirmatie}{" "}
                   <span style={{ fontStyle: "italic", fontWeight: 'bold' }}>
-                    {quizArray[currentIndex].afirmatie}
+                    {quizArray[currentIndex].cerinta}
                   </span>
                 </p>
                 <div
@@ -304,6 +390,20 @@ const ExamenSubect3 = ({raspunsuri}) => {
                 </button>
               </ItemAccordeon>
             )}
+            <div className="nav-container">
+                <div className="nav-link" >
+                  <div onClick={handlePrevious}>
+                    <img src={process.env.PUBLIC_URL + "/images/navigation-left.png"} alt="" />
+                    <p>Sarcina precedentă</p>
+                  </div>
+                </div>
+                <div className="nav-link" >
+                  <div onClick={handleNext} >        
+                    <img src={process.env.PUBLIC_URL + "/images/navigation-right.png"} alt="" />
+                    <p>Sarcina următoare</p>
+                  </div>
+                </div>
+            </div>
           </>
         )}
       </Wrapper>

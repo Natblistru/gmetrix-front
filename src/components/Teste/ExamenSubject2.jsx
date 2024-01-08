@@ -142,6 +142,8 @@ const ExamenSubect2 = ({raspunsuri}) => {
           theme_id: stateData.currentSubject.tema_id,
           subject_id: stateData.currentSubject.subject_id,
           study_level_id: stateData.currentSubject.study_level_id,
+          order_number: 2,
+          studentId: stateData.currentStudent,
         });
     
         // console.log(response.data);
@@ -192,15 +194,13 @@ const ExamenSubect2 = ({raspunsuri}) => {
   };
 
   const handleNext = () => {
-    console.log(stateData.currentSubject.subject_id)
-    console.log(stateData.currentSubject.study_level_id)
-    console.log(stateData.currentSubject.tema_id)
     let itemQuantity = quizArray.length;
     if(itemQuantity - 1 == currentIndex) {
       setCurrentIndex(0)
      } else {
       setCurrentIndex(currentIndex + 1)
     }
+    setShowResponse(false);
   };
 
   const handlePrevious = () => {
@@ -211,6 +211,7 @@ const ExamenSubect2 = ({raspunsuri}) => {
     } else {
       setCurrentIndex(currentIndex - 1);
     }
+    setShowResponse(false);
   };
 
   const handleVerifica = () => {
