@@ -54,9 +54,17 @@ function Navbar() {
     )
   } else {
       AuthButtons = (
-        <li className="nav-item">
-          <button type="button" onClick={logoutSubmit} className="nav-link btnBts btn-danger btn-sm text-white">Logout</button>
+        <ul className="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+        <li className="nav-item dropdown">
+            <Link to="#" className="nav-linkSide dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i className="fas fa-user fa-fw"></i></Link>
+            <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                <li><Link className="dropdown-item" to="/">Home</Link></li>                    
+                <li><Link className="dropdown-item" to="/user/accountsettings">Profile</Link></li>
+                <li><hr className="dropdown-divider" /></li>
+                <button type="link" onClick={logoutSubmit} style={{color: '#2bbbf1', fontSize: '1rem'}} className="dropdown-item">Logout</button>
+            </ul>
         </li>
+      </ul>
       )
   }
 
@@ -76,9 +84,9 @@ function Navbar() {
             <li className="nav-item">
               <Link className="nav-link active" to="/">Home</Link>
             </li>
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <Link className="nav-link" to="#">Collection</Link>
-            </li>
+            </li> */}
             {AuthButtons}
           </ul>
         </div>

@@ -34,6 +34,7 @@ import AdminPrivateRoute from "./routes/AdminPrivateRoute.js";
 import Page403 from "./components/errors/Page403.js";
 import Page404 from "./components/errors/Page404.js";
 import ResetPassword from "./components/auth/ResetPassword.js";
+import UserProfile from "./pages/UserProfile.jsx";
 
 
 const FlipCardsWithRouter = withRouter(FlipCards);
@@ -76,6 +77,7 @@ function App() {
               </Route>
               <Route path="/forgot-password" component={ForgotPassword} />  
               <Route path="/reset-password/:token" component={ResetPassword} /> 
+              <Route path="/user/:activepage" component={UserProfile} /> 
               {/* <Route path="/admin" name="Admin" render={(props) => <MasterLayout {...props}/>} /> */}
               <AdminPrivateRoute path="/admin" name="Admin" />
               <Route path="/istoria/:address/examen-subiect1" component={ExamenSubect1} />

@@ -1,5 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&family=Roboto+Condensed:wght@300;400;700&display=swap");
 
+:root {
+  --col1: #7ED957;
+  --col2: gray;
+  --col3: #cecece;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -26,6 +32,10 @@ body {
 
 .wrapper.large {
   width: 1000px;
+}
+
+.wrapper.shadow {
+  margin-top: 25px;
 }
 
 .card {
@@ -67,9 +77,20 @@ body {
   padding: 40px 45px;
 }
 
+.manuale-container-result {
+  display: flex;
+  gap: 83px;
+  padding: 20px 45px;
+}
+
 div.manual-item {
   text-align: center;
   width: 33%;
+  cursor: pointer;
+}
+
+div.manual-item-result {
+  text-align: center;
   cursor: pointer;
 }
 
@@ -123,19 +144,19 @@ div.manual-item {
   }
 }
 
-.manual-item:hover {
+.manual-item:hover, .manual-item-result:hover {
   -webkit-animation: pulse 1s ease 0s infinite normal;
   -o-animation: pulse 1s ease 0s infinite normal;
   -moz-animation: pulse 1s ease 0s infinite normal;
   animation: pulse 1s ease 0s infinite normal;
 }
 
-.manual-item a {
+.manual-item a,.manual-item-result a {
   text-decoration: none;
   color: inherit;
 }
 
-.manual-item img {
+.manual-item img, .manual-item-result img {
   height: 150px;
   object-fit: cover;
   width: 150px;
@@ -442,6 +463,7 @@ a:focus,
 .panel .text-block span[data-img],
 .panel .text-block span[data-box] {
   color: #00aeef;
+  text-decoration: none;
 }
 
 .text-block:hover {
@@ -1379,8 +1401,389 @@ transition: color 150ms ease-in-out;
   margin-bottom: 10px;
 }
 
+.userprofile {
+  display: flex;
+  flex-direction: column;
+}
 
 
+.userprofilein {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  margin-top: 10vh;
+  gap: 20px;
+  flex-direction: column;
+}
+
+.userprofile .userprofilein .left {
+  /* width: 20%; */
+  /* background-color: aqua; */
+  border: 1px solid rgb(207, 207, 207);
+  border-radius: 5px;
+  /* min-height: 50vh; */
+}
+
+.userprofile .userprofilein .right {
+  width: 60%;
+  /* background-color: aqua; */
+  border: 1px solid rgb(207, 207, 207);
+  border-radius: 5px;
+  min-height: 50vh;
+}
+
+
+
+@media (max-width: 1000px) {
+  .userprofile .userprofilein .left {
+      width: 30%;
+      /* background-color: aqua; */
+      border: 1px solid rgb(207, 207, 207);
+      border-radius: 5px;
+      min-height: 50vh;
+  }
+
+  .userprofilein {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      margin-top: 10vh;
+      gap: 10px;
+      flex-direction: column;
+  }
+}
+
+@media (max-width: 1000px){
+  .userprofile .userprofilein .left {
+      width: 30%;
+      /* background-color: aqua; */
+      border: 1px solid rgb(207, 207, 207);
+      border-radius: 5px;
+      min-height: 50vh;
+  }
+  .userprofile .userprofilein .right {
+      width: 68%;
+      /* background-color: aqua; */
+      border: 1px solid rgb(207, 207, 207);
+      border-radius: 5px;
+      min-height: 50vh;
+  }
+
+  .userprofilein {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      margin-top: 10vh;
+      gap: 10px;
+      flex-direction: column;
+  }
+}
+
+/* @media (max-width: 800px) {
+  .userprofile .userprofilein .left {
+      width: 20%;
+      border: 1px solid rgb(207, 207, 207);
+      border-radius: 5px;
+      min-height: 50vh;
+  }
+  .userprofile .userprofilein .right {
+      width: 78%;
+      border: 1px solid rgb(207, 207, 207);
+      border-radius: 5px;
+      min-height: 50vh;
+  }
+} */
+
+@media (max-width: 500px){
+  .userprofilein {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      justify-content: center;
+      margin-top: 10vh;
+      gap: 20px;
+  }
+
+  .userprofile .userprofilein .left {
+      width: 97%;
+      /* background-color: aqua; */
+      border: 1px solid rgb(207, 207, 207);
+      border-radius: 5px;
+      /* min-height: 50vh; */
+      align-self: center;
+      min-height: 0;
+  }
+
+  .userprofile .userprofilein .right {
+      width: 97%;
+      /* background-color: aqua; */
+      border: 1px solid rgb(207, 207, 207);
+      border-radius: 5px;
+      /* min-height: 50vh; */
+      align-self: center;
+      min-height: 0;
+  }
+}
+
+.usersidebar {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+}
+
+.usersidebar > * {
+  flex: 1;
+}
+
+.usersidebar .s1 , .usersidebar .s2{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 20px;
+  height: 50px;
+}
+
+.usersidebar .s1 svg {
+  width: 30px;
+  height: 30px;
+  color: gray;
+}
+
+.usersidebar .s2 svg {
+  width: 30px;
+  height: 30px;
+  color: rgb(255, 255, 255);
+}
+
+.usersidebar .s1:hover{
+  background-color: rgb(246, 246, 246);
+  border-radius: 5px;
+  cursor: pointer;
+  color: grey;
+}
+
+
+.usersidebar .s2{
+  background-color: var(--line-border-fill);
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+  padding: 20px;
+}
+@media (max-width: 800px) {
+  .usersidebar span{
+      font-size: 12px;
+  }
+}
+@media (max-width: 500px) {
+  .usersidebar {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      padding: 10px;
+  }
+  .usersidebar .s1 , .usersidebar .s2{
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      padding: 3px;
+  }
+  .usersidebar .s1{
+      background-color: white;
+      border-radius: 25px;
+      cursor: pointer;
+      box-shadow:  0px 0px 10px 0px rgba(0,0,0,0.1);
+      padding: 5px 20px;
+  }
+  .usersidebar .s2{
+      border-radius: 25px;
+      cursor: pointer;
+      box-shadow:  0px 0px 10px 0px rgba(0,0,0,0.1);
+      padding: 5px 20px;
+
+  }
+  .usersidebar span{
+      font-size: 12px;
+  }
+}
+
+
+.accountsettings{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.accountsettings h1{
+  padding: 10px 20px;
+  font-weight: 300;
+}
+
+
+.accountsettings .form{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px 20px;
+}
+
+.accountsettings .form .form-group{
+  display: flex;
+  flex-direction: column;
+  width: 45%;
+  margin: 10px;
+}
+
+.accountsettings .form .form-group label{
+  font-size: 1.2rem;
+  font-weight: 300;
+  margin-bottom: 5px;
+}
+
+.accountsettings .form .form-group input{
+  padding: 10px 20px;
+  border: 1px solid rgb(207, 207, 207);
+  border-radius: 5px;
+  outline: none;
+}
+
+.accountsettings .form .form-group input:focus{
+  border: 1px solid var(--col1);
+}
+
+
+
+@media (max-width: 800px){
+  .accountsettings .form{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      padding: 10px 20px;
+  }
+
+  .accountsettings .form .form-group{
+      display: flex;
+      flex-direction: column;
+      width: 97%;
+      margin: 10px;
+  }
+  .accountsettings h1{
+      font-size: 20px;
+  }
+  .accountsettings .form .form-group label{
+      font-size: 16px;
+      font-weight: 300;
+      margin-bottom: 5px;
+  }
+} 
+
+a .subject-total-percent {
+  font-size: 28px;
+  color: #484848;
+  padding-top: 10px;
+  font-weight: 500;
+}
+
+.table-nested-child {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.table-nested {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  border-spacing: 0;
+  background: #fff;
+  border: 2px solid #444;
+  text-align: left;
+  margin-top: 15px;
+}
+
+.table-nested th,
+.table-nested td {
+  padding: 0;
+}
+
+.table-nested td {
+  border-top: 1px solid;
+}
+
+.table-nested td[colspan] {
+  border: none;
+}
+
+.table-nested .cell-input {
+  width: 20px;
+  border-right: 1px solid;
+}
+
+.cell-name {
+  width:90%;
+}
+
+.table-nested .cell-members {
+  width: 100px;
+}
+
+.table-nested .indent {
+  display: inline-block;
+}
+
+.parent {
+  border-top: 1px solid;
+}
+
+.top-level-parent {
+  background-color: #e5e6e4;
+}
+
+.level-two {
+  background-color: #fbfbf2;
+}
+
+
+.table-nested .parent > .cell-name {
+  cursor: pointer;
+}
+
+.cell-name {
+  cursor: pointer;
+}
+
+.table-nested .parent > .cell-name > .indent {
+  margin-right: 5px;
+}
+
+.table-nested .parent > .cell-name > .indent:before {
+  content: "\f054";
+  font-family: FontAwesome;
+  display: inline-block;
+  transition: transform 0.3s;
+}
+
+.table-nested .children {
+  display: none;
+}
+
+.table-nested .opened > tr > .cell-name > .indent:before {
+  transform: rotate(90deg);
+}
+
+.table-nested .opened > .children {
+  display: table-row;
+}
 
 
 

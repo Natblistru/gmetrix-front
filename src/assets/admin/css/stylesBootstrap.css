@@ -3457,6 +3457,7 @@ textarea.form-control-lg {
   }
   .navbar-expand-sm .navbar-nav {
     flex-direction: row;
+    align-items: center;
   }
   .navbar-expand-sm .navbar-nav .dropdown-menu {
     position: absolute;
@@ -3504,6 +3505,7 @@ textarea.form-control-lg {
   }
   .navbar-expand-md .navbar-nav {
     flex-direction: row;
+    align-items: center;
   }
   .navbar-expand-md .navbar-nav .dropdown-menu {
     position: absolute;
@@ -3551,6 +3553,7 @@ textarea.form-control-lg {
   }
   .navbar-expand-lg .navbar-nav {
     flex-direction: row;
+    align-items: center;
   }
   .navbar-expand-lg .navbar-nav .dropdown-menu {
     position: absolute;
@@ -3598,6 +3601,7 @@ textarea.form-control-lg {
   }
   .navbar-expand-xl .navbar-nav {
     flex-direction: row;
+    align-items: center;
   }
   .navbar-expand-xl .navbar-nav .dropdown-menu {
     position: absolute;
@@ -3645,6 +3649,7 @@ textarea.form-control-lg {
   }
   .navbar-expand-xxl .navbar-nav {
     flex-direction: row;
+    align-items: center;
   }
   .navbar-expand-xxl .navbar-nav .dropdown-menu {
     position: absolute;
@@ -3691,6 +3696,7 @@ textarea.form-control-lg {
 }
 .navbar-expand .navbar-nav {
   flex-direction: row;
+  align-items: center;
 }
 .navbar-expand .navbar-nav .dropdown-menu {
   position: absolute;
