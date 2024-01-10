@@ -213,9 +213,9 @@ function YourResults() {
       <TreeTable list={list}/>
       <h1 style={{ marginTop: '20px'}}>Rezultatele testelor:</h1>
       <div className="rowBts mx-4 mt-2">
-        <div className="col-md-4">          
+        <div className="col-md-12">          
           <div className="form-group d-flex align-items-center">
-            <label for="tema" style={{ width: '150px' }}>Alege tema:</label>
+            <label htmlFor="tema" style={{ width: '150px' }}>Alege tema:</label>
             <select name="theme_learning_program_id" onChange={handleInput} value={filter.theme_learning_program_id} className="form-control" id="tema">  
               <option option value="">Select Theme</option>
               {themeList
