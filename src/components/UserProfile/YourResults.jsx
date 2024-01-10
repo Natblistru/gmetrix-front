@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import ContextData from '../context/ContextData';
 import { Link } from 'react-router-dom';
+import { fetchCapitole, fetchEvaluation1, fetchEvaluation2, fetchEvaluation3 } from '../../routes/api';
 import TreeTable from './TreeTable';
 
 const data = [
@@ -147,27 +148,57 @@ const dataTeste = [
   },
 ]
   
-
 const ListDisciplineRezultat = () => {
-  const { stateData } = React.useContext(ContextData);
-  console.log(stateData.disciplineAni);
+  const [mediaDisciplina, setMediaDisciplina] = useState([])
+  const { stateData, dispatchData } = React.useContext(ContextData);
+  // console.log(stateData.disciplineAni);
+
+  const handleItemClick = (item) => {
+    const { subject_id } = item;
+    const level_id = 1;
+
+    fetchCapitole(subject_id, level_id, dispatchData);
+
+  };
+
+  useEffect(() => {
+    let allMediaDisciplina = [];
+  
+    stateData.disciplineAni.forEach((item) => {
+      const level_id = 1;
+  
+      axios.get(`http://localhost:8000/api/capitoleDisciplina?level=${level_id}&disciplina=${item.subject_id}&student=1`)
+        .then(res => {
+          if (res.status === 200) {
+            allMediaDisciplina.push(res.data[0].disciplina_media);
+          }
+        });
+    });
+
+      setMediaDisciplina(allMediaDisciplina);
+
+  }, []);
+  
+  
   return (
     <div>
       <div className="manuale-container-result">
-        {stateData.disciplineAni.map((item) => {
-          const nivelStudiu = item.study_level_id === 1 ? "examen clasa 9" : "BAC";
-          const clasa = item.study_level_id === 1 ? "clasa 9" : "clasa 12";
-          const name = item.name.split(',')[0];
-          return (
-            <div className="manual-item-result" key={item.id}>
-              <Link to={`/capitole/${item.subject_id}?level=1&year=2022&name=${name}&nivel=${nivelStudiu}&clasa=${clasa}`}>
-                <img src={process.env.PUBLIC_URL + item.img} alt="" />
-                <p>{item.name}</p>
-                <p className="subject-total-percent">0%</p>
-              </Link>
-            </div>
-          );
-        })}
+      {stateData.disciplineAni.map((item, idx) => {
+        const nivelStudiu = item.study_level_id === 1 ? "examen clasa 9" : "BAC";
+        const clasa = item.study_level_id === 1 ? "clasa 9" : "clasa 12";
+        const name = item.name.split(',')[0];
+        console.log(item)
+        const hasMediaValue = mediaDisciplina.length > 0 && mediaDisciplina[idx] !== undefined;
+        return (
+          <div className="manual-item-result" key={item.id} onClick={() => handleItemClick(item)}>
+            <img src={process.env.PUBLIC_URL + item.img} alt="" />
+            <p>{item.name}</p>
+            {hasMediaValue && (
+              <p className="subject-total-percent">{`${Number(mediaDisciplina[idx]).toFixed(2)}%`}</p>
+            )}
+          </div>
+        );
+      })}
       </div>
     </div>
     
@@ -175,7 +206,9 @@ const ListDisciplineRezultat = () => {
 };
 
 function YourResults() {
+  const { stateData, dispatchData } = React.useContext(ContextData);
   const [list, setList] = useState(data)
+  const [list1, setList1] = useState([])
   const [learningProgramList, setLearningProgramList] = useState([]);
   const [themeList, setThemeList] = useState([]);
   const [filter, setFilter] = useState({
@@ -191,6 +224,7 @@ function YourResults() {
 
     axios.get('http://localhost:8000/api/all-learningPrograms').then(res=>{
       if(res.data.status === 200){
+
         setLearningProgramList(res.data.learningProgram);
       }
     });
@@ -204,11 +238,71 @@ function YourResults() {
 
   },[])
 
+  useEffect(() => {
+    const transformData = (initialData) => {
+      const result = [];
+  
+      initialData.forEach((item) => {
+        const { capitol_id, capitol_name, capitol_media, tema_id, subtitles } = item;
+  
+        if (subtitles && subtitles.length > 0) {
+          // Este un nod părinte
+          const capitolNode = {
+            name: capitol_name,
+            id: capitol_id,
+            opened: false,
+            title: Math.round(capitol_media) + "%",
+            children: [],
+          };
+  
+          subtitles.forEach(subtitle => {
+            const temaNode = {
+              name: subtitle.tema_name,
+              id: subtitle.tema_id,
+              capitol_id: capitol_id,
+              tema_id: subtitle.tema_id,
+              title: Math.round(subtitle.tema_media) + "%",
+              children: [],
+            };
+  
+            capitolNode.children.push(temaNode);
+          });
+  
+          result.push(capitolNode);
+        } else {
+          // Este un nod copil
+          const temaNode = {
+            name: item.tema_name,
+            id: item.tema_id,
+            capitol_id: capitol_id,
+            title: Math.round(item.tema_media) + "%",
+            children: [],
+          };
+  
+          const parent = result.find(parent => parent.id === capitol_id);
+          if (parent) {
+            parent.children.push(temaNode);
+          }
+        }
+      });
+  
+      return result;
+    };
+  
+    const transformedData = transformData(stateData.capitole);
+    setList1(transformedData);
+  }, [stateData.capitole]);
+  
+  useEffect(()=>{
+console.log(list1)
+  },[list1])
+  
+
   return (
     <div className='accountsettings'>
       <h1>Însușirea disciplinelor:</h1>
       <ListDisciplineRezultat />
-      <TreeTable list={list}/>
+      <TreeTable list={list1}/>
       <h1 style={{ marginTop: '20px'}}>Rezultatele evaluărilor:</h1>
       <TreeTable list={list}/>
       <h1 style={{ marginTop: '20px'}}>Rezultatele testelor:</h1>

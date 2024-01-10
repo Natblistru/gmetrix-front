@@ -1,5 +1,19 @@
 import axios from "axios";
 
+export const fetchCapitole = async (subject_id, level_id, dispatchData) => {
+    try {
+        const res = await axios.get(`http://localhost:8000/api/capitoleDisciplina?level=${level_id}&disciplina=${subject_id}&student=1`);
+
+        console.log(res.data);
+        dispatchData({
+            type: "FETCH_CAPITOLE",
+            payload: res.data
+        })
+    } catch (err) {
+        console.error(err);
+    }
+}
+
 export const fetchTheme = async (teacherVideo, theme, subject_id, level_id, dispatchData) => {
     try {
         const res = await axios.get(`http://localhost:8000/api/teachertheme?level=${level_id}&disciplina=${subject_id}&teacher=${teacherVideo}&student=1&theme=${theme}`);
