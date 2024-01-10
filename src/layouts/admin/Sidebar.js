@@ -12,16 +12,7 @@ const Sidebar = () => {
                     <div className="sb-nav-link-icon"><i className="fas fa-tachometer-alt"></i></div>
                     Dashboard
                 </Link>
-                <Link className="nav-linkSide" to="/admin/profile">
-                    <div className="sb-nav-link-icon"><i className="fas fa-tachometer-alt"></i></div>
-                    Profile
-                </Link>
                 <div className="sb-sidenav-menu-heading">Interface</div>
-                {/* <Link className="nav-linkSide collapsed" to="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                    <div className="sb-nav-link-icon"><i className="fas fa-columns"></i></div>
-                    Layouts
-                    <div className="sb-sidenav-collapse-arrow"><i className="fas fa-angle-down"></i></div>
-                </Link>
                 <div className="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                     <nav className="sb-sidenav-menu-nested navSide">
                         <Link className="nav-linkSide" to="layout-static.html">Static Navigation</Link>
@@ -56,9 +47,9 @@ const Sidebar = () => {
                         </Link>
                         <div className="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
                             <nav className="sb-sidenav-menu-nested navSide">
-                                <Link className="nav-linkSide" to="401.html">401 Page</Link>
-                                <Link className="nav-linkSide" to="404.html">404 Page</Link>
-                                <Link className="nav-linkSide" to="500.html">500 Page</Link>
+                                <Link className="nav-linkSide" to="/admin/403">403 Page</Link>
+                                <Link className="nav-linkSide" to="/admin/404">404 Page</Link>
+
                             </nav>
                         </div>
                     </nav>

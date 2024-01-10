@@ -73,6 +73,8 @@ import Login from "../components/admin/AuthForms/Login.js";
 import Register from "../components/admin/AuthForms/Register.js";
 import ForgotPassword from "../components/admin/AuthForms/ForgotPassword.js";
 import ResetPassword from "../components/admin/AuthForms/ResetPassword.js";
+import Page403 from "../components/errors/Page403.js";
+import Page404 from "../components/errors/Page404.js";
 
 const routes = [
   { path: '/admin', exact: true, name: 'Admin'},
@@ -174,6 +176,11 @@ const routes = [
   { path: '/admin/register', exact: true, name: 'Register', component: Register },
   { path: '/admin/forgot-password', exact: true, name: 'ForgotPassword', component: ForgotPassword },
   { path: '/admin/reset-password', exact: true, name: 'ResetPassword', component: ResetPassword },
+
+  { path: '/admin/403', exact: true, name: 'error403', component: Page403 },
+  { path: '/admin/404', exact: true, name: 'error404', component: Page404 },
+
+  
 ];
 
 export default routes;

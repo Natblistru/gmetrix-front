@@ -78,23 +78,15 @@ function App() {
               <Route path="/forgot-password" component={ForgotPassword} />  
               <Route path="/reset-password/:token" component={ResetPassword} /> 
               <Route path="/user/:activepage" component={UserProfile} /> 
-              {/* <Route path="/admin" name="Admin" render={(props) => <MasterLayout {...props}/>} /> */}
               <AdminPrivateRoute path="/admin" name="Admin" />
-              <Route path="/istoria/:address/examen-subiect1" component={ExamenSubect1} />
-              <Route path="/istoria/:address/examen-subiect2" component={ExamenSubect2} />
-              <Route path="/istoria/:address/examen-subiect3" component={ExamenSubect3} />
-              <Route path="/istoria/:address/flipCards/ani" component={FlipCardsWithRouter} />
-              <Route path="/istoria/:address/flipCards/termeni" component={FlipCardsWithRouter} />
-              <Route path="/istoria/:address/:address1/:addressTest/:idTest" component={TestWithRouter} />
+              <Route path="/:disciplina/:address/examen-subiect1" component={ExamenSubect1} />
+              <Route path="/:disciplina/:address/examen-subiect2" component={ExamenSubect2} />
+              <Route path="/:disciplina/:address/examen-subiect3" component={ExamenSubect3} />
+              <Route path="/:disciplina/:address/:address1/:addressTest/:idTest" component={TestWithRouter} />
               <Route path="/capitole/:id" component={Capitole} />
               <Route path="/:disciplina/:address/:address1" component={Subtema} />
               <Route path="/:disciplina/:address" component={Tema} />
               <Route exact path="/home" component={Home} />
-              <Route path="/word" component={TestWords} />
-              <Route path="/tema1" component={Tema} />           {/*dupa DEPLOY  de sters */}
-              <Route path="/subtema1" component={Subtema} />     {/*dupa DEPLOY  de sters */}
-              <Route path="/test1" component={TestGeneralizator} />
-
               <Route component={Error} />
             </Switch>
           </StoreComponent>
