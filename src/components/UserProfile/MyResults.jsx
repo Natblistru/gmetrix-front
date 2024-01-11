@@ -205,7 +205,7 @@ const ListDisciplineRezultat = () => {
   );
 };
 
-function YourResults() {
+function MyResults() {
   const { stateData, dispatchData } = React.useContext(ContextData);
   const [list, setList] = useState(data)
   const [list1, setList1] = useState([])
@@ -329,4 +329,4 @@ console.log(list1)
   );
 }
 
-export default YourResults;
+export default MyResults;

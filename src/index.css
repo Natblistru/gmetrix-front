@@ -1785,6 +1785,63 @@ a .subject-total-percent {
   display: table-row;
 }
 
+.context-menu {
+  background-color: white;
+  border: 1px solid #ccc;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 8px;
+  position: absolute;
+  z-index: 1000;
+}
 
+.context-menu button {
+  display: block;
+  width: 100%;
+  padding: 8px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  text-align: left;
+}
 
+.context-menu button:hover {
+  background-color: #f0f0f0;
+}
 
+.white-background .DraftEditor-root {
+  background-color: white;
+  border: 1px solid #ddd; /* Adaugă un contur pentru a delimita Editorul */
+  padding: 8px;
+  height: 200px; /* Stabilește înălțimea Editorului la necesitate */
+  overflow: auto; /* Adaugă un panou de derulare în cazul în care textul depășește înălțimea */
+}
+
+/* Adăugați aceste clase CSS pentru animația de mișcare sus-jos și alte efecte */
+.my-topic-transition-enter {
+  transform: translateY(-100%);
+  opacity: 0;
+}
+
+.my-topic-transition-enter-active {
+  transform: translateY(0);
+  opacity: 1;
+  transition: transform 2000ms, opacity 3500ms;
+}
+
+.my-topic-transition-exit {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.my-topic-transition-exit-active {
+  transform: translateY(-100%);
+  opacity: 0;
+  transition: transform 2000ms, opacity 3500ms;
+}
+
+/* Stiluri suplimentare pentru conținutul animat */
+.my-topic-transition {
+  padding: 20px;
+  background-color: #e0e0e0;
+  margin-top: 20px;
+}

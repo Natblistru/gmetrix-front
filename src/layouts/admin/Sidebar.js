@@ -18,7 +18,7 @@ const Sidebar = () => {
                         <Link className="nav-linkSide" to="layout-static.html">Static Navigation</Link>
                         <Link className="nav-linkSide" to="layout-sidenav-light.html">Light Sidenav</Link>
                     </nav>
-                </div> */}
+                </div> 
                 <Link className="nav-linkSide collapsed" to="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                     <div className="sb-nav-link-icon"><i className="fas fa-book-open"></i></div>
                     Pages

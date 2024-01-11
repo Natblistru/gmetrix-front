@@ -6,7 +6,11 @@ import Wrapper from '../components/Wrapper';
 import UserSidebar from '../components/UserProfile/UserSidebar';
 import AccountSettings from '../components/UserProfile/AccountSettings';
 import ChangePassword from '../components/UserProfile/ChangePassword';
-import YourResults from '../components/UserProfile/YourResults';
+import MyResults from '../components/UserProfile/MyResults';
+import MyMaterials from '../components/UserProfile/MyMaterials';
+import MyTopics from '../components/UserProfile/MyTopics';
+import MySubtopics from '../components/UserProfile/MySubtopics';
+import MyTests from '../components/UserProfile/MyTests';
 
 function UserProfile() {
 
@@ -18,6 +22,8 @@ function UserProfile() {
     email: '',
     id: '',
     role: '',
+    student: '',
+    teacher: '',
   });
 
   useEffect(() => {
@@ -29,9 +35,9 @@ function UserProfile() {
       if (storedName) {
         try {
           const response = await axios.get(`http://localhost:8000/api/get-user/${storedName}`);
-          const { first_name, last_name, email, id } = response.data.user;
+          const { first_name, last_name, email, id, student, teacher } = response.data.user;
           const  role  = response.data.role.toUpperCase();
-          setUserData({ first_name, last_name, email, id, role });
+          setUserData({ first_name, last_name, email, id, role, student, teacher });
           console.log(response.data)
         } catch (error) {
           console.error('Eroare la căutarea utilizatorului:', error);
@@ -50,16 +56,38 @@ function UserProfile() {
       <div className="title-box" style={{ marginBottom:'-30px' }}>
         <h1 >{authName}</h1>
       </div>
-    <div className='userprofilein'>
-            <div className='left'>
-              <UserSidebar activepage={activepage}/>
-            </div>
-            <div className='right'>
-              {activepage === 'accountsettings' && <AccountSettings userData={userData} setUserData={setUserData} />}
-              {activepage === 'changepassword' && <ChangePassword userData={userData} />}
-              {activepage === 'yourResults' && <YourResults/>}
-            </div>
-         </div>
+      <div className='userprofilein'>
+        <div className='left'>
+          <UserSidebar activepage={activepage} userData={userData} />
+        </div>
+        <div className='right'>
+          {activepage === 'accountsettings' && <AccountSettings userData={userData} setUserData={setUserData} />}
+          {activepage === 'changepassword' && <ChangePassword userData={userData} />}
+          {activepage === 'yourResults' && <MyResults/>}
+          {activepage === 'yourMaterials' && <MyMaterials userData={userData}/>}
+          {activepage === 'topics' && 
+            (
+              <MyMaterials userData={userData} >
+                <MyTopics userData={userData}/>
+              </MyMaterials>
+            )
+          }
+          {activepage === 'subtopics' && 
+            (
+              <MyMaterials userData={userData} >
+                <MySubtopics userData={userData} />
+              </MyMaterials>
+            )
+          }
+          {activepage === 'tests' && 
+            (
+              <MyMaterials userData={userData} >
+                <MyTests userData={userData} />
+              </MyMaterials>
+            )
+          }
+        </div>
+      </div>
     </Wrapper>
     </>
   );
