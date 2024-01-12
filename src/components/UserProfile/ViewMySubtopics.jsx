@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-function ViewSubtopic() {
+function ViewSubtopic({ onAddSubtopic }) {
 
   const [loading, setLoading] = useState(true);
   const [teacherTopicList, setTeacherTopicList] = useState([]);
@@ -59,12 +59,16 @@ function ViewSubtopic() {
     })
   }
 
+  const handleAddSubtopic = () => {
+    onAddSubtopic();
+  };
+
   return (
     <div className="containerBts px-4">
       <div className="cardBts mt-4">
         <div className="card-header">
           <h4>Subtopic List
-            <Link to="/admin/add-subtopic" className="btnBts btn-primary text-white btn-sm float-end">Add Subopic</Link>
+            <button onClick={handleAddSubtopic}  className="btnBts btn-primary text-white btn-sm float-end">Add Subopic</button>
           </h4>
         </div>
         <div className="card-body">

@@ -1845,3 +1845,33 @@ a .subject-total-percent {
   background-color: #e0e0e0;
   margin-top: 20px;
 }
+
+/* .custom-file-input {
+  color: transparent; 
+  cursor: pointer;
+}
+
+.custom-file-input::-webkit-file-upload-button {
+  visibility: hidden; 
+}
+
+.custom-file-input::before {
+  content: 'Alegeți fișierul'; 
+  display: inline-block;
+  background: #007bff;
+  color: #fff;
+  border: 1px solid #007bff;
+  border-radius: 5px;
+  padding: 6px 12px;
+  outline: none;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.custom-file-input:hover::before {
+  border-color: #0056b3; 
+}
+
+.custom-file-input:active::before {
+  background-color: #0056b3; 
+} */

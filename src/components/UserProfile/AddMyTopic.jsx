@@ -53,7 +53,7 @@ function AddMyTopic({ onBackToList, userData }) {
       try {
         const response = await axios.get(`http://localhost:8000/api/view-myvideos`);
         setVideoList(response.data.video);
-        console.log(response.data.video)
+        // console.log(response.data.video)
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -155,7 +155,7 @@ function AddMyTopic({ onBackToList, userData }) {
   ]);
 
   const handleAddBreackpointRow = () => {
-    setBreackpointRows([...breackpointRows, { topic_id: '', order_number: '' }]);
+    setBreackpointRows([...breackpointRows, { breakpoint_title: '', time: '' }]);
   };
 
   const handleRemoveBreackpointRow = index => {
@@ -176,7 +176,7 @@ function AddMyTopic({ onBackToList, userData }) {
     e.preventDefault();
     let succesTotal = true;
 
-    console.log(topicRows)
+    // console.log(topicRows)
     if (topicRows && topicRows.length > 0) {
 
       const formDataArray = topicRows.map(item => {
@@ -256,9 +256,9 @@ function AddMyTopic({ onBackToList, userData }) {
     });
   
     const videoName = teacherTopicInput.title;
-    console.log(videoList)
+    // console.log(videoList)
     const selectedVideo = videoList.find((item) => item.title == teacherTopicInput.title);
-    console.log(selectedVideo)
+    // console.log(selectedVideo)
     const teacherName = userData.teacher ? userData.teacher.name : '';
     const selectedStudyLevel = learningProgramList.find((program) => program.id == teacherTopicInput.learning_program_id);
     const studyLevelName = selectedStudyLevel ? selectedStudyLevel.name : '';
@@ -307,7 +307,6 @@ function AddMyTopic({ onBackToList, userData }) {
   if (breackpointRows && breackpointRows.length > 0) {
 
       const formDataArray = breackpointRows.map(item => {
-        console.log(item.time)
         const formData = new FormData();
         formData.append('name',item.breakpoint_title );
         formData.append('time',item.time );
@@ -366,7 +365,7 @@ const handleBackToList = () => {
           <form className="form-group custom-form" onSubmit={submitTeacherTopic} >
 
           <div className="rowBts">
-              <div className="col-md-3">
+              <div className="col-md-4">
                 <div className="form-group m-3">
                   <label>Learn Program</label>
                   <select name="learning_program_id" onChange={handleInput} value={teacherTopicInput.learning_program_id} className="form-control">  
@@ -382,7 +381,7 @@ const handleBackToList = () => {
                   <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.learning_program_id}</span>
                 </div>
               </div>  
-              <div className="col-md-9">          
+              <div className="col-md-8">          
                 <div className="form-group m-3">
                   <label>Theme</label>
                   <select name="theme_learning_program_id" onChange={handleInput} value={teacherTopicInput.theme_learning_program_id} className="form-control">  

@@ -1,20 +1,18 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios'; 
-import * as XLSX from 'xlsx';
 import { Link } from 'react-router-dom';
-import InputMask from 'react-input-mask';
 import { Editor, EditorState, RichUtils, convertToRaw, Modifier } from 'draft-js';
-import 'draft-js/dist/Draft.css';
 
 
 import Swal from 'sweetalert2'
 
-function AddMySubtopic() {
+function AddMySubtopic({ onBackToList, userData }) {
 
   const [learningProgramList, setLearningProgramList] = useState([]);
   const [themeList, setThemeList] = useState([]);
   const [topicList, setTopicList] = useState([]);
   const [teacherList, setTeacherList] = useState([]);
+  const [teacherTopicList, setTeacherTopicList] = useState([]);
   
   useEffect(() => {
 
@@ -42,16 +40,23 @@ function AddMySubtopic() {
       }
     });
 
+    axios.get('http://localhost:8000/api/all-myteacher-topics').then(res=>{
+      if(res.data.status === 200){
+        setTeacherTopicList(res.data.teacherTopics);
+      }
+    });
+
   },[])
 
   const [errorList, setErrors] = useState([]);
   const [teacherTopicInput, setTeacherTopicInput] = useState({
     learning_program_id: '',
     theme_learning_program_id: '',
+    teacher_topic_id: '',
     topic_id: '',
     teacher_id: '',
     order_number: '',
-    name: '', //name la teacher_topic
+    name: '', //name la subtopic
     title: '',  //title la video
     source: '',
   })
@@ -85,85 +90,125 @@ function AddMySubtopic() {
   }
 
 
-  const [topicRows, setTopicRows] = useState([
-    { topic_id: '', order_number: '' }
+  const [subtopicRows, setSubtopicRows] = useState([
+    { name_subtopic: '', audio_path: '' },
+    { name_subtopic: '', audio_path: '' },
+    { name_subtopic: '', audio_path: '' },
+    { name_subtopic: '', audio_path: '' },
   ]);
 
-  const handleAddTopicRow = () => {
-    setTopicRows([...topicRows, { topic_id: '', order_number: '' }]);
+  const handleAddSubtopicRow = () => {
+    setSubtopicRows([...subtopicRows, { name_subtopic: '', audio_path: '' }]);
   };
 
-  const handleRemoveTopicRow = index => {
-    const newRows = [...topicRows];
+  const handleRemoveSubtopicRow = index => {
+    const newRows = [...subtopicRows];
     newRows.splice(index, 1);
-    setTopicRows(newRows);
+    setSubtopicRows(newRows);
   };
 
-  const handleInputTopic = (index, event) => {
+  const handleInputSubtopic = (index, event) => {
     event.persist();
     const { name, value } = event.target;
-    const newRows = [...topicRows];
+    const newRows = [...subtopicRows];
     newRows[index][name] = value;
-    setTopicRows(newRows);
+    setSubtopicRows(newRows);
   };
 
 
-
-  const [breackpointRows, setBreackpointRows] = useState([
-    { breakpoint_title: '', time: '' }
+  const [photoRows, setPhotoRows] = useState([
+    { photo_path: '', name_subtopic: '' },
+    { photo_path: '', name_subtopic: '' },
+    { photo_path: '', name_subtopic: '' },
+    { photo_path: '', name_subtopic: '' },
   ]);
 
-  const handleAddBreackpointRow = () => {
-    setBreackpointRows([...breackpointRows, { topic_id: '', order_number: '' }]);
+  const handleAddPhotoRow = () => {
+    setPhotoRows([...photoRows, { photo_path: '', name_subtopic: '' }]);
   };
 
-  const handleRemoveBreackpointRow = index => {
-    const newRows = [...breackpointRows];
+  const handleRemovePhotoRow = index => {
+    const newRows = [...photoRows];
     newRows.splice(index, 1);
-    setBreackpointRows(newRows);
+    setPhotoRows(newRows);
   };
 
-  const handleInputBreackpoint = (index, event) => {
+  const handleInputPhoto = (index, event) => {
     event.persist();
     const { name, value } = event.target;
-    const newRows = [...breackpointRows];
+    const newRows = [...photoRows];
     newRows[index][name] = value;
-    setBreackpointRows(newRows);
+    setPhotoRows(newRows);
   };
 
+  const [flipRows, setFlipRows] = useState([
+    { flip_title: '', flip_answer: '' },
+  ]);
+  const [editorStates, setEditorStates] = useState(() => flipRows.map(() => EditorState.createEmpty()));
+ 
 
+  const handleAddFlipRow = () => {
+     setFlipRows([...flipRows, { flip_title: '', flip_answer: '' }]);
+     setEditorStates([...editorStates, EditorState.createEmpty()]);
+  };
 
-
-    const [editorState, setEditorState] = useState(() => EditorState.createEmpty());
+  const handleRemoveFlipRow = index => {
+    const newRows = [...flipRows];
+    newRows.splice(index, 1);
+    
+    const newEditorStates = [...editorStates];
+    newEditorStates.splice(index, 1);
   
-    const onChangeFormat = (newEditorState) => {
-      setEditorState(newEditorState);
+    setFlipRows(newRows);
+    setEditorStates(newEditorStates);
+  };
+
+  const handleInputFlip = (index, event) => {
+    const { name, value } = event.target;
+    const newRows = [...flipRows];
+    newRows[index] = { ...newRows[index], [name]: value };
+    setFlipRows(newRows);
+  };
+  
+    const onChangeFormat = (index, newEditorState) => {
+      if (editorStates[index]) {
+        const newEditorStates = [...editorStates];
+        newEditorStates[index] = newEditorState;
+        setEditorStates(newEditorStates);
+      }
     };
   
-    const handleBoldClick = () => {
-      onChangeFormat(RichUtils.toggleInlineStyle(editorState, 'BOLD'));
-    };
   
-    const handleItalicClick = () => {
-      onChangeFormat(RichUtils.toggleInlineStyle(editorState, 'ITALIC'));
+    const handleBoldClick = (index) => {
+      const newEditorState = RichUtils.toggleInlineStyle(editorStates[index], 'BOLD');
+      onChangeFormat(index, newEditorState);
     };
-
-    const handleUnderlineClick = () => {
-      onChangeFormat(RichUtils.toggleInlineStyle(editorState, 'UNDERLINE'));
+    
+    const handleItalicClick = (index) => {
+      const newEditorState = RichUtils.toggleInlineStyle(editorStates[index], 'ITALIC');
+      onChangeFormat(index, newEditorState);
     };
+    
+    const handleUnderlineClick = (index) => {
+      const newEditorState = RichUtils.toggleInlineStyle(editorStates[index], 'UNDERLINE');
+      onChangeFormat(index, newEditorState);
+    };
+    
 
-    const handleColorClick = (color) => {
-      const contentState = editorState.getCurrentContent();
-      const selection = editorState.getSelection();
-  
+    const handleColorClick = (rowIndex, color) => {
+      const currentEditorState = editorStates[rowIndex];
+      const contentState = currentEditorState.getCurrentContent();
+      const selection = currentEditorState.getSelection();
+    
       if (!selection.isCollapsed()) {
         const contentWithColor = Modifier.applyInlineStyle(
           contentState,
           selection,
           color
         );
-  
-        onChangeFormat(EditorState.push(editorState, contentWithColor, 'change-inline-style'));
+    
+        const newEditorState = EditorState.push(currentEditorState, contentWithColor, 'change-inline-style');
+        onChangeFormat(rowIndex, newEditorState);
       }
     };
 
@@ -191,15 +236,6 @@ function AddMySubtopic() {
       },
     };
 
-    const handleSaveClick = () => {
-      const contentState = editorState.getCurrentContent();
-      const contentRaw = convertToRaw(contentState);
-      const formattedText = JSON.stringify(contentRaw);
-  
-      // Trimite formattedText către server sau salvează în baza de date
-      console.log(formattedText);
-    };
-
   const colorButtons = [
     { hex: '#ff0000', name: 'color-red' },
     { hex: '#00ff00', name: 'color-green' },
@@ -210,56 +246,178 @@ function AddMySubtopic() {
     { hex: '#4e4e3f', name: 'color-black' },
   ];
 
+  const extractStyles = (block) => {
+    const styles = [];
+    let currentStyle = null;
+  
+    block.inlineStyleRanges.forEach(range => {
+      const styleParts = range.style.split('-');
+  
+      if (styleParts.includes('color')) {
+        const colorIndex = styleParts.indexOf('color');
+        const color = styleParts[colorIndex + 1];
+        
+        styles.push({
+          style: 'COLOR',
+          color,
+          start: range.offset,
+          end: range.offset + range.length,
+        });
+      } else {
+        styleParts.forEach(stylePart => {
+          currentStyle = stylePart.toUpperCase();
+          styles.push({
+            style: currentStyle,
+            start: range.offset,
+            end: range.offset + range.length,
+          });
+        });
+      }
+    });
+  
+    return styles;
+  };
+  
+    
+  const extractStylingFromContent = (content) => {
+    const extractedStyling = [];
+    
+    content.forEach(block => {
+      const text = block.text.trim();
+      const styles = extractStyles(block);
+    console.log(block)
+    console.log(styles)   
+      if (text !== '' && styles.length > 0) {
+        extractedStyling.push({
+          text,
+          styles,
+        });
+      }
+    });
+    
+    return extractedStyling;
+  };
+    
+  const convertStylesToInlineCSS = (item) => {
+    let inlineStyles = '';
+
+    if (item.style == "BOLD") {
+      inlineStyles += 'font-weight: bold; ';
+    }
+    
+    if (item.style == "ITALIC") {
+      inlineStyles += 'font-style: italic; ';
+    }
+    
+    if (item.style == "UNDERLINE") {
+      inlineStyles += 'text-decoration: underline; ';
+    }
+
+    if (item.style = "COLOR" && item.color!==undefined) {
+      inlineStyles += `color: ${item.color}; `;
+    }
+    
+    return inlineStyles;
+  };
+    
+  const convertContentStateToHTML = (content) => {
+    let html = '';
+    
+    content.forEach((block) => {
+      const text = block.text;
+      const spans = [];
+      console.log(block)
+      block.styles.forEach(item => {
+        console.log(item)        
+        const spanStyles = convertStylesToInlineCSS(item);
+        const spanText = text.substring(item.start, item.end);
+
+        if (spanText !== '' && spanStyles !== '') {
+          spans.push(`<span style="${spanStyles}">${spanText}</span>`);
+        }
+      });
+    
+      if (spans.length > 0) {
+        html += `<p>${spans.join('')}</p>\n`;
+      }
+    });
+    
+    return html;
+  };
 
   const submitTeacherTopic = (e) => {
     e.preventDefault();
 
-    const formData = new FormData();
-    formData.append('name',teacherTopicInput.name );
-    formData.append('order_number',teacherTopicInput.order_number );
-    formData.append('teacher_id',teacherTopicInput.teacher_id );
-    formData.append('topic_id',teacherTopicInput.topic_id );
-    formData.append('status',allCheckboxes.status == true ? 1 : 0);
+    const formattedFlipRows = flipRows.map((row, index) => {
+      const currentContent = editorStates[index].getCurrentContent();
+      const contentWithStyles = convertToRaw(currentContent);
+      const stylingResult = extractStylingFromContent(contentWithStyles.blocks);
+      console.log(stylingResult)
+      const html = convertContentStateToHTML(stylingResult);
 
-    // console.log(formData)
-
-    axios.post(`http://localhost:8000/api/store-myteacherTopic`, formData).then(res => {
-      if(res.data.status === 201)
-      {
-        Swal.fire({
-          title: "Succes",
-          text: res.data.message,
-          icon: "success"
-        });
-        setTeacherTopicInput({
-          learning_program_id: '',
-          theme_learning_program_id: '',
-          topic_id: '',
-          teacher_id: '',
-          order_number: '',
-          name: '',
-        });
-        setAllCheckboxes({
-          status: false,
-        });
-        setErrors([]);
-      }
-      else if(res.data.status === 422)
-      {
-        Swal.fire({
-          title: "All fields are mandatory",
-          text: Object.values(res.data.errors).flat().join(' '),
-          icon: "error",
-        });
-        setErrors(res.data.errors);
-      }
+      return {
+        flip_title: row.flip_title,
+        flip_answer: row.flip_answer,
+        editorText: html,
+      };
     });
+      
+    console.log(formattedFlipRows);
+    
+
+
+
+    // const formData = new FormData();
+    // formData.append('name',teacherTopicInput.name );
+    // formData.append('order_number',teacherTopicInput.order_number );
+    // formData.append('teacher_id',teacherTopicInput.teacher_id );
+    // formData.append('topic_id',teacherTopicInput.topic_id );
+    // formData.append('status',allCheckboxes.status == true ? 1 : 0);
+
+    // // console.log(formData)
+
+    // axios.post(`http://localhost:8000/api/store-myteacherTopic`, formData).then(res => {
+    //   if(res.data.status === 201)
+    //   {
+    //     Swal.fire({
+    //       title: "Succes",
+    //       text: res.data.message,
+    //       icon: "success"
+    //     });
+    //     setTeacherTopicInput({
+    //       learning_program_id: '',
+    //       theme_learning_program_id: '',
+    //       teacher_topic_id: '',
+    //       topic_id: '',
+    //       teacher_id: '',
+    //       order_number: '',
+    //       name: '',
+    //     });
+    //     setAllCheckboxes({
+    //       status: false,
+    //     });
+    //     setErrors([]);
+    //   }
+    //   else if(res.data.status === 422)
+    //   {
+    //     Swal.fire({
+    //       title: "All fields are mandatory",
+    //       text: Object.values(res.data.errors).flat().join(' '),
+    //       icon: "error",
+    //     });
+    //     setErrors(res.data.errors);
+    //   }
+    // });
   }
+
+  const handleBackToList = () => {
+    onBackToList();
+  };
 
   return (
     <div className="container-fluid px4">
-      <h2 className="m-3">Add Teacher Topic
-        <Link to="/admin/view-teacher-topic" type="button" className="btnBts btn-primary text-white px-4 m-3 float-end">BACK to List</Link>
+      <h2 className="m-3">Adaugarea subtemei profesorului
+        <button onClick={handleBackToList} type="button" className="btnBts btn-primary text-white px-4 m-3 float-end">BACK to List</button>
       </h2>
 
         <ul className="navSide nav-tabs" id="myTab" role="tablist">
@@ -273,7 +431,7 @@ function AddMySubtopic() {
           <form className="form-group custom-form" onSubmit={submitTeacherTopic} >
 
           <div className="rowBts">
-              <div className="col-md-3">
+              <div className="col-md-4">
                 <div className="form-group m-3">
                   <label>Learn Program</label>
                   <select name="learning_program_id" onChange={handleInput} value={teacherTopicInput.learning_program_id} className="form-control">  
@@ -289,7 +447,7 @@ function AddMySubtopic() {
                   <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.learning_program_id}</span>
                 </div>
               </div>  
-              <div className="col-md-9">          
+              <div className="col-md-8">          
                 <div className="form-group m-3">
                   <label>Theme</label>
                   <select name="theme_learning_program_id" onChange={handleInput} value={teacherTopicInput.theme_learning_program_id} className="form-control">  
@@ -307,137 +465,160 @@ function AddMySubtopic() {
               </div>
             </div>
 
-            <div className="border p-3">
-              {topicRows.map((row, index) => (
-                <div className="rowBts" key={index} style={{alignItems: 'end'}}>
-                  <div className="col-md-7">
-                    <div className="form-group mx-3">
-                      {index === 0 && (<label>Topic</label>)}
-                      <select
-                        name="topic_id"
-                        onChange={e => handleInputTopic(index, e)}
-                        value={row.topic_id}
-                        className="form-control"
-                      >
-                        <option>Select Topic</option>
-                        {topicList
-                          .filter(item => item.theme_learning_program_id == teacherTopicInput.theme_learning_program_id)
-                          .map(item => (
-                            <option value={item.id} key={item.id}>
-                              {item.name}
-                            </option>
-                          ))}
-                      </select>
-                      {/* <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.topic_id}</span> */}
-                    </div>
-                  </div>
+            <div className="col-md-12">
+                <div className="form-group m-3">
+                  <label>Topics</label>
+                  <select name="teacher_topic_id" onChange={handleInput} value={teacherTopicInput.teacher_topic_id} className="form-control">  
+                    <option>Select Topic</option>
+                    {
+                      teacherTopicList
+                      .filter((item) => item.teacher_id == userData.teacher.id)
+                      .filter((item) => item.topic.theme_learning_program_id == teacherTopicInput.theme_learning_program_id)                      
+                      .map((item)=> {
+                        return (
+                          <option value={item.id} key={item.id}>{item.name}</option>
+                        )
+                      })
+                    }
+                  </select>            
+                  <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.teacher_topic_id}</span>
+                </div>
+              </div> 
 
-                  <div className="col-md-3">
-                    <div className="form-group mx-3">
-                    {index === 0 && (<label>№ ord.</label>)}
+
+            <div className="border p-3">
+              {subtopicRows.map((row, index) => (
+                <div className="rowBts no-gutters" key={index} style={{alignItems: 'end'}}>
+                  <div className="col-md-6">
+                    <div className="form-group mx-3 my-1">
+                    {index === 0 && (<label>Subtopic</label>)}
                       <input
-                        type="number"
-                        name="order_number"
-                        onChange={event => handleInputTopic(index, event)}
-                        value={row.order_number}
+                        type="text"
+                        name="name_subtopic"
+                        onChange={event => handleInputSubtopic(index, event)}
+                        value={row.name_subtopic}
                         className="form-control"
                       />
-                      <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.order_number}</span>
+                      <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.name_subtopic}</span>            
+                    </div>
+                  </div>
+
+                  <div className="col-md-4">
+                    <div className="form-group mx-3 my-1">
+                      {index === 0 && (<label>Audio Path</label>)}
+                      <input type="file" accept="audio/*" name="audio_path" onChange={event => handleInputSubtopic(index, event)} className="form-control custom-file-input" />
+                      <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.audio_path}</span>
                     </div>
                   </div>
 
                   <div className="col-md-2">
-                    <button type="button" className="btnBts btn-danger btn-sm mx-3 my-2" onClick={() => handleRemoveTopicRow(index)}>
+                    <button type="button" className="btnBts btn-danger btn-sm mx-3" onClick={() => handleRemoveSubtopicRow(index)} style={{marginBottom: '12px'}}>
                       Remove
                     </button>
                   </div>
                 </div>
               ))}
 
-              <button type="button" className="btnBts btn-success btn-sm px-4 mx-3 my-2" onClick={handleAddTopicRow}>
+              <button type="button" className="btnBts btn-success btn-sm px-4 mx-3 my-3" onClick={handleAddSubtopicRow}>
                 Add Row
               </button>
-            </div>
-
-            <div className="rowBts">
-              <div className="col-md-6">
-                <div className="form-group m-3">
-                  <label>Video Title</label>
-                  <input type="text" name="title" onChange={handleInput} value={teacherTopicInput.title} className="form-control" />
-                  <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.title}</span>            
-                </div>
-              </div>
-              <div className="col-md-6">
-                <div className="form-group m-3">
-                  <label>Video Source</label>
-                  <input type="text" name="source" onChange={handleInput} value={teacherTopicInput.source}className="form-control" />
-                  <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.source}</span>
-                </div>
-              </div>
             </div>
 
             <div className="border p-3">
-              {breackpointRows.map((row, index) => (
-                <div className="rowBts" key={index} style={{alignItems: 'end'}}>
-                  <div className="col-md-7">
-                    <div className="form-group mx-3">
-                      {index === 0 && (<label>Breackpoint title</label>)}
-                       <input type="text" name="breakpoint_title" onChange={e => handleInputBreackpoint(index, e)} value={row.breakpoint_title} className="form-control" />
-              <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.title}</span>
+              {photoRows.map((row, index) => (
+                <div className="rowBts no-gutters" key={index} style={{alignItems: 'end'}}>
+                  <div className="col-md-6">
+                    <div className="form-group mx-3 my-1">
+                    {index === 0 && (<label>Subtopic</label>)}
+                      <input
+                        type="text"
+                        name="name_subtopic"
+                        onChange={event => handleInputPhoto(index, event)}
+                        value={row.name_subtopic}
+                        className="form-control"
+                      />
+                      <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.name_subtopic}</span>            
                     </div>
                   </div>
 
-                  <div className="col-md-3">
-                    <div className="form-group mx-3">
-                    {index === 0 && (<label>Time</label>)}
-                  <InputMask
-                      name="time"
-                      mask="99:99:99"
-                      maskChar="_"
-                      placeholder="HH:MM:SS"
-                      className="form-control"
-                      onChange={e => handleInputBreackpoint(index, e)} 
-                      value={row.time}
-                    />
-                      <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.order_number}</span>
+                  <div className="col-md-4">
+                    <div className="form-group mx-3 my-1">
+                      {index === 0 && (<label>Photo Path</label>)}
+                      <input type="file" accept="image/*" name="photo_path" onChange={event => handleInputPhoto(index, event)} className="form-control" />
+                      <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.photo_path}</span>
                     </div>
                   </div>
 
                   <div className="col-md-2">
-                    <button type="button" className="btnBts btn-danger btn-sm mx-3 my-2" onClick={() => handleRemoveBreackpointRow(index)}>
+                    <button type="button" className="btnBts btn-danger btn-sm mx-3" onClick={() => handleRemovePhotoRow(index)} style={{marginBottom: '12px'}}>
                       Remove
                     </button>
                   </div>
                 </div>
               ))}
 
-              <button type="button" className="btnBts btn-success btn-sm px-4 mx-3 my-2" onClick={handleAddBreackpointRow}>
+              <button type="button" className="btnBts btn-success btn-sm px-4 mx-3 my-3" onClick={() => handleAddPhotoRow()}>
+                Add Row
+              </button>
+            </div>
+
+            <div className="border p-3">
+              {flipRows.map((row, rowIndex) => (
+                <div className="rowBts" key={rowIndex} style={{alignItems: 'end'}}>
+                  <div className="col-md-4">
+                    <div className="form-group mx-3 my-1">
+                    {rowIndex === 0 && (<label>Flip Card Title</label>)}
+                      <input
+                        type="text"
+                        name="flip_title"
+                        onChange={(event) => handleInputFlip(rowIndex, event, editorStates[rowIndex].getCurrentContent().getPlainText())}
+                        value={row.flip_title}
+                        className="form-control"
+                      />
+                      <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.flip_title}</span>            
+                    </div>
+                  </div>
+
+                  <div className="white-background col-md-6">
+                    {rowIndex === 0 && (<label>Flip Card Answer</label>)}
+                    <div className="d-flex gap-1">
+                      <button type="button" onClick={() => handleBoldClick(rowIndex)}>Bold</button>
+                      <button type="button" onClick={() => handleItalicClick(rowIndex)}>Italic</button>
+                      <button type="button" onClick={() => handleUnderlineClick(rowIndex)}>Underline</button>
+
+                      {colorButtons.map((color, colorIndex) => (
+                        <button
+                          key={colorIndex}
+                          type="button"
+                          onClick={() => handleColorClick(rowIndex, color.name)}
+                          style={{ backgroundColor: color.hex, width: '20px', height: '20px', border: 'none', marginRight: '5px' }}
+                        />
+                      ))}
+                      {/* <button type="button" onClick={handleSaveClick}>Save</button> */}
+                    </div>
+                  <Editor
+                    editorState={editorStates[rowIndex]}
+                    onChange={(newEditorState) => onChangeFormat(rowIndex, newEditorState)}
+                    customStyleMap={styleMap}
+                  />
+
+                  </div>
+
+                  <div className="col-md-2">
+                    <button type="button" className="btnBts btn-danger btn-sm mx-3 my-2" onClick={() => handleRemoveFlipRow(rowIndex)}>
+                      Remove
+                    </button>
+                  </div>
+                </div>
+              ))}
+
+              <button type="button" className="btnBts btn-success btn-sm px-4 mx-3 my-2" onClick={handleAddFlipRow}>
                 Add Row
               </button>
             </div>
 
 
-            <div className="white-background">
-              <div className="d-flex gap-1">
-                <button type="button" onClick={handleBoldClick}>Bold</button>
-                <button type="button" onClick={handleItalicClick}>Italic</button>
-                <button type="button" onClick={handleUnderlineClick}>Underline</button>
-                {colorButtons.map((color, index) => (
-                  <button
-                    key={index}
-                    type="button"
-                    onClick={() => handleColorClick(color.name)}
-                    style={{ backgroundColor: color.hex, width: '20px', height: '20px', border: 'none', marginRight: '5px' }}
-                  />
-                ))}
-              <button type="button" onClick={handleSaveClick}>Save</button>
-              </div>
-                <Editor
-                  editorState={editorState}
-                  onChange={onChangeFormat}
-                  customStyleMap={styleMap}
-                />
-            </div>
+
 
 
 
