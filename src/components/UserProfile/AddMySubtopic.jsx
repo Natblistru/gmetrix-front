@@ -246,104 +246,210 @@ function AddMySubtopic({ onBackToList, userData }) {
     { hex: '#4e4e3f', name: 'color-black' },
   ];
 
-  const extractStyles = (block) => {
-    const styles = [];
-    let currentStyle = null;
+  const findTextBetweenLastSpanAndParagraph = (paragraph) => {
+
+    const endIndex = paragraph.lastIndexOf('</p>');
+    let startIndex = endIndex;
+    while (startIndex >= 0 && paragraph[startIndex] !== '>') {
+      startIndex--;
+    }
+    const textBetween = paragraph.slice(startIndex + 1, endIndex).trim();
+      return textBetween;
+  };
+
+  const groupStyledText = (html) => {
+    const paragraphsWithoutPClose = html.split('</p>\n');
+
+    const paragraphs = paragraphsWithoutPClose.map(paragraph => paragraph + '</p>');
+    paragraphs.pop();
   
-    block.inlineStyleRanges.forEach(range => {
-      const styleParts = range.style.split('-');
-  
-      if (styleParts.includes('color')) {
-        const colorIndex = styleParts.indexOf('color');
-        const color = styleParts[colorIndex + 1];
+    const result = [];
+    let textResult = ""
+
+    paragraphs.forEach((paragraph) => {
+      if (paragraph.trim() !== '') {
+        const textBeforeSpanMatch = paragraph.match(/<p[^>]*>(.*?)<span/);
+        const textBeforeSpan = textBeforeSpanMatch ? textBeforeSpanMatch[1] : '';
+        let i = 0;
+        let lungime = paragraph.length;
+        let currentStil = ''
+        let inceputBlocCuStil = 0
+
+        if (textBeforeSpan == '' && paragraph.substring(3, 8) !== '<span') {
+          result.push(paragraph);
+          textResult=""
+          i = lungime;
+        }
+        else {
+          textResult += `<p>${textBeforeSpan}`;
+
+          inceputBlocCuStil = '<p>'.length + textBeforeSpan.length;
+        }
         
-        styles.push({
-          style: 'COLOR',
-          color,
-          start: range.offset,
-          end: range.offset + range.length,
-        });
-      } else {
-        styleParts.forEach(stylePart => {
-          currentStyle = stylePart.toUpperCase();
-          styles.push({
-            style: currentStyle,
-            start: range.offset,
-            end: range.offset + range.length,
-          });
-        });
+        while (i < lungime) {
+
+          let sfarsitBlocStil = paragraph.indexOf('>', inceputBlocCuStil);
+
+
+          let blocCuStil = paragraph.substring(inceputBlocCuStil, sfarsitBlocStil+1);
+          if(blocCuStil == '</p>') {
+            textResult+='</span></p>'
+            result.push(textResult);
+            textResult=""
+            i = lungime
+            break
+          }
+         
+          if(blocCuStil !== currentStil) {
+
+            currentStil = blocCuStil
+
+            textResult +=currentStil
+
+            let pozitiaInceputSfarsitSpanTag = paragraph.indexOf('</span>', sfarsitBlocStil+1);
+    
+            let innerHtml = paragraph.substring(sfarsitBlocStil+1, pozitiaInceputSfarsitSpanTag)
+            textResult +=innerHtml
+
+            let sfarsitTotSpan = pozitiaInceputSfarsitSpanTag + '</span>'.length
+            let totSpan = paragraph.substring(inceputBlocCuStil, sfarsitTotSpan);
+
+            let urmatorSimbolDupaBlocSpan = paragraph[sfarsitTotSpan]
+            let sfarsitBlocFaraStil = sfarsitTotSpan
+            let blocFlaraStil=""
+            if(urmatorSimbolDupaBlocSpan !=='<') {
+              sfarsitBlocFaraStil = paragraph.indexOf('<span', sfarsitTotSpan);
+
+              if(sfarsitBlocFaraStil == -1) {
+                sfarsitBlocFaraStil = paragraph.indexOf('</p', sfarsitTotSpan);      
+                blocFlaraStil = paragraph.substring(sfarsitTotSpan, sfarsitBlocFaraStil);
+                textResult += '</span>' + blocFlaraStil + '</p>'  
+                result.push(textResult);
+                textResult=""
+                i = lungime
+                 
+              }
+              else {
+                blocFlaraStil = paragraph.substring(sfarsitTotSpan, sfarsitBlocFaraStil);
+                textResult += '</span>' + blocFlaraStil
+              }
+            }
+            else if(paragraph.substring(urmatorSimbolDupaBlocSpan, urmatorSimbolDupaBlocSpan+4)){}
+
+            inceputBlocCuStil = sfarsitBlocFaraStil
+
+          }
+          else {
+            let pozitiaInceputSfarsitSpanTag = paragraph.indexOf('</span>', inceputBlocCuStil + currentStil.length);
+            let innerHtml = paragraph.substring(inceputBlocCuStil + currentStil.length, pozitiaInceputSfarsitSpanTag)
+            textResult +=innerHtml
+            
+            let sfarsitTotSpan = pozitiaInceputSfarsitSpanTag + '</span>'.length
+            let totSpan = paragraph.substring(inceputBlocCuStil, sfarsitTotSpan);
+
+
+            let urmatorSimbolDupaBlocSpan = paragraph[sfarsitTotSpan]
+            let sfarsitBlocFaraStil = sfarsitTotSpan
+            let blocFlaraStil=""
+            if(urmatorSimbolDupaBlocSpan !=='<') {
+              sfarsitBlocFaraStil = paragraph.indexOf('<span', sfarsitTotSpan);
+
+              if(sfarsitBlocFaraStil == -1) {
+                sfarsitBlocFaraStil = paragraph.indexOf('</p', sfarsitTotSpan);      
+                blocFlaraStil = paragraph.substring(sfarsitTotSpan, sfarsitBlocFaraStil);
+                textResult += '</span>' + blocFlaraStil + '</p>'  
+                result.push(textResult);
+                textResult=""
+                i = lungime
+              }
+              else {
+                blocFlaraStil = paragraph.substring(sfarsitTotSpan, sfarsitBlocFaraStil);
+                textResult += '</span>' + blocFlaraStil
+              }
+            } 
+            inceputBlocCuStil = sfarsitBlocFaraStil
+          }
+          i=i+1
+        }
       }
     });
+    
+    console.log(result);
+    return result.join('');
+  }
   
-    return styles;
-  };
-  
-    
-  const extractStylingFromContent = (content) => {
-    const extractedStyling = [];
-    
-    content.forEach(block => {
-      const text = block.text.trim();
-      const styles = extractStyles(block);
-    console.log(block)
-    console.log(styles)   
-      if (text !== '' && styles.length > 0) {
-        extractedStyling.push({
-          text,
-          styles,
-        });
-      }
-    });
-    
-    return extractedStyling;
-  };
-    
-  const convertStylesToInlineCSS = (item) => {
-    let inlineStyles = '';
 
-    if (item.style == "BOLD") {
-      inlineStyles += 'font-weight: bold; ';
-    }
+    const convertStylesToInlineCSS = (styles) => {
+      let inlineStyles = '';
     
-    if (item.style == "ITALIC") {
-      inlineStyles += 'font-style: italic; ';
-    }
+      styles.forEach(style => {
+        if (style === "BOLD") {
+          inlineStyles += 'font-weight: bold; ';
+        }
     
-    if (item.style == "UNDERLINE") {
-      inlineStyles += 'text-decoration: underline; ';
-    }
-
-    if (item.style = "COLOR" && item.color!==undefined) {
-      inlineStyles += `color: ${item.color}; `;
-    }
+        if (style === "ITALIC") {
+          inlineStyles += 'font-style: italic; ';
+        }
     
-    return inlineStyles;
-  };
+        if (style === "UNDERLINE") {
+          inlineStyles += 'text-decoration: underline; ';
+        }
     
-  const convertContentStateToHTML = (content) => {
-    let html = '';
-    
-    content.forEach((block) => {
-      const text = block.text;
-      const spans = [];
-      console.log(block)
-      block.styles.forEach(item => {
-        console.log(item)        
-        const spanStyles = convertStylesToInlineCSS(item);
-        const spanText = text.substring(item.start, item.end);
-
-        if (spanText !== '' && spanStyles !== '') {
-          spans.push(`<span style="${spanStyles}">${spanText}</span>`);
+        if (style.startsWith("color")) {
+          const color = style.replace('color-', '');
+          inlineStyles += `color: ${color}; `;
         }
       });
     
-      if (spans.length > 0) {
-        html += `<p>${spans.join('')}</p>\n`;
-      }
-    });
+      return inlineStyles;
+    };
+  
+    const convertContentStateToHTML = (content) => {
+      let html = '';
     
-    return html;
-  };
+      content.forEach((block) => {
+        const text = block.text;
+        const spans = [];
+        let currentStyles = {};
+    
+        block.inlineStyleRanges.forEach(style => {
+          for (let i = style.offset; i < style.offset + style.length; i++) {
+            const styleKey = i.toString();
+            currentStyles[styleKey] = currentStyles[styleKey] || [];
+            currentStyles[styleKey].push(style.style);
+          }
+        });
+    
+        for (let i = 0; i < text.length; i++) {
+          const char = text[i];
+          const styleKey = i.toString();
+          const charStyles = currentStyles[styleKey];
+    
+          if (charStyles && charStyles.length > 0) {
+            // Dacă există stiluri pentru această poziție, le adăugăm
+            const charStylesCSS = convertStylesToInlineCSS(charStyles);
+            spans.push(`<span style="${charStylesCSS}">${char}</span>`);
+          } else {
+            // Dacă nu există stiluri, adăugăm litera ca atare
+            spans.push(char);
+          }
+        }
+    
+        if (spans.length > 0) {
+          html += `<p>${spans.join('')}</p>\n`;
+        } else if (text.trim() !== '') {
+          html += `<p>${text}</p>\n`;
+        }
+      });
+    
+      const groupedHTML = groupStyledText(html);
+      return groupedHTML;
+    };
+    
+  
+  
+  
+  
 
   const submitTeacherTopic = (e) => {
     e.preventDefault();
@@ -351,9 +457,11 @@ function AddMySubtopic({ onBackToList, userData }) {
     const formattedFlipRows = flipRows.map((row, index) => {
       const currentContent = editorStates[index].getCurrentContent();
       const contentWithStyles = convertToRaw(currentContent);
-      const stylingResult = extractStylingFromContent(contentWithStyles.blocks);
-      console.log(stylingResult)
-      const html = convertContentStateToHTML(stylingResult);
+      // const stylingResult = extractStylingFromContent(contentWithStyles.blocks);
+      // console.log(stylingResult)
+      console.log(contentWithStyles.blocks)
+      const html = convertContentStateToHTML(contentWithStyles.blocks);
+      console.log(html)
 
       return {
         flip_title: row.flip_title,
