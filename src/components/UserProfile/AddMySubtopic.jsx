@@ -54,26 +54,12 @@ function AddMySubtopic({ onBackToList, userData }) {
     theme_learning_program_id: '',
     teacher_topic_id: '',
     topic_id: '',
-    teacher_id: '',
+    // teacher_id: '',
     order_number: '',
     name: '', //name la subtopic
     title: '',  //title la video
     source: '',
   })
-
-  useEffect(() => {
-    const selectedTopic = topicList.find((topic) => topic.id == teacherTopicInput.topic_id);
-    const topicName = selectedTopic ? selectedTopic.name : '';
-    const selectedTeacher = teacherList.find((teacher) => teacher.id == teacherTopicInput.teacher_id);
-    const teacherName = selectedTeacher ? selectedTeacher.name : '';
-
-    const concatenatedName =
-    topicName !== '' && teacherName !== '' ? `${topicName} (${teacherName})` : '';
-    setTeacherTopicInput((prevInput) => ({
-      ...prevInput,
-      name: concatenatedName,
-    }));
-  }, [teacherTopicInput.topic_id, teacherTopicInput.teacher_id]);
 
   const [allCheckboxes, setAllCheckboxes] = useState({
     status: false,
@@ -115,6 +101,18 @@ function AddMySubtopic({ onBackToList, userData }) {
     setSubtopicRows(newRows);
   };
 
+  const [audioFiles, setAudioFiles] = useState([]);
+
+  const handleAudio = (e, index) => {
+    const file = e.target.files[0];
+    console.log(e.target)
+    setAudioFiles(prevAudioFiles => {
+      const newAudioFiles = [...prevAudioFiles];
+      newAudioFiles[index] = file;
+      return newAudioFiles;
+    });
+  };
+  
 
   const [photoRows, setPhotoRows] = useState([
     { photo_path: '', name_subtopic: '' },
@@ -140,6 +138,19 @@ function AddMySubtopic({ onBackToList, userData }) {
     newRows[index][name] = value;
     setPhotoRows(newRows);
   };
+
+  const [pictures, setPictures] = useState([]);
+
+  const handlePicture = (e, index) => {
+    const file = e.target.files[0];
+    console.log(e.target)
+    setPictures(prevAudioFiles => {
+      const newAudioFiles = [...prevAudioFiles];
+      newAudioFiles[index] = file;
+      return newAudioFiles;
+    });
+  };
+  
 
   const [flipRows, setFlipRows] = useState([
     { flip_title: '', flip_answer: '' },
@@ -246,17 +257,6 @@ function AddMySubtopic({ onBackToList, userData }) {
     { hex: '#4e4e3f', name: 'color-black' },
   ];
 
-  const findTextBetweenLastSpanAndParagraph = (paragraph) => {
-
-    const endIndex = paragraph.lastIndexOf('</p>');
-    let startIndex = endIndex;
-    while (startIndex >= 0 && paragraph[startIndex] !== '>') {
-      startIndex--;
-    }
-    const textBetween = paragraph.slice(startIndex + 1, endIndex).trim();
-      return textBetween;
-  };
-
   const groupStyledText = (html) => {
     const paragraphsWithoutPClose = html.split('</p>\n');
 
@@ -319,6 +319,7 @@ function AddMySubtopic({ onBackToList, userData }) {
             let blocFlaraStil=""
             if(urmatorSimbolDupaBlocSpan !=='<') {
               sfarsitBlocFaraStil = paragraph.indexOf('<span', sfarsitTotSpan);
+              currentStil = ''
 
               if(sfarsitBlocFaraStil == -1) {
                 sfarsitBlocFaraStil = paragraph.indexOf('</p', sfarsitTotSpan);      
@@ -353,7 +354,7 @@ function AddMySubtopic({ onBackToList, userData }) {
             let blocFlaraStil=""
             if(urmatorSimbolDupaBlocSpan !=='<') {
               sfarsitBlocFaraStil = paragraph.indexOf('<span', sfarsitTotSpan);
-
+              currentStil = ''
               if(sfarsitBlocFaraStil == -1) {
                 sfarsitBlocFaraStil = paragraph.indexOf('</p', sfarsitTotSpan);      
                 blocFlaraStil = paragraph.substring(sfarsitTotSpan, sfarsitBlocFaraStil);
@@ -378,8 +379,7 @@ function AddMySubtopic({ onBackToList, userData }) {
     return result.join('');
   }
   
-
-    const convertStylesToInlineCSS = (styles) => {
+  const convertStylesToInlineCSS = (styles) => {
       let inlineStyles = '';
     
       styles.forEach(style => {
@@ -404,75 +404,226 @@ function AddMySubtopic({ onBackToList, userData }) {
       return inlineStyles;
     };
   
-    const convertContentStateToHTML = (content) => {
-      let html = '';
-    
-      content.forEach((block) => {
-        const text = block.text;
-        const spans = [];
-        let currentStyles = {};
-    
-        block.inlineStyleRanges.forEach(style => {
-          for (let i = style.offset; i < style.offset + style.length; i++) {
-            const styleKey = i.toString();
-            currentStyles[styleKey] = currentStyles[styleKey] || [];
-            currentStyles[styleKey].push(style.style);
-          }
-        });
-    
-        for (let i = 0; i < text.length; i++) {
-          const char = text[i];
+  const convertContentStateToHTML = (content) => {
+    let html = '';
+  
+    content.forEach((block) => {
+      const text = block.text;
+      const spans = [];
+      let currentStyles = {};
+  
+      block.inlineStyleRanges.forEach(style => {
+        for (let i = style.offset; i < style.offset + style.length; i++) {
           const styleKey = i.toString();
-          const charStyles = currentStyles[styleKey];
-    
-          if (charStyles && charStyles.length > 0) {
-            // Dacă există stiluri pentru această poziție, le adăugăm
-            const charStylesCSS = convertStylesToInlineCSS(charStyles);
-            spans.push(`<span style="${charStylesCSS}">${char}</span>`);
-          } else {
-            // Dacă nu există stiluri, adăugăm litera ca atare
-            spans.push(char);
-          }
-        }
-    
-        if (spans.length > 0) {
-          html += `<p>${spans.join('')}</p>\n`;
-        } else if (text.trim() !== '') {
-          html += `<p>${text}</p>\n`;
+          currentStyles[styleKey] = currentStyles[styleKey] || [];
+          currentStyles[styleKey].push(style.style);
         }
       });
+  
+      for (let i = 0; i < text.length; i++) {
+        const char = text[i];
+        const styleKey = i.toString();
+        const charStyles = currentStyles[styleKey];
+  
+        if (charStyles && charStyles.length > 0) {
+          // Dacă există stiluri pentru această poziție, le adăugăm
+          const charStylesCSS = convertStylesToInlineCSS(charStyles);
+          spans.push(`<span style="${charStylesCSS}">${char}</span>`);
+        } else {
+          // Dacă nu există stiluri, adăugăm litera ca atare
+          spans.push(char);
+        }
+      }
+  
+      if (spans.length > 0) {
+        html += `<p>${spans.join('')}</p>\n`;
+      } else if (text.trim() !== '') {
+        html += `<p>${text}</p>\n`;
+      }
+    });
+  
+    const groupedHTML = groupStyledText(html);
+    return groupedHTML;
+  };
     
-      const groupedHTML = groupStyledText(html);
-      return groupedHTML;
-    };
-    
+
+  async function processSubtopicImages(succesTotal) {
+    let notFoundSubtopic = [];
+    const formDataArray = await Promise.all(photoRows.map(async (item, index) => {
+      let subtopicId = null;
   
+      if (item.name_subtopic) {
+        try {
+          const response = await axios.get(`http://localhost:8000/api/get-mysubtopic/${item.name_subtopic}`);
+          subtopicId = response.data.subtopic.id;
+        } catch (error) {
+          console.error('Eroare la căutarea subtopicului:', error);
+        }
+      }
   
+      if (!subtopicId) {
+        notFoundSubtopic.push(item.name_subtopic);
+      }
   
+      const formData = new FormData();
+      formData.append('subtopic_id', subtopicId);
+      formData.append('image', pictures[index]);
+      formData.append('path', item.image_path);
+      formData.append('status', 0);
+      return formData;
+    }));
   
+    if (notFoundSubtopic.length === 0) {
+      try {
+        const responses = await Promise.all(formDataArray.map(async (formData) => {
+          console.log('FormData:', formData);
+          return axios.post('http://localhost:8000/api/store-mysubtopic-image', formData, {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+            },
+          });
+        }));
+  
+        const successResponses = responses.filter(response => response.data.status === 201);
+        const errorResponses = responses.filter(response => response.data.status === 422);
+  
+        console.log(errorResponses);
+  
+        if (successResponses.length > 0) {
+          Swal.fire({
+            title: "Success",
+            text: `Successfully processed ${successResponses.length} out of ${responses.length} requests.`,
+            icon: "success"
+          });
+        }
+  
+        errorResponses.forEach(response => {
+          Swal.fire({
+            title: "Error",
+            text: Object.values(response.data.errors).flat().join(' '),
+            icon: "error"
+          });
+          succesTotal = false;
+        });
+      } catch (error) {
+        console.error(error);
+        succesTotal = false;
+      }
+    } else {
+      if (notFoundSubtopic.length > 0) {
+        Swal.fire({
+          title: "Unfound subtopic name:",
+          text: Object.values(notFoundSubtopic).flat().join(' '),
+          icon: "error"
+        });
+      }
+    }
+  }
+
 
   const submitTeacherTopic = (e) => {
     e.preventDefault();
+    let succesTotal = true;
+    console.log(subtopicRows.length)
+    if (subtopicRows && subtopicRows.length > 0) {
 
-    const formattedFlipRows = flipRows.map((row, index) => {
-      const currentContent = editorStates[index].getCurrentContent();
-      const contentWithStyles = convertToRaw(currentContent);
-      // const stylingResult = extractStylingFromContent(contentWithStyles.blocks);
-      // console.log(stylingResult)
-      console.log(contentWithStyles.blocks)
-      const html = convertContentStateToHTML(contentWithStyles.blocks);
-      console.log(html)
+      const formDataArray = subtopicRows.map((item,index) => {
+        console.log(audioFiles[index])
+        const formData = new FormData();
+        formData.append('name',item.name_subtopic );
+        formData.append('teacher_topic_id',teacherTopicInput.teacher_topic_id);
+        formData.append('audio',  audioFiles[index] );   
+        formData.append('audio_path',item.audio_path );
+        formData.append('status', 0);
+        return formData;
+      });
 
-      return {
-        flip_title: row.flip_title,
-        flip_answer: row.flip_answer,
-        editorText: html,
-      };
-    });
-      
-    console.log(formattedFlipRows);
-    
+      axios.all(
+        formDataArray.map(formData => {
+          console.log('FormData:', formData);
+          return axios.post('http://localhost:8000/api/store-mysubtopic', formData, {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+            },
+            });
+        })
+      )
+      .then(axios.spread((...responses) => {
+        const successResponses = responses.filter(response => response.data.status === 201);
+        const errorResponses = responses.filter(response => response.data.status === 422);
+        console.log(errorResponses)
+        if (successResponses.length > 0) {
+          Swal.fire({
+            title: "Success",
+            text: `Successfully processed ${successResponses.length} out of ${responses.length} requests.`,
+            icon: "success"
+          });
+        }
+        errorResponses.forEach(response => {
+          Swal.fire({
+            title: "Error",
+            text: Object.values(response.data.errors).flat().join(' '),
+            icon: "error"
+          });
+          succesTotal=false;
+        });
+      }))
+      .catch(error => {
+        console.error(error);
+        succesTotal=false;
+      });
+    }
 
+    processSubtopicImages(succesTotal);
+
+    if (flipRows && flipRows.length > 0) {
+      const formattedDataArray = flipRows.map((row, index) => {
+
+        const currentContent = editorStates[index].getCurrentContent();
+        const contentWithStyles = convertToRaw(currentContent);
+        const html = convertContentStateToHTML(contentWithStyles.blocks);
+        console.log(html)
+
+        const formData = new FormData();
+        formData.append('task', row.flip_title );
+        formData.append('teacher_topic_id', teacherTopicInput.teacher_topic_id );
+        formData.append('answer', html.replace(/\n/g, '<br/>') );
+        formData.append('status', 0);
+        return formData;
+      });
+        
+      // console.log(formattedDataArray);
+      axios.all(
+        formattedDataArray.map(formData => {
+          console.log('FormData:', formData);
+          return axios.post('http://localhost:8000/api/store-myflip-card', formData );
+        })
+      )
+      .then(axios.spread((...responses) => {
+        const successResponses = responses.filter(response => response.data.status === 201);
+        const errorResponses = responses.filter(response => response.data.status === 422);
+        console.log(errorResponses)
+        if (successResponses.length > 0) {
+          Swal.fire({
+            title: "Success",
+            text: `Successfully processed ${successResponses.length} out of ${responses.length} requests.`,
+            icon: "success"
+          });
+        }
+        errorResponses.forEach(response => {
+          Swal.fire({
+            title: "Error",
+            text: Object.values(response.data.errors).flat().join(' '),
+            icon: "error"
+          });
+          succesTotal=false;
+        });
+      }))
+      .catch(error => {
+        console.error(error);
+        succesTotal=false;
+      });
+    }
 
 
     // const formData = new FormData();
@@ -536,7 +687,7 @@ function AddMySubtopic({ onBackToList, userData }) {
         <div className="tab-content" id="myTabContent">
         
           <div className="tab-pane card-body border fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-          <form className="form-group custom-form" onSubmit={submitTeacherTopic} >
+          <form className="form-group custom-form" onSubmit={submitTeacherTopic} encType="multipart/form-data">
 
           <div className="rowBts">
               <div className="col-md-4">
@@ -614,7 +765,7 @@ function AddMySubtopic({ onBackToList, userData }) {
                   <div className="col-md-4">
                     <div className="form-group mx-3 my-1">
                       {index === 0 && (<label>Audio Path</label>)}
-                      <input type="file" accept="audio/*" name="audio_path" onChange={event => handleInputSubtopic(index, event)} className="form-control custom-file-input" />
+                      <input type="file" accept="audio/mp3, audio/wav" name="audio" onChange={(e) => handleAudio(e, index)} className="form-control custom-file-input" />
                       <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.audio_path}</span>
                     </div>
                   </div>
@@ -652,7 +803,7 @@ function AddMySubtopic({ onBackToList, userData }) {
                   <div className="col-md-4">
                     <div className="form-group mx-3 my-1">
                       {index === 0 && (<label>Photo Path</label>)}
-                      <input type="file" accept="image/*" name="photo_path" onChange={event => handleInputPhoto(index, event)} className="form-control" />
+                      <input type="file" accept="image/*" name="picture" onChange={(e) => handlePicture(e, index)} className="form-control" />
                       <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.photo_path}</span>
                     </div>
                   </div>
@@ -688,11 +839,12 @@ function AddMySubtopic({ onBackToList, userData }) {
                   </div>
 
                   <div className="white-background col-md-6">
-                    {rowIndex === 0 && (<label>Flip Card Answer</label>)}
+                    {rowIndex === 0 && (<label style={{marginBottom: '10px',display: 'block'}}>Flip Card Answer</label>)}
+                    {rowIndex !== 0 && (<div style={{ height: '10px' }}></div> )}
                     <div className="d-flex gap-1">
-                      <button type="button" onClick={() => handleBoldClick(rowIndex)}>Bold</button>
-                      <button type="button" onClick={() => handleItalicClick(rowIndex)}>Italic</button>
-                      <button type="button" onClick={() => handleUnderlineClick(rowIndex)}>Underline</button>
+                      <button type="button" className="small-button" onClick={() => handleBoldClick(rowIndex)}>Bold</button>
+                      <button type="button" className="small-button" onClick={() => handleItalicClick(rowIndex)}>Italic</button>
+                      <button type="button" className="small-button" onClick={() => handleUnderlineClick(rowIndex)}>Underline</button>
 
                       {colorButtons.map((color, colorIndex) => (
                         <button
@@ -725,42 +877,9 @@ function AddMySubtopic({ onBackToList, userData }) {
               </button>
             </div>
 
-
-
-
-
-
-
-            <div className="rowBts">
-              <div className="col-md-3">
-                <div className="form-group m-3">
-                  <label>Teacher</label>
-                  <select name="teacher_id" onChange={handleInput} value={teacherTopicInput.teacher_id} className="form-control">  
-                    <option>Select Teacher</option>
-                    {
-                      teacherList.map((item)=> {
-                        return (
-                          <option value={item.id} key={item.id}>{item.name}</option>
-                        )
-                      })
-                    }
-                  </select>            
-                  <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.teacher_id}</span>
-                </div>
-              </div>  
-              <div className="col-md-7">          
-                <div className="form-group m-3">
-                  <label>Teacher's Topic Title</label>
-                  <input type="text" name="name" onChange={handleInput} value={teacherTopicInput.name}className="form-control" />
-                  <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.name}</span>
-                </div>
-              </div>
-
-
+            <div className="col-md-12 d-flex justify-content-end">
+              <button type="submit" className="btnBts btn-success px-4 m-3">Submit</button>
             </div>
-
-
-            <button type="submit" className="btnBts btn-success px-4 m-3 float-end">Submit</button>
           </form> 
           </div>
 

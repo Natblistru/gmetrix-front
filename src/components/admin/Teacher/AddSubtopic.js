@@ -259,6 +259,7 @@ function AddSubtopic() {
     formData.append('audio_path',subtopicInput.audio_path );
     formData.append('status',allCheckboxes.status == true ? 1 : 0);
 
+    // console.log(audio)
     // console.log(formData)
 
     axios.post(`http://localhost:8000/api/store-subtopic`, formData, {

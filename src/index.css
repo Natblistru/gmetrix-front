@@ -1810,13 +1810,25 @@ a .subject-total-percent {
 
 .white-background .DraftEditor-root {
   background-color: white;
-  border: 1px solid #ddd; /* Adaugă un contur pentru a delimita Editorul */
+  border: 1px solid #ddd; 
   padding: 8px;
-  height: 200px; /* Stabilește înălțimea Editorului la necesitate */
-  overflow: auto; /* Adaugă un panou de derulare în cazul în care textul depășește înălțimea */
+  height: 200px; 
+  overflow: auto;
 }
 
-/* Adăugați aceste clase CSS pentru animația de mișcare sus-jos și alte efecte */
+.small-button {
+  padding: 3px 3px;
+  font-size: 12px;
+  border: 1px solid #ccc;
+  background-color: #f0f0f0;
+  color: #333;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.small-button:hover {
+  background-color: #ddd;
+}
+
 .my-topic-transition-enter {
   transform: translateY(-100%);
   opacity: 0;
@@ -1839,39 +1851,9 @@ a .subject-total-percent {
   transition: transform 2000ms, opacity 3500ms;
 }
 
-/* Stiluri suplimentare pentru conținutul animat */
 .my-topic-transition {
   padding: 20px;
   background-color: #e0e0e0;
   margin-top: 20px;
 }
 
-/* .custom-file-input {
-  color: transparent; 
-  cursor: pointer;
-}
-
-.custom-file-input::-webkit-file-upload-button {
-  visibility: hidden; 
-}
-
-.custom-file-input::before {
-  content: 'Alegeți fișierul'; 
-  display: inline-block;
-  background: #007bff;
-  color: #fff;
-  border: 1px solid #007bff;
-  border-radius: 5px;
-  padding: 6px 12px;
-  outline: none;
-  white-space: nowrap;
-  cursor: pointer;
-}
-
-.custom-file-input:hover::before {
-  border-color: #0056b3; 
-}
-
-.custom-file-input:active::before {
-  background-color: #0056b3; 
-} */
