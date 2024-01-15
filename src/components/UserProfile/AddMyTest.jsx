@@ -1,6 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { CSSTransition } from 'react-transition-group';
+import MyFormativeTest from './MyFormativeTest';
 
 function AddMyTest({ onBackToList, userData }) {
+  const [selectedTool, setSelectedTool] = useState(null);
+  const [testListVisible, setTestListVisible] = useState(true);
+
+  const handleToolClick = (toolId) => {
+    setSelectedTool(toolId);
+    setTestListVisible(false);
+  };
   
   const handleBackToList = () => {
     onBackToList();
@@ -18,8 +27,16 @@ function AddMyTest({ onBackToList, userData }) {
           BACK to List
         </button>
       </h2>
-      <div className="tab-content clearfix" id="myTabContent" style={{ marginTop: '40px'}}>
-        <div className="toolboxContainer" data-toolid="100">
+      <div className="clearfix" id="myTabContent" style={{ marginTop: '40px'}}>
+
+      <CSSTransition
+        in={testListVisible}
+        timeout={300}
+        classNames="my-topic-transition"
+        unmountOnExit
+      >
+      <div className="test-list">
+        <div className="toolboxContainer" data-toolid="test-quiz" onClick={() => handleToolClick('test-quiz')}>
           <div className="minor toolbox">
             <img
               className="toolPreviewImage"
@@ -31,7 +48,7 @@ function AddMyTest({ onBackToList, userData }) {
           </div>
         </div>
 
-        <div className="toolboxContainer" data-toolid="301">
+        <div className="toolboxContainer" data-toolid="test-check" onClick={() => handleToolClick('test-check')}>
           <div className="minor toolbox">
             <img
               className="toolPreviewImage"
@@ -114,7 +131,31 @@ function AddMyTest({ onBackToList, userData }) {
             <div className="toolboxTitle">Group (3 col)</div>
           </div>
         </div> 
-        {/* Adaugă restul toolbox-urilor aici */}
+      </div>
+      </CSSTransition>
+
+      <CSSTransition
+        in={selectedTool === 'test-quiz'}
+        timeout={300}
+        classNames="my-topic-transition"
+        unmountOnExit
+      >
+        <div id="test-quiz">
+        <MyFormativeTest title="Quiz" userData={userData} />
+        </div>
+      </CSSTransition>
+
+      <CSSTransition
+        in={selectedTool === 'test-check'}
+        timeout={300}
+        classNames="fade"
+        unmountOnExit
+      >
+        <div id="test-check">
+          <p>test check</p>
+        </div>
+      </CSSTransition>
+
       </div>
     </div>
   );  
