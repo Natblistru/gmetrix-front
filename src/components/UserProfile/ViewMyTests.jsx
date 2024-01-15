@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-function ViewMyTests() {
+function ViewMyTests({ onAddTest }) {
 
   const [loading, setLoading] = useState(true);
   const [teacherTopicList, setTeacherTopicList] = useState([]);
@@ -18,7 +18,7 @@ function ViewMyTests() {
 
   let viewTeacherTopic_HTMLTABLE = "";
   if(loading) {
-    return <h4>Loading Flip Card ...</h4>
+    return <h4>Loading Tests ...</h4>
   }
   else
   {
@@ -48,12 +48,17 @@ function ViewMyTests() {
     })
   }
 
+  const handleAddTest = () => {
+    onAddTest();
+  };
+
   return (
-    <div className="containerBts px-4">
+    <div className="containerBts w-100">
       <div className="cardBts mt-4">
         <div className="card-header">
           <h4>Formative Test List
-            <Link to="/admin/add-formative-test" className="btnBts btn-primary text-white btn-sm float-end">Add Formative Test</Link>
+            <button onClick={handleAddTest}  className="btnBts btn-primary text-white btn-sm float-end">Add Test</button>
+
           </h4>
         </div>
         <div className="card-body">

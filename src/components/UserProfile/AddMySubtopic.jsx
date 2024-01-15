@@ -624,49 +624,7 @@ function AddMySubtopic({ onBackToList, userData }) {
         succesTotal=false;
       });
     }
-
-
-    // const formData = new FormData();
-    // formData.append('name',teacherTopicInput.name );
-    // formData.append('order_number',teacherTopicInput.order_number );
-    // formData.append('teacher_id',teacherTopicInput.teacher_id );
-    // formData.append('topic_id',teacherTopicInput.topic_id );
-    // formData.append('status',allCheckboxes.status == true ? 1 : 0);
-
-    // // console.log(formData)
-
-    // axios.post(`http://localhost:8000/api/store-myteacherTopic`, formData).then(res => {
-    //   if(res.data.status === 201)
-    //   {
-    //     Swal.fire({
-    //       title: "Succes",
-    //       text: res.data.message,
-    //       icon: "success"
-    //     });
-    //     setTeacherTopicInput({
-    //       learning_program_id: '',
-    //       theme_learning_program_id: '',
-    //       teacher_topic_id: '',
-    //       topic_id: '',
-    //       teacher_id: '',
-    //       order_number: '',
-    //       name: '',
-    //     });
-    //     setAllCheckboxes({
-    //       status: false,
-    //     });
-    //     setErrors([]);
-    //   }
-    //   else if(res.data.status === 422)
-    //   {
-    //     Swal.fire({
-    //       title: "All fields are mandatory",
-    //       text: Object.values(res.data.errors).flat().join(' '),
-    //       icon: "error",
-    //     });
-    //     setErrors(res.data.errors);
-    //   }
-    // });
+    if(succesTotal) {onBackToList()}
   }
 
   const handleBackToList = () => {

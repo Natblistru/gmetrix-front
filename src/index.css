@@ -1857,3 +1857,49 @@ a .subject-total-percent {
   margin-top: 20px;
 }
 
+.toolboxContainer {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.toolbox {
+  height: auto;
+  background: #ffffff;
+  border-radius: 15px;
+  text-align: center;
+  cursor: pointer;
+  border: 3px solid #ddd;
+  background-color: rgb(230, 230, 230);
+  margin: 7px;
+}
+
+.minor {
+  width: 150px;
+  padding: 14px;
+    padding-bottom: 14px;
+  padding-bottom: 25px;
+  font-size: 100%;
+}
+
+.toolPreviewImage {
+  width: 100%;
+  pointer-events: none;
+}
+
+.toolboxTitle {
+  font-weight: 600;
+  position: absolute;
+  bottom: 5px;
+  padding: 10px;
+  left: 0;
+  right: 0;
+  font-size: 14px;
+}
+
+.container-fluid .tab-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
