@@ -6,8 +6,12 @@ import { Link } from 'react-router-dom';
 
 import Swal from 'sweetalert2'
 import MyQuizTest from './MyQuizTest';
+import MyTestDnD from './MyTestDnD';
+import MyTestDnDGroup from './MyTestDnDGroup';
+import MyTestDnDOrder from './MyTestDnDOrder';
+import MyTestDnDOrderText from './MyTestDnDOrderText';
 
-function MyFormativeTest({title, userData, onBackToList }) {
+function MyFormativeTest({title, userData, onBackToList, selectedType }) {
 
   const [learningProgramList, setLearningProgramList] = useState([]);
   const [themeList, setThemeList] = useState([]);
@@ -66,13 +70,16 @@ function MyFormativeTest({title, userData, onBackToList }) {
     {
       title: 'Item 1',
       testContent: {
-        task: '',
+        task: 'Succesiunea cronologică a evenimentelor (Romania in primul RM)',
         test_complexity_id: '',
+        column1: 'Evenimentele', 
+        column2: 'Text in ordine cronoligică',
+        column3: '',
         testRows: [
-          { option: '', correct: false, explanation: '' },
-          { option: '', correct: false, explanation: '' },
-          { option: '', correct: false, explanation: '' },
-          { option: '', correct: false, explanation: '' },
+          { option: 'România a intrat în Primul Război Mondial', correct: false, correct1: false, explanation: '1' },
+          { option: 'România a semnat Tratatul de la București', correct: false, correct1: false, explanation: '4' },
+          { option: 'România a câștigat o victorie importantă în Bătălia de la Mărăști', correct: false, correct1: false, explanation: '3' },
+          { option: 'Ocuparea Bucureștelui', correct: false, correct1: false, explanation: '2' },
         ]
       }
     },
@@ -87,11 +94,14 @@ function MyFormativeTest({title, userData, onBackToList }) {
         testContent: {
           task: '', 
           test_complexity_id: '', 
+          column1: '', 
+          column2: '',
+          column3: '',
           testRows: [
-            { option: '', correct: false, explanation: '' },
-            { option: '', correct: false, explanation: '' },
-            { option: '', correct: false, explanation: '' },
-            { option: '', correct: false, explanation: '' },
+            { option: '', correct: false, correct1: false, explanation: '' },
+            { option: '', correct: false, correct1: false, explanation: '' },
+            { option: '', correct: false, correct1: false, explanation: '' },
+            { option: '', correct: false, correct1: false, explanation: '' },
           ]
         }
       }
@@ -118,9 +128,9 @@ function MyFormativeTest({title, userData, onBackToList }) {
     const newTabs = [...tabs];
     const newTestRows = [...newTabs[tabIndex].testContent.testRows];
   
-    if (name === 'task' || name === 'test_complexity_id') {
+    if (name === 'task' || name === 'test_complexity_id' || name === 'column1' || name === 'column2' || name === 'column3') {
       newTabs[tabIndex].testContent[name] = value;
-    } else {
+    } else {  
       newTestRows[rowIndex][name] = type === 'checkbox' ? checked : value;
     }
     
@@ -212,6 +222,8 @@ function MyFormativeTest({title, userData, onBackToList }) {
 
     await processTestItems(succesTotal);
 
+    await processTestColumns(succesTotal);
+
     await processTestOptions(succesTotal);
 
     await processFormativeTestItems(succesTotal);
@@ -225,7 +237,7 @@ function MyFormativeTest({title, userData, onBackToList }) {
     formData.append('order_number',testItemInput.order_number );
     formData.append('title',testItemInput.title );
     formData.append('path',path );
-    formData.append('type','quiz' );
+    formData.append('type', selectedType );
     formData.append('test_complexity_id',testItemInput.test_complexity_id );
     formData.append('teacher_topic_id',testItemInput.teacher_topic_id );
     formData.append('status',0);
@@ -279,7 +291,7 @@ function MyFormativeTest({title, userData, onBackToList }) {
         // Construiește obiectul FormData pentru fiecare rând
         const formData = new FormData();
         formData.append('task', tab.testContent.task);
-        formData.append('type', 'quiz');
+        formData.append('type', selectedType);
         formData.append('test_complexity_id', tab.testContent.test_complexity_id);
         formData.append('teacher_topic_id', testItemInput.teacher_topic_id);
         formData.append('status', 0);
@@ -318,6 +330,90 @@ function MyFormativeTest({title, userData, onBackToList }) {
     }
     updateStateAndWorkWithNewArray(listItems);
   }
+
+  async function processTestColumns(succesTotal) {
+
+    const testItems = lastUpdatedArrayRef.current;
+    const formDataArray = [];
+
+    if(selectedType === 'dnd_chrono') {
+      tabs.forEach((tab, tabIndex) => {
+        ['column1'].forEach((columnName, orderNumber) => {
+          const formData = new FormData();
+          console.log(orderNumber)
+          formData.append('order_number', orderNumber);
+          formData.append('test_item_id', testItems[tabIndex].id);
+          formData.append('title', tab.testContent[columnName]);
+          formData.append('status', 0);
+      
+          formDataArray.push(formData);
+        });
+      });
+    } else if(selectedType === 'dnd' || selectedType === 'dnd_chrono_double' ) {
+      tabs.forEach((tab, tabIndex) => {
+        ['column1', 'column2'].forEach((columnName, orderNumber) => {
+          const formData = new FormData();
+          console.log(orderNumber)
+          formData.append('order_number', orderNumber);
+          formData.append('test_item_id', testItems[tabIndex].id);
+          formData.append('title', tab.testContent[columnName]);
+          formData.append('status', 0);
+      
+          formDataArray.push(formData);
+        });
+      });
+    } else if(selectedType === 'dnd_group') {
+      tabs.forEach((tab, tabIndex) => {
+        ['column1', 'column2', 'column3'].forEach((columnName, orderNumber) => {
+          const formData = new FormData();
+          console.log(orderNumber)
+          formData.append('order_number', orderNumber);
+          formData.append('test_item_id', testItems[tabIndex].id);
+          formData.append('title', tab.testContent[columnName]);
+          formData.append('status', 0);
+      
+          formDataArray.push(formData);
+        });
+      });
+    }
+    console.log(formDataArray)
+
+    try {
+      const responses = await Promise.all(formDataArray.map(async (formData) => {
+        return axios.post('http://localhost:8000/api/store-mytest-item-column', formData);
+      }));
+
+      const successResponses = responses.filter(response => response.data.status === 201);
+      const errorResponses = responses.filter(response => response.data.status === 422);
+ 
+      if (successResponses.length > 0) {
+        Swal.fire({
+          title: "Success",
+          text: `Successfully processed ${successResponses.length} out of ${responses.length} requests.`,
+          icon: "success"
+        });
+      }
+      errorResponses.forEach(response => {
+        Swal.fire({
+          title: "Error",
+          text: Object.values(response.data.errors).flat().join(' '),
+          icon: "error"
+        });
+        succesTotal = false;
+      });
+    } catch (error) {
+      console.error(error);
+      succesTotal = false;
+    } finally {
+      if (!succesTotal) {
+        Swal.fire({
+          title: "Error",
+          text: "An error occurred during data processing.",
+          icon: "error"
+        });
+      }
+    }   
+  }
   
   async function processTestOptions(succesTotal) {
 
@@ -331,7 +427,13 @@ function MyFormativeTest({title, userData, onBackToList }) {
     
         const formData = new FormData();
         formData.append('option', row.option);
-        formData.append('correct', row.correct == true? 1 : 0);
+        if(selectedType === 'dnd_group') {
+          formData.append('correct', row.correct ? 1 : row.correct1 ? 2 : 0);
+        } else if(selectedType === 'dnd_chrono'){
+          formData.append('correct', 0);
+        } else {
+          formData.append('correct', row.correct == true? 1 : 0);
+        }
         formData.append('explanation', row.explanation);
         // formData.append('text_additional', JSON.stringify(textWithQuotes));
         formData.append('test_item_id', testItems[index].id);
@@ -527,23 +629,6 @@ function MyFormativeTest({title, userData, onBackToList }) {
               <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.order_number}</span>
             </div>
           </div>
-
-          {/* <div className="col-md-4">
-            <div className="form-group m-3">
-              <label>Test Type</label>
-                <select name="type" onChange={handleInput} value={testItemInput.type} className="form-control">
-                  <option>Select Type</option>
-                  <option value="quiz">Quiz</option>
-                  <option value="check">Check</option>
-                  <option value="snap">Asocierea textelor</option>
-                  <option value="words">Completarea lacunelor</option>
-                  <option value="dnd">Drag'n'drop</option>
-                  <option value="dnd_chrono">Drag'n'drop (chrono)</option>
-                  <option value="dnd_chrono_double">Drag'n'drop (chrono double)</option>
-                  <option value="dnd_group">Drag'n'drop group</option>
-                </select>
-            </div>
-          </div> */}
       </div>
 
       <div className="rowBts">
@@ -558,24 +643,89 @@ function MyFormativeTest({title, userData, onBackToList }) {
 
       </div>
       </form>
- 
-      <MyQuizTest
-        tabs={tabs}
-        addTab={addTab}
-        removeTab={removeTab}
-        onRemoveTab={removeTab}
-        activeTab={activeTab}
-        onTabClick={handleTabClick}
-        tabContent={tabs.map(tab => tab.testContent)}
-        handleInputTest={handleInputTest}
-        handleRemoveTestRow={handleRemoveTestRow}
-        handleAddTestRow={handleAddTestRow}
-        errorList={errorList}
-        testComplexityList={testComplexityList}
-      />
-
+      {(selectedType === "quiz" ||
+        selectedType === "check" ) && (
+        <MyQuizTest
+          tabs={tabs}
+          addTab={addTab}
+          removeTab={removeTab}
+          onRemoveTab={removeTab}
+          activeTab={activeTab}
+          onTabClick={handleTabClick}
+          tabContent={tabs.map(tab => tab.testContent)}
+          handleInputTest={handleInputTest}
+          handleRemoveTestRow={handleRemoveTestRow}
+          handleAddTestRow={handleAddTestRow}
+          errorList={errorList}
+          testComplexityList={testComplexityList}
+        />
+      )}
+      {(selectedType === "dnd" ) && (
+        <MyTestDnD
+          tabs={tabs}
+          addTab={addTab}
+          removeTab={removeTab}
+          onRemoveTab={removeTab}
+          activeTab={activeTab}
+          onTabClick={handleTabClick}
+          tabContent={tabs.map(tab => tab.testContent)}
+          handleInputTest={handleInputTest}
+          handleRemoveTestRow={handleRemoveTestRow}
+          handleAddTestRow={handleAddTestRow}
+          errorList={errorList}
+          testComplexityList={testComplexityList}
+        />
+      )}
+      {(selectedType === "dnd_group" ) && (
+        <MyTestDnDGroup
+          tabs={tabs}
+          addTab={addTab}
+          removeTab={removeTab}
+          onRemoveTab={removeTab}
+          activeTab={activeTab}
+          onTabClick={handleTabClick}
+          tabContent={tabs.map(tab => tab.testContent)}
+          handleInputTest={handleInputTest}
+          handleRemoveTestRow={handleRemoveTestRow}
+          handleAddTestRow={handleAddTestRow}
+          errorList={errorList}
+          testComplexityList={testComplexityList}
+        />
+      )}
+      {(selectedType === "dnd_chrono" ) && (
+        <MyTestDnDOrder
+          tabs={tabs}
+          addTab={addTab}
+          removeTab={removeTab}
+          onRemoveTab={removeTab}
+          activeTab={activeTab}
+          onTabClick={handleTabClick}
+          tabContent={tabs.map(tab => tab.testContent)}
+          handleInputTest={handleInputTest}
+          handleRemoveTestRow={handleRemoveTestRow}
+          handleAddTestRow={handleAddTestRow}
+          errorList={errorList}
+          testComplexityList={testComplexityList}
+        />
+      )}
+      {(selectedType === "dnd_chrono_double" ) && (
+        <MyTestDnDOrderText
+          tabs={tabs}
+          addTab={addTab}
+          removeTab={removeTab}
+          onRemoveTab={removeTab}
+          activeTab={activeTab}
+          onTabClick={handleTabClick}
+          tabContent={tabs.map(tab => tab.testContent)}
+          handleInputTest={handleInputTest}
+          handleRemoveTestRow={handleRemoveTestRow}
+          handleAddTestRow={handleAddTestRow}
+          errorList={errorList}
+          testComplexityList={testComplexityList}
+        />
+      )}
       <button type="button" className="btnBts btn-success px-4 m-3 float-end" onClick={handleButtonClick} style={{position: 'absolute', bottom: '0px', right: '30px'}}>
-        Submit (Outside Form)
+        Submit
       </button>
    </div>
   )

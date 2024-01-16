@@ -3,11 +3,49 @@ import { CSSTransition } from 'react-transition-group';
 import MyFormativeTest from './MyFormativeTest';
 
 function AddMyTest({ onBackToList, userData }) {
-  const [selectedTool, setSelectedTool] = useState(null);
+  const [selectedType, setSelectedType] = useState(null);
+  const [selectedTitle, setSelectedTitle] = useState(null);
   const [testListVisible, setTestListVisible] = useState(true);
 
-  const handleToolClick = (toolId) => {
-    setSelectedTool(toolId);
+  const handleToolClick = (tool) => {
+    switch (tool) {
+      case "quiz":
+        setSelectedType(tool);
+        setSelectedTitle("Quiz");
+        break;
+      case "check":
+        setSelectedType(tool);
+        setSelectedTitle("Check");
+        break;
+      case "snap":
+        setSelectedType(tool);
+        setSelectedTitle("Asocierea textelor");
+        break;
+      case "words":
+        setSelectedType(tool);
+        setSelectedTitle("Completarea lacunelor");
+        break;
+      case "dnd":
+        setSelectedType(tool);
+        setSelectedTitle("Drag'n'drop");
+        break;
+      case "dnd_chrono":
+        setSelectedType(tool);
+        setSelectedTitle("Drag'n'drop (chrono)");
+        break;
+      case "dnd_chrono_double":
+        setSelectedType(tool);
+        setSelectedTitle("Drag'n'drop (chrono double)");
+        break;
+      case "dnd_group":
+        setSelectedType(tool);
+        setSelectedTitle("Drag'n'drop group");
+        break;
+      default:
+        setSelectedType(tool);
+        setSelectedTitle("Quiz");
+        break;
+    }
     setTestListVisible(false);
   };
   
@@ -36,7 +74,7 @@ function AddMyTest({ onBackToList, userData }) {
         unmountOnExit
       >
       <div className="test-list">
-        <div className="toolboxContainer" data-toolid="test-quiz" onClick={() => handleToolClick('test-quiz')}>
+        <div className="toolboxContainer" onClick={() => handleToolClick('quiz')}>
           <div className="minor toolbox">
             <img
               className="toolPreviewImage"
@@ -48,7 +86,7 @@ function AddMyTest({ onBackToList, userData }) {
           </div>
         </div>
 
-        <div className="toolboxContainer" data-toolid="test-check" onClick={() => handleToolClick('test-check')}>
+        <div className="toolboxContainer" onClick={() => handleToolClick('check')}>
           <div className="minor toolbox">
             <img
               className="toolPreviewImage"
@@ -60,7 +98,7 @@ function AddMyTest({ onBackToList, userData }) {
           </div>
         </div>
 
-        <div className="toolboxContainer" data-toolid="301">
+        <div className="toolboxContainer" onClick={() => handleToolClick('words')}>
           <div className="minor toolbox">
             <img
               className="toolPreviewImage"
@@ -72,7 +110,7 @@ function AddMyTest({ onBackToList, userData }) {
           </div>
         </div>
 
-        <div className="toolboxContainer" data-toolid="301">
+        <div className="toolboxContainer" onClick={() => handleToolClick('snap')}>
           <div className="minor toolbox">
             <img
               className="toolPreviewImage"
@@ -84,7 +122,7 @@ function AddMyTest({ onBackToList, userData }) {
           </div>
         </div>
 
-        <div className="toolboxContainer" data-toolid="301">
+        <div className="toolboxContainer" onClick={() => handleToolClick('dnd_chrono')}>
           <div className="minor toolbox">
             <img
               className="toolPreviewImage"
@@ -96,7 +134,7 @@ function AddMyTest({ onBackToList, userData }) {
           </div>
         </div>     
 
-        <div className="toolboxContainer" data-toolid="301">
+        <div className="toolboxContainer" onClick={() => handleToolClick('dnd_chrono_double')}>
           <div className="minor toolbox">
             <img
               className="toolPreviewImage"
@@ -108,7 +146,7 @@ function AddMyTest({ onBackToList, userData }) {
           </div>
         </div>     
 
-        <div className="toolboxContainer" data-toolid="301">
+        <div className="toolboxContainer" onClick={() => handleToolClick('dnd')}>
           <div className="minor toolbox">
             <img
               className="toolPreviewImage"
@@ -120,7 +158,7 @@ function AddMyTest({ onBackToList, userData }) {
           </div>
         </div> 
 
-        <div className="toolboxContainer" data-toolid="301">
+        <div className="toolboxContainer" onClick={() => handleToolClick('dnd_group')}>
           <div className="minor toolbox">
             <img
               className="toolPreviewImage"
@@ -135,24 +173,13 @@ function AddMyTest({ onBackToList, userData }) {
       </CSSTransition>
 
       <CSSTransition
-        in={selectedTool === 'test-quiz'}
+        in={selectedType !== null}
         timeout={300}
         classNames="my-topic-transition"
         unmountOnExit
       >
         <div id="test-quiz">
-        <MyFormativeTest title="Quiz" userData={userData} onBackToList={handleBackToList} />
-        </div>
-      </CSSTransition>
-
-      <CSSTransition
-        in={selectedTool === 'test-check'}
-        timeout={300}
-        classNames="fade"
-        unmountOnExit
-      >
-        <div id="test-check">
-          <p>test check</p>
+        <MyFormativeTest title={selectedTitle} selectedType={selectedType} userData={userData} onBackToList={handleBackToList} />
         </div>
       </CSSTransition>
 

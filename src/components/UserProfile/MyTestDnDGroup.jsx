@@ -56,9 +56,50 @@ const TabContent = ({ activeTab, content, handleInputTest, handleRemoveTestRow, 
               </div>
             </div>
           </div>  
+          <div className="rowBts">
+            <div className="col-md-6">
+              <div className="form-group">
+                <label>Column 1</label>
+                <input
+                  type="text"
+                  name="column1"
+                  onChange={(event) => handleInputTest(activeTab, null, event)}
+                  value={content[activeTab].column1}
+                  className="form-control"
+                />
+                <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.column1}</span>
+              </div>
+            </div>
+            <div className="col-md-3">
+              <div className="form-group">
+                <label>Column 2</label>
+                <input
+                  type="text"
+                  name="column2"
+                  onChange={(event) => handleInputTest(activeTab, null, event)}
+                  value={content[activeTab].column2}
+                  className="form-control"
+                />
+                <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.column2}</span>
+              </div>
+            </div>
+            <div className="col-md-3">
+              <div className="form-group">
+                <label>Column 3</label>
+                <input
+                  type="text"
+                  name="column3"
+                  onChange={(event) => handleInputTest(activeTab, null, event)}
+                  value={content[activeTab].column3}
+                  className="form-control"
+                />
+                <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.column3}</span>
+              </div>
+            </div>
+          </div>  
           {content[activeTab].testRows.map((row, index) => (
             <div className="rowBts" key={index} style={{ alignItems: 'end' }}>
-            <div className="col-md-4">
+            <div className="col-md-6">
               <div className="form-group">
                 {index === 0 && <label>Option</label>}
                 <input
@@ -72,7 +113,7 @@ const TabContent = ({ activeTab, content, handleInputTest, handleRemoveTestRow, 
               </div>
             </div>
 
-            <div className="col-md-2 align-self-start" style={{ marginRight: '-35px' }}>
+            <div className="col-md-3 align-self-start" >
               <div className="form-group">
                 {index === 0 && (
                   <>
@@ -90,17 +131,21 @@ const TabContent = ({ activeTab, content, handleInputTest, handleRemoveTestRow, 
               </div>
             </div>
 
-            <div className="col-md-5" style={{ marginRight: '-25px' }}>
+            <div className="col-md-1 align-self-start" >
               <div className="form-group">
-                {index === 0 && <label>Explanation</label>}
+                {index === 0 && (
+                  <>
+                    <label>Correct</label>
+                    <br />
+                  </>
+                )}
                 <input
-                  type="text"
-                  name="explanation"
+                  type="checkbox"
+                  name="correct1"
                   onChange={event => handleInputTest(activeTab, index, event)}
-                  value={row.explanation}
-                  className="form-control"
+                  defaultChecked={row.correct1 == 1 ? true: false}
+                  style={{ marginTop: '15px', marginLeft: '15px' }}
                 />
-                <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.explanation}</span>
               </div>
             </div>
 
@@ -128,7 +173,7 @@ const TabContent = ({ activeTab, content, handleInputTest, handleRemoveTestRow, 
 )}
 ;
 
-function MyQuizTest({ tabs, addTab, removeTab, onRemoveTab, activeTab, onTabClick, tabContent, handleInputTest, handleRemoveTestRow, handleAddTestRow, errorList, testComplexityList }) {
+function MyTestDnDGroup({ tabs, addTab, removeTab, onRemoveTab, activeTab, onTabClick, tabContent, handleInputTest, handleRemoveTestRow, handleAddTestRow, errorList, testComplexityList }) {
   return (
     <>
       <TabList
@@ -150,4 +195,4 @@ function MyQuizTest({ tabs, addTab, removeTab, onRemoveTab, activeTab, onTabClic
     </>
   );
 }
-export default MyQuizTest;
+export default MyTestDnDGroup;

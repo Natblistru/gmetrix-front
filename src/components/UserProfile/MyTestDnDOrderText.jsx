@@ -56,55 +56,83 @@ const TabContent = ({ activeTab, content, handleInputTest, handleRemoveTestRow, 
               </div>
             </div>
           </div>  
+          <div className="rowBts">
+            <div className="col-md-7">
+              <div className="form-group">
+                <label>Column 1</label>
+                <input
+                  type="text"
+                  name="column1"
+                  onChange={(event) => handleInputTest(activeTab, null, event)}
+                  value={content[activeTab].column1}
+                  className="form-control"
+                />
+                <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.column1}</span>
+              </div>
+            </div>
+            <div className="col-md-5">
+              <div className="form-group">
+                <label>Column 2</label>
+                <input
+                  type="text"
+                  name="column2"
+                  onChange={(event) => handleInputTest(activeTab, null, event)}
+                  value={content[activeTab].column2}
+                  className="form-control"
+                />
+                <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.column2}</span>
+              </div>
+            </div>
+          </div>  
           {content[activeTab].testRows.map((row, index) => (
             <div className="rowBts" key={index} style={{ alignItems: 'end' }}>
-            <div className="col-md-4">
-              <div className="form-group">
-                {index === 0 && <label>Option</label>}
-                <input
-                  type="text"
-                  name="option"
-                  onChange={event => handleInputTest(activeTab, index, event)}
-                  value={row.option}
-                  className="form-control"
-                />
-                <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.option}</span>
+              <div className="col-md-7">
+                <div className="form-group">
+                  {index === 0 && <label>Option</label>}
+                  <input
+                    type="text"
+                    name="option"
+                    onChange={event => handleInputTest(activeTab, index, event)}
+                    value={row.option}
+                    className="form-control"
+                  />
+                  <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.option}</span>
+                </div>
               </div>
-            </div>
 
-            <div className="col-md-2 align-self-start" style={{ marginRight: '-35px' }}>
-              <div className="form-group">
-                {index === 0 && (
-                  <>
-                    <label>Correct</label>
-                    <br />
-                  </>
-                )}
-                <input
-                  type="checkbox"
-                  name="correct"
-                  onChange={event => handleInputTest(activeTab, index, event)}
-                  defaultChecked={row.correct == 1 ? true: false}
-                  style={{ marginTop: '15px', marginLeft: '15px' }}
-                />
+              <div className="col-md-2">
+                <div className="form-group">
+                  {index === 0 && <label>Order</label>}
+                  <input
+                    type="text"
+                    name="explanation"
+                    onChange={event => handleInputTest(activeTab, index, event)}
+                    value={row.explanation}
+                    className="form-control"
+                  />
+                  <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.explanation}</span>
+                </div>
               </div>
-            </div>
 
-            <div className="col-md-5" style={{ marginRight: '-25px' }}>
-              <div className="form-group">
-                {index === 0 && <label>Explanation</label>}
-                <input
-                  type="text"
-                  name="explanation"
-                  onChange={event => handleInputTest(activeTab, index, event)}
-                  value={row.explanation}
-                  className="form-control"
-                />
-                <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.explanation}</span>
+              <div className="col-md-2 align-self-start" style={{ marginRight: '-35px' }}>
+                <div className="form-group">
+                  {index === 0 && (
+                    <>
+                      <label>Correct</label>
+                      <br />
+                    </>
+                  )}
+                  <input
+                    type="checkbox"
+                    name="correct"
+                    onChange={event => handleInputTest(activeTab, index, event)}
+                    defaultChecked={row.correct == 1 ? true: false}
+                    style={{ marginTop: '15px', marginLeft: '15px' }}
+                  />
+                </div>
               </div>
-            </div>
 
-            <div className="col-md-2">
+            <div className="col-md-2" style={{ marginLeft: '-25px' }}>
               <button
                 type="button"
                 className="btnBts btn-danger btn-sm mx-3 my-2"
@@ -128,7 +156,7 @@ const TabContent = ({ activeTab, content, handleInputTest, handleRemoveTestRow, 
 )}
 ;
 
-function MyQuizTest({ tabs, addTab, removeTab, onRemoveTab, activeTab, onTabClick, tabContent, handleInputTest, handleRemoveTestRow, handleAddTestRow, errorList, testComplexityList }) {
+function MyTestDnDOrderText({ tabs, addTab, removeTab, onRemoveTab, activeTab, onTabClick, tabContent, handleInputTest, handleRemoveTestRow, handleAddTestRow, errorList, testComplexityList }) {
   return (
     <>
       <TabList
@@ -150,4 +178,4 @@ function MyQuizTest({ tabs, addTab, removeTab, onRemoveTab, activeTab, onTabClic
     </>
   );
 }
-export default MyQuizTest;
+export default MyTestDnDOrderText;
