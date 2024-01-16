@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2'
 import MyQuizTest from './MyQuizTest';
 
-function MyFormativeTest({title, userData }) {
+function MyFormativeTest({title, userData, onBackToList }) {
 
   const [learningProgramList, setLearningProgramList] = useState([]);
   const [themeList, setThemeList] = useState([]);
@@ -15,6 +15,10 @@ function MyFormativeTest({title, userData }) {
   const [teacherList, setTeacherList] = useState([]);
   const [teacherTopicList, setTeacherTopicList] = useState([]);
   const [testComplexityList, setTestComplexityList] = useState([]);
+
+  const [newTestItems, setNewTestItems] = useState([]);
+  const lastUpdatedArrayRef = useRef([]);
+  const lastUpdatedFormativeTestRef = useRef([]);
   
   useEffect(() => {
 
@@ -59,19 +63,39 @@ function MyFormativeTest({title, userData }) {
   const formRef = useRef(null);
 
   const [tabs, setTabs] = useState([
-    { title: 'Item 1', testContent: { testRows: [{ option: '', correct: false, explanation: '' },
-                                                 { option: '', correct: false, explanation: '' },
-                                                 { option: '', correct: false, explanation: '' },
-                                                 { option: '', correct: false, explanation: '' },] } },
+    {
+      title: 'Item 1',
+      testContent: {
+        task: '',
+        test_complexity_id: '',
+        testRows: [
+          { option: '', correct: false, explanation: '' },
+          { option: '', correct: false, explanation: '' },
+          { option: '', correct: false, explanation: '' },
+          { option: '', correct: false, explanation: '' },
+        ]
+      }
+    },
   ]);
   const [activeTab, setActiveTab] = useState(0);
 
   const addTab = () => {
-    setTabs([...tabs, { title: `Item ${tabs.length + 1}`, 
-                        testContent: { testRows: [{ option: '', correct: false, explanation: '' },
-                                                  { option: '', correct: false, explanation: '' },
-                                                  { option: '', correct: false, explanation: '' },
-                                                  { option: '', correct: false, explanation: '' },] } }]);
+    setTabs(prevTabs => [
+      ...prevTabs,
+      {
+        title: `Item ${prevTabs.length + 1}`,
+        testContent: {
+          task: '', 
+          test_complexity_id: '', 
+          testRows: [
+            { option: '', correct: false, explanation: '' },
+            { option: '', correct: false, explanation: '' },
+            { option: '', correct: false, explanation: '' },
+            { option: '', correct: false, explanation: '' },
+          ]
+        }
+      }
+    ]);
   };
 
   const removeTab = (index) => {
@@ -79,6 +103,10 @@ function MyFormativeTest({title, userData }) {
     newTabs.splice(index, 1);
     setTabs(newTabs);
   };
+
+  useEffect(()=>{
+    setActiveTab(tabs.length - 1);
+  },[tabs])
 
   const handleTabClick = (index) => {
     setActiveTab(index);
@@ -89,10 +117,17 @@ function MyFormativeTest({title, userData }) {
     const { name, value, type, checked } = event.target;
     const newTabs = [...tabs];
     const newTestRows = [...newTabs[tabIndex].testContent.testRows];
-    newTestRows[rowIndex][name] = type === 'checkbox' ? checked : value;
+  
+    if (name === 'task' || name === 'test_complexity_id') {
+      newTabs[tabIndex].testContent[name] = value;
+    } else {
+      newTestRows[rowIndex][name] = type === 'checkbox' ? checked : value;
+    }
+    
     newTabs[tabIndex].testContent.testRows = newTestRows;
     setTabs(newTabs);
   };
+
 
   const handleRemoveTestRow = (tabIndex, rowIndex) => {
     const newTabs = [...tabs];
@@ -113,6 +148,9 @@ function MyFormativeTest({title, userData }) {
   
 
   const [errorList, setErrors] = useState([]);
+
+
+
   const [testItemInput, setTestItemInput] = useState({
     learning_program_id: '',
     theme_learning_program_id: '',
@@ -161,114 +199,241 @@ function MyFormativeTest({title, userData }) {
     return '/' + text;
   }
 
-
-
-  const handleButtonClick = async () => {
-    try {
-      await sendFormDataToServer();
-  
-      // Verifică existența formRef și declanșează evenimentul de submit
-      if (formRef.current) {
-        formRef.current.dispatchEvent(new Event('submit', { cancelable: true }));
-      }
-  
-    } catch (error) {
-      console.error('Eroare în timpul manipulării butonului:', error);
-    }
+  const updateStateAndWorkWithNewArray = (newArray) => {
+    setNewTestItems(newArray);
+    lastUpdatedArrayRef.current = newArray;
   };
 
-  const sendFormDataToServer = async () => {
+  const handleButtonClick = async () => {
+
+    let succesTotal = true;
+
+    await processFormativeTest(succesTotal);
+
+    await processTestItems(succesTotal);
+
+    await processTestOptions(succesTotal);
+
+    await processFormativeTestItems(succesTotal);
+
+    if(succesTotal) {onBackToList()}
+  };
+
+  async function processFormativeTest (succesTotal) {
+
+    const formData = new FormData();
+    formData.append('order_number',testItemInput.order_number );
+    formData.append('title',testItemInput.title );
+    formData.append('path',path );
+    formData.append('type','quiz' );
+    formData.append('test_complexity_id',testItemInput.test_complexity_id );
+    formData.append('teacher_topic_id',testItemInput.teacher_topic_id );
+    formData.append('status',0);
+
+    axios.post(`http://localhost:8000/api/store-myformative-test`, formData).then(res => {
+      if(res.data.status === 201)
+      {
+        Swal.fire({
+          title: "Succes",
+          text: res.data.message,
+          icon: "success"
+        });
+        lastUpdatedFormativeTestRef.current =  res.data.formativeTest;
+        setTestItemInput({
+          learning_program_id: '',
+          theme_learning_program_id: '',
+          teacher_topic_id: '',
+          test_complexity_id: '',
+          teacher_id: '',
+          order_number: '',
+          type: '',
+          title: '',
+          path: '',
+        });
+        setPath('');
+        setAllCheckboxes({
+          status: false,
+        });
+        setErrors([]);
+      }
+      else if(res.data.status === 422)
+      {
+        Swal.fire({
+          title: "All fields are mandatory",
+          text: Object.values(res.data.errors).flat().join(' '),
+          icon: "error",
+        });
+        succesTotal = false;
+        setErrors(res.data.errors);
+      }
+    });
+  }
+
+  async function processTestItems(succesTotal) {
+    let listItems = []
+
     try {
-      // Iterează prin fiecare tab
       for (let tabIndex = 0; tabIndex < tabs.length; tabIndex++) {
         const tab = tabs[tabIndex];
-        const testRows = tab.testContent.testRows;
   
-        // Iterează prin fiecare rând din testRows
-        for (let rowIndex = 0; rowIndex < testRows.length; rowIndex++) {
-          const row = testRows[rowIndex];
+        // Construiește obiectul FormData pentru fiecare rând
+        const formData = new FormData();
+        formData.append('task', tab.testContent.task);
+        formData.append('type', 'quiz');
+        formData.append('test_complexity_id', tab.testContent.test_complexity_id);
+        formData.append('teacher_topic_id', testItemInput.teacher_topic_id);
+        formData.append('status', 0);
   
-          // Construiește obiectul FormData pentru fiecare rând
-          const formData = new FormData();
-          formData.append('option', row.option);
-          formData.append('correct', row.correct);
-          formData.append('explanation', row.explanation);
+        // Trimite FormData către server pentru fiecare rând
+        const response = await axios.post(`http://localhost:8000/api/store-mytest-item`, formData);
   
-          // Adaugă alte date în FormData, dacă este necesar
-          formData.append('test_item_id', testItemInput.test_item_id);
-          formData.append('status', allCheckboxes.status === true ? 1 : 0);
-  
-          // Trimite FormData către server pentru fiecare rând
-          const response = await axios.post(`http://localhost:8000/api/update-test-item-option/${testItemInput.test_item_id}`, formData);
-  
-          if (response.ok) {
-            console.log(`Datele pentru tab-ul ${tabIndex + 1}, rândul ${rowIndex + 1} au fost trimise cu succes către server!`);
-          } else {
-            console.error(`Eroare în timpul trimiterii datelor pentru tab-ul ${tabIndex + 1}, rândul ${rowIndex + 1} către server.`);
-          }
+        if (response.data.status === 201) {
+          Swal.fire({
+            title: "Success",
+            text: "Successfully processed the request.",
+            icon: "success"
+          });
+
+          listItems = [...listItems, response.data.testItem];
+        } else {
+          Swal.fire({
+            title: "Error",
+            text: response.data.message,
+            icon: "error"
+          });
+          succesTotal = false;
         }
       }
     } catch (error) {
       console.error('Eroare în timpul procesării datelor:', error);
-      throw error; // Aruncă eroarea pentru a fi prinsă în funcția de apelare
+      succesTotal = false;
+    } finally {
+      if (!succesTotal) {
+        Swal.fire({
+          title: "Error",
+          text: "An error occurred during data processing.",
+          icon: "error"
+        });
+      }
     }
-  };
+    updateStateAndWorkWithNewArray(listItems);
+  }
   
-  const submitTeacherTopic = (e) => {
-    e.preventDefault();
+  async function processTestOptions(succesTotal) {
 
-  //   const formData = new FormData();
-  //   formData.append('order_number',testItemInput.order_number );
-  //   formData.append('title',testItemInput.title );
-  //   formData.append('path',testItemInput.path );
-  //   formData.append('type',testItemInput.type );
-  //   formData.append('test_complexity_id',testItemInput.test_complexity_id );
-  //   formData.append('teacher_topic_id',testItemInput.teacher_topic_id );
-  //   formData.append('status',allCheckboxes.status == true ? 1 : 0);
+    const testItems = lastUpdatedArrayRef.current;
+    let notFoundTestItem = [];
+    const formDataArray = [];
+    tabs.forEach((tab, index) => {
+      const testRows = tab.testContent.testRows;
+      for (let rowIndex = 0; rowIndex < testRows.length; rowIndex++) {
+        const row = testRows[rowIndex];
+    
+        const formData = new FormData();
+        formData.append('option', row.option);
+        formData.append('correct', row.correct == true? 1 : 0);
+        formData.append('explanation', row.explanation);
+        // formData.append('text_additional', JSON.stringify(textWithQuotes));
+        formData.append('test_item_id', testItems[index].id);
+        formData.append('status', 0);
+    
+        formDataArray.push(formData);
+      }
+    });
+  
+    if (notFoundTestItem.length === 0) {
+      try {
+        const responses = await Promise.all(formDataArray.map(async (formData) => {
+          return axios.post('http://localhost:8000/api/store-mytest-item-option', formData);
+        }));
+  
+        const successResponses = responses.filter(response => response.data.status === 201);
+        const errorResponses = responses.filter(response => response.data.status === 422);
+   
+        if (successResponses.length > 0) {
+          Swal.fire({
+            title: "Success",
+            text: `Successfully processed ${successResponses.length} out of ${responses.length} requests.`,
+            icon: "success"
+          });
+        }
+  
+        errorResponses.forEach(response => {
+          Swal.fire({
+            title: "Error",
+            text: Object.values(response.data.errors).flat().join(' '),
+            icon: "error"
+          });
+          succesTotal = false;
+        });
+      } catch (error) {
+        console.error(error);
+        succesTotal = false;
+      }
+    } else {
+      if (notFoundTestItem.length > 0) {
+        Swal.fire({
+          title: "Unfound test item task:",
+          text: Object.values(notFoundTestItem).flat().join(' '),
+          icon: "error"
+        });
+        succesTotal = false;
+      }
+    }
+  }
 
-  //   // console.log(formData)
+  async function processFormativeTestItems(succesTotal) {
 
-  //   axios.post(`http://localhost:8000/api/store-formative-test`, formData).then(res => {
-  //     if(res.data.status === 201)
-  //     {
-  //       Swal.fire({
-  //         title: "Succes",
-  //         text: res.data.message,
-  //         icon: "success"
-  //       });
-  //       setTestItemInput({
-  //         learning_program_id: '',
-  //         theme_learning_program_id: '',
-  //         teacher_topic_id: '',
-  //         test_complexity_id: '',
-  //         teacher_id: '',
-  //         order_number: '',
-  //         type: '',
-  //         title: '',
-  //         path: '',
-  //       });
-  //       setAllCheckboxes({
-  //         status: false,
-  //       });
-  //       setErrors([]);
-  //     }
-  //     else if(res.data.status === 422)
-  //     {
-  //       Swal.fire({
-  //         title: "All fields are mandatory",
-  //         text: Object.values(res.data.errors).flat().join(' '),
-  //         icon: "error",
-  //       });
-  //       setErrors(res.data.errors);
-  //     }
-  //   });
+    const formativeTest = lastUpdatedFormativeTestRef.current;
+    const testItems = lastUpdatedArrayRef.current;
+
+    try {
+      for (let tabIndex = 0; tabIndex < tabs.length; tabIndex++) {
+        const tab = tabs[tabIndex];
+  
+        const formData = new FormData();
+        formData.append('order_number', tabIndex + 1 );
+        formData.append('test_item_id',testItems[tabIndex].id );
+        formData.append('formative_test_id',formativeTest.id );
+        formData.append('status', 0);
+  
+        // Trimite FormData către server pentru fiecare rând
+        const response = await axios.post(`http://localhost:8000/api/store-myformative-test-item`, formData);
+  
+        if (response.data.status === 201) {
+          Swal.fire({
+            title: "Success",
+            text: "Successfully processed the request.",
+            icon: "success"
+          });
+        } else {
+          Swal.fire({
+            title: "Error",
+            text: response.data.message,
+            icon: "error"
+          });
+          succesTotal = false;
+        }
+      }
+    } catch (error) {
+      console.error('Eroare în timpul procesării datelor:', error);
+      succesTotal = false;
+    } finally {
+      if (!succesTotal) {
+        Swal.fire({
+          title: "Error",
+          text: "An error occurred during data processing.",
+          icon: "error"
+        });
+      }
+    }   
   }
 
   return (
-    <div className="container-fluid px4 shadow-lg rounded p-1">
+    <div className="container-fluid px4 shadow-lg rounded p-1" style={{position: 'relative'}}>
       <h2 className="m-3">{title}</h2>
 
-      <form className="form-group custom-form" ref={formRef} onSubmit={submitTeacherTopic}>
+      <form className="form-group custom-form" ref={formRef} >
 
         <div className="rowBts">
           <div className="col-md-4">
@@ -338,22 +503,22 @@ function MyFormativeTest({title, userData }) {
           </div>
 
           <div className="col-md-4">
-          <div className="form-group mx-3 my-1">
-            <label>Complexity</label>
-            <select name="test_complexity_id" onChange={handleInput} value={testItemInput.test_complexity_id} className="form-control">  
-              <option>Select Test Complexity</option>
-              {
-                testComplexityList
-                .map((item)=> {
-                  return (
-                    <option value={item.id} key={item.id}>{item.name}</option>
-                  )
-                })
-              }
-            </select>            
-            <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.test_complexity_id}</span>
+            <div className="form-group mx-3 my-1">
+              <label>Complexity</label>
+              <select name="test_complexity_id" onChange={handleInput} value={testItemInput.test_complexity_id} className="form-control">  
+                <option>Select Test Complexity</option>
+                {
+                  testComplexityList
+                  .map((item)=> {
+                    return (
+                      <option value={item.id} key={item.id}>{item.name}</option>
+                    )
+                  })
+                }
+              </select>            
+              <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.test_complexity_id}</span>
+            </div>
           </div>
-        </div>
 
         <div className="col-md-2">
             <div className="form-group mx-3 my-1">
@@ -384,8 +549,8 @@ function MyFormativeTest({title, userData }) {
       <div className="rowBts">
 
           <div className="col-md-8">          
-            <div className="form-group mx-3">
-              <label>Path: {path}</label>
+            <div className="form-group mx-3" style={{ marginBottom: '10px'}}>
+              <label style={{ color: '#8d99ae', fontSize: '0.8rem', paddingLeft: '10px' }}>Path: {path}</label>
               {/* <input type="text" name="path" onChange={handleInput} value={testItemInput.path}className="form-control" />
               <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.path}</span> */}
             </div>
@@ -398,6 +563,7 @@ function MyFormativeTest({title, userData }) {
         tabs={tabs}
         addTab={addTab}
         removeTab={removeTab}
+        onRemoveTab={removeTab}
         activeTab={activeTab}
         onTabClick={handleTabClick}
         tabContent={tabs.map(tab => tab.testContent)}
@@ -405,9 +571,10 @@ function MyFormativeTest({title, userData }) {
         handleRemoveTestRow={handleRemoveTestRow}
         handleAddTestRow={handleAddTestRow}
         errorList={errorList}
+        testComplexityList={testComplexityList}
       />
 
-      <button type="button" className="btnBts btn-success px-4 m-3 float-end" onClick={handleButtonClick}>
+      <button type="button" className="btnBts btn-success px-4 m-3 float-end" onClick={handleButtonClick} style={{position: 'absolute', bottom: '0px', right: '30px'}}>
         Submit (Outside Form)
       </button>
    </div>

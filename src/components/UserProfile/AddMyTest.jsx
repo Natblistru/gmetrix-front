@@ -18,7 +18,7 @@ function AddMyTest({ onBackToList, userData }) {
   return (
     <div className="container-fluid my-2">
       <h2 style={{ paddingLeft: '50px'}}>
-        Adaugarea testului profesorului
+        Adaugarea testului formativ
         <button
           onClick={handleBackToList}
           type="button"
@@ -141,7 +141,7 @@ function AddMyTest({ onBackToList, userData }) {
         unmountOnExit
       >
         <div id="test-quiz">
-        <MyFormativeTest title="Quiz" userData={userData} />
+        <MyFormativeTest title="Quiz" userData={userData} onBackToList={handleBackToList} />
         </div>
       </CSSTransition>
 

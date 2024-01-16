@@ -1,27 +1,61 @@
 import React, { useState, useEffect } from 'react';
 
-const Tab = ({ tab, onRemove, onTabClick }) => (
-  <li className="nav-item" role="presentation" onClick={onTabClick} style={{position: 'relative'}}>
-    <button className="nav-linkSide active" href="#">{tab.title}</button>
-    <button type="button" onClick={onRemove} className="closeButton">x</button>
-  </li>
-);
+const TabList = ({ tabs, onTabClick, onAddTab, onRemoveTab, activeTab }) => {
+  return (
+    <ul className="navSide nav-tabs mx-3">
+      {tabs.map((tab, index) => (
+        <li key={index} className={`nav-item ${index === activeTab ? 'active' : ''}`} role="presentation" onClick={() => onTabClick(index)} style={{ position: 'relative' }}>
+          <button className={`nav-linkSide ${index === activeTab ? 'active' : ''}`}>
+            {tab.title}
+          </button>
+          <button type="button" onClick={() => onRemoveTab(index)} className="closeButton">x</button>
+        </li>
+      ))}
+      <li className="nav-linkSide" role="presentation">
+        <button type="button" onClick={onAddTab} className="addButton">+</button>
+      </li>
+    </ul>
+  );
+};
 
-const TabList = ({ tabs, onTabClick, onAddTab, onRemoveTab }) => (
-  <ul className="navSide nav-tabs mx-3">
-    {tabs.map((tab, index) => (
-      <Tab key={index} tab={tab} onTabClick={() => onTabClick(index)} onRemove={() => onRemoveTab(index)} />
-    ))}
-    <li className="nav-linkSide" role="presentation">
-      <button type="button" onClick={onAddTab} className="addButton">+</button>
-    </li>
-  </ul>
-);
-
-const TabContent = ({ activeTab, content, handleInputTest, handleRemoveTestRow, handleAddTestRow, errorList }) => (
-  <>
+const TabContent = ({ activeTab, content, handleInputTest, handleRemoveTestRow, handleAddTestRow, errorList, testComplexityList }) => {
+  const key = `tab-content-${activeTab}`;
+  return (
+  <div key={key}>
     {content[activeTab] && (
-      <div id="block_quiz" className="border mx-3 p-3">
+      <div id="block_quiz" className="border mx-3 p-3 shadow-sm">
+          <div className="rowBts">
+            <div className="col-md-8">
+              <div className="form-group">
+                <label>Task</label>
+                <input
+                  type="text"
+                  name="task"
+                  onChange={(event) => handleInputTest(activeTab, null, event)}
+                  value={content[activeTab].task}
+                  className="form-control"
+                />
+                <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.task}</span>
+              </div>
+            </div>
+            <div className="col-md-4">
+              <div className="form-group mx-3 my-1">
+                <label>Complexity</label>
+                <select name="test_complexity_id" onChange={(event) => handleInputTest(activeTab, null, event)} value={content[activeTab].test_complexity_id} className="form-control">
+                  <option>Select Test Complexity</option>
+                  {
+                    testComplexityList
+                    .map((item)=> {
+                      return (
+                        <option value={item.id} key={item.id}>{item.name}</option>
+                      )
+                    })
+                  }
+                </select>
+                <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.test_complexity_id}</span>
+              </div>
+            </div>
+          </div>  
           {content[activeTab].testRows.map((row, index) => (
             <div className="rowBts" key={index} style={{ alignItems: 'end' }}>
             <div className="col-md-4">
@@ -89,18 +123,19 @@ const TabContent = ({ activeTab, content, handleInputTest, handleRemoveTestRow, 
           </button>
       </div>
     )}
-  </>
-);
+  </div>
+)}
+;
 
-function MyQuizTest({ tabs, addTab, removeTab, activeTab, onTabClick, tabContent, handleInputTest, handleRemoveTestRow, handleAddTestRow, errorList }) {
-
+function MyQuizTest({ tabs, addTab, removeTab, onRemoveTab, activeTab, onTabClick, tabContent, handleInputTest, handleRemoveTestRow, handleAddTestRow, errorList, testComplexityList }) {
   return (
     <>
       <TabList
         tabs={tabs}
         onTabClick={onTabClick}
         onAddTab={addTab}
-        onRemoveTab={removeTab}
+        onRemoveTab={onRemoveTab} 
+        activeTab={activeTab}
       />
       <TabContent
         activeTab={activeTab}
@@ -109,6 +144,7 @@ function MyQuizTest({ tabs, addTab, removeTab, activeTab, onTabClick, tabContent
         handleRemoveTestRow={handleRemoveTestRow}
         handleAddTestRow={handleAddTestRow}
         errorList={errorList}
+        testComplexityList={testComplexityList}
       />
     </>
   );
