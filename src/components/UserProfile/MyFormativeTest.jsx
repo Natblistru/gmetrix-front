@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios'; 
 import * as XLSX from 'xlsx';
 import { Link } from 'react-router-dom';
+import { Editor, EditorState, RichUtils, convertToRaw, Modifier } from 'draft-js';
 
 
 import Swal from 'sweetalert2'
@@ -10,6 +11,8 @@ import MyTestDnD from './MyTestDnD';
 import MyTestDnDGroup from './MyTestDnDGroup';
 import MyTestDnDOrder from './MyTestDnDOrder';
 import MyTestDnDOrderText from './MyTestDnDOrderText';
+import MyTestSnap from './MyTestSnap';
+import MyTestWords from './MyTestWords';
 
 function MyFormativeTest({title, userData, onBackToList, selectedType }) {
 
@@ -23,7 +26,10 @@ function MyFormativeTest({title, userData, onBackToList, selectedType }) {
   const [newTestItems, setNewTestItems] = useState([]);
   const lastUpdatedArrayRef = useRef([]);
   const lastUpdatedFormativeTestRef = useRef([]);
-  
+  const lastAddText1 = useRef([]);
+  const lastAddText2 = useRef([]);
+  const lastAddText3 = useRef([]);
+
   useEffect(() => {
 
     axios.get('http://localhost:8000/api/all-learningPrograms').then(res=>{
@@ -70,16 +76,38 @@ function MyFormativeTest({title, userData, onBackToList, selectedType }) {
     {
       title: 'Item 1',
       testContent: {
-        task: 'Succesiunea cronologică a evenimentelor (Romania in primul RM)',
+        task: 'Completează propoziția (Romania in primul RM)',
         test_complexity_id: '',
-        column1: 'Evenimentele', 
-        column2: 'Text in ordine cronoligică',
+        column1: '', 
+        column2: '',
         column3: '',
+        //snap
+        text_1_1: '',
+        text_2_1: '',
+        text_1_2: '',
+        text_2_2: '',
+        text_1_3: '',
+        text_2_3: '',
+        text_1_4: '',
+        text_2_4: '',
+        
+        rasp1: '',
+        rasp2: '',
+        rasp3: '',
+        rasp4: '',
+    
+        x1: "285",
+        y1: "17",
+        resultTextAdditional1: '',
+        resultTextAdditional2: '',
+        resultTextAdditional3: '',
+        //words
+        explanationWords: 'În perioada 1914-1916, România a fost neutră, deși avea un tratat de alianță cu Tripla Alianță. Au existat dezbateri în țară privind participarea la război, iar în cele din urmă, pe 4 august 1916, România a semnat un tratat de alianță cu Antanta, care prevedea eliberarea Transilvaniei și realizarea unității naționale.',
         testRows: [
-          { option: 'România a intrat în Primul Război Mondial', correct: false, correct1: false, explanation: '1' },
-          { option: 'România a semnat Tratatul de la București', correct: false, correct1: false, explanation: '4' },
-          { option: 'România a câștigat o victorie importantă în Bătălia de la Mărăști', correct: false, correct1: false, explanation: '3' },
-          { option: 'Ocuparea Bucureștelui', correct: false, correct1: false, explanation: '2' },
+          { option: '1918', correct: false, correct1: false, explanation: '' },
+          { option: '1919', correct: false, correct1: false, explanation: '' },
+          { option: '', correct: false, correct1: false, explanation: '' },
+          { option: '', correct: false, correct1: false, explanation: '' },
         ]
       }
     },
@@ -97,6 +125,27 @@ function MyFormativeTest({title, userData, onBackToList, selectedType }) {
           column1: '', 
           column2: '',
           column3: '',
+          //snap
+          text_1_1: '',
+          text_2_1: '',
+          text_1_2: '',
+          text_2_2: '',
+          text_1_3: '',
+          text_2_3: '',
+          text_1_4: '',
+          text_2_4: '',
+          
+          rasp1: '',
+          rasp2: '',
+          rasp3: '',
+          rasp4: '',
+      
+          x1: "285",
+          y1: "17",
+          resultTextAdditional1: '',
+          resultTextAdditional2: '',
+          resultTextAdditional3: '',
+          explanationWords: '',
           testRows: [
             { option: '', correct: false, correct1: false, explanation: '' },
             { option: '', correct: false, correct1: false, explanation: '' },
@@ -128,7 +177,31 @@ function MyFormativeTest({title, userData, onBackToList, selectedType }) {
     const newTabs = [...tabs];
     const newTestRows = [...newTabs[tabIndex].testContent.testRows];
   
-    if (name === 'task' || name === 'test_complexity_id' || name === 'column1' || name === 'column2' || name === 'column3') {
+    if (name === 'task' || 
+        name === 'test_complexity_id' || 
+        name === 'column1' || 
+        name === 'column2' || 
+        name === 'column3' ||
+        name === 'text_1_1' ||
+        name === 'text_2_1' ||
+        name === 'text_1_2' ||
+        name === 'text_2_2' ||
+        name === 'text_1_3' ||
+        name === 'text_2_3' ||
+        name === 'text_1_4' ||
+        name === 'text_2_4' ||
+        
+        name === 'rasp1' ||
+        name === 'rasp2' ||
+        name === 'rasp3' ||
+        name === 'rasp4' ||
+    
+        name === 'x1' ||
+        name === 'y1'||
+        name === 'resultTextAdditional1' ||
+        name === 'resultTextAdditional2' ||
+        name === 'resultTextAdditional3' 
+        ) {
       newTabs[tabIndex].testContent[name] = value;
     } else {  
       newTestRows[rowIndex][name] = type === 'checkbox' ? checked : value;
@@ -155,7 +228,7 @@ function MyFormativeTest({title, userData, onBackToList, selectedType }) {
     setTabs(newTabs);
   };
   
-  
+  const [editorStates, setEditorStates] = useState(() => tabs.map(() => EditorState.createEmpty()));
 
   const [errorList, setErrors] = useState([]);
 
@@ -214,17 +287,328 @@ function MyFormativeTest({title, userData, onBackToList, selectedType }) {
     lastUpdatedArrayRef.current = newArray;
   };
 
+  const handleConcatenate = () => {
+    tabs.forEach((tab, tabIndex) => {
+      let combinations1 = [];
+      let combinations2 = [];
+      let combinations3 = [];
+      let y1 = 17;
+  
+      for (let i = 1; i <= 4; i++) {
+        for (let j = 1; j <= 4; j++) {
+          const key1 = `text_1_${i}`;
+          const key2 = `text_2_${j}`;
+          const combination = `${tab.testContent[key1]}|${tab.testContent[key2]}`;
+          combinations1.push(combination);
+        }
+      }
+  
+      const result1 = combinations1.join('\n');
+      console.log(result1)
+      setTabs((prevTabs) => {
+        const updatedTabs = [...prevTabs];
+        updatedTabs[tabIndex].testContent.resultTextAdditional1 = result1;
+        return updatedTabs;
+      });
+      lastAddText1.current = [...lastAddText1.current, result1];
+  
+      for (let i = 1; i <= 4; i++) {
+        const key1 = `text_1_${i}`;
+        const key2 = `text_2_${tab.testContent[`rasp${i}`]}`;
+  
+        for (let j = 1; j <= 4; j++) {
+          const combination = `${tab.testContent[key1]}|${tab.testContent[key2]}`;
+          combinations2.push(combination);
+        }
+      }
+  
+      const result2 = combinations2.join('\n');
+      setTabs((prevTabs) => {
+        const updatedTabs = [...prevTabs];
+        updatedTabs[tabIndex].testContent.resultTextAdditional2 = result2;
+        return updatedTabs;
+      });
+      lastAddText2.current = [...lastAddText2.current, result2];
+  
+      for (let i = 1; i <= 4; i++) {
+        for (let j = 1; j <= 4; j++) {
+          const x2 = "342";
+          const y2 = (j - 1) * 92 + 17;
+  
+          const coordinates = {
+            x1: "285",
+            y1: y1.toString(),
+            x2,
+            y2: y2.toString(),
+          };
+  
+          combinations3.push(JSON.stringify(coordinates));
+  
+          if (j % 4 === 0) {
+            y1 += 92;
+          }
+        }
+      }
+  
+      const result3 = combinations3.join('\n');
+      setTabs((prevTabs) => {
+        const updatedTabs = [...prevTabs];
+        updatedTabs[tabIndex].testContent.resultTextAdditional3 = result3;
+        return updatedTabs;
+      });
+      lastAddText3.current = [...lastAddText3.current, result3];
+    });
+  };
+  
+  const groupStyledText = (html) => {
+    const paragraphsWithoutPClose = html.split('</p>\n');
+
+    const paragraphs = paragraphsWithoutPClose.map(paragraph => paragraph + '</p>');
+    paragraphs.pop();
+  
+    const result = [];
+    let textResult = ""
+
+    paragraphs.forEach((paragraph) => {
+      if (paragraph.trim() !== '') {
+        const textBeforeSpanMatch = paragraph.match(/<p[^>]*>(.*?)<span/);
+        const textBeforeSpan = textBeforeSpanMatch ? textBeforeSpanMatch[1] : '';
+        let i = 0;
+        let lungime = paragraph.length;
+        let currentStil = ''
+        let inceputBlocCuStil = 0
+
+        if (textBeforeSpan == '' && paragraph.substring(3, 8) !== '<span') {
+          result.push(paragraph);
+          textResult=""
+          i = lungime;
+        }
+        else {
+          textResult += `<p>${textBeforeSpan}`;
+
+          inceputBlocCuStil = '<p>'.length + textBeforeSpan.length;
+        }
+        
+        while (i < lungime) {
+
+          let sfarsitBlocStil = paragraph.indexOf('>', inceputBlocCuStil);
+
+
+          let blocCuStil = paragraph.substring(inceputBlocCuStil, sfarsitBlocStil+1);
+          if(blocCuStil == '</p>') {
+            textResult+='</span></p>'
+            result.push(textResult);
+            textResult=""
+            i = lungime
+            break
+          }
+         
+          if(blocCuStil !== currentStil) {
+
+            currentStil = blocCuStil
+
+            textResult +=currentStil
+
+            let pozitiaInceputSfarsitSpanTag = paragraph.indexOf('</span>', sfarsitBlocStil+1);
+    
+            let innerHtml = paragraph.substring(sfarsitBlocStil+1, pozitiaInceputSfarsitSpanTag)
+            textResult +=innerHtml
+
+            let sfarsitTotSpan = pozitiaInceputSfarsitSpanTag + '</span>'.length
+            let totSpan = paragraph.substring(inceputBlocCuStil, sfarsitTotSpan);
+
+            let urmatorSimbolDupaBlocSpan = paragraph[sfarsitTotSpan]
+            let sfarsitBlocFaraStil = sfarsitTotSpan
+            let blocFlaraStil=""
+            if(urmatorSimbolDupaBlocSpan !=='<') {
+              sfarsitBlocFaraStil = paragraph.indexOf('<span', sfarsitTotSpan);
+              currentStil = ''
+
+              if(sfarsitBlocFaraStil == -1) {
+                sfarsitBlocFaraStil = paragraph.indexOf('</p', sfarsitTotSpan);      
+                blocFlaraStil = paragraph.substring(sfarsitTotSpan, sfarsitBlocFaraStil);
+                textResult += '</span>' + blocFlaraStil + '</p>'  
+                result.push(textResult);
+                textResult=""
+                i = lungime
+                 
+              }
+              else {
+                blocFlaraStil = paragraph.substring(sfarsitTotSpan, sfarsitBlocFaraStil);
+                textResult += '</span>' + blocFlaraStil
+              }
+            }
+            else if(paragraph.substring(urmatorSimbolDupaBlocSpan, urmatorSimbolDupaBlocSpan+4)){}
+
+            inceputBlocCuStil = sfarsitBlocFaraStil
+
+          }
+          else {
+            let pozitiaInceputSfarsitSpanTag = paragraph.indexOf('</span>', inceputBlocCuStil + currentStil.length);
+            let innerHtml = paragraph.substring(inceputBlocCuStil + currentStil.length, pozitiaInceputSfarsitSpanTag)
+            textResult +=innerHtml
+            
+            let sfarsitTotSpan = pozitiaInceputSfarsitSpanTag + '</span>'.length
+            let totSpan = paragraph.substring(inceputBlocCuStil, sfarsitTotSpan);
+
+
+            let urmatorSimbolDupaBlocSpan = paragraph[sfarsitTotSpan]
+            let sfarsitBlocFaraStil = sfarsitTotSpan
+            let blocFlaraStil=""
+            if(urmatorSimbolDupaBlocSpan !=='<') {
+              sfarsitBlocFaraStil = paragraph.indexOf('<span', sfarsitTotSpan);
+              currentStil = ''
+              if(sfarsitBlocFaraStil == -1) {
+                sfarsitBlocFaraStil = paragraph.indexOf('</p', sfarsitTotSpan);      
+                blocFlaraStil = paragraph.substring(sfarsitTotSpan, sfarsitBlocFaraStil);
+                textResult += '</span>' + blocFlaraStil + '</p>'  
+                result.push(textResult);
+                textResult=""
+                i = lungime
+              }
+              else {
+                blocFlaraStil = paragraph.substring(sfarsitTotSpan, sfarsitBlocFaraStil);
+                textResult += '</span>' + blocFlaraStil
+              }
+            } 
+            inceputBlocCuStil = sfarsitBlocFaraStil
+          }
+          i=i+1
+        }
+      }
+    });
+    
+    return result.join('');
+  }
+  
+  const convertStylesToInlineCSS = (styles) => {
+      let inlineStyles = '';
+    
+      styles.forEach(style => {
+        if (style === "BOLD") {
+          inlineStyles += 'font-weight: bold; ';
+        }
+    
+        if (style === "ITALIC") {
+          inlineStyles += 'font-style: italic; ';
+        }
+    
+        if (style === "UNDERLINE") {
+          inlineStyles += 'text-decoration: underline; ';
+        }
+    
+        if (style.startsWith("color")) {
+          const color = style.replace('color-', '');
+          inlineStyles += `color: ${color}; `;
+        }
+      });
+    
+      return inlineStyles;
+    };
+  
+  const convertContentStateToHTML = (content) => {
+    let html = '';
+  
+    content.forEach((block) => {
+      const text = block.text;
+      const spans = [];
+      let currentStyles = {};
+  
+      block.inlineStyleRanges.forEach(style => {
+        for (let i = style.offset; i < style.offset + style.length; i++) {
+          const styleKey = i.toString();
+          currentStyles[styleKey] = currentStyles[styleKey] || [];
+          currentStyles[styleKey].push(style.style);
+        }
+      });
+  
+      for (let i = 0; i < text.length; i++) {
+        const char = text[i];
+        const styleKey = i.toString();
+        const charStyles = currentStyles[styleKey];
+  
+        if (charStyles && charStyles.length > 0) {
+          // Dacă există stiluri pentru această poziție, le adăugăm
+          const charStylesCSS = convertStylesToInlineCSS(charStyles);
+          spans.push(`<span style="${charStylesCSS}">${char}</span>`);
+        } else {
+          // Dacă nu există stiluri, adăugăm litera ca atare
+          spans.push(char);
+        }
+      }
+  
+      if (spans.length > 0) {
+        html += `<p>${spans.join('')}</p>\n`;
+      } else if (text.trim() !== '') {
+        html += `<p>${text}</p>\n`;
+      }
+    });
+  
+    const groupedHTML = groupStyledText(html);
+    return groupedHTML;
+  };
+
   const handleButtonClick = async () => {
 
     let succesTotal = true;
+    lastAddText1.current = []
+    lastAddText2.current = []
+    lastAddText3.current = []
+
+    let resultObjectWordsArray = []
+    if (selectedType == "words") {
+      tabs.map((tab, index) => {
+
+        const currentContent = editorStates[index].getCurrentContent();
+        const contentWithStyles = convertToRaw(currentContent);
+        const html = convertContentStateToHTML(contentWithStyles.blocks);
+
+        const htmlplainP = html.replace(/<p>/g, '').replace(/<\/p>/g, '');
+
+        const htmlSpec = htmlplainP.replace(/<span style="font-weight: bold; ">/g, ';<').replace(/<\/span>/g, '>;');
+        const textWithQuotes = '"' + htmlSpec + '"';
+
+        const htmlplain = htmlplainP.replace(/<span style="font-weight: bold; ">/g, '').replace(/<\/span>/g, '');
+
+        const regex = /<span style="font-weight: bold; ">(.*?)<\/span>/g;
+
+        const matches = htmlplainP.match(regex);
+        
+        let wordsArray = null;
+        if (matches) {
+          wordsArray = matches.map(match => {
+            const spanRegex = /<span style="font-weight: bold; ">(.*?)<\/span>/;
+            const spanMatch = match.match(spanRegex);
+            return spanMatch ? spanMatch[1] : match;
+          });
+        } else {
+          console.log('Nu s-au găsit cuvinte evidentiate.');
+        }
+
+        resultObjectWordsArray = [...resultObjectWordsArray, {
+          htmlSpec: textWithQuotes,
+          htmlplain: htmlplain,
+          wordsArray: wordsArray || []
+        }];
+      });
+    }
+
+
+    if(selectedType=="snap") {
+      handleConcatenate();
+    }
 
     await processFormativeTest(succesTotal);
 
     await processTestItems(succesTotal);
 
-    await processTestColumns(succesTotal);
-
-    await processTestOptions(succesTotal);
+    if(selectedType === 'dnd_chrono' || 
+      selectedType === 'dnd' || 
+      selectedType === 'dnd_chrono_double' || 
+      selectedType === 'dnd_group'){
+      await processTestColumns(succesTotal);
+     }
+    await processTestOptions(succesTotal, resultObjectWordsArray);
 
     await processFormativeTestItems(succesTotal);
 
@@ -415,33 +799,87 @@ function MyFormativeTest({title, userData, onBackToList, selectedType }) {
     }   
   }
   
-  async function processTestOptions(succesTotal) {
+  async function processTestOptions(succesTotal, resultObjectWordsArray) {
 
     const testItems = lastUpdatedArrayRef.current;
     let notFoundTestItem = [];
     const formDataArray = [];
-    tabs.forEach((tab, index) => {
-      const testRows = tab.testContent.testRows;
-      for (let rowIndex = 0; rowIndex < testRows.length; rowIndex++) {
-        const row = testRows[rowIndex];
+    if(selectedType === 'snap') {
+      tabs.forEach((tab, index) => {
+        const lines1 = lastAddText1.current[index].trim().split('\n');
+        const lines2 = lastAddText2.current[index].trim().split('\n');
+        const lines3 = lastAddText3.current[index].trim().split('\n');
+        console.log(lines1)
+        console.log(lines2)
+        console.log(lines3)        
+        if (lines1.length === lines2.length && lines2.length === lines3.length && lines1.length === 16) {
     
-        const formData = new FormData();
-        formData.append('option', row.option);
-        if(selectedType === 'dnd_group') {
-          formData.append('correct', row.correct ? 1 : row.correct1 ? 2 : 0);
-        } else if(selectedType === 'dnd_chrono'){
-          formData.append('correct', 0);
-        } else {
-          formData.append('correct', row.correct == true? 1 : 0);
+          for (let i = 0; i < lines1.length; i++) {
+            const formData = new FormData();
+            formData.append('option', lines1[i]);
+            formData.append('explanation', lines2[i]);
+            formData.append('correct', lines1[i] === lines2[i] ? 1 : 0);
+            formData.append('text_additional', lines3[i]);
+            formData.append('test_item_id', testItems[index].id);
+            formData.append('status', 0);
+    
+            formDataArray.push(formData);
+          }
         }
-        formData.append('explanation', row.explanation);
-        // formData.append('text_additional', JSON.stringify(textWithQuotes));
-        formData.append('test_item_id', testItems[index].id);
-        formData.append('status', 0);
+      })
+    } else if(selectedType === 'words') {
+      tabs.forEach((tab, index) => {
+        resultObjectWordsArray[index].wordsArray.forEach((word,wordIndex) => {
+          const formData = new FormData();
+          formData.append('option', word )
+          formData.append('explanation', resultObjectWordsArray[index].htmlplain);
+          formData.append('correct', wordIndex + 1);
+          formData.append('text_additional', JSON.stringify(resultObjectWordsArray[index].htmlSpec));
+          formData.append('test_item_id', testItems[index].id);
+          formData.append('status', 0);
+  
+          formDataArray.push(formData);
+        })
+        if(resultObjectWordsArray.length > 0 ) {
+          tab.testContent.testRows.forEach((row, rowIndex) => {
+            const formData = new FormData();
+            formData.append('option', row.option )
+            formData.append('explanation', resultObjectWordsArray[0].htmlplain);
+            formData.append('correct', 0);
+            formData.append('text_additional', JSON.stringify(resultObjectWordsArray[0].htmlSpec));
+            formData.append('test_item_id', testItems[index].id);
+            formData.append('status', 0);
     
-        formDataArray.push(formData);
-      }
-    });
+            formDataArray.push(formData);
+          })
+        }
+      })
+    }
+    else {
+      tabs.forEach((tab, index) => {
+        const testRows = tab.testContent.testRows;
+        for (let rowIndex = 0; rowIndex < testRows.length; rowIndex++) {
+          const row = testRows[rowIndex];
+      
+          const formData = new FormData();
+          formData.append('option', row.option);
+          if(selectedType === 'dnd_group') {
+            formData.append('correct', row.correct ? 1 : row.correct1 ? 2 : 0);
+          } else if(selectedType === 'dnd_chrono'){
+            formData.append('correct', 0);
+          } else {
+            formData.append('correct', row.correct == true? 1 : 0);
+          }
+          formData.append('explanation', row.explanation);
+          // formData.append('text_additional', JSON.stringify(textWithQuotes));
+          formData.append('test_item_id', testItems[index].id);
+          formData.append('status', 0);
+      
+          formDataArray.push(formData);
+        }
+      });
+    }
+    console.log(formDataArray)
   
     if (notFoundTestItem.length === 0) {
       try {
@@ -722,6 +1160,40 @@ function MyFormativeTest({title, userData, onBackToList, selectedType }) {
           handleAddTestRow={handleAddTestRow}
           errorList={errorList}
           testComplexityList={testComplexityList}
+        />
+      )}
+      {(selectedType === "snap" ) && (
+        <MyTestSnap
+          tabs={tabs}
+          addTab={addTab}
+          removeTab={removeTab}
+          onRemoveTab={removeTab}
+          activeTab={activeTab}
+          onTabClick={handleTabClick}
+          tabContent={tabs.map(tab => tab.testContent)}
+          handleInputTest={handleInputTest}
+          handleRemoveTestRow={handleRemoveTestRow}
+          handleAddTestRow={handleAddTestRow}
+          errorList={errorList}
+          testComplexityList={testComplexityList}
+        />
+      )}
+      {(selectedType === "words" ) && (
+        <MyTestWords
+          tabs={tabs}
+          addTab={addTab}
+          removeTab={removeTab}
+          onRemoveTab={removeTab}
+          activeTab={activeTab}
+          onTabClick={handleTabClick}
+          tabContent={tabs.map(tab => tab.testContent)}
+          handleInputTest={handleInputTest}
+          handleRemoveTestRow={handleRemoveTestRow}
+          handleAddTestRow={handleAddTestRow}
+          errorList={errorList}
+          testComplexityList={testComplexityList}
+          editorStates = {editorStates}
+          setEditorStates = {setEditorStates}
         />
       )}
       <button type="button" className="btnBts btn-success px-4 m-3 float-end" onClick={handleButtonClick} style={{position: 'absolute', bottom: '0px', right: '30px'}}>
