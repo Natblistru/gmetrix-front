@@ -13,6 +13,7 @@ function AddMySubtopic({ onBackToList, userData }) {
   const [topicList, setTopicList] = useState([]);
   const [teacherList, setTeacherList] = useState([]);
   const [teacherTopicList, setTeacherTopicList] = useState([]);
+  const [tags, setTags] = useState(["Unirea României"],["Unirea Basarabiei"])
   
   useEffect(() => {
 
@@ -624,6 +625,56 @@ function AddMySubtopic({ onBackToList, userData }) {
         succesTotal=false;
       });
     }
+
+    if(tags.length > 0){
+      const formDataArray = tags.map(tag => {
+        const selectedTeacherTopic = teacherTopicList.find(
+          (item) => item.id == teacherTopicInput.teacher_topic_id
+        );
+        const topicId = selectedTeacherTopic ? selectedTeacherTopic.topic_id : null;
+  
+        const selectedLearningProgram = learningProgramList.find(
+          (item) => item.id == teacherTopicInput.learning_program_id
+        );
+        const subjectStudyLevelId = selectedLearningProgram ? selectedLearningProgram.subject_study_level_id : null;
+        console.log(learningProgramList)
+        console.log(selectedLearningProgram)      
+        console.log(teacherTopicInput.learning_program_id)     
+
+        const formData = new FormData();
+        formData.append('tag_name', tag );
+        formData.append('taggable_id', topicId);
+        formData.append('taggable_type', "App\\Models\\Topic");
+        formData.append('subject_study_level_id', subjectStudyLevelId );
+        formData.append('status', 0); 
+        return formData;
+      });
+  
+      axios.all(formDataArray.map(formData => axios.post('http://localhost:8000/api/store-mytag', formData)))
+      .then(axios.spread((...responses) => {
+        const successResponses = responses.filter(response => response.data.status === 201);
+        const errorResponses = responses.filter(response => response.data.status === 422);
+        if (successResponses.length > 0) {
+          Swal.fire({
+            title: "Success",
+            text: `Successfully processed ${successResponses.length} out of ${responses.length} requests.`,
+            icon: "success"
+          });
+        }
+        errorResponses.forEach(response => {
+          Swal.fire({
+            title: "Error",
+            text: Object.values(response.data.errors).flat().join(' '),
+            icon: "error"
+          });
+          succesTotal=false;
+        });
+      }))
+      .catch(error => {
+        console.error(error);
+        succesTotal=false;
+      });
+    }
     if(succesTotal) {onBackToList()}
   }
 
@@ -631,8 +682,21 @@ function AddMySubtopic({ onBackToList, userData }) {
     onBackToList();
   };
 
+  const removeTags = indexToRemote => {
+    setTags(tags.filter((_, index) => index !== indexToRemote))
+  }
+  
+  const addTags = event => {
+    event.preventDefault();
+    if(event.target.value.trim() !== "") {
+      console.log(event.target.value)
+      setTags([...tags, event.target.value]);
+      event.target.value = ""
+    }
+  }
+
   return (
-    <div className="container-fluid px4">
+    <div className="container-fluid px4" onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); } }}>
       <h2 className="m-3">Adaugarea subtemei profesorului
         <button onClick={handleBackToList} type="button" className="btnBts btn-primary text-white px-4 m-3 float-end">BACK to List</button>
       </h2>
@@ -833,6 +897,32 @@ function AddMySubtopic({ onBackToList, userData }) {
               <button type="button" className="btnBts btn-success btn-sm px-4 mx-3 my-2" onClick={handleAddFlipRow}>
                 Add Row
               </button>
+            </div>
+
+            <div className="rowBts">
+              <div className="col-md-12">
+                <p className="mx-3 my-1" style={{ paddingTop: '15px'}}>Tags</p>
+                <div className="tags-input-container form-group mx-3">
+                  {tags.map((tag,index) => (
+                    <div key={index} className="tag-item">
+                      <span className="tag-text">{tag}</span>
+                      <span className="tag-close-icon"
+                            onClick={() => removeTags(index)}>&times;</span>
+                    </div>
+                  ))}
+                  <input
+                    type="text"
+                    placeholder="Press enter to add tags"
+                    className="tags-input"
+                    onKeyUp={(e) => {
+                      if (e.key === 'Enter') {
+                        e.preventDefault(); // Oprește evenimentul implicit al tastaturii pentru tasta Enter
+                        addTags(e);
+                      }
+                    }}
+                  />
+                </div>
+              </div>
             </div>
 
             <div className="col-md-12 d-flex justify-content-end">

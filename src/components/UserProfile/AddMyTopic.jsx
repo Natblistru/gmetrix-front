@@ -18,6 +18,7 @@ function AddMyTopic({ onBackToList, userData }) {
   const [videoAdded, setVideoAdded] = useState(false);
   const [topicAdded, setTopicAdded] = useState(false);
   const [teacherList, setTeacherList] = useState([]);
+  const [tags, setTags] = useState(["Unirea României"],["Unirea Basarabiei"])
 
   useEffect(() => {
 
@@ -87,8 +88,8 @@ function AddMyTopic({ onBackToList, userData }) {
   const [teacherTopicInput, setTeacherTopicInput] = useState({
     learning_program_id: '',
     theme_learning_program_id: '',
-    title: '',  //title la video
-    source: '',
+    title: 'Formarea Statului Național Unitar Român. Recunoașterea Marii Uniri de la 1918',  //title la video
+    source: 'https://www.youtube.com/embed/OtBKszdRODQ',
   })
 
   useEffect(() => {
@@ -148,10 +149,12 @@ function AddMyTopic({ onBackToList, userData }) {
 
 
   const [breackpointRows, setBreackpointRows] = useState([
-    { breakpoint_title: '', time: '' },
-    { breakpoint_title: '', time: '' },
-    { breakpoint_title: '', time: '' },
-    { breakpoint_title: '', time: '' }, 
+    { breakpoint_title: 'Contextul intern și internațional al unirii Românilor', time: '00:02:05' },
+    { breakpoint_title: 'Unirea Basarabiei cu România', time: '00:03:10' },
+    { breakpoint_title: 'Unirea Bucovinei cu România', time: '00:04:46' },
+    { breakpoint_title: 'Unirea Transilvaniei cu România', time: '00:05:36' }, 
+    { breakpoint_title: 'Importanța actului unirii din 1918', time: '00:07:00' }, 
+    { breakpoint_title: 'Recunoașterea internațională a unirii Basarabiei cu România', time: '00:08:26' }, 
   ]);
 
   const handleAddBreackpointRow = () => {
@@ -340,16 +343,79 @@ function AddMyTopic({ onBackToList, userData }) {
           succesTotal=false;
     });
   }
-if(succesTotal) {onBackToList()}
+
+
+  if(tags.length > 0){
+    const formDataArray = tags.map(tag => {
+      const selectedThemeLearningProgram = themeList.find(
+        (item) => item.id == teacherTopicInput.theme_learning_program_id
+      );
+      const themeId = selectedThemeLearningProgram ? selectedThemeLearningProgram.theme_id : null;
+
+      const selectedLearningProgram = learningProgramList.find(
+        (item) => item.id == teacherTopicInput.learning_program_id
+      );
+      const subjectStudyLevelId = selectedLearningProgram ? selectedLearningProgram.subject_study_level_id : null;
+      console.log(learningProgramList)
+      console.log(selectedLearningProgram)      
+      console.log(teacherTopicInput.learning_program_id)     
+      console.log(themeId)  
+      const formData = new FormData();
+      formData.append('tag_name', tag );
+      formData.append('taggable_id', themeId);
+      formData.append('taggable_type', "App\\Models\\Theme");
+      formData.append('subject_study_level_id', subjectStudyLevelId );
+      formData.append('status', 0); 
+      return formData;
+    });
+
+    axios.all(formDataArray.map(formData => axios.post('http://localhost:8000/api/store-mytag', formData)))
+    .then(axios.spread((...responses) => {
+      const successResponses = responses.filter(response => response.data.status === 201);
+      const errorResponses = responses.filter(response => response.data.status === 422);
+      if (successResponses.length > 0) {
+        Swal.fire({
+          title: "Success",
+          text: `Successfully processed ${successResponses.length} out of ${responses.length} requests.`,
+          icon: "success"
+        });
+      }
+      errorResponses.forEach(response => {
+        Swal.fire({
+          title: "Error",
+          text: Object.values(response.data.errors).flat().join(' '),
+          icon: "error"
+        });
+        succesTotal=false;
+      });
+    }))
+    .catch(error => {
+      console.error(error);
+      succesTotal=false;
+    });
+  }
+
+  if(succesTotal) {onBackToList()}
 }
 
 const handleBackToList = () => {
   onBackToList();
 };
 
+const removeTags = indexToRemote => {
+  setTags(tags.filter((_, index) => index !== indexToRemote))
+}
+
+const addTags = event => {
+  event.preventDefault();
+  if(event.target.value.trim() !== "") {
+    setTags([...tags, event.target.value]);
+    event.target.value = ""
+  }
+}
 
   return (
-    <div className="container-fluid px4">
+    <div className="container-fluid px4" onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); } }}>
       <h2 className="m-3">Adaugarea temei profesorului
         <button onClick={handleBackToList} type="button" className="btnBts btn-primary text-white px-4 m-3 float-end">BACK to List</button>
       </h2>
@@ -506,6 +572,32 @@ const handleBackToList = () => {
               <button type="button" className="btnBts btn-success btn-sm px-4 mx-3 my-2" onClick={handleAddBreackpointRow}>
                 Add Row
               </button>
+            </div>
+
+            <div className="rowBts">
+              <div className="col-md-12">
+                <p className="mx-3 my-1" style={{ paddingTop: '15px'}}>Tags</p>
+                <div className="tags-input-container form-group mx-3">
+                  {tags.map((tag,index) => (
+                    <div key={index} className="tag-item">
+                      <span className="tag-text">{tag}</span>
+                      <span className="tag-close-icon"
+                            onClick={() => removeTags(index)}>&times;</span>
+                    </div>
+                  ))}
+                  <input
+                    type="text"
+                    placeholder="Press enter to add tags"
+                    className="tags-input"
+                    onKeyUp={(e) => {
+                      if (e.key === 'Enter') {
+                        e.preventDefault(); // Oprește evenimentul implicit al tastaturii pentru tasta Enter
+                        addTags(e);
+                      }
+                    }}
+                  />
+                </div>
+              </div>
             </div>
 
             <div className="col-md-12 d-flex justify-content-end">

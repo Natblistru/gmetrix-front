@@ -76,7 +76,7 @@ function MyFormativeTest({title, userData, onBackToList, selectedType }) {
     {
       title: 'Item 1',
       testContent: {
-        task: 'Completează propoziția (Romania in primul RM)',
+        task: '',
         test_complexity_id: '',
         column1: '', 
         column2: '',
@@ -102,10 +102,10 @@ function MyFormativeTest({title, userData, onBackToList, selectedType }) {
         resultTextAdditional2: '',
         resultTextAdditional3: '',
         //words
-        explanationWords: 'În perioada 1914-1916, România a fost neutră, deși avea un tratat de alianță cu Tripla Alianță. Au existat dezbateri în țară privind participarea la război, iar în cele din urmă, pe 4 august 1916, România a semnat un tratat de alianță cu Antanta, care prevedea eliberarea Transilvaniei și realizarea unității naționale.',
+        explanationWords: '',
         testRows: [
-          { option: '1918', correct: false, correct1: false, explanation: '' },
-          { option: '1919', correct: false, correct1: false, explanation: '' },
+          { option: '', correct: false, correct1: false, explanation: '' },
+          { option: '', correct: false, correct1: false, explanation: '' },
           { option: '', correct: false, correct1: false, explanation: '' },
           { option: '', correct: false, correct1: false, explanation: '' },
         ]
