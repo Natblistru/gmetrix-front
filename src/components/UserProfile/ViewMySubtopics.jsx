@@ -1,63 +1,210 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { debounce } from "lodash"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFilter } from "@fortawesome/free-solid-svg-icons";
+import Paginator from '../../components/admin/Paginator';
+import TableHeader from '../../components/admin/TableHeader';
+import DynamicTable from '../../components/admin/DynamicTable';
 
-function ViewSubtopic({ onAddSubtopic, onEditSubtopic }) {
+const SORT_ASC = "asc"
+const SORT_DESC = "desc"
+const PER_PAGE_OPTIONS = [5,10,20,50,100]
+
+function ViewMySubtopics({ onAddSubtopic, onEditSubtopic }) {
 
   const [loading, setLoading] = useState(true);
   const [teacherTopicList, setTeacherTopicList] = useState([]);
 
-  useEffect(()=>{
-    axios.get(`http://localhost:8000/api/view-mySubtopics`).then(res=> {
+  const columns_header = ["ID", "Title", "Topic",      "Audio",   "Edit",     "Status"];
+  const columns =        ['id', 'name',  'topic_name', 'audio_path', 'editLink', 'status'];
+  const mapReactColumnToDBColumn = (reactColumnName) => {
+    const columnMap = {
+      'ID': 'id',
+      'Title': 'name',
+      'Topic': 'topic_name',
+      'Audio': 'audio_path',      
+      'Status': 'status',
+    };
+  
+    return columnMap[reactColumnName] || reactColumnName;
+  };
+
+  const [sortColumn, setSortColumn] = useState(columns[0]);
+  const [sortOrder, setSortOrder] = useState("asc"); 
+  const [search, setSearch] = useState("")
+  const [perPage, setPerPage] = useState(10)
+  const [pagination, setPagination] = useState({})
+  const [currentPage, setCurrentPage] = useState(1)
+  const [blockFilterVisible, setBlockFilterVisible] = useState(false);
+  const [learningProgramList, setLearningProgramList] = useState([]);
+  const [themeList, setThemeList] = useState([]);
+  const [teacherList, setTeacherList] = useState([]);
+
+  const handleSort = (column) => {
+    if (column === sortColumn) {
+      setSortOrder((currentSortOrder) => (currentSortOrder === SORT_ASC ? SORT_DESC : SORT_ASC));
+    } else {
+      setSortColumn(column);
+      setSortOrder(SORT_ASC);
+    }
+  };
+
+  const handleSearch = useRef(
+    debounce((query) => {
+        setSearch(query)
+        setCurrentPage(1)
+        setSortOrder(SORT_ASC)
+        setSortColumn(columns[0])
+    }, 500)
+  ).current
+
+  const handlePerPage = (perPage) => {
+    setCurrentPage(1)
+    setPerPage(perPage)
+  }
+
+  const toggleblockVisible = () => {
+    setBlockFilterVisible(!blockFilterVisible);
+  };
+
+  const [filter, setFilter] = useState({
+    learning_program_id: '',
+    theme_learning_program_id: '',
+    teacher_id: '',
+  })
+
+  const handleInput = (e) => {
+    e.persist();
+    const { name, value } = e.target;
+  
+    setFilter((prevFilter) => {
+      const updatedFilter = { ...prevFilter };
+  
+      if (name === 'learning_program_id') {
+        updatedFilter[name] = value;
+        updatedFilter.theme_learning_program_id = '';
+      } else {
+        updatedFilter[name] = value;
+      }
+  
+      return updatedFilter;
+    });
+  };
+
+  useEffect(() => {
+
+    axios.get('http://localhost:8000/api/all-learningPrograms').then(res=>{
       if(res.data.status === 200){
-        setTeacherTopicList(res.data.subtopics)
-      } 
-      setLoading(false)
-    })
+        setLearningProgramList(res.data.learningProgram);
+      }
+    });
+
+    axios.get('http://localhost:8000/api/all-themeLearningPrograms').then(res=>{
+      if(res.data.status === 200){
+        setThemeList(res.data.theme);
+      }
+    });
+
+    axios.get('http://localhost:8000/api/all-teachers').then(res=>{
+      if(res.data.status === 200){
+        setTeacherList(res.data.teachers);
+      }
+    });
+
   },[])
 
-  let viewTeacherTopic_HTMLTABLE = "";
-  if(loading) {
-    return <h4>Loading TeacherTopic ...</h4>
-  }
-  else
-  {
-    let teacherTopicStatus = '';
-    viewTeacherTopic_HTMLTABLE = 
-    teacherTopicList.map((item) => {
-      if(item.status == 0) {
-        teacherTopicStatus = "Shown";
+  useEffect(()=>{
+    console.log(currentPage)
+    const fetchData = async () => {
+      try {
+        const params = {
+          search,
+          sortColumn: mapReactColumnToDBColumn(sortColumn),
+          sortOrder: sortOrder,
+          perPage: perPage,
+          page: currentPage,
+          filterProgram: filter.learning_program_id,
+          filterTheme: filter.theme_learning_program_id,
+          filterTeacher: filter.teacher_id,
+        };
+        const response = await axios.get('http://localhost:8000/api/view-mySubtopics', { params });
+          if (response.data.status === 200) {
+            console.log(response.data)
+            setTeacherTopicList(response.data.subtopics)
+            setPagination(response.data.pagination)
+        }
+          setLoading(false);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        setLoading(false);
       }
-      else if(item.status == 1) {
-        teacherTopicStatus = "Hidden";
-      }
-      return (
-        <tr key={item.id}>
-          <td>{item.id}</td>
-          <td>{item.name}</td>
-          <td>{item.teacher_topic.topic.name}</td>
-          <td>{item.teacher_topic.teacher.name}</td>
-          <td>{item.teacher_topic.topic.theme_learning_program.name}</td>
-          <td>  
-          {item.audio_path && (
-            item.audio_path.startsWith('uploads/audioSubtopic/') ? (
-              <audio controls style={{ width: '100%', maxWidth: '200px' }}>
-                <source src={`http://localhost:8000/${item.audio_path}`} type="audio/mp3" />
-                Your browser does not support the audio element.
-              </audio>
-            ) : (
-              <span>{item.audio_path}</span>
-            )
-          )}
-          </td>
-          <td>
-            <button onClick={() => handleEditSubtopic(item.id)} className="btnBts btn-success btn-small">Edit</button>
-          </td>
-          <td>{teacherTopicStatus}</td>
-        </tr>
+    }
+    fetchData();
+  }, [sortColumn, sortOrder, search, perPage, currentPage, filter ]);
+
+
+  // let viewTeacherTopic_HTMLTABLE = "";
+  // if(loading) {
+  //   return <h4>Loading TeacherTopic ...</h4>
+  // }
+  // else
+  // {
+  //   let teacherTopicStatus = '';
+  //   viewTeacherTopic_HTMLTABLE = 
+  //   teacherTopicList.map((item) => {
+  //     if(item.status == 0) {
+  //       teacherTopicStatus = "Shown";
+  //     }
+  //     else if(item.status == 1) {
+  //       teacherTopicStatus = "Hidden";
+  //     }
+  //     return (
+  //       <tr key={item.id}>
+  //         <td>{item.id}</td>
+  //         <td>{item.name}</td>
+  //         <td>{item.teacher_topic.topic.name}</td>
+  //         <td>{item.teacher_topic.teacher.name}</td>
+  //         <td>{item.teacher_topic.topic.theme_learning_program.name}</td>
+  //         <td>  
+  //         {item.audio_path && (
+  //           item.audio_path.startsWith('uploads/audioSubtopic/') ? (
+  //             <audio controls style={{ width: '100%', maxWidth: '200px' }}>
+  //               <source src={`http://localhost:8000/${item.audio_path}`} type="audio/mp3" />
+  //               Your browser does not support the audio element.
+  //             </audio>
+  //           ) : (
+  //             <span>{item.audio_path}</span>
+  //           )
+  //         )}
+  //         </td>
+  //         <td>
+  //           <button onClick={() => handleEditSubtopic(item.id)} className="btnBts btn-success btn-small">Edit</button>
+  //         </td>
+  //         <td>{teacherTopicStatus}</td>
+  //       </tr>
+  //     )
+  //   })
+  // }
+
+  const commonColumns = {
+    'editLink': (item) => (
+      <button onClick={() => handleEditSubtopic(item.id)} className="btnBts btn-success btn-small">Edit</button>
+    ),
+    'audio_path': (item) => (item.audio_path && (
+      item.audio_path.startsWith('uploads/audioSubtopic/') ? (
+        <audio controls style={{ width: '100%', maxWidth: '200px' }}>
+          <source src={`http://localhost:8000/${item.audio_path}`} type="audio/mp3" />
+          Your browser does not support the audio element.
+        </audio>
+      ) : (
+        <span>{item.audio_path}</span>
       )
-    })
-  }
+    )),
+    'status': (item) => (item.status === 0 ? 'Shown' : 'Hidden'),
+  };
+  
 
   const handleAddSubtopic = () => {
     onAddSubtopic();
@@ -70,34 +217,121 @@ function ViewSubtopic({ onAddSubtopic, onEditSubtopic }) {
   return (
     <div className="containerBts px-4">
       <div className="cardBts mt-4">
+
         <div className="card-header">
           <h4>Subtopic List
-            <button onClick={handleAddSubtopic}  className="btnBts btn-primary text-white btn-sm float-end">Add Subopic</button>
           </h4>
         </div>
-        <div className="card-body">
-          <div className="table-responsive">
-            <table className="table table-primary table-bordered table-striped">
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Title</th>
-                  <th>Topic</th>
-                  <th>Teacher</th>
-                  <th>Theme</th>
-                  <th>Audio</th>
-                  <th>Edit</th>
-                  <th>Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                {viewTeacherTopic_HTMLTABLE}
-              </tbody>
-            </table>
+
+        <div className="rowBts mx-4 mt-2">
+
+          <div className="col-md-3">
+              <div className="input-group">
+                  <input
+                      className="form-control"
+                      placeholder="Search..."
+                      type="search"
+                      onChange={(e) => handleSearch(e.target.value)}
+                  />
+              </div>
+          </div>
+          <div className="col-md-3">
+              <div className="input-group">
+                  <label className="mt-2 me-2">Per page</label>
+                  <select className="form-select" value={perPage} onChange={(e) => handlePerPage(e.target.value)}>
+                      {PER_PAGE_OPTIONS.map((perPage) => {
+                        return (
+                          <option key={perPage}>{perPage}</option>
+                        )
+                      })}
+
+                  </select>
+              </div>
+          </div>
+          <div className="col-md-2">
+            <FontAwesomeIcon icon={faFilter} onClick={toggleblockVisible} className="btnBts btn-outline-secondary mt-1" style={{ borderColor: '#cdd2d6'}}/>
+          </div>
+          <div className="col-md-4">
+
+            <button onClick={handleAddSubtopic}  className="btnBts btn-primary text-white btn-sm float-end">Add Subopic</button>
           </div>
         </div>
+        {blockFilterVisible && 
+            <div className="rowBts mx-4 mt-2">
+              <div className="col-md-4">
+                  <div className="form-group">
+                    <select name="learning_program_id" onChange={handleInput} value={filter.learning_program_id} className="form-control">  
+                      <option value="">Select program</option>
+                      {
+                        learningProgramList.map((item)=> {
+                          return (
+                            <option value={item.id} key={item.id}>{item.name}</option>
+                          )
+                        })
+                      }
+                    </select>            
+                  </div>
+              </div>
+              <div className="col-md-4">          
+                  <div className="form-group">
+                    <select name="theme_learning_program_id" onChange={handleInput} value={filter.theme_learning_program_id} className="form-control">  
+                      <option option value="">Select Theme</option>
+                      {themeList
+                        .filter((item) => item.learning_program_id == filter.learning_program_id)
+                        .map((item) => (
+                          <option value={item.id} key={item.id}>
+                            {item.name}
+                          </option>
+                      ))}
+                    </select>            
+                  </div>
+                </div>
+                <div className="col-md-4">
+                  <div className="form-group">
+                    <select name="teacher_id" onChange={handleInput} value={filter.teacher_id} className="form-control">  
+                      <option option value="">Select Teacher</option>
+                      {
+                        teacherList.map((item)=> {
+                          return (
+                            <option value={item.id} key={item.id}>{item.name}</option>
+                          )
+                        })
+                      }
+                    </select>            
+                  </div>
+                </div> 
+
+            </div>
+          }
+
+        <div className="rowBts m-2">
+          <div className="col-md-12">
+            <div className="card-body">
+            <div className="table-responsive">
+              <table className={`table table-primary table-bordered table-striped ${teacherTopicList.length == 0 ? 'table-fixed' : ''}`} style={{ width: '100%' }}>
+                  <TableHeader
+                    columns={columns_header}
+                    handleSort={handleSort}
+                    sortColumn={sortColumn}
+                    sortOrder={sortOrder}
+                  />
+                  <DynamicTable data={teacherTopicList} columns={columns} commonColumns={commonColumns} loading={loading}/>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        {teacherTopicList.length > 0 && !loading ? (
+          <div className="my-2 mx-3">
+              <Paginator
+                  pagination={pagination}
+                  pageChanged={(page) => setCurrentPage(page)}
+                  totalItems={teacherTopicList.length}
+              />
+          </div>
+            ) : null}
       </div>
     </div>
   );
 }
-export default ViewSubtopic;
+export default ViewMySubtopics;

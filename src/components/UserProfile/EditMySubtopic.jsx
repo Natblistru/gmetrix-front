@@ -260,7 +260,7 @@ function EditMySubtopic({id,  onBackToList}) {
 
             </div>
             <div className="rowBts">
-              <div className="col-md-8">          
+              <div className="col-md-6">          
                 <div className="form-group m-3">
                   <label>Subtopic Title</label>
                   <input type="text" name="name" onChange={handleInput} value={subtopicInput.name}className="form-control" />
@@ -268,7 +268,7 @@ function EditMySubtopic({id,  onBackToList}) {
                 </div>
               </div>
 
-              <div className="col-md-4">
+              <div className="col-md-6">
                 <div className="form-group m-3">
                   <label>Audio</label>
                   <input type="file" accept="audio/*" name="audio" onChange={handleAudio} className="form-control" />

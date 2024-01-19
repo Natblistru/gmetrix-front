@@ -144,51 +144,12 @@ function ViewMyTopics({ onAddTopic, onEditTopic }) {
     fetchData();
   }, [sortColumn, sortOrder, search, perPage, currentPage, filter ]);
 
-  // useEffect(()=>{
-  //   axios.get(`http://localhost:8000/api/view-myTopics`).then(res=> {
-  //     if(res.data.status === 200){
-  //       setTeacherTopicList(res.data.teacherTopics)
-  //     } 
-  //     setLoading(false)
-  //   })
-  // },[])
-
   const commonColumns = {
     'editLink': (item) => (
       <button onClick={() => handleEditTopic(item.id)} className="btnBts btn-success btn-small">Edit</button>
     ),
     'status': (item) => (item.status === 0 ? 'Shown' : 'Hidden'),
   };
-
-  // let viewTeacherTopic_HTMLTABLE = "";
-  // if(loading) {
-  //   return <h4>Loading TeacherTopic ...</h4>
-  // }
-  // else
-  // {
-  //   let teacherTopicStatus = '';
-  //   viewTeacherTopic_HTMLTABLE = 
-  //   teacherTopicList.map((item) => {
-  //     if(item.status == 0) {
-  //       teacherTopicStatus = "Shown";
-  //     }
-  //     else if(item.status == 1) {
-  //       teacherTopicStatus = "Hidden";
-  //     }
-  //     return (
-  //       <tr key={item.id}>
-  //         <td>{item.id}</td>
-  //         <td>{item.order_number}</td>
-  //         <td>{item.name}</td>
-  //         <td>{item.topic.theme_learning_program.name}</td>
-  //         <td>
-  //           <button onClick={() => handleEditTopic(item.id)} className="btnBts btn-success btn-small">Edit</button>
-  //         </td>
-  //         <td>{teacherTopicStatus}</td>
-  //       </tr>
-  //     )
-  //   })
-  // }
 
   const handleAddTopic = () => {
     onAddTopic();
