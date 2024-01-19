@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-function ViewMyTests({ onAddTest }) {
+function ViewMyTests({ onAddTest, onEditTest }) {
 
   const [loading, setLoading] = useState(true);
   const [teacherTopicList, setTeacherTopicList] = useState([]);
@@ -40,7 +40,7 @@ function ViewMyTests({ onAddTest }) {
           <td>{item.test_complexity.name}</td>
           <td>{item.teacher_topic.name}</td>
           <td>
-            <Link to={`/admin/edit-formative-test/${item.id}`} className="btnBts btn-success btn-small">Edit</Link>
+            <button onClick={() => handleEditTest(item.id)}  className="btnBts btn-success btn-small">Edit</button>
           </td>
           <td>{teacherTopicStatus}</td>
         </tr>
@@ -50,6 +50,10 @@ function ViewMyTests({ onAddTest }) {
 
   const handleAddTest = () => {
     onAddTest();
+  };
+
+  const handleEditTest = (item_id) => {
+    onEditTest(item_id);
   };
 
   return (

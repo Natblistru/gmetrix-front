@@ -3,10 +3,13 @@ import { CSSTransition } from 'react-transition-group';
 
 import ViewMySubtopics from './ViewMySubtopics';
 import AddMySubtopic from './AddMySubtopic';
+import EditMySubtopic from './EditMySubtopic';
 
 
 function MySubtopics(props) {
   const [showAddSubtopic, setShowAddSubtopic] = useState(false);
+  const [showEditSubtopic, setShowEditSubtopic] = useState(false);
+  const [subtopicId, setSubtopicId] = useState(null);
 
   const handleShowAddSubtopic = () => {
     setShowAddSubtopic(true);
@@ -14,6 +17,15 @@ function MySubtopics(props) {
 
   const handleHideAddSubtopic = () => {
     setShowAddSubtopic(false);
+  };
+
+  const handleShowEditSubtopic = (item_id) => {
+    setSubtopicId(item_id)
+    setShowEditSubtopic(true);
+  };
+
+  const handleHideEditSubtopic = () => {
+    setShowEditSubtopic(false);
   };
 
   return (
@@ -27,7 +39,16 @@ function MySubtopics(props) {
         <AddMySubtopic {...props} onBackToList={handleHideAddSubtopic} />
       </CSSTransition>
 
-        <ViewMySubtopics onAddSubtopic={handleShowAddSubtopic} />
+      <CSSTransition
+        in={showEditSubtopic}
+        timeout={500}
+        classNames="my-topic-transition"
+        unmountOnExit
+      >
+        <EditMySubtopic {...props} id={subtopicId} onBackToList={handleHideEditSubtopic} />
+      </CSSTransition>
+
+        <ViewMySubtopics onAddSubtopic={handleShowAddSubtopic} onEditSubtopic={handleShowEditSubtopic}/>
     </div>
   );
 }

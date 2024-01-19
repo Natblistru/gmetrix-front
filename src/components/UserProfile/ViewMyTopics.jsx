@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-function ViewMyTopics({ onAddTopic }) {
+function ViewMyTopics({ onAddTopic, onEditTopic }) {
 
   const [loading, setLoading] = useState(true);
   const [teacherTopicList, setTeacherTopicList] = useState([]);
@@ -38,7 +38,7 @@ function ViewMyTopics({ onAddTopic }) {
           <td>{item.name}</td>
           <td>{item.topic.theme_learning_program.name}</td>
           <td>
-            <Link to={`/admin/edit-teacher-topic/${item.id}`} className="btnBts btn-success btn-small">Edit</Link>
+            <button onClick={() => handleEditTopic(item.id)} className="btnBts btn-success btn-small">Edit</button>
           </td>
           <td>{teacherTopicStatus}</td>
         </tr>
@@ -50,12 +50,16 @@ function ViewMyTopics({ onAddTopic }) {
     onAddTopic();
   };
 
+  const handleEditTopic = (item_id) => {
+    onEditTopic(item_id);
+  };
+
   return (
     <div className="containerBts px-4">
       <div className="cardBts mt-4">
         <div className="card-header">
           <h4>Teacher Topic List
-            <bitton onClick={handleAddTopic} className="btnBts btn-primary text-white btn-sm float-end">Add My Topic</bitton>
+            <button onClick={handleAddTopic} className="btnBts btn-primary text-white btn-sm float-end">Add My Topic</button>
           </h4>
         </div>
         <div className="card-body">

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-function ViewSubtopic({ onAddSubtopic }) {
+function ViewSubtopic({ onAddSubtopic, onEditSubtopic }) {
 
   const [loading, setLoading] = useState(true);
   const [teacherTopicList, setTeacherTopicList] = useState([]);
@@ -51,7 +51,7 @@ function ViewSubtopic({ onAddSubtopic }) {
           )}
           </td>
           <td>
-            <Link to={`/admin/edit-subtopic/${item.id}`} className="btnBts btn-success btn-small">Edit</Link>
+            <button onClick={() => handleEditSubtopic(item.id)} className="btnBts btn-success btn-small">Edit</button>
           </td>
           <td>{teacherTopicStatus}</td>
         </tr>
@@ -61,6 +61,10 @@ function ViewSubtopic({ onAddSubtopic }) {
 
   const handleAddSubtopic = () => {
     onAddSubtopic();
+  };
+
+  const handleEditSubtopic = (item_id) => {
+    onEditSubtopic(item_id);
   };
 
   return (
