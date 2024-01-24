@@ -17,7 +17,7 @@ const ProgressSteps = (props) => {
   const progressWidth = `${(currentActive - 1) / (circlesLength - 1) * 100}%`;
   // console.log(currentActive);
     return (
-        <div className="container">
+        <div className="slider-container">
         <div className="progress-container">
           <div className="progress" style={{ width: progressWidth }}></div>
           {
