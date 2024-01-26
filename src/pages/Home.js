@@ -2,11 +2,13 @@ import React from "react"
 import axios from "axios";
 import {useState, useEffect} from "react";
 
+
 import ListDiscipline from "../components/ListDiscipline";
 import Titlu from "../components/Titlu";
 import Wrapper from "../components/Wrapper";
 import ContextData from "../components/context/ContextData";
 import Navbar from "../components/layouts/Navbar";
+import Banner from "../components/Banner";
 
 const Home = () => {
   const {dispatchData} = React.useContext(ContextData)
@@ -54,6 +56,7 @@ const Home = () => {
   return (
     <>
     <Navbar />
+    <Banner/>
     <Wrapper>
       <Titlu>Disciplinele de absolvire a cursului gimnazial</Titlu>
       <ListDiscipline/>
