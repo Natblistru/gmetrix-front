@@ -151,12 +151,33 @@ div.manual-item-result {
   animation: pulse 1s ease 0s infinite normal;
 }
 
-.manual-item a,.manual-item-result a {
+.manual-item a {
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+}
+
+.manual-item img {
+  height: 134px;
+  object-fit: cover;
+  width: 134px;
+  border-radius: 50%;
+}
+
+div.manual-item > a > img:nth-child(2) {
+  position: absolute;
+  left: -10px;
+  width: 154px;
+  height: 154px;
+  top: -126px;
+}
+
+.manual-item-result a {
   text-decoration: none;
   color: inherit;
 }
 
-.manual-item img, .manual-item-result img {
+.manual-item-result img {
   height: 150px;
   object-fit: cover;
   width: 150px;
@@ -168,6 +189,7 @@ div.manual-item-result {
 
 .manual-item p {
   padding-top: 10px;
+  color: #fff;
 }
 
 .breadcrumb {
@@ -2074,6 +2096,45 @@ a .subject-total-percent {
   border-right: 0.08em solid #666;
 }
 
+/************ Skills Css ************/
+.skill {
+  padding: 0 0 50px 0;
+  position: relative;
+}
+.skill-bx {
+  background: #151515;
+  border-radius: 64px;
+  text-align: center;
+  padding: 140px 50px 50px;
+  margin-top: -110px;
+
+}
+.skill h2 {
+	font-weight: 700;
+}
+/* .skill p {
+    color: #B8B8B8;
+    font-size: 18px;
+    letter-spacing: 0.8px;
+    line-height: 1.5em;
+    margin: 14px 0 75px 0;
+} */
+.skill-slider {
+  width: 80%;
+  margin: 0 auto;
+  position: relative;
+}
+.skill-slider .item img {
+  width: 50%;
+  margin: 0 auto 15px auto;
+}
+.background-image-left {
+  top: 28%;
+  position: absolute;
+  bottom: 0;
+  width: 40%;
+  z-index: -4;
+}
 
 
 

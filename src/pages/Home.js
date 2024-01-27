@@ -54,14 +54,14 @@ const Home = () => {
   }
 
   return (
-    <>
+    <div style={{ background: `linear-gradient(to left, #2a1a3e, #4a3851, #5d4781)` }}>
     <Navbar />
     <Banner/>
-    <Wrapper>
+    <Wrapper className="skill">
       <Titlu>Disciplinele de absolvire a cursului gimnazial</Titlu>
       <ListDiscipline/>
     </Wrapper>
-    </>
+    </div>
 
   );
 };

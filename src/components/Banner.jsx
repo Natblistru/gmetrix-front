@@ -7,7 +7,7 @@ function Banner() {
   const [text, setText] = useState('');
   const [index, setIndex] = useState(1);
   const [delta, setDelta] = useState(300 - Math.random() * 100);
-  const toRotate = [ "vizionare video", "ascultare audio", "prezentari imagini", "memorare cu carduri" ];
+  const toRotate = [ "vizionare video", "ascultare audio", "slide-uri imagini", "carduri memo" ];
   const period = 1000;
 
   useEffect(() => {

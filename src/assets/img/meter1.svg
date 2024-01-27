@@ -1,0 +1,14 @@
+<svg width="204" height="204" viewBox="0 0 204 204" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Cercul de 100% cu gaură în centru -->
+    <path d="M102 0C45.64 0 0 45.64 0 102s45.64 102 102 102 102-45.64 102-102S158.36 0 102 0zm0 190C55.415 190 14 148.585 14 102S55.415 14 102 14s88 41.415 88 88-41.415 88-88 88z" fill="url(#paint0_linear_16_339)"/>
+
+    <!-- Alte elemente sau imagini în centru -->
+    <!-- ... adaugă aici alte elemente sau imagini ... -->
+
+    <defs>
+        <linearGradient id="paint0_linear_16_339" x1="-12.4348" y1="91.2145" x2="228.124" y2="92.098" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#7f00ff"/>
+            <stop offset="1" stop-color="#e100ff"/>
+        </linearGradient>
+    </defs>
+</svg>
