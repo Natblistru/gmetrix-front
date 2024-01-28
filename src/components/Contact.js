@@ -1,5 +1,6 @@
 import { useState } from "react";
 import contactImg from "../assets/img/contact-img.svg";
+import axios from 'axios';
 
 export const Contact = () => {
   const formInitialDetails = {
@@ -10,7 +11,7 @@ export const Contact = () => {
     message: ''
   }
   const [formDetails, setFormDetails] = useState(formInitialDetails);
-  const [buttonText, setButtonText] = useState('Send');
+  const [buttonText, setButtonText] = useState('Trimite');
   const [status, setStatus] = useState({});
   const [isVisible, setIsVisible] = useState(true);
 
@@ -23,21 +24,29 @@ export const Contact = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setButtonText("Sending...");
-    let response = await fetch("http://localhost:5000/contact", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json;charset=utf-8",
-      },
-      body: JSON.stringify(formDetails),
-    });
-    setButtonText("Send");
-    let result = await response.json();
-    setFormDetails(formInitialDetails);
-    if (result.code == 200) {
-      setStatus({ succes: true, message: 'Message sent successfully'});
-    } else {
-      setStatus({ succes: false, message: 'Something went wrong, please try again later.'});
+    setButtonText("Se trimite...");
+
+    try {
+      const response = await axios.post("http://localhost:8000/api/contact", formDetails, {
+        headers: {
+          "Content-Type": "application/json;charset=utf-8",
+        },
+      });
+
+      setButtonText("Trimite");
+      const result = response.data;
+
+      setFormDetails(formInitialDetails);
+
+      if (result.code === 200) {
+        setStatus({ success: true, message: 'Message sent successfully' });
+      } else {
+        setStatus({ success: false, message: 'Something went wrong, please try again later.' });
+      }
+    } catch (error) {
+      console.error("Error sending request:", error);
+      setButtonText("Trimite");
+      setStatus({ success: false, message: 'An error occurred while sending the message.' });
     }
   };
 

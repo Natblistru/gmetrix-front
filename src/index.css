@@ -2360,6 +2360,9 @@ a .subject-total-percent {
 .contact form button:hover::before {
   width: 100%;
 }
+.contact p.success {
+  color: white;
+}
 
 /************ Footer Css ************/
 .footer {
