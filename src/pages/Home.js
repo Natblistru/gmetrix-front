@@ -10,6 +10,7 @@ import ContextData from "../components/context/ContextData";
 import Navbar from "../components/layouts/Navbar";
 import Banner from "../components/Banner";
 import Projects from "../components/Projects";
+import { Contact } from "../components/Contact";
 
 const Home = () => {
   const {dispatchData} = React.useContext(ContextData)
@@ -63,6 +64,7 @@ const Home = () => {
       <ListDiscipline/>
     </Wrapper>
     <Projects/>
+    <Contact />
     </div>
 
   );
