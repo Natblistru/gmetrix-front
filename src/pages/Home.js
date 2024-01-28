@@ -9,6 +9,7 @@ import Wrapper from "../components/Wrapper";
 import ContextData from "../components/context/ContextData";
 import Navbar from "../components/layouts/Navbar";
 import Banner from "../components/Banner";
+import Projects from "../components/Projects";
 
 const Home = () => {
   const {dispatchData} = React.useContext(ContextData)
@@ -61,6 +62,7 @@ const Home = () => {
       <Titlu>Disciplinele de absolvire a cursului gimnazial</Titlu>
       <ListDiscipline/>
     </Wrapper>
+    <Projects/>
     </div>
 
   );
