@@ -10,6 +10,13 @@ import projImg6 from "../assets/img/test_dnd.png";
 import projImg7 from "../assets/img/test_words.png";
 import projImg8 from "../assets/img/evaluare.png";
 import projImg9 from "../assets/img/rezultate.png";
+
+import profImg1 from "../assets/img/tema_prof.png";
+import profImg2 from "../assets/img/video_prof.png";
+import profImg3 from "../assets/img/audio_prof.png";
+import profImg4 from "../assets/img/image_prof.png";
+import profImg5 from "../assets/img/flip_prof.png";
+import profImg6 from "../assets/img/test_prof.png";
 import { ProjectCard } from './ProjectCard';
 // import colorSharp2 from "../assets/img/color-sharp2.png";
 // import 'animate.css';
@@ -68,6 +75,39 @@ function Projects() {
     },
   ];
 
+  const projectsProf = [
+    {
+      title: "Constructorul temelor",
+      description: "profesorului",
+      imgUrl: profImg1,
+    },
+    {
+      title: "Adăugare video",
+      description: "cu breakpoint-uri",
+      imgUrl: profImg2,
+    },
+    {
+      title: "Adăugare fișiere audio",
+      description: "pentru sonorizarea prezentărilor",
+      imgUrl: profImg3,
+    },
+    {
+      title: "Agaugare imagini",
+      description: "pentru prezentări",
+      imgUrl: profImg4,
+    },
+    {
+      title: "Constructorul fișelor",
+      description: "de memorare",
+      imgUrl: profImg5,
+    },
+    {
+      title: "Constructorul testelor",
+      description: "profesorului",
+      imgUrl: profImg6,
+    },
+  ];
+
   const handleTabChange = (key) => {
     setActiveTab(key);
     setIsVisible(true);
@@ -103,7 +143,14 @@ function Projects() {
                       </div>
                     )}
                     {activeTab === "second" && (
-                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit...</p>
+                      <div className="rowBts">
+                      {projectsProf.map((project, index) => (
+                            <ProjectCard
+                            key={index}
+                            {...project}
+                            />
+                      ))}
+                    </div>
                     )}
                   </div>
                 </div>
