@@ -2107,11 +2107,12 @@ a .subject-total-percent {
 .skill {
   padding: 0 0 50px 0;
   position: relative;
-  width: 60%;
+  width: 1100px;
 }
 .skill .manual-item p {
   padding-top: 30px;
   color: #fff;
+  font-size: 1.4rem;
 }
 .skill-bx {
   background: #151515;
