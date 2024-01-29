@@ -1,17 +1,18 @@
-// import MailchimpForm  from "./MailchimpForm";
 import logo from "../assets/img/logo.svg";
 import { Link } from "react-router-dom";
 import navIcon1 from "../assets/img/nav-icon1.svg";
 import navIcon2 from "../assets/img/nav-icon2.svg";
 import navIcon3 from "../assets/img/nav-icon3.svg";
-import MailchimpForm from "./MailchimpForm";
+import SubscribeForm from "./SubscribeForm";
 
-export const Footer = () => {
+
+
+const Footer = () => {
   return (
     <footer className="footer">
       <div  style={{width: '1140px', paddingRight: '.75rem', paddingLeft: '.75rem', marginRight: 'auto', marginLeft: 'auto'}}>
         <div className="rowBts  align-items-center">
-          <MailchimpForm />
+          <SubscribeForm />
           <div className="col-md-6 logo">
             <img src={logo} alt="Logo" />
           </div>
@@ -28,3 +29,5 @@ export const Footer = () => {
     </footer>
   )
 }
+
+export default Footer;

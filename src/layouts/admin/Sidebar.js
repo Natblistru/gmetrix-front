@@ -12,6 +12,10 @@ const Sidebar = () => {
                     <div className="sb-nav-link-icon"><i className="fas fa-tachometer-alt"></i></div>
                     Dashboard
                 </Link>
+                <Link className="nav-linkSide" to="/admin/notification">
+                    <div className="sb-nav-link-icon"><i className="fas fa-tachometer-alt"></i></div>
+                    Notification
+                </Link>
                 <div className="sb-sidenav-menu-heading">Interface</div>
                 <div className="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                     <nav className="sb-sidenav-menu-nested navSide">

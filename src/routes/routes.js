@@ -75,6 +75,7 @@ import ForgotPassword from "../components/admin/AuthForms/ForgotPassword.js";
 import ResetPassword from "../components/admin/AuthForms/ResetPassword.js";
 import Page403 from "../components/errors/Page403.js";
 import Page404 from "../components/errors/Page404.js";
+import Notification from "../components/admin/Notification/Notification.jsx";
 
 const routes = [
   { path: '/admin', exact: true, name: 'Admin'},
@@ -179,6 +180,8 @@ const routes = [
 
   { path: '/admin/403', exact: true, name: 'error403', component: Page403 },
   { path: '/admin/404', exact: true, name: 'error404', component: Page404 },
+
+  { path: '/admin/notification', exact: true, name: 'notification', component: Notification },
 
   
 ];

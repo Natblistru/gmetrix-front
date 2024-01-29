@@ -11,7 +11,7 @@ import Navbar from "../components/layouts/Navbar";
 import Banner from "../components/Banner";
 import Projects from "../components/Projects";
 import { Contact } from "../components/Contact";
-import { Footer } from "../components/Footer";
+import Footer from "../components/Footer";
 
 const Home = () => {
   const {dispatchData} = React.useContext(ContextData)

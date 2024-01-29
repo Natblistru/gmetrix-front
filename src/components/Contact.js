@@ -1,6 +1,7 @@
 import { useState } from "react";
 import contactImg from "../assets/img/contact-img.svg";
 import axios from 'axios';
+import Swal from 'sweetalert2'
 
 export const Contact = () => {
   const formInitialDetails = {
@@ -39,8 +40,18 @@ export const Contact = () => {
       setFormDetails(formInitialDetails);
 
       if (result.code === 200) {
+        Swal.fire({
+          title: "Success",
+          text: `Messaj trimis cu succes.`,
+          icon: "success"
+        });
         setStatus({ success: true, message: 'Message sent successfully' });
       } else {
+        Swal.fire({
+          title: "Error",
+          text: `Ceva nu a mers bine. Mai încearcă.`,
+          icon: "error"
+        });
         setStatus({ success: false, message: 'Something went wrong, please try again later.' });
       }
     } catch (error) {
@@ -52,7 +63,7 @@ export const Contact = () => {
 
   return (
     <section className="contact" id="connect">
-      <div  style={{width: '100%', paddingRight: '.75rem', paddingLeft: '.75rem', marginRight: 'auto', marginLeft: 'auto'}}>
+      <div style={{width: '100%', paddingRight: '.75rem', paddingLeft: '.75rem', marginRight: 'auto', marginLeft: 'auto'}}>
         <div className="rowBts align-items-center">
           <div className="col-md-6">
             {/* <TrackVisibility>
@@ -67,12 +78,12 @@ export const Contact = () => {
                 <div className={isVisible ? "animate__animated animate__fadeIn" : ""}>
                 <h2>Contactează-ne</h2>
                 <form onSubmit={handleSubmit}>
-                  <div div className="rowBts">
+                  <div className="rowBts">
                     <div className="col-md-6 px-1">
                       <input type="text" value={formDetails.firstName} placeholder="First Name" onChange={(e) => onFormUpdate('firstName', e.target.value)} />
                     </div>
                     <div className="col-md-6 px-1">
-                      <input type="text" value={formDetails.lasttName} placeholder="Last Name" onChange={(e) => onFormUpdate('lastName', e.target.value)}/>
+                      <input type="text" value={formDetails.lastName} placeholder="Last Name" onChange={(e) => onFormUpdate('lastName', e.target.value)}/>
                     </div>
                     <div className="col-md-6 px-1">
                       <input type="email" value={formDetails.email} placeholder="Email Address" onChange={(e) => onFormUpdate('email', e.target.value)} />
@@ -84,12 +95,12 @@ export const Contact = () => {
                       <textarea rows="6" value={formDetails.message} placeholder="Message" onChange={(e) => onFormUpdate('message', e.target.value)}></textarea>
                       <button type="submit"><span>{buttonText}</span></button>
                     </div>
-                    {
+                    {/* {
                       status.message &&
                       <div className="col-md-12">
                         <p className={status.success === false ? "danger" : "success"}>{status.message}</p>
                       </div>
-                    }
+                    } */}
                   </div>
                 </form>
               </div>
