@@ -2,6 +2,8 @@ import { useState } from "react";
 import contactImg from "../assets/img/contact-img.svg";
 import axios from 'axios';
 import Swal from 'sweetalert2'
+import 'animate.css';
+import TrackVisibility from 'react-on-screen';
 
 export const Contact = () => {
   const formInitialDetails = {
@@ -66,11 +68,11 @@ export const Contact = () => {
       <div style={{width: '100%', paddingRight: '.75rem', paddingLeft: '.75rem', marginRight: 'auto', marginLeft: 'auto'}}>
         <div className="rowBts align-items-center">
           <div className="col-md-6">
-            {/* <TrackVisibility>
-              {({ isVisible }) => */}
+            <TrackVisibility>
+              {({ isVisible }) =>
                 <img className={isVisible ? "animate__animated animate__zoomIn" : ""} src={contactImg} alt="Contact Us"/>
-              {/* }
-            </TrackVisibility> */}
+               }
+            </TrackVisibility> }
           </div>
           <div className="col-md-6">
             {/* <TrackVisibility>

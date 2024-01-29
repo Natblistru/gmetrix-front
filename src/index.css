@@ -195,9 +195,9 @@ div.manual-item > a > img:nth-child(2) {
   border: 1px gray solid;
 }
 
-.manual-item p {
+.manual-item-result p {
   padding-top: 10px;
-  color: #fff;
+  /* color: #000; */
 }
 
 .breadcrumb {
@@ -1441,7 +1441,6 @@ transition: color 150ms ease-in-out;
   display: flex;
   width: 100%;
   justify-content: center;
-  margin-top: 10vh;
   gap: 20px;
   flex-direction: column;
 }
@@ -2108,12 +2107,17 @@ a .subject-total-percent {
 .skill {
   padding: 0 0 50px 0;
   position: relative;
+  width: 60%;
+}
+.skill .manual-item p {
+  padding-top: 30px;
+  color: #fff;
 }
 .skill-bx {
   background: #151515;
   border-radius: 64px;
   text-align: center;
-  padding: 140px 50px 50px;
+  padding: 180px 50px 50px;
   margin-top: -110px;
 
 }

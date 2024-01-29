@@ -48,12 +48,14 @@ function Banner() {
         <div className="col-md-7">
           <span className="tagline">Bun venit pe Platformă</span>
           <h1>{`Examen pe 10 - usor, prin `} <span className="txt-rotate"><span className="wrap">{text}</span></span></h1>
-          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+          <p>O platformă educațională dedicată disciplinelor examenului gimnazial, oferind materiale video, audio, prezentări interactive și carduri de memorie, toate create pentru a asigura o pregătire completă și obținerea unei note de 10.</p>
           <button className="btn">Inregistrează-te </button>
         </div>
 
         <div className="col-md-5">
-          <img src={headerImg} alt="Header Img" style={{width: '500px', height: '375px'}}/>
+            <div > 
+              <img src={headerImg} alt="Header Img" style={{width: '500px', height: '375px'}}/>
+            </div>
         </div>
       </div>
     </section>
