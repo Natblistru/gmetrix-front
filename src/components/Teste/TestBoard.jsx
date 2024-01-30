@@ -17,7 +17,8 @@ const TestBoard = forwardRef(
       additionalContent,
       handleTryAgain,
       DragDisable,
-      currentItemIndex
+      currentItemIndex,
+      setResponseReceived
     },
     ref
   ) => {
@@ -415,6 +416,7 @@ const TestBoard = forwardRef(
 
         if (response.status === 200) {
           console.log('Success:', response.data.message);
+          setResponseReceived(true);
         } else {
           console.error('Error');
         }

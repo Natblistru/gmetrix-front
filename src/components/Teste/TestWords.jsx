@@ -27,7 +27,8 @@ const TestWords = ({
   setCorrectAnswer,
   additionalContent,
   handleTryAgain,
-  currentItemIndex
+  currentItemIndex,
+  setResponseReceived
 }) => {
   const {stateData, dispatchData} = React.useContext(ContextData)
   const [showResults, setShowResults] = useState(false);
@@ -198,6 +199,7 @@ const TestWords = ({
 
         if (response.status === 200) {
           console.log('Success:', response.data.message);
+          setResponseReceived(true);
         } else {
           console.error('Error');
         }

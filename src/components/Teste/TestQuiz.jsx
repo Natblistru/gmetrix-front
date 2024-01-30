@@ -12,7 +12,8 @@ const TestQuiz = ({
   setCorrectAnswer,
   additionalContent,
   handleTryAgain,
-  currentItemIndex
+  currentItemIndex,
+  setResponseReceived
 }) => {
   const {stateData, dispatchData} = React.useContext(ContextData)
   const [selectedValue, setSelectedValue] = useState("");
@@ -89,6 +90,7 @@ const TestQuiz = ({
 
         if (response.status === 200) {
           console.log('Success:', response.data.message);
+          setResponseReceived(true);
         } else {
           console.error('Error');
         }

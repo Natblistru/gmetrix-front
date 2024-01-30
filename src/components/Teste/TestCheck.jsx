@@ -14,7 +14,8 @@ const TestCheck = ({
   setCorrectAnswer,
   additionalContent,
   handleTryAgain,
-  currentItemIndex
+  currentItemIndex,
+  setResponseReceived
 }) => {
   const {stateData, dispatchData} = React.useContext(ContextData)
   const [selectedValues, setSelectedValues] = useState([]);
@@ -155,6 +156,7 @@ const TestCheck = ({
 
         if (response.status === 200) {
           console.log('Success:', response.data.message);
+          setResponseReceived(true);
         } else {
           console.error('Error');
         }

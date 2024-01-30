@@ -29,7 +29,8 @@ const TestSnap = ({
   setCorrectAnswer,
   additionalContent,
   handleTryAgain,
-  currentItemIndex
+  currentItemIndex,
+  setResponseReceived
 }) => {
   const svgboxRef = useRef();
   const {stateData, dispatchData} = React.useContext(ContextData)
@@ -604,6 +605,7 @@ const TestSnap = ({
 
         if (response.status === 200) {
           console.log('Success:', response.data.message);
+          setResponseReceived(true);
         } else {
           console.error('Error');
         }

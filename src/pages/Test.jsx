@@ -30,6 +30,7 @@ const TestWrapper = ({ tests, add, update }) => {
   const [currentTestIndex, setCurrentTestIndex] = useState(0);
   const [currentItemIndex, setCurrentItemIndex] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [responseReceived, setResponseReceived] = useState(false);
 
 
 // console.log(stateData.currentTopic)
@@ -70,15 +71,17 @@ useEffect(() => {
 
   useEffect(() => {
     const fetchData = async () => {
-      if (correctAnswer !== null) {
+      if (correctAnswer !== null && responseReceived) {
           console.log(stateData.currentTests)
           console.log(currentTestIndex)
+          console.log(testBoardRef.current)
           let firstTestItemComplexity = stateData.currentTests[currentTestIndex].order_number_options[0]?.test_item_complexity;
 
           if (firstTestItemComplexity === undefined) {
             firstTestItemComplexity = 1
           }
           const testItemIds = stateData.currentTests[currentTestIndex].order_number_options.map(option => option.test_item_id);
+          console.log(testItemIds)
 
           try {
             const studentId = 1;
@@ -86,6 +89,8 @@ useEffect(() => {
             const responses = await axios.all(promises);
             const successResponses = responses.filter(response => response.data.status === 200);
             const errorResponses = responses.filter(response => response.data.status === 404);
+            console.log(successResponses)
+            console.log(errorResponses)            
             if (successResponses.length > 0) {
               const totalScore = successResponses.reduce((accumulator, response) => {
                 const score = parseFloat(response.data.score);
@@ -104,7 +109,7 @@ useEffect(() => {
     };
   
     fetchData()
-  }, [correctAnswer, stateData.currentTests, currentTestIndex]);
+  }, [correctAnswer, responseReceived, stateData.currentTests, currentTestIndex]);
   
   const testBoardRef = useRef(null);
 
@@ -239,6 +244,7 @@ useEffect(() => {
                 additionalContent={additionalContent}
                 handleTryAgain={handleTryAgain}
                 currentItemIndex={currentItemIndex}
+                setResponseReceived={setResponseReceived}
               />
             )}
             {currentList1.type === "check" && (
@@ -250,6 +256,7 @@ useEffect(() => {
                 additionalContent={additionalContent}
                 handleTryAgain={handleTryAgain}
                 currentItemIndex={currentItemIndex}
+                setResponseReceived={setResponseReceived}
               />
             )}
             {currentList1.type === "words" && (
@@ -261,6 +268,7 @@ useEffect(() => {
                 additionalContent={additionalContent}
                 handleTryAgain={handleTryAgain}
                 currentItemIndex={currentItemIndex}
+                setResponseReceived={setResponseReceived}
               />
             )}
             {currentList1.type === "snap" && (
@@ -272,6 +280,7 @@ useEffect(() => {
                 additionalContent={additionalContent}
                 handleTryAgain={handleTryAgain}
                 currentItemIndex={currentItemIndex}
+                setResponseReceived={setResponseReceived}
               />
             )}
             {/* {currentList1.type === "testGeneralizator" && (
@@ -299,6 +308,7 @@ useEffect(() => {
                 DragDisable={false}
                 ref={testBoardRef}
                 currentItemIndex={currentItemIndex}
+                setResponseReceived={setResponseReceived}
               />
             )}
             {/* <ListNavigatie
