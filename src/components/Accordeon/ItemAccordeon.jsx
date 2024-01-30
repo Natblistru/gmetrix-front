@@ -15,11 +15,13 @@ const ItemAccordeon = (props) => {
 
   // let listItems = props.teme[0].subtitles[0].subjects;
   const classes = "block " + props.className;
+  const isAnimationEnabled = props.className !== "non_animation";
+  
   const togglAccordion = () => {
     setIsOpen(!isOpen);
   };
   return (
-    <section className={classes} data-aos="fade-up">
+    <section className={classes} data-aos={isAnimationEnabled ? "fade-up" : ""}>
       <button
         className={`accordion ${isOpen ? "active" : ""}`}
         onClick={toggleAccordion}

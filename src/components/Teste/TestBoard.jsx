@@ -448,7 +448,7 @@ const TestBoard = forwardRef(
   return columns && (
 
     <>
-      <ItemAccordeon
+      <ItemAccordeon 
         titlu={
           correctAnswer === null
             ? `Cerințele sarcinii (${currentItemIndex + 1}/${
@@ -458,6 +458,7 @@ const TestBoard = forwardRef(
         }
         correctAnswer={correctAnswer}
         additionalContent={additionalContent}
+        className="non_animation"
         open={true}
       >
         <ItemText
@@ -520,6 +521,7 @@ const TestBoard = forwardRef(
             listItems.length
           }):`}
           open={true}
+          className="non_animation"
         >
           <ItemText classNameChild="">
             {/* {console.log(correctAnswers)} */}

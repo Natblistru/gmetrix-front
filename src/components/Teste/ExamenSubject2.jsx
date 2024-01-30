@@ -296,6 +296,7 @@ const ExamenSubect2 = ({raspunsuri}) => {
                 quizArray.length
               }) - ${quizArray[currentIndex]?.maxPoints} puncte:`}
               open={true}
+              className="non_animation"
             >
               <ItemText>
                 <p>Studiază materialul suport și realizează sarcinile propuse.</p>
@@ -362,6 +363,7 @@ const ExamenSubect2 = ({raspunsuri}) => {
                   quizArray.length
                 }):`}
                 open={true}
+                className="non_animation"
               >
                 <ItemText classNameChild="">
                 {quizArray[currentIndex].img && (<img src={`http://localhost:8000/${process.env.PUBLIC_URL + quizArray[currentIndex]?.img}`} />)}

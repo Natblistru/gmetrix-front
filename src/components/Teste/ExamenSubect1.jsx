@@ -290,6 +290,7 @@ const ExamenSubect1 = ({ raspunsuri }) => {
                 quizArray.length
               }) - ${quizArray[currentIndex]?.maxPoints} puncte:`}
               open={true}
+              className="non_animation"
             >
               <ItemText>
                 <p>{quizArray[currentIndex]?.cerinta}</p>
@@ -356,6 +357,7 @@ const ExamenSubect1 = ({ raspunsuri }) => {
                   quizArray.length
                 }):`}
                 open={true}
+                className="non_animation"
               >
                 <ItemText classNameChild="">
                   {quizArray[currentIndex]?.answers.map(answer => (

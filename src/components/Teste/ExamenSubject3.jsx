@@ -284,6 +284,7 @@ const ExamenSubect3 = ({raspunsuri}) => {
                 quizArray.length
               }) - ${quizArray[currentIndex]?.maxPoints} puncte:`}
               open={true}
+              className="non_animation"
             >
               <ItemText>
                 <p>Studiază sursele:</p>
@@ -359,6 +360,7 @@ const ExamenSubect3 = ({raspunsuri}) => {
                   quizArray.length
                 }):`}
                 open={true}
+                className="non_animation"
               >
                 <ItemText classNameChild="">
                 {quizArray[currentIndex]?.answers
