@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-// import { Container, Row, Col, Tab, Nav } from "react-bootstrap";
-// import { ProjectCard } from "./ProjectCard";
+import 'aos/dist/aos.css';
+import AOS from 'aos';
 import projImg1 from "../assets/img/video.png";
 import projImg2 from "../assets/img/Audio.png";
 import projImg3 from "../assets/img/flip.png";
@@ -17,7 +17,7 @@ import profImg3 from "../assets/img/audio_prof.png";
 import profImg4 from "../assets/img/image_prof.png";
 import profImg5 from "../assets/img/flip_prof.png";
 import profImg6 from "../assets/img/test_prof.png";
-import { ProjectCard } from './ProjectCard';
+import ProjectCard from './ProjectCard';
 // import colorSharp2 from "../assets/img/color-sharp2.png";
 // import 'animate.css';
 // import TrackVisibility from 'react-on-screen';
@@ -26,6 +26,10 @@ function Projects() {
 
   const [activeTab, setActiveTab] = useState("first");
   const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    AOS.init(); 
+  }, []);
 
   const projects = [
     {
@@ -114,14 +118,11 @@ function Projects() {
   };
 
   return (
-    <section className="project" id="projects">
+    <section className="project" id="projects" data-aos="fade-up">
       <div style={{width: '100%', paddingRight: '.75rem', paddingLeft: '.75rem', marginRight: 'auto', marginLeft: 'auto'}}>
         <div className="rowBts">
           <div className="col-md-12">
-            {/* <TrackVisibility>
-              {({ isVisible }) =>
-              <div className={isVisible ? "animate__animated animate__fadeIn": ""}> */}
-                <h2>Ce conține platforma?</h2>
+              <h2>Ce conține platforma?</h2>
                 <div id="projects-tabs">
                   <div className="nav-pills mb-5 justify-content-center align-items-center" id="pills-tab">
                     <div id="projects-tabs-tab-first" className={`nav-item ${activeTab === "first" ? "active" : ""}`}>
@@ -133,7 +134,7 @@ function Projects() {
                   </div>
                   <div id="slideInUp" className={isVisible ? "animate__animated animate__slideInUp" : ""}>
                   {activeTab === "first" && (
-                      <div className="rowBts">
+                      <div className="rowBts  aos-init aos-animate" data-aos="fade-up">
                         {projects.map((project, index) => (
                               <ProjectCard
                               key={index}
@@ -154,12 +155,9 @@ function Projects() {
                     )}
                   </div>
                 </div>
-              {/* </div>}
-            </TrackVisibility> */}
           </div>
         </div>
       </div>
-      {/* <img className="background-image-right" src={colorSharp2}></img> */}
     </section>
   )
 }

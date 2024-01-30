@@ -4,6 +4,8 @@ import { Link, useLocation } from "react-router-dom";
 import { connect } from "react-redux";
 // import temeIstoriArray from "../../data/temeIstoria";
 import "../../index.css";
+import 'aos/dist/aos.css';
+import AOS from 'aos';
 
 const TableRow = (props) => {
   const {stateData, dispatchData} = React.useContext(ContextData)
@@ -18,8 +20,12 @@ const TableRow = (props) => {
   const parts = stateData.currentTheme.path_tema.split("/");
   const addressDisciplina = "/" + parts[1];
   const addressSubtitle = "/" + parts.slice(2).join("/");
-  // console.log(rowData)
   const dynamicPath = `${addressDisciplina}${addressSubtitle}${rowData.path}${rowData.addressTest}/1?teacher=${teacherVideo}&level=1&disciplina=${stateData.currentSubject.subject_id}&theme=${stateData.currentTheme.tema_id}`;       
+  
+  useEffect(() => {
+    AOS.init(); 
+  }, []);
+  
   // const dynamicPath = `${rowData.addressTestDisciplina}${rowData.addressTestSubtitle}${rowData.addressTestSubject}${rowData.addressTest}/1`;
 
   // const sumProc = (subjectId, testID, subtitle) => {
@@ -59,7 +65,7 @@ const TableRow = (props) => {
   // };
 
   return (
-    <div className={classes}>
+    <div className={classes} data-aos="fade-up">
       <div className="column">
         <div>
           <span>{idx + 1}. </span>

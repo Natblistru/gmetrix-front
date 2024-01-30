@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import headerImg from "../assets/img/boy-sysadmin_03.svg";
+import { Link } from 'react-router-dom';
+import 'aos/dist/aos.css';
+import AOS from 'aos';
 
 function Banner() {
   const [loopNum, setLoopNum] = useState(0);
@@ -9,6 +12,10 @@ function Banner() {
   const [delta, setDelta] = useState(300 - Math.random() * 100);
   const toRotate = [ "vizionare video", "ascultare audio", "slide-uri imagini", "carduri memo" ];
   const period = 1000;
+
+  useEffect(() => {
+    AOS.init(); 
+  }, []);
 
   useEffect(() => {
     let ticker = setInterval(() => {
@@ -45,14 +52,14 @@ function Banner() {
   return (
     <section className="banner" id="home">
       <div className="rowBts align-items-center" style={{ width: '1200px', margin: '10px auto'}}>
-        <div className="col-md-7">
+        <div className="col-md-7" data-aos="fade-right" data-aos-delay="400">
           <span className="tagline">Bun venit pe Platformă</span>
           <h1>{`Examen pe 10 - usor, prin `} <span className="txt-rotate"><span className="wrap">{text}</span></span></h1>
           <p>O platformă educațională dedicată disciplinelor examenului gimnazial, oferind materiale video, audio, prezentări interactive și carduri de memorie, toate create pentru a asigura o pregătire completă și obținerea unei note de 10.</p>
-          <button className="btn">Inregistrează-te </button>
+          <Link className="btn" to="/register"> Inregistrează-te </Link>
         </div>
 
-        <div className="col-md-5">
+        <div className="col-md-5" data-aos="fade-left" data-aos-delay="400">
             <div > 
               <img src={headerImg} alt="Header Img" style={{width: '500px', height: '375px'}}/>
             </div>

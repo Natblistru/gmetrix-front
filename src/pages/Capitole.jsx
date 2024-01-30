@@ -3,6 +3,7 @@ import axios from "axios";
 import {useState, useEffect} from "react";
 import { useParams, useLocation } from "react-router-dom";
 import ContextData from "../components/context/ContextData";
+import AOS from 'aos';
 
 // import temeMatem from '../data/temeMatem';
 import Navbar from "../components/layouts/Navbar";
@@ -26,17 +27,22 @@ const Capitole = (props) => {
   const nivel = searchParams.get('nivel');
   const clasa = searchParams.get('clasa');
 
+  const [loading, setLoading] = useState(true);
+
   const [proc,setProc] = useState(0);
 
-    useEffect(() => {
+     useEffect(() => {
         const fetchData = async () => {
           try {
             const subject_id = id;
             const level_id = 1;
       
             const res = await fetchCapitole(subject_id, level_id, dispatchData);
+            setLoading(false);
+            AOS.refresh();
           } catch (error) {
             console.error('Eroare la preluarea datelor:', error);
+            setLoading(false);
           }
         };
       
@@ -82,7 +88,8 @@ const Capitole = (props) => {
     
     return (
         <>
-            <Navbar />
+          {loading && <div className="edica-loader"></div>}
+          <Navbar />
             <Wrapper className="large">
                 <Breadcrumb step={0}/>
                 <Card>

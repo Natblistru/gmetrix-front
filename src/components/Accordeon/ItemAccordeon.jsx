@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import 'aos/dist/aos.css';
+import AOS from 'aos';
 
 const ItemAccordeon = (props) => {
   const [isOpen, setIsOpen] = useState(props.open===null? true : props.open);
@@ -7,13 +9,17 @@ const ItemAccordeon = (props) => {
     setIsOpen(!isOpen);
   };
 
+  useEffect(() => {
+    AOS.init(); 
+  }, []);
+
   // let listItems = props.teme[0].subtitles[0].subjects;
   const classes = "block " + props.className;
   const togglAccordion = () => {
     setIsOpen(!isOpen);
   };
   return (
-    <section className={classes}>
+    <section className={classes} data-aos="fade-up">
       <button
         className={`accordion ${isOpen ? "active" : ""}`}
         onClick={toggleAccordion}

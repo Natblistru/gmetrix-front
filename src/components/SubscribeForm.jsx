@@ -1,10 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2'
+import 'aos/dist/aos.css';
+import AOS from 'aos';
 
 const SubscribeForm = () => {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
+
+  useEffect(() => {
+    AOS.init(); 
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -28,7 +34,7 @@ const SubscribeForm = () => {
   };
 
   return (
-    <div>
+    <div data-aos="fade-up" data-aos-delay="200">
       <div style={{width: '100%', paddingRight: '.75rem', paddingLeft: '.75rem', marginRight: 'auto', marginLeft: 'auto'}}>
         <div className="newsletter-bx wow slideInUp">
         <div className="rowBts">
@@ -46,7 +52,6 @@ const SubscribeForm = () => {
           </div>
         </div>
       </div>
-      {/* <p>{message}</p> */}
     </div>
   );
 };

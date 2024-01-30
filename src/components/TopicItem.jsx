@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import axios from 'axios'; 
+import 'aos/dist/aos.css';
+import AOS from 'aos';
+
 import ContextData from "../components/context/ContextData";
 import SubTopicItem from "./SubTopicItem";
 import ProgressBar from "./ProgressBar";
@@ -8,6 +11,10 @@ import ProgressBar from "./ProgressBar";
 const TopicItem = ({ item,results,allTems }) => {
   const {stateData} = React.useContext(ContextData)
   const tema = item;
+
+  useEffect(() => {
+    AOS.init(); 
+  }, []);
 
   const filterTeachersForSubtitle = (themeLearningProgramsId) => {
     if (!stateData.teachersForSubtitle || !themeLearningProgramsId) {
@@ -18,7 +25,7 @@ const TopicItem = ({ item,results,allTems }) => {
   };
 
   return (
-    <li className="topic-item" key={tema.id}>
+    <li className="topic-item" key={tema.id} data-aos="fade-up">
       <div className="topic-header">
         <div className="topic-header-title">
           <span className="num"></span>

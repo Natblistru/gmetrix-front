@@ -1,6 +1,8 @@
 import React from "react"
 import axios from "axios";
 import {useState, useEffect} from "react";
+import 'aos/dist/aos.css';
+import AOS from 'aos';
 
 
 import ListDiscipline from "../components/ListDiscipline";
