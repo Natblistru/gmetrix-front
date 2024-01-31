@@ -53,9 +53,6 @@ function UserProfile() {
     <>
     <Navbar />
     <Wrapper className="shadow">
-      <div className="title-box" style={{ marginBottom:'-30px' }}>
-        <h1 >{authName}</h1>
-      </div>
       <div className='userprofilein'>
         <div className='left'>
           <UserSidebar activepage={activepage} userData={userData} />

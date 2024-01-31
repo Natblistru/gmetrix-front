@@ -195,6 +195,10 @@ div.manual-item > a > img:nth-child(2) {
   border: 1px gray solid;
 }
 
+.manual-item-result.selected img {
+  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.6), 0 6px 20px 0 rgba(0, 0, 0, 0.39);
+}
+
 .manual-item-result p {
   padding-top: 10px;
   /* color: #000; */

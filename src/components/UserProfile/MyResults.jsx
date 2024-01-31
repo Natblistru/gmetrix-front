@@ -148,13 +148,14 @@ const dataTeste = [
   },
 ]
   
-const ListDisciplineRezultat = () => {
+const ListDisciplineRezultat = ({selectedItem, setSelectedItem}) => {
   const [mediaDisciplina, setMediaDisciplina] = useState([])
   const { stateData, dispatchData } = React.useContext(ContextData);
   // console.log(stateData.disciplineAni);
 
   const handleItemClick = (item) => {
     const { subject_id } = item;
+    setSelectedItem(item);
     const level_id = 1;
 
     fetchCapitole(subject_id, level_id, dispatchData);
@@ -170,38 +171,46 @@ const ListDisciplineRezultat = () => {
       axios.get(`http://localhost:8000/api/capitoleDisciplina?level=${level_id}&disciplina=${item.subject_id}&student=1`)
         .then(res => {
           if (res.status === 200) {
-            allMediaDisciplina.push(res.data[0].disciplina_media);
+            console.log(res.data)
+            allMediaDisciplina.push({
+              disciplina_media: res.data[0].disciplina_media,
+              subject_id: res.data[0].subject_id
+            });
           }
         });
     });
-
+    // console.log(allMediaDisciplina)
       setMediaDisciplina(allMediaDisciplina);
 
   }, []);
   
-  
+
   return (
     <div>
       <div className="manuale-container-result">
-      {stateData.disciplineAni.map((item, idx) => {
-        const nivelStudiu = item.study_level_id === 1 ? "examen clasa 9" : "BAC";
-        const clasa = item.study_level_id === 1 ? "clasa 9" : "clasa 12";
-        const name = item.name.split(',')[0];
-        console.log(item)
-        const hasMediaValue = mediaDisciplina.length > 0 && mediaDisciplina[idx] !== undefined;
-        return (
-          <div className="manual-item-result" key={item.id} onClick={() => handleItemClick(item)}>
-            <img src={process.env.PUBLIC_URL + item.img} alt="" />
-            <p>{item.name}</p>
-            {hasMediaValue && (
-              <p className="subject-total-percent">{`${Number(mediaDisciplina[idx]).toFixed(2)}%`}</p>
-            )}
-          </div>
-        );
-      })}
+        {stateData.disciplineAni.map((item, idx) => {
+          console.log(item);
+          const isSelected = selectedItem && selectedItem.id === item.id;
+
+          const mediaObject = mediaDisciplina.find(obj => obj.subject_id === item.subject_id);
+          const hasMediaValue = mediaObject && mediaObject.disciplina_media !== undefined;
+  
+          return (
+              <div
+                className={`manual-item-result ${isSelected ? 'selected' : ''}`}
+                key={item.id}
+                onClick={() => handleItemClick(item)}
+              >
+              <img src={process.env.PUBLIC_URL + item.img} alt="" />
+              <p>{item.name}</p>
+              {hasMediaValue && (
+                <p className="subject-total-percent">{`${Number(mediaObject.disciplina_media).toFixed(2)}%`}</p>
+              )}
+            </div>
+          );
+        })}
       </div>
     </div>
-    
   );
 };
 
@@ -210,16 +219,81 @@ function MyResults() {
   const [list, setList] = useState(data)
   const [list1, setList1] = useState([])
   const [learningProgramList, setLearningProgramList] = useState([]);
+  const [selectedItem, setSelectedItem] = useState(null);
   const [themeList, setThemeList] = useState([]);
   const [filter, setFilter] = useState({
     learning_program_id: '',
     theme_learning_program_id: '',
   })
+  const [teste, setTeste] = useState([])
+
+  const fetchData = async (themeId) => {
+
+    const teachersForSubtitles = stateData.teachersForSubtitle[themeId];
+    console.log(teachersForSubtitles)
+
+     try {
+      const studentId = 1;
+      const level_id = 1;
+      const promises = teachersForSubtitles.map(teachertheme => axios.get(`http://localhost:8000/api/teachertheme?level=${level_id}&disciplina=${stateData.currentSubject.subject_id}&teacher=${teachertheme.teacher_id}&student=1&theme=${themeId}`));
+      const responses = await axios.all(promises);
+      const successResponses = responses.filter(response => response.status === 200);
+      const errorResponses = responses.filter(response => response.status === 404);
+      console.log(responses)
+      console.log(successResponses)
+      console.log(errorResponses)            
+      // if (successResponses.length > 0) {
+      //   const totalScore = successResponses.reduce((accumulator, response) => {
+      //     const score = parseFloat(response.data.score);
+
+      //     return accumulator + score;
+      //   }, 0);
+        
+      //   const averageScore = totalScore * 100 / (successResponses.length*firstTestItemComplexity);
+      //   setProc(averageScore)
+
+      // }
+      const dataTesteRequest = successResponses.map((response) => {
+        if (response.data) {
+
+          const sortedData = response.data.slice().sort((a, b) => a.id - b.id);
+
+          return sortedData.map((temaData) => {
+            const testsData = temaData.tests.map((test) => ({
+              name: test.name,
+              title: test.testResult ? `${(parseFloat(test.testResult) * 100).toFixed(0)}%` : '0%',
+            }));
+      
+            const temaResult = temaData.tests.reduce((acc, test) => acc + parseFloat(test.testResult), 0) / temaData.tests.length;
+      
+            return {
+              name: temaData.name,
+              title: temaResult ? `${(temaResult * 100).toFixed(0)}%` : '0%',
+              children: testsData,
+            };
+          });
+        } else {
+          return []; 
+        }
+      });
+      
+      const flattenedDataTeste = dataTesteRequest.flat();
+      
+      console.log(flattenedDataTeste);
+      setTeste(flattenedDataTeste);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const handleInput = (e) => {
     e.persist();
     setFilter({...filter, [e.target.name]: e.target.value })
+    if(e.target.name == 'theme_learning_program_id') {
+      fetchData(e.target.value);
+    }
   }
+
   useEffect(() => {
 
     axios.get('http://localhost:8000/api/all-learningPrograms').then(res=>{
@@ -234,7 +308,6 @@ function MyResults() {
         setThemeList(res.data.theme);
       }
     });
-
 
   },[])
 
@@ -301,7 +374,7 @@ console.log(list1)
   return (
     <div className='accountsettings'>
       <h1>Însușirea disciplinelor:</h1>
-      <ListDisciplineRezultat />
+      <ListDisciplineRezultat selectedItem={selectedItem} setSelectedItem={setSelectedItem}/>
       <TreeTable list={list1}/>
       <h1 style={{ marginTop: '20px'}}>Rezultatele evaluărilor:</h1>
       <TreeTable list={list}/>
@@ -311,19 +384,25 @@ console.log(list1)
           <div className="form-group d-flex align-items-center">
             <label htmlFor="tema" style={{ width: '150px' }}>Alege tema:</label>
             <select name="theme_learning_program_id" onChange={handleInput} value={filter.theme_learning_program_id} className="form-control" id="tema">  
-              <option option value="">Select Theme</option>
-              {themeList
-                // .filter((item) => item.learning_program_id == filter.learning_program_id)
-                .map((item) => (
-                  <option value={item.id} key={item.id}>
-                    {item.name}
-                  </option>
-              ))}
+              <option value="">Select Theme</option>
+              {console.log("Selected Item:", selectedItem,"Selected Item Id:", selectedItem.id )}
+              {selectedItem && (
+                themeList
+                  .filter((item) => {
+                    console.log("Filtered Item:", item);
+                    return item.learning_program.subject_study_level_id === selectedItem.id;
+                  })
+                  .map((filteredItem) => (
+                    <option value={filteredItem.id} key={filteredItem.id}>
+                      {filteredItem.name}
+                    </option>
+                  ))
+              )}
             </select>            
           </div>
         </div>
       </div>
-      <TreeTable list={dataTeste}/>
+      <TreeTable list={teste}/>
 
     </div>
   );

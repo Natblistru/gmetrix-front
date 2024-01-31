@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const UserSidebar = ({ activepage, userData  }) => {
-  console.log(userData)
+  // console.log(userData)
   return  (
     <div className='usersidebar shadow'>
       {
