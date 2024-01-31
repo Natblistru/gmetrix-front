@@ -77,7 +77,7 @@ const TableRow = (props) => {
         </div>
       </div>
       {/* //test cu raspuns maximal */}
-      {console.log(rowData)}
+      {/* {console.log(rowData)} */}
       {rowData.testResult == 1 && (
         <div className="tbl-points" title="Cel mai bun rezultat">
           <div className="svg-sprite-vs-points profile-point-full"></div>

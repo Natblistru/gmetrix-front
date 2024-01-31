@@ -182,6 +182,10 @@ const ListDisciplineRezultat = ({selectedItem, setSelectedItem}) => {
     // console.log(allMediaDisciplina)
       setMediaDisciplina(allMediaDisciplina);
 
+      const level_id = 1;
+
+      fetchCapitole(selectedItem.subject_id, level_id, dispatchData);
+
   }, []);
   
 
@@ -219,7 +223,7 @@ function MyResults() {
   const [list, setList] = useState(data)
   const [list1, setList1] = useState([])
   const [learningProgramList, setLearningProgramList] = useState([]);
-  const [selectedItem, setSelectedItem] = useState(null);
+  const [selectedItem, setSelectedItem] = useState(stateData.disciplineAni[0]);
   const [themeList, setThemeList] = useState([]);
   const [filter, setFilter] = useState({
     learning_program_id: '',
