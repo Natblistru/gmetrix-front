@@ -498,10 +498,11 @@ a:focus,
 .panel .text-block span[data-box] {
   color: #00aeef;
   text-decoration: none;
+  transition: color 0.3s ease;
 }
 
-.text-block:hover {
-  text-decoration: underline;
+.text-block span:hover {
+  color: #0077b6;
 }
 
 .text-block.correct {

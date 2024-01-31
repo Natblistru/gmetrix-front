@@ -77,7 +77,7 @@ function EditMyTest({id,  onBackToList}) {
     axios.get(`http://localhost:8000/api/edit-myformative-test/${formativeTest_id}`).then(res=>{
       if(res.data.status === 200){
         const formativeTestData = res.data.formativeTest;
-        console.log(formativeTestData)
+        // console.log(formativeTestData)
         setTestItemInput({
           ...formativeTestData,
           learning_program_id: formativeTestData.teacher_topic.topic.theme_learning_program.learning_program_id,

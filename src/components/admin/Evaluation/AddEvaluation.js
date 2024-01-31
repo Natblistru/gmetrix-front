@@ -228,7 +228,7 @@ function AddEvaluation() {
     formData.append('subject_study_level_id',evaluationInput.subject_study_level_id );
     formData.append('status',allCheckboxes.status == true ? 1 : 0);
 
-    console.log(formData)
+    // console.log(formData)
 
     axios.post(`http://localhost:8000/api/store-evaluation`, formData).then(res => {
       if(res.data.status === 201)

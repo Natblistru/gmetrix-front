@@ -304,7 +304,7 @@ function MyFormativeTest({title, userData, onBackToList, selectedType }) {
       }
   
       const result1 = combinations1.join('\n');
-      console.log(result1)
+      // console.log(result1)
       setTabs((prevTabs) => {
         const updatedTabs = [...prevTabs];
         updatedTabs[tabIndex].testContent.resultTextAdditional1 = result1;
@@ -724,7 +724,7 @@ function MyFormativeTest({title, userData, onBackToList, selectedType }) {
       tabs.forEach((tab, tabIndex) => {
         ['column1'].forEach((columnName, orderNumber) => {
           const formData = new FormData();
-          console.log(orderNumber)
+          // console.log(orderNumber)
           formData.append('order_number', orderNumber);
           formData.append('test_item_id', testItems[tabIndex].id);
           formData.append('title', tab.testContent[columnName]);
@@ -737,7 +737,7 @@ function MyFormativeTest({title, userData, onBackToList, selectedType }) {
       tabs.forEach((tab, tabIndex) => {
         ['column1', 'column2'].forEach((columnName, orderNumber) => {
           const formData = new FormData();
-          console.log(orderNumber)
+          // console.log(orderNumber)
           formData.append('order_number', orderNumber);
           formData.append('test_item_id', testItems[tabIndex].id);
           formData.append('title', tab.testContent[columnName]);
@@ -750,7 +750,7 @@ function MyFormativeTest({title, userData, onBackToList, selectedType }) {
       tabs.forEach((tab, tabIndex) => {
         ['column1', 'column2', 'column3'].forEach((columnName, orderNumber) => {
           const formData = new FormData();
-          console.log(orderNumber)
+          // console.log(orderNumber)
           formData.append('order_number', orderNumber);
           formData.append('test_item_id', testItems[tabIndex].id);
           formData.append('title', tab.testContent[columnName]);
@@ -760,7 +760,7 @@ function MyFormativeTest({title, userData, onBackToList, selectedType }) {
         });
       });
     }
-    console.log(formDataArray)
+    // console.log(formDataArray)
 
     try {
       const responses = await Promise.all(formDataArray.map(async (formData) => {
@@ -809,9 +809,9 @@ function MyFormativeTest({title, userData, onBackToList, selectedType }) {
         const lines1 = lastAddText1.current[index].trim().split('\n');
         const lines2 = lastAddText2.current[index].trim().split('\n');
         const lines3 = lastAddText3.current[index].trim().split('\n');
-        console.log(lines1)
-        console.log(lines2)
-        console.log(lines3)        
+        // console.log(lines1)
+        // console.log(lines2)
+        // console.log(lines3)        
         if (lines1.length === lines2.length && lines2.length === lines3.length && lines1.length === 16) {
     
           for (let i = 0; i < lines1.length; i++) {
@@ -879,7 +879,7 @@ function MyFormativeTest({title, userData, onBackToList, selectedType }) {
         }
       });
     }
-    console.log(formDataArray)
+    // console.log(formDataArray)
   
     if (notFoundTestItem.length === 0) {
       try {

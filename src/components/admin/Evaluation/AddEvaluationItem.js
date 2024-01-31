@@ -177,7 +177,7 @@ function AddEvaluationItem() {
             formData.append('status', 0); 
             return formData;
           });
-          console.log(formDataArray)
+          // console.log(formDataArray)
           // Trimitem fiecare set de date către server utilizând axios.all
           axios.all(formDataArray.map(formData => axios.post('http://localhost:8000/api/store-evaluation-item', formData)))
               .then(axios.spread((...responses) => {
@@ -297,14 +297,14 @@ function AddEvaluationItem() {
     formData.append('nota',evaluationItemInput.nota );
     formData.append('status',allCheckboxes.status == true ? 1 : 0);
 
-    console.log(formData)
+    // console.log(formData)
 
     axios.post(`http://localhost:8000/api/store-evaluation-item`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
     }).then(res => {
-      console.log(res)
+      // console.log(res)
       if(res.data.status === 201)
       {
         Swal.fire({
@@ -559,7 +559,7 @@ function AddEvaluationItem() {
             </form>
             <div className="containerBts">
               <form onSubmit={submitEvaluationSources}>
-                {console.log(excelData)}
+                {/* {console.log(excelData)} */}
               {excelData?(
                 <div className="table-responsive">
                   <table className="table table-primary table-bordered table-striped">

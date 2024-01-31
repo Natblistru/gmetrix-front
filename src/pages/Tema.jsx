@@ -45,7 +45,7 @@ const Tema = () => {
     fetchEvaluation1(theme, subject_id, level_id, dispatchData);
     fetchEvaluation2(theme, subject_id, level_id, dispatchData);
     fetchEvaluation3(theme, subject_id, level_id, dispatchData);
-console.log("FETCH THEME")
+// console.log("FETCH THEME")
     const pathToFind = `/${disciplina}/${address}`;
 
     const tema = stateData.capitole.reduce(

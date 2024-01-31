@@ -32,7 +32,7 @@ const SearchComponent = () => {
   }, []);
 
   useEffect(() => {
-    console.log(details)
+    // console.log(details)
     if(details){
       fetchCapitole()
     }
@@ -83,8 +83,8 @@ const SearchComponent = () => {
   };
 
   const fetchCapitole = async () => {
-    console.log(details)
-    console.log(stateData.disciplineAni)
+    // console.log(details)
+    // console.log(stateData.disciplineAni)
     try {
         const res = await axios.get(`http://localhost:8000/api/capitoleDisciplina?level=${details.studyLevelId}&disciplina=${details.subjectId}&student=1`);
         dispatchData({
@@ -99,7 +99,7 @@ const SearchComponent = () => {
           const nivelStudiu = details.studyLevelId==1?"examen clasa 9":"BAC";
           const clasa = details.studyLevelId==1?"clasa 9":"clasa 12";
           const newBreadcrumb = {name: `${res.data[0].subject_name}`, path: `/capitole/${details.subjectId}?level=${details.studyLevelId}&year=2022&name=${details.subjectName}&nivel=${nivelStudiu}&clasa=${clasa}`};
-          console.log(newBreadcrumb)
+          // console.log(newBreadcrumb)
           dispatchData({
             type: "UPDATE_SUBJECT_BREADCRUMB",
             payload: newBreadcrumb
@@ -111,12 +111,12 @@ const SearchComponent = () => {
   } 
 
   const closeModalFromLink = async (theme_path) => {
-    console.log(theme_path)
+    // console.log(theme_path)
     const tema = stateData.capitole.reduce(
       (result, item) => result || (item.subtitles || []).find(subtitle => subtitle.path_tema === theme_path),
       null
     );
-    console.log(tema)
+    // console.log(tema)
     if (tema!=null) {
       dispatchData({
         type: "UPDATE_CURRENT_THEME",
@@ -125,7 +125,7 @@ const SearchComponent = () => {
     }
     const addressPath = `${theme_path}?teacher=1&level=${details.studyLevelId}&disciplina=${details.subjectId}&theme=${tema.tema_id}&teachername=userT1%20teacher`;
     const newBreadcrumb = {name: tema.tema_name, path: addressPath};
-    console.log(newBreadcrumb)
+    // console.log(newBreadcrumb)
     dispatchData({
       type: "UPDATE_TOPIC_BREADCRUMB",
       payload: newBreadcrumb
@@ -198,9 +198,9 @@ const SearchComponent = () => {
 
   const getIdDetails = (id) => {
     const item = stateData.disciplineAni.find(item => item.id == id);
-  console.log(subjectList)
-  console.log(stateData.disciplineAni)
-  console.log(item) 
+  // console.log(subjectList)
+  // console.log(stateData.disciplineAni)
+  // console.log(item) 
     if (item) {
       const studyLevelId = item.study_level_id;
       const subjectId = item.subject_id;
@@ -257,8 +257,8 @@ const SearchComponent = () => {
             <h5 className="mt-3">Rezultatele Căutării</h5>
             <div className="search-results-list">
               {themes.length>0 && themes.map((result, idx) => {
-                console.log(itemInput.subject_study_level_id)
-                console.log(subjectList)
+                // console.log(itemInput.subject_study_level_id)
+                // console.log(subjectList)
                 if (!details) {
                   console.log(`Detaliile pentru id-ul ${itemInput.subject_study_level_id} nu au fost găsite.`);
                   return null;
@@ -276,7 +276,7 @@ const SearchComponent = () => {
                   console.log(`Detaliile pentru id-ul ${itemInput.subject_study_level_id} nu au fost găsite.`);
                   return null;
                 }
-                console.log(result)
+                // console.log(result)
                 const linkTo = `${result.topic.theme_learning_program.theme.path}${result.topic.path}?teacher=1&theme=${result.topic.theme_learning_program.theme.id}&level=${details.studyLevelId}&disciplina=${details.subjectId}&teachername=userT1%20teacher`;
                 return (
                   <div key={idx}>

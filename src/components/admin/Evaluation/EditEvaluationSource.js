@@ -55,8 +55,8 @@ function EditEvaluationSource(props) {
     const evaluation_source_id = props.match.params.id;
     axios.get(`http://localhost:8000/api/edit-evaluation-source/${evaluation_source_id}`).then(res=>{
       if(res.data.status === 200){
-        console.log(res.data.evaluationSource)
-        console.log(res.data)
+        // console.log(res.data.evaluationSource)
+        // console.log(res.data)
 
         const evaluationSourceData = res.data.evaluationSource;
         try {
@@ -131,7 +131,7 @@ function EditEvaluationSource(props) {
     formData.append('text_sourse',evaluationSourceInput.text_sourse );
     formData.append('status',allCheckboxes.status == true ? 1 : 0);
 
-    console.log(formData)
+    // console.log(formData)
 
     const evaluation_source_id = props.match.params.id;
     axios.post(`http://localhost:8000/api/update-evaluation-source/${evaluation_source_id}`, formData).then(res => {

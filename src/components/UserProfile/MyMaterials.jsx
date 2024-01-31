@@ -192,7 +192,7 @@ const ListDisciplineMateria = () => {
         const nivelStudiu = item.study_level_id === 1 ? "examen clasa 9" : "BAC";
         const clasa = item.study_level_id === 1 ? "clasa 9" : "clasa 12";
         const name = item.name.split(',')[0];
-        console.log(item)
+        // console.log(item)
         return (
           <div className="manual-item-result" key={item.id} onClick={() => handleItemClick(item)}>
             <img src={process.env.PUBLIC_URL + item.img} alt="" />
@@ -296,7 +296,7 @@ function MyMaterials(props) {
   }, [stateData.capitole]);
   
   useEffect(()=>{
-console.log(list1)
+// console.log(list1)
   },[list1])
   
 

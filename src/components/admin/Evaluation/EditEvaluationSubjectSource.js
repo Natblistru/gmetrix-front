@@ -68,7 +68,7 @@ function EditEvaluationSubjectSource(props) {
     axios.get(`http://localhost:8000/api/edit-evaluation-subject-source/${evaluationSubjectSource_id}`).then(res=>{
     if(res.data.status === 200){
         const evaluationSubjectSourceData = res.data.evaluationSubjectSources;
-        console.log(res.data);
+        // console.log(res.data);
         setEvaluationSubjectSourceInput({
           ...evaluationSubjectSourceData,
           subject_study_level_id: evaluationSubjectSourceData.evaluation_subject.evaluation.subject_study_level_id,
@@ -112,7 +112,7 @@ function EditEvaluationSubjectSource(props) {
     formData.append('order_number',evaluationSubjectSourceInput.order_number );
     formData.append('status',allCheckboxes.status == true ? 1 : 0);
 
-    console.log(formData)
+    // console.log(formData)
 
     const evaluationSubjectSource_id = props.match.params.id;
     axios.post(`http://localhost:8000/api/update-evaluation-subject-source/${evaluationSubjectSource_id}`, formData).then(res => {

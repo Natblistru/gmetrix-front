@@ -36,6 +36,9 @@ const TestWrapper = ({ tests, add, update }) => {
 // console.log(stateData.currentTopic)
 
 useEffect(() => {
+  // console.log(stateData.currentTopic)
+  // console.log(stateData.currentTheme)  
+  // console.log(stateData.currentTests)
   const teacher = 1
   const theme = stateData.currentTheme.tema_id
   const subject_id = stateData.currentSubject.subject_id;
@@ -49,13 +52,13 @@ useEffect(() => {
     const pathCautat = "/" + addressTest;
 
     const indexElementCautat = stateData.currentTopic.tests.findIndex(element => element.addressTest === pathCautat);
-    
+    // console.log(stateData.currentTopic)
     setCurrentTestIndex(indexElementCautat);
     setCurrentList1(stateData.currentTopic.tests[indexElementCautat]);
     if(loading) {
       // setProc(stateData.currentTopic.tests[indexElementCautat].testResult*100/stateData.currentTopic.tests[indexElementCautat].complexityNumber);
       setProc(stateData.currentTopic.tests[indexElementCautat].testResult*100);      
-      console.log(stateData.currentTopic.tests[indexElementCautat])
+      // console.log(stateData.currentTopic.tests[indexElementCautat])
       setLoading(false)
     }
     setLoading(false)
@@ -73,25 +76,33 @@ useEffect(() => {
   useEffect(() => {
     const fetchData = async () => {
       if (correctAnswer !== null && responseReceived) {
-          console.log(stateData.currentTests)
-          console.log(currentTestIndex)
-          console.log(testBoardRef.current)
+          // console.log(stateData.currentTests)
+          // console.log(currentTestIndex)
+          // console.log(testBoardRef.current)
           let firstTestItemComplexity = stateData.currentTests[currentTestIndex].order_number_options[0]?.test_item_complexity;
 
           if (firstTestItemComplexity === undefined) {
             firstTestItemComplexity = 1
           }
-          const testItemIds = stateData.currentTests[currentTestIndex].order_number_options.map(option => option.test_item_id);
-          console.log(testItemIds)
+          const testItemObjects = stateData.currentTests[currentTestIndex].order_number_options.map(option => ({
+            test_item_id: option.test_item_id,
+            formative_test_id: stateData.currentTests[currentTestIndex].formative_test_id,
+          }));
+
 
           try {
             const studentId = 1;
-            const promises = testItemIds.map(itemId => axios.post('http://localhost:8000/api/student-formative-test-score', {itemId,studentId} ));
+            const promises = testItemObjects.map(testItem => axios.post('http://localhost:8000/api/student-formative-test-score', {
+              test_item_id: testItem.test_item_id,
+              formative_test_id: testItem.formative_test_id,
+              studentId: studentId
+            }));
             const responses = await axios.all(promises);
             const successResponses = responses.filter(response => response.data.status === 200);
             const errorResponses = responses.filter(response => response.data.status === 404);
+            console.log(responses)
             console.log(successResponses)
-            console.log(errorResponses)            
+            // console.log(errorResponses)            
             if (successResponses.length > 0) {
               const totalScore = successResponses.reduce((accumulator, response) => {
                 const score = parseFloat(response.data.score);
@@ -132,12 +143,12 @@ useEffect(() => {
   );
 
   const handleTryAgain = () => {
-    
+    setResponseReceived(false);
     let itemQuantity = currentList1.length;
     if(itemQuantity - 1 === currentItemIndex) {
       setCurrentItemIndex(0)
       const testItems = stateData.currentTests[currentTestIndex].order_number_options.map(option => option);
-      console.log(testItems)
+      // console.log(testItems)
       try {
         const formDataArray = testItems.map(item => {
           const formData = new FormData();
@@ -154,13 +165,13 @@ useEffect(() => {
         .then(axios.spread((...responses) => {
           const successResponses = responses.filter(response => response.data.status === 200);
           const errorResponses = responses.filter(response => response.data.status === 404);
-          console.log(responses)
+          // console.log(responses)
           if (successResponses.length > 0) {
             console.log("Successfully processed ", successResponses.lengt, " out of ", responses.length, " requests")
             setProc(0)
           }
           errorResponses.forEach(response => {
-            console.log(response.data.errors)
+            // console.log(response.data.errors)
           })
         }));
       } catch (error) {
@@ -183,12 +194,12 @@ useEffect(() => {
         .then(axios.spread((...responses) => {
           const successResponses = responses.filter(response => response.data.status === 200);
           const errorResponses = responses.filter(response => response.data.status === 404);
-          console.log(responses)
+          // console.log(responses)
           if (successResponses.length > 0) {
             console.log("Successfully processed ", successResponses.lengt, " out of ", responses.length, " requests")
           }
           errorResponses.forEach(response => {
-            console.log(response.data.errors)
+            // console.log(response.data.errors)
           })
         }));
       } catch (error) {
@@ -247,6 +258,7 @@ useEffect(() => {
                 additionalContent={additionalContent}
                 handleTryAgain={handleTryAgain}
                 currentItemIndex={currentItemIndex}
+                responseReceived={responseReceived}                
                 setResponseReceived={setResponseReceived}
               />
             )}

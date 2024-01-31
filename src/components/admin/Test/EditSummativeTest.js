@@ -76,7 +76,7 @@ function EditSummativeTest(props) {
     axios.get(`http://localhost:8000/api/edit-summative-test/${summativeTest_id}`).then(res=>{
       if(res.data.status === 200){
         const summativeTestData = res.data.summativeTest;
-        console.log(summativeTestData)
+        // console.log(summativeTestData)
         setTestItemInput({
           ...summativeTestData,
           learning_program_id: summativeTestData.teacher_topic.topic.theme_learning_program.learning_program_id,

@@ -38,7 +38,7 @@ function UserProfile() {
           const { first_name, last_name, email, id, student, teacher } = response.data.user;
           const  role  = response.data.role.toUpperCase();
           setUserData({ first_name, last_name, email, id, role, student, teacher });
-          console.log(response.data)
+          // console.log(response.data)
         } catch (error) {
           console.error('Eroare la căutarea utilizatorului:', error);
           setUserData(null);

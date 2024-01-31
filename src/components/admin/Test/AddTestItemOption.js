@@ -184,7 +184,7 @@ function AddTestItemOption() {
             formData.append('status', 0); 
             return formData;
           });
-          console.log(formDataArray)
+          // console.log(formDataArray)
           // Trimitem fiecare set de date către server utilizând axios.all
           axios.all(formDataArray.map(formData => axios.post('http://localhost:8000/api/store-test-item-option', formData)))
               .then(axios.spread((...responses) => {
@@ -617,7 +617,7 @@ function AddTestItemOption() {
   
         for (let i = 0; i < lines1.length; i++) {
           const formData = new FormData();
-          console.log(lines1[i])
+          // console.log(lines1[i])
           formData.append('option', lines1[i]);
           formData.append('explanation', lines2[i]);
           formData.append('correct', lines3.includes(lines1[i]) ? 1 : 0);
@@ -699,7 +699,7 @@ function AddTestItemOption() {
       }
     }
     else if(selectedTestItem && selectedTestItem.type == "dnd") {
-      console.log(selectedTestItem.type)
+      // console.log(selectedTestItem.type)
       const lines1 = testItemInput.optionsDnd.trim().split('\n');
       const lines3 = testItemInput.optionCorectDnd.trim().split('\n');
    
@@ -708,7 +708,7 @@ function AddTestItemOption() {
   
         for (let i = 0; i < lines1.length; i++) {
           const formData = new FormData();
-          console.log(lines1[i])
+          // console.log(lines1[i])
           formData.append('option', lines1[i]);
           formData.append('correct', lines3.includes(lines1[i]) ? 1 : 0);
           formData.append('test_item_id', testItemInput.test_item_id);
@@ -797,7 +797,7 @@ function AddTestItemOption() {
   
         for (let i = 0; i < lines1.length; i++) {
           const formData = new FormData();
-          console.log(lines1[i])
+          // console.log(lines1[i])
           formData.append('option', lines1[i]);
           formData.append('correct', lines2.includes(lines1[i]) ? 1 : lines3.includes(lines1[i]) ? 2 : 0);
           formData.append('test_item_id', testItemInput.test_item_id);
@@ -897,7 +897,7 @@ function AddTestItemOption() {
   
           formDataArray.push(formData);
         }
-        console.log(formDataArray)
+        // console.log(formDataArray)
         axios.all(formDataArray.map(formData => axios.post('http://localhost:8000/api/store-test-item-option', formData)))
         .then(axios.spread((...responses) => {
           const successResponses = responses.filter(response => response.data.status === 201);
@@ -988,7 +988,7 @@ function AddTestItemOption() {
   
           formDataArray.push(formData);
         }
-        console.log(formDataArray)
+        // console.log(formDataArray)
         axios.all(formDataArray.map(formData => axios.post('http://localhost:8000/api/store-test-item-option', formData)))
         .then(axios.spread((...responses) => {
           const successResponses = responses.filter(response => response.data.status === 201);
@@ -1083,7 +1083,7 @@ function AddTestItemOption() {
   
           formDataArray.push(formData);
         }
-        console.log(formDataArray)
+        // console.log(formDataArray)
         axios.all(formDataArray.map(formData => axios.post('http://localhost:8000/api/store-test-item-option', formData)))
         .then(axios.spread((...responses) => {
           const successResponses = responses.filter(response => response.data.status === 201);

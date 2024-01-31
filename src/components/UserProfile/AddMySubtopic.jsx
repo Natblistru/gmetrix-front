@@ -106,7 +106,7 @@ function AddMySubtopic({ onBackToList, userData }) {
 
   const handleAudio = (e, index) => {
     const file = e.target.files[0];
-    console.log(e.target)
+    // console.log(e.target)
     setAudioFiles(prevAudioFiles => {
       const newAudioFiles = [...prevAudioFiles];
       newAudioFiles[index] = file;
@@ -144,7 +144,7 @@ function AddMySubtopic({ onBackToList, userData }) {
 
   const handlePicture = (e, index) => {
     const file = e.target.files[0];
-    console.log(e.target)
+    // console.log(e.target)
     setPictures(prevAudioFiles => {
       const newAudioFiles = [...prevAudioFiles];
       newAudioFiles[index] = file;
@@ -376,7 +376,7 @@ function AddMySubtopic({ onBackToList, userData }) {
       }
     });
     
-    console.log(result);
+    // console.log(result);
     return result.join('');
   }
   
@@ -477,7 +477,7 @@ function AddMySubtopic({ onBackToList, userData }) {
     if (notFoundSubtopic.length === 0) {
       try {
         const responses = await Promise.all(formDataArray.map(async (formData) => {
-          console.log('FormData:', formData);
+          // console.log('FormData:', formData);
           return axios.post('http://localhost:8000/api/store-mysubtopic-image', formData, {
             headers: {
               'Content-Type': 'multipart/form-data',
@@ -488,7 +488,7 @@ function AddMySubtopic({ onBackToList, userData }) {
         const successResponses = responses.filter(response => response.data.status === 201);
         const errorResponses = responses.filter(response => response.data.status === 422);
   
-        console.log(errorResponses);
+        // console.log(errorResponses);
   
         if (successResponses.length > 0) {
           Swal.fire({
@@ -525,11 +525,11 @@ function AddMySubtopic({ onBackToList, userData }) {
   const submitTeacherTopic = (e) => {
     e.preventDefault();
     let succesTotal = true;
-    console.log(subtopicRows.length)
+    // console.log(subtopicRows.length)
     if (subtopicRows && subtopicRows.length > 0) {
 
       const formDataArray = subtopicRows.map((item,index) => {
-        console.log(audioFiles[index])
+        // console.log(audioFiles[index])
         const formData = new FormData();
         formData.append('name',item.name_subtopic );
         formData.append('teacher_topic_id',teacherTopicInput.teacher_topic_id);
@@ -541,7 +541,7 @@ function AddMySubtopic({ onBackToList, userData }) {
 
       axios.all(
         formDataArray.map(formData => {
-          console.log('FormData:', formData);
+          // console.log('FormData:', formData);
           return axios.post('http://localhost:8000/api/store-mysubtopic', formData, {
             headers: {
               'Content-Type': 'multipart/form-data',
@@ -552,7 +552,7 @@ function AddMySubtopic({ onBackToList, userData }) {
       .then(axios.spread((...responses) => {
         const successResponses = responses.filter(response => response.data.status === 201);
         const errorResponses = responses.filter(response => response.data.status === 422);
-        console.log(errorResponses)
+        // console.log(errorResponses)
         if (successResponses.length > 0) {
           Swal.fire({
             title: "Success",
@@ -583,7 +583,7 @@ function AddMySubtopic({ onBackToList, userData }) {
         const currentContent = editorStates[index].getCurrentContent();
         const contentWithStyles = convertToRaw(currentContent);
         const html = convertContentStateToHTML(contentWithStyles.blocks);
-        console.log(html)
+        // console.log(html)
 
         const formData = new FormData();
         formData.append('task', row.flip_title );
@@ -596,14 +596,14 @@ function AddMySubtopic({ onBackToList, userData }) {
       // console.log(formattedDataArray);
       axios.all(
         formattedDataArray.map(formData => {
-          console.log('FormData:', formData);
+          // console.log('FormData:', formData);
           return axios.post('http://localhost:8000/api/store-myflip-card', formData );
         })
       )
       .then(axios.spread((...responses) => {
         const successResponses = responses.filter(response => response.data.status === 201);
         const errorResponses = responses.filter(response => response.data.status === 422);
-        console.log(errorResponses)
+        // console.log(errorResponses)
         if (successResponses.length > 0) {
           Swal.fire({
             title: "Success",
@@ -637,9 +637,9 @@ function AddMySubtopic({ onBackToList, userData }) {
           (item) => item.id == teacherTopicInput.learning_program_id
         );
         const subjectStudyLevelId = selectedLearningProgram ? selectedLearningProgram.subject_study_level_id : null;
-        console.log(learningProgramList)
-        console.log(selectedLearningProgram)      
-        console.log(teacherTopicInput.learning_program_id)     
+        // console.log(learningProgramList)
+        // console.log(selectedLearningProgram)      
+        // console.log(teacherTopicInput.learning_program_id)     
 
         const formData = new FormData();
         formData.append('tag_name', tag );
@@ -689,7 +689,7 @@ function AddMySubtopic({ onBackToList, userData }) {
   const addTags = event => {
     event.preventDefault();
     if(event.target.value.trim() !== "") {
-      console.log(event.target.value)
+      // console.log(event.target.value)
       setTags([...tags, event.target.value]);
       event.target.value = ""
     }

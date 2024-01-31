@@ -239,7 +239,7 @@ function AddSubtopic() {
 
   const handleAudio = (e) => {
     const file = e.target.files[0];
-    console.log(file)
+    // console.log(file)
     setAudio(file);
   }
 

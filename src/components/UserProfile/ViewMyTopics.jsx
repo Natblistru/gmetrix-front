@@ -116,7 +116,7 @@ function ViewMyTopics({ onAddTopic, onEditTopic }) {
   },[])
 
   useEffect(()=>{
-    console.log(currentPage)
+    // console.log(currentPage)
     const fetchData = async () => {
       try {
         const params = {
@@ -131,7 +131,7 @@ function ViewMyTopics({ onAddTopic, onEditTopic }) {
         };
         const response = await axios.get('http://localhost:8000/api/view-myTopics', { params });
           if (response.data.status === 200) {
-            console.log(response.data)
+            // console.log(response.data)
             setTeacherTopicList(response.data.teacherTopics)
             setPagination(response.data.pagination)
         }
@@ -217,7 +217,7 @@ function ViewMyTopics({ onAddTopic, onEditTopic }) {
               <div className="col-md-4">          
                   <div className="form-group">
                     <select name="theme_learning_program_id" onChange={handleInput} value={filter.theme_learning_program_id} className="form-control">  
-                      <option option value="">Select Theme</option>
+                      <option value="">Select Theme</option>
                       {themeList
                         .filter((item) => item.learning_program_id == filter.learning_program_id)
                         .map((item) => (
@@ -231,7 +231,7 @@ function ViewMyTopics({ onAddTopic, onEditTopic }) {
                 <div className="col-md-4">
                   <div className="form-group">
                     <select name="teacher_id" onChange={handleInput} value={filter.teacher_id} className="form-control">  
-                      <option option value="">Select Teacher</option>
+                      <option value="">Select Teacher</option>
                       {
                         teacherList.map((item)=> {
                           return (

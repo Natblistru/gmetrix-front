@@ -78,8 +78,8 @@ const ItemList = ({ list, className, type, results, onItemClick }) => {
   }
   
 
-  console.log(stateData.evaluations1)
-  console.log(listItems)
+  // console.log(stateData.evaluations1)
+  // console.log(listItems)
   return (
     <div className={classes}>
       {listItems
@@ -99,7 +99,7 @@ const ItemList = ({ list, className, type, results, onItemClick }) => {
         if(procent == 100) {
           classNameProcent = "svg-sprite-vs-small result-perfect";
         }
-        console.log(stateData.evaluations1)
+        // console.log(stateData.evaluations1)
         const dynamicPath = `${addressDisciplina}${addressSubtitle}${subtitle_path}?teacher=${teacherVideo}&level=1&disciplina=${stateData.currentSubject.subject_id}&theme=${stateData.currentTheme.tema_id}`;       
         return (
           <div key={idx} className="subject-item" onClick={() => onItemClick && onItemClick(idx)}>

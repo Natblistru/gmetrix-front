@@ -21,8 +21,8 @@ const ChangePassword = ({ userData }) => {
           oldPassword,
           newPassword,
         };
-        console.log(oldPassword)
-        console.log(newPassword)
+        // console.log(oldPassword)
+        // console.log(newPassword)
     
         const user_id = userData.id;
         // const authToken = localStorage.getItem('auth_token');

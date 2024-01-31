@@ -57,7 +57,7 @@ const Capitole = (props) => {
               payload: null
             });
       
-            console.log(stateData.capitole);
+            // console.log(stateData.capitole);
       
             if (stateData.capitole.length > 0) {
               dispatchData({

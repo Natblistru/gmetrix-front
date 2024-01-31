@@ -31,7 +31,7 @@ function EditMyTopic({id, onBackToList}) {
   
   useEffect(() => {
 
-console.log("ajuns")
+// console.log("ajuns")
     axios.get('http://localhost:8000/api/all-learningPrograms').then(res=>{
       if(res.data.status === 200){
         setLearningProgramList(res.data.learningProgram);

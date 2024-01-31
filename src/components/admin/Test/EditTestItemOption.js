@@ -80,7 +80,7 @@ function EditTestItemOption(props) {
     axios.get(`http://localhost:8000/api/edit-test-item-option/${testItemOption_id}`).then(res=>{
       if(res.data.status === 200){
         const testItemOptionData = res.data.testItemOption;
-        console.log(testItemOptionData)
+        // console.log(testItemOptionData)
         setTestItemInput({
           ...testItemOptionData,
           learning_program_id: testItemOptionData.test_item.teacher_topic.topic.theme_learning_program.learning_program_id,
@@ -138,7 +138,6 @@ function EditTestItemOption(props) {
     formData.append('option',testItemInput.option );
     formData.append('correct',testItemInput.correct );
     formData.append('explanation',testItemInput.explanation );
-    console.log();
     if(testItemInput.text_additional !== null){
       formData.append('text_additional',testItemInput.text_additional );
     }

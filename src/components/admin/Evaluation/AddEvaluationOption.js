@@ -108,8 +108,8 @@ function AddEvaluationOption() {
             .then(axios.spread((...responses) => {
               const successResponses = responses.filter(response => response.data.status === 201);
               const errorResponses = responses.filter(response => response.data.status === 422);
-              console.log(responses)
-              console.log(successResponses.length)              
+              // console.log(responses)
+              // console.log(successResponses.length)              
               if (successResponses.length > 0) {
                 Swal.fire({
                   title: "Success",

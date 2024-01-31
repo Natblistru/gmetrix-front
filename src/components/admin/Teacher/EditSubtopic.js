@@ -30,7 +30,7 @@ function EditSubtopic(props) {
 
   const handleAudio = (e) => {
     const file = e.target.files[0];
-    console.log(file)
+    // console.log(file)
     setAudio(file);
   }
 
@@ -74,7 +74,7 @@ function EditSubtopic(props) {
     axios.get(`http://localhost:8000/api/edit-subtopic/${subtopic_id}`).then(res=>{
       if(res.data.status === 200){
         const teacherTopicData = res.data.subtopics;
-        console.log(teacherTopicData)
+        // console.log(teacherTopicData)
         setSubtopicInput({
           ...teacherTopicData,
           learning_program_id: teacherTopicData.teacher_topic.topic.theme_learning_program.learning_program_id,

@@ -152,7 +152,7 @@ const ExamenSubect2 = ({raspunsuri}) => {
         console.error('Error fetching data:', error.message);
     
       }
-      console.log(studentResults );
+      // console.log(studentResults);
       // try {
         const formDataArray = studentResults.map(column => {
           const formData = new FormData();
@@ -163,13 +163,13 @@ const ExamenSubect2 = ({raspunsuri}) => {
           formData.append('status', 0 );
           return formData;
         });
-        console.log(formDataArray)
+        // console.log(formDataArray)
 
         axios.all(formDataArray.map(formData => axios.post('http://localhost:8000/api/update-student-evaluation-answers', formData)))
         .then(axios.spread((...responses) => {
           const successResponses = responses.filter(response => response.data.status === 200);
           const errorResponses = responses.filter(response => response.data.status === 404);
-          console.log(responses)
+          // console.log(responses)
           if (successResponses.length > 0) {
             console.log("Successfully processed ", successResponses.lengt, " out of ", responses.length, " requests")
             setProc(0)

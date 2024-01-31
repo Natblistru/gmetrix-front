@@ -356,10 +356,10 @@ function AddMyTopic({ onBackToList, userData }) {
         (item) => item.id == teacherTopicInput.learning_program_id
       );
       const subjectStudyLevelId = selectedLearningProgram ? selectedLearningProgram.subject_study_level_id : null;
-      console.log(learningProgramList)
-      console.log(selectedLearningProgram)      
-      console.log(teacherTopicInput.learning_program_id)     
-      console.log(themeId)  
+      // console.log(learningProgramList)
+      // console.log(selectedLearningProgram)      
+      // console.log(teacherTopicInput.learning_program_id)     
+      // console.log(themeId)  
       const formData = new FormData();
       formData.append('tag_name', tag );
       formData.append('taggable_id', themeId);

@@ -163,7 +163,7 @@ function AddEvaluationSource() {
             formData.append('status', 0); 
             return formData;
           });
-          console.log(formDataArray)
+          // console.log(formDataArray)
           // Trimitem fiecare set de date către server utilizând axios.all
           axios.all(formDataArray.map(formData => axios.post('http://localhost:8000/api/store-evaluation-source', formData)))
               .then(axios.spread((...responses) => {
@@ -259,7 +259,7 @@ function AddEvaluationSource() {
     formData.append('text_sourse',evaluationSourceInput.text_sourse );
     formData.append('status',allCheckboxes.status == true ? 1 : 0);
 
-    console.log(formData)
+    // console.log(formData)
 
     axios.post(`http://localhost:8000/api/store-evaluation-source`, formData).then(res => {
       if(res.data.status === 201)

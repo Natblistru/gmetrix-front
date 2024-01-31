@@ -133,11 +133,11 @@ function EditEvaluationFormPage(props) {
     formData.append('hint', JSON.stringify(hintObject));
     formData.append('status',allCheckboxes.status == true ? 1 : 0);
 
-    console.log(formData)
+    // console.log(formData)
 
     const evaluationFormPage_id = props.match.params.id;
     axios.post(`http://localhost:8000/api/update-evaluation-form-page/${evaluationFormPage_id}`, formData).then(res => {
-      console.log(res)
+      // console.log(res)
       if(res.data.status === 200)
       {
         Swal.fire({

@@ -71,7 +71,7 @@ function EditEvaluationAnswer(props) {
     if(res.data.status === 200){
         const evaluationItemData = res.data.evaluationAnswer;
 
-        console.log(res.data);
+        // console.log(res.data);
         setEvaluationItemInput({
           ...evaluationItemData,
           subject_study_level_id: evaluationItemData.evaluation_item.evaluation_subject.evaluation.subject_study_level_id,
@@ -116,11 +116,11 @@ function EditEvaluationAnswer(props) {
     formData.append('content',evaluationItemInput.content );
     formData.append('status',allCheckboxes.status == true ? 1 : 0);
 
-    console.log(formData)
+    // console.log(formData)
 
     const evaluationAnswer_id = props.match.params.id;
     axios.post(`http://localhost:8000/api/update-evaluation-answer/${evaluationAnswer_id}`, formData).then(res => {
-      console.log(res)
+      // console.log(res)
       if(res.data.status === 200)
       {
         Swal.fire({

@@ -177,7 +177,7 @@ function AddEvaluationFormPage() {
               hintObject[index + 1] = line.trim();
             });
 
-            console.log(JSON.stringify(hintObject))
+            // console.log(JSON.stringify(hintObject))
 
             const formData = new FormData();
             formData.append('order_number', selectedItem.order_number );
@@ -187,14 +187,14 @@ function AddEvaluationFormPage() {
             formData.append('status', 0); 
             return formData;
           });
-          console.log(formDataArray)
+          // console.log(formDataArray)
           // Trimitem fiecare set de date către server utilizând axios.all
           axios.all(formDataArray.map(formData => axios.post('http://localhost:8000/api/store-evaluation-form-page', formData)))
               .then(axios.spread((...responses) => {
                 const successResponses = responses.filter(response => response.data.status === 201);
                 const errorResponses = responses.filter(response => response.data.status === 422);
-                console.log(successResponses)
-                console.log(errorResponses)                
+                // console.log(successResponses)
+                // console.log(errorResponses)                
                 if (successResponses.length > 0) {
                   Swal.fire({
                     title: "Success",
@@ -294,10 +294,10 @@ function AddEvaluationFormPage() {
     formData.append('hint', JSON.stringify(hintObject));
     formData.append('status',allCheckboxes.status == true ? 1 : 0);
 
-    console.log(formData)
+    // console.log(formData)
 
     axios.post(`http://localhost:8000/api/store-evaluation-form-page`, formData).then(res => {
-      console.log(res)
+      // console.log(res)
       if(res.data.status === 201)
       {
         Swal.fire({
@@ -515,7 +515,7 @@ function AddEvaluationFormPage() {
             </form>
             <div className="containerBts">
               <form onSubmit={submitEvaluationAnswers}>
-                {console.log(excelData)}
+                {/* {console.log(excelData)} */}
               {excelData?(
                 <div className="table-responsive">
                   <table className="table table-primary table-bordered table-striped">

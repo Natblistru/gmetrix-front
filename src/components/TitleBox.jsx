@@ -18,7 +18,10 @@ const TitleBox = ({
 
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
-    const teacherName = searchParams.get("teachername");
+    let teacherName = searchParams.get("teachername");
+    if (!teacherName) {
+      teacherName = searchParams.get("teacher");
+    }
     setProf(teacherName);
   }, [location.search]);
 
@@ -28,6 +31,7 @@ const TitleBox = ({
         <img src={process.env.PUBLIC_URL + "/images/parchment.png"} alt="" />
         <div>
           <h1>{children}</h1>
+          {console.log(prof)}
           {prof !== null && (
             <p>(elaborat de profesorul {prof})</p>
           )}

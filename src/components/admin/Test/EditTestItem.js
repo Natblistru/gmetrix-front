@@ -74,7 +74,7 @@ function EditTestItem(props) {
     axios.get(`http://localhost:8000/api/edit-test-item/${testItem_id}`).then(res=>{
       if(res.data.status === 200){
         const testItemData = res.data.testItem;
-        console.log(testItemData)
+        // console.log(testItemData)
         setTestItemInput({
           ...testItemData,
           learning_program_id: testItemData.teacher_topic.topic.theme_learning_program.learning_program_id,

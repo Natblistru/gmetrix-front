@@ -189,7 +189,7 @@ function AddEvaluationAnswerOption() {
           else {
             notFoundEvaluationAnswer.push(selectedItem.evaluation_answer_task);
           }
-          console.log(foundEvaluationAnswer)
+          // console.log(foundEvaluationAnswer)
           if (foundEvaluationOption) {
             selectedItem.evaluation_option_id = foundEvaluationOption.id;
           }
@@ -207,14 +207,14 @@ function AddEvaluationAnswerOption() {
             formData.append('status', 0); 
             return formData;
           });
-          console.log(formDataArray)
+          // console.log(formDataArray)
           // Trimitem fiecare set de date către server utilizând axios.all
           axios.all(formDataArray.map(formData => axios.post('http://localhost:8000/api/store-evaluation-answer-option', formData)))
               .then(axios.spread((...responses) => {
                 const successResponses = responses.filter(response => response.data.status === 201);
                 const errorResponses = responses.filter(response => response.data.status === 422);
-                console.log(successResponses)
-                console.log(errorResponses)                
+                // console.log(successResponses)
+                // console.log(errorResponses)                
                 if (successResponses.length > 0) {
                   Swal.fire({
                     title: "Success",
@@ -332,10 +332,10 @@ function AddEvaluationAnswerOption() {
     formData.append('evaluation_option_id',evaluationItemInput.evaluation_option_id );
     formData.append('status',allCheckboxes.status == true ? 1 : 0);
 
-    console.log(formData)
+    // console.log(formData)
 
     axios.post(`http://localhost:8000/api/store-evaluation-answer-option`, formData).then(res => {
-      console.log(res)
+      // console.log(res)
       if(res.data.status === 201)
       {
         Swal.fire({

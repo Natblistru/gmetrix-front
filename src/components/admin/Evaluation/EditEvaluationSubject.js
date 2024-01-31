@@ -104,7 +104,7 @@ function EditEvaluationSubject(props) {
     formData.append('path',path );
     formData.append('status',allCheckboxes.status == true ? 1 : 0);
 
-    console.log(formData)
+    // console.log(formData)
 
     const evaluationSubject_id = props.match.params.id;
     axios.post(`http://localhost:8000/api/update-evaluation-subject/${evaluationSubject_id}`, formData).then(res => {
@@ -160,9 +160,9 @@ function EditEvaluationSubject(props) {
           <div className="col-md-4">          
             <div className="form-group m-3">
               <label>Select Subject Study Level</label>
-              {
+              {/* {
                 console.log(evaluationSubjectInput.subject_study_level_id)
-              }
+              } */}
               <select name="subject_study_level_id" onChange={handleInput} value={evaluationSubjectInput.subject_study_level_id} className="form-control">  
                 <option>Select Subject Study Level</option>
                 {
@@ -179,9 +179,9 @@ function EditEvaluationSubject(props) {
           <div className="col-md-2">
             <div className="form-group m-3">
               <label>Year</label>
-              {
+              {/* {
                 console.log(evaluationSubjectInput.year)
-              }
+              } */}
               <input type="text" name="year" onChange={handleInput} value={evaluationSubjectInput.year} className="form-control" />
               <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.year}</span>
             </div>

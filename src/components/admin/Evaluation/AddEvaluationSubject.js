@@ -156,7 +156,7 @@ function AddEvaluationSubject() {
             formData.append('status', 0); 
             return formData;
           });
-          console.log(formDataArray)
+          // console.log(formDataArray)
           // Trimitem fiecare set de date către server utilizând axios.all
           axios.all(formDataArray.map(formData => axios.post('http://localhost:8000/api/store-evaluation-subject', formData)))
               .then(axios.spread((...responses) => {
@@ -260,7 +260,7 @@ function AddEvaluationSubject() {
     formData.append('path',path );
     formData.append('status',allCheckboxes.status == true ? 1 : 0);
 
-    console.log(formData)
+    // console.log(formData)
 
     axios.post(`http://localhost:8000/api/store-evaluation-subject`, formData).then(res => {
       if(res.data.status === 201)

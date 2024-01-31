@@ -671,7 +671,7 @@ const TestGeneralizator = ({
   ) {
     titlu = "Rezultat:";
   }
-  console.log(start)
+  // console.log(start)
   return (
     <>
       {!start && <HeaderInit />}

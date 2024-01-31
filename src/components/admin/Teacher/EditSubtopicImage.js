@@ -76,7 +76,7 @@ function EditSubtopicImage(props) {
     if(res.data.status === 200){
         const evaluationItemData = res.data.subtopicImage;
 
-        console.log(evaluationItemData);
+        // console.log(evaluationItemData);
         setSubtopicInput({
           ...evaluationItemData,
           learning_program_id: evaluationItemData.subtopic.teacher_topic.topic.theme_learning_program.learning_program_id,

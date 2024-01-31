@@ -73,7 +73,7 @@ function EditTestItemColumn(props) {
     axios.get(`http://localhost:8000/api/edit-test-item-column/${testItemColumn_id}`).then(res=>{
       if(res.data.status === 200){
         const testItemColumnData = res.data.testItemColumn;
-        console.log(testItemColumnData)
+        // console.log(testItemColumnData)
         setTestItemInput({
           ...testItemColumnData,
           learning_program_id: testItemColumnData.test_item.teacher_topic.topic.theme_learning_program.learning_program_id,

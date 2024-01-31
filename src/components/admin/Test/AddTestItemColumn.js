@@ -180,7 +180,7 @@ function AddTestItemColumn() {
             formData.append('status', 0); 
             return formData;
           });
-          console.log(formDataArray)
+          // console.log(formDataArray)
           // Trimitem fiecare set de date către server utilizând axios.all
           axios.all(formDataArray.map(formData => axios.post('http://localhost:8000/api/store-test-item-column', formData)))
               .then(axios.spread((...responses) => {
