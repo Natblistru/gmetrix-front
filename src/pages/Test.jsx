@@ -53,7 +53,8 @@ useEffect(() => {
     setCurrentTestIndex(indexElementCautat);
     setCurrentList1(stateData.currentTopic.tests[indexElementCautat]);
     if(loading) {
-      setProc(stateData.currentTopic.tests[indexElementCautat].testResult*100/stateData.currentTopic.tests[indexElementCautat].complexityNumber);
+      // setProc(stateData.currentTopic.tests[indexElementCautat].testResult*100/stateData.currentTopic.tests[indexElementCautat].complexityNumber);
+      setProc(stateData.currentTopic.tests[indexElementCautat].testResult*100);      
       console.log(stateData.currentTopic.tests[indexElementCautat])
       setLoading(false)
     }
@@ -98,7 +99,9 @@ useEffect(() => {
                 return accumulator + score;
               }, 0);
               
-              const averageScore = totalScore * 100 / (successResponses.length*firstTestItemComplexity);
+              // const averageScore = totalScore * 100 / (successResponses.length*firstTestItemComplexity);
+              const averageScore = totalScore * 100 / successResponses.length;
+              console.log(averageScore)
               setProc(averageScore)
 
             }

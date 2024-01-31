@@ -171,7 +171,7 @@ const ListDisciplineRezultat = ({selectedItem, setSelectedItem}) => {
       axios.get(`http://localhost:8000/api/capitoleDisciplina?level=${level_id}&disciplina=${item.subject_id}&student=1`)
         .then(res => {
           if (res.status === 200) {
-            console.log(res.data)
+            // console.log(res.data)
             allMediaDisciplina.push({
               disciplina_media: res.data[0].disciplina_media,
               subject_id: res.data[0].subject_id
@@ -189,7 +189,7 @@ const ListDisciplineRezultat = ({selectedItem, setSelectedItem}) => {
     <div>
       <div className="manuale-container-result">
         {stateData.disciplineAni.map((item, idx) => {
-          console.log(item);
+          // console.log(item);
           const isSelected = selectedItem && selectedItem.id === item.id;
 
           const mediaObject = mediaDisciplina.find(obj => obj.subject_id === item.subject_id);
@@ -230,18 +230,18 @@ function MyResults() {
   const fetchData = async (themeId) => {
 
     const teachersForSubtitles = stateData.teachersForSubtitle[themeId];
-    console.log(teachersForSubtitles)
+    // console.log(teachersForSubtitles)
 
      try {
       const studentId = 1;
       const level_id = 1;
-      const promises = teachersForSubtitles.map(teachertheme => axios.get(`http://localhost:8000/api/teachertheme?level=${level_id}&disciplina=${stateData.currentSubject.subject_id}&teacher=${teachertheme.teacher_id}&student=1&theme=${themeId}`));
+      const promises = teachersForSubtitles.map(teachertheme => axios.get(`http://localhost:8000/api/teachertheme?level=${level_id}&disciplina=${selectedItem.subject_id}&teacher=${teachertheme.teacher_id}&student=1&theme=${themeId}`));
       const responses = await axios.all(promises);
       const successResponses = responses.filter(response => response.status === 200);
       const errorResponses = responses.filter(response => response.status === 404);
-      console.log(responses)
-      console.log(successResponses)
-      console.log(errorResponses)            
+      // console.log(responses)
+      // console.log(successResponses)
+      // console.log(errorResponses)            
       // if (successResponses.length > 0) {
       //   const totalScore = successResponses.reduce((accumulator, response) => {
       //     const score = parseFloat(response.data.score);
@@ -279,7 +279,7 @@ function MyResults() {
       
       const flattenedDataTeste = dataTesteRequest.flat();
       
-      console.log(flattenedDataTeste);
+      // console.log(flattenedDataTeste);
       setTeste(flattenedDataTeste);
     } catch (error) {
       console.error(error);
@@ -367,7 +367,7 @@ function MyResults() {
   }, [stateData.capitole]);
   
   useEffect(()=>{
-console.log(list1)
+// console.log(list1)
   },[list1])
   
 
@@ -385,11 +385,11 @@ console.log(list1)
             <label htmlFor="tema" style={{ width: '150px' }}>Alege tema:</label>
             <select name="theme_learning_program_id" onChange={handleInput} value={filter.theme_learning_program_id} className="form-control" id="tema">  
               <option value="">Select Theme</option>
-              {console.log("Selected Item:", selectedItem,"Selected Item Id:", selectedItem.id )}
+              {/* {console.log("Selected Item:", selectedItem,"Selected Item Id:", selectedItem.id )} */}
               {selectedItem && (
                 themeList
                   .filter((item) => {
-                    console.log("Filtered Item:", item);
+                    // console.log("Filtered Item:", item);
                     return item.learning_program.subject_study_level_id === selectedItem.id;
                   })
                   .map((filteredItem) => (

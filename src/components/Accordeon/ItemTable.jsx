@@ -77,8 +77,8 @@ const TableRow = (props) => {
         </div>
       </div>
       {/* //test cu raspuns maximal */}
-      {/* {console.log(rowData)} */}
-      {rowData.testResult == rowData.complexityNumber && (
+      {console.log(rowData)}
+      {rowData.testResult == 1 && (
         <div className="tbl-points" title="Cel mai bun rezultat">
           <div className="svg-sprite-vs-points profile-point-full"></div>
           <span className="points">
@@ -95,13 +95,13 @@ const TableRow = (props) => {
       )}
       {/* //test cu raspuns partial */}
       {/* {console.log(rowData.testResult < rowData.complexityNumber && rowData.testResult > 0)} */}
-      {rowData.testResult < rowData.complexityNumber && rowData.testResult > 0 && (
+      {rowData.testResult < 1 && rowData.testResult > 0 && (
             <div className="tbl-points" title="Continuă să încerci!">
               <div className="svg-sprite-vs-points profile-point-half"></div>
               <span className="points">
                 <span className="earned">
                   {" "}
-                  {Math.round(rowData.testResult * (rowData.length))}
+                  {Math.round(rowData.testResult * (rowData.length) * rowData.complexityNumber)}
 
                   {/* {Math.round(rowData.testResult * (rowData.length * rowData.complexityNumber))} */}
                 </span>{" "}
