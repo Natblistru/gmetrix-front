@@ -14,6 +14,7 @@ import ModalForm from "../Modal/ModalForm";
 import ModalCalculator from "../Modal/ModalCalculator";
 import { fetchEvaluation1 } from "../../routes/api"
 import PdfDownloadButton from "../PdfDownloadButton";
+import FlipCardNou from "../FlipCards/FlipCardNou";
 
 const ExamenSubect1 = ({ raspunsuri }) => {
   const {stateData, dispatchData} = React.useContext(ContextData)
@@ -35,6 +36,7 @@ const ExamenSubect1 = ({ raspunsuri }) => {
   const [showResponse, setShowResponse] = useState(false);
   const [showAutoevaluare, setShowAutoevaluare] = useState(false)
   const [selectedOptions, setSelectedOptions] = useState([])
+  const [showCards, setShowCards] = useState(false);
   const speed = 50;
 
   const history = useHistory();
@@ -255,6 +257,7 @@ const ExamenSubect1 = ({ raspunsuri }) => {
       setCurrentIndex(currentIndex + 1)
     }
     setShowResponse(false);
+    setShowCards(false);
   };
 
   const handlePrevious = () => {
@@ -266,6 +269,7 @@ const ExamenSubect1 = ({ raspunsuri }) => {
       setCurrentIndex(currentIndex - 1);
     }
     setShowResponse(false);
+    setShowCards(false);
   };
 
   useEffect(() => {
@@ -288,6 +292,10 @@ const ExamenSubect1 = ({ raspunsuri }) => {
       { text: '\n' }, 
       ...answersText,
     ];
+  };
+
+  const toggleCards = () => {
+    setShowCards(!showCards);
   };
 
   // console.log(selectedOptions)  
@@ -394,11 +402,29 @@ const ExamenSubect1 = ({ raspunsuri }) => {
                     subject={1}
                   />
                 )}
+                <button onClick={toggleCards} className="btn-test">
+                  Exersează!
+                </button>
                 <button onClick={handleTryAgain} className="btn-test">
                   Încearcă din nou!
                 </button>
               </ItemAccordeon>
             )}
+
+            {showCards && (
+              <div className="Cards">
+                {quizArray[currentIndex]?.answers
+                  .filter(answer => answer.answer_text !== "") 
+                  .map(answer => (
+                    <FlipCardNou
+                      title={answer.task}
+                      key={answer.answer_id}
+                      dangerousHTML={`<p style="padding:15px; text-indent:20px;">${answer.answer_text}</p>\n`}
+                    />
+                  ))}
+              </div>
+            )}
+
             <div className="nav-container">
                 <div className="nav-link" >
                   <div onClick={handlePrevious}>
