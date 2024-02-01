@@ -315,6 +315,47 @@ function MyResults() {
 
   },[])
 
+  const fetchEvaluations = async () => {
+    const studentId = stateData.currentStudent;
+    // let studentResults = []
+    // 
+    // const orderNumber = 1;
+    // try {
+
+    //   const response = await axios.post('http://localhost:8000/api/student-evaluation-results-all-themes', {
+    //     subject_id: selectedItem.subject_id,
+    //     study_level_id: 1,
+    //     order_number: orderNumber,
+    //     studentId: studentId,
+    //   });
+  
+    //   studentResults = response.data.studentEvaluationResults;
+    //   console.log(studentResults)
+    // } catch (error) {
+    //   console.error('Error fetching data:', error.message);
+  
+    // }
+    const fetchStudentResults = async (orderNumber) => {
+      const response = await axios.post('http://localhost:8000/api/student-evaluation-results-all-themes', {
+        subject_id: selectedItem.subject_id,
+        study_level_id: 1,
+        order_number: orderNumber,
+        studentId: studentId,
+      });
+    
+      return response.data.studentEvaluationResults;
+    };
+    
+    const studentResults1 = await fetchStudentResults(1);
+    const studentResults2 = await fetchStudentResults(2);
+    const studentResults3 = await fetchStudentResults(3);
+
+    console.log(studentResults1)
+    console.log(studentResults2)
+    console.log(studentResults3)
+
+  };
+
   useEffect(() => {
     const transformData = (initialData) => {
       const result = [];
@@ -368,6 +409,28 @@ function MyResults() {
   
     const transformedData = transformData(stateData.capitole);
     setList1(transformedData);
+    console.log(transformedData)
+    // console.log(stateData.capitole)
+
+      // Obțineți array-ul de tema_id
+    const temaIds = [];
+
+    // Funcție recursivă pentru parcurgerea arborelui
+    const traverseTree = (node) => {
+      temaIds.push(node.tema_id);
+
+      if (node.children && node.children.length > 0) {
+        node.children.forEach(child => traverseTree(child));
+      }
+    };
+
+    // Parcurgeți arborele pentru a obține tema_id
+    transformedData.forEach(node => traverseTree(node));
+    const filteredtemaIds = temaIds.filter((value) => value !== undefined);
+
+    console.log(filteredtemaIds);
+
+    fetchEvaluations(filteredtemaIds)
   }, [stateData.capitole]);
   
   useEffect(()=>{

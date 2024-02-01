@@ -55,14 +55,17 @@ const ExamenSubect1 = ({ raspunsuri }) => {
   useEffect(()=>{
     quizArray = stateData.evaluations1;
 
-    const studentProcentValues = quizArray.map((evaluation) =>
-      parseFloat(evaluation.student_procent)
-    );
-    const sum = studentProcentValues.reduce((acc, value) => acc + value, 0);
-    const average = sum / studentProcentValues.length;
+    const sumMaxPoints = quizArray.reduce((acc, evaluation) =>
+    acc + parseFloat(evaluation.maxPoints), 0);
+
+    const sumStudentPoints = quizArray.reduce((acc, evaluation) =>
+      acc + parseFloat(evaluation.student_points), 0);
+
+    // Calculați media din catul celor două sume
+    const average = sumStudentPoints * 100 / sumMaxPoints;
+
     setProc(average)
 
-    // console.log(quizArray)
   },[stateData.evaluations1])
 
 
@@ -222,18 +225,22 @@ const ExamenSubect1 = ({ raspunsuri }) => {
     console.log(stateData.evaluations1)
 
     const quizItem = stateData.evaluations1;
-    // console.log(quizItem)   
+    console.log(quizItem)   
 
-    const totalStudentProcent = quizItem.reduce((sum, quizItem, idx) => {
-      const studentProcent = idx === currentIndex
-        ? notaResult * 100 / parseFloat(quizItem.maxPoints)
-        : parseFloat(quizItem.student_procent);
-    
-      return sum + studentProcent;
+    const totalStudentPoints = quizArray.reduce((sum, evaluation, idx) => {
+      const studentPoints = idx === currentIndex
+        ? notaResult 
+        : evaluation.student_points;
+  
+      return sum + studentPoints;
     }, 0);
-    
-    const procent = Math.round(totalStudentProcent / quizArray.length);
+  
+    const totalMaxPoints = quizArray.reduce((sum, evaluation) =>
+      sum + evaluation.maxPoints, 0);
+  
+    const procent = (totalStudentPoints / totalMaxPoints) * 100;
     setProc(procent)
+
 
     setSelectedOptions((prevOptions) => {
       let updatedOptions = [...prevOptions];
