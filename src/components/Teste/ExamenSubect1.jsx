@@ -283,16 +283,31 @@ const ExamenSubect1 = ({ raspunsuri }) => {
 
   const generateText = () => {
     const cerinta = quizArray[currentIndex]?.cerinta;
-    const answersText = quizArray[currentIndex]?.answers.map(answer => ({
-      text: answer.answer_text,
-    }));
+    const answersText = quizArray[currentIndex]?.answers.map(answer => {
+      const formattedAnswerText = answer.answer_text.replace(/\\n/g, '\n');
+      const parts = formattedAnswerText.split(/<b>(.*?)<\/b>/g);
   
-    return [
-      { text: cerinta },
-      { text: '\n' }, 
-      ...answersText,
-    ];
+      return parts.map((part, index) => {
+        if (index % 2 === 1) {
+          return { text: part, bold: true };
+        } else {
+          return { text: part, newLine: true };
+        }
+      });
+    });
+  
+    const finalText = [{ text: cerinta },{ text: '\n' }, ...answersText.flat()];
+  
+    return finalText;
+
   };
+  
+  
+  
+  
+  
+  
+  
 
   const toggleCards = () => {
     setShowCards(!showCards);
@@ -382,12 +397,11 @@ const ExamenSubect1 = ({ raspunsuri }) => {
                 className="non_animation"
               >
                 <ItemText classNameChild="">
-                  {quizArray[currentIndex]?.answers.map(answer => (
-                    <React.Fragment key={answer.answer_id}>
-                      {answer.answer_text}
-                      <br />
-                    </React.Fragment>
-                  ))}
+                {quizArray[currentIndex]?.answers.map(answer => (
+                  <React.Fragment key={answer.answer_id}>
+                    <p dangerouslySetInnerHTML={{ __html: answer.answer_text.replace(/\\n/g, '<br />') }} />
+                  </React.Fragment>
+                ))}
                 </ItemText>
 
                 <PdfDownloadButton generateText={generateText} />  
@@ -413,15 +427,15 @@ const ExamenSubect1 = ({ raspunsuri }) => {
 
             {showCards && (
               <div className="Cards">
-                {quizArray[currentIndex]?.answers
-                  .filter(answer => answer.answer_text !== "") 
-                  .map(answer => (
-                    <FlipCardNou
-                      title={answer.task}
-                      key={answer.answer_id}
-                      dangerousHTML={`<p style="padding:15px; text-indent:20px;">${answer.answer_text}</p>\n`}
-                    />
-                  ))}
+              {quizArray[currentIndex]?.answers
+                .filter(answer => answer.answer_text !== "") 
+                .map(answer => (
+                  <FlipCardNou
+                    title={answer.task}
+                    key={answer.answer_id}
+                    dangerousHTML={`<p style="padding:15px; text-indent:20px;">${answer.answer_text.replace(/\\n/g, '<br />')}</p>\n`}
+                  />
+                ))}
               </div>
             )}
 

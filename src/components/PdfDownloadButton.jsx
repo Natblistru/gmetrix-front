@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
@@ -6,6 +6,10 @@ import pdfFonts from 'pdfmake/build/vfs_fonts';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 const PdfDownloadButton = ({ generateText }) => {
+  useEffect(() => {
+    console.log(generateText());
+  }, [generateText]);
+
   const handleDownload = () => {
     const docDefinition = {
       content: generateText(),

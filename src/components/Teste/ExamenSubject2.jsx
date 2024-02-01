@@ -290,15 +290,22 @@ const ExamenSubect2 = ({raspunsuri}) => {
 
   const generateText = () => {
     const cerinta = quizArray[currentIndex]?.cerinta;
-    const answersText = quizArray[currentIndex]?.answers.map(answer => ({
-      text: answer.answer_text,
-    }));
+    const answersText = quizArray[currentIndex]?.answers.map(answer => {
+      const formattedAnswerText = answer.answer_text.replace(/\\n/g, '\n');
+      const parts = formattedAnswerText.split(/<b>(.*?)<\/b>/g);
   
-    return [
-      { text: cerinta },
-      { text: '\n' }, 
-      ...answersText,
-    ];
+      return parts.map((part, index) => {
+        if (index % 2 === 1) {
+          return { text: part, bold: true };
+        } else {
+          return { text: part, newLine: true };
+        }
+      });
+    });
+  
+    const finalText = [{ text: cerinta },{ text: '\n' }, ...answersText.flat()];
+  
+    return finalText;
   };
 
   const toggleCards = () => {
@@ -391,12 +398,7 @@ const ExamenSubect2 = ({raspunsuri}) => {
                 {quizArray[currentIndex].img && (<img src={`http://localhost:8000/${process.env.PUBLIC_URL + quizArray[currentIndex]?.img}`} />)}
                 {quizArray[currentIndex]?.answers.map(answer => (
                   <React.Fragment key={answer.answer_id}>
-                    {answer.answer_text.split('\n').map((line, index) => (
-                      <React.Fragment key={index}>
-                        {line}
-                        <br />
-                      </React.Fragment>
-                    ))}
+                    <p dangerouslySetInnerHTML={{ __html: answer.answer_text.replace(/\\n/g, '<br />') }} />
                   </React.Fragment>
                 ))}
                 </ItemText>
@@ -423,15 +425,15 @@ const ExamenSubect2 = ({raspunsuri}) => {
 
             {showCards && (
               <div className="Cards">
-                {quizArray[currentIndex]?.answers
-                  .filter(answer => answer.answer_text !== "") 
-                  .map(answer => (
-                    <FlipCardNou
-                      title={answer.task}
-                      key={answer.answer_id}
-                      dangerousHTML={`<p style="padding:15px; text-indent:20px;">${answer.answer_text}</p>\n`}
-                    />
-                  ))}
+              {quizArray[currentIndex]?.answers
+                .filter(answer => answer.answer_text !== "") 
+                .map(answer => (
+                  <FlipCardNou
+                    title={answer.task}
+                    key={answer.answer_id}
+                    dangerousHTML={`<p style="padding:15px; text-indent:20px;">${answer.answer_text.replace(/\\n/g, '<br />')}</p>\n`}
+                  />
+                ))}
               </div>
             )}
             <div className="nav-container">
