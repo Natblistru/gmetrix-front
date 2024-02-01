@@ -16,6 +16,7 @@ import ItemText from "../Accordeon/ItemText";
 import ModalForm from "../Modal/ModalForm";
 import ModalCalculator from "../Modal/ModalCalculator";
 import Draw from "../CanvasDrawing/Draw";
+import PdfDownloadButton from "../PdfDownloadButton";
 
 const ExamenSubect2 = ({raspunsuri}) => {
   const {stateData, dispatchData} = React.useContext(ContextData)
@@ -283,6 +284,19 @@ const ExamenSubect2 = ({raspunsuri}) => {
 
   }, [proc]);
 
+  const generateText = () => {
+    const cerinta = quizArray[currentIndex]?.cerinta;
+    const answersText = quizArray[currentIndex]?.answers.map(answer => ({
+      text: answer.answer_text,
+    }));
+  
+    return [
+      { text: cerinta },
+      { text: '\n' }, 
+      ...answersText,
+    ];
+  };
+
   return (
     <>
       <Navbar />
@@ -378,6 +392,7 @@ const ExamenSubect2 = ({raspunsuri}) => {
                   </React.Fragment>
                 ))}
                 </ItemText>
+                <PdfDownloadButton generateText={generateText} /> 
                 <button onClick={handleAutoevaluare} className="btn-test">
                   Autoevaluiaza raspunsul!
                 </button>

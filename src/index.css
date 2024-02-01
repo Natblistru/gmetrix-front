@@ -1201,6 +1201,17 @@ img.edit-img:hover{
   box-shadow: 1px 1px 16px #ccc;
   transform:scale(.95)
 }
+img.download-img {
+  position: absolute;
+  width: 40px;
+  height: 45px;
+  bottom: 10px;
+  right: 10px;
+}
+img.download-img:hover{
+  box-shadow: 1px 1px 16px #ccc;
+  transform:scale(.95)
+}
 .btn-reper {
   background-color: transparent;
   border-radius: 0.6em;

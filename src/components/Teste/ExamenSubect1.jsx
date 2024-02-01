@@ -13,6 +13,7 @@ import ItemText from "../Accordeon/ItemText";
 import ModalForm from "../Modal/ModalForm";
 import ModalCalculator from "../Modal/ModalCalculator";
 import { fetchEvaluation1 } from "../../routes/api"
+import PdfDownloadButton from "../PdfDownloadButton";
 
 const ExamenSubect1 = ({ raspunsuri }) => {
   const {stateData, dispatchData} = React.useContext(ContextData)
@@ -276,6 +277,19 @@ const ExamenSubect1 = ({ raspunsuri }) => {
     console.log('Valoarea lui proc a fost actualizată:', proc);
   }, [proc]);
 
+  const generateText = () => {
+    const cerinta = quizArray[currentIndex]?.cerinta;
+    const answersText = quizArray[currentIndex]?.answers.map(answer => ({
+      text: answer.answer_text,
+    }));
+  
+    return [
+      { text: cerinta },
+      { text: '\n' }, 
+      ...answersText,
+    ];
+  };
+
   // console.log(selectedOptions)  
   return (
     <>
@@ -367,6 +381,8 @@ const ExamenSubect1 = ({ raspunsuri }) => {
                     </React.Fragment>
                   ))}
                 </ItemText>
+
+                <PdfDownloadButton generateText={generateText} />  
                 <button onClick={handleAutoevaluare} className="btn-test">
                   Autoevaluiaza raspunsul!
                 </button>
