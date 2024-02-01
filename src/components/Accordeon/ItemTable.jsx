@@ -25,7 +25,7 @@ const TableRow = (props) => {
   useEffect(() => {
     AOS.init(); 
   }, []);
-  console.log(dynamicPath)
+  // console.log(dynamicPath)
   // const dynamicPath = `${rowData.addressTestDisciplina}${rowData.addressTestSubtitle}${rowData.addressTestSubject}${rowData.addressTest}/1`;
 
   // const sumProc = (subjectId, testID, subtitle) => {

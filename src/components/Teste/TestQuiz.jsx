@@ -29,16 +29,16 @@ const TestQuiz = ({
         "test_item_id": listItems[currentItemIndex].test_item_id}])
   },[])
 
-  console.log(stateData.currentTests)
-  console.log(stateData.currentTests[stateData.currentIndexTest].order_number_options);
+  // console.log(stateData.currentTests)
+  // console.log(stateData.currentTests[stateData.currentIndexTest].order_number_options);
 
-  console.log(stateData.currentIndexTest);
+  // console.log(stateData.currentIndexTest);
 
   const listItems = stateData.currentTests[stateData.currentIndexTest].order_number_options;
 
   const correctAnswerText = listItems[currentItemIndex].test_item_options.find(item => item.correct === 1)?.option;
 
-  console.log(listItems[currentItemIndex]);
+  // console.log(listItems[currentItemIndex]);
 
   const handleRadioButtonChange = (value) => {
     setSelectedValue(value);
@@ -91,7 +91,7 @@ const TestQuiz = ({
 
         if (response.status === 200) {
           console.log('Success:', response.data.message);
-          console.log(responseReceived)
+          // console.log(responseReceived)
           setResponseReceived(true);
         } else {
           console.error('Error');

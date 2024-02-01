@@ -65,7 +65,7 @@ function EditFlipCard(props) {
     axios.get(`http://localhost:8000/api/edit-flip-card/${flipCard_id}`).then(res=>{
       if(res.data.status === 200){
         const teacherTopicData = res.data.flipCard;
-        console.log(teacherTopicData)
+        // console.log(teacherTopicData)
         setFlipCardInput({
           ...teacherTopicData,
           // learning_program_id: teacherTopicData.teacher_topic.topic.theme_learning_program.learning_program_id,

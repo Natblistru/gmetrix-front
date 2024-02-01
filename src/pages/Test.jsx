@@ -100,8 +100,8 @@ useEffect(() => {
             const responses = await axios.all(promises);
             const successResponses = responses.filter(response => response.data.status === 200);
             const errorResponses = responses.filter(response => response.data.status === 404);
-            console.log(responses)
-            console.log(successResponses)
+            // console.log(responses)
+            // console.log(successResponses)
             // console.log(errorResponses)            
             if (successResponses.length > 0) {
               const totalScore = successResponses.reduce((accumulator, response) => {
@@ -112,7 +112,7 @@ useEffect(() => {
               
               // const averageScore = totalScore * 100 / (successResponses.length*firstTestItemComplexity);
               const averageScore = totalScore * 100 / successResponses.length;
-              console.log(averageScore)
+              // console.log(averageScore)
               setProc(averageScore)
 
             }

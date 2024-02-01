@@ -65,7 +65,13 @@ const ExamenSubect2 = ({raspunsuri}) => {
 
   useEffect(()=>{
     quizArray = stateData.evaluations2;
-    // console.log("stateData.evaluations2", stateData.evaluations2)
+    const studentProcentValues = quizArray.map((evaluation) =>
+      parseFloat(evaluation.student_procent)
+    );
+    const sum = studentProcentValues.reduce((acc, value) => acc + value, 0);
+    const average = sum / studentProcentValues.length;
+    setProc(average)
+    console.log("stateData.evaluations2", stateData.evaluations2)
   },[stateData.evaluations2])
 
   const [proc, setProc] = useState(quizArray[currentIndex]?.student_procent);
@@ -134,6 +140,8 @@ const ExamenSubect2 = ({raspunsuri}) => {
   };
 
   const handleTryAgain = async () => {
+
+    setShowCards(false);
 
     let itemQuantity = quizArray.length;
     if(itemQuantity - 1 == currentIndex) {
@@ -205,6 +213,10 @@ const ExamenSubect2 = ({raspunsuri}) => {
     }
     setShowResponse(false);
     setShowCards(false);
+    initialization();
+    setCurrentTextIndex(0);
+    setIdRaspuns(null);
+    setIsAnswered(false);
   };
 
   const handlePrevious = () => {
@@ -217,6 +229,10 @@ const ExamenSubect2 = ({raspunsuri}) => {
     }
     setShowResponse(false);
     setShowCards(false);
+    initialization();
+    setCurrentTextIndex(0);
+    setIdRaspuns(null);
+    setIsAnswered(false);
   };
 
   const handleVerifica = () => {
@@ -238,7 +254,7 @@ const ExamenSubect2 = ({raspunsuri}) => {
     // console.log("stateData.evaluations2",stateData.evaluations2)
 
     const quizItem = stateData.evaluations2;
-    // console.log(quizItem)   
+    console.log(quizItem)   
 
     const totalStudentProcent = quizItem.reduce((sum, quizItem, idx) => {
       const studentProcent = idx === currentIndex
@@ -345,8 +361,8 @@ const ExamenSubect2 = ({raspunsuri}) => {
                       <div className="text">
                         {currentTextIndex !== null &&
                           isAnswered &&
-                          textArray.map((textElem, ind) =>
-                            currentTextIndex >= ind ? (
+                          textArray?.map((textElem, ind) =>
+                            currentTextIndex >= ind && typeof textElem === 'string' ? (
                               <React.Fragment key={ind}>
                                 {textElem.slice(
                                   0,
@@ -425,15 +441,17 @@ const ExamenSubect2 = ({raspunsuri}) => {
 
             {showCards && (
               <div className="Cards">
-              {quizArray[currentIndex]?.answers
-                .filter(answer => answer.answer_text !== "") 
-                .map(answer => (
-                  <FlipCardNou
-                    title={answer.task}
-                    key={answer.answer_id}
-                    dangerousHTML={`<p style="padding:15px; text-indent:20px;">${answer.answer_text.replace(/\\n/g, '<br />')}</p>\n`}
-                  />
-                ))}
+                {quizArray[currentIndex]?.answers
+                  .filter(answer => answer?.answer_text != null && answer.answer_text !== "") 
+                  .map(answer => (
+                    answer && answer.answer_text != null && (
+                      <FlipCardNou
+                        title={answer.task}
+                        key={answer.answer_id}
+                        dangerousHTML={`<p style="padding:15px; text-indent:20px;">${answer?.answer_text.replace(/\\n/g, '<br />')}</p>\n`}
+                      />
+                    )
+                  ))}
               </div>
             )}
             <div className="nav-container">

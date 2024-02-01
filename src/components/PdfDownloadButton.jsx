@@ -7,7 +7,7 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 const PdfDownloadButton = ({ generateText }) => {
   useEffect(() => {
-    console.log(generateText());
+    // console.log(generateText());
   }, [generateText]);
 
   const handleDownload = () => {

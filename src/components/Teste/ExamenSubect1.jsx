@@ -54,6 +54,15 @@ const ExamenSubect1 = ({ raspunsuri }) => {
 
   useEffect(()=>{
     quizArray = stateData.evaluations1;
+
+    const studentProcentValues = quizArray.map((evaluation) =>
+      parseFloat(evaluation.student_procent)
+    );
+    const sum = studentProcentValues.reduce((acc, value) => acc + value, 0);
+    const average = sum / studentProcentValues.length;
+    setProc(average)
+
+    // console.log(quizArray)
   },[stateData.evaluations1])
 
 
@@ -132,6 +141,8 @@ const ExamenSubect1 = ({ raspunsuri }) => {
 
   const handleTryAgain = async () => {
 
+    setShowCards(false);
+
     let itemQuantity = quizArray.length;
     if(itemQuantity - 1 == currentIndex) {
       setCurrentIndex(0)
@@ -168,7 +179,7 @@ const ExamenSubect1 = ({ raspunsuri }) => {
         .then(axios.spread((...responses) => {
           const successResponses = responses.filter(response => response.data.status === 200);
           const errorResponses = responses.filter(response => response.data.status === 404);
-          // console.log(responses)
+          console.log(responses)
           if (successResponses.length > 0) {
             console.log("Successfully processed ", successResponses.lengt, " out of ", responses.length, " requests")
             setProc(0)
@@ -208,7 +219,7 @@ const ExamenSubect1 = ({ raspunsuri }) => {
 
     await fetchEvaluation1(theme, subject_id, level_id, dispatchData);
 
-    // console.log(stateData.evaluations1)
+    console.log(stateData.evaluations1)
 
     const quizItem = stateData.evaluations1;
     // console.log(quizItem)   
@@ -258,6 +269,10 @@ const ExamenSubect1 = ({ raspunsuri }) => {
     }
     setShowResponse(false);
     setShowCards(false);
+    initialization();
+    setCurrentTextIndex(0);
+    setIdRaspuns(null);
+    setIsAnswered(false);
   };
 
   const handlePrevious = () => {
@@ -270,6 +285,10 @@ const ExamenSubect1 = ({ raspunsuri }) => {
     }
     setShowResponse(false);
     setShowCards(false);
+    initialization();
+    setCurrentTextIndex(0);
+    setIdRaspuns(null);
+    setIsAnswered(false);
   };
 
   useEffect(() => {
@@ -337,8 +356,8 @@ const ExamenSubect1 = ({ raspunsuri }) => {
                       <div className="text">
                         {currentTextIndex !== null &&
                           isAnswered &&
-                          textArray.map((textElem, ind) =>
-                            currentTextIndex >= ind ? (
+                          textArray?.map((textElem, ind) =>
+                            currentTextIndex >= ind && typeof textElem === 'string' ? (
                               <React.Fragment key={ind}>
                                 {textElem.slice(
                                   0,
@@ -427,15 +446,17 @@ const ExamenSubect1 = ({ raspunsuri }) => {
 
             {showCards && (
               <div className="Cards">
-              {quizArray[currentIndex]?.answers
-                .filter(answer => answer.answer_text !== "") 
-                .map(answer => (
-                  <FlipCardNou
-                    title={answer.task}
-                    key={answer.answer_id}
-                    dangerousHTML={`<p style="padding:15px; text-indent:20px;">${answer.answer_text.replace(/\\n/g, '<br />')}</p>\n`}
-                  />
-                ))}
+                {quizArray[currentIndex]?.answers
+                  .filter(answer => answer?.answer_text != null && answer.answer_text !== "") 
+                  .map(answer => (
+                    answer && answer.answer_text != null && (
+                      <FlipCardNou
+                        title={answer.task}
+                        key={answer.answer_id}
+                        dangerousHTML={`<p style="padding:15px; text-indent:20px;">${answer?.answer_text.replace(/\\n/g, '<br />')}</p>\n`}
+                      />
+                    )
+                  ))}
               </div>
             )}
 

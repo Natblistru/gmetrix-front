@@ -63,10 +63,21 @@ const ExamenSubect3 = ({raspunsuri}) => {
     fetchData();
   }, []);
 
+  useEffect(()=>{
+    quizArray = stateData.evaluations3;
+    const studentProcentValues = quizArray.map((evaluation) =>
+      parseFloat(evaluation.student_procent)
+    );
+    const sum = studentProcentValues.reduce((acc, value) => acc + value, 0);
+    const average = sum / studentProcentValues.length;
+    setProc(average)
+    console.log("stateData.evaluations3", stateData.evaluations3)
+  },[stateData.evaluations3])
+
   const [proc, setProc] = useState(quizArray[currentIndex]?.student_procent);
 
   const initialization = () => {
-    const newArray = Array(quizArray[currentIndex].form.length).fill("");
+    const newArray = Array(quizArray[currentIndex]?.form.length).fill("");
     setTextArray([...newArray]);
   };
 
@@ -127,6 +138,8 @@ const ExamenSubect3 = ({raspunsuri}) => {
   };
 
   const handleTryAgain = async () => {
+
+    setShowCards(false);
 
     let itemQuantity = quizArray.length;
     if(itemQuantity - 1 == currentIndex) {
@@ -203,7 +216,7 @@ const ExamenSubect3 = ({raspunsuri}) => {
 
     await fetchEvaluation3(theme, subject_id, level_id, dispatchData);
 
-    // console.log("stateData.evaluations2",stateData.evaluations2)
+    // console.log("stateData.evaluations3",stateData.evaluations3)
 
     const quizItem = stateData.evaluations3;
     // console.log(quizItem)   
@@ -253,6 +266,10 @@ const ExamenSubect3 = ({raspunsuri}) => {
     }
     setShowResponse(false);
     setShowCards(false);
+    initialization();
+    setCurrentTextIndex(0);
+    setIdRaspuns(null);
+    setIsAnswered(false);
   };
 
   const handlePrevious = () => {
@@ -265,6 +282,10 @@ const ExamenSubect3 = ({raspunsuri}) => {
     }
     setShowResponse(false);
     setShowCards(false);
+    initialization();
+    setCurrentTextIndex(0);
+    setIdRaspuns(null);
+    setIsAnswered(false);
   };
 
   useEffect(() => {
@@ -279,23 +300,27 @@ const ExamenSubect3 = ({raspunsuri}) => {
   const generateText = () => {
     const cerinta = quizArray[currentIndex]?.cerinta;
     const answersText = quizArray[currentIndex]?.answers.map(answer => {
-      const formattedAnswerText = answer.answer_text.replace(/\\n/g, '\n');
-      const parts = formattedAnswerText.split(/<b>(.*?)<\/b>/g);
+      if (answer?.answer_text != null) {
+        const formattedAnswerText = answer.answer_text.replace(/\\n/g, '\n');
+        const parts = formattedAnswerText.split(/<b>(.*?)<\/b>/g);
   
-      return parts.map((part, index) => {
-        if (index % 2 === 1) {
-          return { text: part, bold: true };
-        } else {
-          return { text: part, newLine: true };
-        }
-      });
+        return parts.map((part, index) => {
+          if (index % 2 === 1) {
+            return { text: part, bold: true };
+          } else {
+            return { text: part, newLine: true };
+          }
+        });
+      } else {
+        return null; // sau orice altceva, în funcție de cerințe
+      }
     });
   
-    const finalText = [{ text: cerinta },{ text: '\n' }, ...answersText.flat()];
+    const finalText = [{ text: cerinta }, { text: '\n' }, ...answersText.flat()];
   
-    return finalText;
-
+    return finalText.filter(item => item !== null); // elimină elementele nule din finalText
   };
+  
   
   
   
@@ -323,11 +348,11 @@ const ExamenSubect3 = ({raspunsuri}) => {
             >
               <ItemText>
                 <p>Studiază sursele:</p>
-                <AccordionSurse data={quizArray[currentIndex].source} />
+                <AccordionSurse data={quizArray[currentIndex]?.source} />
                 <p>
-                  {quizArray[currentIndex].afirmatie}{" "}
+                  {quizArray[currentIndex]?.afirmatie}{" "}
                   <span style={{ fontStyle: "italic", fontWeight: 'bold' }}>
-                    {quizArray[currentIndex].cerinta}
+                    {quizArray[currentIndex]?.cerinta}
                   </span>
                 </p>
                 <div
@@ -338,7 +363,7 @@ const ExamenSubect3 = ({raspunsuri}) => {
                     marginTop: "10px",
                   }}
                 >
-                  {quizArray[currentIndex].nota.split('\n').map((paragraf, idx) => (
+                  {quizArray[currentIndex]?.nota.split('\n').map((paragraf, idx) => (
                     <span key={idx}>{paragraf}</span>
                   ))}
                 </div>
@@ -348,8 +373,8 @@ const ExamenSubect3 = ({raspunsuri}) => {
                       <div className="text">
                         {currentTextIndex !== null &&
                           isAnswered &&
-                          textArray.map((textElem, ind) =>
-                            currentTextIndex >= ind ? (
+                          textArray?.map((textElem, ind) =>
+                            currentTextIndex >= ind && typeof textElem === 'string' ? (
                               <React.Fragment key={ind}>
                                 {textElem.slice(
                                   0,
@@ -379,7 +404,7 @@ const ExamenSubect3 = ({raspunsuri}) => {
               {isOpen && (
                 <ModalForm
                   onClick={closeModal}
-                  forma={quizArray[currentIndex].form}
+                  forma={quizArray[currentIndex]?.form}
                   idRaspuns={idRaspuns}
                 />
               )}
@@ -400,7 +425,9 @@ const ExamenSubect3 = ({raspunsuri}) => {
                 <ItemText classNameChild="">
                 {quizArray[currentIndex]?.answers.map(answer => (
                   <React.Fragment key={answer.answer_id}>
-                    <p dangerouslySetInnerHTML={{ __html: answer.answer_text.replace(/\\n/g, '<br />') }} />
+                    {answer && answer.answer_text != null && (
+                      <p dangerouslySetInnerHTML={{ __html: answer.answer_text.replace(/\\n/g, '<br />') }} />
+                    )}
                   </React.Fragment>
                 ))}
                 </ItemText>
@@ -426,15 +453,17 @@ const ExamenSubect3 = ({raspunsuri}) => {
             )}
             {showCards && (
               <div className="Cards">
-              {quizArray[currentIndex]?.answers
-                .filter(answer => answer.answer_text !== "") 
-                .map(answer => (
-                  <FlipCardNou
-                    title={answer.task}
-                    key={answer.answer_id}
-                    dangerousHTML={`<p style="padding:15px; text-indent:20px;">${answer.answer_text.replace(/\\n/g, '<br />')}</p>\n`}
-                  />
-                ))}
+                {quizArray[currentIndex]?.answers
+                  .filter(answer => answer?.answer_text != null && answer.answer_text !== "") 
+                  .map(answer => (
+                    answer && answer.answer_text != null && (
+                      <FlipCardNou
+                        title={answer.task}
+                        key={answer.answer_id}
+                        dangerousHTML={`<p style="padding:15px; text-indent:20px;">${answer?.answer_text.replace(/\\n/g, '<br />')}</p>\n`}
+                      />
+                    )
+                  ))}
               </div>
             )}
             <div className="nav-container">

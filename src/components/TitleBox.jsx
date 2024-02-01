@@ -31,7 +31,7 @@ const TitleBox = ({
         <img src={process.env.PUBLIC_URL + "/images/parchment.png"} alt="" />
         <div>
           <h1>{children}</h1>
-          {console.log(prof)}
+          {/* {console.log(prof)} */}
           {prof !== null && (
             <p>(elaborat de profesorul {prof})</p>
           )}
