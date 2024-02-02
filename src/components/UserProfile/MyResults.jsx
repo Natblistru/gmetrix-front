@@ -220,8 +220,8 @@ const ListDisciplineRezultat = ({selectedItem, setSelectedItem}) => {
 
 function MyResults() {
   const { stateData, dispatchData } = React.useContext(ContextData);
-  const [list, setList] = useState(data)
-  const [list1, setList1] = useState([])
+  const [discipline, setDiscipline] = useState([])
+  const [evaluari, setEvaluari] = useState([])
   const [learningProgramList, setLearningProgramList] = useState([]);
   const [selectedItem, setSelectedItem] = useState(stateData.disciplineAni[0]);
   const [themeList, setThemeList] = useState([]);
@@ -315,136 +315,149 @@ function MyResults() {
 
   },[])
 
-  const fetchEvaluations = async () => {
+  const fetchStudentResults = async () => {
     const studentId = stateData.currentStudent;
-    // let studentResults = []
-    // 
-    // const orderNumber = 1;
-    // try {
+    
+    const response = await axios.post('http://localhost:8000/api/student-evaluation-results-all-themes', {
+      subject_id: selectedItem.subject_id,
+      study_level_id: 1,
+      studentId: studentId,
+    });
+  
+    return response.data.studentEvaluationResults;
+  };
 
-    //   const response = await axios.post('http://localhost:8000/api/student-evaluation-results-all-themes', {
-    //     subject_id: selectedItem.subject_id,
-    //     study_level_id: 1,
-    //     order_number: orderNumber,
-    //     studentId: studentId,
-    //   });
+  const transformData = (initialData) => {
+    const result = [];
   
-    //   studentResults = response.data.studentEvaluationResults;
-    //   console.log(studentResults)
-    // } catch (error) {
-    //   console.error('Error fetching data:', error.message);
+    initialData.forEach((item) => {
+      const { capitol_id, capitol_name, capitol_media, tema_id, subtitles } = item;
   
-    // }
-    const fetchStudentResults = async (orderNumber) => {
-      const response = await axios.post('http://localhost:8000/api/student-evaluation-results-all-themes', {
-        subject_id: selectedItem.subject_id,
-        study_level_id: 1,
-        order_number: orderNumber,
-        studentId: studentId,
+      if (subtitles && subtitles.length > 0) {
+        // Este un nod părinte
+        const capitolNode = {
+          name: capitol_name,
+          id: capitol_id,
+          opened: false,
+          title: Math.round(capitol_media) + "%",
+          children: [],
+        };
+  
+        subtitles.forEach(subtitle => {
+          const temaNode = {
+            name: subtitle.tema_name,
+            id: subtitle.tema_id,
+            capitol_id: capitol_id,
+            tema_id: subtitle.tema_id,
+            title: Math.round(subtitle.tema_media) + "%",
+            children: [],
+          };
+  
+          capitolNode.children.push(temaNode);
+        });
+  
+        result.push(capitolNode);
+      } else {
+        // Este un nod copil
+        const temaNode = {
+          name: item.tema_name,
+          id: item.tema_id,
+          capitol_id: capitol_id,
+          title: Math.round(item.tema_media) + "%",
+          children: [],
+        };
+  
+        const parent = result.find(parent => parent.id === capitol_id);
+        if (parent) {
+          parent.children.push(temaNode);
+        }
+      }
+    });
+  
+    return result;
+  };
+
+  const addEvaluations = (initialData, studentResults) => {
+    const result = [...initialData]; 
+  
+    result.forEach((capitolNode) => {
+      capitolNode.children.forEach((temaNode) => {
+        const temaTitleValues = []; // Array pentru a ține valorile `title` ale copiilor temei
+  
+        Object.keys(studentResults).forEach((evaluationKey, index) => {
+          const evaluationData = studentResults[evaluationKey][0];
+          
+          if (evaluationData && evaluationData.theme_id === temaNode.tema_id) {
+            const maxPoints = parseInt(evaluationData.total_max_points, 10);
+            const points = parseInt(evaluationData.points, 10);
+  
+            const percentage = maxPoints !== 0 ? (points * 100 / maxPoints).toFixed(2) + "%" : "0%";
+            
+            temaNode.children.push({
+              name: `Evaluare (subiectul ${index + 1})`,
+              capitol_id: temaNode.capitol_id,
+              tema_id: temaNode.tema_id,
+              title: percentage,
+              evaluationKey: evaluationData, 
+            });
+  
+            temaTitleValues.push(parseFloat(percentage)); 
+          }
+        });
+  
+        // Calculăm media valorilor `title` ale copiilor temei
+        const temaTitleMedia = temaTitleValues.length > 0
+          ? (temaTitleValues.reduce((sum, value) => sum + value, 0) / temaTitleValues.length).toFixed(2) + "%"
+          : "0%";
+  
+        // Setăm media în `title` pentru tema actuală
+        temaNode.title = temaTitleMedia;
       });
-    
-      return response.data.studentEvaluationResults;
-    };
-    
-    const studentResults1 = await fetchStudentResults(1);
-    const studentResults2 = await fetchStudentResults(2);
-    const studentResults3 = await fetchStudentResults(3);
-
-    console.log(studentResults1)
-    console.log(studentResults2)
-    console.log(studentResults3)
-
+  
+      // Iterăm prin fiecare temă și adăugăm valorile `title` într-un array pentru calculul mediei
+      const capitolTitleValues = capitolNode.children.map((temaNode) => parseFloat(temaNode.title.replace("%", "")));
+  
+      // Calculăm media valorilor `title` ale copiilor capitolului
+      const capitolTitleMedia = capitolTitleValues.length > 0
+        ? (capitolTitleValues.reduce((sum, value) => sum + value, 0) / capitolTitleValues.length).toFixed(2) + "%"
+        : "0%";
+  
+      // Setăm media în `title` pentru capitolul actual
+      capitolNode.title = capitolTitleMedia;
+    });
+  
+    return result;
+  };
+  
+  const fetchDataAndTransform = async () => {
+    try {
+      const studentResults = await fetchStudentResults();
+  
+      const transformedData = transformData(stateData.capitole);
+      const transformedDataCopy = JSON.parse(JSON.stringify(transformedData));
+      const transformedDataWithEvaluations = addEvaluations(transformedDataCopy, studentResults);
+  
+      setDiscipline(transformedData);
+      setEvaluari(transformedDataWithEvaluations);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   useEffect(() => {
-    const transformData = (initialData) => {
-      const result = [];
-  
-      initialData.forEach((item) => {
-        const { capitol_id, capitol_name, capitol_media, tema_id, subtitles } = item;
-  
-        if (subtitles && subtitles.length > 0) {
-          // Este un nod părinte
-          const capitolNode = {
-            name: capitol_name,
-            id: capitol_id,
-            opened: false,
-            title: Math.round(capitol_media) + "%",
-            children: [],
-          };
-  
-          subtitles.forEach(subtitle => {
-            const temaNode = {
-              name: subtitle.tema_name,
-              id: subtitle.tema_id,
-              capitol_id: capitol_id,
-              tema_id: subtitle.tema_id,
-              title: Math.round(subtitle.tema_media) + "%",
-              children: [],
-            };
-  
-            capitolNode.children.push(temaNode);
-          });
-  
-          result.push(capitolNode);
-        } else {
-          // Este un nod copil
-          const temaNode = {
-            name: item.tema_name,
-            id: item.tema_id,
-            capitol_id: capitol_id,
-            title: Math.round(item.tema_media) + "%",
-            children: [],
-          };
-  
-          const parent = result.find(parent => parent.id === capitol_id);
-          if (parent) {
-            parent.children.push(temaNode);
-          }
-        }
-      });
-  
-      return result;
-    };
-  
-    const transformedData = transformData(stateData.capitole);
-    setList1(transformedData);
-    console.log(transformedData)
-    // console.log(stateData.capitole)
-
-      // Obțineți array-ul de tema_id
-    const temaIds = [];
-
-    // Funcție recursivă pentru parcurgerea arborelui
-    const traverseTree = (node) => {
-      temaIds.push(node.tema_id);
-
-      if (node.children && node.children.length > 0) {
-        node.children.forEach(child => traverseTree(child));
-      }
-    };
-
-    // Parcurgeți arborele pentru a obține tema_id
-    transformedData.forEach(node => traverseTree(node));
-    const filteredtemaIds = temaIds.filter((value) => value !== undefined);
-
-    console.log(filteredtemaIds);
-
-    fetchEvaluations(filteredtemaIds)
+    fetchDataAndTransform();
   }, [stateData.capitole]);
-  
-  useEffect(()=>{
-// console.log(list1)
-  },[list1])
-  
+ 
+ 
 
   return (
     <div className='accountsettings'>
       <h1>Însușirea disciplinelor:</h1>
       <ListDisciplineRezultat selectedItem={selectedItem} setSelectedItem={setSelectedItem}/>
-      <TreeTable list={list1}/>
+      {console.log(discipline)}
+      <TreeTable list={discipline}/>
       <h1 style={{ marginTop: '20px'}}>Rezultatele evaluărilor:</h1>
-      <TreeTable list={list}/>
+      <TreeTable list={evaluari}/>
       <h1 style={{ marginTop: '20px'}}>Rezultatele testelor:</h1>
       <div className="rowBts mx-4 mt-2">
         <div className="col-md-12">          
