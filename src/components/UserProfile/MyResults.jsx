@@ -91,7 +91,7 @@ function MyResults() {
   const fetchData = async (themeId) => {
 
     const teachersForSubtitles = stateData.teachersForSubtitle[themeId];
-    // console.log(teachersForSubtitles)
+    console.log(teachersForSubtitles)
 
      try {
       const studentId = 1;
@@ -102,39 +102,55 @@ function MyResults() {
       const errorResponses = responses.filter(response => response.status === 404);
       // console.log(responses)
       // console.log(successResponses)
-      // console.log(errorResponses)            
-      // if (successResponses.length > 0) {
-      //   const totalScore = successResponses.reduce((accumulator, response) => {
-      //     const score = parseFloat(response.data.score);
 
-      //     return accumulator + score;
-      //   }, 0);
-        
-      //   const averageScore = totalScore * 100 / (successResponses.length*firstTestItemComplexity);
-      //   setProc(averageScore)
-
-      // }
       const dataTesteRequest = successResponses.map((response) => {
         if (response.data) {
-
           const sortedData = response.data.slice().sort((a, b) => a.id - b.id);
+          console.log(response.data)
+          const teacherInfo = teachersForSubtitles.find((teacher) => teacher.teacher_id == sortedData[0].teacher_id);
 
-          return sortedData.map((temaData) => {
-            const testsData = temaData.tests.map((test) => ({
-              name: test.name,
-              title: test.testResult ? `${(parseFloat(test.testResult) * 100).toFixed(0)}%` : '0%',
-            }));
+          const teacherObject = {
+            name: teacherInfo ? teacherInfo.teacher_name : sortedData[0].teacher_id, 
+            id: sortedData[0].teacher_id,
+            opened: true,
+            title: '0%', 
+            children: [], 
+          };
       
-            const temaResult = temaData.tests.reduce((acc, test) => acc + parseFloat(test.testResult), 0) / temaData.tests.length;
-      
-            return {
-              name: temaData.name,
-              title: temaResult ? `${(temaResult * 100).toFixed(0)}%` : '0%',
-              children: testsData,
+          sortedData.forEach((temaData) => {
+            const temaNode = {
+              name: temaData.name, 
+              id: temaData.id,
+              capitol_id: temaData.capitol_id,
+              title: '0%', 
+              children: [], 
             };
+      
+            teacherObject.children.push(temaNode);
+      
+            temaData.tests.forEach((test) => {
+              const testData = {
+                name: test.name,
+                title: test.testResult ? `${(parseFloat(test.testResult) * 100).toFixed(0)}%` : '0%',
+              };
+              temaNode.children.push(testData);
+            });
+      
+            console.log(temaData.tests.length == 1 && temaData.tests[0].testResult == null)
+            const temaTitleMedia = temaData.tests.length > 0 && !(temaData.tests.length == 1 && temaData.tests[0].testResult == null)
+              ? (temaData.tests.reduce((acc, test) => acc + parseFloat(test.testResult)*100, 0) / temaData.tests.length).toFixed(0) + '%'
+              : '0%';
+            temaNode.title = temaTitleMedia;
           });
+      
+          const teacherTitleMedia = teacherObject.children.length > 0
+            ? (teacherObject.children.reduce((acc, temaNode) => acc + parseFloat(temaNode.title), 0) / teacherObject.children.length).toFixed(0) + '%'
+            : '0%';
+          teacherObject.title = teacherTitleMedia;
+      
+          return teacherObject;
         } else {
-          return []; 
+          return [];
         }
       });
       
@@ -295,7 +311,7 @@ function MyResults() {
 
   const addProgress = (initialData, studentProgress) => {
     const result = [...initialData]; 
-    console.log(studentProgress)
+    // console.log(studentProgress)
   
     result.forEach((capitolNode) => {
       capitolNode.children.forEach((temaNode) => {
@@ -362,6 +378,7 @@ function MyResults() {
 
   useEffect(() => {
     fetchDataAndTransform();
+    setTeste([])
   }, [stateData.capitole]);
  
  
