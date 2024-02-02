@@ -40,7 +40,7 @@ function ViewMyTopics({ onAddTopic, onEditTopic }) {
   const [blockFilterVisible, setBlockFilterVisible] = useState(false);
   const [learningProgramList, setLearningProgramList] = useState([]);
   const [themeList, setThemeList] = useState([]);
-  const [teacherList, setTeacherList] = useState([]);
+  const [chapterList, setChapterList] = useState([]);
 
   const handleSort = (column) => {
     if (column === sortColumn) {
@@ -72,7 +72,8 @@ function ViewMyTopics({ onAddTopic, onEditTopic }) {
   const [filter, setFilter] = useState({
     learning_program_id: '',
     theme_learning_program_id: '',
-    teacher_id: '',
+    chapter_id: '',
+    subject_study_level_id: '',
   })
 
   const handleInput = (e) => {
@@ -85,6 +86,10 @@ function ViewMyTopics({ onAddTopic, onEditTopic }) {
       if (name === 'learning_program_id') {
         updatedFilter[name] = value;
         updatedFilter.theme_learning_program_id = '';
+        const selectedLearningProgram = getLearningProgramById(value);
+        updatedFilter.subject_study_level_id = selectedLearningProgram?.subject_study_level_id || ''; 
+        console.log(selectedLearningProgram)
+        console.log(selectedLearningProgram?.subject_study_level_id)
       } else {
         updatedFilter[name] = value;
       }
@@ -107,16 +112,16 @@ function ViewMyTopics({ onAddTopic, onEditTopic }) {
       }
     });
 
-    axios.get('http://localhost:8000/api/all-teachers').then(res=>{
+    axios.get('http://localhost:8000/api/all-chapters').then(res=>{
       if(res.data.status === 200){
-        setTeacherList(res.data.teachers);
+        setChapterList(res.data.chapters);
       }
     });
 
   },[])
 
   useEffect(()=>{
-    // console.log(currentPage)
+    console.log(localStorage.getItem('auth_roleId'))
     const fetchData = async () => {
       try {
         const params = {
@@ -127,7 +132,8 @@ function ViewMyTopics({ onAddTopic, onEditTopic }) {
           page: currentPage,
           filterProgram: filter.learning_program_id,
           filterTheme: filter.theme_learning_program_id,
-          filterTeacher: filter.teacher_id,
+          filterChapter: filter.chapter_id,
+          paramTeacher: localStorage.getItem('auth_roleId'),
         };
         const response = await axios.get('http://localhost:8000/api/view-myTopics', { params });
           if (response.data.status === 200) {
@@ -157,6 +163,10 @@ function ViewMyTopics({ onAddTopic, onEditTopic }) {
 
   const handleEditTopic = (item_id) => {
     onEditTopic(item_id);
+  };
+
+  const getLearningProgramById = (learningProgramId) => {
+    return learningProgramList.find((program) => program.id == learningProgramId);
   };
 
   return (
@@ -214,6 +224,22 @@ function ViewMyTopics({ onAddTopic, onEditTopic }) {
                     </select>            
                   </div>
               </div>
+              <div className="col-md-4">
+                <div className="form-group">
+                  <select name="chapter_id" onChange={handleInput} value={filter.chapter_id} className="form-control">  
+                    <option value="">Select Chapter</option>
+                    {
+                      chapterList
+                      .filter((item) => item.subject_study_level_id == filter.subject_study_level_id)
+                      .map((item)=> {
+                        return (
+                          <option value={item.id} key={item.id}>{item.name}</option>
+                        )
+                      })
+                    }
+                  </select>            
+                </div>
+              </div> 
               <div className="col-md-4">          
                   <div className="form-group">
                     <select name="theme_learning_program_id" onChange={handleInput} value={filter.theme_learning_program_id} className="form-control">  
@@ -228,20 +254,7 @@ function ViewMyTopics({ onAddTopic, onEditTopic }) {
                     </select>            
                   </div>
                 </div>
-                <div className="col-md-4">
-                  <div className="form-group">
-                    <select name="teacher_id" onChange={handleInput} value={filter.teacher_id} className="form-control">  
-                      <option value="">Select Teacher</option>
-                      {
-                        teacherList.map((item)=> {
-                          return (
-                            <option value={item.id} key={item.id}>{item.name}</option>
-                          )
-                        })
-                      }
-                    </select>            
-                  </div>
-                </div> 
+
 
             </div>
           }
