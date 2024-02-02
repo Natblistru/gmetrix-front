@@ -36,21 +36,23 @@ const Subtema = ({results})  => {
 // console.log(temaCurrenta)
 // console.log(mainElement)
 // console.log(address1)
-     dispatchData({
-      type: "UPDATE_CURRENT_TOPIC",
-      payload: mainElement
-    });
+    if(mainElement) {
+      dispatchData({
+        type: "UPDATE_CURRENT_TOPIC",
+        payload: mainElement
+      });
 
-    const addressDisciplina = "/" + parts[1];
-    const addressSubtitle = "/" + parts.slice(2).join("/");
+      const addressDisciplina = "/" + parts[1];
+      const addressSubtitle = "/" + parts.slice(2).join("/");
 
-    const addressPath = `/${disciplina}${addressSubtitle}${mainElement.path}?teacher=${teacherVideo}&level=1&disciplina=${subject_id}&theme=${tema_id}`;
-    const newBreadcrumb = {name: mainElement.name, path: addressPath};
-    dispatchData({
-      type: "UPDATE_SUBTOPIC_BREADCRUMB",
-      payload: newBreadcrumb
-    });
-    setTopic(mainElement);
+      const addressPath = `/${disciplina}${addressSubtitle}${mainElement.path}?teacher=${teacherVideo}&level=1&disciplina=${subject_id}&theme=${tema_id}`;
+      const newBreadcrumb = {name: mainElement.name, path: addressPath};
+      dispatchData({
+        type: "UPDATE_SUBTOPIC_BREADCRUMB",
+        payload: newBreadcrumb
+      });
+      setTopic(mainElement);
+    }
   }, []);
 
   const handleProgressTopicRecorded = (updatedTopicProgress) => {
