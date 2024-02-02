@@ -5,149 +5,6 @@ import { Link } from 'react-router-dom';
 import { fetchCapitole, fetchEvaluation1, fetchEvaluation2, fetchEvaluation3 } from '../../routes/api';
 import TreeTable from './TreeTable';
 
-const data = [
-  {
-    name: 'Primul Război Mondial și formarea statului național român',
-    opened: false,
-    title: '30%',
-    children: [
-      {
-        name: 'România în Primul Război Mondial',
-        title: '10%',
-        children: [
-          { name: 'Opțiunile politice în perioada neutralității', title: '50%' },
-          { name: 'Intrarea României în război', title: '40%' },
-          { name: 'Operațiile militare din anul 1917', title: '0%' },
-          { name: 'Agravarea situației pe frontul român', title: '0%' },
-          { name: 'Armistițiul de la Focșani și Pacea de la București', title: '0%' },
-        ],
-      },
-      {
-        name: 'Mișcarea națională a românilor din Basarabia și teritoriile din stânga Nistrului',
-        title: '75%',
-        children: [
-          { name: 'Mișcarea națională a românilor din Basarabia până în octombrie 1917', title: '70%' },
-          { name: 'Republica Democratică Moldovenească', title: '90%' },
-          { name: 'Mișcarea națională a românilor din stânga Nistrului', title: '90%' },
-        ],
-      },
-      {
-        name: 'Formarea Statului Național Unitar Român. Recunoașterea Marii Uniri de la 1918',
-        title: '75%',
-        children: [
-          { name: 'Recunoașterea internațională a Marii Uniri', title: '70%' },
-          { name: 'Unirea Basarabiei cu România', title: '90%' },
-          { name: 'Unirea Bucovinei cu România', title: '90%' },
-          { name: 'Unirea Transilvaniei cu România', title: '90%' },
-        ],
-      },
-      {
-        name: 'Conferinţa de Pace de la Paris. Sistemul de la Versailles',
-        title: '75%',
-        children: [
-          { name: 'Conferința de Pace de la Paris (18 ianuarie 1919 - 21 ianuarie 1920)', title: '70%' },
-          { name: 'Sistemul Versailles-Washington', title: '90%' },
-          { name: 'Noua ordine internațională', title: '90%' },
-          { name: 'Conferința de la Washington', title: '90%' },
-        ],
-      },
-    ],
-  },
-  {
-    name: 'Lumea în perioada interbelică',
-    title: '10%',
-    children: [{ name: 'SUA în perioada interbelică', title: '10%' }],
-  },
-  {
-    name: 'Relațiile internaționale în perioada interbelică',
-    title: '10%',
-    children: [{ name: 'Europa de Vest în perioada interbelică', title: '10%' }],
-  },
-]
-
-const dataTeste = [
-  {
-    name: 'Opțiunile politice în perioada neutralității',
-    title: '10%',
-    children: [
-      { name: 'Alege afirmația corectă', title: '50%' },
-      { name: 'Stabilește cauzele evenimentelor', title: '40%' },
-      { name: 'Stabilește consecințele evenimentelor', title: '0%' },
-      { name: 'Verifică corectitudinea afirmațiilor', title: '0%' },
-      { name: 'Formează perechi logice', title: '0%' },
-      { name: 'Grupează elementele', title: '50%' },
-      { name: 'Caracteristicile evenimentelor', title: '40%' },
-      { name: 'Completează propoziția', title: '0%' },
-      { name: 'Elaborează un fragment de text', title: '0%' },
-      { name: ' Succesiunea cronologică a evenimentelor', title: '0%' },
-    ],
-  },
-  {
-    name: 'Intrarea României în război',
-    title: '75%',
-    children: [
-      { name: 'Alege afirmația corectă', title: '50%' },
-      { name: 'Stabilește cauzele evenimentelor', title: '40%' },
-      { name: 'Stabilește consecințele evenimentelor', title: '0%' },
-      { name: 'Verifică corectitudinea afirmațiilor', title: '0%' },
-      { name: 'Formează perechi logice', title: '0%' },
-      { name: 'Grupează elementele', title: '50%' },
-      { name: 'Caracteristicile evenimentelor', title: '40%' },
-      { name: 'Completează propoziția', title: '0%' },
-      { name: 'Elaborează un fragment de text', title: '0%' },
-      { name: ' Succesiunea cronologică a evenimentelor', title: '0%' },
-    ],
-  },
-  {
-    name: 'Operațiile militare din anul 1917',
-    title: '75%',
-    children: [
-      { name: 'Alege afirmația corectă', title: '50%' },
-      { name: 'Stabilește cauzele evenimentelor', title: '40%' },
-      { name: 'Stabilește consecințele evenimentelor', title: '0%' },
-      { name: 'Verifică corectitudinea afirmațiilor', title: '0%' },
-      { name: 'Formează perechi logice', title: '0%' },
-      { name: 'Grupează elementele', title: '50%' },
-      { name: 'Caracteristicile evenimentelor', title: '40%' },
-      { name: 'Completează propoziția', title: '0%' },
-      { name: 'Elaborează un fragment de text', title: '0%' },
-      { name: ' Succesiunea cronologică a evenimentelor', title: '0%' },
-    ],
-  },
-  {
-    name: 'Agravarea situației pe frontul român',
-    title: '75%',
-    children: [
-      { name: 'Alege afirmația corectă', title: '50%' },
-      { name: 'Stabilește cauzele evenimentelor', title: '40%' },
-      { name: 'Stabilește consecințele evenimentelor', title: '0%' },
-      { name: 'Verifică corectitudinea afirmațiilor', title: '0%' },
-      { name: 'Formează perechi logice', title: '0%' },
-      { name: 'Grupează elementele', title: '50%' },
-      { name: 'Caracteristicile evenimentelor', title: '40%' },
-      { name: 'Completează propoziția', title: '0%' },
-      { name: 'Elaborează un fragment de text', title: '0%' },
-      { name: ' Succesiunea cronologică a evenimentelor', title: '0%' },
-    ],
-  },
-  {
-    name: 'Armistițiul de la Focșani și Pacea de la București',
-    title: '75%',
-    children: [
-      { name: 'Alege afirmația corectă', title: '50%' },
-      { name: 'Stabilește cauzele evenimentelor', title: '40%' },
-      { name: 'Stabilește consecințele evenimentelor', title: '0%' },
-      { name: 'Verifică corectitudinea afirmațiilor', title: '0%' },
-      { name: 'Formează perechi logice', title: '0%' },
-      { name: 'Grupează elementele', title: '50%' },
-      { name: 'Caracteristicile evenimentelor', title: '40%' },
-      { name: 'Completează propoziția', title: '0%' },
-      { name: 'Elaborează un fragment de text', title: '0%' },
-      { name: ' Succesiunea cronologică a evenimentelor', title: '0%' },
-    ],
-  },
-]
-  
 const ListDisciplineRezultat = ({selectedItem, setSelectedItem}) => {
   const [mediaDisciplina, setMediaDisciplina] = useState([])
   const { stateData, dispatchData } = React.useContext(ContextData);
@@ -208,7 +65,7 @@ const ListDisciplineRezultat = ({selectedItem, setSelectedItem}) => {
               <img src={process.env.PUBLIC_URL + item.img} alt="" />
               <p>{item.name}</p>
               {hasMediaValue && (
-                <p className="subject-total-percent">{`${Number(mediaObject.disciplina_media).toFixed(2)}%`}</p>
+                <p className="subject-total-percent">{`${Number(mediaObject.disciplina_media).toFixed(1)}%`}</p>
               )}
             </div>
           );
@@ -326,6 +183,18 @@ function MyResults() {
   
     return response.data.studentEvaluationResults;
   };
+  
+  const fetchStudentProgress = async () => {
+    const studentId = stateData.currentStudent;
+    
+    const response = await axios.post('http://localhost:8000/api/student-subtopic-progress-all-themes', {
+      subject_id: selectedItem.subject_id,
+      study_level_id: 1,
+      studentId: studentId,
+    });
+  
+    return response.data.studentProgress;
+  };
 
   const transformData = (initialData) => {
     const result = [];
@@ -382,7 +251,7 @@ function MyResults() {
   
     result.forEach((capitolNode) => {
       capitolNode.children.forEach((temaNode) => {
-        const temaTitleValues = []; // Array pentru a ține valorile `title` ale copiilor temei
+        const temaTitleValues = []; 
   
         Object.keys(studentResults).forEach((evaluationKey, index) => {
           const evaluationData = studentResults[evaluationKey][0];
@@ -391,7 +260,7 @@ function MyResults() {
             const maxPoints = parseInt(evaluationData.total_max_points, 10);
             const points = parseInt(evaluationData.points, 10);
   
-            const percentage = maxPoints !== 0 ? (points * 100 / maxPoints).toFixed(2) + "%" : "0%";
+            const percentage = maxPoints !== 0 ? (points * 100 / maxPoints).toFixed(1) + "%" : "0%";
             
             temaNode.children.push({
               name: `Evaluare (subiectul ${index + 1})`,
@@ -405,24 +274,67 @@ function MyResults() {
           }
         });
   
-        // Calculăm media valorilor `title` ale copiilor temei
         const temaTitleMedia = temaTitleValues.length > 0
-          ? (temaTitleValues.reduce((sum, value) => sum + value, 0) / temaTitleValues.length).toFixed(2) + "%"
+          ? (temaTitleValues.reduce((sum, value) => sum + value, 0) / temaTitleValues.length).toFixed(1) + "%"
           : "0%";
   
-        // Setăm media în `title` pentru tema actuală
         temaNode.title = temaTitleMedia;
       });
   
-      // Iterăm prin fiecare temă și adăugăm valorile `title` într-un array pentru calculul mediei
       const capitolTitleValues = capitolNode.children.map((temaNode) => parseFloat(temaNode.title.replace("%", "")));
   
-      // Calculăm media valorilor `title` ale copiilor capitolului
       const capitolTitleMedia = capitolTitleValues.length > 0
-        ? (capitolTitleValues.reduce((sum, value) => sum + value, 0) / capitolTitleValues.length).toFixed(2) + "%"
+        ? (capitolTitleValues.reduce((sum, value) => sum + value, 0) / capitolTitleValues.length).toFixed(1) + "%"
         : "0%";
   
-      // Setăm media în `title` pentru capitolul actual
+      capitolNode.title = capitolTitleMedia;
+    });
+  
+    return result;
+  };
+
+  const addProgress = (initialData, studentProgress) => {
+    const result = [...initialData]; 
+    console.log(studentProgress)
+  
+    result.forEach((capitolNode) => {
+      capitolNode.children.forEach((temaNode) => {
+        const temaTitleValues = []; 
+
+        studentProgress.forEach((progressData, index) => {
+          // console.log(progressData)
+          
+          if (progressData && progressData.theme_id === temaNode.tema_id) {
+            const maxPoints = parseInt(progressData.subtopic_total, 10);
+            const points = parseInt(progressData.topic_pased, 10);
+  
+            const percentage = maxPoints !== 0 ? (points * 100 / maxPoints).toFixed(1) + "%" : "0%";
+            
+            temaNode.children.push({
+              name: progressData.teacher_topic_name,
+              capitol_id: temaNode.capitol_id,
+              tema_id: temaNode.tema_id,
+              title: percentage,
+              progressElement: progressData, 
+            });
+  
+            temaTitleValues.push(parseFloat(percentage)); 
+          }
+        });
+  
+        const temaTitleMedia = temaTitleValues.length > 0
+          ? (temaTitleValues.reduce((sum, value) => sum + value, 0) / temaTitleValues.length).toFixed(1) + "%"
+          : "0%";
+  
+        temaNode.title = temaTitleMedia;
+      });
+  
+      const capitolTitleValues = capitolNode.children.map((temaNode) => parseFloat(temaNode.title.replace("%", "")));
+  
+      const capitolTitleMedia = capitolTitleValues.length > 0
+        ? (capitolTitleValues.reduce((sum, value) => sum + value, 0) / capitolTitleValues.length).toFixed(1) + "%"
+        : "0%";
+  
       capitolNode.title = capitolTitleMedia;
     });
   
@@ -432,12 +344,16 @@ function MyResults() {
   const fetchDataAndTransform = async () => {
     try {
       const studentResults = await fetchStudentResults();
+
+      const studentProgress = await fetchStudentProgress();
   
       const transformedData = transformData(stateData.capitole);
       const transformedDataCopy = JSON.parse(JSON.stringify(transformedData));
+      const transformedDataProgress = JSON.parse(JSON.stringify(transformedData));
+      const transformedDataWithProgress = addProgress(transformedDataProgress, studentProgress);
       const transformedDataWithEvaluations = addEvaluations(transformedDataCopy, studentResults);
-  
-      setDiscipline(transformedData);
+        
+      setDiscipline(transformedDataWithProgress);
       setEvaluari(transformedDataWithEvaluations);
     } catch (error) {
       console.error(error);
@@ -454,7 +370,6 @@ function MyResults() {
     <div className='accountsettings'>
       <h1>Însușirea disciplinelor:</h1>
       <ListDisciplineRezultat selectedItem={selectedItem} setSelectedItem={setSelectedItem}/>
-      {console.log(discipline)}
       <TreeTable list={discipline}/>
       <h1 style={{ marginTop: '20px'}}>Rezultatele evaluărilor:</h1>
       <TreeTable list={evaluari}/>
