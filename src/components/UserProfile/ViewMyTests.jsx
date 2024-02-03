@@ -17,14 +17,14 @@ function ViewMyTests({ onAddTest, onEditTest }) {
   const [loading, setLoading] = useState(true);
   const [teacherTopicList, setTeacherTopicList] = useState([]);
 
-  const columns_header = ["ID", "Order",       "Title", "Type", "Complexity", "Topic",       "Edit",     "Status"];
+  const columns_header = ["ID", "Order",       "Title", "Type", "Level", "Topic",       "Edit",     "Status"];
   const columns =        ['id', 'order_number', 'title', 'type', 'name',      'topic_name',  'editLink', 'status'];
   const mapReactColumnToDBColumn = (reactColumnName) => {
     const columnMap = {
       'ID': 'id',
       'Title': 'title',
       'Type': 'type',
-      'Complexity': 'name',
+      'Level': 'name',
       'Topic': 'topic_name',   
       'Status': 'status',
     };
@@ -42,6 +42,8 @@ function ViewMyTests({ onAddTest, onEditTest }) {
   const [learningProgramList, setLearningProgramList] = useState([]);
   const [themeList, setThemeList] = useState([]);
   const [teacherList, setTeacherList] = useState([]);
+  const [topicList, setTopicList] = useState([]);
+  const [allTeacherTopicList, setAllTeacherTopicList] = useState([]);
 
   const handleSort = (column) => {
     if (column === sortColumn) {
@@ -73,7 +75,8 @@ function ViewMyTests({ onAddTest, onEditTest }) {
   const [filter, setFilter] = useState({
     learning_program_id: '',
     theme_learning_program_id: '',
-    teacher_id: '',
+    teacher_topic_id: '',
+    associatedTopicIds: [],
   })
 
   const handleInput = (e) => {
@@ -86,6 +89,15 @@ function ViewMyTests({ onAddTest, onEditTest }) {
       if (name === 'learning_program_id') {
         updatedFilter[name] = value;
         updatedFilter.theme_learning_program_id = '';
+        updatedFilter.associatedTopicIds = [];
+      } else if (name === 'theme_learning_program_id') {
+        updatedFilter[name] = value;
+
+        const associatedTopics = topicList.filter((topic) => topic.theme_learning_program_id == value);
+        const topicIds = associatedTopics.map((topic) => topic.id);
+
+        updatedFilter.associatedTopicIds = topicIds;
+        updatedFilter.teacher_topic_id = ''; 
       } else {
         updatedFilter[name] = value;
       }
@@ -108,9 +120,15 @@ function ViewMyTests({ onAddTest, onEditTest }) {
       }
     });
 
-    axios.get('http://localhost:8000/api/all-teachers').then(res=>{
+    axios.get('http://localhost:8000/api/all-teacher-topics').then(res=>{
       if(res.data.status === 200){
-        setTeacherList(res.data.teachers);
+        setAllTeacherTopicList(res.data.teacherTopics);
+      }
+    });
+
+    axios.get('http://localhost:8000/api/all-topics').then(res=>{
+      if(res.data.status === 200){
+        setTopicList(res.data.topics);
       }
     });
 
@@ -128,7 +146,8 @@ function ViewMyTests({ onAddTest, onEditTest }) {
           page: currentPage,
           filterProgram: filter.learning_program_id,
           filterTheme: filter.theme_learning_program_id,
-          filterTeacher: filter.teacher_id,
+          filterTopic: filter.teacher_topic_id,
+          paramTeacher: localStorage.getItem('auth_roleId'),
         };
         const response = await axios.get('http://localhost:8000/api/view-myTests', { params });
           if (response.data.status === 200) {
@@ -234,10 +253,13 @@ function ViewMyTests({ onAddTest, onEditTest }) {
                 </div>
                 <div className="col-md-4">
                   <div className="form-group">
-                    <select name="teacher_id" onChange={handleInput} value={filter.teacher_id} className="form-control">  
-                      <option value="">Select Teacher</option>
+                    <select name="teacher_topic_id" onChange={handleInput} value={filter.teacher_topic_id} className="form-control">  
+                      <option value="">Select Topic</option>
                       {
-                        teacherList.map((item)=> {
+                        allTeacherTopicList
+                        .filter((item) => item.teacher_id == localStorage.getItem('auth_roleId'))
+                        .filter((item) => filter.associatedTopicIds.includes(item.topic_id))
+                        .map((item)=> {
                           return (
                             <option value={item.id} key={item.id}>{item.name}</option>
                           )

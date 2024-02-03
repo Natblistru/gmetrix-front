@@ -96,10 +96,10 @@ function ViewMySubtopics({ onAddSubtopic, onEditSubtopic }) {
 
       // Actualizează state-ul cu array-ul de id-uri ale topicurilor asociate
       updatedFilter.associatedTopicIds = topicIds;
-      updatedFilter.teacher_topic_id = ''; // Resetează teacher_topic_id pentru a afișa toate topicurile asociate
+      updatedFilter.teacher_topic_id = ''; 
 
       } else {
-      updatedFilter[name] = value;
+        updatedFilter[name] = value;
       }
       return updatedFilter;
     });
