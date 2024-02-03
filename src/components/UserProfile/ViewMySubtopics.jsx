@@ -40,7 +40,8 @@ function ViewMySubtopics({ onAddSubtopic, onEditSubtopic }) {
   const [blockFilterVisible, setBlockFilterVisible] = useState(false);
   const [learningProgramList, setLearningProgramList] = useState([]);
   const [themeList, setThemeList] = useState([]);
-  const [teacherList, setTeacherList] = useState([]);
+  const [topicList, setTopicList] = useState([]);
+  const [allTeacherTopicList, setAllTeacherTopicList] = useState([]);
 
   const handleSort = (column) => {
     if (column === sortColumn) {
@@ -72,7 +73,8 @@ function ViewMySubtopics({ onAddSubtopic, onEditSubtopic }) {
   const [filter, setFilter] = useState({
     learning_program_id: '',
     theme_learning_program_id: '',
-    teacher_id: '',
+    teacher_topic_id: '',
+    associatedTopicIds: [],
   })
 
   const handleInput = (e) => {
@@ -85,10 +87,20 @@ function ViewMySubtopics({ onAddSubtopic, onEditSubtopic }) {
       if (name === 'learning_program_id') {
         updatedFilter[name] = value;
         updatedFilter.theme_learning_program_id = '';
-      } else {
+        updatedFilter.associatedTopicIds = [];
+      } else if (name === 'theme_learning_program_id') {
         updatedFilter[name] = value;
+
+      const associatedTopics = topicList.filter((topic) => topic.theme_learning_program_id == value);
+      const topicIds = associatedTopics.map((topic) => topic.id);
+
+      // Actualizează state-ul cu array-ul de id-uri ale topicurilor asociate
+      updatedFilter.associatedTopicIds = topicIds;
+      updatedFilter.teacher_topic_id = ''; // Resetează teacher_topic_id pentru a afișa toate topicurile asociate
+
+      } else {
+      updatedFilter[name] = value;
       }
-  
       return updatedFilter;
     });
   };
@@ -107,9 +119,15 @@ function ViewMySubtopics({ onAddSubtopic, onEditSubtopic }) {
       }
     });
 
-    axios.get('http://localhost:8000/api/all-teachers').then(res=>{
+    axios.get('http://localhost:8000/api/all-teacher-topics').then(res=>{
       if(res.data.status === 200){
-        setTeacherList(res.data.teachers);
+        setAllTeacherTopicList(res.data.teacherTopics);
+      }
+    });
+
+    axios.get('http://localhost:8000/api/all-topics').then(res=>{
+      if(res.data.status === 200){
+        setTopicList(res.data.topics);
       }
     });
 
@@ -127,7 +145,8 @@ function ViewMySubtopics({ onAddSubtopic, onEditSubtopic }) {
           page: currentPage,
           filterProgram: filter.learning_program_id,
           filterTheme: filter.theme_learning_program_id,
-          filterTeacher: filter.teacher_id,
+          filterTopic: filter.teacher_topic_id,
+          paramTeacher: localStorage.getItem('auth_roleId'),
         };
         const response = await axios.get('http://localhost:8000/api/view-mySubtopics', { params });
           if (response.data.status === 200) {
@@ -244,10 +263,13 @@ function ViewMySubtopics({ onAddSubtopic, onEditSubtopic }) {
                 </div>
                 <div className="col-md-4">
                   <div className="form-group">
-                    <select name="teacher_id" onChange={handleInput} value={filter.teacher_id} className="form-control">  
-                      <option value="">Select Teacher</option>
+                    <select name="teacher_topic_id" onChange={handleInput} value={filter.teacher_topic_id} className="form-control">  
+                      <option value="">Select Topic</option>
                       {
-                        teacherList.map((item)=> {
+                        allTeacherTopicList
+                        .filter((item) => item.teacher_id == localStorage.getItem('auth_roleId'))
+                        .filter((item) => filter.associatedTopicIds.includes(item.topic_id))
+                        .map((item)=> {
                           return (
                             <option value={item.id} key={item.id}>{item.name}</option>
                           )
