@@ -26,9 +26,17 @@ const DynamicTable = ({ data, columns, commonColumns, loading }) => {
     {!loading ? (
       data.map((item, index) => (
         <tr key={index}>
-          {columns.map((column) => (
-            <td key={column}>{getValue(item, column)}</td>
-          ))}
+        {columns.map((column) => {
+          const cellValue = getValue(item, column);
+
+          // Adăugare condiție pentru word-break: break-all
+          const shouldApplyWordBreak = typeof cellValue === 'string' && cellValue === 'dnd_chrono_double';
+          const cellStyle = shouldApplyWordBreak ? { wordBreak: 'break-all' } : {};
+
+          // console.log('Column:', column, 'Value:', cellValue);
+
+          return <td key={column} style={cellStyle}>{cellValue}</td>;
+        })}
         </tr>
       ))
     ) : (

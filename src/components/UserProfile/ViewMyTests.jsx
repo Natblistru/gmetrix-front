@@ -17,7 +17,7 @@ function ViewMyTests({ onAddTest, onEditTest }) {
   const [loading, setLoading] = useState(true);
   const [teacherTopicList, setTeacherTopicList] = useState([]);
 
-  const columns_header = ["ID", "Order",       "Title", "Type", "Level", "Topic",       "Edit",     "Status"];
+  const columns_header = ["ID", "№",       "Title", "Type", "Level", "Topic",       "Edit",     "Status"];
   const columns =        ['id', 'order_number', 'title', 'type', 'name',      'topic_name',  'editLink', 'status'];
   const mapReactColumnToDBColumn = (reactColumnName) => {
     const columnMap = {
