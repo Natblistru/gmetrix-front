@@ -30,7 +30,7 @@ const DynamicTable = ({ data, columns, commonColumns, loading }) => {
           const cellValue = getValue(item, column);
 
           // Adăugare condiție pentru word-break: break-all
-          const shouldApplyWordBreak = typeof cellValue === 'string' && cellValue === 'dnd_chrono_double';
+          const shouldApplyWordBreak = typeof cellValue === 'string' && cellValue.length > 12;
           const cellStyle = shouldApplyWordBreak ? { wordBreak: 'break-all' } : {};
 
           // console.log('Column:', column, 'Value:', cellValue);
