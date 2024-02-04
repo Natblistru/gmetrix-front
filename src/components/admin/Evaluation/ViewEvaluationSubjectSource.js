@@ -16,7 +16,6 @@ const PER_PAGE_OPTIONS = [5,10,20,50,100]
 function ViewEvaluationSubjectSource() {
 
   const [loading, setLoading] = useState(true);
-  const [evaluationSubjectList, setEvaluationSubjectList] = useState([]);
   const [teacherTopicList, setTeacherTopicList] = useState([]);
 
   const columns_header = ["ID", "Source", "Subject", "Order", "Edit",     "Status"];
