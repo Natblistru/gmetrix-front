@@ -146,35 +146,6 @@ function ViewEvaluationSubject() {
     fetchData();
   },[sortColumn, sortOrder, search, perPage, currentPage, filter])
 
-  let viewEvaluationSubject_HTMLTABLE = "";
-  if(loading) {
-    return <h4>Loading Evaluation Subject...</h4>
-  }
-  else
-  {
-    let evaluationSubjectStatus = '';
-    viewEvaluationSubject_HTMLTABLE = 
-    evaluationSubjectList.map((item) => {
-      if(item.status == 0) {
-        evaluationSubjectStatus = "Shown";
-      }
-      else if(item.status == 1) {
-        evaluationSubjectStatus = "Hidden";
-      }
-      return (
-        <tr key={item.id}>
-          <td>{item.id}</td>
-          <td>{item.name}</td>
-          <td>{item.evaluation.name}</td>
-          <td>
-            <Link to={`/admin/edit-evaluation-subject/${item.id}`} className="btnBts btn-success btn-small">Edit</Link>
-          </td>
-          <td>{evaluationSubjectStatus}</td>
-        </tr>
-      )
-    })
-  }
-
   const commonColumns = {
     'editLink': (item) => (
       <Link to={`/admin/edit-evaluation-subject/${item.id}`} className="btnBts btn-success btn-small">
