@@ -239,7 +239,7 @@ function ViewEvaluation() {
         <div className="rowBts m-2">
           <div className="col-md-12">
             <div className="card-body">
-              <table className={`table table-primary table-bordered table-responsive table-striped ${teacherTopicList.length == 0 ? 'table-fixed' : ''}`}>
+              <table className={`table table-primary table-bordered table-responsive table-striped ${teacherTopicList.length == 0 ? 'table-fixed' : ''}` } style={{ width: '100%'}}>
                 <TableHeader
                   columns={columns_header}
                   handleSort={handleSort}
