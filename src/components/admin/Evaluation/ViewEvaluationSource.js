@@ -16,7 +16,6 @@ const PER_PAGE_OPTIONS = [5,10,20,50,100]
 function ViewEvaluationSource() {
 
   const [loading, setLoading] = useState(true);
-  const [evaluationSourceList, setEvaluationSourceList] = useState([]);
   const [teacherTopicList, setTeacherTopicList] = useState([]);
 
   const columns_header = ["ID", "Name", "Theme", "Edit",     "Status"];
@@ -39,7 +38,7 @@ function ViewEvaluationSource() {
   const [pagination, setPagination] = useState({})
   const [currentPage, setCurrentPage] = useState(1)
   const [blockFilterVisible, setBlockFilterVisible] = useState(false);
-  const [learningProgramList, setLearningProgramList] = useState([]);
+  const [subjectLevelList, setSubjectLevelList] = useState([]);
   const [themeList, setThemeList] = useState([]);
   const [chapterList, setChapterList] = useState([]);
 
@@ -71,7 +70,6 @@ function ViewEvaluationSource() {
   };
 
   const [filter, setFilter] = useState({
-    learning_program_id: '',
     subject_study_level_id: '',
     chapter_id: '',
     theme_id: '',
@@ -84,10 +82,8 @@ function ViewEvaluationSource() {
     setFilter((prevFilter) => {
       const updatedFilter = { ...prevFilter };
   
-      if (name === 'learning_program_id') {
+      if (name === 'subject_study_level_id') {
         updatedFilter[name] = value;
-
-        updatedFilter.subject_study_level_id = learningProgramList.find((subject) => subject.id == value).subject_study_level_id;
 
         updatedFilter.chapter_id = '';
         updatedFilter.theme_id = '';
@@ -104,9 +100,9 @@ function ViewEvaluationSource() {
 
   useEffect(() => {
 
-    axios.get('http://localhost:8000/api/all-learningPrograms').then(res=>{
+    axios.get('http://localhost:8000/api/all-subject-study-level').then(res=>{
       if(res.data.status === 200){
-        setLearningProgramList(res.data.learningProgram);
+        setSubjectLevelList(res.data.subject);
       }
     });
 
@@ -122,7 +118,6 @@ function ViewEvaluationSource() {
       }
     });
 
-
   },[])
 
   useEffect(()=>{
@@ -135,7 +130,7 @@ function ViewEvaluationSource() {
           sortOrder: sortOrder,
           perPage: perPage,
           page: currentPage,
-          filterProgram: filter.learning_program_id,
+          filterProgram: filter.subject_study_level_id,
           filterTheme: filter.theme_id,
           filterChapter: filter.chapter_id,
         };
@@ -206,10 +201,10 @@ function ViewEvaluationSource() {
           <div className="rowBts mx-4 mt-2">
             <div className="col-md-3">
                 <div className="form-group">
-                  <select name="learning_program_id" onChange={handleInput} value={filter.learning_program_id} className="form-control">  
+                  <select name="subject_study_level_id" onChange={handleInput} value={filter.subject_study_level_id} className="form-control">  
                     <option value="">Select program</option>
                     {
-                      learningProgramList.map((item)=> {
+                      subjectLevelList.map((item)=> {
                         return (
                           <option value={item.id} key={item.id}>{item.name}</option>
                         )
