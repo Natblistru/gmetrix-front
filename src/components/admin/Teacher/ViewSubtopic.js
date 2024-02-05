@@ -233,10 +233,8 @@ function ViewSubtopic() {
   return (
     <div className="containerBts px-4">
       <div className="cardBts mt-4">
-
-        <div className="card-header">
-          <h4>Subtopic List
-          </h4>
+        <div className="card-title m-3">
+          <h2>Subtopic List</h2>
         </div>
 
         <div className="rowBts mx-4 mt-2">
