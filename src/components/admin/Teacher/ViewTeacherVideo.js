@@ -15,7 +15,6 @@ const PER_PAGE_OPTIONS = [5,10,20,50,100]
 function ViewTeacherTopic() {
 
   const [loading, setLoading] = useState(true);
-  const [teacherVideoList, setTeacherVideoList] = useState([]);
   const [teacherTopicList, setTeacherTopicList] = useState([]);
 
   const columns_header = ["ID", "Title", "Source", "Edit",     "Status"];
