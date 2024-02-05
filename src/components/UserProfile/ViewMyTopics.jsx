@@ -40,7 +40,9 @@ function ViewMyTopics({ onAddTopic, onEditTopic }) {
   const [blockFilterVisible, setBlockFilterVisible] = useState(false);
   const [learningProgramList, setLearningProgramList] = useState([]);
   const [themeList, setThemeList] = useState([]);
+  const [themeProgramList, setThemeProgramList] = useState([]);
   const [chapterList, setChapterList] = useState([]);
+  const [themeIds, setThemeIds] = useState([])
 
   const handleSort = (column) => {
     if (column === sortColumn) {
@@ -90,6 +92,16 @@ function ViewMyTopics({ onAddTopic, onEditTopic }) {
         updatedFilter.subject_study_level_id = selectedLearningProgram?.subject_study_level_id || ''; 
         console.log(selectedLearningProgram)
         console.log(selectedLearningProgram?.subject_study_level_id)
+      } else if (name === 'chapter_id') {
+        updatedFilter[name] = value;
+  
+        const themeIds = themeList
+          .filter((theme) => theme.chapter_id == value)
+          .map((theme) => theme.id);
+  
+        setThemeIds(themeIds);
+  
+        updatedFilter.theme_learning_program_id = '';
       } else {
         updatedFilter[name] = value;
       }
@@ -108,7 +120,13 @@ function ViewMyTopics({ onAddTopic, onEditTopic }) {
 
     axios.get('http://localhost:8000/api/all-themeLearningPrograms').then(res=>{
       if(res.data.status === 200){
-        setThemeList(res.data.theme);
+        setThemeProgramList(res.data.theme);
+      }
+    });
+
+    axios.get('http://localhost:8000/api/all-themes').then(res=>{
+      if(res.data.status === 200){
+        setThemeList(res.data.themes);
       }
     });
 
@@ -121,7 +139,7 @@ function ViewMyTopics({ onAddTopic, onEditTopic }) {
   },[])
 
   useEffect(()=>{
-    console.log(localStorage.getItem('auth_roleId'))
+    // console.log(localStorage.getItem('auth_roleId'))
     const fetchData = async () => {
       try {
         const params = {
@@ -244,13 +262,13 @@ function ViewMyTopics({ onAddTopic, onEditTopic }) {
                   <div className="form-group">
                     <select name="theme_learning_program_id" onChange={handleInput} value={filter.theme_learning_program_id} className="form-control">  
                       <option value="">Select Theme</option>
-                      {themeList
-                        .filter((item) => item.learning_program_id == filter.learning_program_id)
-                        .map((item) => (
-                          <option value={item.id} key={item.id}>
-                            {item.name}
-                          </option>
-                      ))}
+                      {themeProgramList
+                      .filter((item) => themeIds.includes(item.theme_id))
+                      .map((item) => (
+                        <option value={item.id} key={item.id}>
+                          {item.name}
+                        </option>
+                    ))}
                     </select>            
                   </div>
                 </div>
