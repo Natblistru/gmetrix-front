@@ -16,7 +16,6 @@ const PER_PAGE_OPTIONS = [5,10,20,50,100]
 function ViewEvaluationAnswer() {
 
   const [loading, setLoading] = useState(true);
-  const [evaluationItemList, setEvaluationItemList] = useState([]);
   const [teacherTopicList, setTeacherTopicList] = useState([]);
 
   const columns_header = ["ID", "Order",       "Task", "Max Points","Evaluation Item","Evaluation Subject","Theme",  "Edit",     "Status"];
