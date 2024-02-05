@@ -212,16 +212,6 @@ function ViewFlipCard() {
         Edit
       </Link>
     ),
-    'audio_path': (item) => (item.audio_path && (
-      item.audio_path.startsWith('uploads/audioSubtopic/') ? (
-        <audio controls style={{ width: '100%', maxWidth: '200px' }}>
-          <source src={`http://localhost:8000/${item.audio_path}`} type="audio/mp3" />
-          Your browser does not support the audio element.
-        </audio>
-      ) : (
-        <span>{item.audio_path}</span>
-      )
-    )),
     'status': (item) => (item.status === 0 ? 'Shown' : 'Hidden'),
   };
   
