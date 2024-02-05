@@ -46,7 +46,6 @@ function ViewEvaluationAnswerOption() {
   const [themeList, setThemeList] = useState([]);
   const [chapterList, setChapterList] = useState([]);
   const [evaluationsItemList, setEvaluationsItemList] = useState([]);
-  const [evaluationSubjectList, setEvaluationSubjectList] = useState([]);
 
   const handleSort = (column) => {
     if (column === sortColumn) {
