@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import ContextData from "../components/context/ContextData";
 
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
@@ -6,6 +7,7 @@ import pdfFonts from 'pdfmake/build/vfs_fonts';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 const PdfDownloadButton = ({ generateText }) => {
+  const {stateData} = React.useContext(ContextData)
   useEffect(() => {
     // console.log(generateText());
   }, [generateText]);
@@ -15,7 +17,7 @@ const PdfDownloadButton = ({ generateText }) => {
       content: generateText(),
     };
 
-    pdfMake.createPdf(docDefinition).download('document.pdf');
+    pdfMake.createPdf(docDefinition).download(`${stateData.currentTheme.tema_name}.pdf`);
   };
 
   return (
