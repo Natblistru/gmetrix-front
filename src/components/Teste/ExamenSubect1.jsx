@@ -45,13 +45,23 @@ const ExamenSubect1 = ({ raspunsuri }) => {
   let quizArray = stateData.evaluations1;
   useEffect(() => {
     if (stateData.currentTheme) {
-    const theme = stateData.currentTheme.tema_id
-    const subject_id = stateData.currentSubject.subject_id;
-    const level_id = 1;
-  
-    fetchEvaluation1(theme, subject_id, level_id, dispatchData);
-    // quizArray = stateData.evaluations1;
+      const theme = stateData.currentTheme.tema_id
+      const subject_id = stateData.currentSubject.subject_id;
+      const level_id = 1;
+    
+      fetchEvaluation1(theme, subject_id, level_id, dispatchData);
+      // quizArray = stateData.evaluations1;
     }
+
+
+    const handleBeforeUnload = (event) => {
+      event.preventDefault();
+      event.returnValue = ''; 
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    return () => window.removeEventListener("beforeunload", handleBeforeUnload);
+
   }, []);
 
   useEffect(()=>{

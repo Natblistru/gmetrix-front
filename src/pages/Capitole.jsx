@@ -85,6 +85,15 @@ const Capitole = (props) => {
         fetchCurrentData();
       }, [stateData.capitole, id, name, nivel, clasa, dispatchData]);
       
+      useEffect(() => {
+        const handleBeforeUnload = (event) => {
+          event.preventDefault();
+          event.returnValue = ''; 
+        };
+    
+        window.addEventListener("beforeunload", handleBeforeUnload);
+        return () => window.removeEventListener("beforeunload", handleBeforeUnload);
+      }, []);
     
     return (
         <>

@@ -106,6 +106,16 @@ const fetchEvaluations = async (theme) => {
       setProc(updatedThemaProgress);
   };
 
+  useEffect(() => {
+    const handleBeforeUnload = (event) => {
+      event.preventDefault();
+      event.returnValue = ''; 
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    return () => window.removeEventListener("beforeunload", handleBeforeUnload);
+  }, []);
+
   return (
     <>
       <Navbar />

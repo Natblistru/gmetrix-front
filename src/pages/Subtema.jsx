@@ -13,47 +13,55 @@ import ListSubAccordeon from "../components/Accordeon/ListSubAccordeon";
 import StateData from "../components/context/StateData";
 
 const Subtema = ({results})  => {
-  const {stateData, dispatchData} = React.useContext(ContextData)
+  const { stateData, dispatchData } = React.useContext(ContextData);
   const { address1, disciplina } = useParams();
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const teacherVideo = searchParams.get('teacher');
-
   const [item, setItem] = useState(null);
   const [topic, setTopic] = useState(null);
   const history = useHistory();
   let subElement = null;
 
-  const temaCurrenta = stateData.topics;
-  const parts = stateData.currentTheme.path_tema.split("/");
-  const subject_id = stateData.currentSubject.subject_id;
-  const tema_id = stateData.currentTheme.tema_id;
-   
   useEffect(() => {
-    // console.log(stateData.topics)
-    const addressToFind = "/"+address1;
-    const mainElement = temaCurrenta?.find(element => element.path === addressToFind);
-// console.log(temaCurrenta)
-// console.log(mainElement)
-// console.log(address1)
-    if(mainElement) {
-      dispatchData({
-        type: "UPDATE_CURRENT_TOPIC",
-        payload: mainElement
-      });
+    const temaCurrenta = stateData.topics;
+    const parts = stateData.currentTheme?.path_tema.split("/");
+    const subject_id = stateData.currentSubject?.subject_id;
+    const tema_id = stateData.currentTheme?.tema_id;
 
-      const addressDisciplina = "/" + parts[1];
-      const addressSubtitle = "/" + parts.slice(2).join("/");
+    if (temaCurrenta && subject_id && tema_id) {
+      const addressToFind = "/" + address1;
+      const mainElement = temaCurrenta.find(element => element.path === addressToFind);
 
-      const addressPath = `/${disciplina}${addressSubtitle}${mainElement.path}?teacher=${teacherVideo}&level=1&disciplina=${subject_id}&theme=${tema_id}`;
-      const newBreadcrumb = {name: mainElement.name, path: addressPath};
-      dispatchData({
-        type: "UPDATE_SUBTOPIC_BREADCRUMB",
-        payload: newBreadcrumb
-      });
-      setTopic(mainElement);
+      if (mainElement) {
+        dispatchData({
+          type: "UPDATE_CURRENT_TOPIC",
+          payload: mainElement
+        });
+
+        const addressDisciplina = "/" + parts[1];
+        const addressSubtitle = "/" + parts.slice(2).join("/");
+
+        const addressPath = `/${disciplina}${addressSubtitle}${mainElement.path}?teacher=${teacherVideo}&level=1&disciplina=${subject_id}&theme=${tema_id}`;
+        const newBreadcrumb = { name: mainElement.name, path: addressPath };
+        dispatchData({
+          type: "UPDATE_SUBTOPIC_BREADCRUMB",
+          payload: newBreadcrumb
+        });
+        setTopic(mainElement);
+      }
     }
-  }, []);
+
+    const handleBeforeUnload = (event) => {
+      event.preventDefault();
+      event.returnValue = '';
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    return () => window.removeEventListener("beforeunload", handleBeforeUnload);
+
+  }, [stateData, address1, disciplina, teacherVideo, dispatchData]);
+
 
   const handleProgressTopicRecorded = (updatedTopicProgress) => {
     if (topic !== null) {

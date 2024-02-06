@@ -39,35 +39,46 @@ useEffect(() => {
   // console.log(stateData.currentTopic)
   // console.log(stateData.currentTheme)  
   // console.log(stateData.currentTests)
-  const teacher = 1
-  const theme = stateData.currentTheme.tema_id
-  const subject_id = stateData.currentSubject.subject_id;
-  const level_id = 1;
+  if(stateData.currentTheme) {
+    const teacher = 1
+    const theme = stateData.currentTheme?.tema_id
+    const subject_id = stateData.currentSubject.subject_id;
+    const level_id = 1;
 
-  fetchTheme(teacher, theme, subject_id, level_id, dispatchData);
+    fetchTheme(teacher, theme, subject_id, level_id, dispatchData);
+  }
+
+  const handleBeforeUnload = (event) => {
+    event.preventDefault();
+    event.returnValue = ''; 
+  };
+
+  window.addEventListener("beforeunload", handleBeforeUnload);
+  return () => window.removeEventListener("beforeunload", handleBeforeUnload);
+
 }, []);
 
 
   useEffect(() => {
     const pathCautat = "/" + addressTest;
-
-    const indexElementCautat = stateData.currentTopic.tests.findIndex(element => element.addressTest === pathCautat);
-    // console.log(stateData.currentTopic)
-    setCurrentTestIndex(indexElementCautat);
-    setCurrentList1(stateData.currentTopic.tests[indexElementCautat]);
-    if(loading) {
-      // setProc(stateData.currentTopic.tests[indexElementCautat].testResult*100/stateData.currentTopic.tests[indexElementCautat].complexityNumber);
-      setProc(stateData.currentTopic.tests[indexElementCautat].testResult*100);      
-      // console.log(stateData.currentTopic.tests[indexElementCautat])
+    if(stateData.currentTopic) {
+      const indexElementCautat = stateData.currentTopic.tests.findIndex(element => element.addressTest === pathCautat);
+      // console.log(stateData.currentTopic)
+      setCurrentTestIndex(indexElementCautat);
+      setCurrentList1(stateData.currentTopic.tests[indexElementCautat]);
+      if(loading) {
+        // setProc(stateData.currentTopic.tests[indexElementCautat].testResult*100/stateData.currentTopic.tests[indexElementCautat].complexityNumber);
+        setProc(stateData.currentTopic.tests[indexElementCautat].testResult*100);      
+        // console.log(stateData.currentTopic.tests[indexElementCautat])
+        setLoading(false)
+      }
       setLoading(false)
+      setCurrentItemIndex(0)
+      dispatchData({
+        type: "FETCH_CURRENT_INDEX_TEST",
+        payload: indexElementCautat
+      })
     }
-    setLoading(false)
-    setCurrentItemIndex(0)
-    dispatchData({
-      type: "FETCH_CURRENT_INDEX_TEST",
-      payload: indexElementCautat
-    })
-
   }, [addressTest]);
 
 
@@ -221,13 +232,15 @@ useEffect(() => {
   };
 
   useEffect(() => {
-    const teacher = 1
-    const theme = stateData.currentTheme.tema_id
-    const subject_id = stateData.currentSubject.subject_id;
-    const level_id = 1;
+    if(stateData.currentTheme) {
+      const teacher = 1
+      const theme = stateData.currentTheme?.tema_id
+      const subject_id = stateData.currentSubject.subject_id;
+      const level_id = 1;
 
-    fetchTheme(teacher, theme, subject_id, level_id, dispatchData);
-    console.log('Valoarea lui proc a fost actualizată:', proc);
+      fetchTheme(teacher, theme, subject_id, level_id, dispatchData);
+      console.log('Valoarea lui proc a fost actualizată:', proc);
+    }
   }, [proc]);
 
   // console.log("stateData.currentTheme",stateData.currentTheme.tema_id)
