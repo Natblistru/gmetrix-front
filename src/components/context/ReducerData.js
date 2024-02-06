@@ -54,14 +54,17 @@ const ReducerData = (state, action) => {
         breadcrumb: action.payload
       };
     case "UPDATE_SUBJECT_BREADCRUMB":
+      console.log(state.breadcrumb)
       if (state.breadcrumb.length === 1) {
         return {
           ...state,
           breadcrumb: [...state.breadcrumb, action.payload]
         }; 
       }
-      else if (state.breadcrumb.length === 2) {
+      else if (state.breadcrumb.length > 1) {
         const updatedBreadcrumb = [...state.breadcrumb];
+        console.log(updatedBreadcrumb)
+        console.log(action.payload)
         updatedBreadcrumb[1] = action.payload;
         return {
           ...state,
@@ -75,7 +78,7 @@ const ReducerData = (state, action) => {
             breadcrumb: [...state.breadcrumb, action.payload]
           }; 
         }
-        else if (state.breadcrumb.length === 3) {
+        else if (state.breadcrumb.length > 2) {
           const updatedBreadcrumb = [...state.breadcrumb];
           updatedBreadcrumb[2] = action.payload;
           return {
@@ -90,7 +93,7 @@ const ReducerData = (state, action) => {
           breadcrumb: [...state.breadcrumb, action.payload]
         }; 
       }
-      else if (state.breadcrumb.length === 4) {
+      else if (state.breadcrumb.length > 3) {
         const updatedBreadcrumb = [...state.breadcrumb];
         updatedBreadcrumb[3] = action.payload;
         return {

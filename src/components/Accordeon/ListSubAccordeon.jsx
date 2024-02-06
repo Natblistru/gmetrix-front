@@ -45,7 +45,7 @@ let transformedArrayImages = arraySubtitles[currentSubject].images.map(function(
 
 useEffect(()=>{
   fetchTest();
-  fetchSummativeTest();
+  // fetchSummativeTest();
 },[])
 
 const fetchTest = async () => {

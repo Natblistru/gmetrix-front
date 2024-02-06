@@ -16,6 +16,7 @@ const SearchComponent = () => {
   const [topics, setTopics] = useState([]);
   const [subjectList, setSubjectList] = useState([]);
   const [details, setDetails] = useState(null);
+  const [themePath, setThemePath] = useState(""); 
 
   const [errorList, setErrors] = useState([]);
   const [itemInput, setItemInput] = useState({
@@ -27,16 +28,9 @@ const SearchComponent = () => {
     setItemInput({...itemInput, [e.target.name]: e.target.value})
   }
 
-  useEffect(() => {
-    fetchSubjects();
-  }, []);
-
-  useEffect(() => {
-    // console.log(details)
-    if(details){
-      fetchCapitole()
-    }
-  }, [details]);
+  useEffect(()=>{
+    setSubjectList(stateData.disciplineAni)
+  }, [stateData.disciplineAni])
 
   useEffect(() => {
     if (itemInput.subject_study_level_id > 0) {
@@ -67,21 +61,6 @@ const SearchComponent = () => {
     }
   };
 
-  const fetchSubjects = async () => {
-    try {
-      const response = await axios.get('http://localhost:8000/api/all-subject-study-level');
-      const { status, tags } = response.data;
-
-      if (status === 200) {
-        setSubjectList(response.data.subject);
-      } else {
-        console.error('Eroare la încărcarea tag-urilor. Status:', status);
-      }
-    } catch (error) {
-      console.error('Eroare la încărcarea tag-urilor:', error);
-    }
-  };
-
   const fetchCapitole = async () => {
     // console.log(details)
     // console.log(stateData.disciplineAni)
@@ -99,7 +78,8 @@ const SearchComponent = () => {
           const nivelStudiu = details.studyLevelId==1?"examen clasa 9":"BAC";
           const clasa = details.studyLevelId==1?"clasa 9":"clasa 12";
           const newBreadcrumb = {name: `${res.data[0].subject_name}`, path: `/capitole/${details.subjectId}?level=${details.studyLevelId}&year=2022&name=${details.subjectName}&nivel=${nivelStudiu}&clasa=${clasa}`};
-          // console.log(newBreadcrumb)
+          console.log(newBreadcrumb)
+          console.log(details)          
           dispatchData({
             type: "UPDATE_SUBJECT_BREADCRUMB",
             payload: newBreadcrumb
@@ -110,41 +90,50 @@ const SearchComponent = () => {
     }
   } 
 
-  const closeModalFromLink = async (theme_path) => {
-    // console.log(theme_path)
+  const closeModalFromLink = async (themePath = null) => {
+    if (themePath !== null) {
+      setThemePath(themePath);
+    }
+  
+    await fetchCapitole();
+  
     const tema = stateData.capitole.reduce(
-      (result, item) => result || (item.subtitles || []).find(subtitle => subtitle.path_tema === theme_path),
+      (result, item) => result || (item.subtitles || []).find(subtitle => subtitle.path_tema === themePath),
       null
     );
-    // console.log(tema)
-    if (tema!=null) {
+  
+    if (tema != null) {
       dispatchData({
         type: "UPDATE_CURRENT_THEME",
         payload: tema
-      })
+      });
+  
+      const addressPath = `${themePath}?teacher=1&level=${details.studyLevelId}&disciplina=${details.subjectId}&theme=${tema.tema_id}&teachername=userT1%20teacher`;
+      const newBreadcrumb = { name: tema.tema_name, path: addressPath };
+      dispatchData({
+        type: "UPDATE_TOPIC_BREADCRUMB",
+        payload: newBreadcrumb
+      });
+  
+      const teacher = 1;
+      const theme = tema.tema_id;
+      const level_id = details.studyLevelId;
+      const subject_id = details.subjectId;
+      await new Promise(async (resolve) => {
+        await fetchTheme(teacher, theme, subject_id, level_id, dispatchData);
+        resolve();
+      });
     }
-    const addressPath = `${theme_path}?teacher=1&level=${details.studyLevelId}&disciplina=${details.subjectId}&theme=${tema.tema_id}&teachername=userT1%20teacher`;
-    const newBreadcrumb = {name: tema.tema_name, path: addressPath};
-    // console.log(newBreadcrumb)
-    dispatchData({
-      type: "UPDATE_TOPIC_BREADCRUMB",
-      payload: newBreadcrumb
-    });
-    const teacher = 1;
-    const theme = tema.tema_id;
-    const level_id= details.studyLevelId;
-    const subject_id = details.subjectId;
-    await new Promise(async (resolve) => {
-      await fetchTheme(teacher, theme, subject_id, level_id, dispatchData);
-      resolve();
-    });
+  
     closeModal();
-  }
+  };
 
   const handleLinkClick = async (result) => {
     try {
+      await fetchCapitole();
+  
       await closeModalFromLink(result.topic.theme_learning_program.theme.path);
-
+  
       const linkTo = `${result.topic.theme_learning_program.theme.path}${result.topic.path}?teacher=1&theme=${result.topic.theme_learning_program.theme.id}&level=${details.studyLevelId}&disciplina=${details.subjectId}&teachername=userT1%20teacher`;
       history.push(linkTo);
     } catch (error) {
