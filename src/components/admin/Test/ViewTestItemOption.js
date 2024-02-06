@@ -18,7 +18,7 @@ function ViewTestItemOption() {
   const [teacherTopicList, setTeacherTopicList] = useState([]);
 
   const columns_header = ["ID", "Option", "Correct", "Task", "Type", "Topic", "Edit",     "Status"];
-  const columns =        ['id', 'option', 'correct', 'task', 'type', 'name', 'editLink', 'status'];
+  const columns =        ['id', 'option', 'correct', 'task', 'type', 'topic_name', 'editLink', 'status'];
   const mapReactColumnToDBColumn = (reactColumnName) => {
     const columnMap = {
       'ID': 'id',
@@ -26,7 +26,7 @@ function ViewTestItemOption() {
       'Correct': 'correct',
       'Task': 'task',
       'Type': 'type',
-      'Topic': 'name',
+      'Topic': 'topic_name',
       'Status': 'status',
     };
   
@@ -42,7 +42,13 @@ function ViewTestItemOption() {
   const [blockFilterVisible, setBlockFilterVisible] = useState(false);
   const [learningProgramList, setLearningProgramList] = useState([]);
   const [themeList, setThemeList] = useState([]);
+  const [chapterList, setChapterList] = useState([]);
+  const [themeProgramList, setThemeProgramList] = useState([]);
+  const [topicList, setTopicList] = useState([]);
+  const [testItemList, setTestItemList] = useState([]);
+  const [allTeacherTopicList, setAllTeacherTopicList] = useState([]);
   const [teacherList, setTeacherList] = useState([]);
+  const [themeIds, setThemeIds] = useState([])
 
   const handleSort = (column) => {
     if (column === sortColumn) {
@@ -73,8 +79,13 @@ function ViewTestItemOption() {
 
   const [filter, setFilter] = useState({
     learning_program_id: '',
+    chapter_id: '',
     theme_learning_program_id: '',
+    teacher_topic_id: '',
     teacher_id: '',
+    associatedTopicIds: [],
+    subject_study_level_id: '',
+    test_item_id: '',
   })
 
   const handleInput = (e) => {
@@ -87,10 +98,42 @@ function ViewTestItemOption() {
       if (name === 'learning_program_id') {
         updatedFilter[name] = value;
         updatedFilter.theme_learning_program_id = '';
+        updatedFilter.chapter_id = '';
+        updatedFilter.teacher_topic_id = '';
+        // updatedFilter.teacher_id = '';
+        updatedFilter.associatedTopicIds = [];
+        const selectedLearningProgram = getLearningProgramById(value);
+        updatedFilter.subject_study_level_id = selectedLearningProgram?.subject_study_level_id || ''; 
+
+      } else if (name === 'theme_learning_program_id') {
+        updatedFilter[name] = value;
+
+      const associatedTopics = topicList.filter((topic) => topic.theme_learning_program_id == value);
+      const topicIds = associatedTopics.map((topic) => topic.id);
+
+      // Actualizează state-ul cu array-ul de id-uri ale topicurilor asociate
+      updatedFilter.associatedTopicIds = topicIds;
+      updatedFilter.teacher_topic_id = ''; 
+      // updatedFilter.teacher_id = '';
+    } else if (name === 'chapter_id') {
+      updatedFilter[name] = value;
+
+      const themeIds = themeList
+        .filter((theme) => theme.chapter_id == value)
+        .map((theme) => theme.id);
+
+      setThemeIds(themeIds);
+
+      updatedFilter.theme_learning_program_id = '';
+      updatedFilter.teacher_topic_id = '';
+      // updatedFilter.teacher_id = '';
+    } else if (name === 'teacher_topic_id') {
+      updatedFilter[name] = value;
+
+      updatedFilter.test_item_id = '';
       } else {
         updatedFilter[name] = value;
       }
-  
       return updatedFilter;
     });
   };
@@ -105,13 +148,43 @@ function ViewTestItemOption() {
 
     axios.get('http://localhost:8000/api/all-themeLearningPrograms').then(res=>{
       if(res.data.status === 200){
-        setThemeList(res.data.theme);
+        setThemeProgramList(res.data.theme);
+      }
+    });
+
+    axios.get('http://localhost:8000/api/all-themes').then(res=>{
+      if(res.data.status === 200){
+        setThemeList(res.data.themes);
+      }
+    });
+
+    axios.get('http://localhost:8000/api/all-chapters').then(res=>{
+      if(res.data.status === 200){
+        setChapterList(res.data.chapters);
+      }
+    });
+
+    axios.get('http://localhost:8000/api/all-teacher-topics').then(res=>{
+      if(res.data.status === 200){
+        setAllTeacherTopicList(res.data.teacherTopics);
+      }
+    });
+
+    axios.get('http://localhost:8000/api/all-topics').then(res=>{
+      if(res.data.status === 200){
+        setTopicList(res.data.topics);
       }
     });
 
     axios.get('http://localhost:8000/api/all-teachers').then(res=>{
       if(res.data.status === 200){
         setTeacherList(res.data.teachers);
+      }
+    });
+
+    axios.get('http://localhost:8000/api/all-test-items').then(res=>{
+      if(res.data.status === 200){
+        setTestItemList(res.data.testItems);
       }
     });
 
@@ -129,7 +202,10 @@ function ViewTestItemOption() {
           page: currentPage,
           filterProgram: filter.learning_program_id,
           filterTheme: filter.theme_learning_program_id,
+          filterChapter: filter.chapter_id,
+          filterTopic: filter.teacher_topic_id,
           filterTeacher: filter.teacher_id,
+          filterTestItem: filter.test_item_id,
         };
         const response = await axios.get('http://localhost:8000/api/view-test-item-option', { params });
           if (response.data.status === 200) {
@@ -154,6 +230,10 @@ function ViewTestItemOption() {
       </Link>
     ),
     'status': (item) => (item.status === 0 ? 'Shown' : 'Hidden'),
+  };
+
+  const getLearningProgramById = (learningProgramId) => {
+    return learningProgramList.find((program) => program.id == learningProgramId);
   };
 
   return (
@@ -195,33 +275,35 @@ function ViewTestItemOption() {
         <Link to="/admin/add-test-item-option" className="btnBts btn-primary text-white float-end">Add Test Item Options</Link>
         </div>
       </div>
-        {blockFilterVisible && 
-          <div className="rowBts mx-4 mt-2">
-            <div className="col-md-4">
+      {blockFilterVisible && 
+            <div className="rowBts mx-4 mt-2">
+              <div className="col-md-4">
+                  <div className="form-group">
+                    <select name="learning_program_id" onChange={handleInput} value={filter.learning_program_id} className="form-control">  
+                      <option value="">Select program</option>
+                      {
+                        learningProgramList.map((item)=> {
+                          return (
+                            <option value={item.id} key={item.id}>{item.name}</option>
+                          )
+                        })
+                      }
+                    </select>            
+                  </div>
+              </div>
+              <div className="col-md-8">
                 <div className="form-group">
-                  <select name="learning_program_id" onChange={handleInput} value={filter.learning_program_id} className="form-control">  
-                    <option value="">Select program</option>
+                  <select name="chapter_id" onChange={handleInput} value={filter.chapter_id} className="form-control">  
+                    <option value="">Select Chapter</option>
                     {
-                      learningProgramList.map((item)=> {
+                      chapterList
+                      .filter((item) => item.subject_study_level_id == filter.subject_study_level_id)
+                      .map((item)=> {
                         return (
                           <option value={item.id} key={item.id}>{item.name}</option>
                         )
                       })
                     }
-                  </select>            
-                </div>
-            </div>
-            <div className="col-md-4">          
-                <div className="form-group">
-                  <select name="theme_learning_program_id" onChange={handleInput} value={filter.theme_learning_program_id} className="form-control">  
-                    <option value="">Select Theme</option>
-                    {themeList
-                      .filter((item) => item.learning_program_id == filter.learning_program_id)
-                      .map((item) => (
-                        <option value={item.id} key={item.id}>
-                          {item.name}
-                        </option>
-                    ))}
                   </select>            
                 </div>
               </div>
@@ -239,9 +321,56 @@ function ViewTestItemOption() {
                   </select>            
                 </div>
               </div> 
+              <div className="col-md-8">          
+                  <div className="form-group">
+                    <select name="theme_learning_program_id" onChange={handleInput} value={filter.theme_learning_program_id} className="form-control">  
+                      <option value="">Select Theme</option>
+                      {themeProgramList
+                        .filter((item) => themeIds.includes(item.theme_id))
+                        .map((item) => (
+                          <option value={item.id} key={item.id}>
+                            {item.name}
+                          </option>
+                      ))}
+                    </select>            
+                  </div>
+                </div>
+                <div className="col-md-6">
+                  <div className="form-group">
+                    <select name="teacher_topic_id" onChange={handleInput} value={filter.teacher_topic_id} className="form-control">  
+                      <option value="">Select Topic</option>
+                      {
+                        allTeacherTopicList
+                        .filter((item) => item.teacher_id == filter.teacher_id)
+                        .filter((item) => filter.associatedTopicIds.includes(item.topic_id))
+                        .map((item)=> {
+                          return (
+                            <option value={item.id} key={item.id}>{item.name}</option>
+                          )
+                        })
+                      }
+                    </select>            
+                  </div>
+                </div> 
+                <div className="col-md-6">
+                <div className="form-group">
+                  <select name="test_item_id" onChange={handleInput} value={filter.test_item_id} className="form-control">  
+                    <option>Select Test Item</option>
+                    {
+                      testItemList
+                      .filter((item) => item.teacher_topic_id == filter.teacher_topic_id)
+                      .map((item)=> {
+                        return (
+                          <option value={item.id} key={item.id}>{item.task} ({item.type})</option>
+                        )
+                      })
+                    }
+                  </select>            
+                </div>
+              </div>
 
-          </div>
-        }
+            </div>
+          }
         <div className="rowBts m-2">
           <div className="col-md-12">
             <div className="card-body">
