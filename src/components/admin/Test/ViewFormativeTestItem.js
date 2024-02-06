@@ -211,7 +211,7 @@ function ViewFormativeTestItem() {
 
   const commonColumns = {
     'editLink': (item) => (
-      <Link to={`/admin/edit-test-item/${item.id}`} className="btnBts btn-success btn-small">
+      <Link to={`/admin/edit-formative-test-item/${item.id}`} className="btnBts btn-success btn-small">
         Edit
       </Link>
     ),
@@ -260,7 +260,7 @@ function ViewFormativeTestItem() {
           <div className="col-md-4">
 
             <h4>
-              <Link to="/admin/add-test-item" className="btnBts btn-primary text-white btn-sm float-end">Add Formative Test Items</Link>
+              <Link to="/admin/add-formative-test-item" className="btnBts btn-primary text-white btn-sm float-end">Add Formative Test Items</Link>
             </h4>
           </div>
         </div>
