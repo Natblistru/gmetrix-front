@@ -13,7 +13,7 @@ function FlipCardNou(props) {
   if (!clicked) flippedCSS =  "";
 
   const contentHTML = props.dangerousHTML; 
-  console.log('Content HTML:', contentHTML);
+  // console.log('Content HTML:', contentHTML);
   return (
     <div className="Card" onClick={flip}>
       <div className={'Card-Front' + flippedCSS}>

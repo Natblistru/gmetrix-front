@@ -42,7 +42,7 @@ const ReducerData = (state, action) => {
       }
     case 'ADD_BREADCRUMB':
       const exists = state.breadcrumb.some(item => (
-        item.name === action.payload.name && item.path === action.payload.path
+        item && item.name === action.payload.name && item.path === action.payload.path
       ));
       return {
         ...state,
@@ -54,13 +54,13 @@ const ReducerData = (state, action) => {
         breadcrumb: action.payload
       };
     case "UPDATE_SUBJECT_BREADCRUMB":
-      if (state.breadcrumb.length = 1) {
+      if (state.breadcrumb.length === 1) {
         return {
           ...state,
           breadcrumb: [...state.breadcrumb, action.payload]
         }; 
       }
-      else if (state.breadcrumb.length = 2) {
+      else if (state.breadcrumb.length === 2) {
         const updatedBreadcrumb = [...state.breadcrumb];
         updatedBreadcrumb[1] = action.payload;
         return {
@@ -69,13 +69,13 @@ const ReducerData = (state, action) => {
         };
       }
       case "UPDATE_TOPIC_BREADCRUMB":
-        if (state.breadcrumb.length = 2) {
+        if (state.breadcrumb.length === 2) {
           return {
             ...state,
             breadcrumb: [...state.breadcrumb, action.payload]
           }; 
         }
-        else if (state.breadcrumb.length = 3) {
+        else if (state.breadcrumb.length === 3) {
           const updatedBreadcrumb = [...state.breadcrumb];
           updatedBreadcrumb[2] = action.payload;
           return {
@@ -84,13 +84,13 @@ const ReducerData = (state, action) => {
           };
         }
     case "UPDATE_SUBTOPIC_BREADCRUMB":
-      if (state.breadcrumb.length = 3) {
+      if (state.breadcrumb.length === 3) {
         return {
           ...state,
           breadcrumb: [...state.breadcrumb, action.payload]
         }; 
       }
-      else if (state.breadcrumb.length = 4) {
+      else if (state.breadcrumb.length === 4) {
         const updatedBreadcrumb = [...state.breadcrumb];
         updatedBreadcrumb[3] = action.payload;
         return {
