@@ -216,53 +216,55 @@ const ExamenSubect1 = ({ raspunsuri }) => {
 
   const onCloseAutoevaluare = async (notaResult, newOptions) => {
 
-    const theme = stateData.currentTheme.tema_id
-    const subject_id = stateData.currentSubject.subject_id;
-    const level_id = 1;
+    if (newOptions && newOptions.length > 0) {
+      const theme = stateData.currentTheme.tema_id
+      const subject_id = stateData.currentSubject.subject_id;
+      const level_id = 1;
 
-    await fetchEvaluation1(theme, subject_id, level_id, dispatchData);
+      await fetchEvaluation1(theme, subject_id, level_id, dispatchData);
 
-    console.log(stateData.evaluations1)
+      console.log(stateData.evaluations1)
 
-    const quizItem = stateData.evaluations1;
-    console.log(quizItem)   
+      const quizItem = stateData.evaluations1;
+      console.log(quizItem)   
 
-    const totalStudentPoints = quizArray.reduce((sum, evaluation, idx) => {
-      const studentPoints = idx === currentIndex
-        ? notaResult 
-        : evaluation.student_points;
-  
-      return sum + studentPoints;
-    }, 0);
-  
-    const totalMaxPoints = quizArray.reduce((sum, evaluation) =>
-      sum + evaluation.maxPoints, 0);
-  
-    const procent = (totalStudentPoints / totalMaxPoints) * 100;
-    setProc(procent)
+      const totalStudentPoints = quizArray.reduce((sum, evaluation, idx) => {
+        const studentPoints = idx === currentIndex
+          ? notaResult 
+          : evaluation.student_points;
+    
+        return sum + studentPoints;
+      }, 0);
+    
+      const totalMaxPoints = quizArray.reduce((sum, evaluation) =>
+        sum + evaluation.maxPoints, 0);
+    
+      const procent = (totalStudentPoints / totalMaxPoints) * 100;
+      setProc(procent)
 
 
-    setSelectedOptions((prevOptions) => {
-      let updatedOptions = [...prevOptions];
-  
-      newOptions.forEach((newOption) => {
-        const existingIndex = updatedOptions.findIndex(
-          (option) => option.answer_id == newOption.answer_id && option.student_id == newOption.student_id
-        );
-  
-        if (existingIndex !== -1) {
-          updatedOptions = updatedOptions.map((option, index) =>
-            index == existingIndex
-              ? { ...option, points: newOption.points, evaluation_answer_option_id: newOption.evaluation_answer_option_id }
-              : option
+      setSelectedOptions((prevOptions) => {
+        let updatedOptions = [...prevOptions];
+    
+        newOptions.forEach((newOption) => {
+          const existingIndex = updatedOptions.findIndex(
+            (option) => option.answer_id == newOption.answer_id && option.student_id == newOption.student_id
           );
-        } else {
-          updatedOptions.push({ ...newOption });
-        }
+    
+          if (existingIndex !== -1) {
+            updatedOptions = updatedOptions.map((option, index) =>
+              index == existingIndex
+                ? { ...option, points: newOption.points, evaluation_answer_option_id: newOption.evaluation_answer_option_id }
+                : option
+            );
+          } else {
+            updatedOptions.push({ ...newOption });
+          }
+        });
+    
+        return updatedOptions;
       });
-  
-      return updatedOptions;
-    });
+    }
     setShowAutoevaluare(false);
   }
 
