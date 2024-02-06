@@ -259,7 +259,7 @@ function ViewFormativeTest() {
           </div>
           <div className="col-md-4">
 
-            <h4>Subtopic List
+            <h4>
               <Link to="/admin/add-formative-test" className="btnBts btn-primary text-white btn-sm float-end">Add Formative Test</Link>
             </h4>
           </div>
