@@ -47,14 +47,14 @@ const ExamenSubect3 = ({raspunsuri}) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-
-        const theme = stateData.currentTheme.tema_id;
-        const subject_id = stateData.currentSubject.subject_id;
-        const level_id = 1;
-  
-        await fetchEvaluation3(theme, subject_id, level_id, dispatchData);
-        quizArray = stateData.evaluations3;
-
+        if (stateData.currentTheme) {
+          const theme = stateData.currentTheme.tema_id;
+          const subject_id = stateData.currentSubject.subject_id;
+          const level_id = 1;
+    
+          await fetchEvaluation3(theme, subject_id, level_id, dispatchData);
+          quizArray = stateData.evaluations3;
+        }
       } catch (error) {
         console.error('Eroare în timpul recuperării datelor:', error);
       }
@@ -298,12 +298,14 @@ const ExamenSubect3 = ({raspunsuri}) => {
   };
 
   useEffect(() => {
+    if (stateData.currentTheme) {
     const theme = stateData.currentTheme.tema_id
     const subject_id = stateData.currentSubject.subject_id;
     const level_id = 1;
 
     fetchEvaluation3(theme, subject_id, level_id, dispatchData);
     console.log('Valoarea lui proc a fost actualizată:', proc);
+    }
   }, [proc]);
 
   const generateText = () => {

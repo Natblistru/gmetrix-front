@@ -44,12 +44,14 @@ const ExamenSubect1 = ({ raspunsuri }) => {
 
   let quizArray = stateData.evaluations1;
   useEffect(() => {
+    if (stateData.currentTheme) {
     const theme = stateData.currentTheme.tema_id
     const subject_id = stateData.currentSubject.subject_id;
     const level_id = 1;
   
     fetchEvaluation1(theme, subject_id, level_id, dispatchData);
     // quizArray = stateData.evaluations1;
+    }
   }, []);
 
   useEffect(()=>{
@@ -301,12 +303,14 @@ const ExamenSubect1 = ({ raspunsuri }) => {
   };
 
   useEffect(() => {
+    if (stateData.currentTheme) {
     const theme = stateData.currentTheme.tema_id
     const subject_id = stateData.currentSubject.subject_id;
     const level_id = 1;
 
     fetchEvaluation1(theme, subject_id, level_id, dispatchData);
     console.log('Valoarea lui proc a fost actualizată:', proc);
+    }
   }, [proc]);
 
   const generateText = () => {

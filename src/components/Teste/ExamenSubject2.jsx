@@ -48,13 +48,15 @@ const ExamenSubect2 = ({raspunsuri}) => {
   const fetchData = async () => {
     try {
       // console.log("stateData.evaluations2[1]", stateData.evaluations2);
-      const theme = stateData.currentTheme.tema_id;
-      const subject_id = stateData.currentSubject.subject_id;
-      const level_id = 1;
+      if (stateData.currentTheme) {
+        const theme = stateData.currentTheme.tema_id;
+        const subject_id = stateData.currentSubject.subject_id;
+        const level_id = 1;
 
-      await fetchEvaluation2(theme, subject_id, level_id, dispatchData);
-      quizArray = stateData.evaluations2;
+        await fetchEvaluation2(theme, subject_id, level_id, dispatchData);
+        quizArray = stateData.evaluations2;
       // console.log("stateData.evaluations2[2]", stateData.evaluations2);
+      }
     } catch (error) {
       console.error('Eroare în timpul recuperării datelor:', error);
     }
@@ -308,14 +310,15 @@ const ExamenSubect2 = ({raspunsuri}) => {
 
   useEffect(() => {
     // console.log("stateData.evaluations2",stateData.evaluations2)
-    const theme = stateData.currentTheme.tema_id
-    const subject_id = stateData.currentSubject.subject_id;
-    const level_id = 1;
+    if (stateData.currentTheme) {
+      const theme = stateData.currentTheme.tema_id
+      const subject_id = stateData.currentSubject.subject_id;
+      const level_id = 1;
 
-    fetchEvaluation2(theme, subject_id, level_id, dispatchData);
-    console.log('Valoarea lui proc a fost actualizată:', proc);
-    // console.log("stateData.evaluations2",stateData.evaluations2)
-
+      fetchEvaluation2(theme, subject_id, level_id, dispatchData);
+      console.log('Valoarea lui proc a fost actualizată:', proc);
+      // console.log("stateData.evaluations2",stateData.evaluations2)
+    }
   }, [proc]);
 
   const generateText = () => {
