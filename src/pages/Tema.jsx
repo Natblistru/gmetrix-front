@@ -1,8 +1,13 @@
 import React from "react";
 import ContextData from "../components/context/ContextData";
-import { useDispatch } from 'react-redux';
-import { updateTopicBreadcrumb, updateCurrentTheme } from '../components/ReduxComp/actions';
-import { useSelector } from 'react-redux';
+import { useDispatch } from "react-redux";
+import {
+  updateTopicBreadcrumb,
+  updateCurrentTheme,
+  fetchThemeVideoSuccess,
+  fetchThemeVideoFailure,
+} from "../components/ReduxComp/actions";
+import { useSelector } from "react-redux";
 
 import axios from "axios";
 
@@ -13,106 +18,109 @@ import Breadcrumb from "../components/Breadcrumb";
 import Wrapper from "../components/Wrapper";
 import TitleBox from "../components/TitleBox";
 import ListAccordeon from "../components/Accordeon/ListAccordeon";
-import { fetchTheme, fetchEvaluation1, fetchEvaluation2, fetchEvaluation3 } from "../routes/api"
+import {
+  fetchTheme,
+  fetchEvaluation1,
+  fetchEvaluation2,
+  fetchEvaluation3,
+} from "../routes/api";
 import "../index.css";
 
 const Tema = () => {
-
-  const {stateData, dispatchData} = React.useContext(ContextData)
+  const { stateData, dispatchData } = React.useContext(ContextData);
   const dispatch = useDispatch();
   const { address, disciplina } = useParams();
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
-  const teacherVideo = searchParams.get('teacher');
- 
+  const teacherVideo = searchParams.get("teacher");
+
   const [temaObject, setTemaObject] = useState(null);
   const [item, setItem] = useState(null);
   const [proc, setProc] = useState(0);
   const history = useHistory();
   let theme;
   let teacher;
-  const capitole = useSelector(state => state.capitole);
+  const capitole = useSelector((state) => state.capitole);
   useEffect(() => {
     if (!stateData.currentSubject) {
       return;
     }
     const searchParams = new URLSearchParams(location.search);
     teacher = searchParams.get("teacher");
- 
+
     theme = searchParams.get("theme");
 
     const subject_id = stateData.currentSubject.subject_id;
     const level_id = 1;
 
     fetchTheme(teacher, theme, subject_id, level_id, dispatchData);
-    fetchThemeVideo(theme);
     fetchEvaluations(theme);
     fetchEvaluation1(theme, subject_id, level_id, dispatchData);
     fetchEvaluation2(theme, subject_id, level_id, dispatchData);
     fetchEvaluation3(theme, subject_id, level_id, dispatchData);
-// console.log("FETCH THEME")
+    // console.log("FETCH THEME")
     const pathToFind = `/${disciplina}/${address}`;
 
     const tema = capitole.reduce(
-      (result, item) => result || (item.subtitles || []).find(subtitle => subtitle.path_tema === pathToFind),
+      (result, item) =>
+        result ||
+        (item.subtitles || []).find(
+          (subtitle) => subtitle.path_tema === pathToFind
+        ),
       null
     );
     setTemaObject(tema);
 
-    setProc(tema? tema.tema_media : 0)
+    setProc(tema ? tema.tema_media : 0);
 
-    if (tema!=null) {
-      dispatchData({
-        type: "UPDATE_CURRENT_THEME",
-        payload: tema
-      })
+    if (tema != null) {
       dispatch(updateCurrentTheme(tema));
 
       const temaName = tema.tema_name;
       const temaid = tema.tema_id;
 
       const addressPath = `/${disciplina}/${address}?teacher=${teacherVideo}&level=1&disciplina=${stateData.currentSubject.subject_id}&theme=${temaid}`;
-      const newBreadcrumb = {name: temaName, path: addressPath};
+      const newBreadcrumb = { name: temaName, path: addressPath };
       dispatch(updateTopicBreadcrumb(newBreadcrumb));
     }
-  },[stateData.currentSubject, location.search]);
 
-const fetchThemeVideo = async (theme) => {
-  try {
-      const res = await axios.get(`http://localhost:8000/api/teacherthemevideo?level=1&disciplina=${stateData.currentSubject.subject_id}&teacher=${teacherVideo}&theme=${theme}`);
+    const fetchData = async () => {
+      try {
+        const res = await axios.get(
+          `http://localhost:8000/api/teacherthemevideo?level=1&disciplina=${subject_id}&teacher=${teacherVideo}&theme=${theme}`
+        );
+        dispatch(fetchThemeVideoSuccess(res.data[0]));
+      } catch (err) {
+        console.error(err);
+        dispatch(fetchThemeVideoFailure());
+      }
+    };
+    fetchData();
+  }, [stateData.currentSubject, location.search]);
 
-      // console.log(res.data);
+  const fetchEvaluations = async (theme) => {
+    try {
+      const res = await axios.get(
+        `http://localhost:8000/api/themeevaluations?level=1&disciplina=${stateData.currentSubject.subject_id}&theme=${theme}`
+      );
+
       dispatchData({
-          type: "FETCH_THEME_VIDEO",
-          payload: res.data
-      })
-   } catch (err) {
+        type: "FETCH_EVALUATIONS",
+        payload: res.data,
+      });
+    } catch (err) {
       console.error(err);
-  }
-}
+    }
+  };
 
-const fetchEvaluations = async (theme) => {
-  try {
-     const res = await axios.get(`http://localhost:8000/api/themeevaluations?level=1&disciplina=${stateData.currentSubject.subject_id}&theme=${theme}`);
-
-      dispatchData({
-          type: "FETCH_EVALUATIONS",
-          payload: res.data
-      })
-  } catch (err) {
-      console.error(err);
-  }
-}
-
- const handleProgressThemaRecorded = (updatedThemaProgress) => {
-    if(temaObject)
-      setProc(updatedThemaProgress);
+  const handleProgressThemaRecorded = (updatedThemaProgress) => {
+    if (temaObject) setProc(updatedThemaProgress);
   };
 
   useEffect(() => {
     const handleBeforeUnload = (event) => {
       event.preventDefault();
-      event.returnValue = ''; 
+      event.returnValue = "";
     };
 
     window.addEventListener("beforeunload", handleBeforeUnload);
@@ -125,9 +133,13 @@ const fetchEvaluations = async (theme) => {
       <Wrapper>
         {temaObject && (
           <>
-            <Breadcrumb step={1}/>
-            <TitleBox className="teme-container" proc={proc}>{temaObject.tema_name}</TitleBox>
-            <ListAccordeon onProgressThemaRecorded={handleProgressThemaRecorded}/>
+            <Breadcrumb step={1} />
+            <TitleBox className="teme-container" proc={proc}>
+              {temaObject.tema_name}
+            </TitleBox>
+            <ListAccordeon
+              onProgressThemaRecorded={handleProgressThemaRecorded}
+            />
           </>
         )}
       </Wrapper>

@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 
 import ContextData from '../context/ContextData';
 import { withRouter, Link } from "react-router-dom";
+import { useSelector } from 'react-redux';
 import '../../index.css';
 import ParentComponent from "../Modal/ParentComponent";
 import VideoLesson from '../VideoLesson';
@@ -16,6 +17,8 @@ const ListAccordeon = (props) => {
   const [videoBreakpoints, setVideoBreakpoints] = useState();
   const [videoSource, setVideoSource] = useState("");
   const [videoTitle, setVideoTitle] = useState("");
+  const themeVideo = useSelector(state => state.themeVideo);
+  console.log(themeVideo)
 
   const classes = " " + props.className;
   let titleList = stateData.topics;
@@ -54,14 +57,15 @@ const ListAccordeon = (props) => {
   // console.log(aplicatiiList); 
 
   useEffect(() => {
-    // console.log(stateData.themeVideo); 
+    // console.log(themeVideo); 
 
-    if (stateData.themeVideo && stateData.themeVideo.length > 0) {
-      setVideoBreakpoints(stateData.themeVideo[0].breakpoints);
-      setVideoSource(stateData.themeVideo[0].video_source);
-      setVideoTitle(stateData.themeVideo[0].video_title);
+    if (themeVideo.themeVideo ) {
+      console.log(themeVideo.themeVideo.breakpoints)
+      setVideoBreakpoints(themeVideo.themeVideo.breakpoints);
+      setVideoSource(themeVideo.themeVideo.video_source);
+      setVideoTitle(themeVideo.themeVideo.video_title);
     }
-  }, [stateData.themeVideo]);
+  }, [themeVideo]);
 
   return (
     <div className={classes}>

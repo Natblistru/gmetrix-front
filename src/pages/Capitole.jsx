@@ -2,9 +2,12 @@ import React from "react";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useParams, useLocation } from "react-router-dom";
-import { useDispatch } from 'react-redux';
-import { updateSubjectBreadcrumb } from '../components/ReduxComp/actions';
-import { useSelector } from 'react-redux';
+import { useDispatch } from "react-redux";
+import {
+  updateSubjectBreadcrumb,
+  fetchThemeVideoSuccess,
+} from "../components/ReduxComp/actions";
+import { useSelector } from "react-redux";
 import ContextData from "../components/context/ContextData";
 import AOS from "aos";
 
@@ -34,8 +37,7 @@ const Capitole = (props) => {
   const [loading, setLoading] = useState(true);
 
   const [proc, setProc] = useState(0);
-  const capitole = useSelector(state => state.capitole);
-
+  const capitole = useSelector((state) => state.capitole);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -62,8 +64,7 @@ const Capitole = (props) => {
           type: "FETCH_THEME_VIDEO",
           payload: null,
         });
-
-        // console.log(capitole);
+        dispatch(fetchThemeVideoSuccess(null));
 
         if (capitole.length > 0) {
           dispatchData({
@@ -95,7 +96,6 @@ const Capitole = (props) => {
     //   event.preventDefault();
     //   event.returnValue = "";
     // };
-
     // window.addEventListener("beforeunload", handleBeforeUnload);
     // return () => window.removeEventListener("beforeunload", handleBeforeUnload);
   }, []);

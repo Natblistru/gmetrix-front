@@ -1,11 +1,13 @@
 import React from "react"
-import { createStore, combineReducers } from "redux"
+import { createStore, combineReducers, applyMiddleware } from "redux"
+import thunk from 'redux-thunk';
 import { Provider, connect } from "react-redux"
 import breadcrumbReducer from "./breadcrumbReducer";
 import disciplineAniReducer from './disciplineAniReducer';
 import teachersForSubtitleReducer from "./teachersForSubtitleReducer";
 import capitoleReducer from './capitoleReducer';
 import currentThemeReducer from './currentThemeReducer';
+import themeVideoReducer from './themeVideoReducer';
 
 const initialState = {
   items: []
@@ -250,9 +252,14 @@ const combinedReducers = combineReducers({
   teachersForSubtitle: teachersForSubtitleReducer,
   capitole: capitoleReducer,
   currentTheme: currentThemeReducer,
+  themeVideo: themeVideoReducer,
+
 })
 
-const store = createStore(combinedReducers)
+const store = createStore(
+  combinedReducers,
+  applyMiddleware(thunk) 
+);
 
 export default function StoreComponent({ children }) {
   return <Provider store={store}>{children}</Provider>;

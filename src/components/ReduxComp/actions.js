@@ -6,7 +6,9 @@ export const FETCH_DISCIPLINE = 'FETCH_DISCIPLINE';
 export const FETCH_SUBTITLE_TEACHERS = 'FETCH_SUBTITLE_TEACHERS';
 export const FETCH_CAPITOLE = 'FETCH_CAPITOLE';
 export const UPDATE_CURRENT_THEME = 'UPDATE_CURRENT_THEME';
-
+export const FETCH_THEME_VIDEO = 'FETCH_THEME_VIDEO';
+export const FETCH_THEME_VIDEO_SUCCESS = 'FETCH_THEME_VIDEO_SUCCESS';
+export const FETCH_THEME_VIDEO_FAILURE = 'FETCH_THEME_VIDEO_FAILURE';
 
 export const addBreadcrumb = (breadcrumb) => ({
   type: ADD_BREADCRUMB,
@@ -46,4 +48,12 @@ export const fetchCapitoleRedux = (capitole) => ({
 export const updateCurrentTheme = (theme) => ({
   type: UPDATE_CURRENT_THEME,
   payload: theme
+});
+
+export const fetchThemeVideoSuccess = (videoData) => ({
+  type: FETCH_THEME_VIDEO_SUCCESS,
+  payload: videoData
+});
+export const fetchThemeVideoFailure = () => ({
+  type: FETCH_THEME_VIDEO_FAILURE
 });
