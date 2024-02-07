@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { updateSubjectBreadcrumb, updateTopicBreadcrumb} from '../ReduxComp/actions';
+import { updateSubjectBreadcrumb, updateTopicBreadcrumb, fetchCapitoleRedux } from '../ReduxComp/actions';
 import { useSelector } from 'react-redux';
 
 import axios from 'axios';
@@ -29,6 +29,8 @@ const SearchComponent = () => {
     subject_study_level_id: '',
   })
   const subjectListRedux = useSelector(state => state.disciplineAni);
+  const capitole = useSelector(state => state.capitole);
+
 
   const handleInput = (e) => {
     e.persist();
@@ -68,15 +70,12 @@ const SearchComponent = () => {
     }
   };
 
-  const fetchCapitole = async () => {
+  const fetchCapitoleSearch = async () => {
     // console.log(details)
     // console.log(stateData.disciplineAni)
     try {
         const res = await axios.get(`http://localhost:8000/api/capitoleDisciplina?level=${details.studyLevelId}&disciplina=${details.subjectId}&student=1`);
-        dispatchData({
-            type: "FETCH_CAPITOLE",
-            payload: res.data
-        })
+        dispatch(fetchCapitoleRedux(res.data));
         if (res.data.length > 0) {
           dispatchData({
               type: "UPDATE_CURRENT_SUBJECT",
@@ -85,13 +84,6 @@ const SearchComponent = () => {
           const nivelStudiu = details.studyLevelId==1?"examen clasa 9":"BAC";
           const clasa = details.studyLevelId==1?"clasa 9":"clasa 12";
           const newBreadcrumb = {name: `${res.data[0].subject_name}`, path: `/capitole/${details.subjectId}?level=${details.studyLevelId}&year=2022&name=${details.subjectName}&nivel=${nivelStudiu}&clasa=${clasa}`};
-          // console.log(newBreadcrumb)
-          // console.log(details)          
-          // dispatchData({
-          //   type: "UPDATE_SUBJECT_BREADCRUMB",
-          //   payload: newBreadcrumb
-          // });
-          // console.log(newBreadcrumb)
           dispatch(updateSubjectBreadcrumb(newBreadcrumb));
 
         }
@@ -105,9 +97,9 @@ const SearchComponent = () => {
       setThemePath(themePath);
     }
   
-    await fetchCapitole();
+    await fetchCapitoleSearch();
   
-    const tema = stateData.capitole.reduce(
+    const tema = capitole.reduce(
       (result, item) => result || (item.subtitles || []).find(subtitle => subtitle.path_tema === themePath),
       null
     );
@@ -120,10 +112,6 @@ const SearchComponent = () => {
   
       const addressPath = `${themePath}?teacher=1&level=${details.studyLevelId}&disciplina=${details.subjectId}&theme=${tema.tema_id}&teachername=userT1%20teacher`;
       const newBreadcrumb = { name: tema.tema_name, path: addressPath };
-      // dispatchData({
-      //   type: "UPDATE_TOPIC_BREADCRUMB",
-      //   payload: newBreadcrumb
-      // });
       dispatch(updateTopicBreadcrumb(newBreadcrumb));
   
       const teacher = 1;
@@ -141,7 +129,7 @@ const SearchComponent = () => {
 
   const handleLinkClick = async (result) => {
     try {
-      await fetchCapitole();
+      await fetchCapitoleSearch();
   
       await closeModalFromLink(result.topic.theme_learning_program.theme.path);
   

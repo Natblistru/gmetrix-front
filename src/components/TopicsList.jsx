@@ -1,14 +1,12 @@
 import React from "react";
-
-import ContextData from "../components/context/ContextData";
-
+import { useSelector } from 'react-redux';
 import TopicItem from "./TopicItem";
 
 const TopicsList = () => {
-    const {stateData} = React.useContext(ContextData)
+    const capitole = useSelector(state => state.capitole);
     return (                
     <ol className="topic-list" type="I">
-        {stateData.capitole.map((tema, idx) => {
+        {capitole.map((tema, idx) => {
             // console.log(tema);
             return <TopicItem item={tema} key={idx} />;
         })}

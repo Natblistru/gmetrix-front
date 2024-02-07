@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import ContextData from '../context/ContextData';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchCapitole, fetchEvaluation1, fetchEvaluation2, fetchEvaluation3 } from '../../routes/api';
 import TreeTable from './TreeTable';
@@ -11,13 +11,14 @@ const ListDisciplineRezultat = ({selectedItem, setSelectedItem}) => {
   const { stateData, dispatchData } = React.useContext(ContextData);
   // console.log(stateData.disciplineAni);
   const disciplineAni = useSelector(state => state.disciplineAni);
+  const dispatch = useDispatch();
 
   const handleItemClick = (item) => {
     const { subject_id } = item;
     setSelectedItem(item);
     const level_id = 1;
 
-    fetchCapitole(subject_id, level_id, dispatchData);
+    fetchCapitole(subject_id, level_id, dispatch);
 
   };
 
@@ -90,6 +91,7 @@ function MyResults() {
   })
   const [teste, setTeste] = useState([])
   const teachersForSubtitle = useSelector(state => state.teachersForSubtitle);
+  const capitole = useSelector(state => state.capitole);
 
   const fetchData = async (themeId) => {
 
@@ -366,7 +368,7 @@ function MyResults() {
 
       const studentProgress = await fetchStudentProgress();
   
-      const transformedData = transformData(stateData.capitole);
+      const transformedData = transformData(capitole);
       const transformedDataCopy = JSON.parse(JSON.stringify(transformedData));
       const transformedDataProgress = JSON.parse(JSON.stringify(transformedData));
       const transformedDataWithProgress = addProgress(transformedDataProgress, studentProgress);
@@ -382,7 +384,7 @@ function MyResults() {
   useEffect(() => {
     fetchDataAndTransform();
     setTeste([])
-  }, [stateData.capitole]);
+  }, [capitole]);
  
  
 

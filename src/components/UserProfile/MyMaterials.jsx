@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { useParams } from 'react-router-dom'
 import axios from 'axios';
 import ContextData from '../context/ContextData';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchCapitole, fetchEvaluation1, fetchEvaluation2, fetchEvaluation3 } from '../../routes/api';
 import TreeTable from './TreeTable';
@@ -156,15 +156,15 @@ const dataTeste = [
   
 const ListDisciplineMateria = () => {
   const [mediaDisciplina, setMediaDisciplina] = useState([])
-  const { stateData, dispatchData } = React.useContext(ContextData);
   // console.log(stateData.disciplineAni);
   const disciplineAni = useSelector(state => state.disciplineAni);
+  const dispatch = useDispatch();
 
   const handleItemClick = (item) => {
     const { subject_id } = item;
     const level_id = 1;
 
-    fetchCapitole(subject_id, level_id, dispatchData);
+    fetchCapitole(subject_id, level_id, dispatch);
 
   };
 
@@ -210,7 +210,6 @@ const ListDisciplineMateria = () => {
 
 function MyMaterials(props) {
   const {activepage} = useParams()
-  const { stateData, dispatchData } = React.useContext(ContextData);
   const [list, setList] = useState(data)
   const [list1, setList1] = useState([])
   const [learningProgramList, setLearningProgramList] = useState([]);
@@ -219,6 +218,7 @@ function MyMaterials(props) {
     learning_program_id: '',
     theme_learning_program_id: '',
   })
+  const capitole = useSelector(state => state.capitole);
 
   const handleInput = (e) => {
     e.persist();
@@ -293,9 +293,9 @@ function MyMaterials(props) {
       return result;
     };
   
-    const transformedData = transformData(stateData.capitole);
+    const transformedData = transformData(capitole);
     setList1(transformedData);
-  }, [stateData.capitole]);
+  }, [capitole]);
   
   useEffect(()=>{
 // console.log(list1)

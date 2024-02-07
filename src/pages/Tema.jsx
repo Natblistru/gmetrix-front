@@ -2,6 +2,7 @@ import React from "react";
 import ContextData from "../components/context/ContextData";
 import { useDispatch } from 'react-redux';
 import { updateTopicBreadcrumb} from '../components/ReduxComp/actions';
+import { useSelector } from 'react-redux';
 
 import axios from "axios";
 
@@ -30,11 +31,11 @@ const Tema = () => {
   const history = useHistory();
   let theme;
   let teacher;
+  const capitole = useSelector(state => state.capitole);
   useEffect(() => {
     if (!stateData.currentSubject) {
       return;
     }
-  
     const searchParams = new URLSearchParams(location.search);
     teacher = searchParams.get("teacher");
  
@@ -52,7 +53,7 @@ const Tema = () => {
 // console.log("FETCH THEME")
     const pathToFind = `/${disciplina}/${address}`;
 
-    const tema = stateData.capitole.reduce(
+    const tema = capitole.reduce(
       (result, item) => result || (item.subtitles || []).find(subtitle => subtitle.path_tema === pathToFind),
       null
     );
@@ -71,10 +72,6 @@ const Tema = () => {
 
       const addressPath = `/${disciplina}/${address}?teacher=${teacherVideo}&level=1&disciplina=${stateData.currentSubject.subject_id}&theme=${temaid}`;
       const newBreadcrumb = {name: temaName, path: addressPath};
-      // dispatchData({
-      //   type: "UPDATE_TOPIC_BREADCRUMB",
-      //   payload: newBreadcrumb
-      // });
       dispatch(updateTopicBreadcrumb(newBreadcrumb));
     }
   },[stateData.currentSubject, location.search]);

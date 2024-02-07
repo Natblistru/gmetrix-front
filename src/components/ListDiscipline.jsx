@@ -1,11 +1,9 @@
 import React from "react";
-import ContextData from "../components/context/ContextData";
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import meter1 from "../assets/img/meter1.svg";
 
 const ListDiscipline = () => {
-  const {stateData} = React.useContext(ContextData)
   const disciplineAni = useSelector(state => state.disciplineAni);
   // console.log(stateData);
   return (

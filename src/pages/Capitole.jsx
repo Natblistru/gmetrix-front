@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useParams, useLocation } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { updateSubjectBreadcrumb } from '../components/ReduxComp/actions';
+import { useSelector } from 'react-redux';
 import ContextData from "../components/context/ContextData";
 import AOS from "aos";
 
@@ -33,6 +34,8 @@ const Capitole = (props) => {
   const [loading, setLoading] = useState(true);
 
   const [proc, setProc] = useState(0);
+  const capitole = useSelector(state => state.capitole);
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -40,7 +43,7 @@ const Capitole = (props) => {
         const subject_id = id;
         const level_id = 1;
 
-        const res = await fetchCapitole(subject_id, level_id, dispatchData);
+        const res = await fetchCapitole(subject_id, level_id, dispatch);
         setLoading(false);
         AOS.refresh();
       } catch (error) {
@@ -60,26 +63,22 @@ const Capitole = (props) => {
           payload: null,
         });
 
-        // console.log(stateData.capitole);
+        // console.log(capitole);
 
-        if (stateData.capitole.length > 0) {
+        if (capitole.length > 0) {
           dispatchData({
             type: "UPDATE_CURRENT_SUBJECT",
-            payload: stateData.capitole[0],
+            payload: capitole[0],
           });
 
           const newBreadcrumb = {
-            name: `${stateData.capitole[0].subject_name}`,
+            name: `${capitole[0].subject_name}`,
             path: `/capitole/${id}?level=1&year=2022&name=${name}&nivel=${nivel}&clasa=${clasa}`,
           };
 
-          // dispatchData({
-          //   type: "UPDATE_SUBJECT_BREADCRUMB",
-          //   payload: newBreadcrumb,
-          // });
           dispatch(updateSubjectBreadcrumb(newBreadcrumb));
 
-          setProc(stateData.capitole[0].disciplina_media);
+          setProc(capitole[0].disciplina_media);
         }
       } catch (err) {
         console.error(err);
@@ -87,15 +86,7 @@ const Capitole = (props) => {
     };
 
     fetchCurrentData();
-  }, [stateData.capitole, id, name, nivel, clasa]);
-
-  const updateBreadcrumb = () => {
-    const newBreadcrumb = {name: "Discipline", path: "/"};
-    dispatchData({
-      type: "ADD_BREADCRUMB",
-      payload: newBreadcrumb
-    });
-  };
+  }, [capitole, id, name, nivel, clasa]);
 
   useEffect(() => {
     // console.log(stateData.breadcrumb)
