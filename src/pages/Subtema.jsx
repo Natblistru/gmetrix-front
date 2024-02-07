@@ -60,7 +60,7 @@ const Subtema = ({results})  => {
     window.addEventListener("beforeunload", handleBeforeUnload);
     return () => window.removeEventListener("beforeunload", handleBeforeUnload);
 
-  }, [stateData, address1, disciplina, teacherVideo, dispatchData]);
+  }, [stateData.topics, stateData.currentTheme, stateData.currentSubject, address1, disciplina, teacherVideo]);
 
 
   const handleProgressTopicRecorded = (updatedTopicProgress) => {
