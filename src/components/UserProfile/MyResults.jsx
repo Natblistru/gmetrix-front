@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import ContextData from '../context/ContextData';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchCapitole, fetchEvaluation1, fetchEvaluation2, fetchEvaluation3 } from '../../routes/api';
 import TreeTable from './TreeTable';
@@ -9,6 +10,7 @@ const ListDisciplineRezultat = ({selectedItem, setSelectedItem}) => {
   const [mediaDisciplina, setMediaDisciplina] = useState([])
   const { stateData, dispatchData } = React.useContext(ContextData);
   // console.log(stateData.disciplineAni);
+  const disciplineAni = useSelector(state => state.disciplineAni);
 
   const handleItemClick = (item) => {
     const { subject_id } = item;
@@ -22,7 +24,7 @@ const ListDisciplineRezultat = ({selectedItem, setSelectedItem}) => {
   useEffect(() => {
     let allMediaDisciplina = [];
   
-    stateData.disciplineAni.forEach((item) => {
+    disciplineAni.forEach((item) => {
       const level_id = 1;
   
       axios.get(`http://localhost:8000/api/capitoleDisciplina?level=${level_id}&disciplina=${item.subject_id}&student=1`)
@@ -49,7 +51,7 @@ const ListDisciplineRezultat = ({selectedItem, setSelectedItem}) => {
   return (
     <div>
       <div className="manuale-container-result">
-        {stateData.disciplineAni.map((item, idx) => {
+        {disciplineAni.map((item, idx) => {
           // console.log(item);
           const isSelected = selectedItem && selectedItem.id === item.id;
 
@@ -80,7 +82,7 @@ function MyResults() {
   const [discipline, setDiscipline] = useState([])
   const [evaluari, setEvaluari] = useState([])
   const [learningProgramList, setLearningProgramList] = useState([]);
-  const [selectedItem, setSelectedItem] = useState(stateData.disciplineAni[0]);
+  const [selectedItem, setSelectedItem] = useState(useSelector(state => state.disciplineAni)[0]);
   const [themeList, setThemeList] = useState([]);
   const [filter, setFilter] = useState({
     learning_program_id: '',

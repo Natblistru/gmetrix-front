@@ -1,5 +1,8 @@
 import React from "react";
 import ContextData from "../components/context/ContextData";
+import { useDispatch } from 'react-redux';
+import { updateTopicBreadcrumb} from '../components/ReduxComp/actions';
+
 import axios from "axios";
 
 import { useState, useEffect } from "react";
@@ -15,6 +18,7 @@ import "../index.css";
 const Tema = () => {
 
   const {stateData, dispatchData} = React.useContext(ContextData)
+  const dispatch = useDispatch();
   const { address, disciplina } = useParams();
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
@@ -67,10 +71,11 @@ const Tema = () => {
 
       const addressPath = `/${disciplina}/${address}?teacher=${teacherVideo}&level=1&disciplina=${stateData.currentSubject.subject_id}&theme=${temaid}`;
       const newBreadcrumb = {name: temaName, path: addressPath};
-      dispatchData({
-        type: "UPDATE_TOPIC_BREADCRUMB",
-        payload: newBreadcrumb
-      });
+      // dispatchData({
+      //   type: "UPDATE_TOPIC_BREADCRUMB",
+      //   payload: newBreadcrumb
+      // });
+      dispatch(updateTopicBreadcrumb(newBreadcrumb));
     }
   },[stateData.currentSubject, location.search]);
 

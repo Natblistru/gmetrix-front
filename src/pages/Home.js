@@ -1,6 +1,7 @@
-import React from "react"
 import axios from "axios";
-import {useState, useEffect} from "react";
+import React, {useState, useEffect} from "react";
+import { useDispatch } from 'react-redux';
+import { addBreadcrumb, fetchDiscipline } from '../components/ReduxComp/actions';
 import 'aos/dist/aos.css';
 import AOS from 'aos';
 
@@ -17,6 +18,7 @@ import Footer from "../components/Footer";
 
 const Home = () => {
   const {dispatchData} = React.useContext(ContextData)
+  const dispatch = useDispatch();
 
   useEffect(()=> {
     updateBreadcrumb();
@@ -26,10 +28,7 @@ const Home = () => {
 
   const updateBreadcrumb = () => {
     const newBreadcrumb = {name: "Discipline", path: "/"};
-    dispatchData({
-      type: "ADD_BREADCRUMB",
-      payload: newBreadcrumb
-    });
+    dispatch(addBreadcrumb(newBreadcrumb)); 
   };
 
   const fetchSubjects = async () => {
@@ -40,6 +39,7 @@ const Home = () => {
         type: "FETCH_DISCIPLINE",
         payload: res.data
       })
+      dispatch(fetchDiscipline(res.data)); 
     } catch (err) {
       console.error(err);
     }

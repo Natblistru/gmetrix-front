@@ -2,6 +2,8 @@ import React from "react";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useParams, useLocation } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import { updateSubjectBreadcrumb } from '../components/ReduxComp/actions';
 import ContextData from "../components/context/ContextData";
 import AOS from "aos";
 
@@ -18,6 +20,7 @@ import "../index.css";
 
 const Capitole = (props) => {
   const { stateData, dispatchData } = React.useContext(ContextData);
+  const dispatch = useDispatch();
   //   console.log("Parametrul id:", props.match.params.id); //parametru din adresa /:id
   const { id } = useParams();
   const location = useLocation();
@@ -70,10 +73,11 @@ const Capitole = (props) => {
             path: `/capitole/${id}?level=1&year=2022&name=${name}&nivel=${nivel}&clasa=${clasa}`,
           };
 
-          dispatchData({
-            type: "UPDATE_SUBJECT_BREADCRUMB",
-            payload: newBreadcrumb,
-          });
+          // dispatchData({
+          //   type: "UPDATE_SUBJECT_BREADCRUMB",
+          //   payload: newBreadcrumb,
+          // });
+          dispatch(updateSubjectBreadcrumb(newBreadcrumb));
 
           setProc(stateData.capitole[0].disciplina_media);
         }
@@ -94,15 +98,15 @@ const Capitole = (props) => {
   };
 
   useEffect(() => {
-    console.log(stateData.breadcrumb)
+    // console.log(stateData.breadcrumb)
     // updateBreadcrumb();
-    const handleBeforeUnload = (event) => {
-      event.preventDefault();
-      event.returnValue = "";
-    };
+    // const handleBeforeUnload = (event) => {
+    //   event.preventDefault();
+    //   event.returnValue = "";
+    // };
 
-    window.addEventListener("beforeunload", handleBeforeUnload);
-    return () => window.removeEventListener("beforeunload", handleBeforeUnload);
+    // window.addEventListener("beforeunload", handleBeforeUnload);
+    // return () => window.removeEventListener("beforeunload", handleBeforeUnload);
   }, []);
 
   return (

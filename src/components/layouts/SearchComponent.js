@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { updateSubjectBreadcrumb, updateTopicBreadcrumb} from '../ReduxComp/actions';
+import { useSelector } from 'react-redux';
+
 import axios from 'axios';
 import Select from 'react-select';
 import Modal from 'react-modal';
@@ -9,6 +13,8 @@ import { fetchTheme } from "../../routes/api"
 const SearchComponent = () => {
   const history = useHistory();
   const {stateData, dispatchData} = React.useContext(ContextData)
+  const dispatch = useDispatch();
+
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedTags, setSelectedTags] = useState([]);
   const [allTags, setAllTags] = useState([]);
@@ -22,6 +28,7 @@ const SearchComponent = () => {
   const [itemInput, setItemInput] = useState({
     subject_study_level_id: '',
   })
+  const subjectListRedux = useSelector(state => state.disciplineAni);
 
   const handleInput = (e) => {
     e.persist();
@@ -29,8 +36,8 @@ const SearchComponent = () => {
   }
 
   useEffect(()=>{
-    setSubjectList(stateData.disciplineAni)
-  }, [stateData.disciplineAni])
+    setSubjectList(subjectListRedux)
+  }, [subjectListRedux])
 
   useEffect(() => {
     if (itemInput.subject_study_level_id > 0) {
@@ -78,12 +85,15 @@ const SearchComponent = () => {
           const nivelStudiu = details.studyLevelId==1?"examen clasa 9":"BAC";
           const clasa = details.studyLevelId==1?"clasa 9":"clasa 12";
           const newBreadcrumb = {name: `${res.data[0].subject_name}`, path: `/capitole/${details.subjectId}?level=${details.studyLevelId}&year=2022&name=${details.subjectName}&nivel=${nivelStudiu}&clasa=${clasa}`};
-          console.log(newBreadcrumb)
-          console.log(details)          
-          dispatchData({
-            type: "UPDATE_SUBJECT_BREADCRUMB",
-            payload: newBreadcrumb
-          });
+          // console.log(newBreadcrumb)
+          // console.log(details)          
+          // dispatchData({
+          //   type: "UPDATE_SUBJECT_BREADCRUMB",
+          //   payload: newBreadcrumb
+          // });
+          // console.log(newBreadcrumb)
+          dispatch(updateSubjectBreadcrumb(newBreadcrumb));
+
         }
      } catch (err) {
         console.error(err);
@@ -110,10 +120,11 @@ const SearchComponent = () => {
   
       const addressPath = `${themePath}?teacher=1&level=${details.studyLevelId}&disciplina=${details.subjectId}&theme=${tema.tema_id}&teachername=userT1%20teacher`;
       const newBreadcrumb = { name: tema.tema_name, path: addressPath };
-      dispatchData({
-        type: "UPDATE_TOPIC_BREADCRUMB",
-        payload: newBreadcrumb
-      });
+      // dispatchData({
+      //   type: "UPDATE_TOPIC_BREADCRUMB",
+      //   payload: newBreadcrumb
+      // });
+      dispatch(updateTopicBreadcrumb(newBreadcrumb));
   
       const teacher = 1;
       const theme = tema.tema_id;
@@ -186,7 +197,7 @@ const SearchComponent = () => {
   };
 
   const getIdDetails = (id) => {
-    const item = stateData.disciplineAni.find(item => item.id == id);
+    const item = subjectListRedux.find(item => item.id == id);
   // console.log(subjectList)
   // console.log(stateData.disciplineAni)
   // console.log(item) 

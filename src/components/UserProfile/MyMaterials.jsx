@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { useParams } from 'react-router-dom'
 import axios from 'axios';
 import ContextData from '../context/ContextData';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchCapitole, fetchEvaluation1, fetchEvaluation2, fetchEvaluation3 } from '../../routes/api';
 import TreeTable from './TreeTable';
@@ -157,6 +158,7 @@ const ListDisciplineMateria = () => {
   const [mediaDisciplina, setMediaDisciplina] = useState([])
   const { stateData, dispatchData } = React.useContext(ContextData);
   // console.log(stateData.disciplineAni);
+  const disciplineAni = useSelector(state => state.disciplineAni);
 
   const handleItemClick = (item) => {
     const { subject_id } = item;
@@ -169,7 +171,7 @@ const ListDisciplineMateria = () => {
   useEffect(() => {
     let allMediaDisciplina = [];
   
-    stateData.disciplineAni.forEach((item) => {
+    disciplineAni.forEach((item) => {
       const level_id = 1;
   
       axios.get(`http://localhost:8000/api/capitoleDisciplina?level=${level_id}&disciplina=${item.subject_id}&student=1`)
@@ -188,7 +190,7 @@ const ListDisciplineMateria = () => {
   return (
     <div>
       <div className="manuale-container-result">
-      {stateData.disciplineAni.map((item, idx) => {
+      {disciplineAni.map((item, idx) => {
         const nivelStudiu = item.study_level_id === 1 ? "examen clasa 9" : "BAC";
         const clasa = item.study_level_id === 1 ? "clasa 9" : "clasa 12";
         const name = item.name.split(',')[0];

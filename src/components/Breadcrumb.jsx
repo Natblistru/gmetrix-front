@@ -1,10 +1,11 @@
 import React from "react";
-import ContextData from "../components/context/ContextData";
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
 
 const Breadcrumb = (props) => {
-    const { stateData } = React.useContext(ContextData);
-    const list = stateData.breadcrumb;
+    const list = useSelector(state => state.breadcrumb);
+    console.log(list)
 
     return (
         <ul className="breadcrumb">

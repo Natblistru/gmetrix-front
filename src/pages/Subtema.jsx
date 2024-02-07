@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ContextData from "../components/context/ContextData";
+import { useDispatch } from 'react-redux';
+import { updateSubTopicBreadcrumb } from '../components/ReduxComp/actions';
+
 import { useParams, useHistory, useLocation } from "react-router-dom";
 // import temeIstoriArray from "../data/temeIstoria";
 // import temeMatemArray from "../data/temeMatem";
@@ -14,6 +17,7 @@ import StateData from "../components/context/StateData";
 
 const Subtema = ({results})  => {
   const { stateData, dispatchData } = React.useContext(ContextData);
+  const dispatch = useDispatch();
   const { address1, disciplina } = useParams();
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
@@ -44,10 +48,11 @@ const Subtema = ({results})  => {
 
         const addressPath = `/${disciplina}${addressSubtitle}${mainElement.path}?teacher=${teacherVideo}&level=1&disciplina=${subject_id}&theme=${tema_id}`;
         const newBreadcrumb = { name: mainElement.name, path: addressPath };
-        dispatchData({
-          type: "UPDATE_SUBTOPIC_BREADCRUMB",
-          payload: newBreadcrumb
-        });
+        // dispatchData({
+        //   type: "UPDATE_SUBTOPIC_BREADCRUMB",
+        //   payload: newBreadcrumb
+        // });
+        dispatch(updateSubTopicBreadcrumb(newBreadcrumb));
         setTopic(mainElement);
       }
     }

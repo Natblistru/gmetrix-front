@@ -62,8 +62,9 @@ function App() {
   return (
     <div className="App">
       <div>
+      <StoreComponent>
         <ContextData.Provider value = {{stateData, dispatchData}}>
-          <StoreComponent>
+          {/* <StoreComponent> */}
             <Switch>
 
               <Route exact path="/" render={() => <Redirect to="/home" />} />
@@ -89,8 +90,8 @@ function App() {
               <Route exact path="/home" component={Home} />
               <Route component={Error} />
             </Switch>
-          </StoreComponent>
-        </ContextData.Provider>
+          </ContextData.Provider>
+        </StoreComponent>
       </div>
     </div>
   );
