@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect, useRef } from "react";
 import axios from "axios";
 import ContextData from "../context/ContextData";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import "./ModalCalculator.css";
 import "./ModalForm.css";
 import DraggableElement from "../DndTest/DraggableElement";
@@ -85,13 +85,16 @@ const SelectBox = ({ options, activeTab, setActiveTab,nota, setNota, selectedOpt
 
 const ModalCalculator = ({ subject, currentIndex, onClick, idRaspuns, raspunsuri, update }) => {
   const {stateData, dispatchData} = React.useContext(ContextData)
+  const evaluations1 = useSelector(state => state.evaluations1);
+  const evaluations2 = useSelector(state => state.evaluations2);
+  const evaluations3 = useSelector(state => state.evaluations3);
   let quizArray;
   if(subject == 1) {
-    quizArray = stateData.evaluations1;
+    quizArray = evaluations1;
   } else if(subject == 2) {
-    quizArray = stateData.evaluations2;    
+    quizArray = evaluations2;    
   } else if(subject == 3) {
-    quizArray = stateData.evaluations3;    
+    quizArray = evaluations3;    
   }
 
   const currentItem = quizArray[currentIndex];

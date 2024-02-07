@@ -32,6 +32,9 @@ const TestWrapper = ({ tests, add, update }) => {
   const [loading, setLoading] = useState(true);
   const [responseReceived, setResponseReceived] = useState(false);
   const currentTheme = useSelector(state => state.currentTheme);
+  const currentSubject = useSelector(state => state.currentSubject);
+
+  const subject_id = currentSubject.subject_id || currentSubject.currentSubject.subject_id;
 
 // console.log(stateData.currentTopic)
 
@@ -42,7 +45,6 @@ useEffect(() => {
   if(currentTheme) {
     const teacher = 1
     const theme = currentTheme?.tema_id
-    const subject_id = stateData.currentSubject.subject_id;
     const level_id = 1;
 
     fetchTheme(teacher, theme, subject_id, level_id, dispatchData);
@@ -235,7 +237,6 @@ useEffect(() => {
     if(currentTheme) {
       const teacher = 1
       const theme = currentTheme?.tema_id
-      const subject_id = stateData.currentSubject.subject_id;
       const level_id = 1;
 
       fetchTheme(teacher, theme, subject_id, level_id, dispatchData);

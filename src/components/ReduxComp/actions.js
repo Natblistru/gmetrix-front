@@ -10,6 +10,10 @@ export const FETCH_THEME_VIDEO = 'FETCH_THEME_VIDEO';
 export const FETCH_THEME_VIDEO_SUCCESS = 'FETCH_THEME_VIDEO_SUCCESS';
 export const FETCH_THEME_VIDEO_FAILURE = 'FETCH_THEME_VIDEO_FAILURE';
 export const FETCH_EVALUATIONS = 'FETCH_EVALUATIONS';
+export const FETCH_EVALUATIONS_1 = 'FETCH_EVALUATIONS_1';
+export const FETCH_EVALUATIONS_2 = 'FETCH_EVALUATIONS_2';
+export const FETCH_EVALUATIONS_3 = 'FETCH_EVALUATIONS_3';
+export const UPDATE_CURRENT_SUBJECT = 'UPDATE_CURRENT_SUBJECT';
 
 export const addBreadcrumb = (breadcrumb) => ({
   type: ADD_BREADCRUMB,
@@ -62,4 +66,9 @@ export const fetchThemeVideoFailure = () => ({
 export const fetchEvaluationsSuccess = (evaluations) => ({
   type: FETCH_EVALUATIONS,
   payload: evaluations
+});
+
+export const updateCurrentSubject = (subject) => ({
+  type: UPDATE_CURRENT_SUBJECT,
+  payload: subject
 });

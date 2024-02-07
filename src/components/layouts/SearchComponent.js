@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { updateSubjectBreadcrumb, updateTopicBreadcrumb, fetchCapitoleRedux } from '../ReduxComp/actions';
+import { updateSubjectBreadcrumb, 
+         updateTopicBreadcrumb, 
+         fetchCapitoleRedux, 
+         updateCurrentSubject,
+         updateCurrentTheme } from '../ReduxComp/actions';
 import { useSelector } from 'react-redux';
 
 import axios from 'axios';
@@ -77,10 +81,11 @@ const SearchComponent = () => {
         const res = await axios.get(`http://localhost:8000/api/capitoleDisciplina?level=${details.studyLevelId}&disciplina=${details.subjectId}&student=1`);
         dispatch(fetchCapitoleRedux(res.data));
         if (res.data.length > 0) {
-          dispatchData({
-              type: "UPDATE_CURRENT_SUBJECT",
-              payload: res.data[0]
-          })
+          // dispatchData({
+          //     type: "UPDATE_CURRENT_SUBJECT",
+          //     payload: res.data[0]
+          // })
+          dispatch(updateCurrentSubject(res.data[0]))
           const nivelStudiu = details.studyLevelId==1?"examen clasa 9":"BAC";
           const clasa = details.studyLevelId==1?"clasa 9":"clasa 12";
           const newBreadcrumb = {name: `${res.data[0].subject_name}`, path: `/capitole/${details.subjectId}?level=${details.studyLevelId}&year=2022&name=${details.subjectName}&nivel=${nivelStudiu}&clasa=${clasa}`};
@@ -105,10 +110,11 @@ const SearchComponent = () => {
     );
   
     if (tema != null) {
-      dispatchData({
-        type: "UPDATE_CURRENT_THEME",
-        payload: tema
-      });
+      // dispatchData({
+      //   type: "UPDATE_CURRENT_THEME",
+      //   payload: tema
+      // });
+      dispatch(updateCurrentTheme(tema));
   
       const addressPath = `${themePath}?teacher=1&level=${details.studyLevelId}&disciplina=${details.subjectId}&theme=${tema.tema_id}&teachername=userT1%20teacher`;
       const newBreadcrumb = { name: tema.tema_name, path: addressPath };

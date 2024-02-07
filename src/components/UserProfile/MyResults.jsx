@@ -3,7 +3,7 @@ import axios from 'axios';
 import ContextData from '../context/ContextData';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { fetchCapitole, fetchEvaluation1, fetchEvaluation2, fetchEvaluation3 } from '../../routes/api';
+import { fetchCapitole } from '../../routes/api';
 import TreeTable from './TreeTable';
 
 const ListDisciplineRezultat = ({selectedItem, setSelectedItem}) => {

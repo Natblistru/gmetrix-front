@@ -13,6 +13,9 @@ const TableRow = (props) => {
   const searchParams = new URLSearchParams(location.search);
   const teacherVideo = searchParams.get('teacher');
   const currentTheme = useSelector(state => state.currentTheme);
+  const currentSubject = useSelector(state => state.currentSubject);
+
+  const subject_id = currentSubject.subject_id || currentSubject.currentSubject.subject_id;
 
   const rowData = props.rowData;
   const idx = props.ind;
@@ -21,7 +24,7 @@ const TableRow = (props) => {
   const parts = currentTheme.path_tema.split("/");
   const addressDisciplina = "/" + parts[1];
   const addressSubtitle = "/" + parts.slice(2).join("/");
-  const dynamicPath = `${addressDisciplina}${addressSubtitle}${rowData.path}${rowData.addressTest}/1?teacher=${teacherVideo}&level=1&disciplina=${stateData.currentSubject.subject_id}&theme=${currentTheme.tema_id}`;       
+  const dynamicPath = `${addressDisciplina}${addressSubtitle}${rowData.path}${rowData.addressTest}/1?teacher=${teacherVideo}&level=1&disciplina=${subject_id}&theme=${currentTheme.tema_id}`;       
   
   useEffect(() => {
     AOS.init(); 

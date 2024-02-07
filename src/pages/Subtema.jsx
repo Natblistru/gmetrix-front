@@ -27,11 +27,13 @@ const Subtema = ({results})  => {
   const history = useHistory();
   let subElement = null;
   const currentTheme = useSelector(state => state.currentTheme);
+  const currentSubject = useSelector(state => state.currentSubject);
+
+  const subject_id = currentSubject.subject_id || currentSubject.currentSubject.subject_id;
 
   useEffect(() => {
     const temaCurrenta = stateData.topics;
     const parts = currentTheme?.path_tema.split("/");
-    const subject_id = stateData.currentSubject?.subject_id;
     const tema_id = currentTheme?.tema_id;
 
     if (temaCurrenta && subject_id && tema_id) {
@@ -66,7 +68,7 @@ const Subtema = ({results})  => {
     window.addEventListener("beforeunload", handleBeforeUnload);
     return () => window.removeEventListener("beforeunload", handleBeforeUnload);
 
-  }, [stateData.topics, currentTheme, stateData.currentSubject, address1, disciplina, teacherVideo]);
+  }, [stateData.topics, currentTheme, currentSubject, address1, disciplina, teacherVideo]);
 
 
   const handleProgressTopicRecorded = (updatedTopicProgress) => {

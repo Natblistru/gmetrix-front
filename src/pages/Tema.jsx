@@ -1,6 +1,6 @@
 import React from "react";
 import ContextData from "../components/context/ContextData";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   updateTopicBreadcrumb,
   updateCurrentTheme,
@@ -8,7 +8,6 @@ import {
   fetchThemeVideoFailure,
   fetchEvaluationsSuccess,
 } from "../components/ReduxComp/actions";
-import { useSelector } from "react-redux";
 
 import axios from "axios";
 
@@ -42,8 +41,12 @@ const Tema = () => {
   let theme;
   let teacher;
   const capitole = useSelector((state) => state.capitole);
+  const currentSubject = useSelector(state => state.currentSubject);
+
+  const subject_id = currentSubject.subject_id || currentSubject.currentSubject.subject_id;
+
   useEffect(() => {
-    if (!stateData.currentSubject) {
+    if (!currentSubject) {
       return;
     }
     const searchParams = new URLSearchParams(location.search);
@@ -51,14 +54,13 @@ const Tema = () => {
 
     theme = searchParams.get("theme");
 
-    const subject_id = stateData.currentSubject.subject_id;
     const level_id = 1;
 
     fetchTheme(teacher, theme, subject_id, level_id, dispatchData);
-    fetchEvaluations(theme, subject_id);
-    fetchEvaluation1(theme, subject_id, level_id, dispatchData);
-    fetchEvaluation2(theme, subject_id, level_id, dispatchData);
-    fetchEvaluation3(theme, subject_id, level_id, dispatchData);
+    fetchEvaluations(theme);
+    fetchEvaluation1(theme, subject_id, level_id, dispatch);
+    fetchEvaluation2(theme, subject_id, level_id, dispatch);
+    fetchEvaluation3(theme, subject_id, level_id, dispatch);
     // console.log("FETCH THEME")
     const pathToFind = `/${disciplina}/${address}`;
 
@@ -79,8 +81,7 @@ const Tema = () => {
 
       const temaName = tema.tema_name;
       const temaid = tema.tema_id;
-
-      const addressPath = `/${disciplina}/${address}?teacher=${teacherVideo}&level=1&disciplina=${stateData.currentSubject.subject_id}&theme=${temaid}`;
+      const addressPath = `/${disciplina}/${address}?teacher=${teacherVideo}&level=1&disciplina=${subject_id}&theme=${temaid}`;
       const newBreadcrumb = { name: temaName, path: addressPath };
       dispatch(updateTopicBreadcrumb(newBreadcrumb));
     }
@@ -90,16 +91,16 @@ const Tema = () => {
         const res = await axios.get(
           `http://localhost:8000/api/teacherthemevideo?level=1&disciplina=${subject_id}&teacher=${teacherVideo}&theme=${theme}`
         );
-        dispatch(fetchThemeVideoSuccess(res.data[0]));
+        dispatch(fetchThemeVideoSuccess(res.data));
       } catch (err) {
         console.error(err);
         dispatch(fetchThemeVideoFailure());
       }
     };
     fetchData();
-  }, [stateData.currentSubject, location.search]);
+  }, [currentSubject, location.search]);
 
-  const fetchEvaluations = async (theme, subject_id) => {
+  const fetchEvaluations = async (theme) => {
     try {
       const res = await axios.get(
         `http://localhost:8000/api/themeevaluations?level=1&disciplina=${subject_id}&theme=${theme}`

@@ -9,6 +9,10 @@ import capitoleReducer from './capitoleReducer';
 import currentThemeReducer from './currentThemeReducer';
 import themeVideoReducer from './themeVideoReducer';
 import evaluationReducer from "./evaluationReducer";
+import evaluation1Reducer from "./evaluation1Reducer";
+import evaluation2Reducer from "./evaluation2Reducer";
+import evaluation3Reducer from "./evaluation3Reducer";
+import currentSubjectReducer from "./currentSubjectReducer";
 
 const initialState = {
   items: []
@@ -255,6 +259,10 @@ const combinedReducers = combineReducers({
   currentTheme: currentThemeReducer,
   themeVideo: themeVideoReducer,
   evaluations: evaluationReducer,
+  evaluations1: evaluation1Reducer,
+  evaluations2: evaluation2Reducer,
+  evaluations3: evaluation3Reducer,
+  currentSubject: currentSubjectReducer,
 })
 
 const store = createStore(

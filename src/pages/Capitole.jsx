@@ -2,12 +2,12 @@ import React from "react";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useParams, useLocation } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   updateSubjectBreadcrumb,
   fetchThemeVideoSuccess,
+  updateCurrentSubject,
 } from "../components/ReduxComp/actions";
-import { useSelector } from "react-redux";
 import ContextData from "../components/context/ContextData";
 import AOS from "aos";
 
@@ -38,6 +38,7 @@ const Capitole = (props) => {
 
   const [proc, setProc] = useState(0);
   const capitole = useSelector((state) => state.capitole);
+  const currentSubject = useSelector(state => state.currentSubject);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -60,17 +61,18 @@ const Capitole = (props) => {
   useEffect(() => {
     const fetchCurrentData = async () => {
       try {
-        dispatchData({
-          type: "FETCH_THEME_VIDEO",
-          payload: null,
-        });
-        dispatch(fetchThemeVideoSuccess(null));
+        // dispatchData({
+        //   type: "FETCH_THEME_VIDEO",
+        //   payload: null,
+        // });
+        dispatch(fetchThemeVideoSuccess([]));
 
         if (capitole.length > 0) {
-          dispatchData({
-            type: "UPDATE_CURRENT_SUBJECT",
-            payload: capitole[0],
-          });
+          // dispatchData({
+          //   type: "UPDATE_CURRENT_SUBJECT",
+          //   payload: capitole[0],
+          // });
+          dispatch(updateCurrentSubject(capitole[0]));
 
           const newBreadcrumb = {
             name: `${capitole[0].subject_name}`,
@@ -113,7 +115,7 @@ const Capitole = (props) => {
           <TitleBox className="teme-container" proc={proc}>
             {clasa}
           </TitleBox>
-          {stateData.currentSubject !== null && <TopicsList />}
+          {currentSubject !== null && <TopicsList />}
         </Card>
       </Wrapper>
     </>

@@ -9,6 +9,9 @@ const ListNavigatie = (props) => {
   const { list, handleClearTestBoard } = props
   const {stateData, dispatchData} = React.useContext(ContextData)
   const currentTheme = useSelector(state => state.currentTheme);
+  const currentSubject = useSelector(state => state.currentSubject);
+
+  const subject_id = currentSubject.subject_id || currentSubject.currentSubject.subject_id;
 
   const parts = currentTheme.path_tema.split("/");
   const addressDisciplina = "/" + parts[1];
@@ -47,7 +50,7 @@ const ListNavigatie = (props) => {
     testPrecedent1 = stateData.currentTopic.tests[stateData.currentIndexTest-1];
 
     testPrecedent = stateData.currentTopic.tests[list.id-2]; 
-    dynamicPathTestPrecedent = `${addressDisciplina}${addressSubtitle}${testPrecedent.path}${testPrecedent.addressTest}/1?teacher=1&level=1&disciplina=${stateData.currentSubject.subject_id}&theme=${currentTheme.tema_id}`;       
+    dynamicPathTestPrecedent = `${addressDisciplina}${addressSubtitle}${testPrecedent.path}${testPrecedent.addressTest}/1?teacher=1&level=1&disciplina=${subject_id}&theme=${currentTheme.tema_id}`;       
 
   //  dynamicPathTestPrecedent = `${testPrecedent.addressTestDisciplina}${testPrecedent.addressTestSubtitle}${testPrecedent.addressTestSubject}${testPrecedent.addressTest}/1`;
   }
@@ -59,7 +62,7 @@ const ListNavigatie = (props) => {
 
     testUrmator = stateData.currentTopic.tests[list.id];
     // console.log(testUrmator)
-    dynamicPathTestUrmator = `${addressDisciplina}${addressSubtitle}${testUrmator.path}${testUrmator.addressTest}/1?teacher=1&level=1&disciplina=${stateData.currentSubject.subject_id}&theme=${currentTheme.tema_id}`;       
+    dynamicPathTestUrmator = `${addressDisciplina}${addressSubtitle}${testUrmator.path}${testUrmator.addressTest}/1?teacher=1&level=1&disciplina=${subject_id}&theme=${currentTheme.tema_id}`;       
 
     // dynamicPathTestUrmator = `${testUrmator.addressTestDisciplina}${testUrmator.addressTestSubtitle}${testUrmator.addressTestSubject}${testUrmator.addressTest}/1`;
   }

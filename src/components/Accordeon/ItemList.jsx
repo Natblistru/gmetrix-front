@@ -9,6 +9,9 @@ const ItemList = ({ list, className, type, results, onItemClick }) => {
   const searchParams = new URLSearchParams(location.search);
   const teacherVideo = searchParams.get('teacher');
   const currentTheme = useSelector(state => state.currentTheme);
+  const currentSubject = useSelector(state => state.currentSubject);
+
+  const subject_id = currentSubject.subject_id || currentSubject.currentSubject.subject_id;
 
   let listItems = [...list];
   // console.log(listItems)
@@ -79,7 +82,7 @@ const ItemList = ({ list, className, type, results, onItemClick }) => {
   }
   
 
-  // console.log(stateData.evaluations1)
+  // console.log(evaluations1)
   // console.log(listItems)
   return (
     <div className={classes}>
@@ -100,8 +103,8 @@ const ItemList = ({ list, className, type, results, onItemClick }) => {
         if(procent == 100) {
           classNameProcent = "svg-sprite-vs-small result-perfect";
         }
-        // console.log(stateData.evaluations1)
-        const dynamicPath = `${addressDisciplina}${addressSubtitle}${subtitle_path}?teacher=${teacherVideo}&level=1&disciplina=${stateData.currentSubject.subject_id}&theme=${currentTheme.tema_id}`;       
+        // console.log(evaluations1)
+        const dynamicPath = `${addressDisciplina}${addressSubtitle}${subtitle_path}?teacher=${teacherVideo}&level=1&disciplina=${subject_id}&theme=${currentTheme.tema_id}`;       
         return (
           <div key={idx} className="subject-item" onClick={() => onItemClick && onItemClick(idx)}>
             <div className="title-item"> 

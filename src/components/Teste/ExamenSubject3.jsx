@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import ContextData from "../context/ContextData";
 import { useParams, useHistory, useLocation  } from "react-router-dom";
-import { connect, useSelector } from "react-redux"
+import { connect, useSelector, useDispatch } from "react-redux"
 import { fetchEvaluation3 } from "../../routes/api"
 import axios from "axios";
 // import temeIstoriArray from "../../data/temeIstoria";
@@ -19,6 +19,7 @@ import FlipCardNou from "../FlipCards/FlipCardNou";
 
 const ExamenSubect3 = ({raspunsuri}) => {
   const {stateData, dispatchData} = React.useContext(ContextData)
+  const dispatch = useDispatch();
   const { address } = useParams();
   const location = useLocation();
   const [idRaspuns, setIdRaspuns] = useState(null);
@@ -40,8 +41,13 @@ const ExamenSubect3 = ({raspunsuri}) => {
   let theme;
   const history = useHistory();
   const currentTheme = useSelector(state => state.currentTheme);
+  const evaluations3 = useSelector(state => state.evaluations3);
+  const currentSubject = useSelector(state => state.currentSubject);
 
-  let quizArray = stateData.evaluations3;
+  const subject_id = currentSubject.subject_id || currentSubject.currentSubject.subject_id;
+  const subject_tema_id = currentSubject.tema_id || currentSubject.currentSubject.tema_id;
+
+  let quizArray = evaluations3;
   // console.log(quizArray[currentIndex])
 
   useEffect(() => {
@@ -49,11 +55,10 @@ const ExamenSubect3 = ({raspunsuri}) => {
       try {
         if (currentTheme) {
           const theme = currentTheme.tema_id;
-          const subject_id = stateData.currentSubject.subject_id;
           const level_id = 1;
     
-          await fetchEvaluation3(theme, subject_id, level_id, dispatchData);
-          quizArray = stateData.evaluations3;
+          await fetchEvaluation3(theme, subject_id, level_id, dispatch);
+          quizArray = evaluations3;
         }
       } catch (error) {
         console.error('Eroare în timpul recuperării datelor:', error);
@@ -73,7 +78,7 @@ const ExamenSubect3 = ({raspunsuri}) => {
   }, []);
 
   useEffect(()=>{
-    quizArray = stateData.evaluations3;
+    quizArray = evaluations3;
     const sumMaxPoints = quizArray.reduce((acc, evaluation) =>
     acc + parseFloat(evaluation.maxPoints), 0);
 
@@ -84,8 +89,8 @@ const ExamenSubect3 = ({raspunsuri}) => {
     const average = sumStudentPoints * 100 / sumMaxPoints;
 
     setProc(average)
-    console.log("stateData.evaluations3", stateData.evaluations3)
-  },[stateData.evaluations3])
+    console.log("evaluations3", evaluations3)
+  },[evaluations3])
 
   const [proc, setProc] = useState(quizArray[currentIndex]?.student_procent);
 
@@ -161,9 +166,9 @@ const ExamenSubect3 = ({raspunsuri}) => {
       let studentResults = []
       try {
         const response = await axios.post('http://localhost:8000/api/student-evaluation-results', {
-          theme_id: stateData.currentSubject.tema_id,
-          subject_id: stateData.currentSubject.subject_id,
-          study_level_id: stateData.currentSubject.study_level_id,
+          theme_id: subject_tema_id,
+          subject_id: subject_id,
+          study_level_id: 1,
           order_number: 3,
           studentId: stateData.currentStudent,
         });
@@ -225,14 +230,13 @@ const ExamenSubect3 = ({raspunsuri}) => {
 
     if (newOptions && newOptions.length > 0) {
       const theme = currentTheme.tema_id
-      const subject_id = stateData.currentSubject.subject_id;
       const level_id = 1;
 
-      await fetchEvaluation3(theme, subject_id, level_id, dispatchData);
+      await fetchEvaluation3(theme, subject_id, level_id, dispatch);
 
-      // console.log("stateData.evaluations3",stateData.evaluations3)
+      // console.log("evaluations3",evaluations3)
 
-      const quizItem = stateData.evaluations3;
+      const quizItem = evaluations3;
       // console.log(quizItem)   
 
       const totalStudentPoints = quizArray.reduce((sum, evaluation, idx) => {
@@ -309,10 +313,9 @@ const ExamenSubect3 = ({raspunsuri}) => {
   useEffect(() => {
     if (currentTheme) {
     const theme = currentTheme.tema_id
-    const subject_id = stateData.currentSubject.subject_id;
     const level_id = 1;
 
-    fetchEvaluation3(theme, subject_id, level_id, dispatchData);
+    fetchEvaluation3(theme, subject_id, level_id, dispatch);
     console.log('Valoarea lui proc a fost actualizată:', proc);
     }
   }, [proc]);

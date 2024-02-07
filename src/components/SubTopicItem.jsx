@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import axios from 'axios'; 
 import ReactModal from 'react-modal';
 import ContextData from "../components/context/ContextData";
@@ -11,6 +11,9 @@ const SubTopicItem = ({subTit,idx, teachers, results,tests,exams, allTems}) => {
   const subtitle = subTit;
 // console.log(teachers)
   const [isModalOpen, setModalOpen] = useState(false);
+  const currentSubject = useSelector(state => state.currentSubject);
+
+  const subject_id = currentSubject.subject_id || currentSubject.currentSubject.subject_id;
 
   const [selectedTeacher, setSelectedTeacher] = useState({
     id: teachers && teachers[0] ? teachers[0].teacher_id : '',
@@ -54,10 +57,10 @@ const SubTopicItem = ({subTit,idx, teachers, results,tests,exams, allTems}) => {
   
   // console.log(teachers)
 
-  let linkTo = `${subtitle.path_tema}?theme=${subtitle.tema_id}&level=1&disciplina=${stateData.currentSubject.subject_id}`;
+  let linkTo = `${subtitle.path_tema}?theme=${subtitle.tema_id}&level=1&disciplina=${subject_id}`;
 
   if (teachers.length === 1) {
-    linkTo = `${subtitle.path_tema}?teacher=${teachers[0].teacher_id}&theme=${subtitle.tema_id}&level=1&disciplina=${stateData.currentSubject.subject_id}&teachername=${teachers[0].teacher_name}`;
+    linkTo = `${subtitle.path_tema}?teacher=${teachers[0].teacher_id}&theme=${subtitle.tema_id}&level=1&disciplina=${subject_id}&teachername=${teachers[0].teacher_name}`;
   }
 
   return (
@@ -90,9 +93,9 @@ const SubTopicItem = ({subTit,idx, teachers, results,tests,exams, allTems}) => {
             </select>
           </div>
           <button onClick={handleFormSubmit} type="button" className="btnBts btn-outline-secondary mx-auto d-block">
-            {/* {console.log(`${subtitle.path_tema}?teacher=${selectedTeacher}&theme=${subtitle.tema_id}&level=1&disciplina=${stateData.currentSubject.subject_id}`)} */}
+            {/* {console.log(`${subtitle.path_tema}?teacher=${selectedTeacher}&theme=${subtitle.tema_id}&level=1&disciplina=${subject_id}`)} */}
             <Link
-              to={`${subtitle.path_tema}?teacher=${selectedTeacher.id}&theme=${subtitle.tema_id}&level=1&disciplina=${stateData.currentSubject.subject_id}&teachername=${selectedTeacher.teacher_name}`}
+              to={`${subtitle.path_tema}?teacher=${selectedTeacher.id}&theme=${subtitle.tema_id}&level=1&disciplina=${subject_id}&teachername=${selectedTeacher.teacher_name}`}
             >
               Confirmă
             </Link>

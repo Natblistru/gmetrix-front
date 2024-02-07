@@ -62,11 +62,11 @@ const ListAccordeon = (props) => {
   useEffect(() => {
     // console.log(themeVideo); 
 
-    if (themeVideo.themeVideo ) {
-      console.log(themeVideo.themeVideo.breakpoints)
-      setVideoBreakpoints(themeVideo.themeVideo.breakpoints);
-      setVideoSource(themeVideo.themeVideo.video_source);
-      setVideoTitle(themeVideo.themeVideo.video_title);
+    if (themeVideo && themeVideo.length > 0) {
+      console.log(themeVideo[0].breakpoints)
+      setVideoBreakpoints(themeVideo[0].breakpoints);
+      setVideoSource(themeVideo[0].video_source);
+      setVideoTitle(themeVideo[0].video_title);
     }
   }, [themeVideo]);
 
