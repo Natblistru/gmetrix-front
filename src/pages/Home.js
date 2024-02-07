@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, {useState, useEffect} from "react";
 import { useDispatch } from 'react-redux';
-import { addBreadcrumb, fetchDiscipline } from '../components/ReduxComp/actions';
+import { addBreadcrumb, fetchDiscipline, fetchSubtitleTeachers } from '../components/ReduxComp/actions';
 import 'aos/dist/aos.css';
 import AOS from 'aos';
 
@@ -23,7 +23,7 @@ const Home = () => {
   useEffect(()=> {
     updateBreadcrumb();
     fetchSubjects();
-    fetchSubtitleTeachers();
+    fetchInitialSubtitleTeachers();
   },[]);
 
   const updateBreadcrumb = () => {
@@ -45,7 +45,7 @@ const Home = () => {
     }
   }
 
-  const fetchSubtitleTeachers = async () => {
+  const fetchInitialSubtitleTeachers = async () => {
     try {
       const res = await axios.get(`http://localhost:8000/api/teachers-with-themes`);
       // console.log(res.data);
@@ -53,6 +53,7 @@ const Home = () => {
         type: "FETCH_SUBTITLE_TEACHERS",
         payload: res.data.groupedTeacherThemes
       })
+      dispatch(fetchSubtitleTeachers(res.data.groupedTeacherThemes))
     } catch (err) {
       console.error(err);
     }

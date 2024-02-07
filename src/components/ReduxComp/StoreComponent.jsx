@@ -3,6 +3,7 @@ import { createStore, combineReducers } from "redux"
 import { Provider, connect } from "react-redux"
 import breadcrumbReducer from "./breadcrumbReducer";
 import disciplineAniReducer from './disciplineAniReducer';
+import teachersForSubtitleReducer from "./teachersForSubtitleReducer";
 
 const initialState = {
   items: []
@@ -244,6 +245,7 @@ const combinedReducers = combineReducers({
   exams: examsReducer,
   breadcrumb: breadcrumbReducer,
   disciplineAni: disciplineAniReducer,
+  teachersForSubtitle: teachersForSubtitleReducer,
 })
 
 const store = createStore(combinedReducers)

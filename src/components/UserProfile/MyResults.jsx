@@ -89,10 +89,11 @@ function MyResults() {
     theme_learning_program_id: '',
   })
   const [teste, setTeste] = useState([])
+  const teachersForSubtitle = useSelector(state => state.teachersForSubtitle);
 
   const fetchData = async (themeId) => {
 
-    const teachersForSubtitles = stateData.teachersForSubtitle[themeId];
+    const teachersForSubtitles = teachersForSubtitle[themeId];
     console.log(teachersForSubtitles)
 
      try {

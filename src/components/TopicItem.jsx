@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
+import { useSelector } from 'react-redux';
 import axios from 'axios'; 
 import 'aos/dist/aos.css';
 import AOS from 'aos';
@@ -11,17 +12,18 @@ import ProgressBar from "./ProgressBar";
 const TopicItem = ({ item,results,allTems }) => {
   const {stateData} = React.useContext(ContextData)
   const tema = item;
+  const teachersForSubtitle = useSelector(state => state.teachersForSubtitle);
 
   useEffect(() => {
     AOS.init(); 
   }, []);
 
   const filterTeachersForSubtitle = (themeLearningProgramsId) => {
-    if (!stateData.teachersForSubtitle || !themeLearningProgramsId) {
+    if (!teachersForSubtitle || !themeLearningProgramsId) {
       return [];
     }
 
-    return stateData.teachersForSubtitle[themeLearningProgramsId] || [];
+    return teachersForSubtitle[themeLearningProgramsId] || [];
   };
 
   return (
