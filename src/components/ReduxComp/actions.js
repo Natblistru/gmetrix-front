@@ -9,6 +9,7 @@ export const UPDATE_CURRENT_THEME = 'UPDATE_CURRENT_THEME';
 export const FETCH_THEME_VIDEO = 'FETCH_THEME_VIDEO';
 export const FETCH_THEME_VIDEO_SUCCESS = 'FETCH_THEME_VIDEO_SUCCESS';
 export const FETCH_THEME_VIDEO_FAILURE = 'FETCH_THEME_VIDEO_FAILURE';
+export const FETCH_EVALUATIONS = 'FETCH_EVALUATIONS';
 
 export const addBreadcrumb = (breadcrumb) => ({
   type: ADD_BREADCRUMB,
@@ -56,4 +57,9 @@ export const fetchThemeVideoSuccess = (videoData) => ({
 });
 export const fetchThemeVideoFailure = () => ({
   type: FETCH_THEME_VIDEO_FAILURE
+});
+
+export const fetchEvaluationsSuccess = (evaluations) => ({
+  type: FETCH_EVALUATIONS,
+  payload: evaluations
 });

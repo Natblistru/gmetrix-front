@@ -6,6 +6,7 @@ import {
   updateCurrentTheme,
   fetchThemeVideoSuccess,
   fetchThemeVideoFailure,
+  fetchEvaluationsSuccess,
 } from "../components/ReduxComp/actions";
 import { useSelector } from "react-redux";
 
@@ -54,7 +55,7 @@ const Tema = () => {
     const level_id = 1;
 
     fetchTheme(teacher, theme, subject_id, level_id, dispatchData);
-    fetchEvaluations(theme);
+    fetchEvaluations(theme, subject_id);
     fetchEvaluation1(theme, subject_id, level_id, dispatchData);
     fetchEvaluation2(theme, subject_id, level_id, dispatchData);
     fetchEvaluation3(theme, subject_id, level_id, dispatchData);
@@ -98,16 +99,13 @@ const Tema = () => {
     fetchData();
   }, [stateData.currentSubject, location.search]);
 
-  const fetchEvaluations = async (theme) => {
+  const fetchEvaluations = async (theme, subject_id) => {
     try {
       const res = await axios.get(
-        `http://localhost:8000/api/themeevaluations?level=1&disciplina=${stateData.currentSubject.subject_id}&theme=${theme}`
+        `http://localhost:8000/api/themeevaluations?level=1&disciplina=${subject_id}&theme=${theme}`
       );
-
-      dispatchData({
-        type: "FETCH_EVALUATIONS",
-        payload: res.data,
-      });
+      dispatch(fetchEvaluationsSuccess(res.data));
+      console.log(res.data)
     } catch (err) {
       console.error(err);
     }

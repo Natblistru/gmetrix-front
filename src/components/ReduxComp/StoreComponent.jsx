@@ -8,6 +8,7 @@ import teachersForSubtitleReducer from "./teachersForSubtitleReducer";
 import capitoleReducer from './capitoleReducer';
 import currentThemeReducer from './currentThemeReducer';
 import themeVideoReducer from './themeVideoReducer';
+import evaluationReducer from "./evaluationReducer";
 
 const initialState = {
   items: []
@@ -253,7 +254,7 @@ const combinedReducers = combineReducers({
   capitole: capitoleReducer,
   currentTheme: currentThemeReducer,
   themeVideo: themeVideoReducer,
-
+  evaluations: evaluationReducer,
 })
 
 const store = createStore(

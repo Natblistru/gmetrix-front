@@ -18,7 +18,8 @@ const ListAccordeon = (props) => {
   const [videoSource, setVideoSource] = useState("");
   const [videoTitle, setVideoTitle] = useState("");
   const themeVideo = useSelector(state => state.themeVideo);
-  console.log(themeVideo)
+  const aplicatiiListBD = useSelector(state => state.evaluations);
+  console.log(aplicatiiListBD)
 
   const classes = " " + props.className;
   let titleList = stateData.topics;
@@ -49,7 +50,9 @@ const ListAccordeon = (props) => {
   
   // let repereList = props.teme.repere;
   // let aplicatiiList = props.teme.aplicatii;
-  let aplicatiiListBD = stateData.evaluations;
+  // let aplicatiiListBD = stateData.evaluations;
+
+  console.log(aplicatiiListBD)
   // let termeniList = props.teme.termeni;
   // let diagramData = props.teme.diagramData;
 
