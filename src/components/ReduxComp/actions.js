@@ -5,6 +5,8 @@ export const UPDATE_SUBTOPIC_BREADCRUMB = 'UPDATE_SUBTOPIC_BREADCRUMB';
 export const FETCH_DISCIPLINE = 'FETCH_DISCIPLINE';
 export const FETCH_SUBTITLE_TEACHERS = 'FETCH_SUBTITLE_TEACHERS';
 export const FETCH_CAPITOLE = 'FETCH_CAPITOLE';
+export const UPDATE_CURRENT_THEME = 'UPDATE_CURRENT_THEME';
+
 
 export const addBreadcrumb = (breadcrumb) => ({
   type: ADD_BREADCRUMB,
@@ -39,4 +41,9 @@ export const fetchSubtitleTeachers = (teachers) => ({
 export const fetchCapitoleRedux = (capitole) => ({
   type: FETCH_CAPITOLE,
   payload: capitole
+});
+
+export const updateCurrentTheme = (theme) => ({
+  type: UPDATE_CURRENT_THEME,
+  payload: theme
 });

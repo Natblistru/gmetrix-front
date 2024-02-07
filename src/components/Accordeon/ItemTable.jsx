@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import ContextData from "../context/ContextData";
 import { Link, useLocation } from "react-router-dom";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 // import temeIstoriArray from "../../data/temeIstoria";
 import "../../index.css";
 import 'aos/dist/aos.css';
@@ -12,15 +12,16 @@ const TableRow = (props) => {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const teacherVideo = searchParams.get('teacher');
+  const currentTheme = useSelector(state => state.currentTheme);
 
   const rowData = props.rowData;
   const idx = props.ind;
   const classes = "row " + props.className;
 
-  const parts = stateData.currentTheme.path_tema.split("/");
+  const parts = currentTheme.path_tema.split("/");
   const addressDisciplina = "/" + parts[1];
   const addressSubtitle = "/" + parts.slice(2).join("/");
-  const dynamicPath = `${addressDisciplina}${addressSubtitle}${rowData.path}${rowData.addressTest}/1?teacher=${teacherVideo}&level=1&disciplina=${stateData.currentSubject.subject_id}&theme=${stateData.currentTheme.tema_id}`;       
+  const dynamicPath = `${addressDisciplina}${addressSubtitle}${rowData.path}${rowData.addressTest}/1?teacher=${teacherVideo}&level=1&disciplina=${stateData.currentSubject.subject_id}&theme=${currentTheme.tema_id}`;       
   
   useEffect(() => {
     AOS.init(); 

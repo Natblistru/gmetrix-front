@@ -3,7 +3,7 @@ import axios from "axios";
 import ContextData from "../context/ContextData";
 import { useParams, useHistory } from "react-router-dom";
 // import { RaspunsuriCtx } from "../context/Raspunsuri";
-import { connect } from "react-redux"
+import { connect, useSelector } from "react-redux"
 import { fetchEvaluation2 } from "../../routes/api"
 // import temeIstoriArray from "../../data/temeIstoria";
 import Navbar from "../layouts/Navbar";
@@ -41,15 +41,15 @@ const ExamenSubect2 = ({raspunsuri}) => {
   const speed = 50;
 
   const history = useHistory();
-
+  const currentTheme = useSelector(state => state.currentTheme);
   let quizArray = stateData.evaluations2;
 
   useEffect(() => {
   const fetchData = async () => {
     try {
       // console.log("stateData.evaluations2[1]", stateData.evaluations2);
-      if (stateData.currentTheme) {
-        const theme = stateData.currentTheme.tema_id;
+      if (currentTheme) {
+        const theme = currentTheme.tema_id;
         const subject_id = stateData.currentSubject.subject_id;
         const level_id = 1;
 
@@ -266,7 +266,7 @@ const ExamenSubect2 = ({raspunsuri}) => {
 
     if (newOptions && newOptions.length > 0) {
 
-      const theme = stateData.currentTheme.tema_id
+      const theme = currentTheme.tema_id
       const subject_id = stateData.currentSubject.subject_id;
       const level_id = 1;
 
@@ -320,8 +320,8 @@ const ExamenSubect2 = ({raspunsuri}) => {
 
   useEffect(() => {
     // console.log("stateData.evaluations2",stateData.evaluations2)
-    if (stateData.currentTheme) {
-      const theme = stateData.currentTheme.tema_id
+    if (currentTheme) {
+      const theme = currentTheme.tema_id
       const subject_id = stateData.currentSubject.subject_id;
       const level_id = 1;
 

@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import ContextData from "../context/ContextData";
 import { Link, useLocation  } from "react-router-dom";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 
 const ItemList = ({ list, className, type, results, onItemClick }) => {
   const {stateData, dispatchData} = React.useContext(ContextData)
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const teacherVideo = searchParams.get('teacher');
+  const currentTheme = useSelector(state => state.currentTheme);
 
   let listItems = [...list];
   // console.log(listItems)
@@ -40,12 +41,12 @@ const ItemList = ({ list, className, type, results, onItemClick }) => {
 
     return procSum / filteredItems.length;
   };
-  //  console.log(stateData.currentTheme); 
+  //  console.log(currentTheme); 
   //  console.log(stateData.currentTopic);   
   //  console.log(listItems);
 
 
-  const parts = stateData.currentTheme.path_tema.split("/");
+  const parts = currentTheme.path_tema.split("/");
   const addressDisciplina = "/" + parts[1];
   const addressSubtitle = "/" + parts.slice(2).join("/");
 
@@ -100,7 +101,7 @@ const ItemList = ({ list, className, type, results, onItemClick }) => {
           classNameProcent = "svg-sprite-vs-small result-perfect";
         }
         // console.log(stateData.evaluations1)
-        const dynamicPath = `${addressDisciplina}${addressSubtitle}${subtitle_path}?teacher=${teacherVideo}&level=1&disciplina=${stateData.currentSubject.subject_id}&theme=${stateData.currentTheme.tema_id}`;       
+        const dynamicPath = `${addressDisciplina}${addressSubtitle}${subtitle_path}?teacher=${teacherVideo}&level=1&disciplina=${stateData.currentSubject.subject_id}&theme=${currentTheme.tema_id}`;       
         return (
           <div key={idx} className="subject-item" onClick={() => onItemClick && onItemClick(idx)}>
             <div className="title-item"> 

@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { withRouter, useParams } from "react-router-dom";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import ContextData from "../components/context/ContextData";
 import axios from 'axios'; 
 import Navbar from "../components/layouts/Navbar";
@@ -31,17 +31,17 @@ const TestWrapper = ({ tests, add, update }) => {
   const [currentItemIndex, setCurrentItemIndex] = useState(0);
   const [loading, setLoading] = useState(true);
   const [responseReceived, setResponseReceived] = useState(false);
-
+  const currentTheme = useSelector(state => state.currentTheme);
 
 // console.log(stateData.currentTopic)
 
 useEffect(() => {
   // console.log(stateData.currentTopic)
-  // console.log(stateData.currentTheme)  
+  // console.log(currentTheme)  
   // console.log(stateData.currentTests)
-  if(stateData.currentTheme) {
+  if(currentTheme) {
     const teacher = 1
-    const theme = stateData.currentTheme?.tema_id
+    const theme = currentTheme?.tema_id
     const subject_id = stateData.currentSubject.subject_id;
     const level_id = 1;
 
@@ -232,9 +232,9 @@ useEffect(() => {
   };
 
   useEffect(() => {
-    if(stateData.currentTheme) {
+    if(currentTheme) {
       const teacher = 1
-      const theme = stateData.currentTheme?.tema_id
+      const theme = currentTheme?.tema_id
       const subject_id = stateData.currentSubject.subject_id;
       const level_id = 1;
 
@@ -243,7 +243,7 @@ useEffect(() => {
     }
   }, [proc]);
 
-  // console.log("stateData.currentTheme",stateData.currentTheme.tema_id)
+  // console.log("currentTheme", currentTheme.tema_id)
   // console.log("stateData.currentTests", stateData.currentTests)
   // console.log("stateData.currentSummativeTests",stateData.currentSummativeTests)
   // console.log("stateData.currentTests[currentTestIndex]",stateData.currentTests[currentTestIndex])

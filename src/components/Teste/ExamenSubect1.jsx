@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import ContextData from "../context/ContextData";
 import { useParams, useHistory, useLocation } from "react-router-dom";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 // import temeIstoriArray from "../../data/temeIstoria";
 import Navbar from "../layouts/Navbar";
 import Wrapper from "../Wrapper";
@@ -41,11 +41,12 @@ const ExamenSubect1 = ({ raspunsuri }) => {
 
   const history = useHistory();
   let theme;
+  const currentTheme = useSelector(state => state.currentTheme);
 
   let quizArray = stateData.evaluations1;
   useEffect(() => {
-    if (stateData.currentTheme) {
-      const theme = stateData.currentTheme.tema_id
+    if (currentTheme) {
+      const theme = currentTheme.tema_id
       const subject_id = stateData.currentSubject.subject_id;
       const level_id = 1;
     
@@ -229,7 +230,7 @@ const ExamenSubect1 = ({ raspunsuri }) => {
   const onCloseAutoevaluare = async (notaResult, newOptions) => {
 
     if (newOptions && newOptions.length > 0) {
-      const theme = stateData.currentTheme.tema_id
+      const theme = currentTheme.tema_id
       const subject_id = stateData.currentSubject.subject_id;
       const level_id = 1;
 
@@ -313,8 +314,8 @@ const ExamenSubect1 = ({ raspunsuri }) => {
   };
 
   useEffect(() => {
-    if (stateData.currentTheme) {
-    const theme = stateData.currentTheme.tema_id
+    if (currentTheme) {
+    const theme = currentTheme.tema_id
     const subject_id = stateData.currentSubject.subject_id;
     const level_id = 1;
 

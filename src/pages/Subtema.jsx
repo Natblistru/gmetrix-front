@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ContextData from "../components/context/ContextData";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { updateSubTopicBreadcrumb } from '../components/ReduxComp/actions';
 
 import { useParams, useHistory, useLocation } from "react-router-dom";
@@ -26,12 +26,13 @@ const Subtema = ({results})  => {
   const [topic, setTopic] = useState(null);
   const history = useHistory();
   let subElement = null;
+  const currentTheme = useSelector(state => state.currentTheme);
 
   useEffect(() => {
     const temaCurrenta = stateData.topics;
-    const parts = stateData.currentTheme?.path_tema.split("/");
+    const parts = currentTheme?.path_tema.split("/");
     const subject_id = stateData.currentSubject?.subject_id;
-    const tema_id = stateData.currentTheme?.tema_id;
+    const tema_id = currentTheme?.tema_id;
 
     if (temaCurrenta && subject_id && tema_id) {
       const addressToFind = "/" + address1;
@@ -65,7 +66,7 @@ const Subtema = ({results})  => {
     window.addEventListener("beforeunload", handleBeforeUnload);
     return () => window.removeEventListener("beforeunload", handleBeforeUnload);
 
-  }, [stateData.topics, stateData.currentTheme, stateData.currentSubject, address1, disciplina, teacherVideo]);
+  }, [stateData.topics, currentTheme, stateData.currentSubject, address1, disciplina, teacherVideo]);
 
 
   const handleProgressTopicRecorded = (updatedTopicProgress) => {

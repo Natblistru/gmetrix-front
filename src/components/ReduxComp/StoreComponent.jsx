@@ -5,6 +5,7 @@ import breadcrumbReducer from "./breadcrumbReducer";
 import disciplineAniReducer from './disciplineAniReducer';
 import teachersForSubtitleReducer from "./teachersForSubtitleReducer";
 import capitoleReducer from './capitoleReducer';
+import currentThemeReducer from './currentThemeReducer';
 
 const initialState = {
   items: []
@@ -248,6 +249,7 @@ const combinedReducers = combineReducers({
   disciplineAni: disciplineAniReducer,
   teachersForSubtitle: teachersForSubtitleReducer,
   capitole: capitoleReducer,
+  currentTheme: currentThemeReducer,
 })
 
 const store = createStore(combinedReducers)

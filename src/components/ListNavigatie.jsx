@@ -3,11 +3,14 @@ import ContextData from "../components/context/ContextData";
 // import temeIstoriArray from "../data/temeIstoria";
 import '../index.css'
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
 const ListNavigatie = (props) => {
   const { list, handleClearTestBoard } = props
   const {stateData, dispatchData} = React.useContext(ContextData)
+  const currentTheme = useSelector(state => state.currentTheme);
 
-  const parts = stateData.currentTheme.path_tema.split("/");
+  const parts = currentTheme.path_tema.split("/");
   const addressDisciplina = "/" + parts[1];
   const addressSubtitle = "/" + parts.slice(2).join("/");
 
@@ -44,7 +47,7 @@ const ListNavigatie = (props) => {
     testPrecedent1 = stateData.currentTopic.tests[stateData.currentIndexTest-1];
 
     testPrecedent = stateData.currentTopic.tests[list.id-2]; 
-    dynamicPathTestPrecedent = `${addressDisciplina}${addressSubtitle}${testPrecedent.path}${testPrecedent.addressTest}/1?teacher=1&level=1&disciplina=${stateData.currentSubject.subject_id}&theme=${stateData.currentTheme.tema_id}`;       
+    dynamicPathTestPrecedent = `${addressDisciplina}${addressSubtitle}${testPrecedent.path}${testPrecedent.addressTest}/1?teacher=1&level=1&disciplina=${stateData.currentSubject.subject_id}&theme=${currentTheme.tema_id}`;       
 
   //  dynamicPathTestPrecedent = `${testPrecedent.addressTestDisciplina}${testPrecedent.addressTestSubtitle}${testPrecedent.addressTestSubject}${testPrecedent.addressTest}/1`;
   }
@@ -56,7 +59,7 @@ const ListNavigatie = (props) => {
 
     testUrmator = stateData.currentTopic.tests[list.id];
     // console.log(testUrmator)
-    dynamicPathTestUrmator = `${addressDisciplina}${addressSubtitle}${testUrmator.path}${testUrmator.addressTest}/1?teacher=1&level=1&disciplina=${stateData.currentSubject.subject_id}&theme=${stateData.currentTheme.tema_id}`;       
+    dynamicPathTestUrmator = `${addressDisciplina}${addressSubtitle}${testUrmator.path}${testUrmator.addressTest}/1?teacher=1&level=1&disciplina=${stateData.currentSubject.subject_id}&theme=${currentTheme.tema_id}`;       
 
     // dynamicPathTestUrmator = `${testUrmator.addressTestDisciplina}${testUrmator.addressTestSubtitle}${testUrmator.addressTestSubject}${testUrmator.addressTest}/1`;
   }

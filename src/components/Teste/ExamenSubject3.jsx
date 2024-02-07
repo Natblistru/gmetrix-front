@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import ContextData from "../context/ContextData";
 import { useParams, useHistory, useLocation  } from "react-router-dom";
-import { connect } from "react-redux"
+import { connect, useSelector } from "react-redux"
 import { fetchEvaluation3 } from "../../routes/api"
 import axios from "axios";
 // import temeIstoriArray from "../../data/temeIstoria";
@@ -39,7 +39,7 @@ const ExamenSubect3 = ({raspunsuri}) => {
   const speed = 50;
   let theme;
   const history = useHistory();
-
+  const currentTheme = useSelector(state => state.currentTheme);
 
   let quizArray = stateData.evaluations3;
   // console.log(quizArray[currentIndex])
@@ -47,8 +47,8 @@ const ExamenSubect3 = ({raspunsuri}) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        if (stateData.currentTheme) {
-          const theme = stateData.currentTheme.tema_id;
+        if (currentTheme) {
+          const theme = currentTheme.tema_id;
           const subject_id = stateData.currentSubject.subject_id;
           const level_id = 1;
     
@@ -224,7 +224,7 @@ const ExamenSubect3 = ({raspunsuri}) => {
   const onCloseAutoevaluare = async (notaResult, newOptions) => {
 
     if (newOptions && newOptions.length > 0) {
-      const theme = stateData.currentTheme.tema_id
+      const theme = currentTheme.tema_id
       const subject_id = stateData.currentSubject.subject_id;
       const level_id = 1;
 
@@ -307,8 +307,8 @@ const ExamenSubect3 = ({raspunsuri}) => {
   };
 
   useEffect(() => {
-    if (stateData.currentTheme) {
-    const theme = stateData.currentTheme.tema_id
+    if (currentTheme) {
+    const theme = currentTheme.tema_id
     const subject_id = stateData.currentSubject.subject_id;
     const level_id = 1;
 

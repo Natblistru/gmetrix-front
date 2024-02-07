@@ -1,7 +1,7 @@
 import React from "react";
 import ContextData from "../components/context/ContextData";
 import { useDispatch } from 'react-redux';
-import { updateTopicBreadcrumb} from '../components/ReduxComp/actions';
+import { updateTopicBreadcrumb, updateCurrentTheme } from '../components/ReduxComp/actions';
 import { useSelector } from 'react-redux';
 
 import axios from "axios";
@@ -66,6 +66,7 @@ const Tema = () => {
         type: "UPDATE_CURRENT_THEME",
         payload: tema
       })
+      dispatch(updateCurrentTheme(tema));
 
       const temaName = tema.tema_name;
       const temaid = tema.tema_id;
