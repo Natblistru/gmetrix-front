@@ -8,7 +8,6 @@ import {
   fetchThemeVideoSuccess,
   updateCurrentSubject,
 } from "../components/ReduxComp/actions";
-import ContextData from "../components/context/ContextData";
 import AOS from "aos";
 
 // import temeMatem from '../data/temeMatem';
@@ -23,7 +22,6 @@ import { fetchCapitole } from "../routes/api";
 import "../index.css";
 
 const Capitole = (props) => {
-  const { stateData, dispatchData } = React.useContext(ContextData);
   const dispatch = useDispatch();
   //   console.log("Parametrul id:", props.match.params.id); //parametru din adresa /:id
   const { id } = useParams();
@@ -61,24 +59,15 @@ const Capitole = (props) => {
   useEffect(() => {
     const fetchCurrentData = async () => {
       try {
-        // dispatchData({
-        //   type: "FETCH_THEME_VIDEO",
-        //   payload: null,
-        // });
         dispatch(fetchThemeVideoSuccess([]));
 
         if (capitole.length > 0) {
-          // dispatchData({
-          //   type: "UPDATE_CURRENT_SUBJECT",
-          //   payload: capitole[0],
-          // });
           dispatch(updateCurrentSubject(capitole[0]));
 
           const newBreadcrumb = {
             name: `${capitole[0].subject_name}`,
             path: `/capitole/${id}?level=1&year=2022&name=${name}&nivel=${nivel}&clasa=${clasa}`,
           };
-
           dispatch(updateSubjectBreadcrumb(newBreadcrumb));
 
           setProc(capitole[0].disciplina_media);

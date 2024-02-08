@@ -3,11 +3,9 @@ import { Link } from "react-router-dom";
 import { connect, useSelector } from "react-redux";
 import axios from 'axios'; 
 import ReactModal from 'react-modal';
-import ContextData from "../components/context/ContextData";
 import ProgressBar from "./ProgressBar";
 
 const SubTopicItem = ({subTit,idx, teachers, results,tests,exams, allTems}) => {
-  const {stateData} = React.useContext(ContextData)
   const subtitle = subTit;
 // console.log(teachers)
   const [isModalOpen, setModalOpen] = useState(false);

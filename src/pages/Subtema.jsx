@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
-import ContextData from "../components/context/ContextData";
 import { useDispatch, useSelector } from 'react-redux';
 import { updateSubTopicBreadcrumb, updateCurrentTopic  } from '../components/ReduxComp/actions';
 
@@ -13,10 +11,8 @@ import Breadcrumb from "../components/Breadcrumb";
 import Wrapper from "../components/Wrapper";
 import TitleBox from "../components/TitleBox";
 import ListSubAccordeon from "../components/Accordeon/ListSubAccordeon";
-import StateData from "../components/context/StateData";
 
 const Subtema = ({results})  => {
-  const { stateData, dispatchData } = React.useContext(ContextData);
   const dispatch = useDispatch();
   const { address1, disciplina } = useParams();
   const location = useLocation();
@@ -42,10 +38,6 @@ const Subtema = ({results})  => {
       const mainElement = temaCurrenta.find(element => element.path === addressToFind);
 
       if (mainElement) {
-        dispatchData({
-          type: "UPDATE_CURRENT_TOPIC",
-          payload: mainElement
-        });
         dispatch(updateCurrentTopic(mainElement));
 
         const addressDisciplina = "/" + parts[1];
@@ -53,10 +45,6 @@ const Subtema = ({results})  => {
 
         const addressPath = `/${disciplina}${addressSubtitle}${mainElement.path}?teacher=${teacherVideo}&level=1&disciplina=${subject_id}&theme=${tema_id}`;
         const newBreadcrumb = { name: mainElement.name, path: addressPath };
-        // dispatchData({
-        //   type: "UPDATE_SUBTOPIC_BREADCRUMB",
-        //   payload: newBreadcrumb
-        // });
         dispatch(updateSubTopicBreadcrumb(newBreadcrumb));
         setTopic(mainElement);
       }

@@ -1,10 +1,8 @@
 import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
-import ContextData from '../context/ContextData';
 import Swal from 'sweetalert2'
 
 const AccountSettings = ({ userData, setUserData }) => {
-  const { stateData } = React.useContext(ContextData);
   const [errorList, setErrors] = useState([]);
 
   const handleInput = (e) => {

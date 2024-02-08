@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { withRouter, useParams } from "react-router-dom";
 import { connect, useSelector, useDispatch } from "react-redux";
-import ContextData from "../components/context/ContextData";
 import axios from 'axios'; 
 import Navbar from "../components/layouts/Navbar";
 import Breadcrumb from "../components/Breadcrumb";
@@ -13,13 +12,11 @@ import ListNavigatie from "../components/ListNavigatie";
 import TestBoard from "../components/Teste/TestBoard";
 import TestWords from "../components/Teste/TestWords";
 import TestSnap from "../components/Snap/TestSnap";
-import TestGeneralizator from "../components/Teste/TestGeneralizator";
 import { fetchTheme } from "../routes/api"
 import { fetchCurrentIndexTest } from '../components/ReduxComp/actions';
 import "../index.css";
 
 const TestWrapper = ({ tests, add, update }) => {
-  const {stateData, dispatchData} = React.useContext(ContextData)
   const dispatch = useDispatch();
   const { address1, addressTest, idTest } = useParams();
   // console.log(addressTest);
@@ -82,10 +79,6 @@ useEffect(() => {
       }
       setLoading(false)
       setCurrentItemIndex(0)
-      dispatchData({
-        type: "FETCH_CURRENT_INDEX_TEST",
-        payload: indexElementCautat
-      })
       dispatch(fetchCurrentIndexTest(indexElementCautat));
     }
   }, [addressTest]);
@@ -108,7 +101,6 @@ useEffect(() => {
             test_item_id: option.test_item_id,
             formative_test_id: currentTests[currentTestIndex].formative_test_id,
           }));
-
 
           try {
             const studentId = 1;

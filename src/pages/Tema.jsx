@@ -1,5 +1,4 @@
 import React from "react";
-import ContextData from "../components/context/ContextData";
 import { useDispatch, useSelector } from "react-redux";
 import {
   updateTopicBreadcrumb,
@@ -27,7 +26,6 @@ import {
 import "../index.css";
 
 const Tema = () => {
-  const { stateData, dispatchData } = React.useContext(ContextData);
   const dispatch = useDispatch();
   const { address, disciplina } = useParams();
   const location = useLocation();

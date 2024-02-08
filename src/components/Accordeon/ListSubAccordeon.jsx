@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import ContextData from "../context/ContextData";
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchCurrentTestsSuccess } from '../ReduxComp/actions';
 import { scroller } from 'react-scroll'
 import ItemAccordeon from "./ItemAccordeon";
 import ItemList from "./ItemList";
-import ItemText from "./ItemText";
 import ItemTable from "./ItemTable";
 import SimpleSlider from "../Slider/SimpleSlider";
 import Audio from "../AudioPlayer";
@@ -15,7 +13,6 @@ import FlipCardNou from "../FlipCards/FlipCardNou";
 import '../FlipCards/flipCardNou.scss';
 
 const ListSubAccordeon = (props) => {
-const {stateData, dispatchData} = React.useContext(ContextData)
 const dispatch = useDispatch();
 const [currentSubject, setCurrentSubject] = useState(0);
 const currentTopic1 = useSelector(state => state.currentTopic);
@@ -58,35 +55,12 @@ const fetchTest = async () => {
   const teacher_topic_id = currentTopic.teacher_topic_id;
   try {
       const res = await axios.get(`http://localhost:8000/api/formativetest?topic=${teacher_topic_id}`);
-
       // console.log(res.data);
-      dispatchData({
-          type: "FETCH_CURRENT_TESTS",
-          payload: res.data
-      })
       dispatch(fetchCurrentTestsSuccess(res.data));
   } catch (err) {
       console.error(err);
   }
 }
-
-const fetchSummativeTest = async (theme) => {
-
-  const teacher_topic_id = currentTopic.teacher_topic_id;
-  
-  try {
-      const res = await axios.get(`http://localhost:8000/api/summativetest?topic=${teacher_topic_id}`);
-
-      // console.log(res.data);
-      dispatchData({
-          type: "FETCH_CURRENT_SUMMATIVE_TESTS",
-          payload: res.data
-      })
-  } catch (err) {
-      console.error(err);
-  }
-}
-
 
 useEffect(()=> {
 

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import ContextData from "../components/context/ContextData";
 // import temeIstoriArray from "../data/temeIstoria";
 import '../index.css'
 import { Link } from 'react-router-dom';
@@ -7,7 +6,6 @@ import { useSelector } from 'react-redux';
 
 const ListNavigatie = (props) => {
   const { list, handleClearTestBoard } = props
-  const {stateData, dispatchData} = React.useContext(ContextData)
   const currentTheme = useSelector(state => state.currentTheme);
   const currentSubject = useSelector(state => state.currentSubject);
   const currentTests = useSelector(state => state.currentTests);

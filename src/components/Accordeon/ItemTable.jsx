@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import ContextData from "../context/ContextData";
 import { Link, useLocation } from "react-router-dom";
 import { connect, useSelector } from "react-redux";
 // import temeIstoriArray from "../../data/temeIstoria";
@@ -8,7 +7,6 @@ import 'aos/dist/aos.css';
 import AOS from 'aos';
 
 const TableRow = (props) => {
-  const {stateData, dispatchData} = React.useContext(ContextData)
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const teacherVideo = searchParams.get('teacher');

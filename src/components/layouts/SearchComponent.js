@@ -11,12 +11,10 @@ import { useSelector } from 'react-redux';
 import axios from 'axios';
 import Select from 'react-select';
 import Modal from 'react-modal';
-import ContextData from '../context/ContextData';
 import { fetchTheme } from "../../routes/api"
 
 const SearchComponent = () => {
   const history = useHistory();
-  const {stateData, dispatchData} = React.useContext(ContextData)
   const dispatch = useDispatch();
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -81,10 +79,6 @@ const SearchComponent = () => {
         const res = await axios.get(`http://localhost:8000/api/capitoleDisciplina?level=${details.studyLevelId}&disciplina=${details.subjectId}&student=1`);
         dispatch(fetchCapitoleRedux(res.data));
         if (res.data.length > 0) {
-          // dispatchData({
-          //     type: "UPDATE_CURRENT_SUBJECT",
-          //     payload: res.data[0]
-          // })
           dispatch(updateCurrentSubject(res.data[0]))
           const nivelStudiu = details.studyLevelId==1?"examen clasa 9":"BAC";
           const clasa = details.studyLevelId==1?"clasa 9":"clasa 12";
@@ -110,10 +104,6 @@ const SearchComponent = () => {
     );
   
     if (tema != null) {
-      // dispatchData({
-      //   type: "UPDATE_CURRENT_THEME",
-      //   payload: tema
-      // });
       dispatch(updateCurrentTheme(tema));
   
       const addressPath = `${themePath}?teacher=1&level=${details.studyLevelId}&disciplina=${details.subjectId}&theme=${tema.tema_id}&teachername=userT1%20teacher`;

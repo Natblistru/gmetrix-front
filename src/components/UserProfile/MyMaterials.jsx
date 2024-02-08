@@ -1,11 +1,8 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useParams } from 'react-router-dom'
 import axios from 'axios';
-import ContextData from '../context/ContextData';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { fetchCapitole } from '../../routes/api';
-import TreeTable from './TreeTable';
 import UserSidebarMaterials from './UserSidebarMaterials';
 import MyTopics from './MyTopics';
 import MySubtopics from './MySubtopics';

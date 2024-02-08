@@ -8,9 +8,8 @@ import TreeTable from './TreeTable';
 
 const ListDisciplineRezultat = ({selectedItem, setSelectedItem}) => {
   const [mediaDisciplina, setMediaDisciplina] = useState([])
-  const { stateData, dispatchData } = React.useContext(ContextData);
-  // console.log(stateData.disciplineAni);
   const disciplineAni = useSelector(state => state.disciplineAni);
+    // console.log(disciplineAni);
   const dispatch = useDispatch();
 
   const handleItemClick = (item) => {
@@ -44,7 +43,7 @@ const ListDisciplineRezultat = ({selectedItem, setSelectedItem}) => {
 
       const level_id = 1;
 
-      fetchCapitole(selectedItem.subject_id, level_id, dispatchData);
+      fetchCapitole(selectedItem.subject_id, level_id, dispatch);
 
   }, []);
   

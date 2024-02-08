@@ -1,19 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-import ContextData from '../context/ContextData';
 import { withRouter, Link } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import '../../index.css';
-import ParentComponent from "../Modal/ParentComponent";
 import VideoLesson from '../VideoLesson';
-import VideoBreakpoints from '../VideoBreakpoints';
 import ItemAccordeon from "./ItemAccordeon";
 import ItemList from "./ItemList";
 import { scroller } from 'react-scroll';
 
 const ListAccordeon = (props) => {
-  const {stateData, dispatchData} = React.useContext(ContextData)
-
   const [videoBreakpoints, setVideoBreakpoints] = useState();
   const [videoSource, setVideoSource] = useState("");
   const [videoTitle, setVideoTitle] = useState("");

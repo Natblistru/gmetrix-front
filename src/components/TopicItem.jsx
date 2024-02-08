@@ -5,12 +5,10 @@ import axios from 'axios';
 import 'aos/dist/aos.css';
 import AOS from 'aos';
 
-import ContextData from "../components/context/ContextData";
 import SubTopicItem from "./SubTopicItem";
 import ProgressBar from "./ProgressBar";
 
 const TopicItem = ({ item,results,allTems }) => {
-  const {stateData} = React.useContext(ContextData)
   const tema = item;
   const teachersForSubtitle = useSelector(state => state.teachersForSubtitle);
 

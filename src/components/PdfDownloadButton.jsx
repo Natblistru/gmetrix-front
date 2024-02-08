@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import ContextData from "../components/context/ContextData";
 import { useSelector } from 'react-redux';
 
 import pdfMake from 'pdfmake/build/pdfmake';
@@ -8,7 +7,6 @@ import pdfFonts from 'pdfmake/build/vfs_fonts';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 const PdfDownloadButton = ({ generateText }) => {
-  const {stateData} = React.useContext(ContextData)
   const currentTheme = useSelector(state => state.currentTheme);
 
   useEffect(() => {
