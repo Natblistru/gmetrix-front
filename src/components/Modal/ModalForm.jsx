@@ -1,14 +1,19 @@
 import React, { useState, useContext, useEffect, useRef } from "react";
-import { connect } from "react-redux"
+import { connect } from "react-redux";
 import { addRaspuns, updateRaspuns } from "../ReduxComp/actions";
 import Popupmenu from "../Popupmenu";
 import ModalArrows from "./ModalArrows";
 
 import "./ModalForm.css";
-const ModalForm = ({forma,onClick,idRaspuns,raspunsuri,addRaspuns, updateRaspuns}) => {
-  const raspInitialArr = Array(
-    forma.length
-  ).fill("");
+const ModalForm = ({
+  forma,
+  onClick,
+  idRaspuns,
+  raspunsuri,
+  addRaspuns,
+  updateRaspuns,
+}) => {
+  const raspInitialArr = Array(forma.length).fill("");
   const [rasp, SetRasp] = useState([]);
 
   const [activeTab, setActiveTab] = useState(1);
@@ -16,17 +21,18 @@ const ModalForm = ({forma,onClick,idRaspuns,raspunsuri,addRaspuns, updateRaspuns
   let hasPrev = activeTab > 1;
   let hasNext = activeTab < forma.length;
 
-
-
   useEffect(() => {
     // console.log(idRaspuns);
-    // console.log(raspunsuri);    
-    if(idRaspuns!==null) {
-      const foundRaspuns = raspunsuri.items.find(item => item.id === idRaspuns);
-      const valuesArray = Object.values(foundRaspuns).filter(value => value !== foundRaspuns.id);
-      SetRasp(valuesArray)    
-    } else SetRasp(Array(forma.length).fill(""))
-
+    // console.log(raspunsuri);
+    if (idRaspuns !== null) {
+      const foundRaspuns = raspunsuri.items.find(
+        (item) => item.id === idRaspuns
+      );
+      const valuesArray = Object.values(foundRaspuns).filter(
+        (value) => value !== foundRaspuns.id
+      );
+      SetRasp(valuesArray);
+    } else SetRasp(Array(forma.length).fill(""));
   }, []);
 
   const handleTabClick = (tabNumber) => {
@@ -46,9 +52,9 @@ const ModalForm = ({forma,onClick,idRaspuns,raspunsuri,addRaspuns, updateRaspuns
     // console.log({ ...rasp, id: IdRasp });
     // console.log(idRaspuns);
     // console.log(IdRasp);
-    if(idRaspuns===null){
+    if (idRaspuns === null) {
       addRaspuns({ ...rasp, id: IdRasp });
-     onClick(rasp, IdRasp);
+      onClick(rasp, IdRasp);
     } else {
       updateRaspuns({ ...rasp, id: idRaspuns });
       onClick(rasp, idRaspuns);
@@ -58,10 +64,10 @@ const ModalForm = ({forma,onClick,idRaspuns,raspunsuri,addRaspuns, updateRaspuns
   };
 
   const handleChange = (e, idx) => {
-    const updatedRasp = [...rasp]; // Создаем копию массива rasp
-    updatedRasp[idx] = e.target.value; // Обновляем первый элемент массива
+    const updatedRasp = [...rasp];
+    updatedRasp[idx] = e.target.value;
 
-    SetRasp(updatedRasp); // Устанавливаем обновленный массив в состояние
+    SetRasp(updatedRasp);
   };
 
   return (
@@ -83,29 +89,30 @@ const ModalForm = ({forma,onClick,idRaspuns,raspunsuri,addRaspuns, updateRaspuns
         </div>
         <div className="navbar-subject">
           <ul>
-          {forma.map((elem, idx) => (
-               <li key={idx}
-               className={activeTab === (idx+1) ? "active" : ""}
-               onClick={() => handleTabClick(idx+1)}
-             >
-               Step {idx+1}
-             </li>         
-          ))}
+            {forma.map((elem, idx) => (
+              <li
+                key={idx}
+                className={activeTab === idx + 1 ? "active" : ""}
+                onClick={() => handleTabClick(idx + 1)}
+              >
+                Step {idx + 1}
+              </li>
+            ))}
           </ul>
         </div>
         <div className="modal-content">
           {forma.map((elem, idx) => (
             <div className={activeTab === idx + 1 ? "active" : ""} key={idx}>
               <div>
-                <div style={{ display: "flex", justifyContent: "space-around", alignItems: "center" }}>
-                  <label>
-                    {elem.cerinte}
-                  </label>
-                  {elem.hint !== "[]" && (
-                    <Popupmenu
-                      hint={elem.hint}
-                    />
-                  )}
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-around",
+                    alignItems: "center",
+                  }}
+                >
+                  <label>{elem.cerinte}</label>
+                  {elem.hint !== "[]" && <Popupmenu hint={elem.hint} />}
                 </div>
                 <textarea
                   value={rasp[idx]}
@@ -145,10 +152,10 @@ const ModalForm = ({forma,onClick,idRaspuns,raspunsuri,addRaspuns, updateRaspuns
         </div>
         <button
           className="btn-close-modal"
-          onClick={() => onClick(null,null)}
+          onClick={() => onClick(null, null)}
         ></button>
       </div>
-      <ModalArrows setModalPosition={setModalPosition}/>
+      <ModalArrows setModalPosition={setModalPosition} />
     </div>
   );
 };

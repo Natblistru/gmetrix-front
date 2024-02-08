@@ -23,18 +23,6 @@ import raspunsuriReducer from './raspunsuriReducer';
 const initialState = {
   items: []
 };
-const initialResultState = {
-  items: [{user: "Current user",
-          //  subject: [
-          //   {
-          //   id: "1",
-          //   audio: "1",
-          //   proc: 60
-          //  },
-          // ]
-          subject: []
-        }]
-};
 const initialTeststState = {
   items: [{user: "Current user",
           //   tests: [
@@ -47,72 +35,6 @@ const initialTeststState = {
           // ]
           tests: []
         }]
-};
-const initialExamsState = {
-  items: [{user: "Current user",
-          //   exams: [
-          //   {
-          //   id: "1",
-          //   subiect: "1",
-          //   superitem: "1",
-          //   item: "1",
-          //   proc: 100
-          //  },
-          exams: []
-        }]
-};
-
-const resultsReducer = (state=initialResultState, action) => {
-  switch (action.type) {
-    case 'ADD_RESULT':
-      return {
-        ...state,
-        items: state.items.map(userItem => {
-          if (userItem.user === "Current user") {
-            return {
-              ...userItem,
-              subject: [...userItem.subject, action.payload] 
-            };
-          } else {
-            return userItem;
-          }
-        })
-      };
-      case 'UPDATE_RESULT':
-        return {
-          ...state,
-          items: state.items.map(userItem => {
-            if (userItem.user === "Current user") {
-              return {
-                ...userItem,
-                subject: userItem.subject.map(subjectItem =>
-                  subjectItem.id === action.payload.id && subjectItem.audio === action.payload.audio
-                    ? action.payload 
-                    : subjectItem
-                )
-              };
-            } else {
-              return userItem;
-            }
-          })
-        };
-        case 'DELETE_RESULT':
-          return {
-            ...state,
-            items: state.items.map(userItem => {
-              if (userItem.user === "Current user") {
-                return {
-                  ...userItem,
-                  subject: state.subject.filter(item => item.id != action.payload.id && item.audio != action.payload.audio) 
-                };
-              } else {
-                return userItem;
-              }
-            })
-          };
-        default:
-        return state;
-  }
 };
 const testsReducer = (state=initialTeststState, action) => {
   switch (action.type) {
@@ -166,59 +88,6 @@ const testsReducer = (state=initialTeststState, action) => {
             return state;
   }
 };
-const examsReducer = (state=initialExamsState, action) => {
-  switch (action.type) {
-    case 'ADD_EXAM':
-      return {
-        ...state,
-        items: state.items.map(userItem => {
-          if (userItem.user === "Current user") {
-            return {
-              ...userItem,
-              exams: [...userItem.exams, action.payload] 
-            };
-          } else {
-            return userItem;
-          }
-        })
-      };
-      case 'UPDATE_EXAM':
-        return {
-          ...state,
-          items: state.items.map(userItem => {
-            if (userItem.user === "Current user") {
-              return {
-                ...userItem,
-                exams: userItem.exams.map(examItem =>
-                  examItem.id == action.payload.id && examItem.subiect == action.payload.subiect && examItem.item == action.payload.item
-                    ? action.payload 
-                    : examItem
-                )
-              };
-            } else {
-              return userItem;
-            }
-          })
-        };
-        case 'DELETE_EXAM':
-          return {
-            ...state,
-            items: state.items.map(userItem => {
-              if (userItem.user === "Current user") {
-                return {
-                  ...userItem,
-                  exams: state.exams.filter(item => item.id != action.payload.id && item.subiect != action.payload.subiect && item.item != action.payload.item) 
-                };
-              } else {
-                return userItem;
-              }
-            })
-          };
-          default:
-            return state;
-  }
-};
-
 const textReducer = ( state = "", action )=> {
   switch (action.type) {
     case " update":
@@ -231,9 +100,7 @@ const textReducer = ( state = "", action )=> {
 const combinedReducers = combineReducers({
   raspunsuri: raspunsuriReducer,
   text: textReducer,
-  results: resultsReducer,
   tests: testsReducer,
-  exams: examsReducer,
   breadcrumb: breadcrumbReducer,
   disciplineAni: disciplineAniReducer,
   teachersForSubtitle: teachersForSubtitleReducer,

@@ -19,7 +19,8 @@ const TestCheck = ({
 }) => {
   const currentTests = useSelector(state => state.currentTests);
   const currentIndexTest = useSelector(state => state.currentIndexTest);
-  const currentStudent = useSelector(state => state.currentStudent);
+  const currentStudentObject = useSelector(state => state.currentStudent);
+  const currentStudent = currentStudentObject.currentStudent;
 
   const [selectedValues, setSelectedValues] = useState([]);
 

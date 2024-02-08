@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useParams, useHistory, useLocation } from "react-router-dom";
-import { connect, useSelector, useDispatch  } from "react-redux";
+import { useLocation } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 // import temeIstoriArray from "../../data/temeIstoria";
 import Navbar from "../layouts/Navbar";
 import Wrapper from "../Wrapper";
@@ -11,18 +11,14 @@ import ItemAccordeon from "../Accordeon/ItemAccordeon";
 import ItemText from "../Accordeon/ItemText";
 import ModalForm from "../Modal/ModalForm";
 import ModalCalculator from "../Modal/ModalCalculator";
-import { fetchEvaluation1 } from "../../routes/api"
+import { fetchEvaluation1 } from "../../routes/api";
 import PdfDownloadButton from "../PdfDownloadButton";
 import FlipCardNou from "../FlipCards/FlipCardNou";
 
-const ExamenSubect1 = ({ raspunsuri }) => {
+const ExamenSubect1 = () => {
   const dispatch = useDispatch();
-  const { address } = useParams();
   const location = useLocation();
-  // const [quizArray,setQuizArray] = useState([]);
-
   const [idRaspuns, setIdRaspuns] = useState(null);
-  const [item, setItem] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const [text, setText] = useState("");
@@ -33,61 +29,60 @@ const ExamenSubect1 = ({ raspunsuri }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isAnswered, setIsAnswered] = useState(false);
   const [showResponse, setShowResponse] = useState(false);
-  const [showAutoevaluare, setShowAutoevaluare] = useState(false)
-  const [selectedOptions, setSelectedOptions] = useState([])
+  const [showAutoevaluare, setShowAutoevaluare] = useState(false);
+  const [selectedOptions, setSelectedOptions] = useState([]);
   const [showCards, setShowCards] = useState(false);
   const speed = 50;
 
-  const history = useHistory();
   let theme;
-  const currentTheme = useSelector(state => state.currentTheme);
-  const evaluations1 = useSelector(state => state.evaluations1);
-  const currentSubject = useSelector(state => state.currentSubject);
-  const currentStudent = useSelector(state => state.currentStudent);
+  const currentTheme = useSelector((state) => state.currentTheme);
+  const evaluations1 = useSelector((state) => state.evaluations1);
+  const currentSubject = useSelector((state) => state.currentSubject);
+  const currentStudentObject = useSelector((state) => state.currentStudent);
+  const currentStudent = currentStudentObject.currentStudent;
 
-  const subject_id = currentSubject.subject_id || currentSubject.currentSubject.subject_id;
-  const subject_tema_id = currentSubject.tema_id || currentSubject.currentSubject.tema_id;
-
-
+  const subject_id =
+    currentSubject.subject_id || currentSubject.currentSubject.subject_id;
+  const subject_tema_id =
+    currentSubject.tema_id || currentSubject.currentSubject.tema_id;
 
   let quizArray = evaluations1;
   useEffect(() => {
     if (currentTheme) {
-      const theme = currentTheme.tema_id
+      const theme = currentTheme.tema_id;
       const level_id = 1;
-    
+
       fetchEvaluation1(theme, subject_id, level_id, dispatch);
       // quizArray = evaluations1;
     }
 
-
     const handleBeforeUnload = (event) => {
       event.preventDefault();
-      event.returnValue = ''; 
+      event.returnValue = "";
     };
 
     window.addEventListener("beforeunload", handleBeforeUnload);
     return () => window.removeEventListener("beforeunload", handleBeforeUnload);
-
   }, []);
 
-  useEffect(()=>{
+  useEffect(() => {
     quizArray = evaluations1;
 
-    const sumMaxPoints = quizArray.reduce((acc, evaluation) =>
-    acc + parseFloat(evaluation.maxPoints), 0);
+    const sumMaxPoints = quizArray.reduce(
+      (acc, evaluation) => acc + parseFloat(evaluation.maxPoints),
+      0
+    );
 
-    const sumStudentPoints = quizArray.reduce((acc, evaluation) =>
-      acc + parseFloat(evaluation.student_points), 0);
+    const sumStudentPoints = quizArray.reduce(
+      (acc, evaluation) => acc + parseFloat(evaluation.student_points),
+      0
+    );
 
     // Calculați media din catul celor două sume
-    const average = sumStudentPoints * 100 / sumMaxPoints;
+    const average = (sumStudentPoints * 100) / sumMaxPoints;
 
-    setProc(average)
-
-  },[evaluations1])
-
-
+    setProc(average);
+  }, [evaluations1]);
 
   const [proc, setProc] = useState(quizArray[currentIndex]?.student_procent);
 
@@ -136,11 +131,6 @@ const ExamenSubect1 = ({ raspunsuri }) => {
     }
   }, [indx, text]);
 
-  useEffect(() => {
-   // console.log(raspunsuri.items);
-  //  console.log(idRaspuns);
-  }, [raspunsuri.items]);
-
   const openModal = () => {
     if (!showResponse) setIsOpen(true);
   };
@@ -162,60 +152,83 @@ const ExamenSubect1 = ({ raspunsuri }) => {
   };
 
   const handleTryAgain = async () => {
-
     setShowCards(false);
 
     let itemQuantity = quizArray.length;
-    if(itemQuantity - 1 == currentIndex) {
-      setCurrentIndex(0)
-      let studentResults = []
+    if (itemQuantity - 1 == currentIndex) {
+      setCurrentIndex(0);
+      let studentResults = [];
       try {
-        const response = await axios.post('http://localhost:8000/api/student-evaluation-results', {
-          theme_id: subject_tema_id,
-          subject_id: subject_id,
-          study_level_id: 1,
-          order_number: 1,
-          studentId: currentStudent,
-        });
-    
+        const response = await axios.post(
+          "http://localhost:8000/api/student-evaluation-results",
+          {
+            theme_id: subject_tema_id,
+            subject_id: subject_id,
+            study_level_id: 1,
+            order_number: 1,
+            studentId: currentStudent,
+          }
+        );
+
         // console.log(response.data);
         studentResults = response.data.studentEvaluationResults;
       } catch (error) {
-        console.error('Error fetching data:', error.message);
-    
+        console.error("Error fetching data:", error.message);
       }
       // console.log(studentResults );
       try {
-        const formDataArray = studentResults.map(column => {
+        const formDataArray = studentResults.map((column) => {
           const formData = new FormData();
-          formData.append('student_id', column.student_id );
-          formData.append('points', 0 );
-          formData.append('evaluation_answer_option_id', column.evaluation_answer_option_id );
-          formData.append('evaluation_answer_id', column.answer_id );
-          formData.append('status', 0 );
+          formData.append("student_id", column.student_id);
+          formData.append("points", 0);
+          formData.append(
+            "evaluation_answer_option_id",
+            column.evaluation_answer_option_id
+          );
+          formData.append("evaluation_answer_id", column.answer_id);
+          formData.append("status", 0);
           return formData;
         });
         // console.log(formDataArray)
 
-        axios.all(formDataArray.map(formData => axios.post('http://localhost:8000/api/update-student-evaluation-answers', formData)))
-        .then(axios.spread((...responses) => {
-          const successResponses = responses.filter(response => response.data.status === 200);
-          const errorResponses = responses.filter(response => response.data.status === 404);
-          console.log(responses)
-          if (successResponses.length > 0) {
-            console.log("Successfully processed ", successResponses.lengt, " out of ", responses.length, " requests")
-            setProc(0)
-          }
-          errorResponses.forEach(response => {
-            console.log(response.data.errors)
-          })
-        }));
+        axios
+          .all(
+            formDataArray.map((formData) =>
+              axios.post(
+                "http://localhost:8000/api/update-student-evaluation-answers",
+                formData
+              )
+            )
+          )
+          .then(
+            axios.spread((...responses) => {
+              const successResponses = responses.filter(
+                (response) => response.data.status === 200
+              );
+              const errorResponses = responses.filter(
+                (response) => response.data.status === 404
+              );
+              console.log(responses);
+              if (successResponses.length > 0) {
+                console.log(
+                  "Successfully processed ",
+                  successResponses.lengt,
+                  " out of ",
+                  responses.length,
+                  " requests"
+                );
+                setProc(0);
+              }
+              errorResponses.forEach((response) => {
+                console.log(response.data.errors);
+              });
+            })
+          );
       } catch (error) {
         console.error(error);
-      } 
-
+      }
     } else {
-      setCurrentIndex(currentIndex + 1)
+      setCurrentIndex(currentIndex + 1);
     }
 
     setIsAnswered(false);
@@ -231,68 +244,73 @@ const ExamenSubect1 = ({ raspunsuri }) => {
 
   const handleAutoevaluare = () => {
     setShowAutoevaluare(true);
-  }
+  };
 
   const onCloseAutoevaluare = async (notaResult, newOptions) => {
-
     if (newOptions && newOptions.length > 0) {
-      const theme = currentTheme.tema_id
+      const theme = currentTheme.tema_id;
       const level_id = 1;
 
       await fetchEvaluation1(theme, subject_id, level_id, dispatch);
 
-      console.log(evaluations1)
+      console.log(evaluations1);
 
       const quizItem = evaluations1;
-      console.log(quizItem)   
+      console.log(quizItem);
 
       const totalStudentPoints = quizArray.reduce((sum, evaluation, idx) => {
-        const studentPoints = idx === currentIndex
-          ? notaResult 
-          : evaluation.student_points;
-    
+        const studentPoints =
+          idx === currentIndex ? notaResult : evaluation.student_points;
+
         return sum + studentPoints;
       }, 0);
-    
-      const totalMaxPoints = quizArray.reduce((sum, evaluation) =>
-        sum + evaluation.maxPoints, 0);
-    
-      const procent = (totalStudentPoints / totalMaxPoints) * 100;
-      setProc(procent)
 
+      const totalMaxPoints = quizArray.reduce(
+        (sum, evaluation) => sum + evaluation.maxPoints,
+        0
+      );
+
+      const procent = (totalStudentPoints / totalMaxPoints) * 100;
+      setProc(procent);
 
       setSelectedOptions((prevOptions) => {
         let updatedOptions = [...prevOptions];
-    
+
         newOptions.forEach((newOption) => {
           const existingIndex = updatedOptions.findIndex(
-            (option) => option.answer_id == newOption.answer_id && option.student_id == newOption.student_id
+            (option) =>
+              option.answer_id == newOption.answer_id &&
+              option.student_id == newOption.student_id
           );
-    
+
           if (existingIndex !== -1) {
             updatedOptions = updatedOptions.map((option, index) =>
               index == existingIndex
-                ? { ...option, points: newOption.points, evaluation_answer_option_id: newOption.evaluation_answer_option_id }
+                ? {
+                    ...option,
+                    points: newOption.points,
+                    evaluation_answer_option_id:
+                      newOption.evaluation_answer_option_id,
+                  }
                 : option
             );
           } else {
             updatedOptions.push({ ...newOption });
           }
         });
-    
+
         return updatedOptions;
       });
     }
     setShowAutoevaluare(false);
-  }
+  };
 
   const handleNext = () => {
-
     let itemQuantity = quizArray.length;
-    if(itemQuantity - 1 == currentIndex) {
-      setCurrentIndex(0)
-     } else {
-      setCurrentIndex(currentIndex + 1)
+    if (itemQuantity - 1 == currentIndex) {
+      setCurrentIndex(0);
+    } else {
+      setCurrentIndex(currentIndex + 1);
     }
     setShowResponse(false);
     setShowCards(false);
@@ -320,20 +338,20 @@ const ExamenSubect1 = ({ raspunsuri }) => {
 
   useEffect(() => {
     if (currentTheme) {
-    const theme = currentTheme.tema_id
-    const level_id = 1;
+      const theme = currentTheme.tema_id;
+      const level_id = 1;
 
-    fetchEvaluation1(theme, subject_id, level_id, dispatch);
-    console.log('Valoarea lui proc a fost actualizată:', proc);
+      fetchEvaluation1(theme, subject_id, level_id, dispatch);
+      console.log("Valoarea lui proc a fost actualizată:", proc);
     }
   }, [proc]);
 
   const generateText = () => {
     const cerinta = quizArray[currentIndex]?.cerinta;
-    const answersText = quizArray[currentIndex]?.answers.map(answer => {
-      const formattedAnswerText = answer.answer_text.replace(/\\n/g, '\n');
+    const answersText = quizArray[currentIndex]?.answers.map((answer) => {
+      const formattedAnswerText = answer.answer_text.replace(/\\n/g, "\n");
       const parts = formattedAnswerText.split(/<b>(.*?)<\/b>/g);
-  
+
       return parts.map((part, index) => {
         if (index % 2 === 1) {
           return { text: part, bold: true };
@@ -342,25 +360,21 @@ const ExamenSubect1 = ({ raspunsuri }) => {
         }
       });
     });
-  
-    const finalText = [{ text: cerinta },{ text: '\n' }, ...answersText.flat()];
-  
-    return finalText;
 
+    const finalText = [
+      { text: cerinta },
+      { text: "\n" },
+      ...answersText.flat(),
+    ];
+
+    return finalText;
   };
-  
-  
-  
-  
-  
-  
-  
 
   const toggleCards = () => {
     setShowCards(!showCards);
   };
 
-  // console.log(selectedOptions)  
+  // console.log(selectedOptions)
   return (
     <>
       <Navbar />
@@ -368,7 +382,9 @@ const ExamenSubect1 = ({ raspunsuri }) => {
         {quizArray && (
           <>
             <Breadcrumb step={2} />
-            <TitleBox className="teme-container" proc={proc} >{quizArray[currentIndex]?.name}</TitleBox>
+            <TitleBox className="teme-container" proc={proc}>
+              {quizArray[currentIndex]?.name}
+            </TitleBox>
             <ItemAccordeon
               titlu={`Cerințele sarcinii (${currentIndex + 1}/${
                 quizArray.length
@@ -379,13 +395,17 @@ const ExamenSubect1 = ({ raspunsuri }) => {
               <ItemText>
                 <p>{quizArray[currentIndex]?.cerinta}</p>
                 <div className="subject1-container">
-                  <div className="paper" style={{ width: quizArray[currentIndex]?.procent_paper }}>
+                  <div
+                    className="paper"
+                    style={{ width: quizArray[currentIndex]?.procent_paper }}
+                  >
                     <div className="lines">
                       <div className="text">
                         {currentTextIndex !== null &&
                           isAnswered &&
                           textArray?.map((textElem, ind) =>
-                            currentTextIndex >= ind && typeof textElem === 'string' ? (
+                            currentTextIndex >= ind &&
+                            typeof textElem === "string" ? (
                               <React.Fragment key={ind}>
                                 {textElem.slice(
                                   0,
@@ -412,12 +432,19 @@ const ExamenSubect1 = ({ raspunsuri }) => {
                   </div>
                   <img
                     className="img-subject"
-                    src={`http://localhost:8000/${process.env.PUBLIC_URL + quizArray[currentIndex]?.img}`}
+                    src={`http://localhost:8000/${
+                      process.env.PUBLIC_URL + quizArray[currentIndex]?.img
+                    }`}
                     alt=""
                     style={{
-                      width: isNaN(parseInt(quizArray[currentIndex]?.procent_paper, 10))
-                        ? '30%'
-                        : `${100 - parseInt(quizArray[currentIndex]?.procent_paper, 10)}%`
+                      width: isNaN(
+                        parseInt(quizArray[currentIndex]?.procent_paper, 10)
+                      )
+                        ? "30%"
+                        : `${
+                            100 -
+                            parseInt(quizArray[currentIndex]?.procent_paper, 10)
+                          }%`,
                     }}
                   />
                 </div>
@@ -444,14 +471,18 @@ const ExamenSubect1 = ({ raspunsuri }) => {
                 className="non_animation"
               >
                 <ItemText classNameChild="">
-                {quizArray[currentIndex]?.answers.map(answer => (
-                  <React.Fragment key={answer.answer_id}>
-                    <p dangerouslySetInnerHTML={{ __html: answer.answer_text.replace(/\\n/g, '<br />') }} />
-                  </React.Fragment>
-                ))}
+                  {quizArray[currentIndex]?.answers.map((answer) => (
+                    <React.Fragment key={answer.answer_id}>
+                      <p
+                        dangerouslySetInnerHTML={{
+                          __html: answer.answer_text.replace(/\\n/g, "<br />"),
+                        }}
+                      />
+                    </React.Fragment>
+                  ))}
                 </ItemText>
 
-                <PdfDownloadButton generateText={generateText} />  
+                <PdfDownloadButton generateText={generateText} />
                 <button onClick={handleAutoevaluare} className="btn-test">
                   Autoevaluiaza raspunsul!
                 </button>
@@ -475,32 +506,48 @@ const ExamenSubect1 = ({ raspunsuri }) => {
             {showCards && (
               <div className="Cards">
                 {quizArray[currentIndex]?.answers
-                  .filter(answer => answer?.answer_text != null && answer.answer_text !== "") 
-                  .map(answer => (
-                    answer && answer.answer_text != null && (
-                      <FlipCardNou
-                        title={answer.task}
-                        key={answer.answer_id}
-                        dangerousHTML={`<p style="padding:15px; text-indent:20px;">${answer?.answer_text.replace(/\\n/g, '<br />')}</p>\n`}
-                      />
-                    )
-                  ))}
+                  .filter(
+                    (answer) =>
+                      answer?.answer_text != null && answer.answer_text !== ""
+                  )
+                  .map(
+                    (answer) =>
+                      answer &&
+                      answer.answer_text != null && (
+                        <FlipCardNou
+                          title={answer.task}
+                          key={answer.answer_id}
+                          dangerousHTML={`<p style="padding:15px; text-indent:20px;">${answer?.answer_text.replace(
+                            /\\n/g,
+                            "<br />"
+                          )}</p>\n`}
+                        />
+                      )
+                  )}
               </div>
             )}
 
             <div className="nav-container">
-                <div className="nav-link" >
-                  <div onClick={handlePrevious}>
-                    <img src={process.env.PUBLIC_URL + "/images/navigation-left.png"} alt="" />
-                    <p>Sarcina precedentă</p>
-                  </div>
+              <div className="nav-link">
+                <div onClick={handlePrevious}>
+                  <img
+                    src={process.env.PUBLIC_URL + "/images/navigation-left.png"}
+                    alt=""
+                  />
+                  <p>Sarcina precedentă</p>
                 </div>
-                <div className="nav-link" >
-                  <div onClick={handleNext} >        
-                    <img src={process.env.PUBLIC_URL + "/images/navigation-right.png"} alt="" />
-                    <p>Sarcina următoare</p>
-                  </div>
+              </div>
+              <div className="nav-link">
+                <div onClick={handleNext}>
+                  <img
+                    src={
+                      process.env.PUBLIC_URL + "/images/navigation-right.png"
+                    }
+                    alt=""
+                  />
+                  <p>Sarcina următoare</p>
                 </div>
+              </div>
             </div>
           </>
         )}
@@ -509,7 +556,4 @@ const ExamenSubect1 = ({ raspunsuri }) => {
   );
 };
 
-const reduxState = (state) => ({
-  raspunsuri: state.raspunsuri,
-});
-export default connect(reduxState)(ExamenSubect1);
+export default ExamenSubect1;

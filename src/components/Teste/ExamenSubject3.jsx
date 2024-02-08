@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useParams, useHistory, useLocation  } from "react-router-dom";
-import { connect, useSelector, useDispatch } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
 import { fetchEvaluation3 } from "../../routes/api"
 import axios from "axios";
 // import temeIstoriArray from "../../data/temeIstoria";
@@ -16,12 +15,9 @@ import ModalCalculator from "../Modal/ModalCalculator";
 import PdfDownloadButton from "../PdfDownloadButton";
 import FlipCardNou from "../FlipCards/FlipCardNou";
 
-const ExamenSubect3 = ({raspunsuri}) => {
+const ExamenSubect3 = () => {
   const dispatch = useDispatch();
-  const { address } = useParams();
-  const location = useLocation();
   const [idRaspuns, setIdRaspuns] = useState(null);
-  const [item, setItem] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const [text, setText] = useState("");
@@ -37,11 +33,11 @@ const ExamenSubect3 = ({raspunsuri}) => {
   const [showCards, setShowCards] = useState(false);
   const speed = 50;
   let theme;
-  const history = useHistory();
   const currentTheme = useSelector(state => state.currentTheme);
   const evaluations3 = useSelector(state => state.evaluations3);
   const currentSubject = useSelector(state => state.currentSubject);
-  const currentStudent = useSelector(state => state.currentStudent);
+  const currentStudentObject = useSelector(state => state.currentStudent);
+  const currentStudent = currentStudentObject.currentStudent;
 
   const subject_id = currentSubject.subject_id || currentSubject.currentSubject.subject_id;
   const subject_tema_id = currentSubject.tema_id || currentSubject.currentSubject.tema_id;
@@ -128,11 +124,6 @@ const ExamenSubect3 = ({raspunsuri}) => {
       return () => clearInterval(interval);
     }
   }, [indx, text]);
-
-  useEffect(() => {
-    // console.log(raspunsuri.items);
-    // console.log(idRaspuns);
-  }, [raspunsuri.items]);
 
   const openModal = () => {
     if (!showResponse) setIsOpen(true);
@@ -508,7 +499,5 @@ const ExamenSubect3 = ({raspunsuri}) => {
     </>
   );
 };
-const reduxState = (state) => ({
-  raspunsuri: state.raspunsuri,
-});
-export default connect(reduxState)(ExamenSubect3);
+
+export default ExamenSubect3;

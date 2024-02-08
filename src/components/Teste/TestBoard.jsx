@@ -29,7 +29,8 @@ const TestBoard = forwardRef(
     const [selectedOptions, setSelectedOptions] = useState([])
     const currentTests = useSelector(state => state.currentTests);
     const currentIndexTest = useSelector(state => state.currentIndexTest);
-    const currentStudent = useSelector(state => state.currentStudent);
+    const currentStudentObject = useSelector(state => state.currentStudent);
+    const currentStudent = currentStudentObject.currentStudent;
 
     const [listItems, setListItems] = useState(currentTests[currentIndexTest].order_number_options)
 

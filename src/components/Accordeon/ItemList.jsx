@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Link, useLocation  } from "react-router-dom";
-import { connect, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
-const ItemList = ({ list, className, type, results, onItemClick }) => {
+const ItemList = ({ list, className, type, onItemClick }) => {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const teacherVideo = searchParams.get('teacher');
@@ -20,37 +20,9 @@ const ItemList = ({ list, className, type, results, onItemClick }) => {
   let listItems = [...list];
   // console.log(listItems)
   const classes = "subjects-container " + className;
-  let procProgress = 0;
 
-  const proc = (subjectId, audioId) => {
-    const user = "Current user";
-    const userItems = results.items.find((item) => item.user === user);
-    if (!userItems) return 0;
-    const vomAfla = userItems.subject.find(
-      (item) => item.id == subjectId && item.audio == audioId
-    );
-    if (vomAfla) return vomAfla.proc;
-    return 0;
-  };
-
-  const sumProc = (subjectId,subtitle) => {
-    const user = "Current user";
-    const userItems = results.items.find((item) => item.user === user);
-    if (!userItems) return 0;
-    // console.log(userItems.subject);
-    // console.log(subjectId);
-    const filteredItems = userItems.subject.filter(item =>
-      subtitle.vomAfla.some(subtitleItem =>
-        item.id == subtitleItem.subjectID && item.audio == subtitleItem.id
-      )
-    );
-    const procSum = filteredItems.reduce((acc, item) => acc + item.proc, 0);
-
-    return procSum / filteredItems.length;
-  };
   //  console.log(currentTheme); 
   //  console.log(listItems);
-
 
   const parts = currentTheme.path_tema.split("/");
   const addressDisciplina = "/" + parts[1];
@@ -159,7 +131,4 @@ const ItemList = ({ list, className, type, results, onItemClick }) => {
   );
 };
 
-const reduxState = (state) => ({
-  results: state.results,
-});
-export default connect(reduxState, null)(ItemList);
+export default ItemList;

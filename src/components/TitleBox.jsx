@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
-import { useParams, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 // import temeIstoriArray from "../data/temeIstoria";
 import ProgressBar from "./ProgressBar";
-import { connect } from "react-redux";
 
 const TitleBox = ({
   className,

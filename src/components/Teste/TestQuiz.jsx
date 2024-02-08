@@ -18,7 +18,8 @@ const TestQuiz = ({
 }) => {
   const currentTests = useSelector(state => state.currentTests);
   const currentIndexTest = useSelector(state => state.currentIndexTest);
-  const currentStudent = useSelector(state => state.currentStudent);
+  const currentStudentObject = useSelector(state => state.currentStudent);
+  const currentStudent = currentStudentObject.currentStudent;
 
   const [selectedValue, setSelectedValue] = useState("");
   const [selectedOptions, setSelectedOptions] = useState([])

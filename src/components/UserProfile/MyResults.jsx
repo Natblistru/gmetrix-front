@@ -89,7 +89,8 @@ function MyResults() {
   const [teste, setTeste] = useState([])
   const teachersForSubtitle = useSelector(state => state.teachersForSubtitle);
   const capitole = useSelector(state => state.capitole);
-  const currentStudent = useSelector(state => state.currentStudent);
+  const currentStudentObject = useSelector(state => state.currentStudent);
+  const currentStudent = currentStudentObject.currentStudent;
 
   const fetchData = async (themeId) => {
 

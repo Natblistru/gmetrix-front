@@ -1,10 +1,8 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams, useHistory } from "react-router-dom";
-// import { RaspunsuriCtx } from "../context/Raspunsuri";
-import { connect, useSelector, useDispatch } from "react-redux"
-import { fetchEvaluation2 } from "../../routes/api"
-// import temeIstoriArray from "../../data/temeIstoria";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchEvaluation2 } from "../../routes/api";
 import Navbar from "../layouts/Navbar";
 import Wrapper from "../Wrapper";
 import Breadcrumb from "../Breadcrumb";
@@ -18,13 +16,10 @@ import Draw from "../CanvasDrawing/Draw";
 import PdfDownloadButton from "../PdfDownloadButton";
 import FlipCardNou from "../FlipCards/FlipCardNou";
 
-const ExamenSubect2 = ({raspunsuri}) => {
+const ExamenSubect2 = () => {
   const dispatch = useDispatch();
-  const { address } = useParams();
   const [idRaspuns, setIdRaspuns] = useState(null);
-  const [item, setItem] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [currentItem, setCurrentItem] = useState(0);
 
   const [text, setText] = useState("");
   const [indx, setIndx] = useState(0);
@@ -34,75 +29,76 @@ const ExamenSubect2 = ({raspunsuri}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isAnswered, setIsAnswered] = useState(false);
   const [showResponse, setShowResponse] = useState(false);
-  const [showAutoevaluare, setShowAutoevaluare] = useState(false)
-  const [selectedOptions, setSelectedOptions] = useState([])
+  const [showAutoevaluare, setShowAutoevaluare] = useState(false);
+  const [selectedOptions, setSelectedOptions] = useState([]);
   const [showCards, setShowCards] = useState(false);
 
-  const evaluations2 = useSelector(state => state.evaluations2);
-  const currentSubject = useSelector(state => state.currentSubject);
-  const currentTheme = useSelector(state => state.currentTheme);
-  const currentStudent = useSelector(state => state.currentStudent);
+  const evaluations2 = useSelector((state) => state.evaluations2);
+  const currentSubject = useSelector((state) => state.currentSubject);
+  const currentTheme = useSelector((state) => state.currentTheme);
+  const currentStudentObject = useSelector((state) => state.currentStudent);
+  const currentStudent = currentStudentObject.currentStudent;
   const speed = 50;
 
-  const subject_id = currentSubject.subject_id || currentSubject.currentSubject.subject_id;
-  const subject_tema_id = currentSubject.tema_id || currentSubject.currentSubject.tema_id;
-
-  const history = useHistory();
+  const subject_id =
+    currentSubject.subject_id || currentSubject.currentSubject.subject_id;
+  const subject_tema_id =
+    currentSubject.tema_id || currentSubject.currentSubject.tema_id;
 
   const quizArray = evaluations2;
 
   useEffect(() => {
-  const fetchData = async () => {
-    try {
-      // console.log("evaluations2[1]", evaluations2);
-      if (currentTheme) {
-        const theme = currentTheme.tema_id;
-        const level_id = 1;
+    const fetchData = async () => {
+      try {
+        // console.log("evaluations2[1]", evaluations2);
+        if (currentTheme) {
+          const theme = currentTheme.tema_id;
+          const level_id = 1;
 
-        await fetchEvaluation2(theme, subject_id, level_id, dispatch);
-      // console.log("evaluations2[2]", evaluations2);
+          await fetchEvaluation2(theme, subject_id, level_id, dispatch);
+          // console.log("evaluations2[2]", evaluations2);
+        }
+      } catch (error) {
+        console.error("Eroare în timpul recuperării datelor:", error);
       }
-    } catch (error) {
-      console.error('Eroare în timpul recuperării datelor:', error);
-    }
-  };
+    };
 
-  fetchData();
+    fetchData();
 
+    const handleBeforeUnload = (event) => {
+      event.preventDefault();
+      event.returnValue = "";
+    };
 
-  const handleBeforeUnload = (event) => {
-    event.preventDefault();
-    event.returnValue = ''; 
-  };
-
-  window.addEventListener("beforeunload", handleBeforeUnload);
-  return () => window.removeEventListener("beforeunload", handleBeforeUnload);
-
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    return () => window.removeEventListener("beforeunload", handleBeforeUnload);
   }, []);
 
-  useEffect(()=>{
-    const sumMaxPoints = quizArray.reduce((acc, evaluation) =>
-    acc + parseFloat(evaluation.maxPoints), 0);
+  useEffect(() => {
+    const sumMaxPoints = quizArray.reduce(
+      (acc, evaluation) => acc + parseFloat(evaluation.maxPoints),
+      0
+    );
 
-    const sumStudentPoints = quizArray.reduce((acc, evaluation) =>
-      acc + parseFloat(evaluation.student_points), 0);
+    const sumStudentPoints = quizArray.reduce(
+      (acc, evaluation) => acc + parseFloat(evaluation.student_points),
+      0
+    );
 
     // Calculați media din catul celor două sume
-    const average = sumStudentPoints * 100 / sumMaxPoints;
+    const average = (sumStudentPoints * 100) / sumMaxPoints;
 
-    setProc(average)
-    console.log(sumStudentPoints)
-    console.log(sumMaxPoints)
+    setProc(average);
+    console.log(sumStudentPoints);
+    console.log(sumMaxPoints);
 
-    console.log("evaluations2", evaluations2)
-  },[evaluations2])
+    console.log("evaluations2", evaluations2);
+  }, [evaluations2]);
 
   const [proc, setProc] = useState(quizArray[currentIndex]?.student_procent);
 
   const initialization = () => {
-    const newArray = Array(
-      quizArray[currentIndex]?.form.length
-    ).fill("");
+    const newArray = Array(quizArray[currentIndex]?.form.length).fill("");
     setTextArray([...newArray]);
   };
 
@@ -137,18 +133,13 @@ const ExamenSubect2 = ({raspunsuri}) => {
     }
   }, [indx, text]);
 
-  useEffect(() => {
-    // console.log(raspunsuri.items);
-    // console.log(idRaspuns);
-  }, [raspunsuri.items]);
-
   const openModal = () => {
     if (!showResponse) setIsOpen(true);
   };
 
-  const closeModal = (textRaspuns,idRasp) => {
+  const closeModal = (textRaspuns, idRasp) => {
     if (idRasp !== null) {
-      setIdRaspuns(idRasp)
+      setIdRaspuns(idRasp);
     }
     if (textRaspuns !== null) {
       if (textRaspuns.every((element) => element === "")) {
@@ -163,61 +154,84 @@ const ExamenSubect2 = ({raspunsuri}) => {
   };
 
   const handleTryAgain = async () => {
-
     setShowCards(false);
 
     let itemQuantity = quizArray.length;
-    if(itemQuantity - 1 == currentIndex) {
-      setCurrentIndex(0)
+    if (itemQuantity - 1 == currentIndex) {
+      setCurrentIndex(0);
 
-      let studentResults = []
+      let studentResults = [];
       try {
-        const response = await axios.post('http://localhost:8000/api/student-evaluation-results', {
-          theme_id: subject_tema_id,
-          subject_id: subject_id,
-          study_level_id: 1,
-          order_number: 2,
-          studentId: currentStudent,
-        });
-    
+        const response = await axios.post(
+          "http://localhost:8000/api/student-evaluation-results",
+          {
+            theme_id: subject_tema_id,
+            subject_id: subject_id,
+            study_level_id: 1,
+            order_number: 2,
+            studentId: currentStudent,
+          }
+        );
+
         // console.log(response.data);
         studentResults = response.data.studentEvaluationResults;
       } catch (error) {
-        console.error('Error fetching data:', error.message);
-    
+        console.error("Error fetching data:", error.message);
       }
       // console.log(studentResults);
       // try {
-        const formDataArray = studentResults.map(column => {
-          const formData = new FormData();
-          formData.append('student_id', column.student_id );
-          formData.append('points', 0 );
-          formData.append('evaluation_answer_option_id', column.evaluation_answer_option_id );
-          formData.append('evaluation_answer_id', column.answer_id );
-          formData.append('status', 0 );
-          return formData;
-        });
-        // console.log(formDataArray)
+      const formDataArray = studentResults.map((column) => {
+        const formData = new FormData();
+        formData.append("student_id", column.student_id);
+        formData.append("points", 0);
+        formData.append(
+          "evaluation_answer_option_id",
+          column.evaluation_answer_option_id
+        );
+        formData.append("evaluation_answer_id", column.answer_id);
+        formData.append("status", 0);
+        return formData;
+      });
+      // console.log(formDataArray)
 
-        axios.all(formDataArray.map(formData => axios.post('http://localhost:8000/api/update-student-evaluation-answers', formData)))
-        .then(axios.spread((...responses) => {
-          const successResponses = responses.filter(response => response.data.status === 200);
-          const errorResponses = responses.filter(response => response.data.status === 404);
-          // console.log(responses)
-          if (successResponses.length > 0) {
-            console.log("Successfully processed ", successResponses.lengt, " out of ", responses.length, " requests")
-            setProc(0)
-          }
-          errorResponses.forEach(response => {
-            console.log(response.data.errors)
+      axios
+        .all(
+          formDataArray.map((formData) =>
+            axios.post(
+              "http://localhost:8000/api/update-student-evaluation-answers",
+              formData
+            )
+          )
+        )
+        .then(
+          axios.spread((...responses) => {
+            const successResponses = responses.filter(
+              (response) => response.data.status === 200
+            );
+            const errorResponses = responses.filter(
+              (response) => response.data.status === 404
+            );
+            // console.log(responses)
+            if (successResponses.length > 0) {
+              console.log(
+                "Successfully processed ",
+                successResponses.lengt,
+                " out of ",
+                responses.length,
+                " requests"
+              );
+              setProc(0);
+            }
+            errorResponses.forEach((response) => {
+              console.log(response.data.errors);
+            });
           })
-        }));
+        );
       // } catch (error) {
       //   console.error(error);
-      // } 
-
+      // }
     } else {
-      setCurrentIndex(currentIndex + 1)
+      setCurrentIndex(currentIndex + 1);
     }
 
     setIsAnswered(false);
@@ -229,10 +243,10 @@ const ExamenSubect2 = ({raspunsuri}) => {
 
   const handleNext = () => {
     let itemQuantity = quizArray.length;
-    if(itemQuantity - 1 == currentIndex) {
-      setCurrentIndex(0)
-     } else {
-      setCurrentIndex(currentIndex + 1)
+    if (itemQuantity - 1 == currentIndex) {
+      setCurrentIndex(0);
+    } else {
+      setCurrentIndex(currentIndex + 1);
     }
     setShowResponse(false);
     setShowCards(false);
@@ -261,16 +275,14 @@ const ExamenSubect2 = ({raspunsuri}) => {
   const handleVerifica = () => {
     setShowResponse(true);
   };
-  
+
   const handleAutoevaluare = () => {
     setShowAutoevaluare(true);
-  }
+  };
 
   const onCloseAutoevaluare = async (notaResult, newOptions) => {
-
     if (newOptions && newOptions.length > 0) {
-
-      const theme = currentTheme.tema_id
+      const theme = currentTheme.tema_id;
       const level_id = 1;
 
       await fetchEvaluation2(theme, subject_id, level_id, dispatch);
@@ -278,21 +290,22 @@ const ExamenSubect2 = ({raspunsuri}) => {
       // console.log("evaluations2",evaluations2)
 
       const quizItem = evaluations2;
-      console.log(quizItem)   
+      console.log(quizItem);
 
       const totalStudentPoints = quizArray.reduce((sum, evaluation, idx) => {
-        const studentPoints = idx === currentIndex
-          ? notaResult 
-          : evaluation.student_points;
-    
+        const studentPoints =
+          idx === currentIndex ? notaResult : evaluation.student_points;
+
         return sum + studentPoints;
       }, 0);
-    
-      const totalMaxPoints = quizArray.reduce((sum, evaluation) =>
-        sum + evaluation.maxPoints, 0);
-    
+
+      const totalMaxPoints = quizArray.reduce(
+        (sum, evaluation) => sum + evaluation.maxPoints,
+        0
+      );
+
       const procent = (totalStudentPoints / totalMaxPoints) * 100;
-      setProc(procent)
+      setProc(procent);
 
       // console.log("procent",procent)
 
@@ -301,13 +314,20 @@ const ExamenSubect2 = ({raspunsuri}) => {
 
         newOptions.forEach((newOption) => {
           const existingIndex = updatedOptions.findIndex(
-            (option) => option.answer_id == newOption.answer_id && option.student_id == newOption.student_id
+            (option) =>
+              option.answer_id == newOption.answer_id &&
+              option.student_id == newOption.student_id
           );
 
           if (existingIndex !== -1) {
             updatedOptions = updatedOptions.map((option, index) =>
               index == existingIndex
-                ? { ...option, points: newOption.points, evaluation_answer_option_id: newOption.evaluation_answer_option_id }
+                ? {
+                    ...option,
+                    points: newOption.points,
+                    evaluation_answer_option_id:
+                      newOption.evaluation_answer_option_id,
+                  }
                 : option
             );
           } else {
@@ -319,26 +339,26 @@ const ExamenSubect2 = ({raspunsuri}) => {
       });
     }
     setShowAutoevaluare(false);
-  }
+  };
 
   useEffect(() => {
     // console.log("evaluations2",evaluations2)
     if (currentTheme) {
-      const theme = currentTheme.tema_id
+      const theme = currentTheme.tema_id;
       const level_id = 1;
 
       fetchEvaluation2(theme, subject_id, level_id, dispatch);
-      console.log('Valoarea lui proc a fost actualizată:', proc);
+      console.log("Valoarea lui proc a fost actualizată:", proc);
       // console.log("evaluations2",evaluations2)
     }
   }, [proc]);
 
   const generateText = () => {
     const cerinta = quizArray[currentIndex]?.cerinta;
-    const answersText = quizArray[currentIndex]?.answers.map(answer => {
-      const formattedAnswerText = answer.answer_text.replace(/\\n/g, '\n');
+    const answersText = quizArray[currentIndex]?.answers.map((answer) => {
+      const formattedAnswerText = answer.answer_text.replace(/\\n/g, "\n");
       const parts = formattedAnswerText.split(/<b>(.*?)<\/b>/g);
-  
+
       return parts.map((part, index) => {
         if (index % 2 === 1) {
           return { text: part, bold: true };
@@ -347,9 +367,13 @@ const ExamenSubect2 = ({raspunsuri}) => {
         }
       });
     });
-  
-    const finalText = [{ text: cerinta },{ text: '\n' }, ...answersText.flat()];
-  
+
+    const finalText = [
+      { text: cerinta },
+      { text: "\n" },
+      ...answersText.flat(),
+    ];
+
     return finalText;
   };
 
@@ -364,7 +388,9 @@ const ExamenSubect2 = ({raspunsuri}) => {
         {quizArray && (
           <>
             <Breadcrumb step={2} />
-            <TitleBox className="teme-container" proc={proc}>{quizArray[currentIndex]?.name}</TitleBox>
+            <TitleBox className="teme-container" proc={proc}>
+              {quizArray[currentIndex]?.name}
+            </TitleBox>
             <ItemAccordeon
               titlu={`Cerințele sarcinii (${currentIndex + 1}/${
                 quizArray.length
@@ -373,7 +399,9 @@ const ExamenSubect2 = ({raspunsuri}) => {
               className="non_animation"
             >
               <ItemText>
-                <p>Studiază materialul suport și realizează sarcinile propuse.</p>
+                <p>
+                  Studiază materialul suport și realizează sarcinile propuse.
+                </p>
                 <AccordionSurse data={quizArray[currentIndex].source} />
                 {/* <h3 style={{ textAlign: 'center'}}>
                   {`Item (${currentItem + 1}/${
@@ -382,16 +410,28 @@ const ExamenSubect2 = ({raspunsuri}) => {
                 </h3> */}
                 <h4>{quizArray[currentIndex].cerinta}</h4>
                 <p>{quizArray[currentIndex].afirmatie} </p>
-                {quizArray[currentIndex].harta && quizArray[currentIndex].harta.length>0 && <Draw item={quizArray[currentIndex]} disable={showResponse}/>}
+                {quizArray[currentIndex].harta &&
+                  quizArray[currentIndex].harta.length > 0 && (
+                    <Draw
+                      item={quizArray[currentIndex]}
+                      disable={showResponse}
+                    />
+                  )}
                 <div className="subject1-container">
-      
-                  <div className="paper" style={{ width: quizArray[currentIndex]?.procent_paper, height: '267px'}}>
+                  <div
+                    className="paper"
+                    style={{
+                      width: quizArray[currentIndex]?.procent_paper,
+                      height: "267px",
+                    }}
+                  >
                     <div className="lines">
                       <div className="text">
                         {currentTextIndex !== null &&
                           isAnswered &&
                           textArray?.map((textElem, ind) =>
-                            currentTextIndex >= ind && typeof textElem === 'string' ? (
+                            currentTextIndex >= ind &&
+                            typeof textElem === "string" ? (
                               <React.Fragment key={ind}>
                                 {textElem.slice(
                                   0,
@@ -440,14 +480,24 @@ const ExamenSubect2 = ({raspunsuri}) => {
                 className="non_animation"
               >
                 <ItemText classNameChild="">
-                {quizArray[currentIndex].img && (<img src={`http://localhost:8000/${process.env.PUBLIC_URL + quizArray[currentIndex]?.img}`} />)}
-                {quizArray[currentIndex]?.answers.map(answer => (
-                  <React.Fragment key={answer.answer_id}>
-                    <p dangerouslySetInnerHTML={{ __html: answer.answer_text.replace(/\\n/g, '<br />') }} />
-                  </React.Fragment>
-                ))}
+                  {quizArray[currentIndex].img && (
+                    <img
+                      src={`http://localhost:8000/${
+                        process.env.PUBLIC_URL + quizArray[currentIndex]?.img
+                      }`}
+                    />
+                  )}
+                  {quizArray[currentIndex]?.answers.map((answer) => (
+                    <React.Fragment key={answer.answer_id}>
+                      <p
+                        dangerouslySetInnerHTML={{
+                          __html: answer.answer_text.replace(/\\n/g, "<br />"),
+                        }}
+                      />
+                    </React.Fragment>
+                  ))}
                 </ItemText>
-                <PdfDownloadButton generateText={generateText} /> 
+                <PdfDownloadButton generateText={generateText} />
                 <button onClick={handleAutoevaluare} className="btn-test">
                   Autoevaluiaza raspunsul!
                 </button>
@@ -471,31 +521,47 @@ const ExamenSubect2 = ({raspunsuri}) => {
             {showCards && (
               <div className="Cards">
                 {quizArray[currentIndex]?.answers
-                  .filter(answer => answer?.answer_text != null && answer.answer_text !== "") 
-                  .map(answer => (
-                    answer && answer.answer_text != null && (
-                      <FlipCardNou
-                        title={answer.task}
-                        key={answer.answer_id}
-                        dangerousHTML={`<p style="padding:15px; text-indent:20px;">${answer?.answer_text.replace(/\\n/g, '<br />')}</p>\n`}
-                      />
-                    )
-                  ))}
+                  .filter(
+                    (answer) =>
+                      answer?.answer_text != null && answer.answer_text !== ""
+                  )
+                  .map(
+                    (answer) =>
+                      answer &&
+                      answer.answer_text != null && (
+                        <FlipCardNou
+                          title={answer.task}
+                          key={answer.answer_id}
+                          dangerousHTML={`<p style="padding:15px; text-indent:20px;">${answer?.answer_text.replace(
+                            /\\n/g,
+                            "<br />"
+                          )}</p>\n`}
+                        />
+                      )
+                  )}
               </div>
             )}
             <div className="nav-container">
-                <div className="nav-link" >
-                  <div onClick={handlePrevious}>
-                    <img src={process.env.PUBLIC_URL + "/images/navigation-left.png"} alt="" />
-                    <p>Sarcina precedentă</p>
-                  </div>
+              <div className="nav-link">
+                <div onClick={handlePrevious}>
+                  <img
+                    src={process.env.PUBLIC_URL + "/images/navigation-left.png"}
+                    alt=""
+                  />
+                  <p>Sarcina precedentă</p>
                 </div>
-                <div className="nav-link" >
-                  <div onClick={handleNext} >        
-                    <img src={process.env.PUBLIC_URL + "/images/navigation-right.png"} alt="" />
-                    <p>Sarcina următoare</p>
-                  </div>
+              </div>
+              <div className="nav-link">
+                <div onClick={handleNext}>
+                  <img
+                    src={
+                      process.env.PUBLIC_URL + "/images/navigation-right.png"
+                    }
+                    alt=""
+                  />
+                  <p>Sarcina următoare</p>
                 </div>
+              </div>
             </div>
           </>
         )}
@@ -503,8 +569,5 @@ const ExamenSubect2 = ({raspunsuri}) => {
     </>
   );
 };
-const reduxState = (state) => ({
-  raspunsuri: state.raspunsuri,
-});
 
-export default connect(reduxState)(ExamenSubect2);
+export default ExamenSubect2;
