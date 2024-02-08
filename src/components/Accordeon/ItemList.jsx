@@ -45,7 +45,6 @@ const ItemList = ({ list, className, type, results, onItemClick }) => {
     return procSum / filteredItems.length;
   };
   //  console.log(currentTheme); 
-  //  console.log(stateData.currentTopic);   
   //  console.log(listItems);
 
 

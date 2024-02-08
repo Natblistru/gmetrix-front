@@ -10,6 +10,8 @@ const ListNavigatie = (props) => {
   const {stateData, dispatchData} = React.useContext(ContextData)
   const currentTheme = useSelector(state => state.currentTheme);
   const currentSubject = useSelector(state => state.currentSubject);
+  const currentTopic1 = useSelector(state => state.currentTopic);
+  const currentTopic = currentTopic1.currentTopic;
 
   const subject_id = currentSubject.subject_id || currentSubject.currentSubject.subject_id;
 
@@ -20,9 +22,9 @@ const ListNavigatie = (props) => {
 
 
   const primul = list.id == 1;
-  const ultimul = list.id == stateData.currentTopic.tests.length;
+  const ultimul = list.id == currentTopic.tests.length;
   const utilmul_dnd = list.id == stateData.currentTests.length;
-  // console.log(stateData.currentTopic.tests.length)
+  // console.log(currentTopic.tests.length)
   // props.setCurrentIndex(0);
   // console.log("currentIndex din ListNavigare - 0 urm") 
   // const NavigateHandle = () => {
@@ -43,24 +45,24 @@ const ListNavigatie = (props) => {
   let testPrecedent = list;
   let testUrmator = list;
 
-  let testPrecedent1 = stateData.currentTopic.tests[stateData.currentIndexTest];
-  let testUrmator1 = stateData.currentTopic.tests[stateData.currentIndexTest];
+  let testPrecedent1 = currentTopic.tests[stateData.currentIndexTest];
+  let testUrmator1 = currentTopic.tests[stateData.currentIndexTest];
   if (!primul) {
   
-    testPrecedent1 = stateData.currentTopic.tests[stateData.currentIndexTest-1];
+    testPrecedent1 = currentTopic.tests[stateData.currentIndexTest-1];
 
-    testPrecedent = stateData.currentTopic.tests[list.id-2]; 
+    testPrecedent = currentTopic.tests[list.id-2]; 
     dynamicPathTestPrecedent = `${addressDisciplina}${addressSubtitle}${testPrecedent.path}${testPrecedent.addressTest}/1?teacher=1&level=1&disciplina=${subject_id}&theme=${currentTheme.tema_id}`;       
 
   //  dynamicPathTestPrecedent = `${testPrecedent.addressTestDisciplina}${testPrecedent.addressTestSubtitle}${testPrecedent.addressTestSubject}${testPrecedent.addressTest}/1`;
   }
   if(!ultimul) {
     if(!utilmul_dnd) {
-      testUrmator1 = stateData.currentTopic.tests[stateData.currentIndexTest+1];
+      testUrmator1 = currentTopic.tests[stateData.currentIndexTest+1];
       // console.log(testUrmator1.id);
     }
 
-    testUrmator = stateData.currentTopic.tests[list.id];
+    testUrmator = currentTopic.tests[list.id];
     // console.log(testUrmator)
     dynamicPathTestUrmator = `${addressDisciplina}${addressSubtitle}${testUrmator.path}${testUrmator.addressTest}/1?teacher=1&level=1&disciplina=${subject_id}&theme=${currentTheme.tema_id}`;       
 

@@ -34,13 +34,16 @@ const TestWrapper = ({ tests, add, update }) => {
   const [responseReceived, setResponseReceived] = useState(false);
   const currentTheme = useSelector(state => state.currentTheme);
   const currentSubject = useSelector(state => state.currentSubject);
+  const currentTopic1 = useSelector(state => state.currentTopic);
+  const currentTopic = currentTopic1.currentTopic;
+  console.log(currentTopic)
 
   const subject_id = currentSubject.subject_id || currentSubject.currentSubject.subject_id;
 
-// console.log(stateData.currentTopic)
+// console.log(currentTopic)
 
 useEffect(() => {
-  // console.log(stateData.currentTopic)
+  // console.log(currentTopic)
   // console.log(currentTheme)  
   // console.log(stateData.currentTests)
   if(currentTheme) {
@@ -64,15 +67,15 @@ useEffect(() => {
 
   useEffect(() => {
     const pathCautat = "/" + addressTest;
-    if(stateData.currentTopic) {
-      const indexElementCautat = stateData.currentTopic.tests.findIndex(element => element.addressTest === pathCautat);
-      // console.log(stateData.currentTopic)
+    if(currentTopic) {
+      const indexElementCautat = currentTopic.tests.findIndex(element => element.addressTest === pathCautat);
+      // console.log(currentTopic)
       setCurrentTestIndex(indexElementCautat);
-      setCurrentList1(stateData.currentTopic.tests[indexElementCautat]);
+      setCurrentList1(currentTopic.tests[indexElementCautat]);
       if(loading) {
-        // setProc(stateData.currentTopic.tests[indexElementCautat].testResult*100/stateData.currentTopic.tests[indexElementCautat].complexityNumber);
-        setProc(stateData.currentTopic.tests[indexElementCautat].testResult*100);      
-        // console.log(stateData.currentTopic.tests[indexElementCautat])
+        // setProc(currentTopic.tests[indexElementCautat].testResult*100/currentTopic.tests[indexElementCautat].complexityNumber);
+        setProc(currentTopic.tests[indexElementCautat].testResult*100);      
+        // console.log(currentTopic.tests[indexElementCautat])
         setLoading(false)
       }
       setLoading(false)
@@ -249,11 +252,11 @@ useEffect(() => {
   // console.log("stateData.currentTests", stateData.currentTests)
   // console.log("stateData.currentSummativeTests",stateData.currentSummativeTests)
   // console.log("stateData.currentTests[currentTestIndex]",stateData.currentTests[currentTestIndex])
-  // console.log("stateData.currentTopic.tests[currentTestIndex]", stateData.currentTopic.tests[currentTestIndex])
+  // console.log("currentTopic.tests[currentTestIndex]", currentTopic.tests[currentTestIndex])
   // console.log("currentList1", currentList1)
   // console.log("currentItemIndex",currentItemIndex)
   // console.log("currentTestIndex",currentTestIndex)
-  // console.log(stateData.currentTopic.tests)
+  // console.log(currentTopic.tests)
   return (
     <>
       <Navbar />

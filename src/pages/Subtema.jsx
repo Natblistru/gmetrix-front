@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ContextData from "../components/context/ContextData";
 import { useDispatch, useSelector } from 'react-redux';
-import { updateSubTopicBreadcrumb } from '../components/ReduxComp/actions';
+import { updateSubTopicBreadcrumb, updateCurrentTopic  } from '../components/ReduxComp/actions';
 
 import { useParams, useHistory, useLocation } from "react-router-dom";
 // import temeIstoriArray from "../data/temeIstoria";
@@ -46,6 +46,7 @@ const Subtema = ({results})  => {
           type: "UPDATE_CURRENT_TOPIC",
           payload: mainElement
         });
+        dispatch(updateCurrentTopic(mainElement));
 
         const addressDisciplina = "/" + parts[1];
         const addressSubtitle = "/" + parts.slice(2).join("/");

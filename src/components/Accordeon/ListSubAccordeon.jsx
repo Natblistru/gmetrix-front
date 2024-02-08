@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ContextData from "../context/ContextData";
+import { useSelector } from 'react-redux';
 import { scroller } from 'react-scroll'
 import ItemAccordeon from "./ItemAccordeon";
 import ItemList from "./ItemList";
@@ -15,8 +16,12 @@ import '../FlipCards/flipCardNou.scss';
 const ListSubAccordeon = (props) => {
 const {stateData, dispatchData} = React.useContext(ContextData)
 const [currentSubject, setCurrentSubject] = useState(0);
+const currentTopic1 = useSelector(state => state.currentTopic);
+const currentTopic = currentTopic1.currentTopic;
 
-const [arraySubtitles, setArraySubtitles] = useState(stateData.currentTopic.subtitles);
+const [arraySubtitles, setArraySubtitles] = useState(currentTopic.subtitles);
+console.log(currentTopic)
+
 
 // console.log(arraySubtitles)
 const handleProgressRecorded = (updatedTopic) => {
@@ -33,10 +38,8 @@ const classes = " " + props.className;
 // let arraySubject = props.subtema.vomAfla;
 
 // let arrayTests = props.subtema.teste;
-// console.log(stateData.currentTopic);
-let currentTopic = stateData.currentTopic;
 // console.log(currentTopic)
-// let arraySubtitles = stateData.currentTopic.subtitles; 
+// let arraySubtitles = currentTopic.subtitles; 
 // console.log(arraySubtitles);
 // console.log(arraySubtitles[currentSubject].images);
 let transformedArrayImages = arraySubtitles[currentSubject].images.map(function(item) {
@@ -50,7 +53,7 @@ useEffect(()=>{
 
 const fetchTest = async () => {
 
-  const teacher_topic_id = stateData.currentTopic.teacher_topic_id;
+  const teacher_topic_id = currentTopic.teacher_topic_id;
   try {
       const res = await axios.get(`http://localhost:8000/api/formativetest?topic=${teacher_topic_id}`);
 
@@ -66,7 +69,7 @@ const fetchTest = async () => {
 
 const fetchSummativeTest = async (theme) => {
 
-  const teacher_topic_id = stateData.currentTopic.teacher_topic_id;
+  const teacher_topic_id = currentTopic.teacher_topic_id;
   
   try {
       const res = await axios.get(`http://localhost:8000/api/summativetest?topic=${teacher_topic_id}`);
@@ -99,7 +102,7 @@ const handleItemClick = (idx) => {
     smooth: 'easeInOutQuart'
   });
 };
-  // if (!stateData.currentTopic || !arrayTests) {
+  // if (!currentTopic || !arrayTests) {
   //   return null; // Возвращаем null или другой компонент-заглушку
   // }
 // console.log(transformedArrayImages)

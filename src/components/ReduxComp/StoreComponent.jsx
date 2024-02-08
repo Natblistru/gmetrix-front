@@ -14,6 +14,7 @@ import evaluation2Reducer from "./evaluation2Reducer";
 import evaluation3Reducer from "./evaluation3Reducer";
 import currentSubjectReducer from "./currentSubjectReducer";
 import topicsReducer from "./topicsReducer";
+import currentTopicReducer from "./currentTopicReducer";
 
 const initialState = {
   items: []
@@ -265,6 +266,7 @@ const combinedReducers = combineReducers({
   evaluations3: evaluation3Reducer,
   currentSubject: currentSubjectReducer,
   topics: topicsReducer,
+  currentTopic: currentTopicReducer,
 })
 
 const store = createStore(
