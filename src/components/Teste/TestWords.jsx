@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useSelector } from 'react-redux';
 import ContextData from "../context/ContextData";
 import SentenceBox from "../DragWords/SentenceBox";
 import AnswerBox from "../DragWords/AnswerBox";
@@ -31,6 +32,7 @@ const TestWords = ({
   setResponseReceived
 }) => {
   const {stateData, dispatchData} = React.useContext(ContextData)
+  const currentTests = useSelector(state => state.currentTests);
   const [showResults, setShowResults] = useState(false);
   const [question, setQuestion] = useState("");
   const [answers, setAnswers] = useState([]);
@@ -38,14 +40,14 @@ const TestWords = ({
 
   const [selectedOptions, setSelectedOptions] = useState([])
 
-  const [listItems, setListItems] = useState(stateData.currentTests[stateData.currentIndexTest].order_number_options)
+  const [listItems, setListItems] = useState(currentTests[stateData.currentIndexTest].order_number_options)
 
-  // console.log(stateData.currentTests)
-  // console.log(stateData.currentTests[stateData.currentIndexTest].order_number_options);
+  // console.log(currentTests)
+  // console.log(currentTests[stateData.currentIndexTest].order_number_options);
 
 
   useEffect(()=>{
-    setListItems(stateData.currentTests[stateData.currentIndexTest].order_number_options);
+    setListItems(currentTests[stateData.currentIndexTest].order_number_options);
 
     const initialSelectedOptions = [];
     listItems[currentItemIndex].test_item_options.forEach(element => {
@@ -64,7 +66,7 @@ const TestWords = ({
 
   // console.log(stateData.currentIndexTest);
 
-  // const listItems = stateData.currentTests[stateData.currentIndexTest].order_number_options;
+  // const listItems = currentTests[stateData.currentIndexTest].order_number_options;
 
   let text = JSON.parse(listItems[currentIndex].test_item_options[0].text_additional).trim();
 

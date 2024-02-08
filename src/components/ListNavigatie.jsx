@@ -10,6 +10,7 @@ const ListNavigatie = (props) => {
   const {stateData, dispatchData} = React.useContext(ContextData)
   const currentTheme = useSelector(state => state.currentTheme);
   const currentSubject = useSelector(state => state.currentSubject);
+  const currentTests = useSelector(state => state.currentTests);
   const currentTopic1 = useSelector(state => state.currentTopic);
   const currentTopic = currentTopic1.currentTopic;
 
@@ -23,7 +24,7 @@ const ListNavigatie = (props) => {
 
   const primul = list.id == 1;
   const ultimul = list.id == currentTopic.tests.length;
-  const utilmul_dnd = list.id == stateData.currentTests.length;
+  const utilmul_dnd = list.id == currentTests.length;
   // console.log(currentTopic.tests.length)
   // props.setCurrentIndex(0);
   // console.log("currentIndex din ListNavigare - 0 urm") 

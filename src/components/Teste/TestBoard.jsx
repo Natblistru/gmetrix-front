@@ -1,6 +1,7 @@
 import React, { useState, useEffect, forwardRef, useImperativeHandle } from "react";
 import axios from "axios";
 import ContextData from "../context/ContextData";
+import { useSelector } from 'react-redux';
 import { DragDropContext } from "react-beautiful-dnd";
 import Column from "../DragAndDrop/Column";
 import { v4 as uuidv4 } from "uuid";
@@ -28,17 +29,18 @@ const TestBoard = forwardRef(
     const [isDragDisabled, setIsDragDisabled] = useState(DragDisable);
 
     const [selectedOptions, setSelectedOptions] = useState([])
+    const currentTests = useSelector(state => state.currentTests);
 
-    const [listItems, setListItems] = useState(stateData.currentTests[stateData.currentIndexTest].order_number_options)
+    const [listItems, setListItems] = useState(currentTests[stateData.currentIndexTest].order_number_options)
 
-    const [columnArray, setColumnArray] = useState(stateData.currentTests[stateData.currentIndexTest].column_title.split(", "));
+    const [columnArray, setColumnArray] = useState(currentTests[stateData.currentIndexTest].column_title.split(", "));
     // console.log(listItems)
     // console.log(listItems[currentItemIndex])
 
     useEffect(()=>{
-      setListItems(stateData.currentTests[stateData.currentIndexTest].order_number_options);
+      setListItems(currentTests[stateData.currentIndexTest].order_number_options);
 
-      // let array = stateData.currentTests[stateData.currentIndexTest].column_title.split(", ");
+      // let array = currentTests[stateData.currentIndexTest].column_title.split(", ");
       // let columnDBArray = []
       // if (array.length > 2) {
       //     columnDBArray = [array[0], ...array.slice(1).reverse()];
@@ -46,7 +48,7 @@ const TestBoard = forwardRef(
       //   columnDBArray = array;
       // }
       // setColumnArray(columnDBArray)
-      setColumnArray(stateData.currentTests[stateData.currentIndexTest].column_title.split(", "))
+      setColumnArray(currentTests[stateData.currentIndexTest].column_title.split(", "))
       const initialSelectedOptions = [];
       listItems[currentItemIndex].test_item_options.forEach(element => {
         initialSelectedOptions.push({ "option": element.option, 
@@ -66,7 +68,7 @@ const TestBoard = forwardRef(
     const getColumnsFromBackend = () => {
 
       let columnsFromBackendNext = null;
-      // console.log(stateData.currentTests[stateData.currentIndexTest].order_number_options);
+      // console.log(currentTests[stateData.currentIndexTest].order_number_options);
       // temeIstoriArray[0].subtitles[0].subjects[0].teste.forEach(test => {
       //   console.log("test.id", test.id)
       //   console.log("testID", testID)
@@ -101,9 +103,9 @@ const TestBoard = forwardRef(
     });
 
 
-    // console.log(stateData.currentTests)
+    // console.log(currentTests)
     // console.log(stateData.currentIndexTest)
-    // console.log(stateData.currentTests[stateData.currentIndexTest])
+    // console.log(currentTests[stateData.currentIndexTest])
     // console.log(columnArray)
  
     
@@ -120,15 +122,15 @@ const TestBoard = forwardRef(
     // console.log(itemsFromBackend)
     const [columns, setColumns] = useState(columnsFromBackend);
 
-    // console.log(stateData.currentTests)
+    // console.log(currentTests)
 
-    const currentTest = stateData.currentTests[stateData.currentIndexTest];
+    const currentTest = currentTests[stateData.currentIndexTest];
 
     // console.log(columnArray)
-    // console.log(stateData.currentTests[stateData.currentIndexTest].column_title)
+    // console.log(currentTests[stateData.currentIndexTest].column_title)
 
-    // console.log(stateData.currentTests[stateData.currentIndexTest])
-    // console.log(stateData.currentTests[stateData.currentIndexTest].order_number_options[currentItemIndex]);
+    // console.log(currentTests[stateData.currentIndexTest])
+    // console.log(currentTests[stateData.currentIndexTest].order_number_options[currentItemIndex]);
   
   
     // console.log(stateData.currentIndexTest);

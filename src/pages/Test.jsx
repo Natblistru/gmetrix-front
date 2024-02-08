@@ -34,6 +34,7 @@ const TestWrapper = ({ tests, add, update }) => {
   const [responseReceived, setResponseReceived] = useState(false);
   const currentTheme = useSelector(state => state.currentTheme);
   const currentSubject = useSelector(state => state.currentSubject);
+  const currentTests = useSelector(state => state.currentTests);
   const currentTopic1 = useSelector(state => state.currentTopic);
   const currentTopic = currentTopic1.currentTopic;
   console.log(currentTopic)
@@ -45,7 +46,7 @@ const TestWrapper = ({ tests, add, update }) => {
 useEffect(() => {
   // console.log(currentTopic)
   // console.log(currentTheme)  
-  // console.log(stateData.currentTests)
+  // console.log(currentTests)
   if(currentTheme) {
     const teacher = 1
     const theme = currentTheme?.tema_id
@@ -93,17 +94,17 @@ useEffect(() => {
   useEffect(() => {
     const fetchData = async () => {
       if (correctAnswer !== null && responseReceived) {
-          // console.log(stateData.currentTests)
+          // console.log(currentTests)
           // console.log(currentTestIndex)
           // console.log(testBoardRef.current)
-          let firstTestItemComplexity = stateData.currentTests[currentTestIndex].order_number_options[0]?.test_item_complexity;
+          let firstTestItemComplexity = currentTests[currentTestIndex].order_number_options[0]?.test_item_complexity;
 
           if (firstTestItemComplexity === undefined) {
             firstTestItemComplexity = 1
           }
-          const testItemObjects = stateData.currentTests[currentTestIndex].order_number_options.map(option => ({
+          const testItemObjects = currentTests[currentTestIndex].order_number_options.map(option => ({
             test_item_id: option.test_item_id,
-            formative_test_id: stateData.currentTests[currentTestIndex].formative_test_id,
+            formative_test_id: currentTests[currentTestIndex].formative_test_id,
           }));
 
 
@@ -140,7 +141,7 @@ useEffect(() => {
     };
   
     fetchData()
-  }, [correctAnswer, responseReceived, stateData.currentTests, currentTestIndex]);
+  }, [correctAnswer, responseReceived, currentTests, currentTestIndex]);
   
   const testBoardRef = useRef(null);
 
@@ -164,7 +165,7 @@ useEffect(() => {
     let itemQuantity = currentList1.length;
     if(itemQuantity - 1 === currentItemIndex) {
       setCurrentItemIndex(0)
-      const testItems = stateData.currentTests[currentTestIndex].order_number_options.map(option => option);
+      const testItems = currentTests[currentTestIndex].order_number_options.map(option => option);
       // console.log(testItems)
       try {
         const formDataArray = testItems.map(item => {
@@ -249,9 +250,9 @@ useEffect(() => {
   }, [proc]);
 
   // console.log("currentTheme", currentTheme.tema_id)
-  // console.log("stateData.currentTests", stateData.currentTests)
+  // console.log("currentTests", currentTests)
   // console.log("stateData.currentSummativeTests",stateData.currentSummativeTests)
-  // console.log("stateData.currentTests[currentTestIndex]",stateData.currentTests[currentTestIndex])
+  // console.log("currentTests[currentTestIndex]",currentTests[currentTestIndex])
   // console.log("currentTopic.tests[currentTestIndex]", currentTopic.tests[currentTestIndex])
   // console.log("currentList1", currentList1)
   // console.log("currentItemIndex",currentItemIndex)

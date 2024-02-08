@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useSelector } from 'react-redux';
 import ContextData from "../context/ContextData";
 import RadioButton from "../RadioButton";
 import ItemAccordeon from "../Accordeon/ItemAccordeon";
@@ -17,6 +18,7 @@ const TestQuiz = ({
   setResponseReceived
 }) => {
   const {stateData, dispatchData} = React.useContext(ContextData)
+  const currentTests = useSelector(state => state.currentTests);
   const [selectedValue, setSelectedValue] = useState("");
   const [selectedOptions, setSelectedOptions] = useState([])
 
@@ -29,12 +31,12 @@ const TestQuiz = ({
         "test_item_id": listItems[currentItemIndex].test_item_id}])
   },[])
 
-  // console.log(stateData.currentTests)
-  // console.log(stateData.currentTests[stateData.currentIndexTest].order_number_options);
+  // console.log(currentTests)
+  // console.log(currentTests[stateData.currentIndexTest].order_number_options);
 
   // console.log(stateData.currentIndexTest);
 
-  const listItems = stateData.currentTests[stateData.currentIndexTest].order_number_options;
+  const listItems = currentTests[stateData.currentIndexTest].order_number_options;
 
   const correctAnswerText = listItems[currentItemIndex].test_item_options.find(item => item.correct === 1)?.option;
 

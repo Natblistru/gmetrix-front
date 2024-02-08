@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ContextData from "../context/ContextData";
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchCurrentTestsSuccess } from '../ReduxComp/actions';
 import { scroller } from 'react-scroll'
 import ItemAccordeon from "./ItemAccordeon";
 import ItemList from "./ItemList";
@@ -15,6 +16,7 @@ import '../FlipCards/flipCardNou.scss';
 
 const ListSubAccordeon = (props) => {
 const {stateData, dispatchData} = React.useContext(ContextData)
+const dispatch = useDispatch();
 const [currentSubject, setCurrentSubject] = useState(0);
 const currentTopic1 = useSelector(state => state.currentTopic);
 const currentTopic = currentTopic1.currentTopic;
@@ -62,6 +64,7 @@ const fetchTest = async () => {
           type: "FETCH_CURRENT_TESTS",
           payload: res.data
       })
+      dispatch(fetchCurrentTestsSuccess(res.data));
   } catch (err) {
       console.error(err);
   }

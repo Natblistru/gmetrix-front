@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useSelector } from 'react-redux';
 import ContextData from "../context/ContextData";
 import CheckBox from "../CheckBox";
 
@@ -18,6 +19,7 @@ const TestCheck = ({
   setResponseReceived
 }) => {
   const {stateData, dispatchData} = React.useContext(ContextData)
+  const currentTests = useSelector(state => state.currentTests);
   const [selectedValues, setSelectedValues] = useState([]);
 
   const [selectedOptions, setSelectedOptions] = useState([])
@@ -39,12 +41,12 @@ const TestCheck = ({
     setSelectedOptions(initialSelectedOptions)
   },[currentItemIndex])
   
-  // console.log(stateData.currentTests)
-  // console.log(stateData.currentTests[stateData.currentIndexTest].order_number_options);
+  // console.log(currentTests)
+  // console.log(currentTests[stateData.currentIndexTest].order_number_options);
 
   // console.log(stateData.currentIndexTest);
 
-  const listItems = stateData.currentTests[stateData.currentIndexTest].order_number_options;
+  const listItems = currentTests[stateData.currentIndexTest].order_number_options;
 // console.log(listItems[currentItemIndex].test_item_options)
 
   const handleCheckBoxChange = (value) => {

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState, useLayoutEffect } from "react";
 import axios from "axios";
 import ContextData from "../context/ContextData";
+import { useSelector } from 'react-redux';
 import Snap from "snapsvg-cjs";
 import "./TestSnap.css";
 import ItemAccordeon from "../Accordeon/ItemAccordeon";
@@ -36,11 +37,12 @@ const TestSnap = ({
   const {stateData, dispatchData} = React.useContext(ContextData)
 
   const [selectedOptions, setSelectedOptions] = useState([])
+  const currentTests = useSelector(state => state.currentTests);
 
-  const [listItems, setListItems] = useState(stateData.currentTests[stateData.currentIndexTest].order_number_options)
+  const [listItems, setListItems] = useState(currentTests[stateData.currentIndexTest].order_number_options)
 
-  // console.log(stateData.currentTests)
-  // console.log(stateData.currentTests[stateData.currentIndexTest].order_number_options);
+  // console.log(currentTests)
+  // console.log(currentTests[stateData.currentIndexTest].order_number_options);
 
   // console.log(stateData.currentIndexTest);
 
@@ -64,7 +66,7 @@ const TestSnap = ({
   }, []);
 
   useEffect(()=>{
-    setListItems(stateData.currentTests[stateData.currentIndexTest].order_number_options);
+    setListItems(currentTests[stateData.currentIndexTest].order_number_options);
 
     const initialSelectedOptions = [];
     listItems[currentItemIndex].test_item_options.forEach(element => {
