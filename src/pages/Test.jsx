@@ -15,6 +15,7 @@ import TestWords from "../components/Teste/TestWords";
 import TestSnap from "../components/Snap/TestSnap";
 import TestGeneralizator from "../components/Teste/TestGeneralizator";
 import { fetchTheme } from "../routes/api"
+import { fetchCurrentIndexTest } from '../components/ReduxComp/actions';
 import "../index.css";
 
 const TestWrapper = ({ tests, add, update }) => {
@@ -85,6 +86,7 @@ useEffect(() => {
         type: "FETCH_CURRENT_INDEX_TEST",
         payload: indexElementCautat
       })
+      dispatch(fetchCurrentIndexTest(indexElementCautat));
     }
   }, [addressTest]);
 

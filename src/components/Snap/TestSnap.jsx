@@ -38,13 +38,14 @@ const TestSnap = ({
 
   const [selectedOptions, setSelectedOptions] = useState([])
   const currentTests = useSelector(state => state.currentTests);
+  const currentIndexTest = useSelector(state => state.currentIndexTest);
 
-  const [listItems, setListItems] = useState(currentTests[stateData.currentIndexTest].order_number_options)
+  const [listItems, setListItems] = useState(currentTests[currentIndexTest].order_number_options)
 
   // console.log(currentTests)
-  // console.log(currentTests[stateData.currentIndexTest].order_number_options);
+  // console.log(currentTests[currentIndexTest].order_number_options);
 
-  // console.log(stateData.currentIndexTest);
+  // console.log(currentIndexTest);
 
   // let list1 = temeIstoriArray[0].subtitles[0].subjects[0].teste[4];
 
@@ -66,7 +67,7 @@ const TestSnap = ({
   }, []);
 
   useEffect(()=>{
-    setListItems(currentTests[stateData.currentIndexTest].order_number_options);
+    setListItems(currentTests[currentIndexTest].order_number_options);
 
     const initialSelectedOptions = [];
     listItems[currentItemIndex].test_item_options.forEach(element => {

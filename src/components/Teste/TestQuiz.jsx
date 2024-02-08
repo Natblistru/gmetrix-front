@@ -19,6 +19,7 @@ const TestQuiz = ({
 }) => {
   const {stateData, dispatchData} = React.useContext(ContextData)
   const currentTests = useSelector(state => state.currentTests);
+  const currentIndexTest = useSelector(state => state.currentIndexTest);
   const [selectedValue, setSelectedValue] = useState("");
   const [selectedOptions, setSelectedOptions] = useState([])
 
@@ -32,11 +33,11 @@ const TestQuiz = ({
   },[])
 
   // console.log(currentTests)
-  // console.log(currentTests[stateData.currentIndexTest].order_number_options);
+  // console.log(currentTests[currentIndexTest].order_number_options);
 
-  // console.log(stateData.currentIndexTest);
+  // console.log(currentIndexTest);
 
-  const listItems = currentTests[stateData.currentIndexTest].order_number_options;
+  const listItems = currentTests[currentIndexTest].order_number_options;
 
   const correctAnswerText = listItems[currentItemIndex].test_item_options.find(item => item.correct === 1)?.option;
 

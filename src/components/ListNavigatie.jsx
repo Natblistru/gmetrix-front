@@ -11,6 +11,7 @@ const ListNavigatie = (props) => {
   const currentTheme = useSelector(state => state.currentTheme);
   const currentSubject = useSelector(state => state.currentSubject);
   const currentTests = useSelector(state => state.currentTests);
+  const currentIndexTest = useSelector(state => state.currentIndexTest);
   const currentTopic1 = useSelector(state => state.currentTopic);
   const currentTopic = currentTopic1.currentTopic;
 
@@ -46,11 +47,11 @@ const ListNavigatie = (props) => {
   let testPrecedent = list;
   let testUrmator = list;
 
-  let testPrecedent1 = currentTopic.tests[stateData.currentIndexTest];
-  let testUrmator1 = currentTopic.tests[stateData.currentIndexTest];
+  let testPrecedent1 = currentTopic.tests[currentIndexTest];
+  let testUrmator1 = currentTopic.tests[currentIndexTest];
   if (!primul) {
   
-    testPrecedent1 = currentTopic.tests[stateData.currentIndexTest-1];
+    testPrecedent1 = currentTopic.tests[currentIndexTest-1];
 
     testPrecedent = currentTopic.tests[list.id-2]; 
     dynamicPathTestPrecedent = `${addressDisciplina}${addressSubtitle}${testPrecedent.path}${testPrecedent.addressTest}/1?teacher=1&level=1&disciplina=${subject_id}&theme=${currentTheme.tema_id}`;       
@@ -59,7 +60,7 @@ const ListNavigatie = (props) => {
   }
   if(!ultimul) {
     if(!utilmul_dnd) {
-      testUrmator1 = currentTopic.tests[stateData.currentIndexTest+1];
+      testUrmator1 = currentTopic.tests[currentIndexTest+1];
       // console.log(testUrmator1.id);
     }
 

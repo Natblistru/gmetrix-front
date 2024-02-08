@@ -20,6 +20,7 @@ const TestCheck = ({
 }) => {
   const {stateData, dispatchData} = React.useContext(ContextData)
   const currentTests = useSelector(state => state.currentTests);
+  const currentIndexTest = useSelector(state => state.currentIndexTest);
   const [selectedValues, setSelectedValues] = useState([]);
 
   const [selectedOptions, setSelectedOptions] = useState([])
@@ -42,11 +43,11 @@ const TestCheck = ({
   },[currentItemIndex])
   
   // console.log(currentTests)
-  // console.log(currentTests[stateData.currentIndexTest].order_number_options);
+  // console.log(currentTests[currentIndexTest].order_number_options);
 
-  // console.log(stateData.currentIndexTest);
+  // console.log(currentIndexTest);
 
-  const listItems = currentTests[stateData.currentIndexTest].order_number_options;
+  const listItems = currentTests[currentIndexTest].order_number_options;
 // console.log(listItems[currentItemIndex].test_item_options)
 
   const handleCheckBoxChange = (value) => {

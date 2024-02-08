@@ -30,17 +30,18 @@ const TestBoard = forwardRef(
 
     const [selectedOptions, setSelectedOptions] = useState([])
     const currentTests = useSelector(state => state.currentTests);
+    const currentIndexTest = useSelector(state => state.currentIndexTest);
 
-    const [listItems, setListItems] = useState(currentTests[stateData.currentIndexTest].order_number_options)
+    const [listItems, setListItems] = useState(currentTests[currentIndexTest].order_number_options)
 
-    const [columnArray, setColumnArray] = useState(currentTests[stateData.currentIndexTest].column_title.split(", "));
+    const [columnArray, setColumnArray] = useState(currentTests[currentIndexTest].column_title.split(", "));
     // console.log(listItems)
     // console.log(listItems[currentItemIndex])
 
     useEffect(()=>{
-      setListItems(currentTests[stateData.currentIndexTest].order_number_options);
+      setListItems(currentTests[currentIndexTest].order_number_options);
 
-      // let array = currentTests[stateData.currentIndexTest].column_title.split(", ");
+      // let array = currentTests[currentIndexTest].column_title.split(", ");
       // let columnDBArray = []
       // if (array.length > 2) {
       //     columnDBArray = [array[0], ...array.slice(1).reverse()];
@@ -48,7 +49,7 @@ const TestBoard = forwardRef(
       //   columnDBArray = array;
       // }
       // setColumnArray(columnDBArray)
-      setColumnArray(currentTests[stateData.currentIndexTest].column_title.split(", "))
+      setColumnArray(currentTests[currentIndexTest].column_title.split(", "))
       const initialSelectedOptions = [];
       listItems[currentItemIndex].test_item_options.forEach(element => {
         initialSelectedOptions.push({ "option": element.option, 
@@ -68,7 +69,7 @@ const TestBoard = forwardRef(
     const getColumnsFromBackend = () => {
 
       let columnsFromBackendNext = null;
-      // console.log(currentTests[stateData.currentIndexTest].order_number_options);
+      // console.log(currentTests[currentIndexTest].order_number_options);
       // temeIstoriArray[0].subtitles[0].subjects[0].teste.forEach(test => {
       //   console.log("test.id", test.id)
       //   console.log("testID", testID)
@@ -104,8 +105,8 @@ const TestBoard = forwardRef(
 
 
     // console.log(currentTests)
-    // console.log(stateData.currentIndexTest)
-    // console.log(currentTests[stateData.currentIndexTest])
+    // console.log(currentIndexTest)
+    // console.log(currentTests[currentIndexTest])
     // console.log(columnArray)
  
     
@@ -124,16 +125,16 @@ const TestBoard = forwardRef(
 
     // console.log(currentTests)
 
-    const currentTest = currentTests[stateData.currentIndexTest];
+    const currentTest = currentTests[currentIndexTest];
 
     // console.log(columnArray)
-    // console.log(currentTests[stateData.currentIndexTest].column_title)
+    // console.log(currentTests[currentIndexTest].column_title)
 
-    // console.log(currentTests[stateData.currentIndexTest])
-    // console.log(currentTests[stateData.currentIndexTest].order_number_options[currentItemIndex]);
+    // console.log(currentTests[currentIndexTest])
+    // console.log(currentTests[currentIndexTest].order_number_options[currentItemIndex]);
   
   
-    // console.log(stateData.currentIndexTest);
+    // console.log(currentIndexTest);
   
     let correctAnswers = [];
     if(currentTest.type == "dnd_chrono") {
