@@ -64,7 +64,6 @@ function App() {
       <div>
       <StoreComponent>
         <ContextData.Provider value = {{stateData, dispatchData}}>
-          {/* <StoreComponent> */}
             <Switch>
 
               <Route exact path="/" render={() => <Redirect to="/home" />} />

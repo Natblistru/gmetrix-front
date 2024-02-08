@@ -1,10 +1,8 @@
 import React, { useState } from "react";
-import ContextData from "../context/ContextData";
 import { Link, useLocation  } from "react-router-dom";
 import { connect, useSelector } from "react-redux";
 
 const ItemList = ({ list, className, type, results, onItemClick }) => {
-  const {stateData, dispatchData} = React.useContext(ContextData)
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const teacherVideo = searchParams.get('teacher');

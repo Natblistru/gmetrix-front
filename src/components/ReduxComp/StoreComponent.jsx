@@ -18,6 +18,7 @@ import currentTopicReducer from "./currentTopicReducer";
 import currentTestsReducer from "./currentTestsReducer";
 import currentIndexTestReducer from "./currentIndexTestReducer";
 import studentReducer from "./studentReducer";
+import raspunsuriReducer from './raspunsuriReducer';
 
 const initialState = {
   items: []
@@ -59,30 +60,6 @@ const initialExamsState = {
           //  },
           exams: []
         }]
-};
-
-const raspunsuriReducer = (state=initialState, action) => {
-  switch (action.type) {
-    case 'ADD_ITEM':
-      return {
-        ...state,
-        items: [...state.items, action.payload]
-      };
-      case 'UPDATE_ITEM':
-        return {
-          ...state,
-          items: state.items.map(item =>
-            item.id === action.payload.id ? action.payload : item
-          )
-        };
-      case 'DELETE_ITEM':
-        return {
-          ...state,
-          items: state.items.filter(item => item.id !== action.payload)
-        };
-      default:
-        return state;
-  }
 };
 
 const resultsReducer = (state=initialResultState, action) => {

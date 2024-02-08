@@ -1,14 +1,11 @@
 import React, { useState, useContext, useEffect, useRef } from "react";
 import { connect } from "react-redux"
+import { addRaspuns, updateRaspuns } from "../ReduxComp/actions";
 import Popupmenu from "../Popupmenu";
 import ModalArrows from "./ModalArrows";
 
 import "./ModalForm.css";
-const ModalForm = ({forma,onClick,idRaspuns,raspunsuri,add,update}) => {
-  // const raspInitialArr = Array(
-  //   forma.length
-  // ).fill("");
-  // const [rasp, SetRasp] = useState(raspInitialArr);
+const ModalForm = ({forma,onClick,idRaspuns,raspunsuri,addRaspuns, updateRaspuns}) => {
   const raspInitialArr = Array(
     forma.length
   ).fill("");
@@ -50,10 +47,10 @@ const ModalForm = ({forma,onClick,idRaspuns,raspunsuri,add,update}) => {
     // console.log(idRaspuns);
     // console.log(IdRasp);
     if(idRaspuns===null){
-     add({ ...rasp, id: IdRasp });
+      addRaspuns({ ...rasp, id: IdRasp });
      onClick(rasp, IdRasp);
     } else {
-      update({ ...rasp, id: idRaspuns });
+      updateRaspuns({ ...rasp, id: idRaspuns });
       onClick(rasp, idRaspuns);
     }
 
@@ -156,13 +153,13 @@ const ModalForm = ({forma,onClick,idRaspuns,raspunsuri,add,update}) => {
   );
 };
 
-const reduxState = state => ({
+const mapStateToProps = (state) => ({
   raspunsuri: state.raspunsuri,
-})
+});
 
-const  reduxFunctions = dispatch => ({
-  add: (item) => dispatch({type: 'ADD_ITEM', payload: item}),
-  update: (item) => dispatch({ type:'UPDATE_ITEM', payload: item})
-})
+const mapDispatchToProps = {
+  addRaspuns,
+  updateRaspuns,
+};
 
-export default connect(reduxState,reduxFunctions)(ModalForm);
+export default connect(mapStateToProps, mapDispatchToProps)(ModalForm);
