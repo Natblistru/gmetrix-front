@@ -1,6 +1,9 @@
 import axios from "axios";
-import { FETCH_CAPITOLE } from '../components/ReduxComp/actions';
-import { FETCH_EVALUATIONS_1, FETCH_EVALUATIONS_2, FETCH_EVALUATIONS_3 } from '../components/ReduxComp/actions';
+import { FETCH_CAPITOLE,
+         FETCH_TOPICS,
+         FETCH_EVALUATIONS_1, 
+         FETCH_EVALUATIONS_2, 
+         FETCH_EVALUATIONS_3 } from '../components/ReduxComp/actions';
 
 export const fetchCapitole = async (subject_id, level_id, dispatchData) => {
     try {
@@ -21,7 +24,7 @@ export const fetchTheme = async (teacherVideo, theme, subject_id, level_id, disp
         const res = await axios.get(`http://localhost:8000/api/teachertheme?level=${level_id}&disciplina=${subject_id}&teacher=${teacherVideo}&student=1&theme=${theme}`);
 
         dispatchData({
-            type: "FETCH_TOPICS",
+            type: FETCH_TOPICS,
             payload: res.data
         });
     } catch (err) {

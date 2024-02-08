@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { withRouter, useParams } from "react-router-dom";
-import { connect, useSelector } from "react-redux";
+import { connect, useSelector, useDispatch } from "react-redux";
 import ContextData from "../components/context/ContextData";
 import axios from 'axios'; 
 import Navbar from "../components/layouts/Navbar";
@@ -19,6 +19,7 @@ import "../index.css";
 
 const TestWrapper = ({ tests, add, update }) => {
   const {stateData, dispatchData} = React.useContext(ContextData)
+  const dispatch = useDispatch();
   const { address1, addressTest, idTest } = useParams();
   // console.log(addressTest);
   const [currentList, setCurrentList] = useState(null);
@@ -47,7 +48,7 @@ useEffect(() => {
     const theme = currentTheme?.tema_id
     const level_id = 1;
 
-    fetchTheme(teacher, theme, subject_id, level_id, dispatchData);
+    fetchTheme(teacher, theme, subject_id, level_id, dispatch);
   }
 
   const handleBeforeUnload = (event) => {
@@ -239,7 +240,7 @@ useEffect(() => {
       const theme = currentTheme?.tema_id
       const level_id = 1;
 
-      fetchTheme(teacher, theme, subject_id, level_id, dispatchData);
+      fetchTheme(teacher, theme, subject_id, level_id, dispatch);
       console.log('Valoarea lui proc a fost actualizată:', proc);
     }
   }, [proc]);

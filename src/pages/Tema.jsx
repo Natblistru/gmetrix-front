@@ -56,7 +56,7 @@ const Tema = () => {
 
     const level_id = 1;
 
-    fetchTheme(teacher, theme, subject_id, level_id, dispatchData);
+    fetchTheme(teacher, theme, subject_id, level_id, dispatch);
     fetchEvaluations(theme);
     fetchEvaluation1(theme, subject_id, level_id, dispatch);
     fetchEvaluation2(theme, subject_id, level_id, dispatch);

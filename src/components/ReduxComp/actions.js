@@ -14,6 +14,7 @@ export const FETCH_EVALUATIONS_1 = 'FETCH_EVALUATIONS_1';
 export const FETCH_EVALUATIONS_2 = 'FETCH_EVALUATIONS_2';
 export const FETCH_EVALUATIONS_3 = 'FETCH_EVALUATIONS_3';
 export const UPDATE_CURRENT_SUBJECT = 'UPDATE_CURRENT_SUBJECT';
+export const FETCH_TOPICS = 'FETCH_TOPICS';
 
 export const addBreadcrumb = (breadcrumb) => ({
   type: ADD_BREADCRUMB,
@@ -71,4 +72,9 @@ export const fetchEvaluationsSuccess = (evaluations) => ({
 export const updateCurrentSubject = (subject) => ({
   type: UPDATE_CURRENT_SUBJECT,
   payload: subject
+});
+
+export const fetchTopicsSuccess = (topics) => ({
+  type: FETCH_TOPICS,
+  payload: topics
 });

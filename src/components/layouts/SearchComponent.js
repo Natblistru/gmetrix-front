@@ -125,7 +125,7 @@ const SearchComponent = () => {
       const level_id = details.studyLevelId;
       const subject_id = details.subjectId;
       await new Promise(async (resolve) => {
-        await fetchTheme(teacher, theme, subject_id, level_id, dispatchData);
+        await fetchTheme(teacher, theme, subject_id, level_id, dispatch);
         resolve();
       });
     }

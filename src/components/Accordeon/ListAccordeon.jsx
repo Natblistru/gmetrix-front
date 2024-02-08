@@ -19,18 +19,18 @@ const ListAccordeon = (props) => {
   const [videoTitle, setVideoTitle] = useState("");
   const themeVideo = useSelector(state => state.themeVideo);
   const aplicatiiListBD = useSelector(state => state.evaluations);
-  console.log(aplicatiiListBD)
+  const topics = useSelector(state => state.topics);
 
   const classes = " " + props.className;
-  let titleList = stateData.topics;
+  let titleList = topics;
 
   useEffect(() => {
     if (props.onProgressThemaRecorded) {
-      if(stateData.topics.length > 0) {
-        props.onProgressThemaRecorded(stateData.topics[0].procentTema);
+      if(topics.length > 0) {
+        props.onProgressThemaRecorded(topics[0].procentTema);
       }
     }
-  },[stateData.topics])
+  },[topics])
 
   useEffect(() => {
     if (props.location.hash === '#ani') {
@@ -56,7 +56,7 @@ const ListAccordeon = (props) => {
   // let termeniList = props.teme.termeni;
   // let diagramData = props.teme.diagramData;
 
-  // console.log(stateData.topics); 
+  // console.log(topics); 
   // console.log(aplicatiiList); 
 
   useEffect(() => {
@@ -91,19 +91,3 @@ const ListAccordeon = (props) => {
   );
 };
 export default withRouter(ListAccordeon);
-
-
-
-
-// <div id="ani"></div>
-//<ItemAccordeon titlu="Repere cronoligice" {...props} open={true}>
-//  <ItemList {...props} list={repereList} />
-//  <Link to={{ pathname: props.teme.addressDisciplina + props.teme.address+"/flipCards/ani", state: { list: repereList, anchor: "ani", item: props.teme } }} className="custom-link">Exerseaza</Link>
-//  {/* <Link to={{ pathname: props.teme.addressDisciplina + props.teme.address+"/flipCards", state: { list: termeniList, anchor: "termeni", item: props.teme} }} className="custom-link">Exerseaza</Link>      */}
-//</ItemAccordeon>
-//<div id="termeni"></div>
-//<ItemAccordeon titlu="Termeni-cheie" {...props} open={true}>
-//  {/* {console.log(props.teme.addressDisciplina + props.teme.address)} */}
-//  <ItemList {...props} list={termeniList} />
-//  <Link to={{ pathname: props.teme.addressDisciplina + props.teme.address+"/flipCards/termeni", state: { list: termeniList, anchor: "termeni", item: props.teme} }} className="custom-link">Exerseaza</Link>
-//</ItemAccordeon> 

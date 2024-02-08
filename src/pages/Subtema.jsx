@@ -28,11 +28,12 @@ const Subtema = ({results})  => {
   let subElement = null;
   const currentTheme = useSelector(state => state.currentTheme);
   const currentSubject = useSelector(state => state.currentSubject);
+  const topics = useSelector(state => state.topics);
 
   const subject_id = currentSubject.subject_id || currentSubject.currentSubject.subject_id;
 
   useEffect(() => {
-    const temaCurrenta = stateData.topics;
+    const temaCurrenta = topics;
     const parts = currentTheme?.path_tema.split("/");
     const tema_id = currentTheme?.tema_id;
 
@@ -68,7 +69,7 @@ const Subtema = ({results})  => {
     window.addEventListener("beforeunload", handleBeforeUnload);
     return () => window.removeEventListener("beforeunload", handleBeforeUnload);
 
-  }, [stateData.topics, currentTheme, currentSubject, address1, disciplina, teacherVideo]);
+  }, [topics, currentTheme, currentSubject, address1, disciplina, teacherVideo]);
 
 
   const handleProgressTopicRecorded = (updatedTopicProgress) => {
