@@ -26,9 +26,34 @@ function Navbar() {
     axios.post('http://localhost:8000/api/logout').then(res => {
       if(res.data.status === 200)
       {
-        localStorage.removeItem('auth_token');
-        localStorage.removeItem('auth_name');
-        localStorage.removeItem('auth_log');
+        const keysToRemove = [
+          'auth_log',
+          'auth_name',
+          'auth_role',
+          'auth_roleId',
+          'auth_token',
+          'breadcrumbs',
+          'capitole',
+          'currentIndexTest',
+          'currentStudent',
+          'currentSubject',
+          'currentTests',
+          'currentTheme',
+          'currentTopic',
+          'disciplineAni',
+          'evaluations',
+          'evaluations1',
+          'evaluations2',
+          'evaluations3',
+          'teachersForSubtitle',
+          'themeVideo',
+          'topics',
+      ];
+      
+      keysToRemove.forEach(key => {
+          localStorage.removeItem(key);
+      });
+
 
         Swal.fire({
           title: "Succes",
