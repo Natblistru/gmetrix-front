@@ -8,6 +8,9 @@ import TreeTable from './TreeTable';
 const ListDisciplineRezultat = ({selectedItem, setSelectedItem}) => {
   const [mediaDisciplina, setMediaDisciplina] = useState([])
   const disciplineAni = useSelector(state => state.disciplineAni);
+  const currentStudentObject = useSelector(state => state.currentStudent);
+  const currentStudent = currentStudentObject.currentStudent;
+
     // console.log(disciplineAni);
   const dispatch = useDispatch();
 
@@ -16,7 +19,7 @@ const ListDisciplineRezultat = ({selectedItem, setSelectedItem}) => {
     setSelectedItem(item);
     const level_id = 1;
 
-    fetchCapitole(subject_id, level_id, dispatch);
+    fetchCapitole(subject_id, level_id, dispatch, currentStudent);
 
   };
 
@@ -26,7 +29,7 @@ const ListDisciplineRezultat = ({selectedItem, setSelectedItem}) => {
     disciplineAni.forEach((item) => {
       const level_id = 1;
   
-      axios.get(`http://localhost:8000/api/capitoleDisciplina?level=${level_id}&disciplina=${item.subject_id}&student=1`)
+      axios.get(`http://localhost:8000/api/capitoleDisciplina?level=${level_id}&disciplina=${item.subject_id}&student=${currentStudent}`)
         .then(res => {
           if (res.status === 200) {
             // console.log(res.data)
@@ -42,7 +45,7 @@ const ListDisciplineRezultat = ({selectedItem, setSelectedItem}) => {
 
       const level_id = 1;
 
-      fetchCapitole(selectedItem.subject_id, level_id, dispatch);
+      fetchCapitole(selectedItem.subject_id, level_id, dispatch, currentStudent);
 
   }, []);
   
@@ -100,7 +103,7 @@ function MyResults() {
      try {
       const studentId = 1;
       const level_id = 1;
-      const promises = teachersForSubtitles.map(teachertheme => axios.get(`http://localhost:8000/api/teachertheme?level=${level_id}&disciplina=${selectedItem.subject_id}&teacher=${teachertheme.teacher_id}&student=1&theme=${themeId}`));
+      const promises = teachersForSubtitles.map(teachertheme => axios.get(`http://localhost:8000/api/teachertheme?level=${level_id}&disciplina=${selectedItem.subject_id}&teacher=${teachertheme.teacher_id}&student=${currentStudent}&theme=${themeId}`));
       const responses = await axios.all(promises);
       const successResponses = responses.filter(response => response.status === 200);
       const errorResponses = responses.filter(response => response.status === 404);

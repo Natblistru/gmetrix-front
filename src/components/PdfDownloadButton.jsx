@@ -7,7 +7,8 @@ import pdfFonts from 'pdfmake/build/vfs_fonts';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 const PdfDownloadButton = ({ generateText }) => {
-  const currentTheme = useSelector(state => state.currentTheme);
+  const currentThemeObject = useSelector(state => state.currentTheme);
+  const currentTheme = currentThemeObject.currentTheme || JSON.parse(localStorage.getItem('currentTheme'));
 
   useEffect(() => {
     // console.log(generateText());

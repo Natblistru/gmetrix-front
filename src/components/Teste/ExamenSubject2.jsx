@@ -35,9 +35,10 @@ const ExamenSubect2 = () => {
 
   const evaluations2 = useSelector((state) => state.evaluations2);
   const currentSubject = useSelector((state) => state.currentSubject);
-  const currentTheme = useSelector((state) => state.currentTheme);
+  const currentThemeObject = useSelector(state => state.currentTheme);
+  const currentTheme = currentThemeObject.currentTheme || JSON.parse(localStorage.getItem('currentTheme'));
   const currentStudentObject = useSelector((state) => state.currentStudent);
-  const currentStudent = currentStudentObject.currentStudent;
+  const currentStudent = currentStudentObject ? currentStudentObject.currentStudent : 1;
   const speed = 50;
 
   const subject_id =

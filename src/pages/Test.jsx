@@ -27,11 +27,18 @@ const TestWrapper = () => {
   const [currentItemIndex, setCurrentItemIndex] = useState(0);
   const [loading, setLoading] = useState(true);
   const [responseReceived, setResponseReceived] = useState(false);
-  const currentTheme = useSelector((state) => state.currentTheme);
+  const currentThemeObject = useSelector(state => state.currentTheme);
+  const currentTheme = currentThemeObject.currentTheme || JSON.parse(localStorage.getItem('currentTheme'));
   const currentSubject = useSelector((state) => state.currentSubject);
   const currentTests = useSelector((state) => state.currentTests);
   const currentTopicObject = useSelector((state) => state.currentTopic);
   const currentTopic = currentTopicObject.currentTopic;
+
+  const currentStudentObject = useSelector(state => state.currentStudent);
+  const currentStudent = currentStudentObject ? currentStudentObject.currentStudent : 1; 
+
+  const student_id = localStorage.getItem('auth_role') == 'student' ? currentStudent : 1;
+
   console.log(currentTopic);
 
   const subject_id =
@@ -48,7 +55,7 @@ const TestWrapper = () => {
       const theme = currentTheme?.tema_id;
       const level_id = 1;
 
-      fetchTheme(teacher, theme, subject_id, level_id, dispatch);
+      fetchTheme(teacher, theme, subject_id, level_id, dispatch, student_id);
     }
 
     const handleBeforeUnload = (event) => {
@@ -290,7 +297,7 @@ const TestWrapper = () => {
       const theme = currentTheme?.tema_id;
       const level_id = 1;
 
-      fetchTheme(teacher, theme, subject_id, level_id, dispatch);
+      fetchTheme(teacher, theme, subject_id, level_id, dispatch, student_id);
       console.log("Valoarea lui proc a fost actualizată:", proc);
     }
   }, [proc]);

@@ -114,7 +114,7 @@ const TestGeneralizator = ({
 }) => {
   const { stateData, dispatchData } = React.useContext(ContextData);
   const currentStudentObject = useSelector((state) => state.currentStudent);
-  const currentStudent = currentStudentObject.currentStudent;
+  const currentStudent = currentStudentObject ? currentStudentObject.currentStudent : 1;
   const [selectedValues, setSelectedValues] = useState([]);
   const [timerFinished, setTimerFinished] = useState(false);
   const [activeButton, setActiveButton] = useState(null);

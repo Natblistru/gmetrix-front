@@ -5,9 +5,9 @@ import { FETCH_CAPITOLE,
          FETCH_EVALUATIONS_2, 
          FETCH_EVALUATIONS_3 } from '../components/ReduxComp/actions';
 
-export const fetchCapitole = async (subject_id, level_id, dispatchData) => {
+export const fetchCapitole = async (subject_id, level_id, dispatchData, student_id = 1) => {
     try {
-        const res = await axios.get(`http://localhost:8000/api/capitoleDisciplina?level=${level_id}&disciplina=${subject_id}&student=1`);
+        const res = await axios.get(`http://localhost:8000/api/capitoleDisciplina?level=${level_id}&disciplina=${subject_id}&student=${student_id}`);
 
         console.log(res.data);
         dispatchData({
@@ -19,9 +19,9 @@ export const fetchCapitole = async (subject_id, level_id, dispatchData) => {
     }
 }
 
-export const fetchTheme = async (teacherVideo, theme, subject_id, level_id, dispatchData) => {
+export const fetchTheme = async (teacherVideo, theme, subject_id, level_id, dispatchData, student_id = 1) => {
     try {
-        const res = await axios.get(`http://localhost:8000/api/teachertheme?level=${level_id}&disciplina=${subject_id}&teacher=${teacherVideo}&student=1&theme=${theme}`);
+        const res = await axios.get(`http://localhost:8000/api/teachertheme?level=${level_id}&disciplina=${subject_id}&teacher=${teacherVideo}&student=${student_id}&theme=${theme}`);
 
         dispatchData({
             type: FETCH_TOPICS,

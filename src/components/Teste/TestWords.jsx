@@ -33,7 +33,7 @@ const TestWords = ({
   const currentTests = useSelector(state => state.currentTests);
   const currentIndexTest = useSelector(state => state.currentIndexTest);
   const currentStudentObject = useSelector(state => state.currentStudent);
-  const currentStudent = currentStudentObject.currentStudent;
+  const currentStudent = currentStudentObject ? currentStudentObject.currentStudent : 1;
 
   const [showResults, setShowResults] = useState(false);
   const [question, setQuestion] = useState("");

@@ -37,6 +37,11 @@ const Capitole = (props) => {
   const [proc, setProc] = useState(0);
   const capitole = useSelector((state) => state.capitole);
   const currentSubject = useSelector(state => state.currentSubject);
+  const currentStudentObject = useSelector(state => state.currentStudent);
+  const currentStudent = currentStudentObject ? currentStudentObject.currentStudent : 1;  
+
+  const student_id = localStorage.getItem('auth_role') == 'student' ? currentStudent : 1;
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -44,7 +49,7 @@ const Capitole = (props) => {
         const subject_id = id;
         const level_id = 1;
 
-        const res = await fetchCapitole(subject_id, level_id, dispatch);
+        const res = await fetchCapitole(subject_id, level_id, dispatch, student_id);
         setLoading(false);
         AOS.refresh();
       } catch (error) {

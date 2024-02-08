@@ -98,7 +98,7 @@ const ModalCalculator = ({ subject, currentIndex, onClick, idRaspuns }) => {
   const evaluations2 = useSelector((state) => state.evaluations2);
   const evaluations3 = useSelector((state) => state.evaluations3);
   const currentStudentObject = useSelector((state) => state.currentStudent);
-  const currentStudent = currentStudentObject.currentStudent;
+  const currentStudent = currentStudentObject ? currentStudentObject.currentStudent : 1;
   let quizArray;
   if (subject == 1) {
     quizArray = evaluations1;

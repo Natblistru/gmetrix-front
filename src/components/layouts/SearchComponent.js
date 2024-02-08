@@ -32,6 +32,10 @@ const SearchComponent = () => {
   })
   const subjectListRedux = useSelector(state => state.disciplineAni);
   const capitole = useSelector(state => state.capitole);
+  const currentStudentObject = useSelector(state => state.currentStudent);
+  const currentStudent = currentStudentObject ? currentStudentObject.currentStudent : 1; 
+
+  const student_id = localStorage.getItem('auth_role') == 'student' ? currentStudent : 1;
 
 
   const handleInput = (e) => {
@@ -76,7 +80,7 @@ const SearchComponent = () => {
     // console.log(details)
     // console.log(stateData.disciplineAni)
     try {
-        const res = await axios.get(`http://localhost:8000/api/capitoleDisciplina?level=${details.studyLevelId}&disciplina=${details.subjectId}&student=1`);
+        const res = await axios.get(`http://localhost:8000/api/capitoleDisciplina?level=${details.studyLevelId}&disciplina=${details.subjectId}&student=${student_id}`);
         dispatch(fetchCapitoleRedux(res.data));
         if (res.data.length > 0) {
           dispatch(updateCurrentSubject(res.data[0]))
@@ -97,12 +101,15 @@ const SearchComponent = () => {
     }
   
     await fetchCapitoleSearch();
+
+    const capitoleStorage = JSON.parse(localStorage.getItem('capitole'))|| []
   
-    const tema = capitole.reduce(
+    const tema = capitoleStorage.reduce(
       (result, item) => result || (item.subtitles || []).find(subtitle => subtitle.path_tema === themePath),
       null
     );
-  
+  console.log(tema)
+  console.log(themePath)
     if (tema != null) {
       dispatch(updateCurrentTheme(tema));
   
@@ -115,7 +122,7 @@ const SearchComponent = () => {
       const level_id = details.studyLevelId;
       const subject_id = details.subjectId;
       await new Promise(async (resolve) => {
-        await fetchTheme(teacher, theme, subject_id, level_id, dispatch);
+        await fetchTheme(teacher, theme, subject_id, level_id, dispatch, student_id);
         resolve();
       });
     }

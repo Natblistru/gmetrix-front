@@ -43,6 +43,12 @@ const Tema = () => {
 
   const subject_id = currentSubject.subject_id || currentSubject.currentSubject.subject_id;
 
+  const currentStudentObject = useSelector(state => state.currentStudent);
+  const currentStudent = currentStudentObject ? currentStudentObject.currentStudent : 1; 
+
+  const student_id = localStorage.getItem('auth_role') == 'student' ? currentStudent : 1;
+
+
   useEffect(() => {
     if (!currentSubject) {
       return;
@@ -54,7 +60,7 @@ const Tema = () => {
 
     const level_id = 1;
 
-    fetchTheme(teacher, theme, subject_id, level_id, dispatch);
+    fetchTheme(teacher, theme, subject_id, level_id, dispatch, student_id);
     fetchEvaluations(theme);
     fetchEvaluation1(theme, subject_id, level_id, dispatch);
     fetchEvaluation2(theme, subject_id, level_id, dispatch);

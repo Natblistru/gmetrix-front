@@ -4,7 +4,8 @@ import { useSelector } from "react-redux";
 
 const AudioPlayer = ({currentSubject, arraySubtitles, path, onProgressRecorded}) => {
   const currentStudentObject = useSelector(state => state.currentStudent);
-  const currentStudent = currentStudentObject.currentStudent;
+  const currentStudent = currentStudentObject ? currentStudentObject.currentStudent : 1;
+  
   const audioRef = useRef(null);
   const [isRecording, setIsRecording] = useState(false);
 

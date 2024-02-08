@@ -12,7 +12,7 @@ import Wrapper from "../components/Wrapper";
 import TitleBox from "../components/TitleBox";
 import ListSubAccordeon from "../components/Accordeon/ListSubAccordeon";
 
-const Subtema = ({results})  => {
+const Subtema = ()  => {
   const dispatch = useDispatch();
   const { address1, disciplina } = useParams();
   const location = useLocation();
@@ -22,9 +22,12 @@ const Subtema = ({results})  => {
   const [topic, setTopic] = useState(null);
   const history = useHistory();
   let subElement = null;
-  const currentTheme = useSelector(state => state.currentTheme);
+  const currentThemeObject = useSelector(state => state.currentTheme);
+  const currentTheme = currentThemeObject.currentTheme || JSON.parse(localStorage.getItem('currentTheme'));
+
   const currentSubject = useSelector(state => state.currentSubject);
   const topics = useSelector(state => state.topics);
+console.log(topics)
 
   const subject_id = currentSubject.subject_id || currentSubject.currentSubject.subject_id;
 
@@ -32,6 +35,7 @@ const Subtema = ({results})  => {
     const temaCurrenta = topics;
     const parts = currentTheme?.path_tema.split("/");
     const tema_id = currentTheme?.tema_id;
+
 
     if (temaCurrenta && subject_id && tema_id) {
       const addressToFind = "/" + address1;
@@ -69,7 +73,7 @@ const Subtema = ({results})  => {
       }));
     }
   };
-
+  console.log(topic)
   return (
     <div>
       <Navbar />

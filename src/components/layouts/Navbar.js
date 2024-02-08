@@ -48,12 +48,11 @@ function Navbar() {
           'teachersForSubtitle',
           'themeVideo',
           'topics',
-      ];
-      
-      keysToRemove.forEach(key => {
-          localStorage.removeItem(key);
-      });
-
+        ];
+        
+        keysToRemove.forEach(key => {
+            localStorage.removeItem(key);
+        });
 
         Swal.fire({
           title: "Succes",
@@ -61,6 +60,7 @@ function Navbar() {
           icon: "success"
         });
         history.push("/")
+        window.location.reload();
       }
     });
   }

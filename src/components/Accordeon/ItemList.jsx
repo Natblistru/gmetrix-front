@@ -6,7 +6,9 @@ const ItemList = ({ list, className, type, onItemClick }) => {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const teacherVideo = searchParams.get('teacher');
-  const currentTheme = useSelector(state => state.currentTheme);
+  const currentThemeObject = useSelector(state => state.currentTheme);
+  const currentTheme = currentThemeObject.currentTheme || JSON.parse(localStorage.getItem('currentTheme'));
+
   const currentSubject = useSelector(state => state.currentSubject);
 
   const evaluations = useSelector(state => [
