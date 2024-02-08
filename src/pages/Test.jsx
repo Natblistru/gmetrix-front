@@ -30,8 +30,8 @@ const TestWrapper = () => {
   const currentTheme = useSelector((state) => state.currentTheme);
   const currentSubject = useSelector((state) => state.currentSubject);
   const currentTests = useSelector((state) => state.currentTests);
-  const currentTopic1 = useSelector((state) => state.currentTopic);
-  const currentTopic = currentTopic1.currentTopic;
+  const currentTopicObject = useSelector((state) => state.currentTopic);
+  const currentTopic = currentTopicObject.currentTopic;
   console.log(currentTopic);
 
   const subject_id =

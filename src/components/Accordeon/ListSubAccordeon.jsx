@@ -15,8 +15,8 @@ import '../FlipCards/flipCardNou.scss';
 const ListSubAccordeon = (props) => {
 const dispatch = useDispatch();
 const [currentSubject, setCurrentSubject] = useState(0);
-const currentTopic1 = useSelector(state => state.currentTopic);
-const currentTopic = currentTopic1.currentTopic;
+const currentTopicObject = useSelector(state => state.currentTopic);
+const currentTopic = currentTopicObject.currentTopic;
 
 const [arraySubtitles, setArraySubtitles] = useState(currentTopic.subtitles);
 console.log(currentTopic)

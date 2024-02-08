@@ -10,8 +10,8 @@ const ListNavigatie = (props) => {
   const currentSubject = useSelector(state => state.currentSubject);
   const currentTests = useSelector(state => state.currentTests);
   const currentIndexTest = useSelector(state => state.currentIndexTest);
-  const currentTopic1 = useSelector(state => state.currentTopic);
-  const currentTopic = currentTopic1.currentTopic;
+  const currentTopicObject = useSelector(state => state.currentTopic);
+  const currentTopic = currentTopicObject.currentTopic;
 
   const subject_id = currentSubject.subject_id || currentSubject.currentSubject.subject_id;
 

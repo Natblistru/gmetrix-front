@@ -20,87 +20,8 @@ import currentIndexTestReducer from "./currentIndexTestReducer";
 import studentReducer from "./studentReducer";
 import raspunsuriReducer from './raspunsuriReducer';
 
-const initialState = {
-  items: []
-};
-const initialTeststState = {
-  items: [{user: "Current user",
-          //   tests: [
-          //   {
-          //   id: "1",
-          //   quiz: "2",
-          //   item: "1",
-          //   proc: 80
-          //  },
-          // ]
-          tests: []
-        }]
-};
-const testsReducer = (state=initialTeststState, action) => {
-  switch (action.type) {
-    case 'ADD_TEST':
-      return {
-        ...state,
-        items: state.items.map(userItem => {
-          if (userItem.user === "Current user") {
-            return {
-              ...userItem,
-              tests: [...userItem.tests, action.payload] 
-            };
-          } else {
-            return userItem;
-          }
-        })
-      };
-      case 'UPDATE_TEST':
-        return {
-          ...state,
-          items: state.items.map(userItem => {
-            if (userItem.user === "Current user") {
-              return {
-                ...userItem,
-                tests: userItem.tests.map(testItem =>
-                  testItem.id == action.payload.id && testItem.quiz == action.payload.quiz && testItem.item == action.payload.item
-                    ? action.payload 
-                    : testItem
-                )
-              };
-            } else {
-              return userItem;
-            }
-          })
-        };
-        case 'DELETE_TEST':
-          return {
-            ...state,
-            items: state.items.map(userItem => {
-              if (userItem.user === "Current user") {
-                return {
-                  ...userItem,
-                  tests: state.tests.filter(item => item.id != action.payload.id && item.quiz != action.payload.quiz && item.item != action.payload.item) 
-                };
-              } else {
-                return userItem;
-              }
-            })
-          };
-          default:
-            return state;
-  }
-};
-const textReducer = ( state = "", action )=> {
-  switch (action.type) {
-    case " update":
-      return action.payload
-      default:
-        return state
-  }
-}
-
 const combinedReducers = combineReducers({
   raspunsuri: raspunsuriReducer,
-  text: textReducer,
-  tests: testsReducer,
   breadcrumb: breadcrumbReducer,
   disciplineAni: disciplineAniReducer,
   teachersForSubtitle: teachersForSubtitleReducer,
