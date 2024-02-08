@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useSelector } from 'react-redux';
-import ContextData from "../context/ContextData";
 import RadioButton from "../RadioButton";
 import ItemAccordeon from "../Accordeon/ItemAccordeon";
 import ItemText from "../Accordeon/ItemText";
@@ -17,9 +16,10 @@ const TestQuiz = ({
   responseReceived,
   setResponseReceived
 }) => {
-  const {stateData, dispatchData} = React.useContext(ContextData)
   const currentTests = useSelector(state => state.currentTests);
   const currentIndexTest = useSelector(state => state.currentIndexTest);
+  const currentStudent = useSelector(state => state.currentStudent);
+
   const [selectedValue, setSelectedValue] = useState("");
   const [selectedOptions, setSelectedOptions] = useState([])
 
@@ -75,7 +75,7 @@ const TestQuiz = ({
 
     const selectedOptionsToDB = selectedOptionsCalculate.map(item => {
       const { test_item_complexity, ...rest } = item;
-      return { ...rest, student_id: stateData.currentStudent, type: 'quiz' };
+      return { ...rest, student_id: currentStudent, type: 'quiz' };
     });
 
     trimiteDateLaBackend([...selectedOptionsToDB]);

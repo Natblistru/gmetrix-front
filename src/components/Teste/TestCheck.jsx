@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useSelector } from 'react-redux';
-import ContextData from "../context/ContextData";
 import CheckBox from "../CheckBox";
 
 import ItemAccordeon from "../Accordeon/ItemAccordeon";
@@ -18,9 +17,10 @@ const TestCheck = ({
   currentItemIndex,
   setResponseReceived
 }) => {
-  const {stateData, dispatchData} = React.useContext(ContextData)
   const currentTests = useSelector(state => state.currentTests);
   const currentIndexTest = useSelector(state => state.currentIndexTest);
+  const currentStudent = useSelector(state => state.currentStudent);
+
   const [selectedValues, setSelectedValues] = useState([]);
 
   const [selectedOptions, setSelectedOptions] = useState([])
@@ -104,7 +104,7 @@ const TestCheck = ({
     });
     const selectedOptionsToDB = selectedOptionsCalculate.map(item => {
       const { test_item_complexity, selected, correct, ...rest } = item;
-      return { ...rest, student_id: stateData.currentStudent, type: 'check' };
+      return { ...rest, student_id: currentStudent, type: 'check' };
     });
 
     for (const element of selectedOptionsToDB) {

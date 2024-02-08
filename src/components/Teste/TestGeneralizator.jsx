@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ContextData from "../context/ContextData";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import ItemAccordeon from "../Accordeon/ItemAccordeon";
 import CheckBox from "../CheckBox";
 import SentenceBox from "../DragWords/SentenceBox";
@@ -117,6 +117,7 @@ const TestGeneralizator = ({
   currentItemIndex,
 }) => {
   const {stateData, dispatchData} = React.useContext(ContextData)
+  const currentStudent = useSelector(state => state.currentStudent);
   // const [showHeader, setShowHeader] = useState(false);
   // const [correctAnswer, setCorrectAnswer] = useState(null);
   const [selectedValues, setSelectedValues] = useState([]);
@@ -125,8 +126,6 @@ const TestGeneralizator = ({
   const [start, setStart] = useState(null);
   const [marked, setMarked] = useState(false);
   const [nota, setNota] = useState(0);
-
-  // console.log(stateData.currentSummativeTests);
 
   const [response, setResponse] = useState([0, 0, 0, 0]);
   const [modified, setModified] = useState([0, 0, 0, 0]);
@@ -340,7 +339,7 @@ const TestGeneralizator = ({
     });
     const selectedOptionsToDB = selectedOptionsCalculate.map(item => {
       const { test_item_complexity, selected, correct, ...rest } = item;
-      return { ...rest, student_id: stateData.currentStudent, type: 'check' };
+      return { ...rest, student_id: currentStudent, type: 'check' };
     });
 
     for (const element of selectedOptionsToDB) {
@@ -411,7 +410,7 @@ const TestGeneralizator = ({
 
     const selectedOptionsToDB = selectedOptionsCalculate.map(item => {
       const { test_item_complexity, user_column, correct, explanation, ...rest } = item;
-      return { ...rest, student_id: stateData.currentStudent, type: 'check' };
+      return { ...rest, student_id: currentStudent, type: 'check' };
     });
     for (const element of selectedOptionsToDB) {
       trimiteDateLaBackend(element);

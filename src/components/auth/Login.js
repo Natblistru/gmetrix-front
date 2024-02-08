@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 import axios from "axios";
 import Navbar from '../layouts/Navbar';
-
 import Swal from 'sweetalert2'
-
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { updateCurrentStudent } from '../ReduxComp/actions';
 
 function Login() {
 
   const history = useHistory();
+  const dispatch = useDispatch();
   const [loginInput, setLoginInput] = useState({
     email: '',
     password: '',
@@ -35,7 +36,12 @@ function Login() {
           localStorage.setItem('auth_token', res.data.token);
           localStorage.setItem('auth_name', res.data.username);
           localStorage.setItem('auth_roleId', res.data.roleId);
+          localStorage.setItem('auth_role', res.data.role);
           localStorage.setItem('auth_log', res.data.token);
+
+          if(res.data.role === 'student') {
+            dispatch(updateCurrentStudent(res.data.roleId));
+          }
           Swal.fire({
             title: "Succes",
             text: res.data.message,

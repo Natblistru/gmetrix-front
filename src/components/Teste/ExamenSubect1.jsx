@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
-import ContextData from "../context/ContextData";
 import { useParams, useHistory, useLocation } from "react-router-dom";
 import { connect, useSelector, useDispatch  } from "react-redux";
 // import temeIstoriArray from "../../data/temeIstoria";
@@ -17,7 +16,6 @@ import PdfDownloadButton from "../PdfDownloadButton";
 import FlipCardNou from "../FlipCards/FlipCardNou";
 
 const ExamenSubect1 = ({ raspunsuri }) => {
-  const {stateData, dispatchData} = React.useContext(ContextData)
   const dispatch = useDispatch();
   const { address } = useParams();
   const location = useLocation();
@@ -45,6 +43,7 @@ const ExamenSubect1 = ({ raspunsuri }) => {
   const currentTheme = useSelector(state => state.currentTheme);
   const evaluations1 = useSelector(state => state.evaluations1);
   const currentSubject = useSelector(state => state.currentSubject);
+  const currentStudent = useSelector(state => state.currentStudent);
 
   const subject_id = currentSubject.subject_id || currentSubject.currentSubject.subject_id;
   const subject_tema_id = currentSubject.tema_id || currentSubject.currentSubject.tema_id;
@@ -176,7 +175,7 @@ const ExamenSubect1 = ({ raspunsuri }) => {
           subject_id: subject_id,
           study_level_id: 1,
           order_number: 1,
-          studentId: stateData.currentStudent,
+          studentId: currentStudent,
         });
     
         // console.log(response.data);

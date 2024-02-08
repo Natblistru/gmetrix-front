@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useSelector } from 'react-redux';
-import ContextData from "../context/ContextData";
 import SentenceBox from "../DragWords/SentenceBox";
 import AnswerBox from "../DragWords/AnswerBox";
 import { getSentence, getAnswers } from "../DragWords/TextConverter";
@@ -31,9 +30,10 @@ const TestWords = ({
   currentItemIndex,
   setResponseReceived
 }) => {
-  const {stateData, dispatchData} = React.useContext(ContextData)
   const currentTests = useSelector(state => state.currentTests);
   const currentIndexTest = useSelector(state => state.currentIndexTest);
+  const currentStudent = useSelector(state => state.currentStudent);
+
   const [showResults, setShowResults] = useState(false);
   const [question, setQuestion] = useState("");
   const [answers, setAnswers] = useState([]);
@@ -144,7 +144,7 @@ const TestWords = ({
     });
     const selectedOptionsToDB = selectedOptionsCalculate.map(item => {
       const { test_item_complexity, user_column, correct, explanation, ...rest } = item;
-      return { ...rest, student_id: stateData.currentStudent, type: 'check' };
+      return { ...rest, student_id: currentStudent, type: 'check' };
     });
     for (const element of selectedOptionsToDB) {
       trimiteDateLaBackend(element);

@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
-import ContextData from "../context/ContextData";
 import { useParams, useHistory } from "react-router-dom";
 // import { RaspunsuriCtx } from "../context/Raspunsuri";
 import { connect, useSelector, useDispatch } from "react-redux"
@@ -20,7 +19,6 @@ import PdfDownloadButton from "../PdfDownloadButton";
 import FlipCardNou from "../FlipCards/FlipCardNou";
 
 const ExamenSubect2 = ({raspunsuri}) => {
-  const {stateData, dispatchData} = React.useContext(ContextData)
   const dispatch = useDispatch();
   const { address } = useParams();
   const [idRaspuns, setIdRaspuns] = useState(null);
@@ -43,6 +41,7 @@ const ExamenSubect2 = ({raspunsuri}) => {
   const evaluations2 = useSelector(state => state.evaluations2);
   const currentSubject = useSelector(state => state.currentSubject);
   const currentTheme = useSelector(state => state.currentTheme);
+  const currentStudent = useSelector(state => state.currentStudent);
   const speed = 50;
 
   const subject_id = currentSubject.subject_id || currentSubject.currentSubject.subject_id;
@@ -50,7 +49,7 @@ const ExamenSubect2 = ({raspunsuri}) => {
 
   const history = useHistory();
 
-  let quizArray = evaluations2;
+  const quizArray = evaluations2;
 
   useEffect(() => {
   const fetchData = async () => {
@@ -61,7 +60,6 @@ const ExamenSubect2 = ({raspunsuri}) => {
         const level_id = 1;
 
         await fetchEvaluation2(theme, subject_id, level_id, dispatch);
-        quizArray = evaluations2;
       // console.log("evaluations2[2]", evaluations2);
       }
     } catch (error) {
@@ -83,7 +81,6 @@ const ExamenSubect2 = ({raspunsuri}) => {
   }, []);
 
   useEffect(()=>{
-    quizArray = evaluations2;
     const sumMaxPoints = quizArray.reduce((acc, evaluation) =>
     acc + parseFloat(evaluation.maxPoints), 0);
 
@@ -180,7 +177,7 @@ const ExamenSubect2 = ({raspunsuri}) => {
           subject_id: subject_id,
           study_level_id: 1,
           order_number: 2,
-          studentId: stateData.currentStudent,
+          studentId: currentStudent,
         });
     
         // console.log(response.data);

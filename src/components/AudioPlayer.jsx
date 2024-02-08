@@ -1,10 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import axios from "axios";
-import ContextData from './context/ContextData';
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 
 const AudioPlayer = ({currentSubject, arraySubtitles, path,subjectID,arrayAudioLength, results,update, add, onProgressRecorded}) => {
-  const {stateData, dispatchData} = React.useContext(ContextData)
+  const currentStudent = useSelector(state => state.currentStudent);
   const audioRef = useRef(null);
   const [progress, setProgress] = useState(0);
   const [currentResult, setCurrentResult] = useState(null);
@@ -68,11 +67,11 @@ const AudioPlayer = ({currentSubject, arraySubtitles, path,subjectID,arrayAudioL
   };
 
   const recordProgressInDatabase = async () => {
-    // console.log(stateData.currentStudent)
+    // console.log(currentStudent)
     // console.log(currentSubtitle.subtopic_id)
     try {
       const response = await axios.post('http://localhost:8000/api/student-subtopic-progress', {
-        student_id: stateData.currentStudent,
+        student_id: currentStudent,
         subtopic_id: currentSubtitle.subtopic_id,
         progress_percentage: 100
       });

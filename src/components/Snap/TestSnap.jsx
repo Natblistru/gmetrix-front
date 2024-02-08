@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState, useLayoutEffect } from "react";
 import axios from "axios";
-import ContextData from "../context/ContextData";
 import { useSelector } from 'react-redux';
 import Snap from "snapsvg-cjs";
 import "./TestSnap.css";
@@ -34,11 +33,11 @@ const TestSnap = ({
   setResponseReceived
 }) => {
   const svgboxRef = useRef();
-  const {stateData, dispatchData} = React.useContext(ContextData)
 
   const [selectedOptions, setSelectedOptions] = useState([])
   const currentTests = useSelector(state => state.currentTests);
   const currentIndexTest = useSelector(state => state.currentIndexTest);
+  const currentStudent = useSelector(state => state.currentStudent);
 
   const [listItems, setListItems] = useState(currentTests[currentIndexTest].order_number_options)
 
@@ -531,7 +530,7 @@ const TestSnap = ({
 
     const selectedOptionsToDB = filteredOptions.map(item => {
       const { test_item_complexity, user_column, correct, ...rest } = item;
-      return { ...rest, student_id: stateData.currentStudent, type: 'snap' };
+      return { ...rest, student_id: currentStudent, type: 'snap' };
     });
     for (const element of selectedOptionsToDB) {
       // console.log(element)

@@ -1,6 +1,5 @@
 import React, { useState, useEffect, forwardRef, useImperativeHandle } from "react";
 import axios from "axios";
-import ContextData from "../context/ContextData";
 import { useSelector } from 'react-redux';
 import { DragDropContext } from "react-beautiful-dnd";
 import Column from "../DragAndDrop/Column";
@@ -23,7 +22,6 @@ const TestBoard = forwardRef(
     },
     ref
   ) => {
-    const {stateData, dispatchData} = React.useContext(ContextData)
     const [selectedValues, setSelectedValues] = useState([]);
     const [data, setData] = useState([]);
     const [isDragDisabled, setIsDragDisabled] = useState(DragDisable);
@@ -31,6 +29,7 @@ const TestBoard = forwardRef(
     const [selectedOptions, setSelectedOptions] = useState([])
     const currentTests = useSelector(state => state.currentTests);
     const currentIndexTest = useSelector(state => state.currentIndexTest);
+    const currentStudent = useSelector(state => state.currentStudent);
 
     const [listItems, setListItems] = useState(currentTests[currentIndexTest].order_number_options)
 
@@ -304,7 +303,7 @@ const TestBoard = forwardRef(
 
     const selectedOptionsToDB = selectedOptionsCalculate.map(item => {
       const { test_item_complexity, user_column, correct, ...rest } = item;
-      return { ...rest, student_id: stateData.currentStudent, type: 'check' };
+      return { ...rest, student_id: currentStudent, type: 'check' };
     });
     // console.log(selectedOptionsToDB)
     for (const element of selectedOptionsToDB) {

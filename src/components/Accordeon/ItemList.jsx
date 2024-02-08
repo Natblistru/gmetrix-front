@@ -11,6 +11,12 @@ const ItemList = ({ list, className, type, results, onItemClick }) => {
   const currentTheme = useSelector(state => state.currentTheme);
   const currentSubject = useSelector(state => state.currentSubject);
 
+  const evaluations = useSelector(state => [
+    state.evaluations1,
+    state.evaluations2,
+    state.evaluations3
+  ]);
+
   const subject_id = currentSubject.subject_id || currentSubject.currentSubject.subject_id;
 
   let listItems = [...list];
@@ -128,7 +134,7 @@ const ItemList = ({ list, className, type, results, onItemClick }) => {
               {subtitle.path && subtitle.path.includes("/examen-subiect") && (
                 <>
                   {(() => {
-                    const evaluationsArray = stateData[`evaluations${subtitle.id}`];
+                     const evaluationsArray = evaluations[subtitle.id - 1];
 
                     // Calculăm media student_procent pentru evaluationsArray
                     const totalStudentProcent = evaluationsArray.reduce((sum, evalItem) => sum + parseFloat(evalItem.student_procent), 0);

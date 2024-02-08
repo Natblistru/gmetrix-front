@@ -18,7 +18,7 @@ export const FETCH_TOPICS = 'FETCH_TOPICS';
 export const UPDATE_CURRENT_TOPIC = 'UPDATE_CURRENT_TOPIC';
 export const FETCH_CURRENT_TESTS = 'FETCH_CURRENT_TESTS';
 export const FETCH_CURRENT_INDEX_TEST = 'FETCH_CURRENT_INDEX_TEST';
-
+export const UPDATE_CURRENT_STUDENT = 'UPDATE_CURRENT_STUDENT';
 
 export const addBreadcrumb = (breadcrumb) => ({
   type: ADD_BREADCRUMB,
@@ -96,4 +96,9 @@ export const fetchCurrentTestsSuccess = (tests) => ({
 export const fetchCurrentIndexTest = (index) => ({
   type: FETCH_CURRENT_INDEX_TEST,
   payload: index
+});
+
+export const updateCurrentStudent = (studentId) => ({
+  type: UPDATE_CURRENT_STUDENT,
+  payload: studentId
 });

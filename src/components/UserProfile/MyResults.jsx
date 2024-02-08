@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
-import ContextData from '../context/ContextData';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchCapitole } from '../../routes/api';
@@ -78,7 +77,6 @@ const ListDisciplineRezultat = ({selectedItem, setSelectedItem}) => {
 };
 
 function MyResults() {
-  const { stateData, dispatchData } = React.useContext(ContextData);
   const [discipline, setDiscipline] = useState([])
   const [evaluari, setEvaluari] = useState([])
   const [learningProgramList, setLearningProgramList] = useState([]);
@@ -91,6 +89,7 @@ function MyResults() {
   const [teste, setTeste] = useState([])
   const teachersForSubtitle = useSelector(state => state.teachersForSubtitle);
   const capitole = useSelector(state => state.capitole);
+  const currentStudent = useSelector(state => state.currentStudent);
 
   const fetchData = async (themeId) => {
 
@@ -193,7 +192,7 @@ function MyResults() {
   },[])
 
   const fetchStudentResults = async () => {
-    const studentId = stateData.currentStudent;
+    const studentId = currentStudent;
     
     const response = await axios.post('http://localhost:8000/api/student-evaluation-results-all-themes', {
       subject_id: selectedItem.subject_id,
@@ -205,7 +204,7 @@ function MyResults() {
   };
   
   const fetchStudentProgress = async () => {
-    const studentId = stateData.currentStudent;
+    const studentId = currentStudent;
     
     const response = await axios.post('http://localhost:8000/api/student-subtopic-progress-all-themes', {
       subject_id: selectedItem.subject_id,
