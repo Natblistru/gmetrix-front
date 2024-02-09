@@ -14,22 +14,29 @@ function FlipCardNou(props) {
 
   const handleFlipEnd = () => {
     if(props.ultimul) {
-      if (flipped) {
+      const cardBackElement = document.querySelector('.Card-Back.Card-Back-Flip');
+      let deplasare = 0
+      if (cardBackElement) {
+        const cardBackHeight = cardBackElement.getBoundingClientRect().height;
+        deplasare = cardBackHeight - 250;
+      }
+      if (flipped && deplasare > 0) {
         const nextSection = document.querySelector('section.block:last-of-type');
         if (nextSection) {
-          nextSection.style.top = '280px';
+          nextSection.style.top = `${deplasare}px`;
           nextSection.style.transition = 'top 0.5s ease';
         }
       } else {
         const nextSection = document.querySelector('section.block:last-of-type');
-        console.log(nextSection)
         if (nextSection) {
           nextSection.style.top = '0px';
           nextSection.style.transition = 'top 0.5s ease';
         }
       }
+      
     }
   };
+  
 
   const contentHTML = props.dangerousHTML; 
   // console.log('Content HTML:', contentHTML);
