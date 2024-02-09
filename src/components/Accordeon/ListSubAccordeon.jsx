@@ -21,6 +21,8 @@ const currentTopic = currentTopicObject.currentTopic;
 const [arraySubtitles, setArraySubtitles] = useState(currentTopic.subtitles);
 console.log(currentTopic)
 
+const restImpartire = currentTopic.flip_cards.length % 3;
+const lungimeCards = currentTopic.flip_cards.length;
 
 // console.log(arraySubtitles)
 const handleProgressRecorded = (updatedTopic) => {
@@ -108,7 +110,15 @@ const handleItemClick = (idx) => {
       <ItemAccordeon titlu="Repetă cu cartele-flip" {...props} open={true}>
       <div className="Cards">
         {currentTopic.flip_cards.map((subject, subjectIndex) => (
-           <FlipCardNou title={subject.sarcina} key={subjectIndex} dangerousHTML={subject.rezolvare}/>
+           <FlipCardNou title={subject.sarcina} 
+                        key={subjectIndex} 
+                        dangerousHTML={subject.rezolvare}
+                        ultimul={
+                          (restImpartire === 0 && subjectIndex >= lungimeCards - 3) ||
+                          (restImpartire === 1 && subjectIndex === lungimeCards - 1) ||
+                          (restImpartire === 2 && subjectIndex >= lungimeCards - 2)
+                        } 
+            />
         ))}
       </div>
       </ItemAccordeon>

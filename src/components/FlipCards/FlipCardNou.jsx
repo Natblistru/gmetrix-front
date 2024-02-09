@@ -12,10 +12,29 @@ function FlipCardNou(props) {
   let flippedCSS = flipped ? ' Card-Back-Flip' : ' Card-Front-Flip';
   if (!clicked) flippedCSS =  "";
 
+  const handleFlipEnd = () => {
+    if(props.ultimul) {
+      if (flipped) {
+        const nextSection = document.querySelector('section.block:last-of-type');
+        if (nextSection) {
+          nextSection.style.top = '280px';
+          nextSection.style.transition = 'top 0.5s ease';
+        }
+      } else {
+        const nextSection = document.querySelector('section.block:last-of-type');
+        console.log(nextSection)
+        if (nextSection) {
+          nextSection.style.top = '0px';
+          nextSection.style.transition = 'top 0.5s ease';
+        }
+      }
+    }
+  };
+
   const contentHTML = props.dangerousHTML; 
   // console.log('Content HTML:', contentHTML);
   return (
-    <div className="Card" onClick={flip}>
+    <div className="Card" onClick={flip} onAnimationEnd={handleFlipEnd}>
       <div className={'Card-Front' + flippedCSS}>
         <h3>{props.title}</h3>
       </div>
