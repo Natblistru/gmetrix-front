@@ -132,7 +132,12 @@ const TestQuiz = ({
             : " incorrect"
         }
       >
-        <p style={{paddingBottom: '20px'}}>{listItems[currentItemIndex].test_item_task}</p>
+        <p style={{paddingBottom: '20px'}}>
+          {listItems[currentItemIndex].test_item_task.includes('(')
+            ? listItems[currentItemIndex].test_item_task.substring(0, listItems[currentItemIndex].test_item_task.indexOf('('))
+            : listItems[currentItemIndex].test_item_task
+          }
+        </p>
         {listItems[currentItemIndex].test_item_options.map((answer, idx) => {
           return (
             <RadioButton

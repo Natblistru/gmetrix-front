@@ -158,14 +158,14 @@ function AddMySubtopic({ onBackToList, userData }) {
   };
 
   const [flipRows, setFlipRows] = useState([
-    { flip_title: "", flip_answer: "" },
+    { flip_title: "", flip_answer: "", order_number: "" },
   ]);
   const [editorStates, setEditorStates] = useState(() =>
     flipRows.map(() => EditorState.createEmpty())
   );
 
   const handleAddFlipRow = () => {
-    setFlipRows([...flipRows, { flip_title: "", flip_answer: "" }]);
+    setFlipRows([...flipRows, { flip_title: "", flip_answer: "", order_number:"" }]);
     setEditorStates([...editorStates, EditorState.createEmpty()]);
   };
 
@@ -664,6 +664,7 @@ function AddMySubtopic({ onBackToList, userData }) {
 
         const formData = new FormData();
         formData.append("task", row.flip_title);
+        formData.append("order_number", row.order_number);
         formData.append("teacher_topic_id", teacherTopicInput.teacher_topic_id);
         formData.append("answer", html.replace(/\n/g, "<br/>"));
         formData.append("status", 0);
@@ -1080,6 +1081,28 @@ function AddMySubtopic({ onBackToList, userData }) {
                       />
                       <span style={{ color: "red", fontSize: "0.8rem" }}>
                         {errorList.flip_title}
+                      </span>
+                    </div>
+
+                    <div className="form-group mx-3 my-1">
+                      <label>Order:</label>
+                      <input
+                        type="text"
+                        name="order_number"
+                        onChange={(event) =>
+                          handleInputFlip(
+                            rowIndex,
+                            event,
+                            editorStates[rowIndex]
+                              .getCurrentContent()
+                              .getPlainText()
+                          )
+                        }
+                        value={row.order_number}
+                        className="form-control"
+                      />
+                      <span style={{ color: "red", fontSize: "0.8rem" }}>
+                        {errorList.order_number}
                       </span>
                     </div>
                   </div>
