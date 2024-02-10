@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from "axios";
 import Swal from 'sweetalert2'
 
@@ -11,6 +11,7 @@ import SearchComponent from './SearchComponent.js';
 
 function Navbar() {
 
+  const navbarRef = useRef(null);
   const history = useHistory();
   const [authName, setAuthName] = useState('');
 
@@ -19,6 +20,19 @@ function Navbar() {
   useEffect(() => {
     const storedAuthName = localStorage.getItem('auth_name');
     setAuthName(storedAuthName);
+
+    var prevScrollpos = window.pageYOffset;
+    window.onscroll = function() {
+      var currentScrollPos = window.pageYOffset;
+      if (prevScrollpos > currentScrollPos) {
+        navbarRef.current.style.top = "0";
+        navbarRef.current.style.transition = 'top 0.5s ease';
+      } else {
+        navbarRef.current.style.top = "-70px";
+        navbarRef.current.style.transition = 'top 0.5s ease';
+      }
+      prevScrollpos = currentScrollPos;
+    };
   }, []);
 
   const logoutSubmit = (e) => {
@@ -94,7 +108,7 @@ function Navbar() {
   }
 
   return (
-    <nav className="navbar navbar-expand-lg shadow sticky-top" style={{backgroundColor: '#e3f2fd'}}>
+    <nav ref={navbarRef} id="navbar" className="navbar navbar-expand-lg shadow sticky-top" style={{backgroundColor: '#e3f2fd'}}>
       <div className="containerBts">
         <Link className="navbar-brand" to="#">ExamenGimnazial.md</Link>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
