@@ -22,18 +22,25 @@ function Navbar() {
     setAuthName(storedAuthName);
 
     var prevScrollpos = window.pageYOffset;
-    window.onscroll = function() {
-      var currentScrollPos = window.pageYOffset;
-      if (prevScrollpos > currentScrollPos) {
-        navbarRef.current.style.top = "0";
-        navbarRef.current.style.transition = 'top 0.5s ease';
-      } else {
-        navbarRef.current.style.top = "-70px";
-        navbarRef.current.style.transition = 'top 0.5s ease';
-      }
-      prevScrollpos = currentScrollPos;
+
+    if (navbarRef.current) {
+      window.onscroll = function() {
+        var currentScrollPos = window.pageYOffset;
+        if (prevScrollpos > currentScrollPos) {
+          navbarRef.current.style.top = "0";
+          navbarRef.current.style.transition = 'top 0.5s ease';
+        } else {
+          navbarRef.current.style.top = "-70px";
+          navbarRef.current.style.transition = 'top 0.5s ease';
+        }
+        prevScrollpos = currentScrollPos;
+      };
+    }
+
+    return () => {
+      window.onscroll = null;
     };
-  }, []);
+  }, [navbarRef]); 
 
   const logoutSubmit = (e) => {
     e.preventDefault();
