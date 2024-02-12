@@ -259,6 +259,7 @@ function AddMyTopic({ onBackToList, userData }) {
       teacherTopicInput.title.trim() !== "" &&
       teacherTopicInput.source.trim() !== ""
     ) {
+      let newVideoId = null
       let formData = new FormData();
       formData.append("title", teacherTopicInput.title);
       formData.append("source", teacherTopicInput.source);
@@ -273,12 +274,122 @@ function AddMyTopic({ onBackToList, userData }) {
               text: res.data.message,
               icon: "success",
             });
-            setVideoAdded(true);
+            // setVideoAdded(true);
+            newVideoId = res.data.video_id;
+            console.log(newVideoId)
             // setVideoInput({
             //   title: '',
             //   source: '',
             //   error_list: [],
-            // });
+            // });   
+            if(newVideoId) {
+              const videoName = teacherTopicInput.title;
+              // console.log(videoList)
+              // const selectedVideo = videoList.find(
+              //   (item) => item.title == teacherTopicInput.title
+              // );
+              // // console.log(selectedVideo)
+              const teacherName = userData.teacher ? userData.teacher.name : "";
+              const selectedStudyLevel = learningProgramList.find(
+                (program) => program.id == teacherTopicInput.learning_program_id
+              );
+              const studyLevelName = selectedStudyLevel ? selectedStudyLevel.name : "";
+      
+              const concatenatedName =
+                videoName !== "" && teacherName !== "" && studyLevelName !== ""
+                  ? `${videoName} (${studyLevelName}, ${teacherName})`
+                  : "";
+      
+              formData = new FormData();
+              formData.append("name", concatenatedName);
+              formData.append("teacher_id", userData.teacher.id);
+              formData.append("video_id", newVideoId);
+              formData.append(
+                "theme_learning_program_id",
+                teacherTopicInput.theme_learning_program_id
+              );
+              formData.append("status", 0);
+      
+              // console.log(formData)
+      
+              axios
+                .post(`http://localhost:8000/api/store-myteacherVideo`, formData)
+                .then((res) => {
+                  if (res.data.status === 201) {
+                    Swal.fire({
+                      title: "Succes",
+                      text: res.data.message,
+                      icon: "success",
+                    });
+                    // setTeacherVideoInput({
+                    //   learning_program_id: '',
+                    //   theme_learning_program_id: '',
+                    //   video_id: '',
+                    //   teacher_id: '',
+                    //   name: '',
+                    // });
+                    setErrors([]);
+                  } else if (res.data.status === 422) {
+                    Swal.fire({
+                      title: "All fields are mandatory",
+                      text: Object.values(res.data.errors).flat().join(" "),
+                      icon: "error",
+                    });
+                    succesTotal = false;
+                    setErrors(res.data.errors);
+                  }
+                });
+      
+              if (breackpointRows && breackpointRows.length > 0) {
+                const formDataArray = breackpointRows.map((item) => {
+                  const formData = new FormData();
+                  formData.append("name", item.breakpoint_title);
+                  formData.append("time", item.time);
+                  formData.append("video_id", newVideoId);
+                  formData.append("status", 0);
+                  return formData;
+                });
+      
+                axios
+                  .all(
+                    formDataArray.map((formData) =>
+                      axios.post(
+                        "http://localhost:8000/api/store-mybreakpoint",
+                        formData
+                      )
+                    )
+                  )
+                  .then(
+                    axios.spread((...responses) => {
+                      const successResponses = responses.filter(
+                        (response) => response.data.status === 201
+                      );
+                      const errorResponses = responses.filter(
+                        (response) => response.data.status === 422
+                      );
+                      if (successResponses.length > 0) {
+                        Swal.fire({
+                          title: "Success",
+                          text: `Successfully processed ${successResponses.length} out of ${responses.length} requests.`,
+                          icon: "success",
+                        });
+                      }
+                      errorResponses.forEach((response) => {
+                        Swal.fire({
+                          title: "Error",
+                          text: Object.values(response.data.errors).flat().join(" "),
+                          icon: "error",
+                        });
+                        succesTotal = false;
+                      });
+                    })
+                  )
+                  .catch((error) => {
+                    console.error(error);
+                    succesTotal = false;
+                  });
+              }
+            }
           } else if (res.data.status === 422) {
             Swal.fire({
               title: "All fields are mandatory",
@@ -289,113 +400,6 @@ function AddMyTopic({ onBackToList, userData }) {
             // setErrors(res.data.errors);
           }
         });
-
-      const videoName = teacherTopicInput.title;
-      // console.log(videoList)
-      const selectedVideo = videoList.find(
-        (item) => item.title == teacherTopicInput.title
-      );
-      // console.log(selectedVideo)
-      const teacherName = userData.teacher ? userData.teacher.name : "";
-      const selectedStudyLevel = learningProgramList.find(
-        (program) => program.id == teacherTopicInput.learning_program_id
-      );
-      const studyLevelName = selectedStudyLevel ? selectedStudyLevel.name : "";
-
-      const concatenatedName =
-        videoName !== "" && teacherName !== "" && studyLevelName !== ""
-          ? `${videoName} (${studyLevelName}, ${teacherName})`
-          : "";
-
-      formData = new FormData();
-      formData.append("name", concatenatedName);
-      formData.append("teacher_id", userData.teacher.id);
-      formData.append("video_id", selectedVideo.id);
-      formData.append(
-        "theme_learning_program_id",
-        teacherTopicInput.theme_learning_program_id
-      );
-      formData.append("status", 0);
-
-      // console.log(formData)
-
-      axios
-        .post(`http://localhost:8000/api/store-myteacherVideo`, formData)
-        .then((res) => {
-          if (res.data.status === 201) {
-            Swal.fire({
-              title: "Succes",
-              text: res.data.message,
-              icon: "success",
-            });
-            // setTeacherVideoInput({
-            //   learning_program_id: '',
-            //   theme_learning_program_id: '',
-            //   video_id: '',
-            //   teacher_id: '',
-            //   name: '',
-            // });
-            setErrors([]);
-          } else if (res.data.status === 422) {
-            Swal.fire({
-              title: "All fields are mandatory",
-              text: Object.values(res.data.errors).flat().join(" "),
-              icon: "error",
-            });
-            succesTotal = false;
-            setErrors(res.data.errors);
-          }
-        });
-
-      if (breackpointRows && breackpointRows.length > 0) {
-        const formDataArray = breackpointRows.map((item) => {
-          const formData = new FormData();
-          formData.append("name", item.breakpoint_title);
-          formData.append("time", item.time);
-          formData.append("video_id", selectedVideo.id);
-          formData.append("status", 0);
-          return formData;
-        });
-
-        axios
-          .all(
-            formDataArray.map((formData) =>
-              axios.post(
-                "http://localhost:8000/api/store-mybreakpoint",
-                formData
-              )
-            )
-          )
-          .then(
-            axios.spread((...responses) => {
-              const successResponses = responses.filter(
-                (response) => response.data.status === 201
-              );
-              const errorResponses = responses.filter(
-                (response) => response.data.status === 422
-              );
-              if (successResponses.length > 0) {
-                Swal.fire({
-                  title: "Success",
-                  text: `Successfully processed ${successResponses.length} out of ${responses.length} requests.`,
-                  icon: "success",
-                });
-              }
-              errorResponses.forEach((response) => {
-                Swal.fire({
-                  title: "Error",
-                  text: Object.values(response.data.errors).flat().join(" "),
-                  icon: "error",
-                });
-                succesTotal = false;
-              });
-            })
-          )
-          .catch((error) => {
-            console.error(error);
-            succesTotal = false;
-          });
-      }
     }
 
     if (tags.length > 0) {
