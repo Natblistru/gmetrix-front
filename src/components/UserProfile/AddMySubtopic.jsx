@@ -596,7 +596,7 @@ function AddMySubtopic({ onBackToList, userData }) {
         formData.append("name", item.name_subtopic);
         formData.append("order_number", index+1);
         formData.append("teacher_topic_id", teacherTopicInput.teacher_topic_id);
-        if(item.audio_path.trim().length !== 0) {
+        if(audioFiles[index]) {
           formData.append("audio", audioFiles[index]);
           formData.append("audio_path", item.audio_path);
         }
