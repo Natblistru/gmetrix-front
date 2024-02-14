@@ -47,6 +47,7 @@ const ExamenSubect2 = () => {
     currentSubject.tema_id || currentSubject.currentSubject.tema_id;
 
   const quizArray = evaluations2;
+  console.log(quizArray)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -90,8 +91,8 @@ const ExamenSubect2 = () => {
     const average = (sumStudentPoints * 100) / sumMaxPoints;
 
     setProc(average);
-    console.log(sumStudentPoints);
-    console.log(sumMaxPoints);
+    // console.log(sumStudentPoints);
+    // console.log(sumMaxPoints);
 
     console.log("evaluations2", evaluations2);
   }, [evaluations2]);

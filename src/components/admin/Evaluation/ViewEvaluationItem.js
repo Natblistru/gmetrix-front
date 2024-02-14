@@ -158,7 +158,7 @@ function ViewEvaluationItem() {
 
   const commonColumns = {
     'image_path': (item) => {
-      console.log("item.image_path");
+      // console.log("item.image_path");
       return (
         <>
           {item.image_path && (

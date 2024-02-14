@@ -110,7 +110,7 @@ const Tema = () => {
         `http://localhost:8000/api/themeevaluations?level=1&disciplina=${subject_id}&theme=${theme}`
       );
       dispatch(fetchEvaluationsSuccess(res.data));
-      console.log(res.data)
+      // console.log(res.data)
     } catch (err) {
       console.error(err);
     }

@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 
 const Breadcrumb = (props) => {
     const list = useSelector(state => state.breadcrumb);
-    console.log(list)
+    // console.log(list)
 
     return (
         <ul className="breadcrumb">

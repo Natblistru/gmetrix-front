@@ -47,7 +47,7 @@ const ListAccordeon = (props) => {
   // let aplicatiiList = props.teme.aplicatii;
   // let aplicatiiListBD = stateData.evaluations;
 
-  console.log(aplicatiiListBD)
+  // console.log(aplicatiiListBD)
   // let termeniList = props.teme.termeni;
   // let diagramData = props.teme.diagramData;
 
@@ -58,7 +58,7 @@ const ListAccordeon = (props) => {
     // console.log(themeVideo); 
 
     if (themeVideo && themeVideo.length > 0) {
-      console.log(themeVideo[0].breakpoints)
+      // console.log(themeVideo[0].breakpoints)
       setVideoBreakpoints(themeVideo[0].breakpoints);
       setVideoSource(themeVideo[0].video_source);
       setVideoTitle(themeVideo[0].video_title);
