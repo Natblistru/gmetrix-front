@@ -194,7 +194,7 @@ function ViewEvaluationSource() {
         </div>
         <div className="col-md-4">
 
-        <Link to="/admin/add-evaluation-subject" className="btnBts btn-primary text-white float-end">Add Evaluation Subject</Link>
+        <Link to="/admin/add-evaluation-source" className="btnBts btn-primary text-white float-end">Add Evaluation Source</Link>
         </div>
       </div>
         {blockFilterVisible && 
