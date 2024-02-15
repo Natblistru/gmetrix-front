@@ -312,6 +312,7 @@ function AddEvaluation() {
                     <option value="Teste pentru exersare1">Teste pentru exersare1</option>
                     <option value="Teste pentru exersare2">Teste pentru exersare2</option>
                     <option value="Suplimentara">Suplimentara</option>
+                    <option value="Teste preparatorii">Teste preparatorii</option>
                   </select>
                   <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.type}</span>
               </div>

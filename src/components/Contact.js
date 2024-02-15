@@ -27,6 +27,17 @@ export const Contact = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (formDetails.message.length < 10) {
+      Swal.fire({
+        title: "Error",
+        text: `Mesajul trebuie să contina cel puțin 10 caractere.`,
+        icon: "error"
+      });
+      setStatus({ success: false, message: 'Message must be at least 3 characters long.' });
+      return;
+    }
+
     setButtonText("Se trimite...");
 
     try {
