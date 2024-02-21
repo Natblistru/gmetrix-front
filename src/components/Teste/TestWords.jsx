@@ -248,7 +248,12 @@ const TestWords = ({
           }
         >
           <div className="app-container">
-            <p>Completați spațiile libere cu cuvintele de mai jos:</p>
+              <p style={{paddingBottom: '20px'}}>
+              {listItems[currentItemIndex].test_item_task.includes('(')
+                ? listItems[currentItemIndex].test_item_task.substring(0, listItems[currentItemIndex].test_item_task.indexOf('('))
+                : listItems[currentItemIndex].test_item_task
+              }
+            </p>
             <SentenceBox
               marked={showResults}
               onDrop={onDrop}

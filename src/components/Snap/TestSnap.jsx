@@ -53,7 +53,7 @@ const TestSnap = ({
   .filter(option => option.correct === 1)
   .map(option => JSON.parse(option.text_additional));
 
-  // console.log(textAdditionalArray);
+  console.log(textAdditionalArray);
 
     // Creează array-ul de forma dorită
   const transformedArray = textAdditionalArray.reduce((acc, item) => {
@@ -105,12 +105,34 @@ const TestSnap = ({
     return [indexStart, indexEnd];
   });
 
-  // console.log(matriceRaspunsuri);
+  console.log(matriceRaspunsuri);
+  console.log(listItems[currentIndex].test_item_options)
 
   const sortedOptions = listItems[currentIndex].test_item_options.map(item => {
     const parts = item.option.split('|').map(part => part.trim());
     return parts;
   }).flat();
+
+  console.log(sortedOptions);
+
+  const sortedOptions1 = listItems[currentIndex].test_item_options.map(item => {
+    const parts = item.option.split('|').map(part => part.trim());
+    return parts;
+  }).flat();
+
+  console.log(sortedOptions1);
+  const selectedElements = [];
+  selectedElements.push(sortedOptions1[0]);
+  selectedElements.push(sortedOptions1[8]);
+  selectedElements.push(sortedOptions1[16]);
+  selectedElements.push(sortedOptions1[24]);
+  selectedElements.push(sortedOptions1[1]);
+  selectedElements.push(sortedOptions1[3]);
+  selectedElements.push(sortedOptions1[5]);
+  selectedElements.push(sortedOptions1[7]);
+
+  console.log(selectedElements)
+
   
   // Sortează array-ul în funcție de primul caracter al fiecărui element
   sortedOptions.sort((a, b) => {
@@ -124,7 +146,7 @@ const TestSnap = ({
     }
   });
 
-  // console.log(sortedOptions);
+  console.log(sortedOptions);
 
 
   const gRef = useRef(null);
@@ -497,6 +519,8 @@ const TestSnap = ({
 
   const uniqueOptions = [...new Set(sortedOptions)];
 
+  console.log(uniqueOptions)
+
   const checkAnswer = () => {
     // const correctAnswers = [
     //   [0, 5],
@@ -507,7 +531,8 @@ const TestSnap = ({
 
     const resultPair = connectedZones.map(obj => {
       const sortedIndices = [obj.zone1, obj.zone2].sort((a, b) => a - b);
-      const values = [uniqueOptions[sortedIndices[0]], uniqueOptions[sortedIndices[1]]];
+      // const values = [uniqueOptions[sortedIndices[0]], uniqueOptions[sortedIndices[1]]];
+      const values = [selectedElements[sortedIndices[0]], selectedElements[sortedIndices[1]]];
       return values.join("|");
     });
     
@@ -622,7 +647,7 @@ const TestSnap = ({
   };
 
 
-// console.log(uniqueOptions);
+console.log(uniqueOptions);
 // console.log(Math.ceil(list1.quizArray[0].text.length / 2));
 // console.log(sortedOptions);
 // console.log(Math.ceil(sortedOptions.length / 2));
@@ -660,7 +685,8 @@ const TestSnap = ({
               <div className="grid-container-snap">
                 <div>
                   <div>
-                    {uniqueOptions
+                    {selectedElements
+                    //uniqueOptions
                     // {list1.quizArray[currentIndex].text
                       .slice(0, halfIndex)
                       .map((text, index) => (
@@ -683,7 +709,8 @@ const TestSnap = ({
                   <div>
                     {/* {list1.quizArray[currentIndex].text */}
                     {/* {console.log(sortedOptions)} */}
-                    {uniqueOptions
+                    {selectedElements
+                    //uniqueOptions
                       .slice(halfIndex)
                       .map((text, index) => (
                         <RowText
@@ -755,9 +782,9 @@ const TestSnap = ({
             {matriceRaspunsuri.map(
               ([index1, index2]) => {
                 const answer1 =
-                  uniqueOptions[Math.min(index1, index2)];
+                  selectedElements[Math.min(index1, index2)];
                 const answer2 =
-                  uniqueOptions[Math.max(index1, index2)];
+                  selectedElements[Math.max(index1, index2)];
               // {list1.quizArray[currentIndex].correctAnswer.map(
               // ([index1, index2]) => {
               //   const answer1 =

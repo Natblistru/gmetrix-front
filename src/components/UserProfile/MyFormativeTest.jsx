@@ -863,14 +863,24 @@ function MyFormativeTest({title, userData, onBackToList, selectedType }) {
       
           const formData = new FormData();
           formData.append('option', row.option);
+          console.log(selectedType)
+
           if(selectedType === 'dnd_group') {
             formData.append('correct', row.correct ? 1 : row.correct1 ? 2 : 0);
+            formData.append('explanation', row.option);    
           } else if(selectedType === 'dnd_chrono'){
             formData.append('correct', 0);
+            formData.append('explanation', row.option);     
+          } else if(selectedType === "dnd"){
+            formData.append('correct', row.correct == true? 1 : 0);
+            formData.append('explanation', row.option); 
+            console.log(row.option)    
           } else {
             formData.append('correct', row.correct == true? 1 : 0);
+            formData.append('explanation', row.explanation);     
           }
-          formData.append('explanation', row.explanation);
+
+   
           // formData.append('text_additional', JSON.stringify(textWithQuotes));
           formData.append('test_item_id', testItems[index].id);
           formData.append('status', 0);
@@ -879,7 +889,7 @@ function MyFormativeTest({title, userData, onBackToList, selectedType }) {
         }
       });
     }
-    // console.log(formDataArray)
+    console.log(formDataArray)
   
     if (notFoundTestItem.length === 0) {
       try {
