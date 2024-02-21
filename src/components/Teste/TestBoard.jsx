@@ -34,10 +34,13 @@ const TestBoard = forwardRef(
 
     const [listItems, setListItems] = useState(currentTests[currentIndexTest].order_number_options)
 
-    const [columnArray, setColumnArray] = useState(currentTests[currentIndexTest].column_title.split(", "));
+    const [columnArray, setColumnArray] = useState(listItems[currentItemIndex].column_title.split(", "));
     // console.log(listItems)
     // console.log(listItems[currentItemIndex])
 
+    // let columnArray = listItems[currentItemIndex].column_title.split(", ")
+    let colArray;
+    
     useEffect(()=>{
       setListItems(currentTests[currentIndexTest].order_number_options);
 
@@ -49,7 +52,8 @@ const TestBoard = forwardRef(
       //   columnDBArray = array;
       // }
       // setColumnArray(columnDBArray)
-      setColumnArray(currentTests[currentIndexTest].column_title.split(", "))
+      setColumnArray(listItems[currentItemIndex].column_title.split(", "))
+      // columnArray = listItems[currentItemIndex].column_title.split(", ")
       const initialSelectedOptions = [];
       listItems[currentItemIndex].test_item_options.forEach(element => {
         initialSelectedOptions.push({ "option": element.option, 
@@ -73,6 +77,10 @@ const TestBoard = forwardRef(
       // temeIstoriArray[0].subtitles[0].subjects[0].teste.forEach(test => {
       //   console.log("test.id", test.id)
       //   console.log("testID", testID)
+      colArray = listItems[currentItemIndex].column_title.split(", ")
+      console.log(currentTests)
+      console.log(currentTests[currentIndexTest])
+              console.log(columnArray)
       //   if(test.id==testID&&test.coloane.length) {
     
           const itemsFromBackendNext = [];
@@ -80,7 +88,7 @@ const TestBoard = forwardRef(
               itemsFromBackendNext.push({ id: uuidv4(), content: answer.option });
             });
         
-            columnsFromBackendNext = columnArray.reduce((columns, name) => {
+            columnsFromBackendNext = colArray.reduce((columns, name) => {
               columns[uuidv4()] = {
                 name: name,
                 items: []
@@ -91,7 +99,7 @@ const TestBoard = forwardRef(
             const columnIds = Object.keys(columnsFromBackendNext);
             columnsFromBackendNext[columnIds[0]].items = itemsFromBackendNext;
             
-            // console.log(test.id, columnsFromBackendNext);
+            console.log(columnsFromBackendNext);
         // }
       // })
       return columnsFromBackendNext;
@@ -488,7 +496,7 @@ const TestBoard = forwardRef(
         height: "100%",
       }}
     >
-      {/* {console.log("columns",columns)} */}
+      {console.log("columns",columns)}
       <DragDropContext
         onDragEnd={(result) => onDragEnd(result, columns, setColumns)}
       >
