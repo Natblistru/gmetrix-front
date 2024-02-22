@@ -167,6 +167,8 @@ function EditEvaluation(props) {
                     <option value="Teste pentru exersare2">Teste pentru exersare2</option>
                     <option value="Evaluare suplimentara">Evaluare suplimentara</option>
                     <option value="Teste preparatorii">Teste preparatorii</option>
+                    <option value="Teste preparatorii2">Teste preparatorii2</option>
+                    <option value="Teste preparatorii3">Teste preparatorii3</option>
                   </select>
               </div>
             </div>
