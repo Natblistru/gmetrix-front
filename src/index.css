@@ -1101,7 +1101,7 @@ margin: 1em 0;
   border: 2px dotted rgba(0, 180, 216, 0.7);
 }
 .word-box-inline {
-  display: inline-block; 
+  display: inline; 
 }
 
 .word-wrapper-answers {

@@ -37,6 +37,10 @@ const TabContent = ({ activeTab, content, handleInputTest, handleRemoveTestRow, 
     onChangeFormat(index, newEditorState);
   };
 
+  // console.log(activeTab)
+  // console.log(editorStates)
+  // console.log(editorStates[activeTab])
+
   return (
   <div key={key}>
     {content[activeTab] && (

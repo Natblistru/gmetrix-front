@@ -227,8 +227,14 @@ function MyFormativeTest({title, userData, onBackToList, selectedType }) {
     newTabs[tabIndex].testContent.testRows = newTestRows;
     setTabs(newTabs);
   };
+
+  const initialEditorStates = [];
+  for (let i = 0; i < 10; i++) {
+    initialEditorStates.push(EditorState.createEmpty());
+  }
   
-  const [editorStates, setEditorStates] = useState(() => tabs.map(() => EditorState.createEmpty()));
+  // const [editorStates, setEditorStates] = useState(() => tabs.map(() => EditorState.createEmpty()));
+  const [editorStates, setEditorStates] = useState(initialEditorStates);
 
   const [errorList, setErrors] = useState([]);
 
@@ -870,7 +876,7 @@ function MyFormativeTest({title, userData, onBackToList, selectedType }) {
             formData.append('explanation', row.option);    
           } else if(selectedType === 'dnd_chrono'){
             formData.append('correct', 0);
-            formData.append('explanation', row.option);     
+            formData.append('explanation', row.explanation);     
           } else if(selectedType === "dnd"){
             formData.append('correct', row.correct == true? 1 : 0);
             formData.append('explanation', row.option); 
