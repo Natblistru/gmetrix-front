@@ -18,13 +18,16 @@ const AccordionSurse = ({ data }) => {
     );
     setAccordionItems(updatedAccordionItems);
   };
-// console.log(data)
+console.log(accordionItems)
+
+const surse = ["Sursa A.", "Sursa B.", "Sursa C.", "Sursa D.", "Sursa E.", "Sursa F.", "Sursa G.", "Sursa H.", "Sursa I."]; 
   return (
     <div className="accordion-surse">
-      {accordionItems.map((item) => (
-        <div key={item.title}>
+      {accordionItems.map((item, index) => (
+        <div key={item.order}>
           <div className="title-surse arrow-wrapper" onClick={() => handleClick(item)}>
-            <span className="title-text">{item.title}</span>
+            {/* <span className="title-text">{item.title}</span> */}
+            <span className="title-text">{surse[index]}</span>            
             <FontAwesomeIcon
               icon={faAngleDown}
               className={`fa fa-angle-down ${item.open ? "fa-rotate-180" : ""}`}
