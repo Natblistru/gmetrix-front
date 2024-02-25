@@ -35,6 +35,8 @@ import Page403 from "./components/errors/Page403.js";
 import Page404 from "./components/errors/Page404.js";
 import ResetPassword from "./components/auth/ResetPassword.js";
 import UserProfile from "./pages/UserProfile.jsx";
+import Capitole_beta from "./components/beta/Capitole_beta.jsx";
+import ExamenSubect_beta from "./components/beta/ExamenSubect_beta.jsx";
 
 
 const FlipCardsWithRouter = withRouter(FlipCards);
@@ -82,8 +84,10 @@ function App() {
               <Route path="/:disciplina/:address/examen-subiect1" component={ExamenSubect1} />
               <Route path="/:disciplina/:address/examen-subiect2" component={ExamenSubect2} />
               <Route path="/:disciplina/:address/examen-subiect3" component={ExamenSubect3} />
+              <Route path="/:disciplina/:address/examen-subiect-all" component={ExamenSubect_beta} />
               <Route path="/:disciplina/:address/:address1/:addressTest/:idTest" component={TestWithRouter} />
               <Route path="/capitole/:id" component={Capitole} />
+              <Route path="/capitole_beta/:id" component={Capitole_beta} />
               <Route path="/:disciplina/:address/:address1" component={Subtema} />
               <Route path="/:disciplina/:address" component={Tema} />
               <Route exact path="/home" component={Home} />

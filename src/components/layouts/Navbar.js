@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useSelector } from 'react-redux';
 import axios from "axios";
 import Swal from 'sweetalert2'
 
@@ -16,6 +17,12 @@ function Navbar() {
   const [authName, setAuthName] = useState('');
 
   const isAuthenticated = localStorage.getItem('auth_log') !== null;
+
+  const disciplineAni = useSelector(state => state.disciplineAni);
+  const nivelStudiu = disciplineAni[1].study_level_id==1?"examen clasa 9":"BAC";
+  const clasa = disciplineAni[1].study_level_id==1?"clasa 9":"clasa 12";
+  const name = disciplineAni[1].name.split(',')[0];
+  const subject_id = disciplineAni[1].subject_id;
 
   useEffect(() => {
     const storedAuthName = localStorage.getItem('auth_name');
@@ -66,6 +73,7 @@ function Navbar() {
           'evaluations1',
           'evaluations2',
           'evaluations3',
+          'evaluations_all',
           'teachersForSubtitle',
           'themeVideo',
           'topics',
@@ -108,6 +116,7 @@ function Navbar() {
                 <li><Link className="dropdown-item" to="/user/accountsettings">Profile</Link></li>
                 <li><hr className="dropdown-divider" /></li>
                 <button type="link" onClick={logoutSubmit} style={{color: '#2bbbf1', fontSize: '1rem'}} className="dropdown-item">Logout</button>
+                <li><Link className="dropdown-item" to={`/capitole_beta/${subject_id}?level=1&year=2022&name=${name}&nivel=${nivelStudiu}&clasa=${clasa}`}>Beta Version</Link></li>            
             </ul>
         </li>
       </ul>

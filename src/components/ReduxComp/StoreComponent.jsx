@@ -19,6 +19,7 @@ import currentTestsReducer from "./currentTestsReducer";
 import currentIndexTestReducer from "./currentIndexTestReducer";
 import studentReducer from "./studentReducer";
 import raspunsuriReducer from './raspunsuriReducer';
+import evaluationAllReducer from "./evaluationAllReducer";
 
 const combinedReducers = combineReducers({
   raspunsuri: raspunsuriReducer,
@@ -32,6 +33,7 @@ const combinedReducers = combineReducers({
   evaluations1: evaluation1Reducer,
   evaluations2: evaluation2Reducer,
   evaluations3: evaluation3Reducer,
+  evaluations_all: evaluationAllReducer,
   currentSubject: currentSubjectReducer,
   topics: topicsReducer,
   currentTopic: currentTopicReducer,

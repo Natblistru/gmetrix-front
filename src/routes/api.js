@@ -3,7 +3,8 @@ import { FETCH_CAPITOLE,
          FETCH_TOPICS,
          FETCH_EVALUATIONS_1, 
          FETCH_EVALUATIONS_2, 
-         FETCH_EVALUATIONS_3 } from '../components/ReduxComp/actions';
+         FETCH_EVALUATIONS_3,
+         FETCH_EVALUATIONS_ALL} from '../components/ReduxComp/actions';
 
 export const fetchCapitole = async (subject_id, level_id, dispatchData, student_id = 1) => {
     try {
@@ -72,3 +73,15 @@ export const fetchEvaluation3 = async (theme, subject_id, level_id, dispatchData
         console.error(err);
     }
   }
+
+  export const fetchEvaluation_all = async (theme, subject_id, level_id, dispatchData) => {
+    try {
+        const res = await axios.get(`http://localhost:8000/api/themeEvaluation_all?level=${level_id}&disciplina=${subject_id}&theme=${theme}`);
+        dispatchData({
+            type: FETCH_EVALUATIONS_ALL,
+            payload: res.data
+        });
+    } catch (err) {
+        console.error(err);
+    }
+};
