@@ -24,8 +24,8 @@ const surse = ["Sursa A.", "Sursa B.", "Sursa C.", "Sursa D.", "Sursa E.", "Surs
   return (
     <div className="accordion-surse">
       {accordionItems.map((item, index) => (
-        <div key={item.order}>
-          <div className="title-surse arrow-wrapper" onClick={() => handleClick(item)}>
+        <div key={item.order} onClick={() => handleClick(item)}>
+          <div className="title-surse arrow-wrapper" >
             {/* <span className="title-text">{item.title}</span> */}
             <span className="title-text">{surse[index]}</span>            
             <FontAwesomeIcon

@@ -28,8 +28,8 @@ const EvaluationSubject2_beta = ({
     handleTryAgain
   }) => {
 
-    const sourceArray = quizArray[currentIndex].source.filter(item => item.order !== null);
-
+    const sourceArray = quizArray[currentIndex].source.filter(item => item.content !== null);
+    console.log(sourceArray)
   return (
     <>
       <ItemAccordeon

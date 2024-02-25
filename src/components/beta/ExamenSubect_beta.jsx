@@ -472,7 +472,7 @@ const ExamenSubect_beta = () => {
           <TitleBox className="teme-container" proc={proc}>{quizArray[currentIndex]?.name}</TitleBox>
 
           {(() => {
-            switch (quizArray[currentIndex].order) {
+            switch (quizArray[currentIndex]?.order) {
               case 1:
                 return <EvaluationSubject1_beta 
                 quizArray={quizArray}  

@@ -26,8 +26,9 @@ const EvaluationSubject3_beta = ({
   toggleCards,
   handleTryAgain
   }) => {
-    const sourceArray = quizArray[currentIndex].source.filter(item => item.order !== null);
-  return (
+    const sourceArray = quizArray[currentIndex].source.filter(item => item.content !== null);
+
+    return (
     <>
       <ItemAccordeon
         titlu={`Cerințele sarcinii (${currentIndex + 1}/${
