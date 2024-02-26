@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 // import temeIstoriArray from "../../data/temeIstoria";
 import Navbar from "../layouts/Navbar";
 import Wrapper from "../Wrapper";
+import VerticalSlider from "../Slider/VerticalSlider";
 import Breadcrumb from "../Breadcrumb";
 import TitleBox from "../TitleBox";
 import {
@@ -463,7 +464,7 @@ const ExamenSubect_beta = () => {
 
   // console.log(selectedOptions)
   return (
-    <>
+    <div style={{position:'relative'}}>
       <Navbar />
       <Wrapper>
         {quizArray && (
@@ -594,7 +595,8 @@ const ExamenSubect_beta = () => {
           </>
         )}
       </Wrapper>
-    </>
+      <VerticalSlider />
+    </div>
   );
 };
 
