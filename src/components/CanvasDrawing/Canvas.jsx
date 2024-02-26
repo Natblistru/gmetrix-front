@@ -35,7 +35,7 @@ const Canvas = ({item, disable}) => {
     context.strokeStyle = fillColor;
     context.lineWidth = lineWidth;
     contextRef.current = context;
-  }, [item]);
+  }, [item, item.harta]);
 
   useEffect(() => {
     contextRef.current.lineWidth = lineWidth;

@@ -1,4 +1,5 @@
 const CustomVerticalSlide = (props) => {
+
     const img_slider = {
         display: 'block',
         width: "100px",
@@ -10,11 +11,21 @@ const CustomVerticalSlide = (props) => {
     return (
         <div {...props} className="card__slide">
             <div className="card__slide__proc">
-                <span>70%</span>
+                <span>{Math.round(props.evalItem.student_procent)}%</span>
             </div>
-            <img src="http://placekitten.com/g/100/100" style= {img_slider}/>
+            {props.evalItem.img !== null ? (
+                <img
+                    src={`http://localhost:8000/${process.env.PUBLIC_URL + props?.evalItem.img}`}
+                    style={img_slider}
+                />
+                ) : (
+                <img
+                src={process.env.PUBLIC_URL + "/images/evaluare.png"}
+                    style={img_slider}
+                />
+                )}
             <div class="overlay_text">
-                <div class="text d-flex align-items-end justify-content-between"><span>Evaluare suplimentra 2017</span></div>
+                <div class="text d-flex align-items-end justify-content-between"><span style={{backgroundColor: 'black'}}>Evaluarea № {props.idx}</span></div>
             </div>
         </div>
     )

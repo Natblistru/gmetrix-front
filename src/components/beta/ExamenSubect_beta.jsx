@@ -8,7 +8,7 @@ import Navbar from "../layouts/Navbar";
 import Wrapper from "../Wrapper";
 import VerticalSlider from "../Slider/VerticalSlider";
 import Breadcrumb from "../Breadcrumb";
-import TitleBox from "../TitleBox";
+
 import {
   fetchTheme,
   fetchEvaluation_all } from "../../routes/api";
@@ -21,6 +21,7 @@ import FlipCardNou from "../FlipCards/FlipCardNou";
 import EvaluationSubject1_beta from "./EvaluationSubject1_beta";
 import EvaluationSubject2_beta from "./EvaluationSubject2_beta";
 import EvaluationSubject3_beta from "./EvaluationSubject3_beta";
+import TitleBox_beta from "./TitleBox_beta";
 
 const ExamenSubect_beta = () => {
   const dispatch = useDispatch();
@@ -463,7 +464,7 @@ const ExamenSubect_beta = () => {
     setShowCards(!showCards);
   };
 
-  // console.log(selectedOptions)
+  console.log(quizArray[currentIndex])
   return (
     <div style={{position:'relative'}}>
       <Navbar />
@@ -471,7 +472,7 @@ const ExamenSubect_beta = () => {
         {quizArray && (
           <>
           <Breadcrumb step={2} />
-          <TitleBox className="teme-container" proc={proc}>{quizArray[currentIndex]?.name}</TitleBox>
+          <TitleBox_beta className="teme-container" proc={proc} sursa={quizArray[currentIndex]?.type_evaluation}>{quizArray[currentIndex]?.name}</TitleBox_beta>
 
           {(() => {
             switch (quizArray[currentIndex]?.order) {
@@ -596,7 +597,9 @@ const ExamenSubect_beta = () => {
           </>
         )}
       </Wrapper>
-      <VerticalSlider />
+      <VerticalSlider quizArray={quizArray} 
+                      currentIndex={currentIndex} 
+                      setCurrentIndex={setCurrentIndex} />
     </div>
   );
 };

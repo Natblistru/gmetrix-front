@@ -2555,7 +2555,7 @@ filter: brightness(0) saturate(100%) invert(0%) sepia(7%) saturate(98%) hue-rota
     text-align: center;
     font-weight: 700;
     line-height: 13px;
-    font-size: 14px;
+    font-size: 10px;
 }
 
 .overlay_text {
@@ -2575,7 +2575,7 @@ filter: brightness(0) saturate(100%) invert(0%) sepia(7%) saturate(98%) hue-rota
 
 .overlay_text .text {
   color: white;
-  font-size: 12px;
+  font-size: 10px;
   position: absolute;
   bottom: 5px;
   right: -50%;
@@ -2585,10 +2585,10 @@ filter: brightness(0) saturate(100%) invert(0%) sepia(7%) saturate(98%) hue-rota
   text-align: center;
   overflow: visible;
   line-height: 13px;
+  text-shadow: 5px 4px 11px rgb(0,0,0), 0 2px 5px rgb(0,0,0);
 }
-
 .card__slide:hover .text {
-  transform: translate(-50%, -20%) scale(1);
+  transform: translate(-44%, -20%) scale(1);
   width: 75%; 
 }
 
