@@ -2525,3 +2525,71 @@ filter: brightness(0) saturate(100%) invert(0%) sepia(7%) saturate(98%) hue-rota
   height: 100%;
   z-index: 9999;
   background: url(./assets/img/loader.gif) center no-repeat #fff; }
+
+  .active-slide {
+    box-shadow: 0px 0px 5px 0px #888;
+    border: 1px gray solid;
+    transform: scale(1.5);
+  }
+
+  .card__slide{
+    position: relative;
+    transition: transform .2s;
+  }
+
+  .card__slide:hover {
+    transform: scale(1.5); 
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+
+  .card__slide__proc {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 35px;
+    height: 35px;
+    padding-top: 10px;
+    background-color: coral;
+    border-radius: 50%;
+    color: #fff;
+    text-align: center;
+    font-weight: 700;
+    line-height: 13px;
+    font-size: 14px;
+}
+
+.overlay_text {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: transparent;
+  width: 100%;
+  height: 0;
+  transition: .5s ease;
+}
+
+.card__slide:hover .overlay_text {
+  height: 100%;
+}
+
+.overlay_text .text {
+  color: white;
+  font-size: 12px;
+  position: absolute;
+  bottom: 5px;
+  right: -50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+  overflow: visible;
+  line-height: 13px;
+}
+
+.card__slide:hover .text {
+  transform: translate(-50%, -20%) scale(1);
+  width: 75%; 
+}
+
+ 

@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ReactModal from "react-modal";
 import ProgressBar from "../ProgressBar";
+import { fetchTheme } from "../../routes/api"
 
 const SubTopicItem_beta = ({ subTit, idx, teachers }) => {
+  const dispatch = useDispatch();
   const subtitle = subTit;
   // console.log(subtitle)
   const [isModalOpen, setModalOpen] = useState(false);
   const currentSubject = useSelector((state) => state.currentSubject);
+  const currentStudentObject = useSelector(state => state.currentStudent);
+  const currentStudent = currentStudentObject ? currentStudentObject.currentStudent : 1; 
   // console.log(currentSubject)
   // console.log(currentSubject.currentSubject)
 
@@ -65,6 +69,15 @@ const SubTopicItem_beta = ({ subTit, idx, teachers }) => {
   }
   console.log(linkTo)
 
+  const handleTemaClick = () => {
+    const teacher = teachers[0].teacher_id;
+    const student_id = localStorage.getItem('auth_role') == 'student' ? currentStudent : 1;
+    const theme = subtitle.tema_id;
+    const level_id = 1;
+
+    fetchTheme(teacher, theme, subject_id, level_id, dispatch, student_id);
+  };
+
   return (
     <li key={idx}>
       <div className="subtopic-header">
@@ -78,7 +91,7 @@ const SubTopicItem_beta = ({ subTit, idx, teachers }) => {
               {subtitle.tema_name}
             </Link>
           ) : (
-            <Link to={linkTo}>{subtitle.tema_name}</Link>
+            <Link to={linkTo} onClick={handleTemaClick}>{subtitle.tema_name}</Link>
           )}
         </h4>
       </div>

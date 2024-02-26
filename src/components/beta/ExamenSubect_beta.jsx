@@ -47,7 +47,8 @@ const ExamenSubect_beta = () => {
   const [temaObject, setTemaObject] = useState(null);
 
   const currentThemeObject = useSelector(state => state.currentTheme);
-  const currentTheme = currentThemeObject.currentTheme || JSON.parse(localStorage.getItem('currentTheme'));
+  console.log(currentThemeObject)
+  const currentTheme = currentThemeObject?.currentTheme || JSON.parse(localStorage.getItem('currentTheme'));
   console.log(currentTheme)
   const evaluations_all = useSelector((state) => state.evaluations_all);
   const currentSubject = useSelector((state) => state.currentSubject);

@@ -19,10 +19,10 @@ function Navbar() {
   const isAuthenticated = localStorage.getItem('auth_log') !== null;
 
   const disciplineAni = useSelector(state => state.disciplineAni);
-  const nivelStudiu = disciplineAni[1].study_level_id==1?"examen clasa 9":"BAC";
-  const clasa = disciplineAni[1].study_level_id==1?"clasa 9":"clasa 12";
-  const name = disciplineAni[1].name.split(',')[0];
-  const subject_id = disciplineAni[1].subject_id;
+  const nivelStudiu = disciplineAni[1]?.study_level_id==1?"examen clasa 9":"BAC";
+  const clasa = disciplineAni[1]?.study_level_id==1?"clasa 9":"clasa 12";
+  const name = disciplineAni[1]?.name.split(',')[0];
+  const subject_id = disciplineAni[1]?.subject_id;
 
   useEffect(() => {
     const storedAuthName = localStorage.getItem('auth_name');

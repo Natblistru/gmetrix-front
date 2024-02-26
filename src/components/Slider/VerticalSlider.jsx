@@ -10,7 +10,7 @@ import CustomVerticalSlide from "./CustomVericalSlide";
  
 const VerticalSlider = () => {
   // const { images } = this.props;
-  const [activeSlide, setActiveSlide] = useState(0);
+  const [activeSlide, setActiveSlide] = useState(null);
   const settings = {
     dots: false,
     slidesToShow: 6,
@@ -20,6 +20,7 @@ const VerticalSlider = () => {
     vertical: true,
     verticalSwiping: true,
     swipeToSlide: true,
+    centerPadding: "60px",
   }
   const handleClick = (index) => {
     setActiveSlide(index)
@@ -29,7 +30,7 @@ const VerticalSlider = () => {
     <div style={{width:'100px', position:'absolute', top:'152px', right: '100px'}}>
       <Slider {...settings} >
         {Array.from({ length: 50 }, (_, i) => (
-          <CustomVerticalSlide key={i} onClick={() => handleClick(i)}/>
+          <CustomVerticalSlide key={i} onClick={() => handleClick(i)} className={activeSlide === i ? "active-slide" : ""} />
         ))}
       </Slider>
       <span> activeSlide: {activeSlide} </span>
