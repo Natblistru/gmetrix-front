@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 // import temeIstoriArray from "../data/temeIstoria";
-import ProgressBar from "../ProgressBar";
+import ProgressBar from "./ProgressBar_beta";
 
 const TitleBox_beta = ({
   className,

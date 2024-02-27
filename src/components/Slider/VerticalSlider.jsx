@@ -11,20 +11,25 @@ import CustomVerticalSlide from "./CustomVericalSlide";
 const VerticalSlider = ({
   quizArray, 
   currentIndex, 
-  setCurrentIndex
+  setCurrentIndex,
+  setShowResponse,
+  setShowCards,
+  setCurrentTextIndex,
+  setIdRaspuns,
+  setIsAnswered
 }) => {
   // const { images } = this.props;
-  const sourceArray = quizArray[currentIndex].source.filter(item => item.content !== null);
+  const sourceArray = quizArray[currentIndex]?.source.filter(item => item.content !== null);
   const [activeSlide, setActiveSlide] = useState(null);
   let slidesToShow;
   switch (true) {
-    case Boolean(quizArray[currentIndex].harta):
+    case Boolean(quizArray[currentIndex]?.harta):
       slidesToShow = 11;
       break;
-    case quizArray[currentIndex].order === 3:
+    case quizArray[currentIndex]?.order === 3:
       slidesToShow = 8;
       break;
-    case sourceArray.length > 2:
+    case sourceArray && sourceArray.length > 2:
       slidesToShow = 7;
       break;
     default:
@@ -53,6 +58,11 @@ const VerticalSlider = ({
   const handleClick = (index) => {
     setActiveSlide(index)
     setCurrentIndex(index)
+    setShowResponse(false);
+    setShowCards(false);
+    setCurrentTextIndex(0);
+    setIdRaspuns(null);
+    setIsAnswered(false);
   };
   console.log(quizArray[currentIndex])
   console.log(quizArray)

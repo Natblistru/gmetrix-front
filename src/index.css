@@ -2627,18 +2627,39 @@ filter: brightness(0) saturate(100%) invert(0%) sepia(7%) saturate(98%) hue-rota
   z-index: 20;
 }
 
-/* .slick-prev:hover {
-  background-image: url('/images/slider-up-arrow-hover.png');
-
-  top: 2%;
-  right: 1%;
-  z-index: 10;
+.slick-prev1:hover {
+  cursor:pointer;
 }
 
-.slick-next:hover {
-  background-image: url('/images/slider-down-arrow-hover.png');
+.slick-next1:hover {
+  cursor:pointer;
+}
 
-  right: 1%;
-  bottom: 2%;
-  z-index: 20;
-} */
+/* Progress-bar */
+
+.progress1 {
+  width: 100%;
+  height: 25px;
+}
+
+.progress-wrap1 {
+  background: #f80;
+  /* background: #04aa6d; */
+  margin: 20px 0;
+  overflow: hidden;
+  position: relative;
+  border-radius: 30px;
+}
+.progress-wrap1 .progress-bar1 {
+  background: #ddd;
+  left: 0;
+  position: absolute;
+  top: 0;
+}
+.topic-progress1 {
+  white-space: nowrap;
+  font-size: 1.2rem;
+  width: 300px;
+}
+
+

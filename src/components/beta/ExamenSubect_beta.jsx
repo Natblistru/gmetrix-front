@@ -599,7 +599,12 @@ const ExamenSubect_beta = () => {
       </Wrapper>
       <VerticalSlider quizArray={quizArray} 
                       currentIndex={currentIndex} 
-                      setCurrentIndex={setCurrentIndex} />
+                      setCurrentIndex={setCurrentIndex}
+                      setShowResponse={setShowResponse}
+                      setShowCards={setShowCards}
+                      setCurrentTextIndex={setCurrentTextIndex}
+                      setIdRaspuns={setIdRaspuns}
+                      setIsAnswered={setIsAnswered} />
     </div>
   );
 };
