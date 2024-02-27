@@ -14,7 +14,6 @@ import ModalForm from "../Modal/ModalForm";
 import ModalCalculator from "../Modal/ModalCalculator";
 import PdfDownloadButton from "../PdfDownloadButton";
 import FlipCardNou from "../FlipCards/FlipCardNou";
-import Draw from "../CanvasDrawing/Draw";
 
 const ExamenSubect3 = () => {
   const dispatch = useDispatch();
@@ -370,13 +369,6 @@ const ExamenSubect3 = () => {
                     {quizArray[currentIndex]?.cerinta}
                   </span>
                 </p>
-                {quizArray[currentIndex].harta &&
-                  quizArray[currentIndex].harta.length > 0 && (
-                    <Draw
-                      item={quizArray[currentIndex]}
-                      disable={showResponse}
-                    />
-                  )}
                 <div
                   style={{
                     display: "flex",

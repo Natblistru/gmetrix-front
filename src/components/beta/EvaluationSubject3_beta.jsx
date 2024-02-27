@@ -5,6 +5,7 @@ import ModalForm from "../Modal/ModalForm";
 import ModalCalculator from "../Modal/ModalCalculator";
 import PdfDownloadButton from "../PdfDownloadButton";
 import AccordionSurse from "../Accordeon/AccordionSurse";
+import Draw from "../CanvasDrawing/Draw";
 
 const EvaluationSubject3_beta = ({
   quizArray,
@@ -40,6 +41,13 @@ const EvaluationSubject3_beta = ({
         <ItemText>
           <p>Studiază sursele:</p>
           <AccordionSurse data={sourceArray} />
+          {quizArray[currentIndex].harta &&
+            quizArray[currentIndex].harta.length > 0 && (
+              <Draw
+                item={quizArray[currentIndex]}
+                disable={showResponse}
+              />
+            )}
           <p>
             {quizArray[currentIndex]?.afirmatie}{" "}
             <span style={{ fontStyle: "italic", fontWeight: 'bold' }}>

@@ -18,7 +18,7 @@ const AccordionSurse = ({ data }) => {
     );
     setAccordionItems(updatedAccordionItems);
   };
-console.log(accordionItems)
+// console.log(accordionItems)
 
 const surse = ["Sursa A.", "Sursa B.", "Sursa C.", "Sursa D.", "Sursa E.", "Sursa F.", "Sursa G.", "Sursa H.", "Sursa I."]; 
   return (

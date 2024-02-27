@@ -2592,4 +2592,49 @@ filter: brightness(0) saturate(100%) invert(0%) sepia(7%) saturate(98%) hue-rota
   width: 75%; 
 }
 
+/* Slick Arrows */
+
+.slick-prev1, .slick-next1 {
+  height: 20px;
+  width: 20px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
  
+}
+
+.slick-prev1 {
+  background-image: url('./assets/img/slider-up-arrow.png');
+  background-repeat: no-repeat;
+  top: -27px;
+  right: 47px;
+  z-index: 10;
+  background-size: 23px;
+  z-index: 10;
+}
+
+
+.slick-next1 {
+  background-image: url('./assets/img/slider-down-arrow.png');
+  background-repeat: no-repeat;
+  background-size: 23px;
+  right: 40px;
+  bottom: -27px;
+  z-index: 20;
+}
+
+/* .slick-prev:hover {
+  background-image: url('/images/slider-up-arrow-hover.png');
+
+  top: 2%;
+  right: 1%;
+  z-index: 10;
+}
+
+.slick-next:hover {
+  background-image: url('/images/slider-down-arrow-hover.png');
+
+  right: 1%;
+  bottom: 2%;
+  z-index: 20;
+} */

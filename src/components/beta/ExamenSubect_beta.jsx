@@ -48,12 +48,12 @@ const ExamenSubect_beta = () => {
   const [temaObject, setTemaObject] = useState(null);
 
   const currentThemeObject = useSelector(state => state.currentTheme);
-  console.log(currentThemeObject)
+  // console.log(currentThemeObject)
   const currentTheme = currentThemeObject?.currentTheme || JSON.parse(localStorage.getItem('currentTheme'));
-  console.log(currentTheme)
+  // console.log(currentTheme)
   const evaluations_all = useSelector((state) => state.evaluations_all);
   const currentSubject = useSelector((state) => state.currentSubject);
-  console.log(currentSubject.currentSubject)
+  // console.log(currentSubject.currentSubject)
   const currentStudentObject = useSelector((state) => state.currentStudent);
   const currentStudent = currentStudentObject ? currentStudentObject.currentStudent : 1;
 
@@ -67,10 +67,10 @@ const ExamenSubect_beta = () => {
   const [linkTo, setLinkTo] = useState("");
 
   let quizArray = evaluations_all;
-  console.log(quizArray)
+  // console.log(quizArray)
 
   useEffect(() => {
-    console.log("intrat")
+    // console.log("intrat")
     if (!currentSubject) {
       return;
     }
@@ -79,7 +79,7 @@ const ExamenSubect_beta = () => {
 
     theme = searchParams.get("theme");
     subject_tema_id = theme;
-    console.log(theme)
+    // console.log(theme)
     const pathToFind = `/${disciplina}/${address}`;
 
     setLinkTo(`${pathToFind}?teacher=1&theme=${subject_tema_id}&level=1&disciplina=${subject_id}`);
@@ -298,7 +298,7 @@ const ExamenSubect_beta = () => {
               const errorResponses = responses.filter(
                 (response) => response.data.status === 404
               );
-              console.log(responses);
+              // console.log(responses);
               if (successResponses.length > 0) {
                 console.log(
                   "Successfully processed ",
@@ -343,10 +343,10 @@ const ExamenSubect_beta = () => {
 
       await fetchEvaluation_all(theme, subject_id, level_id, dispatch);
 
-      console.log(evaluations_all);
+      // console.log(evaluations_all);
 
       const quizItem = evaluations_all;
-      console.log(quizItem);
+      // console.log(quizItem);
 
       const totalStudentPoints = quizArray.reduce((sum, evaluation, idx) => {
         const studentPoints =
@@ -464,7 +464,7 @@ const ExamenSubect_beta = () => {
     setShowCards(!showCards);
   };
 
-  console.log(quizArray[currentIndex])
+  // console.log(quizArray[currentIndex])
   return (
     <div style={{position:'relative'}}>
       <Navbar />

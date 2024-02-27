@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState, useRef } from "react";
 import Slider from "react-slick";
 import "./slick.css"; 
 import "./slick-theme.css";
@@ -41,6 +41,15 @@ const VerticalSlider = ({
     verticalSwiping: true,
     swipeToSlide: true,
   }
+
+  let sliderRef = useRef(null);
+  const next = () => {
+    sliderRef.slickNext();
+  };
+  const previous = () => {
+    sliderRef.slickPrev();
+  };
+
   const handleClick = (index) => {
     setActiveSlide(index)
     setCurrentIndex(index)
@@ -50,12 +59,22 @@ const VerticalSlider = ({
 
   return (
     <div style={{width:'100px', position:'absolute', top:'152px', right: '100px'}}>
-      <Slider {...settings} >
+      <Slider
+        ref={slider => {
+          sliderRef = slider;
+        }}
+        {...settings}
+      >
         {quizArray?.map((evalItem, i) => (
           <CustomVerticalSlide key={i} onClick={() => handleClick(i)} className={activeSlide === i ? "active-slide" : ""} evalItem={evalItem} idx={i+1}/>
         ))}
       </Slider>
-      <span> activeSlide: {activeSlide} </span>
+      {/* <span> activeSlide: {activeSlide} </span> */}
+      <div className="slick-prev1" onClick={() => previous()}>
+
+      </div>
+      <div className="slick-next1" onClick={() => next()}>
+      </div>
     </div>
   );
 }
