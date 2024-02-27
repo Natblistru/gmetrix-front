@@ -79,9 +79,9 @@ const ListAccordeon = (props) => {
         </>
       )}
 
-      <ItemAccordeon titlu="Itemii examenului de absolvire (conform temei)" {...props} open={true}>
+      {/* <ItemAccordeon titlu="Itemii examenului de absolvire (conform temei)" {...props} open={true}>
         <ItemList {...props} list={aplicatiiListBD} type={"exam"}/>
-      </ItemAccordeon>
+      </ItemAccordeon> */}
     </div>
   );
 };

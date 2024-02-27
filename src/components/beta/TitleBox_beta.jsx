@@ -24,14 +24,20 @@ const TitleBox_beta = ({
     }
     setProf(teacherName);
   }, [location.search]);
-
+console.log(sursa)
   return (
     <div className={classes}>
       <div className="title-img">
         <img src={process.env.PUBLIC_URL + "/images/parchment.png"} alt="" />
         <div>
           <h1>{children}</h1>
-          <p>({sursa})</p>
+          {sursa !== undefined ? (
+            <p>({sursa})</p>
+          ) : (
+            prof !== null && (
+              <p>(elaborat de profesorul {prof})</p>
+            )
+          )}
         </div>
       </div>
       <ProgressBar proc={proc} />

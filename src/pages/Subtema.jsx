@@ -9,7 +9,7 @@ import { useParams, useHistory, useLocation } from "react-router-dom";
 import Navbar from "../components/layouts/Navbar";
 import Breadcrumb from "../components/Breadcrumb";
 import Wrapper from "../components/Wrapper";
-import TitleBox from "../components/TitleBox";
+import TitleBox from "../components/beta/TitleBox_beta";
 import ListSubAccordeon from "../components/Accordeon/ListSubAccordeon";
 
 const Subtema = ()  => {
