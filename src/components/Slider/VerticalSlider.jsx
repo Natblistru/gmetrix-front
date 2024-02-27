@@ -64,8 +64,8 @@ const VerticalSlider = ({
     setIdRaspuns(null);
     setIsAnswered(false);
   };
-  console.log(quizArray[currentIndex])
-  console.log(quizArray)
+  // console.log(quizArray[currentIndex])
+  // console.log(quizArray)
 
   return (
     <div style={{width:'100px', position:'absolute', top:'152px', right: '100px'}}>

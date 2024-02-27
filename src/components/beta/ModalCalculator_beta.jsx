@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
-import "./ModalCalculator.css";
-import "./ModalForm.css";
+import "../Modal/ModalCalculator.css";
+import "../Modal/ModalForm.css";
 import DraggableElement from "../DndTest/DraggableElement";
 
 const SelectBox = ({
@@ -142,15 +142,15 @@ const ModalCalculator_beta = ({ subject, currentIndex, onClick, idRaspuns }) => 
   }, []);
 
   const handleResponse = async () => {
-    // console.log(selectedOptions)
+    console.log(selectedOptions)
     const selectedOptionsToDB = selectedOptions.map((item) => {
       const { option_id, ...rest } = item;
       return { ...rest, student_id: currentStudent };
     });
     const options = [...selectedOptionsToDB];
-    // console.log(options)
+    console.log(options)
     await trimiteDateLaBackend(selectedOptionsToDB);
-
+    console.log(selectedOptionsToDB)
     SetRasp(raspInitialArr);
     setSelectedOptions(initialSelectedOptions);
     const notaResult = nota.reduce(

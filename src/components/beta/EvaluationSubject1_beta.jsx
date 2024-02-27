@@ -2,7 +2,7 @@ import React from "react";
 import ItemAccordeon from "../Accordeon/ItemAccordeon";
 import ItemText from "../Accordeon/ItemText";
 import ModalForm from "../Modal/ModalForm";
-import ModalCalculator from "../Modal/ModalCalculator";
+import ModalCalculator from "./ModalCalculator_beta";
 import PdfDownloadButton from "../PdfDownloadButton";
 
 const EvaluationSubject1_beta = ({
