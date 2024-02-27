@@ -709,6 +709,10 @@ a:focus,
 }
 
 /* Slider */
+.slick-slide  {
+  margin: 4px auto;
+}
+
 .slick-slide img {
   display: block;
   width: 90%;
