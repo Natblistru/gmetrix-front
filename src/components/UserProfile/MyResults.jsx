@@ -98,7 +98,7 @@ function MyResults() {
   const fetchData = async (themeId) => {
 
     const teachersForSubtitles = teachersForSubtitle[themeId];
-    console.log(teachersForSubtitles)
+    // console.log(teachersForSubtitles)
 
      try {
       const studentId = 1;
@@ -113,7 +113,7 @@ function MyResults() {
       const dataTesteRequest = successResponses.map((response) => {
         if (response.data) {
           const sortedData = response.data.slice().sort((a, b) => a.id - b.id);
-          console.log(response.data)
+          // console.log(response.data)
           const teacherInfo = teachersForSubtitles.find((teacher) => teacher.teacher_id == sortedData[0].teacher_id);
 
           const teacherObject = {
@@ -143,7 +143,7 @@ function MyResults() {
               temaNode.children.push(testData);
             });
       
-            console.log(temaData.tests.length == 1 && temaData.tests[0].testResult == null)
+            // console.log(temaData.tests.length == 1 && temaData.tests[0].testResult == null)
             const temaTitleMedia = temaData.tests.length > 0 && !(temaData.tests.length == 1 && temaData.tests[0].testResult == null)
               ? (temaData.tests.reduce((acc, test) => acc + parseFloat(test.testResult)*100, 0) / temaData.tests.length).toFixed(0) + '%'
               : '0%';
@@ -203,8 +203,9 @@ function MyResults() {
       study_level_id: 1,
       studentId: studentId,
     });
-  
+    // console.log(response.data.studentEvaluationResults)
     return response.data.studentEvaluationResults;
+
   };
   
   const fetchStudentProgress = async () => {
@@ -277,25 +278,27 @@ function MyResults() {
         const temaTitleValues = []; 
   
         Object.keys(studentResults).forEach((evaluationKey, index) => {
-          const evaluationData = studentResults[evaluationKey][0];
+          const evaluationDataArray = studentResults[evaluationKey]; 
           
-          if (evaluationData && evaluationData.theme_id === temaNode.tema_id) {
-            const maxPoints = parseInt(evaluationData.total_max_points, 10);
-            const points = parseInt(evaluationData.points, 10);
-  
-            const percentage = maxPoints !== 0 ? (points * 100 / maxPoints).toFixed(1) + "%" : "0%";
-            
-            temaNode.children.push({
-              name: `Evaluare (subiectul ${index + 1})`,
-              capitol_id: temaNode.capitol_id,
-              tema_id: temaNode.tema_id,
-              title: percentage,
-              evaluationKey: evaluationData, 
-            });
-  
-            temaTitleValues.push(parseFloat(percentage)); 
-          }
-        });
+          evaluationDataArray.forEach((evaluationData, subIndex) => {
+            if (evaluationData && evaluationData.theme_id === temaNode.tema_id) {
+              const maxPoints = parseInt(evaluationData.total_max_points, 10);
+              const points = parseInt(evaluationData.points, 10);
+        
+              const percentage = maxPoints !== 0 ? (points * 100 / maxPoints).toFixed(1) + "%" : "0%";
+        
+              temaNode.children.push({
+                name: `Evaluare (subiectul ${index + 1})`,
+                capitol_id: temaNode.capitol_id,
+                tema_id: temaNode.tema_id,
+                title: percentage,
+                evaluationKey: evaluationData,
+              });
+        
+              temaTitleValues.push(parseFloat(percentage));
+            }
+          });
+        });       
   
         const temaTitleMedia = temaTitleValues.length > 0
           ? (temaTitleValues.reduce((sum, value) => sum + value, 0) / temaTitleValues.length).toFixed(1) + "%"
@@ -367,6 +370,7 @@ function MyResults() {
   const fetchDataAndTransform = async () => {
     try {
       const studentResults = await fetchStudentResults();
+      // console.log(studentResults)
 
       const studentProgress = await fetchStudentProgress();
   
@@ -375,7 +379,7 @@ function MyResults() {
       const transformedDataProgress = JSON.parse(JSON.stringify(transformedData));
       const transformedDataWithProgress = addProgress(transformedDataProgress, studentProgress);
       const transformedDataWithEvaluations = addEvaluations(transformedDataCopy, studentResults);
-        
+
       setDiscipline(transformedDataWithProgress);
       setEvaluari(transformedDataWithEvaluations);
     } catch (error) {
@@ -388,7 +392,7 @@ function MyResults() {
     setTeste([])
   }, [capitole]);
  
- 
+//  console.log(evaluari)
 
   return (
     <div className='accountsettings'>
