@@ -34,7 +34,7 @@ const ProgressPagination = ({ cards }) => {
       >
         {cards.map((subject, subjectIndex) => (
           <>
-            <SwiperSlide key={subjectIndex} style={{display: 'flex', flexDirection: 'column'}}>
+            <SwiperSlide key={subjectIndex} className="d-flex flex-md-column">
               <div
                 className={`flip-card-subtitle ${isRotated ? "rotate" : ""}`}
                 onClick={toggleRotation}
@@ -43,10 +43,11 @@ const ProgressPagination = ({ cards }) => {
                   <div className="flip-card-front-subtitle">
                     <p>{subject.sarcina}</p>
                   </div>
-                  <div className="flip-card-back-subtitle">
+                  <div className="flip-card-back-subtitle d-flex flex-md-column gap-3">
                     <div
                       dangerouslySetInnerHTML={{ __html: subject.rezolvare }}
                     />
+                    <button className="btn-reper p-2">Stiu</button>
                   </div>
                 </div>
               </div>
