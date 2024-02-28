@@ -34,7 +34,7 @@ const ProgressPagination = ({ cards }) => {
       >
         {cards.map((subject, subjectIndex) => (
           <>
-            <SwiperSlide key={subjectIndex}>
+            <SwiperSlide key={subjectIndex} style={{display: 'flex', flexDirection: 'column'}}>
               <div
                 className={`flip-card-subtitle ${isRotated ? "rotate" : ""}`}
                 onClick={toggleRotation}
@@ -50,8 +50,8 @@ const ProgressPagination = ({ cards }) => {
                   </div>
                 </div>
               </div>
+              <p style={{paddingTop: '10px'}}>{subjectIndex+1} / {cards.length}</p>
             </SwiperSlide>
-            <p>{subjectIndex+1}</p>
           </>
         ))}
       </Swiper>
