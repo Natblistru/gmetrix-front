@@ -24,7 +24,7 @@ const TitleBox_beta = ({
     }
     setProf(teacherName);
   }, [location.search]);
-console.log(sursa)
+console.log(proc)
   return (
     <div className={classes}>
       <div className="title-img">
@@ -40,7 +40,9 @@ console.log(sursa)
           )}
         </div>
       </div>
-      <ProgressBar proc={proc} />
+      {proc !== undefined && (
+        <ProgressBar proc={proc} />
+      )}
     </div>
   );
 };
