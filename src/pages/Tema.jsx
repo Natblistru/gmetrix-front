@@ -1,5 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import {
   updateTopicBreadcrumb,
   updateCurrentTheme,
@@ -35,6 +36,8 @@ const Tema = () => {
   const [temaObject, setTemaObject] = useState(null);
   const [item, setItem] = useState(null);
   const [proc, setProc] = useState(0);
+
+  const [linkTo, setLinkTo] = useState("");
   const history = useHistory();
   let theme;
   let teacher;
@@ -76,6 +79,7 @@ const Tema = () => {
         ),
       null
     );
+    setLinkTo(`${pathToFind}/examen-subiect-all?teacher=1&theme=${theme}&level=1&disciplina=${subject_id}`);
     setTemaObject(tema);
 
     setProc(tema ? tema.tema_media : 0);
@@ -143,6 +147,13 @@ const Tema = () => {
             <ListAccordeon
               onProgressThemaRecorded={handleProgressThemaRecorded}
             />
+            <div className="nav-container d-flex align-items-center justify-content-center">
+              <div className="d-flex align-items-center justify-content-center">
+                <button className="btn">
+                  <Link className="small" to={linkTo}>PRACTICĂ EVALUARILE</Link>
+                </button>
+              </div>
+            </div>
           </>
         )}
       </Wrapper>

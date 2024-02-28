@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { updateSubTopicBreadcrumb, updateCurrentTopic  } from '../components/ReduxComp/actions';
+import { Link } from "react-router-dom";
 
 import { useParams, useHistory, useLocation } from "react-router-dom";
 // import temeIstoriArray from "../data/temeIstoria";
@@ -10,7 +11,7 @@ import Navbar from "../components/layouts/Navbar";
 import Breadcrumb from "../components/Breadcrumb";
 import Wrapper from "../components/Wrapper";
 import TitleBox from "../components/beta/TitleBox_beta";
-import ListSubAccordeon from "../components/Accordeon/ListSubAccordeon";
+import ListSubAccordeon from "../components/beta/ListSubAccordeon_beta";
 
 const Subtema = ()  => {
   const dispatch = useDispatch();
@@ -20,6 +21,9 @@ const Subtema = ()  => {
   const teacherVideo = searchParams.get('teacher');
   const [item, setItem] = useState(null);
   const [topic, setTopic] = useState(null);
+
+  const [linkToEvaluari, setLinkToEvaluari] = useState("");
+
   const history = useHistory();
   let subElement = null;
   const currentThemeObject = useSelector(state => state.currentTheme);
@@ -40,12 +44,20 @@ console.log(topics)
     if (temaCurrenta && subject_id && tema_id) {
       const addressToFind = "/" + address1;
       const mainElement = temaCurrenta.find(element => element.path === addressToFind);
+      console.log(mainElement)
+      console.log(address1)
+      console.log(disciplina)
 
       if (mainElement) {
         dispatch(updateCurrentTopic(mainElement));
 
         const addressDisciplina = "/" + parts[1];
         const addressSubtitle = "/" + parts.slice(2).join("/");
+
+        console.log(addressDisciplina)
+        console.log(addressSubtitle)
+
+        setLinkToEvaluari(`${addressDisciplina}${addressSubtitle}/examen-subiect-all?teacher=1&theme=${tema_id}&level=1&disciplina=${subject_id}`);
 
         const addressPath = `/${disciplina}${addressSubtitle}${mainElement.path}?teacher=${teacherVideo}&level=1&disciplina=${subject_id}&theme=${tema_id}`;
         const newBreadcrumb = { name: mainElement.name, path: addressPath };
@@ -84,6 +96,23 @@ console.log(topics)
             <Breadcrumb step={2} />
             <TitleBox className="teme-container" proc={topic.procentTopic}>{topic.name}</TitleBox>
             <ListSubAccordeon onProgressTopicRecorded={handleProgressTopicRecorded}/>
+            <div className="nav-container d-flex align-items-center justify-content-center">
+              <div className="d-flex align-items-center justify-content-center">
+                <button className="btn">
+                  <Link className="small" to={linkToEvaluari}>PRACTICĂ EVALUARILE</Link>
+                </button>
+              </div>
+              <div className="d-flex align-items-center justify-content-center">
+                <button className="btn">
+                  <Link className="small" to="/">CARDURI PENTRU MEMORARE</Link>
+                </button>
+              </div>
+              <div className="d-flex align-items-center justify-content-center">
+                <button className="btn">
+                  <Link className="small" to="/">TESTEAZĂ CUNOȘTINȚELE</Link>
+                </button>
+              </div>
+            </div>
           </>
         )
         }
