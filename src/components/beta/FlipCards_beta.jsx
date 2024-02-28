@@ -9,6 +9,7 @@ import ItemAccordeon from "../Accordeon/ItemAccordeon";
 import TitleBox from "./TitleBox_beta";
 import FlipCardNou from "../FlipCards/FlipCardNou";
 import '../FlipCards/flipCardNou.scss';
+import ProgressPagination from "./ProgressPagination";
 
 const FlipCards_beta = (props) => {
   const { address1, disciplina } = useParams();
@@ -71,6 +72,7 @@ return (
     <TitleBox className="teme-container">{currentTopic.name}</TitleBox>
     <div className={classes}>
       <ItemAccordeon titlu="Repetă cu cartele-flip" {...props} open={true}>
+        <ProgressPagination />
         <div className="Cards">
           {currentTopic.flip_cards.map((subject, subjectIndex) => (
             <FlipCardNou 
