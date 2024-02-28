@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper/modules";
 import SwiperCore from "swiper";
@@ -11,6 +11,7 @@ import "./swiper.css";
 
 const ProgressPagination = ({ cards }) => {
   const [isRotated, setIsRotated] = useState(false);
+  const [cardList, setCardList] = useState(cards);
   // const swiperRef = useRef(null);
 
   const toggleRotation = () => {
@@ -21,20 +22,40 @@ const ProgressPagination = ({ cards }) => {
     setIsRotated(false);
   };
 
+  const handleStiuButtonClick = (subjectIndex) => {
+    const updatedCards = cardList.filter(
+      (card) => card.card_id !== subjectIndex
+    );
+    setCardList(updatedCards);
+  };
+
+  const handleResetList = () => {
+    setCardList(cards);
+  };
+
   return (
     <>
-      <Swiper
-        // ref={swiperRef}
+      {cardList.length === 0 && (
+        <div className="d-flex flex-md-column justify-content-center align-content-center">
+          <button className="btn-reper p-2" onClick={handleResetList}>
+            Restabilește lista
+          </button>
+        </div>
+      )}
 
-        pagination={{ type: "progressbar" }}
-        navigation={true}
-        modules={[Navigation, Pagination]}
-        className="mySwiper"
-        onSlideChange={handleSlideChange}
-      >
-        {cards.map((subject, subjectIndex) => (
-          <>
-            <SwiperSlide key={subjectIndex} className="d-flex flex-md-column">
+      {cardList.length > 0 && (
+        <Swiper
+          pagination={{ type: "progressbar" }}
+          navigation={true}
+          modules={[Navigation, Pagination]}
+          className="mySwiper"
+          onSlideChange={handleSlideChange}
+        >
+          {cardList.map((subject, subjectIndex) => (
+            <SwiperSlide
+              key={subject.card_id}
+              className="d-flex flex-md-column"
+            >
               <div
                 className={`flip-card-subtitle ${isRotated ? "rotate" : ""}`}
                 onClick={toggleRotation}
@@ -47,15 +68,22 @@ const ProgressPagination = ({ cards }) => {
                     <div
                       dangerouslySetInnerHTML={{ __html: subject.rezolvare }}
                     />
-                    <button className="btn-reper p-2">Stiu</button>
+                    <button
+                      className="btn-reper p-2"
+                      onClick={() => handleStiuButtonClick(subject.card_id)}
+                    >
+                      Stiu
+                    </button>
                   </div>
                 </div>
               </div>
-              <p style={{paddingTop: '10px'}}>{subjectIndex+1} / {cards.length}</p>
+              <p style={{ paddingTop: "10px" }}>
+                {subjectIndex + 1} / {cardList.length}
+              </p>
             </SwiperSlide>
-          </>
-        ))}
-      </Swiper>
+          ))}
+        </Swiper>
+      )}
     </>
   );
 };
