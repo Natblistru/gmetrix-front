@@ -21,6 +21,8 @@ import ExamenSubect1 from "./components/Teste/ExamenSubect1";
 import ExamenSubect2 from "./components/Teste/ExamenSubject2";
 import ExamenSubect3 from "./components/Teste/ExamenSubject3";
 import Error from "./components/Error";
+import FlipCards_beta from "./components/beta/FlipCards_beta";
+import TesteAll_beta from "./components/beta/TesteAll_beta.jsx";
 import Raspunsuri from "./components/context/Raspunsuri";
 import StoreComponent from "./components/ReduxComp/StoreComponent";
 import ContextData from "./components/context/ContextData.js";
@@ -86,6 +88,8 @@ function App() {
               <Route path="/:disciplina/:address/examen-subiect3" component={ExamenSubect3} />
               <Route path="/:disciplina/:address/examen-subiect-all" component={ExamenSubect_beta} />
               <Route path="/:disciplina/:address/:address1/:addressTest/:idTest" component={TestWithRouter} />
+              <Route path="/:disciplina/:address/:address1/memo" component={FlipCards_beta} /> 
+              <Route path="/:disciplina/:address/:address1/teste" component={TesteAll_beta} />                           
               <Route path="/capitole/:id" component={Capitole} />
               <Route path="/capitole_beta/:id" component={Capitole_beta} />
               <Route path="/:disciplina/:address/:address1" component={Subtema} />

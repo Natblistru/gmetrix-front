@@ -23,6 +23,8 @@ const Subtema = ()  => {
   const [topic, setTopic] = useState(null);
 
   const [linkToEvaluari, setLinkToEvaluari] = useState("");
+  const [linkToMemo, setLinkToMemo] = useState("");
+  const [linkToTests, setLinkToTests] = useState("");
 
   const history = useHistory();
   let subElement = null;
@@ -31,7 +33,7 @@ const Subtema = ()  => {
 
   const currentSubject = useSelector(state => state.currentSubject);
   const topics = useSelector(state => state.topics);
-console.log(topics)
+// console.log(topics)
 
   const subject_id = currentSubject.subject_id || currentSubject.currentSubject.subject_id;
 
@@ -44,9 +46,9 @@ console.log(topics)
     if (temaCurrenta && subject_id && tema_id) {
       const addressToFind = "/" + address1;
       const mainElement = temaCurrenta.find(element => element.path === addressToFind);
-      console.log(mainElement)
-      console.log(address1)
-      console.log(disciplina)
+      // console.log(mainElement)
+      // console.log(address1)
+      // console.log(disciplina)
 
       if (mainElement) {
         dispatch(updateCurrentTopic(mainElement));
@@ -63,6 +65,10 @@ console.log(topics)
         const newBreadcrumb = { name: mainElement.name, path: addressPath };
         dispatch(updateSubTopicBreadcrumb(newBreadcrumb));
         setTopic(mainElement);
+
+
+        setLinkToMemo(`${addressDisciplina}${addressSubtitle}${mainElement.path}/memo?teacher=1&theme=${tema_id}&level=1&disciplina=${subject_id}`);
+        setLinkToTests(`${addressDisciplina}${addressSubtitle}${mainElement.path}/teste?teacher=1&theme=${tema_id}&level=1&disciplina=${subject_id}`);
       }
     }
 
@@ -104,12 +110,12 @@ console.log(topics)
               </div>
               <div className="d-flex align-items-center justify-content-center">
                 <button className="btn">
-                  <Link className="small" to="/">CARDURI PENTRU MEMORARE</Link>
+                  <Link className="small" to={linkToMemo}>CARDURI PENTRU MEMORARE</Link>
                 </button>
               </div>
               <div className="d-flex align-items-center justify-content-center">
                 <button className="btn">
-                  <Link className="small" to="/">TESTEAZĂ CUNOȘTINȚELE</Link>
+                  <Link className="small" to={linkToTests}>TESTEAZĂ CUNOȘTINȚELE</Link>
                 </button>
               </div>
             </div>
