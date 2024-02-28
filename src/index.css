@@ -2665,15 +2665,84 @@ filter: brightness(0) saturate(100%) invert(0%) sepia(7%) saturate(98%) hue-rota
 /* Swiper */
 .swiper {
   width: 100%;
-  height: 400px;
+  height: 500px;
 }
 .swiper-slide {
   text-align: center;
   font-size: 18px;
   background: #fff;
 
-  /* Center slide text vertically */
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
+.flip-card-subtitle {
+  background-color: transparent;
+  width: 83%;
+  height: 83%;
+  perspective: 1000px;
+}
+
+.flip-card-inner-subtitle {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.flip-card-subtitle.rotate .flip-card-inner-subtitle {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front-subtitle, .flip-card-back-subtitle {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.flip-card-front-subtitle {
+  background-color: #e4c1f9;
+  color: black;
+}
+
+.flip-card-back-subtitle {
+  background-color: #e4c1f9;
+  color: black;
+  transform: rotateY(180deg);
+}
+
+.flip-card-back-subtitle p{
+  text-align: justify;
+  line-height: 1.2;
+}
+
+.swiper-slide:nth-child(9n+1) .flip-card-front-subtitle { background-color: #e4c1f9; color: #000; }
+.swiper-slide:nth-child(9n+2) .flip-card-front-subtitle { background-color: #c7d0f9; color: #000; }
+.swiper-slide:nth-child(9n+3) .flip-card-front-subtitle { background-color: #a9def9; color: #000; }
+.swiper-slide:nth-child(9n+4) .flip-card-front-subtitle { background-color: #bde9ec; color: #000; }
+.swiper-slide:nth-child(9n+5) .flip-card-front-subtitle { background-color: #d0f4de; color: #000; }
+.swiper-slide:nth-child(9n+6) .flip-card-front-subtitle { background-color: #e6f5ce; color: #000; }
+.swiper-slide:nth-child(9n+7) .flip-card-front-subtitle { background-color: #fcf6bd; color: #000; }
+.swiper-slide:nth-child(9n+8) .flip-card-front-subtitle { background-color: #fec8c3; color: #000; }
+.swiper-slide:nth-child(9n+9) .flip-card-front-subtitle { background-color: #ff99c8; color: #000; }
+
+/* Culorile pentru flip-card-back-subtitle */
+.swiper-slide:nth-child(9n+1) .flip-card-back-subtitle { background-color: #e4c1f9; color: #000; }
+.swiper-slide:nth-child(9n+2) .flip-card-back-subtitle { background-color: #c7d0f9; color: #000; }
+.swiper-slide:nth-child(9n+3) .flip-card-back-subtitle { background-color: #a9def9; color: #000; }
+.swiper-slide:nth-child(9n+4) .flip-card-back-subtitle { background-color: #bde9ec; color: #000; }
+.swiper-slide:nth-child(9n+5) .flip-card-back-subtitle { background-color: #d0f4de; color: #000; }
+.swiper-slide:nth-child(9n+6) .flip-card-back-subtitle { background-color: #e6f5ce; color: #000; }
+.swiper-slide:nth-child(9n+7) .flip-card-back-subtitle { background-color: #fcf6bd; color: #000; }
+.swiper-slide:nth-child(9n+8) .flip-card-back-subtitle { background-color: #fec8c3; color: #000; }
+.swiper-slide:nth-child(9n+9) .flip-card-back-subtitle { background-color: #ff99c8; color: #000; }

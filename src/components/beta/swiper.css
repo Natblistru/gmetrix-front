@@ -61,7 +61,7 @@
 .swiper-wrapper {
   transform: translate3d(0px, 0, 0);
 }
-.swiper-wrapper .swiper-slide:nth-child(9n+1) {
+/* .swiper-wrapper .swiper-slide:nth-child(9n+1) {
   background-color: #e4c1f9; color: #000; 
 }
 .swiper-wrapper .swiper-slide:nth-child(9n+2) {
@@ -90,7 +90,7 @@
 
 .swiper-wrapper .swiper-slide:nth-child(9n+9) {
   background-color: #ff99c8; color: #000; 
-}
+} */
 
 .swiper-horizontal {
   touch-action: pan-y;

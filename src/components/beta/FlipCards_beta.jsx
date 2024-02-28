@@ -72,8 +72,8 @@ return (
     <TitleBox className="teme-container">{currentTopic.name}</TitleBox>
     <div className={classes}>
       <ItemAccordeon titlu="Repetă cu cartele-flip" {...props} open={true}>
-        <ProgressPagination />
-        <div className="Cards">
+        <ProgressPagination cards={currentTopic.flip_cards}/>
+        {/* <div className="Cards">
           {currentTopic.flip_cards.map((subject, subjectIndex) => (
             <FlipCardNou 
               title={subject.sarcina} 
@@ -86,7 +86,7 @@ return (
               } 
             />
           ))}
-        </div>
+        </div> */}
       </ItemAccordeon>
     </div>
     <div className="nav-container d-flex align-items-center justify-content-center">
