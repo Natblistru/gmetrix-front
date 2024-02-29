@@ -16,6 +16,7 @@ import currentSubjectReducer from "./currentSubjectReducer";
 import topicsReducer from "./topicsReducer";
 import currentTopicReducer from "./currentTopicReducer";
 import currentTestsReducer from "./currentTestsReducer";
+import allTeacherTestsReducer from "./allTeacherTestsReducer";
 import currentIndexTestReducer from "./currentIndexTestReducer";
 import studentReducer from "./studentReducer";
 import raspunsuriReducer from './raspunsuriReducer';
@@ -38,6 +39,7 @@ const combinedReducers = combineReducers({
   topics: topicsReducer,
   currentTopic: currentTopicReducer,
   currentTests: currentTestsReducer,
+  allTeacherTests: allTeacherTestsReducer,
   currentIndexTest: currentIndexTestReducer,
   currentStudent: studentReducer,
 })

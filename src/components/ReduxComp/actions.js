@@ -18,6 +18,7 @@ export const UPDATE_CURRENT_SUBJECT = 'UPDATE_CURRENT_SUBJECT';
 export const FETCH_TOPICS = 'FETCH_TOPICS';
 export const UPDATE_CURRENT_TOPIC = 'UPDATE_CURRENT_TOPIC';
 export const FETCH_CURRENT_TESTS = 'FETCH_CURRENT_TESTS';
+export const FETCH_ALL_TEACHER_TESTS = 'FETCH_ALL_TEACHER_TESTS';
 export const FETCH_CURRENT_INDEX_TEST = 'FETCH_CURRENT_INDEX_TEST';
 export const UPDATE_CURRENT_STUDENT = 'UPDATE_CURRENT_STUDENT';
 export const ADD_RASPUNS = 'ADD_RASPUNS';
@@ -96,6 +97,11 @@ export const updateCurrentTopic = (topic) => ({
 export const fetchCurrentTestsSuccess = (tests) => ({
   type: FETCH_CURRENT_TESTS,
   payload: tests
+});
+
+export const fetchAllTeacherTestsSuccess = (alltests) => ({
+  type: FETCH_ALL_TEACHER_TESTS,
+  payload: alltests
 });
 
 export const fetchCurrentIndexTest = (index) => ({
