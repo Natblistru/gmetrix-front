@@ -92,8 +92,8 @@ function ViewTeacherTopic() {
         updatedFilter.theme_learning_program_id = '';
         const selectedLearningProgram = getLearningProgramById(value);
         updatedFilter.subject_study_level_id = selectedLearningProgram?.subject_study_level_id || ''; 
-        console.log(selectedLearningProgram)
-        console.log(selectedLearningProgram?.subject_study_level_id)
+        // console.log(selectedLearningProgram)
+        // console.log(selectedLearningProgram?.subject_study_level_id)
       } else if (name === 'chapter_id') {
         updatedFilter[name] = value;
   

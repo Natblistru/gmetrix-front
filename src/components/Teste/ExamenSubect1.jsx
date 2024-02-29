@@ -254,10 +254,10 @@ const ExamenSubect1 = () => {
 
       await fetchEvaluation1(theme, subject_id, level_id, dispatch);
 
-      console.log(evaluations1);
+      // console.log(evaluations1);
 
       const quizItem = evaluations1;
-      console.log(quizItem);
+      // console.log(quizItem);
 
       const totalStudentPoints = quizArray.reduce((sum, evaluation, idx) => {
         const studentPoints =

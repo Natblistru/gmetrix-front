@@ -47,7 +47,7 @@ const ExamenSubect2 = () => {
     currentSubject.tema_id || currentSubject.currentSubject.tema_id;
 
   const quizArray = evaluations2;
-  console.log(quizArray)
+  // console.log(quizArray)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -292,7 +292,7 @@ const ExamenSubect2 = () => {
       // console.log("evaluations2",evaluations2)
 
       const quizItem = evaluations2;
-      console.log(quizItem);
+      // console.log(quizItem);
 
       const totalStudentPoints = quizArray.reduce((sum, evaluation, idx) => {
         const studentPoints =

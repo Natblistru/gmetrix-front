@@ -13,7 +13,8 @@ import Home from "./pages/Home";
 import Tema from "./pages/Tema";
 import Subtema from "./pages/Subtema";
 import Capitole from "./pages/Capitole";
-import Test from "./pages/Test";
+// import Test from "./pages/Test";
+import Test from "./components/beta/TesteAll_beta.jsx"
 import TestWords from "./components/Teste/TestWords.jsx";
 import TestGeneralizator from "./components/Teste/TestGeneralizator";
 import FlipCards from "./components/FlipCards/FlipCards";
@@ -89,7 +90,6 @@ function App() {
               <Route path="/:disciplina/:address/examen-subiect-all" component={ExamenSubect_beta} />
               <Route path="/:disciplina/:address/:address1/:addressTest/:idTest" component={TestWithRouter} />
               <Route path="/:disciplina/:address/:address1/memo" component={FlipCards_beta} /> 
-              <Route path="/:disciplina/:address/:address1/teste" component={TesteAll_beta} />                           
               <Route path="/capitole/:id" component={Capitole} />
               <Route path="/capitole_beta/:id" component={Capitole_beta} />
               <Route path="/:disciplina/:address/:address1" component={Subtema} />

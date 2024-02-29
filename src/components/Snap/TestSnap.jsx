@@ -53,7 +53,7 @@ const TestSnap = ({
   .filter(option => option.correct === 1)
   .map(option => JSON.parse(option.text_additional));
 
-  console.log(textAdditionalArray);
+  // console.log(textAdditionalArray);
 
     // Creează array-ul de forma dorită
   const transformedArray = textAdditionalArray.reduce((acc, item) => {
@@ -105,22 +105,22 @@ const TestSnap = ({
     return [indexStart, indexEnd];
   });
 
-  console.log(matriceRaspunsuri);
-  console.log(listItems[currentIndex].test_item_options)
+  // console.log(matriceRaspunsuri);
+  // console.log(listItems[currentIndex].test_item_options)
 
   const sortedOptions = listItems[currentIndex].test_item_options.map(item => {
     const parts = item.option.split('|').map(part => part.trim());
     return parts;
   }).flat();
 
-  console.log(sortedOptions);
+  // console.log(sortedOptions);
 
   const sortedOptions1 = listItems[currentIndex].test_item_options.map(item => {
     const parts = item.option.split('|').map(part => part.trim());
     return parts;
   }).flat();
 
-  console.log(sortedOptions1);
+  // console.log(sortedOptions1);
   const selectedElements = [];
   selectedElements.push(sortedOptions1[0]);
   selectedElements.push(sortedOptions1[8]);
@@ -131,7 +131,7 @@ const TestSnap = ({
   selectedElements.push(sortedOptions1[5]);
   selectedElements.push(sortedOptions1[7]);
 
-  console.log(selectedElements)
+  // console.log(selectedElements)
 
   
   // Sortează array-ul în funcție de primul caracter al fiecărui element
@@ -146,7 +146,7 @@ const TestSnap = ({
     }
   });
 
-  console.log(sortedOptions);
+  // console.log(sortedOptions);
 
 
   const gRef = useRef(null);
@@ -519,7 +519,7 @@ const TestSnap = ({
 
   const uniqueOptions = [...new Set(sortedOptions)];
 
-  console.log(uniqueOptions)
+  // console.log(uniqueOptions)
 
   const checkAnswer = () => {
     // const correctAnswers = [
@@ -647,7 +647,7 @@ const TestSnap = ({
   };
 
 
-console.log(uniqueOptions);
+// console.log(uniqueOptions);
 // console.log(Math.ceil(list1.quizArray[0].text.length / 2));
 // console.log(sortedOptions);
 // console.log(Math.ceil(sortedOptions.length / 2));

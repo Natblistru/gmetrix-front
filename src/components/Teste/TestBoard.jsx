@@ -78,9 +78,9 @@ const TestBoard = forwardRef(
       //   console.log("test.id", test.id)
       //   console.log("testID", testID)
       colArray = listItems[currentItemIndex].column_title.split(", ")
-      console.log(currentTests)
-      console.log(currentTests[currentIndexTest])
-              console.log(columnArray)
+      // console.log(currentTests)
+      // console.log(currentTests[currentIndexTest])
+              // console.log(columnArray)
       //   if(test.id==testID&&test.coloane.length) {
     
           const itemsFromBackendNext = [];
@@ -99,7 +99,7 @@ const TestBoard = forwardRef(
             const columnIds = Object.keys(columnsFromBackendNext);
             columnsFromBackendNext[columnIds[0]].items = itemsFromBackendNext;
             
-            console.log(columnsFromBackendNext);
+            // console.log(columnsFromBackendNext);
         // }
       // })
       return columnsFromBackendNext;
@@ -496,7 +496,7 @@ const TestBoard = forwardRef(
         height: "100%",
       }}
     >
-      {console.log("columns",columns)}
+      {/* {console.log("columns",columns)} */}
       <DragDropContext
         onDragEnd={(result) => onDragEnd(result, columns, setColumns)}
       >

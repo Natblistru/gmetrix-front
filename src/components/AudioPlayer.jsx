@@ -20,9 +20,9 @@ const AudioPlayer = ({currentSubject, arraySubtitles, path, onProgressRecorded})
       // Setăm proprietatea currentSrc a elementului audio folosind calea audio asociată
      
       audioRef.current.src = `http://localhost:8000/${currentSubtitle.audio_path}` ;
-      console.log(currentSubtitle.audio_path)
-      console.log(audioRef.current.src)
-      console.log(audioRef.current) 
+      // console.log(currentSubtitle.audio_path)
+      // console.log(audioRef.current.src)
+      // console.log(audioRef.current) 
     }
   }, [currentSubject, arraySubtitles]);
 
@@ -41,8 +41,8 @@ const AudioPlayer = ({currentSubject, arraySubtitles, path, onProgressRecorded})
   };
 
   const recordProgressInDatabase = async () => {
-    console.log(currentStudent)
-    console.log(currentSubtitle.subtopic_id)
+    // console.log(currentStudent)
+    // console.log(currentSubtitle.subtopic_id)
     try {
       const response = await axios.post('http://localhost:8000/api/student-subtopic-progress', {
         student_id: currentStudent,
@@ -68,8 +68,8 @@ const AudioPlayer = ({currentSubject, arraySubtitles, path, onProgressRecorded})
       console.error('Eroare la înregistrarea progresului în baza de date:', error);
     }
   };
-console.log(`http://localhost:8000/${path}`)
-console.log(audioRef)
+// console.log(`http://localhost:8000/${path}`)
+// console.log(audioRef)
   return (
     <div className="audio">
       <audio ref={audioRef} onTimeUpdate={handleTimeUpdate} controls preload="auto">

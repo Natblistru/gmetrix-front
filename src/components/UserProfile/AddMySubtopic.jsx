@@ -590,8 +590,8 @@ function AddMySubtopic({ onBackToList, userData }) {
     // console.log(subtopicRows.length)
     if (subtopicRows && subtopicRows.length > 0) {
       const formDataArray = subtopicRows.map((item, index) => {
-        console.log(audioFiles[index])
-        console.log(item.audio_path)        
+        // console.log(audioFiles[index])
+        // console.log(item.audio_path)        
         const formData = new FormData();
         formData.append("name", item.name_subtopic);
         formData.append("order_number", index+1);

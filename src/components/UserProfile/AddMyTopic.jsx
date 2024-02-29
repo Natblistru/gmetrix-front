@@ -276,7 +276,7 @@ function AddMyTopic({ onBackToList, userData }) {
             });
             // setVideoAdded(true);
             newVideoId = res.data.video_id;
-            console.log(newVideoId)
+            // console.log(newVideoId)
             // setVideoInput({
             //   title: '',
             //   source: '',

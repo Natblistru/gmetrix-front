@@ -108,8 +108,8 @@ const SearchComponent = () => {
       (result, item) => result || (item.subtitles || []).find(subtitle => subtitle.path_tema === themePath),
       null
     );
-  console.log(tema)
-  console.log(themePath)
+  // console.log(tema)
+  // console.log(themePath)
     if (tema != null) {
       dispatch(updateCurrentTheme(tema));
   

@@ -56,8 +56,8 @@ const Subtema = ()  => {
         const addressDisciplina = "/" + parts[1];
         const addressSubtitle = "/" + parts.slice(2).join("/");
 
-        console.log(addressDisciplina)
-        console.log(addressSubtitle)
+        // console.log(addressDisciplina)
+        // console.log(addressSubtitle)
 
         setLinkToEvaluari(`${addressDisciplina}${addressSubtitle}/examen-subiect-all?teacher=1&theme=${tema_id}&level=1&disciplina=${subject_id}`);
 
@@ -65,10 +65,9 @@ const Subtema = ()  => {
         const newBreadcrumb = { name: mainElement.name, path: addressPath };
         dispatch(updateSubTopicBreadcrumb(newBreadcrumb));
         setTopic(mainElement);
-
-
+        
         setLinkToMemo(`${addressDisciplina}${addressSubtitle}${mainElement.path}/memo?teacher=1&theme=${tema_id}&level=1&disciplina=${subject_id}`);
-        setLinkToTests(`${addressDisciplina}${addressSubtitle}${mainElement.path}/teste?teacher=1&theme=${tema_id}&level=1&disciplina=${subject_id}`);
+        setLinkToTests(`${addressDisciplina}${addressSubtitle}${mainElement.path}${mainElement.tests[0].addressTest}/1?teacher=1&theme=${tema_id}&level=1&disciplina=${subject_id}`);
       }
     }
 

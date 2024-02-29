@@ -11,11 +11,11 @@ const CustomVerticalSlide = (props) => {
     return (
         <div {...props} className="card__slide">
             <div className="card__slide__proc">
-                <span>{Math.round(props.evalItem.student_procent)}%</span>
+                <span>{Math.round(props?.evalitem.student_procent)}%</span>
             </div>
-            {props.evalItem.img !== null ? (
+            {props?.evalitem.img !== null ? (
                 <img
-                    src={`http://localhost:8000/${process.env.PUBLIC_URL + props?.evalItem.img}`}
+                    src={`http://localhost:8000/${process.env.PUBLIC_URL + props?.evalitem.img}`}
                     style={img_slider}
                 />
                 ) : (
@@ -24,8 +24,8 @@ const CustomVerticalSlide = (props) => {
                     style={img_slider}
                 />
                 )}
-            <div class="overlay_text">
-                <div class="text d-flex align-items-end justify-content-between"><span style={{backgroundColor: 'black'}}>Evaluarea № {props.idx}</span></div>
+            <div className="overlay_text">
+                <div className="text d-flex align-items-end justify-content-between"><span style={{backgroundColor: 'black'}}>Evaluarea № {props.idx}</span></div>
             </div>
         </div>
     )

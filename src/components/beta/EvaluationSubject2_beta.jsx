@@ -51,8 +51,8 @@ const EvaluationSubject2_beta = ({
           </h3> */}
           <h4>{quizArray[currentIndex].cerinta}</h4>
           <p>{quizArray[currentIndex].afirmatie} </p>
-          {/* {console.log(quizArray[currentIndex])}
-          {console.log(quizArray[currentIndex].harta)} */}
+          {/* {console.log(quizArray[currentIndex])} */}
+          {/* {console.log(quizArray[currentIndex].harta)}  */}
           {quizArray[currentIndex].harta &&
             quizArray[currentIndex].harta.length > 0 && (
               <Draw

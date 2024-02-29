@@ -25,7 +25,7 @@ const currentSubject = useSelector(state => state.currentSubject);
 const subject_id = currentSubject.subject_id || currentSubject.currentSubject.subject_id;
 
 const [linkToTeorie, setLinkToTeorie] = useState("");
-console.log(currentTopic)
+// console.log(currentTopic)
 
 const restImpartire = currentTopic.flip_cards.length % 3;
 const lungimeCards = currentTopic.flip_cards.length;

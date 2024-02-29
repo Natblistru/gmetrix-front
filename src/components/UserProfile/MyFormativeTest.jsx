@@ -869,7 +869,7 @@ function MyFormativeTest({title, userData, onBackToList, selectedType }) {
       
           const formData = new FormData();
           formData.append('option', row.option);
-          console.log(selectedType)
+          // console.log(selectedType)
 
           if(selectedType === 'dnd_group') {
             formData.append('correct', row.correct ? 1 : row.correct1 ? 2 : 0);
@@ -880,7 +880,7 @@ function MyFormativeTest({title, userData, onBackToList, selectedType }) {
           } else if(selectedType === "dnd"){
             formData.append('correct', row.correct == true? 1 : 0);
             formData.append('explanation', row.option); 
-            console.log(row.option)    
+            // console.log(row.option)    
           } else {
             formData.append('correct', row.correct == true? 1 : 0);
             formData.append('explanation', row.explanation);     
@@ -895,7 +895,7 @@ function MyFormativeTest({title, userData, onBackToList, selectedType }) {
         }
       });
     }
-    console.log(formDataArray)
+    // console.log(formDataArray)
   
     if (notFoundTestItem.length === 0) {
       try {

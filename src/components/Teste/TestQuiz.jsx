@@ -17,12 +17,18 @@ const TestQuiz = ({
   setResponseReceived
 }) => {
   const currentTests = useSelector(state => state.currentTests);
+  // console.log(currentTests)
+
   const currentIndexTest = useSelector(state => state.currentIndexTest);
+  // console.log(currentIndexTest)
   const currentStudentObject = useSelector(state => state.currentStudent);
   const currentStudent = currentStudentObject ? currentStudentObject.currentStudent : 1;
 
   const [selectedValue, setSelectedValue] = useState("");
   const [selectedOptions, setSelectedOptions] = useState([])
+
+  const listItems = currentTests[currentIndexTest].order_number_options;
+  // console.log(currentTests[currentIndexTest])
 
   useEffect(()=>{
     setSelectedOptions([{ "option": "", 
@@ -38,7 +44,6 @@ const TestQuiz = ({
 
   // console.log(currentIndexTest);
 
-  const listItems = currentTests[currentIndexTest].order_number_options;
 
   const correctAnswerText = listItems[currentItemIndex].test_item_options.find(item => item.correct === 1)?.option;
 

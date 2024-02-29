@@ -36,7 +36,7 @@ const ProgressPagination = ({ cards }) => {
   return (
     <>
       {cardList.length === 0 && (
-        <div className="d-flex flex-md-column justify-content-center align-content-center">
+        <div className="d-flex flex-md-column justify-content-center align-content-center" style={{height: '500px'}}>
           <button className="btn-reper p-2" onClick={handleResetList}>
             Restabilește lista
           </button>

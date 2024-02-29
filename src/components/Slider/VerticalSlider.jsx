@@ -76,7 +76,7 @@ const VerticalSlider = ({
         {...settings}
       >
         {quizArray?.map((evalItem, i) => (
-          <CustomVerticalSlide key={i} onClick={() => handleClick(i)} className={activeSlide === i ? "active-slide" : ""} evalItem={evalItem} idx={i+1}/>
+          <CustomVerticalSlide key={i} onClick={() => handleClick(i)} className={activeSlide === i ? "active-slide" : ""} evalitem={evalItem} idx={i+1}/>
         ))}
       </Slider>
       {/* <span> activeSlide: {activeSlide} </span> */}

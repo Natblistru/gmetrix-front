@@ -85,7 +85,7 @@ const ExamenSubect3 = () => {
     const average = sumStudentPoints * 100 / sumMaxPoints;
 
     setProc(average)
-    console.log("evaluations3", evaluations3)
+    // console.log("evaluations3", evaluations3)
   },[evaluations3])
 
   const [proc, setProc] = useState(quizArray[currentIndex]?.student_procent);
