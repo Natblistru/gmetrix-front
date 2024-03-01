@@ -20,10 +20,12 @@ import VerticalSlider from "../Slider/VerticalSlider";
 const TesteAll_beta = () => {
   const dispatch = useDispatch();
   const history = useHistory();
+  const wrapperRef = useRef(null);
   const { address1, addressTest, idTest } = useParams();
   // console.log(addressTest);
   const [currentList1, setCurrentList1] = useState(null);
-
+  const [wrapperHeight, setWrapperHeight] = useState(0);
+  // const [height, setHeight] = useState(0);
   const [proc, setProc] = useState(0);
   const [currentTestIndex, setCurrentTestIndex] = useState(0);
   const [currentItemIndex, setCurrentItemIndex] = useState(0);
@@ -35,7 +37,7 @@ const TesteAll_beta = () => {
   const currentSubject = useSelector((state) => state.currentSubject);
   const currentTests = useSelector((state) => state.currentTests);
   const allTeacherTests = useSelector((state) => state.allTeacherTests);
-  console.log(allTeacherTests)
+  // console.log(allTeacherTests)
   const [indexAllItems, setIndexAllItems] = useState(0);
 
   const currentTopicObject = useSelector((state) => state.currentTopic);
@@ -46,7 +48,7 @@ const TesteAll_beta = () => {
 
   const student_id = localStorage.getItem('auth_role') == 'student' ? currentStudent : 1;
 
-  console.log(currentTopic);
+  // console.log(currentTopic);
 
   const subject_id =
     currentSubject.subject_id || currentSubject.currentSubject.subject_id;
@@ -54,8 +56,8 @@ const TesteAll_beta = () => {
   // console.log(currentTopic)
 
   useEffect(() => {
-    console.log(currentTopic)
-    console.log(currentTheme)
+    // console.log(currentTopic)
+    // console.log(currentTheme)
     // console.log(currentTests)
     if (currentTheme) {
       const teacher = 1;
@@ -70,20 +72,27 @@ const TesteAll_beta = () => {
       event.returnValue = "";
     };
 
+    // const wrapperElement = wrapperRef.current;
+    // if (wrapperElement) {
+    //   const rect = wrapperElement.getBoundingClientRect();
+    //   console.log('Înălțimea elementului:', rect.height);
+
+    // }
+
     window.addEventListener("beforeunload", handleBeforeUnload);
     return () => window.removeEventListener("beforeunload", handleBeforeUnload);
   }, []);
 
   useEffect(() => {
     const pathCautat = "/" + addressTest;
-    console.log("schimbat adrs", addressTest)
+    // console.log("schimbat adrs", addressTest)
     if (currentTopic) {
       const indexElementCautat = currentTopic.tests.findIndex(
         (element) => element.addressTest === pathCautat
       );
-      console.log(currentTopic)
-      console.log(indexElementCautat)
-      console.log(addressTest)      
+      // console.log(currentTopic)
+      // console.log(indexElementCautat)
+      // console.log(addressTest)      
       setCurrentTestIndex(indexElementCautat);
       setCurrentList1(currentTopic.tests[indexElementCautat]);
       if (loading) {
@@ -96,6 +105,13 @@ const TesteAll_beta = () => {
       setCurrentItemIndex(0);
       dispatch(fetchCurrentIndexTest(indexElementCautat));
     }
+    
+    // const wrapperElement = wrapperRef.current;
+    // if (wrapperElement) {
+    //   const rect = wrapperElement.getBoundingClientRect();
+    //   console.log('Înălțimea elementului:', rect.height);
+    //   setWrapperHeight(height);
+    // }
   }, [addressTest, idTestAdr, history]);
 
   const [correctAnswer, setCorrectAnswer] = useState(null);
@@ -164,6 +180,12 @@ const TesteAll_beta = () => {
     };
 
     fetchData();
+    // const wrapperElement = wrapperRef.current;
+    // if (wrapperElement) {
+    //   const rect = wrapperElement.getBoundingClientRect();
+    //   console.log('Înălțimea elementului:', rect.height);
+    //   setWrapperHeight(rect.height+125);
+    // }
   }, [correctAnswer, responseReceived, currentTests, currentTestIndex]);
 
   const testBoardRef = useRef(null);
@@ -317,14 +339,14 @@ const TesteAll_beta = () => {
   // console.log("stateData.currentSummativeTests",stateData.currentSummativeTests)
   // console.log("currentTests[currentTestIndex]",currentTests[currentTestIndex])
   // console.log("currentTopic.tests[currentTestIndex]", currentTopic.tests[currentTestIndex])
-  console.log("allTeacherTests", allTeacherTests)
+  // console.log("allTeacherTests", allTeacherTests)
   // console.log("currentItemIndex",currentItemIndex)
   // console.log("currentTestIndex",currentTestIndex)
   // console.log(currentTopic.tests)
 
   const changeAdressIdTest = () => {
     const currentId = parseInt(window.location.pathname.split('/').pop(), 10);
-    console.log(currentId)
+    // console.log(currentId)
     const newId = currentId + 1;
     setIdTestAdr(newId);
     setIndexAllItems(newId)
@@ -333,10 +355,15 @@ const TesteAll_beta = () => {
     history.push(newUrl);
   };
 
+
+  // console.log('wrapperHeight', wrapperHeight)
+  console.log(wrapperRef.current && wrapperRef.current.getBoundingClientRect().height)
+  // console.log('count', Math.round(wrapperHeight/80))
   return (
     <>
       <Navbar />
       <Wrapper>
+        <div ref={wrapperRef}>
         {currentList1 && allTeacherTests && allTeacherTests.length > 0 && (
           <>
             <Breadcrumb step={3} />
@@ -361,6 +388,7 @@ const TesteAll_beta = () => {
                 currentItemIndex={currentItemIndex}
                 responseReceived={responseReceived}
                 setResponseReceived={setResponseReceived}
+                setWrapperHeight={setWrapperHeight}
               />
             )}
             {allTeacherTests[indexAllItems].type === "check" && (
@@ -437,14 +465,14 @@ const TesteAll_beta = () => {
             /> */}
           </>
         )}
-        <button onClick={changeAdressIdTest}>
-          Schimbă adresa
-        </button>
+        </div>
       </Wrapper>
       <VerticalSlider quizArray={allTeacherTests} 
                       currentIndex={indexAllItems} 
                       setCurrentIndex={setIndexAllItems}
-                      slidesToShow={6}
+                      slidesToShow={wrapperRef.current && Math.round((wrapperRef.current.getBoundingClientRect().height-150)/80)}
+                      destination="test" 
+                      handleTryAgain={handleTryAgain}
                       // setShowResponse={setShowResponse}
                       // setShowCards={setShowCards}
                       // setIdRaspuns={setIdRaspuns}

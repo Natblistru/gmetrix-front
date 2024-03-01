@@ -144,7 +144,7 @@ const ExamenSubect_beta = () => {
 
   useEffect(() => {
     if (wrapperRef.current) {
-      const height = wrapperRef.current.offsetHeight;
+      const height = wrapperRef.current.scrollHeight;
       setWrapperHeight(height);
     }
   }, []);
@@ -644,7 +644,8 @@ const ExamenSubect_beta = () => {
                       setShowCards={setShowCards}
                       setCurrentTextIndex={setCurrentTextIndex}
                       setIdRaspuns={setIdRaspuns}
-                      setIsAnswered={setIsAnswered} />
+                      setIsAnswered={setIsAnswered}
+                      destination="evaluare" />
     </div>
   );
 };

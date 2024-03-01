@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { useSelector } from 'react-redux';
 import RadioButton from "../RadioButton";
@@ -14,8 +14,10 @@ const TestQuiz = ({
   handleTryAgain,
   currentItemIndex,
   responseReceived,
-  setResponseReceived
+  setResponseReceived,
+  setWrapperHeight
 }) => {
+  const quizWrapperRef = useRef(null);
   const currentTests = useSelector(state => state.currentTests);
   // console.log(currentTests)
 
@@ -37,6 +39,12 @@ const TestQuiz = ({
         "test_item_complexity": listItems[currentItemIndex].test_item_complexity,
         "formative_test_id": listItems[currentItemIndex].formative_test_id,
         "test_item_id": listItems[currentItemIndex].test_item_id}])
+    const wrapperElement = quizWrapperRef.current;
+    if (wrapperElement) {
+      const rect = wrapperElement.getBoundingClientRect();
+      console.log('Înălțimea elementului:', rect.height);
+      setWrapperHeight(rect.height);
+    }
   },[])
 
   // console.log(currentTests)
@@ -91,6 +99,14 @@ const TestQuiz = ({
     } else {
       setCorrectAnswer(false);
     }
+    // console.log("ckeck")
+    // const wrapperElement = quizWrapperRef.current;
+    // if (wrapperElement) {
+    //   const rect = wrapperElement.getBoundingClientRect();
+    //   console.log('Înălțimea elementului:', rect.height);
+    //   setWrapperHeight(rect.height);
+    // }
+
   };
 
   const trimiteDateLaBackend = async (selectedOptionsToDB) => {
@@ -117,7 +133,7 @@ const TestQuiz = ({
 
 
   return (
-    <>
+    <div ref={quizWrapperRef}>
     <ItemAccordeon
       titlu={
         correctAnswer === null
@@ -186,7 +202,7 @@ const TestQuiz = ({
         </ItemAccordeon>
       
     )}
-</>
+  </div>
   );
   
 };
