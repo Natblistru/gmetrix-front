@@ -24,7 +24,7 @@ const TitleBox_beta = ({
     }
     setProf(teacherName);
   }, [location.search]);
-console.log(proc)
+// console.log(proc)
   return (
     <div className={classes}>
       <div className="title-img">

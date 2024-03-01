@@ -330,7 +330,7 @@ const TesteAll_beta = () => {
       const level_id = 1;
 
       fetchTheme(teacher, theme, subject_id, level_id, dispatch, student_id);
-      console.log("Valoarea lui proc a fost actualizată:", proc);
+      // console.log("Valoarea lui proc a fost actualizată:", proc);
     }
   }, [proc]);
 
@@ -355,9 +355,73 @@ const TesteAll_beta = () => {
     history.push(newUrl);
   };
 
+  const handleNext = () => {
+    const currentId = parseInt(window.location.pathname.split('/').pop(), 10);
+    let newId = currentId+1;
+    if (newId > allTeacherTests.length) {
+        newId = 1;
+    }
+    console.log("newId", newId, "ind", newId-1)
+    setIndexAllItems(newId - 1)
+    const basePath = window.location.pathname.replace(`/${currentId}`, '');
+    const newUrl = `${basePath}/${newId}?teacher=1&theme=52&level=1&disciplina=3`;
+    history.push(newUrl);
+
+
+
+    // let itemQuantity = quizArray.length;
+    // if (itemQuantity - 1 == currentIndex) {
+    //   setCurrentIndex(0);
+    // } else {
+    //   setCurrentIndex(currentIndex + 1);
+    // }
+    // setShowResponse(false);
+    // setShowCards(false);
+    // initialization();
+    // setCurrentTextIndex(0);
+    // setIdRaspuns(null);
+    // setIsAnswered(false);
+    // if (wrapperRef.current) {
+    //   const height = wrapperRef.current.scrollHeight;
+    //   setWrapperHeight(height);
+    // }
+  };
+
+  const handlePrevious = () => {
+    const currentId = parseInt(window.location.pathname.split('/').pop(), 10);
+    let newId = currentId - 1;
+    if (newId < 1) {
+      newId = allTeacherTests.length; // Setăm la ultimul element din array
+  }
+    console.log("newId", newId, "ind", newId-1)
+    setIdTestAdr(newId-1);
+    // setIndexAllItems(newId)
+    const basePath = window.location.pathname.replace(`/${currentId}`, '');
+    const newUrl = `${basePath}/${newId}?teacher=1&theme=52&level=1&disciplina=3`;
+    history.push(newUrl);
+
+    // // console.log("quizArray", quizArray)
+    // let itemQuantity = quizArray.length;
+    // if (currentIndex === 0) {
+    //   setCurrentIndex(itemQuantity - 1);
+    // } else {
+    //   setCurrentIndex(currentIndex - 1);
+    // }
+    // setShowResponse(false);
+    // setShowCards(false);
+    // initialization();
+    // setCurrentTextIndex(0);
+    // setIdRaspuns(null);
+    // setIsAnswered(false);
+    // if (wrapperRef.current) {
+    //   const height = wrapperRef.current.scrollHeight;
+    //   setWrapperHeight(height);
+    // }
+  };
+
 
   // console.log('wrapperHeight', wrapperHeight)
-  console.log(wrapperRef.current && wrapperRef.current.getBoundingClientRect().height)
+  // console.log(wrapperRef.current && wrapperRef.current.getBoundingClientRect().height)
   // console.log('count', Math.round(wrapperHeight/80))
   return (
     <>
@@ -463,6 +527,28 @@ const TesteAll_beta = () => {
               setCurrentIndex={setCurrentItemIndex}
               handleClearTestBoard={handleClearTestBoard}
             /> */}
+                        <div className="nav-container">
+              <div className="nav-link">
+                <div onClick={handlePrevious}>
+                  <img
+                    src={process.env.PUBLIC_URL + "/images/navigation-left.png"}
+                    alt=""
+                  />
+                  <p>Testul precedent</p>
+                </div>
+              </div>
+              <div className="nav-link">
+                <div onClick={handleNext}>
+                  <img
+                    src={
+                      process.env.PUBLIC_URL + "/images/navigation-right.png"
+                    }
+                    alt=""
+                  />
+                  <p>Testul următor</p>
+                </div>
+              </div>
+            </div>
           </>
         )}
         </div>

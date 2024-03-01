@@ -42,7 +42,7 @@ const TestQuiz = ({
     const wrapperElement = quizWrapperRef.current;
     if (wrapperElement) {
       const rect = wrapperElement.getBoundingClientRect();
-      console.log('Înălțimea elementului:', rect.height);
+      // console.log('Înălțimea elementului:', rect.height);
       setWrapperHeight(rect.height);
     }
   },[])

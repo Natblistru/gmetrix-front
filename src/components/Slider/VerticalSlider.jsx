@@ -59,7 +59,7 @@ const VerticalSlider = ({
     }
   };
   // console.log(quizArray[currentIndex])
-  console.log(destination === "test")
+  // console.log(destination === "test")
 
   return (
     <div style={{width:'100px', position:'absolute', top:'152px', right: '100px'}}>
