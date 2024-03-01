@@ -464,10 +464,10 @@ const TestBoard = forwardRef(
       <ItemAccordeon 
         titlu={
           correctAnswer === null
-            ? `Cerințele sarcinii (${currentItemIndex + 1}/${
-              listItems.length
+            ? `Cerințele sarcinii (${currentIndex + 1}/${
+              list.length
               }):`
-            : `Rezultat (${currentItemIndex + 1}/${listItems.length}):`
+            : `Rezultat (${currentIndex + 1}/${list.length}):`
         }
         correctAnswer={correctAnswer}
         additionalContent={additionalContent}

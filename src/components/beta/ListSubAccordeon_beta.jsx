@@ -18,6 +18,9 @@ const [currentSubject, setCurrentSubject] = useState(0);
 const currentTopicObject = useSelector(state => state.currentTopic);
 const currentTopic = currentTopicObject.currentTopic;
 
+const currentStudentObject = useSelector(state => state.currentStudent);
+const currentStudent = currentStudentObject.currentStudent;
+
 const [arraySubtitles, setArraySubtitles] = useState(currentTopic.subtitles);
 console.log(currentTopic)
 
@@ -63,12 +66,12 @@ const fetchTest = async () => {
       console.error(err);
   }
   try {
-    const res = await axios.get(`http://localhost:8000/api/teacherAllTests?topic=${teacher_topic_id}`);
+    const res = await axios.get(`http://localhost:8000/api/teacherAllTests?teacher_topic=${teacher_topic_id}&student=${currentStudent}`);
     // console.log(res.data);
     dispatch(fetchAllTeacherTestsSuccess(res.data));
-} catch (err) {
-    console.error(err);
-}
+  } catch (err) {
+      console.error(err);
+  }
 }
 
 useEffect(()=> {

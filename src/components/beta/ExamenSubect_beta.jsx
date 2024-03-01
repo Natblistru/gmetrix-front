@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useParams, useHistory, useLocation } from "react-router-dom";
@@ -27,6 +27,9 @@ const ExamenSubect_beta = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   const { address, disciplina } = useParams();
+  const wrapperRef = useRef(null);
+
+  const [wrapperHeight, setWrapperHeight] = useState(0);
   const [idRaspuns, setIdRaspuns] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -122,6 +125,8 @@ const ExamenSubect_beta = () => {
     window.addEventListener("beforeunload", handleBeforeUnload);
     return () => window.removeEventListener("beforeunload", handleBeforeUnload);
 
+
+
   }, [location.search]);
 // }, [currentSubject, location.search]);
 
@@ -137,23 +142,12 @@ const ExamenSubect_beta = () => {
     }
   };
 
-  // useEffect(() => {
-  //   // if (currentTheme) {
-  //   //   const theme = currentTheme.tema_id;
-  //   //   const level_id = 1;
-
-  //   //   fetchEvaluation_all(theme, subject_id, level_id, dispatch);
-  //   //   // quizArray = evaluations_all;
-  //   // }
-
-  //   const handleBeforeUnload = (event) => {
-  //     event.preventDefault();
-  //     event.returnValue = "";
-  //   };
-
-  //   window.addEventListener("beforeunload", handleBeforeUnload);
-  //   return () => window.removeEventListener("beforeunload", handleBeforeUnload);
-  // }, []);
+  useEffect(() => {
+    if (wrapperRef.current) {
+      const height = wrapperRef.current.offsetHeight;
+      setWrapperHeight(height);
+    }
+  }, []);
 
   useEffect(() => {
     quizArray = evaluations_all;
@@ -188,6 +182,10 @@ const ExamenSubect_beta = () => {
   const initialization = () => {
     const newArray = Array(quizArray[currentIndex]?.form.length).fill("");
     setTextArray([...newArray]);
+    if (wrapperRef.current) {
+      const height = wrapperRef.current.scrollHeight;
+      setWrapperHeight(height);
+    }
   };
 
   useEffect(() => {
@@ -323,6 +321,10 @@ const ExamenSubect_beta = () => {
 
     setIsAnswered(false);
     setShowResponse(false);
+    if (wrapperRef.current) {
+      const height = wrapperRef.current.scrollHeight;
+      setWrapperHeight(height);
+    }
     initialization();
     setCurrentTextIndex(0);
     setIdRaspuns(null);
@@ -330,6 +332,10 @@ const ExamenSubect_beta = () => {
 
   const handleVerifica = () => {
     setShowResponse(true);
+    if (wrapperRef.current) {
+      const height = wrapperRef.current.scrollHeight;
+      setWrapperHeight(height);
+    }
   };
 
   const handleAutoevaluare = () => {
@@ -408,6 +414,10 @@ const ExamenSubect_beta = () => {
     setCurrentTextIndex(0);
     setIdRaspuns(null);
     setIsAnswered(false);
+    if (wrapperRef.current) {
+      const height = wrapperRef.current.scrollHeight;
+      setWrapperHeight(height);
+    }
   };
 
   const handlePrevious = () => {
@@ -424,6 +434,10 @@ const ExamenSubect_beta = () => {
     setCurrentTextIndex(0);
     setIdRaspuns(null);
     setIsAnswered(false);
+    if (wrapperRef.current) {
+      const height = wrapperRef.current.scrollHeight;
+      setWrapperHeight(height);
+    }
   };
 
   useEffect(() => {
@@ -464,85 +478,109 @@ const ExamenSubect_beta = () => {
     setShowCards(!showCards);
   };
 
+  const sourceArray = quizArray[currentIndex]?.source?.filter(item => item.content !== null);
+
+  let slidesToShow;
+  switch (true) {
+    case Boolean(quizArray[currentIndex]?.harta):
+      slidesToShow = 11;
+      break;
+    case quizArray[currentIndex]?.order === 3:
+      slidesToShow = 8;
+      break;
+    case sourceArray && sourceArray.length > 2:
+      slidesToShow = 7;
+      break;
+    default:
+      slidesToShow = 6;
+  }
+
   // console.log(quizArray[currentIndex])
+  console.log('wrapperHeight', wrapperHeight)
+  console.log('count', Math.round(wrapperHeight/100))
   return (
     <div style={{position:'relative'}}>
       <Navbar />
-      <Wrapper>
+      <Wrapper >
+
         {quizArray && (
           <>
           <Breadcrumb step={2} />
           <TitleBox_beta className="teme-container" proc={proc} sursa={quizArray[currentIndex]?.type_evaluation}>{quizArray[currentIndex]?.name}</TitleBox_beta>
-
-          {(() => {
-            switch (quizArray[currentIndex]?.order) {
-              case 1:
-                return <EvaluationSubject1_beta 
-                quizArray={quizArray}  
-                currentIndex={currentIndex}
-                currentTextIndex={currentTextIndex} 
-                isAnswered={isAnswered}
-                textArray={textArray}
-                indx={indx} 
-                openModal={openModal}
-                isOpen={isOpen}
-                closeModal={closeModal}
-                idRaspuns={idRaspuns}
-                handleVerifica={handleVerifica}
-                showResponse={showResponse}
-                generateText={generateText}
-                handleAutoevaluare={handleAutoevaluare}
-                showAutoevaluare={showAutoevaluare}
-                onCloseAutoevaluare={onCloseAutoevaluare}
-                toggleCards={toggleCards}
-                handleTryAgain={handleTryAgain}
-                 />;
-              case 2:
-                return <EvaluationSubject2_beta 
-                quizArray={quizArray}  
-                currentIndex={currentIndex}
-                currentTextIndex={currentTextIndex} 
-                isAnswered={isAnswered}
-                textArray={textArray}
-                indx={indx} 
-                openModal={openModal}
-                isOpen={isOpen}
-                closeModal={closeModal}
-                idRaspuns={idRaspuns}
-                handleVerifica={handleVerifica}
-                showResponse={showResponse}
-                generateText={generateText}
-                handleAutoevaluare={handleAutoevaluare}
-                showAutoevaluare={showAutoevaluare}
-                onCloseAutoevaluare={onCloseAutoevaluare}
-                toggleCards={toggleCards}
-                handleTryAgain={handleTryAgain}
-                />;
-              case 3:
-                return <EvaluationSubject3_beta  
-                quizArray={quizArray}  
-                currentIndex={currentIndex}
-                currentTextIndex={currentTextIndex} 
-                isAnswered={isAnswered}
-                textArray={textArray}
-                indx={indx} 
-                openModal={openModal}
-                isOpen={isOpen}
-                closeModal={closeModal}
-                idRaspuns={idRaspuns}
-                handleVerifica={handleVerifica}
-                showResponse={showResponse}
-                generateText={generateText}
-                handleAutoevaluare={handleAutoevaluare}
-                showAutoevaluare={showAutoevaluare}
-                onCloseAutoevaluare={onCloseAutoevaluare}
-                toggleCards={toggleCards}
-                handleTryAgain={handleTryAgain}
-                />;
-              default:
-                return null; 
-            }
-          })()}
+          <div ref={wrapperRef}>
+            {(() => {
+              switch (quizArray[currentIndex]?.order) {
+                case 1:
+                  return <EvaluationSubject1_beta 
+                  quizArray={quizArray}  
+                  currentIndex={currentIndex}
+                  currentTextIndex={currentTextIndex} 
+                  isAnswered={isAnswered}
+                  textArray={textArray}
+                  indx={indx} 
+                  openModal={openModal}
+                  isOpen={isOpen}
+                  closeModal={closeModal}
+                  idRaspuns={idRaspuns}
+                  handleVerifica={handleVerifica}
+                  showResponse={showResponse}
+                  generateText={generateText}
+                  handleAutoevaluare={handleAutoevaluare}
+                  showAutoevaluare={showAutoevaluare}
+                  onCloseAutoevaluare={onCloseAutoevaluare}
+                  toggleCards={toggleCards}
+                  handleTryAgain={handleTryAgain}
+                  setWrapperHeight={setWrapperHeight}
+                  />;
+                case 2:
+                  return <EvaluationSubject2_beta 
+                  quizArray={quizArray}  
+                  currentIndex={currentIndex}
+                  currentTextIndex={currentTextIndex} 
+                  isAnswered={isAnswered}
+                  textArray={textArray}
+                  indx={indx} 
+                  openModal={openModal}
+                  isOpen={isOpen}
+                  closeModal={closeModal}
+                  idRaspuns={idRaspuns}
+                  handleVerifica={handleVerifica}
+                  showResponse={showResponse}
+                  generateText={generateText}
+                  handleAutoevaluare={handleAutoevaluare}
+                  showAutoevaluare={showAutoevaluare}
+                  onCloseAutoevaluare={onCloseAutoevaluare}
+                  toggleCards={toggleCards}
+                  handleTryAgain={handleTryAgain}
+                  setWrapperHeight={setWrapperHeight}
+                  />;
+                case 3:
+                  return <EvaluationSubject3_beta  
+                  quizArray={quizArray}  
+                  currentIndex={currentIndex}
+                  currentTextIndex={currentTextIndex} 
+                  isAnswered={isAnswered}
+                  textArray={textArray}
+                  indx={indx} 
+                  openModal={openModal}
+                  isOpen={isOpen}
+                  closeModal={closeModal}
+                  idRaspuns={idRaspuns}
+                  handleVerifica={handleVerifica}
+                  showResponse={showResponse}
+                  generateText={generateText}
+                  handleAutoevaluare={handleAutoevaluare}
+                  showAutoevaluare={showAutoevaluare}
+                  onCloseAutoevaluare={onCloseAutoevaluare}
+                  toggleCards={toggleCards}
+                  handleTryAgain={handleTryAgain}
+                  setWrapperHeight={setWrapperHeight}
+                  />;
+                default:
+                  return null; 
+              }
+            })()}
+          </div>
             {showCards && (
               <div className="Cards">
                 {quizArray[currentIndex]?.answers
@@ -596,9 +634,11 @@ const ExamenSubect_beta = () => {
             </div>
           </>
         )}
+
       </Wrapper>
       <VerticalSlider quizArray={quizArray} 
                       currentIndex={currentIndex} 
+                      slidesToShow={Math.ceil(wrapperHeight/100)}
                       setCurrentIndex={setCurrentIndex}
                       setShowResponse={setShowResponse}
                       setShowCards={setShowCards}

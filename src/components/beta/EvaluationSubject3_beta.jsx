@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import ItemAccordeon from "../Accordeon/ItemAccordeon";
 import ItemText from "../Accordeon/ItemText";
 import ModalForm from "../Modal/ModalForm";
@@ -25,8 +25,19 @@ const EvaluationSubject3_beta = ({
   showAutoevaluare,
   onCloseAutoevaluare,
   toggleCards,
-  handleTryAgain
+  handleTryAgain,
+  setWrapperHeight
   }) => {
+    const answerRef = useRef(null);
+
+    useEffect(() => {
+      if (answerRef.current) {
+        const heightAnswer = answerRef.current.scrollHeight;
+        if (showResponse) {
+          setWrapperHeight(prevHeight => prevHeight + heightAnswer + 30);
+        }
+      }
+    }, [showResponse]);
     const sourceArray = quizArray[currentIndex].source.filter(item => item.content !== null);
 
     return (
@@ -114,41 +125,43 @@ const EvaluationSubject3_beta = ({
         )}
       </ItemAccordeon>
       {showResponse && (
-        <ItemAccordeon
-          titlu={`Rezolvarea sarcinii (${currentIndex + 1}/${
-            quizArray.length
-          }):`}
-          open={true}
-          className="non_animation"
-        >
-          <ItemText classNameChild="">
-          {quizArray[currentIndex]?.answers.map(answer => (
-            <React.Fragment key={answer.answer_id}>
-              {answer && answer.answer_text != null && (
-                <p dangerouslySetInnerHTML={{ __html: answer.answer_text.replace(/\\n/g, '<br />') }} />
-              )}
-            </React.Fragment>
-          ))}
-          </ItemText>
-          <PdfDownloadButton generateText={generateText} /> 
-          <button onClick={handleAutoevaluare} className="btn-test">
-            Autoevaluiaza raspunsul!
-          </button>
-          {showAutoevaluare && (
-            <ModalCalculator
-              onClick={onCloseAutoevaluare}
-              idRaspuns={idRaspuns}
-              currentIndex={currentIndex}
-              subject={3}
-            />
-          )}
-          <button onClick={toggleCards} className="btn-test">
-            Exersează!
-          </button>
-          <button onClick={handleTryAgain} className="btn-test">
-            Încearcă din nou!
-          </button>
-        </ItemAccordeon>
+        <div ref={answerRef}>
+          <ItemAccordeon
+            titlu={`Rezolvarea sarcinii (${currentIndex + 1}/${
+              quizArray.length
+            }):`}
+            open={true}
+            className="non_animation"
+          >
+            <ItemText classNameChild="">
+            {quizArray[currentIndex]?.answers.map(answer => (
+              <React.Fragment key={answer.answer_id}>
+                {answer && answer.answer_text != null && (
+                  <p dangerouslySetInnerHTML={{ __html: answer.answer_text.replace(/\\n/g, '<br />') }} />
+                )}
+              </React.Fragment>
+            ))}
+            </ItemText>
+            <PdfDownloadButton generateText={generateText} /> 
+            <button onClick={handleAutoevaluare} className="btn-test">
+              Autoevaluiaza raspunsul!
+            </button>
+            {showAutoevaluare && (
+              <ModalCalculator
+                onClick={onCloseAutoevaluare}
+                idRaspuns={idRaspuns}
+                currentIndex={currentIndex}
+                subject={3}
+              />
+            )}
+            <button onClick={toggleCards} className="btn-test">
+              Exersează!
+            </button>
+            <button onClick={handleTryAgain} className="btn-test">
+              Încearcă din nou!
+            </button>
+          </ItemAccordeon>
+        </div>
       )}
     </>
   );

@@ -230,9 +230,9 @@ const TestWords = ({
         titlu={
           correctAnswer === null
             ? `Cerințele sarcinii (${currentIndex + 1}/${
-              listItems.length
+              list.length
               }):`
-            : `Rezultat (${currentIndex + 1}/${listItems.length}):`
+            : `Rezultat (${currentIndex + 1}/${list.length}):`
         }
         correctAnswer={correctAnswer}
         additionalContent={additionalContent}

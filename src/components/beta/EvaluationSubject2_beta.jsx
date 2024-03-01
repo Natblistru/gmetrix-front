@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import ItemAccordeon from "../Accordeon/ItemAccordeon";
 import ItemText from "../Accordeon/ItemText";
 import ModalForm from "../Modal/ModalForm";
@@ -25,8 +25,19 @@ const EvaluationSubject2_beta = ({
     showAutoevaluare,
     onCloseAutoevaluare,
     toggleCards,
-    handleTryAgain
+    handleTryAgain,
+    setWrapperHeight
   }) => {
+    const answerRef = useRef(null);
+
+    useEffect(() => {
+      if (answerRef.current) {
+        const heightAnswer = answerRef.current.scrollHeight;
+        if (showResponse) {
+          setWrapperHeight(prevHeight => prevHeight + heightAnswer + 30);
+        }
+      }
+    }, [showResponse]);
 
     const sourceArray = quizArray[currentIndex].source.filter(item => item.content !== null);
     // console.log(sourceArray)
@@ -115,50 +126,52 @@ const EvaluationSubject2_beta = ({
         )}
       </ItemAccordeon>
       {showResponse && (
-        <ItemAccordeon
-          titlu={`Rezolvarea item (${currentIndex + 1}/${
-            quizArray.length
-          }):`}
-          open={true}
-          className="non_animation"
-        >
-          <ItemText classNameChild="">
-            {quizArray[currentIndex].img && (
-              <img
-                src={`http://localhost:8000/${
-                  process.env.PUBLIC_URL + quizArray[currentIndex]?.img
-                }`}
+        <div ref={answerRef}>
+          <ItemAccordeon
+            titlu={`Rezolvarea item (${currentIndex + 1}/${
+              quizArray.length
+            }):`}
+            open={true}
+            className="non_animation"
+          >
+            <ItemText classNameChild="">
+              {quizArray[currentIndex].img && (
+                <img
+                  src={`http://localhost:8000/${
+                    process.env.PUBLIC_URL + quizArray[currentIndex]?.img
+                  }`}
+                />
+              )}
+              {quizArray[currentIndex]?.answers.map((answer) => (
+                <React.Fragment key={answer.answer_id}>
+                  <p
+                    dangerouslySetInnerHTML={{
+                      __html: answer.answer_text.replace(/\\n/g, "<br />"),
+                    }}
+                  />
+                </React.Fragment>
+              ))}
+            </ItemText>
+            <PdfDownloadButton generateText={generateText} />
+            <button onClick={handleAutoevaluare} className="btn-test">
+              Autoevaluiaza raspunsul!
+            </button>
+            {showAutoevaluare && (
+              <ModalCalculator
+                onClick={onCloseAutoevaluare}
+                idRaspuns={idRaspuns}
+                currentIndex={currentIndex}
+                subject={2}
               />
             )}
-            {quizArray[currentIndex]?.answers.map((answer) => (
-              <React.Fragment key={answer.answer_id}>
-                <p
-                  dangerouslySetInnerHTML={{
-                    __html: answer.answer_text.replace(/\\n/g, "<br />"),
-                  }}
-                />
-              </React.Fragment>
-            ))}
-          </ItemText>
-          <PdfDownloadButton generateText={generateText} />
-          <button onClick={handleAutoevaluare} className="btn-test">
-            Autoevaluiaza raspunsul!
-          </button>
-          {showAutoevaluare && (
-            <ModalCalculator
-              onClick={onCloseAutoevaluare}
-              idRaspuns={idRaspuns}
-              currentIndex={currentIndex}
-              subject={2}
-            />
-          )}
-          <button onClick={toggleCards} className="btn-test">
-            Exersează!
-          </button>
-          <button onClick={handleTryAgain} className="btn-test">
-            Urmatorul item!
-          </button>
-        </ItemAccordeon>
+            <button onClick={toggleCards} className="btn-test">
+              Exersează!
+            </button>
+            <button onClick={handleTryAgain} className="btn-test">
+              Urmatorul item!
+            </button>
+          </ItemAccordeon>
+        </div>
       )}
     </>
   );

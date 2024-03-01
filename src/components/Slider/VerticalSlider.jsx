@@ -12,29 +12,15 @@ const VerticalSlider = ({
   quizArray, 
   currentIndex, 
   setCurrentIndex,
+  slidesToShow,
   setShowResponse,
   setShowCards,
   setCurrentTextIndex,
   setIdRaspuns,
   setIsAnswered
 }) => {
-  // const { images } = this.props;
-  const sourceArray = quizArray[currentIndex]?.source.filter(item => item.content !== null);
+
   const [activeSlide, setActiveSlide] = useState(null);
-  let slidesToShow;
-  switch (true) {
-    case Boolean(quizArray[currentIndex]?.harta):
-      slidesToShow = 11;
-      break;
-    case quizArray[currentIndex]?.order === 3:
-      slidesToShow = 8;
-      break;
-    case sourceArray && sourceArray.length > 2:
-      slidesToShow = 7;
-      break;
-    default:
-      slidesToShow = 6;
-  }
 
   const settings = {
     dots: false,

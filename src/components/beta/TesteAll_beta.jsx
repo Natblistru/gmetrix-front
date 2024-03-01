@@ -5,7 +5,7 @@ import axios from "axios";
 import Navbar from "../layouts/Navbar";
 import Breadcrumb from "../Breadcrumb";
 import Wrapper from "../Wrapper";
-import TitleBox from "../TitleBox";
+import TitleBox from "./TitleBox_beta";
 import TestQuiz from "../Teste/TestQuiz";
 import TestCheck from "../Teste/TestCheck";
 import ListNavigatie from "../ListNavigatie";
@@ -15,6 +15,7 @@ import TestSnap from "../Snap/TestSnap";
 import { fetchTheme } from "../../routes/api";
 import { fetchCurrentIndexTest } from "../ReduxComp/actions";
 import "../../index.css";
+import VerticalSlider from "../Slider/VerticalSlider";
 
 const TesteAll_beta = () => {
   const dispatch = useDispatch();
@@ -33,6 +34,10 @@ const TesteAll_beta = () => {
   const currentTheme = currentThemeObject.currentTheme || JSON.parse(localStorage.getItem('currentTheme'));
   const currentSubject = useSelector((state) => state.currentSubject);
   const currentTests = useSelector((state) => state.currentTests);
+  const allTeacherTests = useSelector((state) => state.allTeacherTests);
+  console.log(allTeacherTests)
+  const [indexAllItems, setIndexAllItems] = useState(0);
+
   const currentTopicObject = useSelector((state) => state.currentTopic);
   const currentTopic = currentTopicObject.currentTopic;
 
@@ -180,7 +185,7 @@ const TesteAll_beta = () => {
 
   const handleTryAgain = () => {
     setResponseReceived(false);
-    let itemQuantity = currentList1.length;
+    let itemQuantity = allTeacherTests.length;
     if (itemQuantity - 1 === currentItemIndex) {
       setCurrentItemIndex(0);
       const testItems = currentTests[currentTestIndex].order_number_options.map(
@@ -312,7 +317,7 @@ const TesteAll_beta = () => {
   // console.log("stateData.currentSummativeTests",stateData.currentSummativeTests)
   // console.log("currentTests[currentTestIndex]",currentTests[currentTestIndex])
   // console.log("currentTopic.tests[currentTestIndex]", currentTopic.tests[currentTestIndex])
-  // console.log("currentList1", currentList1)
+  console.log("allTeacherTests", allTeacherTests)
   // console.log("currentItemIndex",currentItemIndex)
   // console.log("currentTestIndex",currentTestIndex)
   // console.log(currentTopic.tests)
@@ -322,7 +327,7 @@ const TesteAll_beta = () => {
     console.log(currentId)
     const newId = currentId + 1;
     setIdTestAdr(newId);
-    setCurrentItemIndex(newId)
+    setIndexAllItems(newId)
     const basePath = window.location.pathname.replace(`/${currentId}`, '');
     const newUrl = `${basePath}/${newId}?teacher=1&theme=52&level=1&disciplina=3`;
     history.push(newUrl);
@@ -332,24 +337,23 @@ const TesteAll_beta = () => {
     <>
       <Navbar />
       <Wrapper>
-        {currentList1 && (
+        {currentList1 && allTeacherTests && allTeacherTests.length > 0 && (
           <>
             <Breadcrumb step={3} />
             <TitleBox
               className="teme-container"
-              list={currentList1}
               proc={proc}
             >
-              {currentList1.type === "testGeneralizator"
-                ? currentList1.name +
+              {allTeacherTests[indexAllItems].type === "testGeneralizator"
+                ? allTeacherTests[indexAllItems].name +
                   "  " +
                   `  ${currentItemIndex + 1} / ${currentList1.length / 4}`
-                : currentList1.name}
+                : allTeacherTests[indexAllItems].name}
             </TitleBox>
-            {currentList1.type === "quiz" && (
+            {allTeacherTests[indexAllItems].type === "quiz" && (
               <TestQuiz
-                list={currentList1}
-                currentIndex={currentItemIndex}
+                list={allTeacherTests}
+                currentIndex={indexAllItems}
                 correctAnswer={correctAnswer}
                 setCorrectAnswer={setCorrectAnswer}
                 additionalContent={additionalContent}
@@ -359,10 +363,10 @@ const TesteAll_beta = () => {
                 setResponseReceived={setResponseReceived}
               />
             )}
-            {currentList1.type === "check" && (
+            {allTeacherTests[indexAllItems].type === "check" && (
               <TestCheck
-                list={currentList1}
-                currentIndex={currentItemIndex}
+                list={allTeacherTests}
+                currentIndex={indexAllItems}
                 correctAnswer={correctAnswer}
                 setCorrectAnswer={setCorrectAnswer}
                 additionalContent={additionalContent}
@@ -371,10 +375,10 @@ const TesteAll_beta = () => {
                 setResponseReceived={setResponseReceived}
               />
             )}
-            {currentList1.type === "words" && (
+            {allTeacherTests[indexAllItems].type === "words" && (
               <TestWords
-                list={currentList1}
-                currentIndex={currentItemIndex}
+                list={allTeacherTests}
+                currentIndex={indexAllItems}
                 correctAnswer={correctAnswer}
                 setCorrectAnswer={setCorrectAnswer}
                 additionalContent={additionalContent}
@@ -383,10 +387,10 @@ const TesteAll_beta = () => {
                 setResponseReceived={setResponseReceived}
               />
             )}
-            {currentList1.type === "snap" && (
+            {allTeacherTests[indexAllItems].type === "snap" && (
               <TestSnap
-                list={currentList1}
-                currentIndex={currentItemIndex}
+                list={allTeacherTests}
+                currentIndex={indexAllItems}
                 correctAnswer={correctAnswer}
                 setCorrectAnswer={setCorrectAnswer}
                 additionalContent={additionalContent}
@@ -395,10 +399,10 @@ const TesteAll_beta = () => {
                 setResponseReceived={setResponseReceived}
               />
             )}
-            {/* {currentList1.type === "testGeneralizator" && (
+            {/* {allTeacherTests[indexAllItems].type === "testGeneralizator" && (
               <TestGeneralizator
-                list={currentList1}
-                currentIndex={currentItemIndex}
+                list={allTeacherTests}
+                currentIndex={indexAllItems}
                 correctAnswer={correctAnswer}
                 setCorrectAnswer={setCorrectAnswer}
                 additionalContent={additionalContent}
@@ -406,13 +410,13 @@ const TesteAll_beta = () => {
                 currentItemIndex={currentItemIndex}
               />
             )} */}
-            {(currentList1.type === "dnd" ||
-              currentList1.type === "dnd_chrono" ||
-              currentList1.type === "dnd_chrono_double" ||
-              currentList1.type === "dnd_group") && (
+            {(allTeacherTests[indexAllItems].type === "dnd" ||
+              allTeacherTests[indexAllItems].type === "dnd_chrono" ||
+              allTeacherTests[indexAllItems].type === "dnd_chrono_double" ||
+              allTeacherTests[indexAllItems].type === "dnd_group") && (
               <TestBoard
-                list={currentList1}
-                currentIndex={currentItemIndex}
+                list={allTeacherTests}
+                currentIndex={indexAllItems}
                 correctAnswer={correctAnswer}
                 setCorrectAnswer={setCorrectAnswer}
                 additionalContent={additionalContent}
@@ -424,7 +428,7 @@ const TesteAll_beta = () => {
               />
             )}
             {/* <ListNavigatie
-              list={currentList1}
+              list={allTeacherTests}
               setCurrentList={setCurrentList1}
               correctAnswer={correctAnswer}
               setCorrectAnswer={setCorrectAnswer}
@@ -437,6 +441,15 @@ const TesteAll_beta = () => {
           Schimbă adresa
         </button>
       </Wrapper>
+      <VerticalSlider quizArray={allTeacherTests} 
+                      currentIndex={indexAllItems} 
+                      setCurrentIndex={setIndexAllItems}
+                      slidesToShow={6}
+                      // setShowResponse={setShowResponse}
+                      // setShowCards={setShowCards}
+                      // setIdRaspuns={setIdRaspuns}
+                      // setIsAnswered={setIsAnswered}
+                       />
     </>
   );
 };

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import ItemAccordeon from "../Accordeon/ItemAccordeon";
 import ItemText from "../Accordeon/ItemText";
 import ModalForm from "../Modal/ModalForm";
@@ -24,7 +24,19 @@ const EvaluationSubject1_beta = ({
     onCloseAutoevaluare,
     toggleCards,
     handleTryAgain,
+    setWrapperHeight
   }) => {
+    const answerRef = useRef(null);
+
+    useEffect(() => {
+      if (answerRef.current) {
+        const heightAnswer = answerRef.current.scrollHeight;
+        if (showResponse) {
+          setWrapperHeight(prevHeight => prevHeight + heightAnswer + 30);
+        }
+      }
+    }, [showResponse]);
+
   return (
     <>
       <ItemAccordeon
@@ -103,6 +115,7 @@ const EvaluationSubject1_beta = ({
         )}
       </ItemAccordeon>
       {showResponse && (
+        <div ref={answerRef}>
         <ItemAccordeon
           titlu={`Rezolvarea sarcinii (${currentIndex + 1}/${
             quizArray.length
@@ -141,6 +154,7 @@ const EvaluationSubject1_beta = ({
             Încearcă din nou!
           </button>
         </ItemAccordeon>
+        </div>
       )}
     </>
   );
