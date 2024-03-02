@@ -40,9 +40,15 @@ const TestBoard = forwardRef(
 
     // let columnArray = listItems[currentItemIndex].column_title.split(", ")
     let colArray;
+
+    useEffect(() => {
+      const updatedListItems = currentTests[currentIndexTest]?.order_number_options || [];
+      setListItems(updatedListItems);
+
+    }, [currentIndexTest, currentTests]);
     
     useEffect(()=>{
-      setListItems(currentTests[currentIndexTest].order_number_options);
+      // setListItems(currentTests[currentIndexTest].order_number_options);
 
       // let array = currentTests[currentIndexTest].column_title.split(", ");
       // let columnDBArray = []
@@ -68,7 +74,7 @@ const TestBoard = forwardRef(
       setSelectedOptions(initialSelectedOptions)
       // console.log(initialSelectedOptions)
       setColumns(getColumnsFromBackend());
-    },[currentItemIndex])
+    },[currentItemIndex, listItems ])
 
     const getColumnsFromBackend = () => {
 
@@ -78,7 +84,10 @@ const TestBoard = forwardRef(
       //   console.log("test.id", test.id)
       //   console.log("testID", testID)
       colArray = listItems[currentItemIndex].column_title.split(", ")
-      // console.log(currentTests)
+      console.log(colArray)
+      console.log(listItems[currentItemIndex])
+      console.log(currentItemIndex)
+      console.log(listItems)
       // console.log(currentTests[currentIndexTest])
               // console.log(columnArray)
       //   if(test.id==testID&&test.coloane.length) {
@@ -530,8 +539,8 @@ const TestBoard = forwardRef(
       </ItemAccordeon>
       {correctAnswer !== null && (
         <ItemAccordeon
-          titlu={`Rezolvarea sarcinii (${currentItemIndex + 1}/${
-            listItems.length
+          titlu={`Rezolvarea sarcinii (${currentIndex + 1}/${
+            list.length
           }):`}
           open={true}
           className="non_animation"

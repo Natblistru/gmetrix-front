@@ -71,12 +71,12 @@ const TestWords = ({
 
   // const listItems = currentTests[currentIndexTest].order_number_options;
 
-  let text = JSON.parse(listItems[currentIndex].test_item_options[0].text_additional).trim();
+  let text = JSON.parse(listItems[currentItemIndex].test_item_options[0].text_additional).trim();
 
   // Elimină ghilimelele de la început și sfârșit
   text = text.slice(1, -1);
 
-   const filteredElements = listItems[currentIndex].test_item_options.filter(function(element) {
+   const filteredElements = listItems[currentItemIndex].test_item_options.filter(function(element) {
     return element.correct == 0;
   });
   
@@ -271,12 +271,12 @@ const TestWords = ({
       {correctAnswer !== null && (
         <ItemAccordeon
           titlu={`Rezolvarea sarcinii (${currentIndex + 1}/${
-            listItems.length
+            list.length
           }):`}
           open={true}
         >
           <ItemText classNameChild="">
-           {listItems[currentIndex].test_item_options[0].explanation} 
+           {listItems[currentItemIndex].test_item_options[0].explanation} 
           </ItemText>
           <button onClick={handleClick} className="btn-test">
             Încearcă din nou!

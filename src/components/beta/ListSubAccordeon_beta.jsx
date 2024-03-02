@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchCurrentTestsSuccess, fetchAllTeacherTestsSuccess } from '../ReduxComp/actions';
+import { fetchCurrentTestsSuccess, fetchAllTeacherTestsSuccess, fetchCurrentIndexTest } from '../ReduxComp/actions';
 import { scroller } from 'react-scroll'
 import ItemAccordeon from "../Accordeon/ItemAccordeon";
 import ItemList from "../Accordeon/ItemList";
@@ -62,6 +62,7 @@ const fetchTest = async () => {
       const res = await axios.get(`http://localhost:8000/api/formativetest?topic=${teacher_topic_id}`);
       // console.log(res.data);
       dispatch(fetchCurrentTestsSuccess(res.data));
+      dispatch(fetchCurrentIndexTest(0));
   } catch (err) {
       console.error(err);
   }

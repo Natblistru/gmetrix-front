@@ -102,8 +102,8 @@ const TesteAll_beta = () => {
         setLoading(false);
       }
       setLoading(false);
-      setCurrentItemIndex(0);
-      dispatch(fetchCurrentIndexTest(indexElementCautat));
+      // setCurrentItemIndex(0);
+      // dispatch(fetchCurrentIndexTest(indexElementCautat));
     }
     
     // const wrapperElement = wrapperRef.current;
@@ -209,7 +209,7 @@ const TesteAll_beta = () => {
     setResponseReceived(false);
     let itemQuantity = allTeacherTests.length;
     if (itemQuantity - 1 === currentItemIndex) {
-      setCurrentItemIndex(0);
+      // setCurrentItemIndex(0);
       const testItems = currentTests[currentTestIndex].order_number_options.map(
         (option) => option
       );
@@ -311,7 +311,7 @@ const TesteAll_beta = () => {
         console.error(error);
       }
     } else {
-      setCurrentItemIndex(currentItemIndex + 1);
+      // setCurrentItemIndex(currentItemIndex + 1);
     }
 
     setCorrectAnswer(null);
@@ -357,6 +357,11 @@ const TesteAll_beta = () => {
 
   const handleNext = () => {
     const currentId = parseInt(window.location.pathname.split('/').pop(), 10);
+
+    const currentFormativeTest = allTeacherTests[currentId-1];
+    const currentIdFormativeTest = currentFormativeTest.formative_test_id;
+    handleClearTestBoard(currentIdFormativeTest);
+
     let newId = currentId+1;
     if (newId > allTeacherTests.length) {
         newId = 1;
@@ -367,7 +372,12 @@ const TesteAll_beta = () => {
     const newUrl = `${basePath}/${newId}?teacher=1&theme=52&level=1&disciplina=3`;
     history.push(newUrl);
 
-
+    const nextFormativeTest = allTeacherTests[newId-1];
+    const nextIndexFormativeTest = nextFormativeTest.order_formative_test - 1;
+    dispatch(fetchCurrentIndexTest(nextIndexFormativeTest));
+    const nextIndexItemTest = nextFormativeTest.order_item_test - 1;
+    setCurrentItemIndex(nextIndexItemTest);
+    setCorrectAnswer(null);
 
     // let itemQuantity = quizArray.length;
     // if (itemQuantity - 1 == currentIndex) {
@@ -389,16 +399,29 @@ const TesteAll_beta = () => {
 
   const handlePrevious = () => {
     const currentId = parseInt(window.location.pathname.split('/').pop(), 10);
+
+    const currentFormativeTest = allTeacherTests[currentId-1];
+    const currentIdFormativeTest = currentFormativeTest.formative_test_id;
+    handleClearTestBoard(currentIdFormativeTest);
+
     let newId = currentId - 1;
     if (newId < 1) {
       newId = allTeacherTests.length; // Setăm la ultimul element din array
   }
     console.log("newId", newId, "ind", newId-1)
-    setIdTestAdr(newId-1);
-    // setIndexAllItems(newId)
+    // setIdTestAdr(newId-1);
+    setIndexAllItems(newId-1)
     const basePath = window.location.pathname.replace(`/${currentId}`, '');
     const newUrl = `${basePath}/${newId}?teacher=1&theme=52&level=1&disciplina=3`;
     history.push(newUrl);
+
+    const previousFormativeTest = allTeacherTests[newId-1];
+    const previousIndexFormativeTest = previousFormativeTest.order_formative_test - 1;
+    dispatch(fetchCurrentIndexTest(previousIndexFormativeTest));
+    const previousIndexItemTest = previousFormativeTest.order_item_test - 1;
+    setCurrentItemIndex(previousIndexItemTest);
+    setCorrectAnswer(null);
+    
 
     // // console.log("quizArray", quizArray)
     // let itemQuantity = quizArray.length;

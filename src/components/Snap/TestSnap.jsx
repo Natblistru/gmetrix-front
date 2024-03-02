@@ -49,7 +49,7 @@ const TestSnap = ({
 
   // let list1 = temeIstoriArray[0].subtitles[0].subjects[0].teste[4];
 
-   const textAdditionalArray = listItems[currentIndex].test_item_options
+   const textAdditionalArray = listItems[currentItemIndex].test_item_options
   .filter(option => option.correct === 1)
   .map(option => JSON.parse(option.text_additional));
 
@@ -108,14 +108,14 @@ const TestSnap = ({
   // console.log(matriceRaspunsuri);
   // console.log(listItems[currentIndex].test_item_options)
 
-  const sortedOptions = listItems[currentIndex].test_item_options.map(item => {
+  const sortedOptions = listItems[currentItemIndex].test_item_options.map(item => {
     const parts = item.option.split('|').map(part => part.trim());
     return parts;
   }).flat();
 
   // console.log(sortedOptions);
 
-  const sortedOptions1 = listItems[currentIndex].test_item_options.map(item => {
+  const sortedOptions1 = listItems[currentItemIndex].test_item_options.map(item => {
     const parts = item.option.split('|').map(part => part.trim());
     return parts;
   }).flat();
@@ -772,7 +772,7 @@ const TestSnap = ({
         <ItemAccordeon
           titlu={`Rezolvarea sarcinii (${currentIndex + 1}/${
             // list1.quizArray.length
-            listItems.length
+            list.length
           }):`}
           open={true}
         >

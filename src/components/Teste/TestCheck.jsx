@@ -227,7 +227,7 @@ const TestCheck = ({
       </ItemAccordeon>
       {correctAnswer !== null && (
         <ItemAccordeon
-          titlu={`Rezolvarea sarcinii (${currentItemIndex + 1}/${listItems.length}):`}
+          titlu={`Rezolvarea sarcinii (${currentIndex + 1}/${list.length}):`}
           open={true}
         >
           <ItemText classNameChild="">
