@@ -514,9 +514,9 @@ const ExamenSubect2 = () => {
                 <button onClick={toggleCards} className="btn-test">
                   Exersează!
                 </button>
-                <button onClick={handleTryAgain} className="btn-test">
+                {/* <button onClick={handleTryAgain} className="btn-test">
                   Urmatorul item!
-                </button>
+                </button> */}
               </ItemAccordeon>
             )}
 

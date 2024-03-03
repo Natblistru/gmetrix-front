@@ -278,9 +278,9 @@ const TestWords = ({
           <ItemText classNameChild="">
            {listItems[currentItemIndex].test_item_options[0].explanation} 
           </ItemText>
-          <button onClick={handleClick} className="btn-test">
+          {/* <button onClick={handleClick} className="btn-test">
             Încearcă din nou!
-          </button>
+          </button> */}
         </ItemAccordeon>
       )}
     </>

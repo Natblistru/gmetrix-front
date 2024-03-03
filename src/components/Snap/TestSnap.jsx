@@ -799,9 +799,9 @@ const TestSnap = ({
               }
             )}
           </ItemText>
-          <button onClick={handleTryAgain} className="btn-test">
+          {/* <button onClick={handleTryAgain} className="btn-test">
             Încearcă din nou!
-          </button>
+          </button> */}
         </ItemAccordeon>
       )}
     </>

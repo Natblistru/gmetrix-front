@@ -240,9 +240,9 @@ const TestCheck = ({
               />
             ))}
           </ItemText>
-          <button onClick={handleTryAgainClearCheck} className="btn-test">
+          {/* <button onClick={handleTryAgainClearCheck} className="btn-test">
             Încearcă din nou!
-          </button>
+          </button> */}
         </ItemAccordeon>
       )}
     </>

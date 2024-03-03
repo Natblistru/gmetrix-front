@@ -558,9 +558,9 @@ const TestBoard = forwardRef(
               </>
             )}
           </ItemText>
-          <button onClick={()=> handleTryAgainClear(currentTest.formative_test_id)} className="btn-test">
+          {/* <button onClick={()=> handleTryAgainClear(currentTest.formative_test_id)} className="btn-test">
             Încearcă din nou!
-          </button>
+          </button> */}
         </ItemAccordeon>
       )}
     </>

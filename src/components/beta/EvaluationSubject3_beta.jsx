@@ -157,9 +157,9 @@ const EvaluationSubject3_beta = ({
             <button onClick={toggleCards} className="btn-test">
               Exersează!
             </button>
-            <button onClick={handleTryAgain} className="btn-test">
+            {/* <button onClick={handleTryAgain} className="btn-test">
               Încearcă din nou!
-            </button>
+            </button> */}
           </ItemAccordeon>
         </div>
       )}
