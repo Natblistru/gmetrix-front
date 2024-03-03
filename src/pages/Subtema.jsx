@@ -90,7 +90,7 @@ const Subtema = ()  => {
       }));
     }
   };
-  console.log(topic)
+  // console.log(topic)
   return (
     <div>
       <Navbar />

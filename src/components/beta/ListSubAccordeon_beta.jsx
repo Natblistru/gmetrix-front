@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchCurrentTestsSuccess, fetchAllTeacherTestsSuccess, fetchCurrentIndexTest } from '../ReduxComp/actions';
+import { fetchCurrentTestsSuccess, fetchCurrentIndexTest } from '../ReduxComp/actions';
+import { fetchAllTeacherTestsSuccess } from "../../routes/api";
 import { scroller } from 'react-scroll'
 import ItemAccordeon from "../Accordeon/ItemAccordeon";
 import ItemList from "../Accordeon/ItemList";
@@ -22,7 +23,7 @@ const currentStudentObject = useSelector(state => state.currentStudent);
 const currentStudent = currentStudentObject.currentStudent;
 
 const [arraySubtitles, setArraySubtitles] = useState(currentTopic.subtitles);
-console.log(currentTopic)
+// console.log(currentTopic)
 
 const restImpartire = currentTopic.flip_cards.length % 3;
 const lungimeCards = currentTopic.flip_cards.length;
@@ -52,6 +53,7 @@ let transformedArrayImages = arraySubtitles[currentSubject].images.map(function(
 
 useEffect(()=>{
   fetchTest();
+  fetchAllTeacherTests();
   // fetchSummativeTest();
 },[])
 
@@ -66,14 +68,24 @@ const fetchTest = async () => {
   } catch (err) {
       console.error(err);
   }
-  try {
-    const res = await axios.get(`http://localhost:8000/api/teacherAllTests?teacher_topic=${teacher_topic_id}&student=${currentStudent}`);
-    // console.log(res.data);
-    dispatch(fetchAllTeacherTestsSuccess(res.data));
-  } catch (err) {
-      console.error(err);
-  }
+  // try {
+  //   const res = await axios.get(`http://localhost:8000/api/teacherAllTests?teacher_topic=${teacher_topic_id}&student=${currentStudent}`);
+  //   // console.log(res.data);
+  //   dispatch(fetchAllTeacherTestsSuccess(res.data));
+  // } catch (err) {
+  //     console.error(err);
+  // }
 }
+
+const fetchAllTeacherTests = async () => {
+  try {
+    const teacher_topic_id = currentTopic.teacher_topic_id;
+
+    const res = await fetchAllTeacherTestsSuccess(teacher_topic_id, currentStudent, dispatch);
+  } catch (error) {
+    console.error("Eroare la preluarea datelor:", error);
+  }
+};
 
 useEffect(()=> {
 

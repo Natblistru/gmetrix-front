@@ -12,7 +12,7 @@ import ListNavigatie from "../ListNavigatie";
 import TestBoard from "../Teste/TestBoard";
 import TestWords from "../Teste/TestWords";
 import TestSnap from "../Snap/TestSnap";
-import { fetchTheme } from "../../routes/api";
+import { fetchTheme, fetchAllTeacherTestsSuccess } from "../../routes/api";
 import { fetchCurrentIndexTest } from "../ReduxComp/actions";
 import "../../index.css";
 import VerticalSlider from "../Slider/VerticalSlider";
@@ -30,13 +30,13 @@ const TesteAll_beta = () => {
   const [currentTestIndex, setCurrentTestIndex] = useState(0);
   const [currentItemIndex, setCurrentItemIndex] = useState(0);
   const [loading, setLoading] = useState(true);
-  const [idTestAdr, setIdTestAdr] = useState(addressTest);
   const [responseReceived, setResponseReceived] = useState(false);
   const currentThemeObject = useSelector(state => state.currentTheme);
   const currentTheme = currentThemeObject.currentTheme || JSON.parse(localStorage.getItem('currentTheme'));
   const currentSubject = useSelector((state) => state.currentSubject);
   const currentTests = useSelector((state) => state.currentTests);
   const allTeacherTests = useSelector((state) => state.allTeacherTests);
+  // const [allTeacherTests, setAllTeacherTests] = useState(useSelector((state) => state.allTeacherTests));
   // console.log(allTeacherTests)
   const [indexAllItems, setIndexAllItems] = useState(0);
 
@@ -97,6 +97,8 @@ const TesteAll_beta = () => {
       setCurrentList1(currentTopic.tests[indexElementCautat]);
       if (loading) {
         // setProc(currentTopic.tests[indexElementCautat].testResult*100/currentTopic.tests[indexElementCautat].complexityNumber);
+        // console.log(currentTopic.tests[indexElementCautat].testResult * 100)
+        // console.log(allTeacherTests)
         setProc(currentTopic.tests[indexElementCautat].testResult * 100);
         // console.log(currentTopic.tests[indexElementCautat])
         setLoading(false);
@@ -112,7 +114,7 @@ const TesteAll_beta = () => {
     //   console.log('Înălțimea elementului:', rect.height);
     //   setWrapperHeight(height);
     // }
-  }, [addressTest, idTestAdr, history]);
+  }, [addressTest, history]);
 
   const [correctAnswer, setCorrectAnswer] = useState(null);
 
@@ -171,15 +173,26 @@ const TesteAll_beta = () => {
             // const averageScore = totalScore * 100 / (successResponses.length*firstTestItemComplexity);
             const averageScore = (totalScore * 100) / successResponses.length;
             // console.log(averageScore)
-            setProc(averageScore);
+            // setProc(averageScore);
           }
         } catch (error) {
           console.error(error);
         }
       }
     };
+    const fetchAllTeacherTests = async () => {
+      try {
+        const teacher_topic_id = currentTopic.teacher_topic_id;
+
+    
+        const res = await fetchAllTeacherTestsSuccess(teacher_topic_id, currentStudent, dispatch);
+      } catch (error) {
+        console.error("Eroare la preluarea datelor:", error);
+      }
+    };
 
     fetchData();
+    fetchAllTeacherTests();
     // const wrapperElement = wrapperRef.current;
     // if (wrapperElement) {
     //   const rect = wrapperElement.getBoundingClientRect();
@@ -187,6 +200,18 @@ const TesteAll_beta = () => {
     //   setWrapperHeight(rect.height+125);
     // }
   }, [correctAnswer, responseReceived, currentTests, currentTestIndex]);
+
+  useEffect(()=>{
+    // console.log(allTeacherTests);
+    let sum = 0;
+    const totalItems = allTeacherTests.length;
+    allTeacherTests.forEach(obj => {
+      sum += parseFloat(obj.student_procent); 
+    });
+    const averageScore = sum / totalItems;
+    // console.log(averageScore)
+    setProc(averageScore);
+  },[allTeacherTests])
 
   const testBoardRef = useRef(null);
 
@@ -348,7 +373,6 @@ const TesteAll_beta = () => {
     const currentId = parseInt(window.location.pathname.split('/').pop(), 10);
     // console.log(currentId)
     const newId = currentId + 1;
-    setIdTestAdr(newId);
     setIndexAllItems(newId)
     const basePath = window.location.pathname.replace(`/${currentId}`, '');
     const newUrl = `${basePath}/${newId}?teacher=1&theme=52&level=1&disciplina=3`;
@@ -409,7 +433,6 @@ const TesteAll_beta = () => {
       newId = allTeacherTests.length; // Setăm la ultimul element din array
   }
     console.log("newId", newId, "ind", newId-1)
-    // setIdTestAdr(newId-1);
     setIndexAllItems(newId-1)
     const basePath = window.location.pathname.replace(`/${currentId}`, '');
     const newUrl = `${basePath}/${newId}?teacher=1&theme=52&level=1&disciplina=3`;
@@ -441,6 +464,30 @@ const TesteAll_beta = () => {
     //   setWrapperHeight(height);
     // }
   };
+
+  const handleSliderClick = (newId) => {
+    const currentId = parseInt(window.location.pathname.split('/').pop(), 10);
+
+    const currentFormativeTest = allTeacherTests[currentId-1];
+    console.log(newId)
+    console.log(currentId)
+    console.log(allTeacherTests[currentId-1])
+    const currentIdFormativeTest = currentFormativeTest.formative_test_id;
+    handleClearTestBoard(currentIdFormativeTest);
+
+    console.log("newId", newId, "ind", newId-1)
+    setIndexAllItems(newId-1)
+    const basePath = window.location.pathname.replace(`/${currentId}`, '');
+    const newUrl = `${basePath}/${newId}?teacher=1&theme=52&level=1&disciplina=3`;
+    history.push(newUrl);
+
+    const previousFormativeTest = allTeacherTests[newId-1];
+    const previousIndexFormativeTest = previousFormativeTest.order_formative_test - 1;
+    dispatch(fetchCurrentIndexTest(previousIndexFormativeTest));
+    const previousIndexItemTest = previousFormativeTest.order_item_test - 1;
+    setCurrentItemIndex(previousIndexItemTest);
+    setCorrectAnswer(null);
+    };
 
 
   // console.log('wrapperHeight', wrapperHeight)
@@ -581,7 +628,7 @@ const TesteAll_beta = () => {
                       setCurrentIndex={setIndexAllItems}
                       slidesToShow={wrapperRef.current && Math.round((wrapperRef.current.getBoundingClientRect().height-150)/80)}
                       destination="test" 
-                      handleTryAgain={handleTryAgain}
+                      handleSliderClick={handleSliderClick}
                       // setShowResponse={setShowResponse}
                       // setShowCards={setShowCards}
                       // setIdRaspuns={setIdRaspuns}

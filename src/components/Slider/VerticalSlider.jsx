@@ -21,7 +21,7 @@ const VerticalSlider = ({
   setIdRaspuns,
   setIsAnswered,
   destination,
-  handleTryAgain
+  handleSliderClick
 }) => {
 
   const [activeSlide, setActiveSlide] = useState(null);
@@ -55,7 +55,7 @@ const VerticalSlider = ({
       setIdRaspuns(null);
       setIsAnswered(false);
     } else if(destination === "test"){
-      handleTryAgain();
+      handleSliderClick(index+1);
     }
   };
   // console.log(quizArray[currentIndex])

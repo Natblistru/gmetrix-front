@@ -4,7 +4,8 @@ import { FETCH_CAPITOLE,
          FETCH_EVALUATIONS_1, 
          FETCH_EVALUATIONS_2, 
          FETCH_EVALUATIONS_3,
-         FETCH_EVALUATIONS_ALL} from '../components/ReduxComp/actions';
+         FETCH_EVALUATIONS_ALL,
+         FETCH_ALL_TEACHER_TESTS } from '../components/ReduxComp/actions';
 
 export const fetchCapitole = async (subject_id, level_id, dispatchData, student_id = 1) => {
     try {
@@ -74,7 +75,7 @@ export const fetchEvaluation3 = async (theme, subject_id, level_id, dispatchData
     }
   }
 
-  export const fetchEvaluation_all = async (theme, subject_id, level_id, dispatchData) => {
+export const fetchEvaluation_all = async (theme, subject_id, level_id, dispatchData) => {
     try {
         const res = await axios.get(`http://localhost:8000/api/themeEvaluation_all?level=${level_id}&disciplina=${subject_id}&theme=${theme}`);
         dispatchData({
@@ -84,4 +85,17 @@ export const fetchEvaluation3 = async (theme, subject_id, level_id, dispatchData
     } catch (err) {
         console.error(err);
     }
+};
+
+export const fetchAllTeacherTestsSuccess = async (teacher_topic_id, currentStudent, dispatchData) => {
+    try {
+        const res = await axios.get(`http://localhost:8000/api/teacherAllTests?teacher_topic=${teacher_topic_id}&student=${currentStudent}`);
+        // console.log(res.data);
+        dispatchData({
+            type: FETCH_ALL_TEACHER_TESTS,
+            payload: res.data
+        });
+      } catch (err) {
+          console.error(err);
+      }
 };

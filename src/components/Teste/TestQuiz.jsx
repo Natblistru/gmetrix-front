@@ -115,7 +115,7 @@ const TestQuiz = ({
         const response = await axios.post('http://localhost:8000/api/student-formative-test-options', element);
 
         if (response.status === 200) {
-          console.log('Success:', response.data.message);
+          // console.log('Success:', response.data.message);
           // console.log(responseReceived)
           setResponseReceived(true);
         } else {
