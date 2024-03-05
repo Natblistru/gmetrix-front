@@ -68,6 +68,7 @@ const ExamenSubect_beta = () => {
   let subject_tema_id = 1
 
   const [linkTo, setLinkTo] = useState("");
+  const [linkToMemo, setLinkToMemo] = useState("");
 
   let quizArray = evaluations_all;
   // console.log(quizArray)
@@ -86,6 +87,8 @@ const ExamenSubect_beta = () => {
     const pathToFind = `/${disciplina}/${address}`;
 
     setLinkTo(`${pathToFind}?teacher=1&theme=${subject_tema_id}&level=1&disciplina=${subject_id}`);
+    setLinkToMemo(`${pathToFind}/memo?teacher=1&theme=${subject_tema_id}&level=1&disciplina=${subject_id}`);
+ 
     setTemaObject(theme);
 
     const level_id = 1;
@@ -151,6 +154,7 @@ const ExamenSubect_beta = () => {
 
   useEffect(() => {
     quizArray = evaluations_all;
+    console.log(quizArray)
 
     const sumMaxPoints = quizArray.reduce(
       (acc, evaluation) => acc + parseFloat(evaluation.maxPoints),
@@ -618,6 +622,11 @@ const ExamenSubect_beta = () => {
               <div className="d-flex align-items-center justify-content-between">
                 <button className="btn">
                   <Link className="small" to={linkTo}>STUDIAZĂ TEMA</Link>
+                </button>
+              </div>
+              <div className="d-flex align-items-center justify-content-between">
+                <button className="btn">
+                  <Link className="small" to={linkToMemo} >REPETA</Link>
                 </button>
               </div>
               <div className="nav-link">

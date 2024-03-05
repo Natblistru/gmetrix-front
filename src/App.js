@@ -40,6 +40,7 @@ import ResetPassword from "./components/auth/ResetPassword.js";
 import UserProfile from "./pages/UserProfile.jsx";
 import Capitole_beta from "./components/beta/Capitole_beta.jsx";
 import ExamenSubect_beta from "./components/beta/ExamenSubect_beta.jsx";
+import FlipCards_beta_eval from "./components/beta/FlipCards_beta_eval.jsx";
 
 
 const FlipCardsWithRouter = withRouter(FlipCards);
@@ -90,6 +91,7 @@ function App() {
               <Route path="/:disciplina/:address/examen-subiect-all" component={ExamenSubect_beta} />
               <Route path="/:disciplina/:address/:address1/:addressTest/:idTest" component={TestWithRouter} />
               <Route path="/:disciplina/:address/:address1/memo" component={FlipCards_beta} /> 
+              <Route path="/:disciplina/:address/memo" component={FlipCards_beta_eval} /> 
               <Route path="/capitole/:id" component={Capitole} />
               <Route path="/capitole_beta/:id" component={Capitole_beta} />
               <Route path="/:disciplina/:address/:address1" component={Subtema} />

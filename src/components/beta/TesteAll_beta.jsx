@@ -72,12 +72,10 @@ const TesteAll_beta = () => {
       event.returnValue = "";
     };
 
-    // const wrapperElement = wrapperRef.current;
-    // if (wrapperElement) {
-    //   const rect = wrapperElement.getBoundingClientRect();
-    //   console.log('Înălțimea elementului:', rect.height);
-
-    // }
+    if (wrapperRef.current) {
+      const height = wrapperRef.current.scrollHeight;
+      setWrapperHeight(height);
+    }
 
     window.addEventListener("beforeunload", handleBeforeUnload);
     return () => window.removeEventListener("beforeunload", handleBeforeUnload);
@@ -193,12 +191,10 @@ const TesteAll_beta = () => {
 
     fetchData();
     fetchAllTeacherTests();
-    // const wrapperElement = wrapperRef.current;
-    // if (wrapperElement) {
-    //   const rect = wrapperElement.getBoundingClientRect();
-    //   console.log('Înălțimea elementului:', rect.height);
-    //   setWrapperHeight(rect.height+125);
-    // }
+    if (wrapperRef.current) {
+      const height = wrapperRef.current.scrollHeight;
+      setWrapperHeight(height);
+    }
   }, [correctAnswer, responseReceived, currentTests, currentTestIndex]);
 
   useEffect(()=>{
@@ -402,23 +398,10 @@ const TesteAll_beta = () => {
     const nextIndexItemTest = nextFormativeTest.order_item_test - 1;
     setCurrentItemIndex(nextIndexItemTest);
     setCorrectAnswer(null);
-
-    // let itemQuantity = quizArray.length;
-    // if (itemQuantity - 1 == currentIndex) {
-    //   setCurrentIndex(0);
-    // } else {
-    //   setCurrentIndex(currentIndex + 1);
-    // }
-    // setShowResponse(false);
-    // setShowCards(false);
-    // initialization();
-    // setCurrentTextIndex(0);
-    // setIdRaspuns(null);
-    // setIsAnswered(false);
-    // if (wrapperRef.current) {
-    //   const height = wrapperRef.current.scrollHeight;
-    //   setWrapperHeight(height);
-    // }
+    if (wrapperRef.current) {
+      const height = wrapperRef.current.scrollHeight;
+      setWrapperHeight(height);
+    }
   };
 
   const handlePrevious = () => {
@@ -445,24 +428,10 @@ const TesteAll_beta = () => {
     setCurrentItemIndex(previousIndexItemTest);
     setCorrectAnswer(null);
     
-
-    // // console.log("quizArray", quizArray)
-    // let itemQuantity = quizArray.length;
-    // if (currentIndex === 0) {
-    //   setCurrentIndex(itemQuantity - 1);
-    // } else {
-    //   setCurrentIndex(currentIndex - 1);
-    // }
-    // setShowResponse(false);
-    // setShowCards(false);
-    // initialization();
-    // setCurrentTextIndex(0);
-    // setIdRaspuns(null);
-    // setIsAnswered(false);
-    // if (wrapperRef.current) {
-    //   const height = wrapperRef.current.scrollHeight;
-    //   setWrapperHeight(height);
-    // }
+    if (wrapperRef.current) {
+      const height = wrapperRef.current.scrollHeight;
+      setWrapperHeight(height);
+    }
   };
 
   const handleSliderClick = (newId) => {
@@ -487,7 +456,11 @@ const TesteAll_beta = () => {
     const previousIndexItemTest = previousFormativeTest.order_item_test - 1;
     setCurrentItemIndex(previousIndexItemTest);
     setCorrectAnswer(null);
-    };
+    if (wrapperRef.current) {
+      const height = wrapperRef.current.scrollHeight;
+      setWrapperHeight(height);
+    }
+  };
 
 
   // console.log('wrapperHeight', wrapperHeight)
@@ -497,7 +470,6 @@ const TesteAll_beta = () => {
     <>
       <Navbar />
       <Wrapper>
-        <div ref={wrapperRef}>
         {currentList1 && allTeacherTests && allTeacherTests.length > 0 && (
           <>
             <Breadcrumb step={3} />
@@ -511,84 +483,90 @@ const TesteAll_beta = () => {
                   `  ${currentItemIndex + 1} / ${currentList1.length / 4}`
                 : allTeacherTests[indexAllItems].name}
             </TitleBox>
-            {allTeacherTests[indexAllItems].type === "quiz" && (
-              <TestQuiz
-                list={allTeacherTests}
-                currentIndex={indexAllItems}
-                correctAnswer={correctAnswer}
-                setCorrectAnswer={setCorrectAnswer}
-                additionalContent={additionalContent}
-                handleTryAgain={handleTryAgain}
-                currentItemIndex={currentItemIndex}
-                responseReceived={responseReceived}
-                setResponseReceived={setResponseReceived}
-                setWrapperHeight={setWrapperHeight}
-              />
-            )}
-            {allTeacherTests[indexAllItems].type === "check" && (
-              <TestCheck
-                list={allTeacherTests}
-                currentIndex={indexAllItems}
-                correctAnswer={correctAnswer}
-                setCorrectAnswer={setCorrectAnswer}
-                additionalContent={additionalContent}
-                handleTryAgain={handleTryAgain}
-                currentItemIndex={currentItemIndex}
-                setResponseReceived={setResponseReceived}
-              />
-            )}
-            {allTeacherTests[indexAllItems].type === "words" && (
-              <TestWords
-                list={allTeacherTests}
-                currentIndex={indexAllItems}
-                correctAnswer={correctAnswer}
-                setCorrectAnswer={setCorrectAnswer}
-                additionalContent={additionalContent}
-                handleTryAgain={handleTryAgain}
-                currentItemIndex={currentItemIndex}
-                setResponseReceived={setResponseReceived}
-              />
-            )}
-            {allTeacherTests[indexAllItems].type === "snap" && (
-              <TestSnap
-                list={allTeacherTests}
-                currentIndex={indexAllItems}
-                correctAnswer={correctAnswer}
-                setCorrectAnswer={setCorrectAnswer}
-                additionalContent={additionalContent}
-                handleTryAgain={handleTryAgain}
-                currentItemIndex={currentItemIndex}
-                setResponseReceived={setResponseReceived}
-              />
-            )}
-            {/* {allTeacherTests[indexAllItems].type === "testGeneralizator" && (
-              <TestGeneralizator
-                list={allTeacherTests}
-                currentIndex={indexAllItems}
-                correctAnswer={correctAnswer}
-                setCorrectAnswer={setCorrectAnswer}
-                additionalContent={additionalContent}
-                handleTryAgain={handleTryAgain}
-                currentItemIndex={currentItemIndex}
-              />
-            )} */}
-            {(allTeacherTests[indexAllItems].type === "dnd" ||
-              allTeacherTests[indexAllItems].type === "dnd_chrono" ||
-              allTeacherTests[indexAllItems].type === "dnd_chrono_double" ||
-              allTeacherTests[indexAllItems].type === "dnd_group") && (
-              <TestBoard
-                list={allTeacherTests}
-                currentIndex={indexAllItems}
-                correctAnswer={correctAnswer}
-                setCorrectAnswer={setCorrectAnswer}
-                additionalContent={additionalContent}
-                handleTryAgain={handleTryAgain}
-                DragDisable={false}
-                ref={testBoardRef}
-                currentItemIndex={currentItemIndex}
-                setResponseReceived={setResponseReceived}
-              />
-            )}
+            <div ref={wrapperRef}>
+              {allTeacherTests[indexAllItems].type === "quiz" && (
+                <TestQuiz
+                  list={allTeacherTests}
+                  currentIndex={indexAllItems}
+                  correctAnswer={correctAnswer}
+                  setCorrectAnswer={setCorrectAnswer}
+                  additionalContent={additionalContent}
+                  handleTryAgain={handleTryAgain}
+                  currentItemIndex={currentItemIndex}
+                  responseReceived={responseReceived}
+                  setResponseReceived={setResponseReceived}
+                  setWrapperHeight={setWrapperHeight}
+                />
+              )}
+              {allTeacherTests[indexAllItems].type === "check" && (
+                <TestCheck
+                  list={allTeacherTests}
+                  currentIndex={indexAllItems}
+                  correctAnswer={correctAnswer}
+                  setCorrectAnswer={setCorrectAnswer}
+                  additionalContent={additionalContent}
+                  handleTryAgain={handleTryAgain}
+                  currentItemIndex={currentItemIndex}
+                  setResponseReceived={setResponseReceived}
+                  setWrapperHeight={setWrapperHeight}
+                />
+              )}
+              {allTeacherTests[indexAllItems].type === "words" && (
+                <TestWords
+                  list={allTeacherTests}
+                  currentIndex={indexAllItems}
+                  correctAnswer={correctAnswer}
+                  setCorrectAnswer={setCorrectAnswer}
+                  additionalContent={additionalContent}
+                  handleTryAgain={handleTryAgain}
+                  currentItemIndex={currentItemIndex}
+                  setResponseReceived={setResponseReceived}
+                  setWrapperHeight={setWrapperHeight}
+                />
+              )}
+              {allTeacherTests[indexAllItems].type === "snap" && (
+                <TestSnap
+                  list={allTeacherTests}
+                  currentIndex={indexAllItems}
+                  correctAnswer={correctAnswer}
+                  setCorrectAnswer={setCorrectAnswer}
+                  additionalContent={additionalContent}
+                  handleTryAgain={handleTryAgain}
+                  currentItemIndex={currentItemIndex}
+                  setResponseReceived={setResponseReceived}
+                  setWrapperHeight={setWrapperHeight}
+                />
+              )}
+              {/* {allTeacherTests[indexAllItems].type === "testGeneralizator" && (
+                <TestGeneralizator
+                  list={allTeacherTests}
+                  currentIndex={indexAllItems}
+                  correctAnswer={correctAnswer}
+                  setCorrectAnswer={setCorrectAnswer}
+                  additionalContent={additionalContent}
+                  handleTryAgain={handleTryAgain}
+                  currentItemIndex={currentItemIndex}
+                />
+              )} */}
+              {(allTeacherTests[indexAllItems].type === "dnd" ||
+                allTeacherTests[indexAllItems].type === "dnd_chrono" ||
+                allTeacherTests[indexAllItems].type === "dnd_chrono_double" ||
+                allTeacherTests[indexAllItems].type === "dnd_group") && (
+                <TestBoard
+                  list={allTeacherTests}
+                  currentIndex={indexAllItems}
+                  correctAnswer={correctAnswer}
+                  setCorrectAnswer={setCorrectAnswer}
+                  additionalContent={additionalContent}
+                  handleTryAgain={handleTryAgain}
+                  DragDisable={false}
+                  ref={testBoardRef}
+                  currentItemIndex={currentItemIndex}
+                  setResponseReceived={setResponseReceived}
+                  setWrapperHeight={setWrapperHeight}
+                />
+              )}
+            </div>
             {/* <ListNavigatie
               list={allTeacherTests}
               setCurrentList={setCurrentList1}
@@ -597,7 +575,7 @@ const TesteAll_beta = () => {
               setCurrentIndex={setCurrentItemIndex}
               handleClearTestBoard={handleClearTestBoard}
             /> */}
-                        <div className="nav-container">
+            <div className="nav-container">
               <div className="nav-link">
                 <div onClick={handlePrevious}>
                   <img
@@ -621,12 +599,12 @@ const TesteAll_beta = () => {
             </div>
           </>
         )}
-        </div>
+
       </Wrapper>
       <VerticalSlider quizArray={allTeacherTests} 
                       currentIndex={indexAllItems} 
                       setCurrentIndex={setIndexAllItems}
-                      slidesToShow={wrapperRef.current && Math.round((wrapperRef.current.getBoundingClientRect().height-150)/80)}
+                      slidesToShow={Math.ceil(wrapperHeight/80)}
                       destination="test" 
                       handleSliderClick={handleSliderClick}
                       // setShowResponse={setShowResponse}
