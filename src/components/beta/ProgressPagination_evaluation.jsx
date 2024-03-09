@@ -6,6 +6,8 @@ import SwiperCore from "swiper";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "./swiper.css";
+import AccordionSurse from "../Accordeon/AccordionSurse";
+// import AccordionSurse from "./AccordionSurse_beta";
 
 // SwiperCore.use([Pagination, Navigation]);
 
@@ -63,14 +65,17 @@ const ProgressPagination_evaluation = ({ cards }) => {
                 <div className="flip-card-inner-subtitle">
                   <div className="flip-card-front-subtitle">
                     <p>{subject.cerinta}</p>
-                    <img
-                      className="img-subject"
-                      src={`http://localhost:8000/${
-                        process.env.PUBLIC_URL + subject?.img
-                      }`}
-                      alt=""
-                      style={{ width: "50%" }}
-                    />
+                    {subject.img && (
+                      <img
+                        className="img-subject"
+                        src={`http://localhost:8000/${process.env.PUBLIC_URL + subject.img}`}
+                        alt=""
+                        style={{ width: "50%" }}
+                      />
+                    )}
+                    {subject.source && subject.source.filter(item => item.content !== null).length > 0 && (
+                      <AccordionSurse data={subject.source.filter(item => item.content !== null)} />
+                    )}
                   </div>
                   <div className="flip-card-back-subtitle d-flex flex-md-column gap-3">
                   {subject?.answers.map((answer) => (

@@ -2708,6 +2708,7 @@ filter: brightness(0) saturate(100%) invert(0%) sepia(7%) saturate(98%) hue-rota
   justify-content: center;
   align-items: center;
   padding: 20px;
+  cursor: pointer;
 }
 
 .flip-card-front-subtitle {

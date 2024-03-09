@@ -78,6 +78,7 @@ export const fetchEvaluation3 = async (theme, subject_id, level_id, dispatchData
 export const fetchEvaluation_all = async (theme, subject_id, level_id, dispatchData) => {
     try {
         const res = await axios.get(`http://localhost:8000/api/themeEvaluation_all?level=${level_id}&disciplina=${subject_id}&theme=${theme}`);
+        console.log(res.data)
         dispatchData({
             type: FETCH_EVALUATIONS_ALL,
             payload: res.data
