@@ -2708,7 +2708,6 @@ filter: brightness(0) saturate(100%) invert(0%) sepia(7%) saturate(98%) hue-rota
   justify-content: center;
   align-items: center;
   padding: 20px;
-  cursor: pointer;
 }
 
 .flip-card-front-subtitle {
@@ -2722,9 +2721,14 @@ filter: brightness(0) saturate(100%) invert(0%) sepia(7%) saturate(98%) hue-rota
   transform: rotateY(180deg);
 }
 
+.flip-card-front-subtitle p{
+  cursor: pointer;
+}
+
 .flip-card-back-subtitle p{
   text-align: justify;
   line-height: 1.2;
+  cursor: pointer;
 }
 
 .swiper-slide:nth-child(9n+1) .flip-card-front-subtitle { background-color: #e4c1f9; color: #000; }

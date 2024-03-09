@@ -12,12 +12,18 @@ const AccordionSurse = ({ data }) => {
     setAccordionItems(data)
   },[data])
 
-  const handleClick = (item) => {
-    const updatedAccordionItems = accordionItems.map((accItem) =>
-      accItem === item ? { ...accItem, open: !accItem.open } : accItem
-    );
+  const closeAllExceptOne = (clickedItem) => {
+    const updatedAccordionItems = accordionItems.map((accItem) => ({
+      ...accItem,
+      open: accItem === clickedItem ? !accItem.open : false
+    }));
     setAccordionItems(updatedAccordionItems);
   };
+
+  const handleClick = (item) => {
+    closeAllExceptOne(item);
+  };
+
 // console.log(accordionItems)
 
 const surse = ["Sursa A.", "Sursa B.", "Sursa C.", "Sursa D.", "Sursa E.", "Sursa F.", "Sursa G.", "Sursa H.", "Sursa I."]; 

@@ -60,11 +60,11 @@ const ProgressPagination_evaluation = ({ cards }) => {
             >
               <div
                 className={`flip-card-subtitle ${isRotated ? "rotate" : ""}`}
-                onClick={toggleRotation}
+                // onClick={toggleRotation}
               >
                 <div className="flip-card-inner-subtitle">
                   <div className="flip-card-front-subtitle">
-                    <p>{subject.cerinta}</p>
+                    <p onClick={toggleRotation}>{subject.cerinta}</p>
                     {subject.img && (
                       <img
                         className="img-subject"
@@ -73,14 +73,14 @@ const ProgressPagination_evaluation = ({ cards }) => {
                         style={{ width: "50%" }}
                       />
                     )}
-                    {subject.source && subject.source.filter(item => item.content !== null).length > 0 && (
+                    {subject.source && !isRotated && subject.source.filter(item => item.content !== null).length > 0 && (
                       <AccordionSurse data={subject.source.filter(item => item.content !== null)} />
                     )}
                   </div>
                   <div className="flip-card-back-subtitle d-flex flex-md-column gap-3">
                   {subject?.answers.map((answer) => (
                       <React.Fragment key={answer.answer_id}>
-                        <p
+                        <p onClick={toggleRotation}
                           dangerouslySetInnerHTML={{
                             __html: answer.answer_text?.replace(/\\n/g, "<br />"),
                           }}
