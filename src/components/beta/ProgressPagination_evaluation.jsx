@@ -11,10 +11,26 @@ import AccordionSurse from "../Accordeon/AccordionSurse";
 
 // SwiperCore.use([Pagination, Navigation]);
 
+export const Modal = ({ src, alt, caption, onClose }) => {
+  return (
+    <div className="modalFlipImg">
+      <span className="close" onClick={onClose}>
+        &times;
+      </span>
+      <img className="modal-contentFlipImg" src={src} alt={alt} />
+      {/* {caption.length > 0 && <div className="caption">{caption}</div>} */}
+    </div>
+  )
+}
+
+
 const ProgressPagination_evaluation = ({ cards }) => {
   const [isRotated, setIsRotated] = useState(false);
   const [cardList, setCardList] = useState(cards);
   // const swiperRef = useRef(null);
+
+  const [isOpen, setIsOpen] = useState(false)
+  const showModal = () => setIsOpen(true)
 
   const toggleRotation = () => {
     setIsRotated(!isRotated);
@@ -22,6 +38,7 @@ const ProgressPagination_evaluation = ({ cards }) => {
 
   const handleSlideChange = () => {
     setIsRotated(false);
+    setIsOpen(false)
   };
 
   const handleStiuButtonClick = (subjectIndex) => {
@@ -66,12 +83,23 @@ const ProgressPagination_evaluation = ({ cards }) => {
                   <div className="flip-card-front-subtitle">
                     <p onClick={toggleRotation}>{subject.cerinta}</p>
                     {subject.img && (
-                      <img
-                        className="img-subject"
-                        src={`http://localhost:8000/${process.env.PUBLIC_URL + subject.img}`}
-                        alt=""
-                        style={{ width: "50%" }}
-                      />
+                      <>
+                        <img
+                          className="image"
+                          src={`http://localhost:8000/${process.env.PUBLIC_URL + subject.img}`}
+                          alt=""
+                          onClick={showModal}
+                          style={{ width: "50%" }}
+                        />
+                        {isOpen && (
+                          <Modal
+                            src={`http://localhost:8000/${process.env.PUBLIC_URL + subject.img}`}
+                            alt=""
+                            // caption="caption"
+                            onClose={() => setIsOpen(false)}
+                          />
+                        )}
+                      </>
                     )}
                     {subject.source && !isRotated && subject.source.filter(item => item.content !== null).length > 0 && (
                       <AccordionSurse data={subject.source.filter(item => item.content !== null)} />
