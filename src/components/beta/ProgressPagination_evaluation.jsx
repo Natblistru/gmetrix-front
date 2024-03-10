@@ -12,12 +12,16 @@ import AccordionSurse from "../Accordeon/AccordionSurse";
 // SwiperCore.use([Pagination, Navigation]);
 
 export const Modal = ({ src, alt, caption, onClose }) => {
+  const stopPropagation = (e) => {
+    e.stopPropagation();
+  };
+
   return (
-    <div className="modalFlipImg">
-      <span className="close" onClick={onClose}>
+    <div className="modalFlipImg" onClick={onClose}>
+      <span className="close" >
         &times;
       </span>
-      <img className="modal-contentFlipImg" src={src} alt={alt} />
+      <img className="modal-contentFlipImg" src={src} alt={alt} onClick={stopPropagation}/>
       {/* {caption.length > 0 && <div className="caption">{caption}</div>} */}
     </div>
   )
@@ -43,7 +47,7 @@ const ProgressPagination_evaluation = ({ cards }) => {
 
   const handleStiuButtonClick = (subjectIndex) => {
     const updatedCards = cardList.filter(
-      (card) => card.card_id !== subjectIndex
+      (card) => card.item_id !== subjectIndex
     );
     setCardList(updatedCards);
   };
@@ -65,6 +69,7 @@ const ProgressPagination_evaluation = ({ cards }) => {
       {cardList.length > 0 && (
         <Swiper
           pagination={{ type: "progressbar" }}
+          loop={true}
           navigation={true}
           modules={[Navigation, Pagination]}
           className="mySwiper"
@@ -81,7 +86,10 @@ const ProgressPagination_evaluation = ({ cards }) => {
               >
                 <div className="flip-card-inner-subtitle">
                   <div className="flip-card-front-subtitle">
-                    <p onClick={toggleRotation}>{subject.cerinta}</p>
+                    <div className="flip-card-front-rotation-block" onClick={toggleRotation}>
+                    <p>{subject.cerinta}</p>
+                    {subject.afirmatie && subject.name === "Subiectul II" && ( <><br/><p style={{fontSize: 'smaller'}} onClick={toggleRotation}>{subject.afirmatie}</p></>)}
+                    </div>
                     {subject.img && (
                       <>
                         <img
@@ -105,19 +113,21 @@ const ProgressPagination_evaluation = ({ cards }) => {
                       <AccordionSurse data={subject.source.filter(item => item.content !== null)} />
                     )}
                   </div>
-                  <div className="flip-card-back-subtitle d-flex flex-md-column gap-3">
-                  {subject?.answers.map((answer) => (
-                      <React.Fragment key={answer.answer_id}>
-                        <p onClick={toggleRotation}
-                          dangerouslySetInnerHTML={{
-                            __html: answer.answer_text?.replace(/\\n/g, "<br />"),
-                          }}
-                        />
-                      </React.Fragment>
-                    ))}
+                  <div className="flip-card-back-subtitle d-flex flex-md-column gap-3" onClick={toggleRotation}>
+                    <div className="flip-card-back-answers-block">
+                      {subject?.answers.map((answer) => (
+                          <React.Fragment key={answer.answer_id}>
+                            <p
+                              dangerouslySetInnerHTML={{
+                                __html: answer.answer_text?.replace(/\n/g, "<br />"),
+                              }}
+                            />
+                          </React.Fragment>
+                        ))}
+                    </div>
                     <button
                       className="btn-reper p-2"
-                      onClick={() => handleStiuButtonClick(subject.card_id)}
+                      onClick={() => handleStiuButtonClick(subject.item_id)}
                     >
                       Stiu
                     </button>

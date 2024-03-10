@@ -1227,7 +1227,7 @@ img.download-img:hover{
   font-weight: 400;
   line-height: 1;
   margin-left: 20px;
-  padding: 0 0.5em; 
+  padding: 10px; 
   text-align: center;
   font-weight: 700;
 
@@ -2751,3 +2751,16 @@ filter: brightness(0) saturate(100%) invert(0%) sepia(7%) saturate(98%) hue-rota
 .swiper-slide:nth-child(9n+7) .flip-card-back-subtitle { background-color: #fcf6bd; color: #000; }
 .swiper-slide:nth-child(9n+8) .flip-card-back-subtitle { background-color: #fec8c3; color: #000; }
 .swiper-slide:nth-child(9n+9) .flip-card-back-subtitle { background-color: #ff99c8; color: #000; }
+
+.flip-card-front-rotation-block {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.flip-card-back-answers-block {
+  overflow-y: auto;
+  scrollbar-width: thin;
+  padding: 10px;
+}
