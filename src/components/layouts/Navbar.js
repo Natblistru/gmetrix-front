@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { setLanguage } from './../ReduxComp/languageActions';
 import axios from "axios";
 import Swal from 'sweetalert2'
 
@@ -11,6 +12,9 @@ import './../../assets/admin/js/scripts.js'
 import SearchComponent from './SearchComponent.js';
 
 function Navbar() {
+
+  const dispatch = useDispatch();
+  const language = useSelector(state => state.language);
 
   const navbarRef = useRef(null);
   const history = useHistory();
@@ -48,6 +52,10 @@ function Navbar() {
       window.onscroll = null;
     };
   }, [navbarRef]); 
+
+  const handleLanguageChange = (e) => {
+    dispatch(setLanguage(e.target.value));
+  }
 
   const logoutSubmit = (e) => {
     e.preventDefault();
@@ -126,7 +134,7 @@ function Navbar() {
   return (
     <nav ref={navbarRef} id="navbar" className="navbar navbar-expand-lg shadow sticky-top" style={{backgroundColor: '#e3f2fd'}}>
       <div className="containerBts">
-        <Link className="navbar-brand" to="#">ExamenGimnazial.md</Link>
+        <Link className="navbar-brand" to="#">GMetrix.md</Link>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
@@ -143,6 +151,10 @@ function Navbar() {
               <Link className="nav-link" to="#">Collection</Link>
             </li> */}
             {AuthButtons}
+            <select className="form-select-little" value={language} onChange={handleLanguageChange}>
+              <option value="en">EN</option>
+              <option value="ro">RO</option>
+            </select>
           </ul>
         </div>
       </div>

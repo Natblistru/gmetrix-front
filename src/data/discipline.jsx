@@ -7,7 +7,7 @@ let discipline = [{
   },
   {
     id: "2",
-    name: "Matematica, clasa 9",
+    name: "JavaScript, clasa 9",
     img: "/images/matematica.jpg",
     path:"/matem",
   },

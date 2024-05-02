@@ -21,6 +21,7 @@ import currentIndexTestReducer from "./currentIndexTestReducer";
 import studentReducer from "./studentReducer";
 import raspunsuriReducer from './raspunsuriReducer';
 import evaluationAllReducer from "./evaluationAllReducer";
+import languageReducer from './languageReducer';
 
 const combinedReducers = combineReducers({
   raspunsuri: raspunsuriReducer,
@@ -42,6 +43,7 @@ const combinedReducers = combineReducers({
   allTeacherTests: allTeacherTestsReducer,
   currentIndexTest: currentIndexTestReducer,
   currentStudent: studentReducer,
+  language: languageReducer,
 })
 
 const store = createStore(

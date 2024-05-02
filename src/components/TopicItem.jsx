@@ -9,6 +9,7 @@ import ProgressBar from "./ProgressBar";
 const TopicItem = ({ item }) => {
   const tema = item;
   const teachersForSubtitle = useSelector((state) => state.teachersForSubtitle);
+  const language = useSelector(state => state.language);
 
   useEffect(() => {
     AOS.init();
@@ -22,12 +23,14 @@ const TopicItem = ({ item }) => {
     return teachersForSubtitle[themeLearningProgramsId] || [];
   };
 
+  const title = language === "ro" ? tema.capitol_name_ro : tema.capitol_name;
+
   return (
     <li className="topic-item" key={tema.id} data-aos="fade-up">
       <div className="topic-header">
         <div className="topic-header-title">
           <span className="num"></span>
-          <h3>{tema.capitol_name}</h3>
+          <h3>{title}</h3>
         </div>
         <ProgressBar proc={tema.capitol_media} />
       </div>
