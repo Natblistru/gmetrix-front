@@ -9,6 +9,7 @@ const SubTopicItem = ({ subTit, idx, teachers }) => {
   // console.log(teachers)
   const [isModalOpen, setModalOpen] = useState(false);
   const currentSubject = useSelector((state) => state.currentSubject);
+  const language = useSelector(state => state.language);
   // console.log(currentSubject)
   // console.log(currentSubject.currentSubject)
 
@@ -64,6 +65,8 @@ const SubTopicItem = ({ subTit, idx, teachers }) => {
     linkTo = `${subtitle.path_tema}?teacher=${teachers[0].teacher_id}&theme=${subtitle.tema_id}&level=1&disciplina=${subject_id}&teachername=${teachers[0].teacher_name}`;
   }
 
+  const subtitle_name = language === "ro" ? subtitle.tema_name_ro : subtitle.tema_name;
+
   return (
     <li key={idx}>
       <div className="subtopic-header">
@@ -74,10 +77,10 @@ const SubTopicItem = ({ subTit, idx, teachers }) => {
               to={(location) => ({ ...location })}
               onClick={handleLinkClick}
             >
-              {subtitle.tema_name}
+              {subtitle_name}
             </Link>
           ) : (
-            <Link to={linkTo}>{subtitle.tema_name}</Link>
+            <Link to={linkTo}>{subtitle_name}</Link>
           )}
         </h4>
       </div>
