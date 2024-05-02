@@ -134,7 +134,7 @@ function Navbar() {
   return (
     <nav ref={navbarRef} id="navbar" className="navbar navbar-expand-lg shadow sticky-top" style={{backgroundColor: '#e3f2fd'}}>
       <div className="containerBts">
-        <Link className="navbar-brand" to="#">GMetrix.md</Link>
+        <Link className="navbar-brand" to="#">GMetrix1.md</Link>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
