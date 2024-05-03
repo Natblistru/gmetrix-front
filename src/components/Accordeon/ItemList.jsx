@@ -8,6 +8,7 @@ const ItemList = ({ list, className, type, onItemClick }) => {
   const teacherVideo = searchParams.get('teacher');
   const currentThemeObject = useSelector(state => state.currentTheme);
   const currentTheme = currentThemeObject.currentTheme || JSON.parse(localStorage.getItem('currentTheme'));
+  const language = useSelector(state => state.language);
 
   const currentSubject = useSelector(state => state.currentSubject);
 
@@ -98,7 +99,7 @@ const ItemList = ({ list, className, type, onItemClick }) => {
                   )
                 ) : (
 
-                  <Link to={dynamicPath}>{type == "subtopic" ? subtitle.subtopic_name : subtitle.name}</Link>
+                  <Link to={dynamicPath}>{type == "subtopic" ? subtitle.subtopic_name : (language === "ro" ? subtitle.name_ro : subtitle.name)}</Link>
                 )}
               </div>
             </div>
