@@ -7,6 +7,8 @@ import {
   fetchThemeVideoSuccess,
   fetchThemeVideoFailure,
   fetchEvaluationsSuccess,
+  fetchThemePresentationSuccess,
+  fetchThemePresentationFailure,
 } from "../components/ReduxComp/actions";
 
 import axios from "axios";
@@ -103,6 +105,16 @@ const Tema = () => {
         console.error(err);
         dispatch(fetchThemeVideoFailure());
       }
+
+      try {
+        const res = await axios.get(
+          `http://localhost:8000/api/teacherThemePresentation?level=1&disciplina=${subject_id}&teacher=${teacherVideo}&theme=${theme}`
+        );
+        dispatch(fetchThemePresentationSuccess(res.data));
+      } catch (err) {
+        console.error(err);
+        dispatch(fetchThemePresentationFailure());
+      }
     };
     fetchData();
   }, [currentSubject, location.search]);
@@ -156,7 +168,6 @@ const Tema = () => {
             
           </>
         )}
-        <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vSQJkUEiUn01vS5yxfbTKfzFquRJHzk9QsFCt3WfM0_4Wgfos4e5-fJUtx5nZLnQA/embed?start=false&loop=false&delayms=3000" width="730" height="550" frameborder="0" allowfullscreen></iframe>
       </Wrapper>
     </>
   );

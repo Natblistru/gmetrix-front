@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   updateSubjectBreadcrumb,
   fetchThemeVideoSuccess,
+  fetchThemePresentationSuccess,
   updateCurrentSubject,
 } from "../components/ReduxComp/actions";
 import AOS from "aos";
@@ -65,6 +66,7 @@ const Capitole = (props) => {
     const fetchCurrentData = async () => {
       try {
         dispatch(fetchThemeVideoSuccess([]));
+        dispatch(fetchThemePresentationSuccess([]));
 
         if (capitole.length > 0) {
           dispatch(updateCurrentSubject(capitole[0]));

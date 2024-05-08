@@ -8,6 +8,7 @@ import teachersForSubtitleReducer from "./teachersForSubtitleReducer";
 import capitoleReducer from './capitoleReducer';
 import currentThemeReducer from './currentThemeReducer';
 import themeVideoReducer from './themeVideoReducer';
+import themePresentationReducer from './themePresentationReducer';
 import evaluationReducer from "./evaluationReducer";
 import evaluation1Reducer from "./evaluation1Reducer";
 import evaluation2Reducer from "./evaluation2Reducer";
@@ -31,6 +32,7 @@ const combinedReducers = combineReducers({
   capitole: capitoleReducer,
   currentTheme: currentThemeReducer,
   themeVideo: themeVideoReducer,
+  themePresentation: themePresentationReducer,
   evaluations: evaluationReducer,
   evaluations1: evaluation1Reducer,
   evaluations2: evaluation2Reducer,

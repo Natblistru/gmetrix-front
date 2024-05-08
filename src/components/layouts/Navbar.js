@@ -84,6 +84,7 @@ function Navbar() {
           'evaluations_all',
           'teachersForSubtitle',
           'themeVideo',
+          'themePresentation',
           'topics',
         ];
         

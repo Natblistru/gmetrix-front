@@ -7,12 +7,17 @@ import VideoLesson from '../VideoLesson';
 import ItemAccordeon from "./ItemAccordeon";
 import ItemList from "./ItemList";
 import { scroller } from 'react-scroll';
+import Presentation from '../Presentation';
 
 const ListAccordeon = (props) => {
   const [videoBreakpoints, setVideoBreakpoints] = useState();
   const [videoSource, setVideoSource] = useState("");
   const [videoTitle, setVideoTitle] = useState("");
+  const [presentationSource, setPresentationSource] = useState("");
+  const [presentationTitle, setPresentationTitle] = useState("");
+
   const themeVideo = useSelector(state => state.themeVideo);
+  const themePresentation = useSelector(state => state.themePresentation);
   const aplicatiiListBD = useSelector(state => state.evaluations);
   const topics = useSelector(state => state.topics);
 
@@ -65,11 +70,29 @@ const ListAccordeon = (props) => {
     }
   }, [themeVideo]);
 
+  useEffect(() => {
+    console.log(themePresentation); 
+
+    if (themePresentation && themePresentation.length > 0) {
+
+      setPresentationSource(themePresentation[0].presentation_source);
+      setPresentationTitle(themePresentation[0].presentation_title);
+    }
+  }, [themePresentation]);
+
   return (
     <div className={classes}>
       <ItemAccordeon titlu="Teorie" {...props} open={true}>
         <ItemList list={titleList} type={"topic"}/>
       </ItemAccordeon>
+
+      {themePresentation && themePresentation.length > 0 && (
+        <>
+        <ItemAccordeon titlu="Prezentare" {...props} /*className="schema-recapitulativa"*/ open={true}>
+          <Presentation source= {presentationSource} title={presentationTitle} />
+        </ItemAccordeon>
+        </>
+      )}
 
       {videoBreakpoints && (
         <>
