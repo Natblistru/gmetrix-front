@@ -51,7 +51,6 @@ const Tema = () => {
 
   const student_id = localStorage.getItem('auth_role') == 'student' ? currentStudent : 1;
 
-
   useEffect(() => {
     if (!currentSubject) {
       return;
@@ -154,8 +153,10 @@ const Tema = () => {
                 </button>
               </div>
             </div>
+            
           </>
         )}
+        <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vSQJkUEiUn01vS5yxfbTKfzFquRJHzk9QsFCt3WfM0_4Wgfos4e5-fJUtx5nZLnQA/embed?start=false&loop=false&delayms=3000" width="730" height="550" frameborder="0" allowfullscreen></iframe>
       </Wrapper>
     </>
   );
