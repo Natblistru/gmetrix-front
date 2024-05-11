@@ -153,12 +153,19 @@ const TestQuiz = ({
             : " incorrect"
         }
       >
-        <p style={{paddingBottom: '20px'}}>
-          {listItems[currentItemIndex].test_item_task.includes('(')
+        {/* <p style={{paddingBottom: '20px'}}> */}
+          {/* {listItems[currentItemIndex].test_item_task.includes('(')
             ? listItems[currentItemIndex].test_item_task.substring(0, listItems[currentItemIndex].test_item_task.indexOf('('))
             : listItems[currentItemIndex].test_item_task
-          }
-        </p>
+          } */}
+        {/* </p> */}
+
+        {listItems[currentItemIndex].test_item_task.split('\\n').map((line, index, array) => (
+          <p key={index} style={{ paddingBottom: index === array.length - 1 ? '20px' : '0' }}>
+            {line}
+          </p>
+        ))}
+
         {listItems[currentItemIndex].test_item_options.map((answer, idx) => {
           return (
             <RadioButton
