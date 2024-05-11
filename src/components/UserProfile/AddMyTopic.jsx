@@ -94,6 +94,8 @@ function AddMyTopic({ onBackToList, userData }) {
     theme_learning_program_id: "",
     title: "",
     source: "",
+    title_presentation: "",
+    source_presentation: "",
   });
 
   useEffect(() => {
@@ -254,6 +256,44 @@ function AddMyTopic({ onBackToList, userData }) {
           succesTotal = false;
         });
     }
+
+    if (
+      teacherTopicInput.title_presentation.trim() !== "" &&
+      teacherTopicInput.source_presentation.trim() !== ""
+    ) {
+      let formData = new FormData();
+      formData.append("name", teacherTopicInput.title_presentation);
+      formData.append("path", teacherTopicInput.source_presentation);
+      formData.append("teacher_id", userData.teacher.id);
+      formData.append(
+        "theme_learning_program_id",
+        teacherTopicInput.theme_learning_program_id
+      );
+      formData.append("status", 0);
+
+      axios
+        .post(`http://localhost:8000/api/store-myteacherPresentation`, formData)
+        .then((res) => {
+          if (res.data.status === 201) {
+            Swal.fire({
+              title: "Succes",
+              text: res.data.message,
+              icon: "success",
+            });
+            setErrors([]);
+          } else if (res.data.status === 422) {
+            Swal.fire({
+              title: "All fields are mandatory",
+              text: Object.values(res.data.errors).flat().join(" "),
+              icon: "error",
+            });
+            succesTotal = false;
+            setErrors(res.data.errors);
+          }
+        });
+    }
+
+
 
     if (
       teacherTopicInput.title.trim() !== "" &&
@@ -659,6 +699,40 @@ function AddMyTopic({ onBackToList, userData }) {
                 Add Row
               </button>
             </div>
+
+            <div className="rowBts">
+              <div className="col-md-6">
+                <div className="form-group m-3">
+                  <label>Presentation Title</label>
+                  <input
+                    type="text"
+                    name="title_presentation"
+                    onChange={handleInput}
+                    value={teacherTopicInput.title_presentation}
+                    className="form-control"
+                  />
+                  <span style={{ color: "red", fontSize: "0.8rem" }}>
+                    {errorList.title_presentation}
+                  </span>
+                </div>
+              </div>
+              <div className="col-md-6">
+                <div className="form-group m-3">
+                  <label>Presentation Source</label>
+                  <input
+                    type="text"
+                    name="source_presentation"
+                    onChange={handleInput}
+                    value={teacherTopicInput.source_presentation}
+                    className="form-control"
+                  />
+                  <span style={{ color: "red", fontSize: "0.8rem" }}>
+                    {errorList.source_presentation}
+                  </span>
+                </div>
+              </div>
+            </div>
+
 
             <div className="rowBts">
               <div className="col-md-6">
