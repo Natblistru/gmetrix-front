@@ -160,11 +160,7 @@ const TestQuiz = ({
           } */}
         {/* </p> */}
 
-        {listItems[currentItemIndex].test_item_task.split('\\n').map((line, index, array) => (
-          <p key={index} style={{ paddingBottom: index === array.length - 1 ? '20px' : '0' }}>
-            {line}
-          </p>
-        ))}
+        <div dangerouslySetInnerHTML={{ __html: listItems[currentItemIndex].test_item_task }} />
 
         {listItems[currentItemIndex].test_item_options.map((answer, idx) => {
           return (

@@ -238,7 +238,7 @@ function MyFormativeTest({title, userData, onBackToList, selectedType }) {
 
   const [errorList, setErrors] = useState([]);
 
-
+  const [pictures, setPictures] = useState([]);
 
   const [testItemInput, setTestItemInput] = useState({
     learning_program_id: '',
@@ -502,6 +502,10 @@ function MyFormativeTest({title, userData, onBackToList, selectedType }) {
         if (style === "UNDERLINE") {
           inlineStyles += 'text-decoration: underline; ';
         }
+
+        if (style === "CODE") {
+          inlineStyles += 'font-family: monospace; background-color: #f4f4f4; padding: 2px 4px; border-radius: 4px; ';
+        }
     
         if (style.startsWith("color")) {
           const color = style.replace('color-', '');
@@ -562,6 +566,7 @@ function MyFormativeTest({title, userData, onBackToList, selectedType }) {
     lastAddText3.current = []
 
     let resultObjectWordsArray = []
+    let resultHtmlArray = []
     if (selectedType == "words") {
       tabs.map((tab, index) => {
 
@@ -599,6 +604,20 @@ function MyFormativeTest({title, userData, onBackToList, selectedType }) {
       });
     }
 
+    if (selectedType == "quiz") {
+      tabs.map((tab, index) => {
+
+        const currentContent = editorStates[index].getCurrentContent();
+        const contentWithStyles = convertToRaw(currentContent);
+
+        const html = convertContentStateToHTML(contentWithStyles.blocks);
+        console.log(html)
+
+        resultHtmlArray = [...resultHtmlArray, {
+          TaskHtml: html,
+        }];
+      });
+    }
 
     if(selectedType=="snap") {
       handleConcatenate();
@@ -606,7 +625,7 @@ function MyFormativeTest({title, userData, onBackToList, selectedType }) {
 
     await processFormativeTest(succesTotal);
 
-    await processTestItems(succesTotal);
+    await processTestItems(succesTotal,resultHtmlArray);
 
     if(selectedType === 'dnd_chrono' || 
       selectedType === 'dnd' || 
@@ -671,7 +690,7 @@ function MyFormativeTest({title, userData, onBackToList, selectedType }) {
     });
   }
 
-  async function processTestItems(succesTotal) {
+  async function processTestItems(succesTotal,resultHtmlArray) {
     let listItems = []
 
     try {
@@ -680,7 +699,8 @@ function MyFormativeTest({title, userData, onBackToList, selectedType }) {
   
         // Construiește obiectul FormData pentru fiecare rând
         const formData = new FormData();
-        formData.append('task', tab.testContent.task);
+        // formData.append('task', tab.testContent.task);
+        formData.append('task', resultHtmlArray[tabIndex].TaskHtml);        
         formData.append('type', selectedType);
         formData.append('test_complexity_id', tab.testContent.test_complexity_id);
         formData.append('teacher_topic_id', testItemInput.teacher_topic_id);
@@ -1112,6 +1132,10 @@ function MyFormativeTest({title, userData, onBackToList, selectedType }) {
           handleAddTestRow={handleAddTestRow}
           errorList={errorList}
           testComplexityList={testComplexityList}
+          editorStates = {editorStates}
+          setEditorStates = {setEditorStates}
+          pictures={pictures}
+          setPictures={setPictures}
         />
       )}
       {(selectedType === "dnd" ) && (

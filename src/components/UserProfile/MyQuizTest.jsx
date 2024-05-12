@@ -60,7 +60,13 @@ const TabContent = ({ activeTab, content, handleInputTest, handleRemoveTestRow, 
     onChangeFormat(index, newEditorState);
   };
 
-
+  const handleCodeClick = (index) => {
+    const newEditorState = RichUtils.toggleInlineStyle(
+      editorStates[index],
+      "CODE"
+    );
+    onChangeFormat(index, newEditorState);
+  };
 
   const handlePicture = (e, index) => {
     const file = e.target.files[0];
@@ -99,7 +105,7 @@ const TabContent = ({ activeTab, content, handleInputTest, handleRemoveTestRow, 
             </div>
 
 
-            <div className="white-background col-md-6">
+            <div className="white-background col-md-8">
               <label style={{ marginBottom: "10px", display: "block" }}>
                 Task
               </label>
@@ -125,7 +131,13 @@ const TabContent = ({ activeTab, content, handleInputTest, handleRemoveTestRow, 
                 >
                   Underline
                 </button>
-
+                <button
+                  type="button"
+                  className="small-button"
+                  onClick={() => handleCodeClick(activeTab)}
+                >
+                  Code
+                </button>
               </div>
               <Editor
                 editorState={editorStates[activeTab]}
@@ -136,7 +148,7 @@ const TabContent = ({ activeTab, content, handleInputTest, handleRemoveTestRow, 
             </div>
 
 
-            <div className="col-md-6">
+            <div className="col-md-4">
               <div className="form-group mx-3 my-1">
                 <label>Complexity</label>
                 <select name="test_complexity_id" onChange={(event) => handleInputTest(activeTab, null, event)} value={content[activeTab].test_complexity_id} className="form-control">
@@ -182,7 +194,7 @@ const TabContent = ({ activeTab, content, handleInputTest, handleRemoveTestRow, 
                   </button> */}
                   <button
                     className="btn-close-modal"
-                    style={{ background: "transparent", right: "126px" }}
+                    style={{ background: "transparent", right: "22px" }}
                     onClick={() => handleDeletePicture(activeTab)}
                   ></button>
 
@@ -267,16 +279,16 @@ const TabContent = ({ activeTab, content, handleInputTest, handleRemoveTestRow, 
 )}
 ;
 
-function MyQuizTest({ tabs, addTab, removeTab, onRemoveTab, activeTab, onTabClick, tabContent, handleInputTest, handleRemoveTestRow, handleAddTestRow, errorList, testComplexityList }) {
-  const [editorStates, setEditorStates] = useState(() => {
-    const initialEditorStates = [];
-    for (let i = 0; i < 10; i++) {
-      initialEditorStates.push(EditorState.createEmpty());
-    }
-    return initialEditorStates;
-  });
+function MyQuizTest({ tabs, addTab, removeTab, onRemoveTab, activeTab, onTabClick, tabContent, handleInputTest, handleRemoveTestRow, handleAddTestRow, errorList, testComplexityList, editorStates, setEditorStates, pictures, setPictures }) {
+  // const [editorStates, setEditorStates] = useState(() => {
+  //   const initialEditorStates = [];
+  //   for (let i = 0; i < 10; i++) {
+  //     initialEditorStates.push(EditorState.createEmpty());
+  //   }
+  //   return initialEditorStates;
+  // });
 
-  const [pictures, setPictures] = useState([]);
+  // const [pictures, setPictures] = useState([]);
   
   return (
     <>
