@@ -78,6 +78,7 @@ function MyFormativeTest({title, userData, onBackToList, selectedType }) {
       testContent: {
         task: '',
         test_complexity_id: '',
+        image_path: '',
         column1: '', 
         column2: '',
         column3: '',
@@ -700,14 +701,21 @@ function MyFormativeTest({title, userData, onBackToList, selectedType }) {
         // Construiește obiectul FormData pentru fiecare rând
         const formData = new FormData();
         // formData.append('task', tab.testContent.task);
-        formData.append('task', resultHtmlArray[tabIndex].TaskHtml);        
+        formData.append('task', resultHtmlArray[tabIndex].TaskHtml);  
+        formData.append('image',pictures[tabIndex] );
+        formData.append('image_path',tab.testContent.image_path );      
         formData.append('type', selectedType);
         formData.append('test_complexity_id', tab.testContent.test_complexity_id);
         formData.append('teacher_topic_id', testItemInput.teacher_topic_id);
         formData.append('status', 0);
   
         // Trimite FormData către server pentru fiecare rând
-        const response = await axios.post(`http://localhost:8000/api/store-mytest-item`, formData);
+        const response = await axios.post(`http://localhost:8000/api/store-mytest-item`, formData,
+            {
+              headers: {
+                "Content-Type": "multipart/form-data",
+              },
+            });
   
         if (response.data.status === 201) {
           Swal.fire({
