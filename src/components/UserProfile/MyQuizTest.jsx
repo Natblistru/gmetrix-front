@@ -90,7 +90,7 @@ const TabContent = ({ activeTab, content, handleInputTest, handleRemoveTestRow, 
     {content[activeTab] && (
       <div id="block_quiz" className="border mx-3 p-3 shadow-sm">
           <div className="rowBts">
-            <div className="col-md-8">
+            {/* <div className="col-md-8">
               <div className="form-group">
                 <label>Task</label>
                 <input
@@ -102,7 +102,7 @@ const TabContent = ({ activeTab, content, handleInputTest, handleRemoveTestRow, 
                 />
                 <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.task}</span>
               </div>
-            </div>
+            </div> */}
 
 
             <div className="white-background col-md-8">
@@ -149,7 +149,7 @@ const TabContent = ({ activeTab, content, handleInputTest, handleRemoveTestRow, 
 
 
             <div className="col-md-4">
-              <div className="form-group mx-3 my-1">
+              <div className="form-group mx-3 mt-4 mb-1">
                 <label>Complexity</label>
                 <select name="test_complexity_id" onChange={(event) => handleInputTest(activeTab, null, event)} value={content[activeTab].test_complexity_id} className="form-control">
                   <option>Select Test Complexity</option>
@@ -208,7 +208,7 @@ const TabContent = ({ activeTab, content, handleInputTest, handleRemoveTestRow, 
 
           </div>  
           {content[activeTab].testRows.map((row, index) => (
-            <div className="rowBts" key={index} style={{ alignItems: 'end' }}>
+            <div className="rowBts" key={index} style={{ alignItems: 'end', marginTop:'10px' }}>
             <div className="col-md-4">
               <div className="form-group">
                 {index === 0 && <label>Option</label>}

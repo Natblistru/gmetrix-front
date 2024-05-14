@@ -605,7 +605,8 @@ function MyFormativeTest({title, userData, onBackToList, selectedType }) {
       });
     }
 
-    if (selectedType == "quiz") {
+    console.log(selectedType)
+    if (selectedType == "quiz" || selectedType === "check") {
       tabs.map((tab, index) => {
 
         const currentContent = editorStates[index].getCurrentContent();

@@ -199,13 +199,33 @@ const TestCheck = ({
               : " incorrect"
           }
         >
-        <p style={{paddingBottom: '20px'}}>
+        {/* <p style={{paddingBottom: '20px'}}>
           {listItems[currentItemIndex].test_item_task.includes('(')
             ? listItems[currentItemIndex].test_item_task.substring(0, listItems[currentItemIndex].test_item_task.indexOf('('))
             : listItems[currentItemIndex].test_item_task
           }
-        </p>
-          <Puzzle />
+        </p> */}
+          {/* <Puzzle /> */}
+
+          <div dangerouslySetInnerHTML={{ __html: listItems[currentItemIndex].test_item_task }} />
+
+          <img
+            className="img-subject"
+            src={`http://localhost:8000/${
+              process.env.PUBLIC_URL + listItems[currentItemIndex]?.image_path
+            }`}
+            alt=""
+            style={{
+              width: isNaN(
+                parseInt(listItems[currentItemIndex]?.procent_paper, 10)
+              )
+                ? "40%"
+                : `${
+                    100 - parseInt(listItems[currentItemIndex]?.procent_paper, 10)
+                  }%`,
+            }}
+          />
+
           {listItems[currentItemIndex].test_item_options.map((answer, idx) => {
             return (
               <CheckBox
