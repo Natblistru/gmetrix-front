@@ -18,7 +18,7 @@ const TestCheck = ({
   setResponseReceived
 }) => {
   const currentTests = useSelector(state => state.currentTests);
-  const currentIndexTest = useSelector(state => state.currentIndexTest);
+  const currentIndexTestObject = useSelector(state => state.currentIndexTest);
   const currentStudentObject = useSelector(state => state.currentStudent);
   const currentStudent = currentStudentObject ? currentStudentObject.currentStudent : 1;
 
@@ -47,6 +47,14 @@ const TestCheck = ({
   // console.log(currentTests[currentIndexTest].order_number_options);
 
   // console.log(currentIndexTest);
+
+  let currentIndexTest;
+
+  if (typeof currentIndexTestObject === 'object') {
+      currentIndexTest = currentIndexTestObject.currentIndexTest;
+  } else {
+      currentIndexTest = currentIndexTestObject;
+  }
 
   const listItems = currentTests[currentIndexTest].order_number_options;
 // console.log(listItems[currentItemIndex].test_item_options)

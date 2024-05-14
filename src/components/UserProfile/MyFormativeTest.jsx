@@ -233,9 +233,17 @@ function MyFormativeTest({title, userData, onBackToList, selectedType }) {
   for (let i = 0; i < 10; i++) {
     initialEditorStates.push(EditorState.createEmpty());
   }
+
+  const initialEditorStatesWords = [];
+  for (let i = 0; i < 10; i++) {
+    initialEditorStatesWords.push(EditorState.createEmpty());
+  }
   
   // const [editorStates, setEditorStates] = useState(() => tabs.map(() => EditorState.createEmpty()));
   const [editorStates, setEditorStates] = useState(initialEditorStates);
+
+  const [editorStatesWords, setEditorStatesWords] = useState(initialEditorStatesWords);
+
 
   const [errorList, setErrors] = useState([]);
 
@@ -571,13 +579,13 @@ function MyFormativeTest({title, userData, onBackToList, selectedType }) {
     if (selectedType == "words") {
       tabs.map((tab, index) => {
 
-        const currentContent = editorStates[index].getCurrentContent();
+        const currentContent = editorStatesWords[index].getCurrentContent();
         const contentWithStyles = convertToRaw(currentContent);
         const html = convertContentStateToHTML(contentWithStyles.blocks);
 
-        const htmlplainP = html.replace(/<p>/g, '').replace(/<\/p>/g, '');
+        const htmlplainP = html.replace(/<p>/g, '').replace(/<\/p>/g, '\n');
 
-        const htmlSpec = htmlplainP.replace(/<span style="font-weight: bold; ">/g, ';<').replace(/<\/span>/g, '>;');
+        const htmlSpec = htmlplainP.replace(/<span style="font-weight: bold; ">/g, ';#').replace(/<\/span>/g, '#;');
         const textWithQuotes = '"' + htmlSpec + '"';
 
         const htmlplain = htmlplainP.replace(/<span style="font-weight: bold; ">/g, '').replace(/<\/span>/g, '');
@@ -606,7 +614,7 @@ function MyFormativeTest({title, userData, onBackToList, selectedType }) {
     }
 
     console.log(selectedType)
-    if (selectedType == "quiz" || selectedType === "check" || selectedType === "snap") {
+    if (selectedType == "quiz" || selectedType === "check" || selectedType === "snap" || selectedType === "words") {
       tabs.map((tab, index) => {
 
         const currentContent = editorStates[index].getCurrentContent();
@@ -1247,8 +1255,12 @@ function MyFormativeTest({title, userData, onBackToList, selectedType }) {
           handleAddTestRow={handleAddTestRow}
           errorList={errorList}
           testComplexityList={testComplexityList}
+          editorStatesWords = {editorStatesWords}
+          setEditorStatesWords = {setEditorStatesWords}
           editorStates = {editorStates}
           setEditorStates = {setEditorStates}
+          pictures={pictures}
+          setPictures={setPictures}
         />
       )}
       <button type="button" className="btnBts btn-success px-4 m-3 float-end" onClick={handleButtonClick} style={{position: 'absolute', bottom: '0px', right: '30px'}}>

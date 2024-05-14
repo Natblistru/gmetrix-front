@@ -31,7 +31,7 @@ const TestWords = ({
   setResponseReceived
 }) => {
   const currentTests = useSelector(state => state.currentTests);
-  const currentIndexTest = useSelector(state => state.currentIndexTest);
+  const currentIndexTestObject = useSelector(state => state.currentIndexTest);
   const currentStudentObject = useSelector(state => state.currentStudent);
   const currentStudent = currentStudentObject ? currentStudentObject.currentStudent : 1;
 
@@ -42,12 +42,15 @@ const TestWords = ({
 
   const [selectedOptions, setSelectedOptions] = useState([])
 
+  let currentIndexTest;
+
+  if (typeof currentIndexTestObject === 'object') {
+      currentIndexTest = currentIndexTestObject.currentIndexTest;
+  } else {
+      currentIndexTest = currentIndexTestObject;
+  }
+
   const [listItems, setListItems] = useState(currentTests[currentIndexTest].order_number_options)
-
-
-  // console.log(currentTests)
-  // console.log(currentTests[currentIndexTest].order_number_options);
-
 
   useEffect(()=>{
     setListItems(currentTests[currentIndexTest].order_number_options);
@@ -172,6 +175,7 @@ const TestWords = ({
       trimiteResultsLaBackend(element);
     }
 
+    console.log(sentence)
     const correct = sentence
       .map((w) => (w.type === "answer" ? w.text === w.displayed : true))
       .every(Boolean);
@@ -248,12 +252,32 @@ const TestWords = ({
           }
         >
           <div className="app-container">
-              <p style={{paddingBottom: '20px'}}>
+              {/* <p style={{paddingBottom: '20px'}}>
               {listItems[currentItemIndex].test_item_task.includes('(')
                 ? listItems[currentItemIndex].test_item_task.substring(0, listItems[currentItemIndex].test_item_task.indexOf('('))
                 : listItems[currentItemIndex].test_item_task
               }
-            </p>
+            </p> */}
+
+          <div dangerouslySetInnerHTML={{ __html: listItems[currentItemIndex].test_item_task }} />
+
+          <img
+                className="img-subject"
+                src={`http://localhost:8000/${
+                  process.env.PUBLIC_URL + listItems[currentItemIndex]?.image_path
+                }`}
+                alt=""
+                style={{
+                  width: isNaN(
+                    parseInt(listItems[currentItemIndex]?.procent_paper, 10)
+                  )
+                    ? "40%"
+                    : `${
+                        100 - parseInt(listItems[currentItemIndex]?.procent_paper, 10)
+                      }%`,
+                }}
+              />
+            {console.log(sentence)}
             <SentenceBox
               marked={showResults}
               onDrop={onDrop}

@@ -21,13 +21,21 @@ const TestQuiz = ({
   const currentTests = useSelector(state => state.currentTests);
   // console.log(currentTests)
 
-  const currentIndexTest = useSelector(state => state.currentIndexTest);
-  // console.log(currentIndexTest)
+  const currentIndexTestObject = useSelector(state => state.currentIndexTest);
+  // console.log(currentIndexTestObject)
   const currentStudentObject = useSelector(state => state.currentStudent);
   const currentStudent = currentStudentObject ? currentStudentObject.currentStudent : 1;
 
   const [selectedValue, setSelectedValue] = useState("");
   const [selectedOptions, setSelectedOptions] = useState([])
+
+  let currentIndexTest;
+
+  if (typeof currentIndexTestObject === 'object') {
+      currentIndexTest = currentIndexTestObject.currentIndexTest;
+  } else {
+      currentIndexTest = currentIndexTestObject;
+  }
 
   const listItems = currentTests[currentIndexTest].order_number_options;
   // console.log(currentTests[currentIndexTest])

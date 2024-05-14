@@ -11,8 +11,13 @@ const SentenceBox = ({ marked, onDrop, sentence }) => {
     return sentence.map((w, i) => {
       // console.log(w.text,w.id,w.displayed,w.placed);
       if (w.type === 'word') {
-
-        return <div className="word-box-inline" data-testid={'word'} key={i}>{w.text}</div>;
+        const textWithBreaks = w.text.split('\n').map((line, index) => (
+          <React.Fragment key={index}>
+            {index > 0 && <br />} {/* Adaugă <br /> între liniile de text */}
+            {line}
+          </React.Fragment>
+        ));
+        return <div className="word-box-inline" data-testid={'word'} key={i}>{textWithBreaks}</div>;
       }
       
       let bgcolor;
