@@ -606,7 +606,7 @@ function MyFormativeTest({title, userData, onBackToList, selectedType }) {
     }
 
     console.log(selectedType)
-    if (selectedType == "quiz" || selectedType === "check") {
+    if (selectedType == "quiz" || selectedType === "check" || selectedType === "snap") {
       tabs.map((tab, index) => {
 
         const currentContent = editorStates[index].getCurrentContent();
@@ -702,6 +702,7 @@ function MyFormativeTest({title, userData, onBackToList, selectedType }) {
         // Construiește obiectul FormData pentru fiecare rând
         const formData = new FormData();
         // formData.append('task', tab.testContent.task);
+        console.log(resultHtmlArray[tabIndex].TaskHtml);
         formData.append('task', resultHtmlArray[tabIndex].TaskHtml);  
         formData.append('image',pictures[tabIndex] );
         formData.append('image_path',tab.testContent.image_path );      
@@ -837,6 +838,7 @@ function MyFormativeTest({title, userData, onBackToList, selectedType }) {
   async function processTestOptions(succesTotal, resultObjectWordsArray) {
 
     const testItems = lastUpdatedArrayRef.current;
+    console.log(testItems);
     let notFoundTestItem = [];
     const formDataArray = [];
     if(selectedType === 'snap') {
@@ -1225,6 +1227,10 @@ function MyFormativeTest({title, userData, onBackToList, selectedType }) {
           handleAddTestRow={handleAddTestRow}
           errorList={errorList}
           testComplexityList={testComplexityList}
+          editorStates = {editorStates}
+          setEditorStates = {setEditorStates}
+          pictures={pictures}
+          setPictures={setPictures}
         />
       )}
       {(selectedType === "words" ) && (

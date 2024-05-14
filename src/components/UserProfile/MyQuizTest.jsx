@@ -280,15 +280,6 @@ const TabContent = ({ activeTab, content, handleInputTest, handleRemoveTestRow, 
 ;
 
 function MyQuizTest({ tabs, addTab, removeTab, onRemoveTab, activeTab, onTabClick, tabContent, handleInputTest, handleRemoveTestRow, handleAddTestRow, errorList, testComplexityList, editorStates, setEditorStates, pictures, setPictures }) {
-  // const [editorStates, setEditorStates] = useState(() => {
-  //   const initialEditorStates = [];
-  //   for (let i = 0; i < 10; i++) {
-  //     initialEditorStates.push(EditorState.createEmpty());
-  //   }
-  //   return initialEditorStates;
-  // });
-
-  // const [pictures, setPictures] = useState([]);
   
   return (
     <>
