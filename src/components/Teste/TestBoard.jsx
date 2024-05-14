@@ -500,11 +500,30 @@ const TestBoard = forwardRef(
               : " incorrect"
           }
         >
-        <p style={{
+        {/* <p style={{
                 paddingBottom: "20px",
                 // textAlign: "center",
                 fontWeight: "500",
-              }}>{listItems[currentItemIndex].test_item_task}</p>
+              }}>{listItems[currentItemIndex].test_item_task}</p> */}
+
+        <div dangerouslySetInnerHTML={{ __html: listItems[currentItemIndex].test_item_task }} />
+
+        <img
+          className="img-subject"
+          src={`http://localhost:8000/${
+            process.env.PUBLIC_URL + listItems[currentItemIndex]?.image_path
+          }`}
+          alt=""
+          style={{
+            width: isNaN(
+              parseInt(listItems[currentItemIndex]?.procent_paper, 10)
+            )
+              ? "40%"
+              : `${
+                  100 - parseInt(listItems[currentItemIndex]?.procent_paper, 10)
+                }%`,
+          }}
+        />
 
     <div
       style={{

@@ -614,20 +614,19 @@ function MyFormativeTest({title, userData, onBackToList, selectedType }) {
     }
 
     console.log(selectedType)
-    if (selectedType == "quiz" || selectedType === "check" || selectedType === "snap" || selectedType === "words") {
-      tabs.map((tab, index) => {
+    tabs.map((tab, index) => {
 
-        const currentContent = editorStates[index].getCurrentContent();
-        const contentWithStyles = convertToRaw(currentContent);
+      const currentContent = editorStates[index].getCurrentContent();
+      const contentWithStyles = convertToRaw(currentContent);
 
-        const html = convertContentStateToHTML(contentWithStyles.blocks);
-        console.log(html)
+      const html = convertContentStateToHTML(contentWithStyles.blocks);
+      console.log(html)
 
-        resultHtmlArray = [...resultHtmlArray, {
-          TaskHtml: html,
-        }];
-      });
-    }
+      resultHtmlArray = [...resultHtmlArray, {
+        TaskHtml: html,
+      }];
+    });
+    
 
     if(selectedType=="snap") {
       handleConcatenate();
@@ -1171,6 +1170,10 @@ function MyFormativeTest({title, userData, onBackToList, selectedType }) {
           handleAddTestRow={handleAddTestRow}
           errorList={errorList}
           testComplexityList={testComplexityList}
+          editorStates = {editorStates}
+          setEditorStates = {setEditorStates}
+          pictures={pictures}
+          setPictures={setPictures}
         />
       )}
       {(selectedType === "dnd_group" ) && (
@@ -1187,6 +1190,10 @@ function MyFormativeTest({title, userData, onBackToList, selectedType }) {
           handleAddTestRow={handleAddTestRow}
           errorList={errorList}
           testComplexityList={testComplexityList}
+          editorStates = {editorStates}
+          setEditorStates = {setEditorStates}
+          pictures={pictures}
+          setPictures={setPictures}
         />
       )}
       {(selectedType === "dnd_chrono" ) && (
@@ -1203,6 +1210,10 @@ function MyFormativeTest({title, userData, onBackToList, selectedType }) {
           handleAddTestRow={handleAddTestRow}
           errorList={errorList}
           testComplexityList={testComplexityList}
+          editorStates = {editorStates}
+          setEditorStates = {setEditorStates}
+          pictures={pictures}
+          setPictures={setPictures}
         />
       )}
       {(selectedType === "dnd_chrono_double" ) && (
@@ -1219,6 +1230,10 @@ function MyFormativeTest({title, userData, onBackToList, selectedType }) {
           handleAddTestRow={handleAddTestRow}
           errorList={errorList}
           testComplexityList={testComplexityList}
+          editorStates = {editorStates}
+          setEditorStates = {setEditorStates}
+          pictures={pictures}
+          setPictures={setPictures}
         />
       )}
       {(selectedType === "snap" ) && (
