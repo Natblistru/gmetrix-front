@@ -386,7 +386,7 @@ const TesteAll_beta = () => {
     if (newId > allTeacherTests.length) {
         newId = 1;
     }
-    console.log("newId", newId, "ind", newId-1)
+    // console.log("newId", newId, "ind", newId-1)
     setIndexAllItems(newId - 1)
     const basePath = window.location.pathname.replace(`/${currentId}`, '');
     const newUrl = `${basePath}/${newId}?teacher=1&theme=52&level=1&disciplina=3`;
@@ -415,7 +415,7 @@ const TesteAll_beta = () => {
     if (newId < 1) {
       newId = allTeacherTests.length; // Setăm la ultimul element din array
   }
-    console.log("newId", newId, "ind", newId-1)
+    // console.log("newId", newId, "ind", newId-1)
     setIndexAllItems(newId-1)
     const basePath = window.location.pathname.replace(`/${currentId}`, '');
     const newUrl = `${basePath}/${newId}?teacher=1&theme=52&level=1&disciplina=3`;
@@ -438,13 +438,13 @@ const TesteAll_beta = () => {
     const currentId = parseInt(window.location.pathname.split('/').pop(), 10);
 
     const currentFormativeTest = allTeacherTests[currentId-1];
-    console.log(newId)
-    console.log(currentId)
-    console.log(allTeacherTests[currentId-1])
+    // console.log(newId)
+    // console.log(currentId)
+    // console.log(allTeacherTests[currentId-1])
     const currentIdFormativeTest = currentFormativeTest.formative_test_id;
     handleClearTestBoard(currentIdFormativeTest);
 
-    console.log("newId", newId, "ind", newId-1)
+    // console.log("newId", newId, "ind", newId-1)
     setIndexAllItems(newId-1)
     const basePath = window.location.pathname.replace(`/${currentId}`, '');
     const newUrl = `${basePath}/${newId}?teacher=1&theme=52&level=1&disciplina=3`;

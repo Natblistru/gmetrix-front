@@ -13,7 +13,7 @@ export const getSentence = text => {
 
 export const getAnswers = text => {
    const wordList = Array.from( new Set(text.split(';')));
-   console.log(wordList)
+  //  console.log(wordList)
    return wordList.reduce((acc, cur) => {
     if (cur.startsWith('#')) {
       const m = cur.match(/#(.*?)#/);

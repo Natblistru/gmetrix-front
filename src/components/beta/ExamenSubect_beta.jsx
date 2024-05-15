@@ -500,8 +500,8 @@ const ExamenSubect_beta = () => {
   }
 
   // console.log(quizArray[currentIndex])
-  console.log('wrapperHeight', wrapperHeight)
-  console.log('count', Math.round(wrapperHeight/100))
+  // console.log('wrapperHeight', wrapperHeight)
+  // console.log('count', Math.round(wrapperHeight/100))
   return (
     <div style={{position:'relative'}}>
       <Navbar />

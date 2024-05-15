@@ -67,7 +67,7 @@ const SubTopicItem_beta = ({ subTit, idx, teachers }) => {
   if (teachers.length === 1) {
     linkTo = `${subtitle.path_tema}/examen-subiect-all?teacher=${teachers[0].teacher_id}&theme=${subtitle.tema_id}&level=1&disciplina=${subject_id}&teachername=${teachers[0].teacher_name}`;
   }
-  console.log(linkTo)
+  // console.log(linkTo)
 
   const handleTemaClick = () => {
     const teacher = teachers[0].teacher_id;

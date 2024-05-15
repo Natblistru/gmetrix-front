@@ -3,7 +3,7 @@ import axios from 'axios';
 import * as XLSX from 'xlsx';
 import { Link } from 'react-router-dom';
 import { Editor, EditorState, RichUtils, convertToRaw, Modifier } from 'draft-js';
-
+import { useSelector } from 'react-redux';
 
 import Swal from 'sweetalert2'
 import MyQuizTest from './MyQuizTest';
@@ -15,6 +15,9 @@ import MyTestSnap from './MyTestSnap';
 import MyTestWords from './MyTestWords';
 
 function MyFormativeTest({title, userData, onBackToList, selectedType }) {
+
+  const language = useSelector(state => state.language);
+  console.log(language)
 
   const [learningProgramList, setLearningProgramList] = useState([]);
   const [themeList, setThemeList] = useState([]);
@@ -613,14 +616,14 @@ function MyFormativeTest({title, userData, onBackToList, selectedType }) {
       });
     }
 
-    console.log(selectedType)
+    // console.log(selectedType)
     tabs.map((tab, index) => {
 
       const currentContent = editorStates[index].getCurrentContent();
       const contentWithStyles = convertToRaw(currentContent);
 
       const html = convertContentStateToHTML(contentWithStyles.blocks);
-      console.log(html)
+      // console.log(html)
 
       resultHtmlArray = [...resultHtmlArray, {
         TaskHtml: html,
@@ -708,14 +711,14 @@ function MyFormativeTest({title, userData, onBackToList, selectedType }) {
   
         // Construiește obiectul FormData pentru fiecare rând
         const formData = new FormData();
-        // formData.append('task', tab.testContent.task);
-        console.log(resultHtmlArray[tabIndex].TaskHtml);
-        formData.append('task', resultHtmlArray[tabIndex].TaskHtml);  
+        formData.append('task', tab.testContent.task);
+        formData.append('content', resultHtmlArray[tabIndex].TaskHtml);  
         formData.append('image',pictures[tabIndex] );
         formData.append('image_path',tab.testContent.image_path );      
         formData.append('type', selectedType);
         formData.append('test_complexity_id', tab.testContent.test_complexity_id);
         formData.append('teacher_topic_id', testItemInput.teacher_topic_id);
+        formData.append('language', language);
         formData.append('status', 0);
   
         // Trimite FormData către server pentru fiecare rând
@@ -845,7 +848,7 @@ function MyFormativeTest({title, userData, onBackToList, selectedType }) {
   async function processTestOptions(succesTotal, resultObjectWordsArray) {
 
     const testItems = lastUpdatedArrayRef.current;
-    console.log(testItems);
+    // console.log(testItems);
     let notFoundTestItem = [];
     const formDataArray = [];
     if(selectedType === 'snap') {

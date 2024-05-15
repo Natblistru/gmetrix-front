@@ -94,7 +94,7 @@ const ExamenSubect2 = () => {
     // console.log(sumStudentPoints);
     // console.log(sumMaxPoints);
 
-    console.log("evaluations2", evaluations2);
+    // console.log("evaluations2", evaluations2);
   }, [evaluations2]);
 
   const [proc, setProc] = useState(quizArray[currentIndex]?.student_procent);

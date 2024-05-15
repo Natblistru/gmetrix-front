@@ -92,6 +92,20 @@ const TabContent = ({ activeTab, content, handleInputTest, handleRemoveTestRow, 
       <div id="block_quiz" className="border mx-3 p-3 shadow-sm">
           <div className="rowBts">
 
+          <div className="col-md-12">
+              <div className="form-group">
+                <label>Task short</label>
+                <input
+                  type="text"
+                  name="task"
+                  onChange={(event) => handleInputTest(activeTab, null, event)}
+                  value={content[activeTab].task}
+                  className="form-control"
+                />
+                <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.task}</span>
+              </div>
+            </div>
+
             <div className="white-background col-md-8">
               <label style={{ marginBottom: "10px", display: "block" }}>
                 Task

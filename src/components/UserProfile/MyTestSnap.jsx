@@ -133,9 +133,9 @@ const TabContent = ({ activeTab, content, handleInputTest, handleRemoveTestRow, 
     {content[activeTab] && (
       <div id="block_quiz" className="border mx-3 p-3 shadow-sm" style={{ paddingBottom: '20px'}}>
           <div className="rowBts">
-            {/* <div className="col-md-8">
+            <div className="col-md-12">
               <div className="form-group">
-                <label>Task</label>
+                <label>Task short</label>
                 <input
                   type="text"
                   name="task"
@@ -145,7 +145,7 @@ const TabContent = ({ activeTab, content, handleInputTest, handleRemoveTestRow, 
                 />
                 <span style={{ color: 'red', fontSize: '0.8rem' }}>{errorList.task}</span>
               </div>
-            </div> */}
+            </div>
 
 
 

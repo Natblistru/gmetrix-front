@@ -71,8 +71,6 @@ const TestWords = ({
 
   },[currentItemIndex])
 
-  console.log(listItems[0]?.test_item_content);
-
   const jsonString = listItems[0]?.test_item_content;
   const decodedString = decodeDiacritics(jsonString);
   
@@ -82,8 +80,8 @@ const TestWords = ({
   const task_en = jsonObject.en;
   const task_ro = jsonObject.ro;
   
-  console.log(task_en); 
-  console.log(task_ro); 
+  // console.log(task_en); 
+  // console.log(task_ro); 
   
   const test_task = language === "ro" ? task_ro : task_en;
 
@@ -190,7 +188,7 @@ const TestWords = ({
       trimiteResultsLaBackend(element);
     }
 
-    console.log(sentence)
+    // console.log(sentence)
     const correct = sentence
       .map((w) => (w.type === "answer" ? w.text === w.displayed : true))
       .every(Boolean);

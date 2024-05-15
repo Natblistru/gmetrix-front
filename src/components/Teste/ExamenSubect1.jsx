@@ -209,7 +209,7 @@ const ExamenSubect1 = () => {
               const errorResponses = responses.filter(
                 (response) => response.data.status === 404
               );
-              console.log(responses);
+              // console.log(responses);
               if (successResponses.length > 0) {
                 console.log(
                   "Successfully processed ",

@@ -94,10 +94,10 @@ const TestBoard = forwardRef(
       //   console.log("test.id", test.id)
       //   console.log("testID", testID)
       colArray = listItems[currentItemIndex].column_title.split(", ")
-      console.log(colArray)
-      console.log(listItems[currentItemIndex])
-      console.log(currentItemIndex)
-      console.log(listItems)
+      // console.log(colArray)
+      // console.log(listItems[currentItemIndex])
+      // console.log(currentItemIndex)
+      // console.log(listItems)
       // console.log(currentTests[currentIndexTest])
               // console.log(columnArray)
       //   if(test.id==testID&&test.coloane.length) {
@@ -139,8 +139,8 @@ const TestBoard = forwardRef(
     const task_en = jsonObject.en;
     const task_ro = jsonObject.ro;
     
-    console.log(task_en); 
-    console.log(task_ro); 
+    // console.log(task_en); 
+    // console.log(task_ro); 
     
     const test_task = language === "ro" ? task_ro : task_en;
 

@@ -51,8 +51,8 @@ const TestQuiz = ({
   const task_en = jsonObject.en;
   const task_ro = jsonObject.ro;
   
-  console.log(task_en); 
-  console.log(task_ro); 
+  // console.log(task_en); 
+  // console.log(task_ro); 
   
   const test_task = language === "ro" ? task_ro : task_en;
 

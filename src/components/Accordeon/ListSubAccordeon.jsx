@@ -19,7 +19,7 @@ const currentTopicObject = useSelector(state => state.currentTopic);
 const currentTopic = currentTopicObject.currentTopic;
 
 const [arraySubtitles, setArraySubtitles] = useState(currentTopic.subtitles);
-console.log(currentTopic)
+// console.log(currentTopic)
 
 const restImpartire = currentTopic.flip_cards.length % 3;
 const lungimeCards = currentTopic.flip_cards.length;
