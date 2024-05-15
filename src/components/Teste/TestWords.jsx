@@ -3,7 +3,7 @@ import axios from "axios";
 import { useSelector } from 'react-redux';
 import SentenceBox from "../DragWords/SentenceBox";
 import AnswerBox from "../DragWords/AnswerBox";
-import { getSentence, getAnswers } from "../DragWords/TextConverter";
+import { getSentence, getAnswers, decodeDiacritics } from "../DragWords/TextConverter";
 import ItemAccordeon from "../Accordeon/ItemAccordeon";
 import ItemText from "../Accordeon/ItemText";
 
@@ -34,6 +34,7 @@ const TestWords = ({
   const currentIndexTestObject = useSelector(state => state.currentIndexTest);
   const currentStudentObject = useSelector(state => state.currentStudent);
   const currentStudent = currentStudentObject ? currentStudentObject.currentStudent : 1;
+  const language = useSelector(state => state.language);
 
   const [showResults, setShowResults] = useState(false);
   const [question, setQuestion] = useState("");
@@ -70,7 +71,21 @@ const TestWords = ({
 
   },[currentItemIndex])
 
-  // console.log(currentIndexTest);
+  console.log(listItems[0]?.test_item_content);
+
+  const jsonString = listItems[0]?.test_item_content;
+  const decodedString = decodeDiacritics(jsonString);
+  
+  // Parsează JSON-ul pentru a obține obiectul
+  const jsonObject = JSON.parse(decodedString);
+  
+  const task_en = jsonObject.en;
+  const task_ro = jsonObject.ro;
+  
+  console.log(task_en); 
+  console.log(task_ro); 
+  
+  const test_task = language === "ro" ? task_ro : task_en;
 
   // const listItems = currentTests[currentIndexTest].order_number_options;
 
@@ -259,7 +274,7 @@ const TestWords = ({
               }
             </p> */}
 
-          <div dangerouslySetInnerHTML={{ __html: listItems[currentItemIndex].test_item_task }} />
+          <div dangerouslySetInnerHTML={{ __html: test_task }} />
 
           <img
                 className="img-subject"

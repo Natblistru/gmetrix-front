@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState, useLayoutEffect } from "react";
 import axios from "axios";
 import { useSelector } from 'react-redux';
+import { decodeDiacritics } from "../DragWords/TextConverter";
 import Snap from "snapsvg-cjs";
 import "./TestSnap.css";
 import ItemAccordeon from "../Accordeon/ItemAccordeon";
@@ -39,6 +40,7 @@ const TestSnap = ({
   const currentIndexTestObject = useSelector(state => state.currentIndexTest);
   const currentStudentObject = useSelector(state => state.currentStudent);
   const currentStudent = currentStudentObject ? currentStudentObject.currentStudent : 1;
+  const language = useSelector(state => state.language);
 
   let currentIndexTest;
 
@@ -57,7 +59,21 @@ const TestSnap = ({
 
   // let list1 = temeIstoriArray[0].subtitles[0].subjects[0].teste[4];
 
-   const textAdditionalArray = listItems[currentItemIndex].test_item_options
+  const jsonString = listItems[0]?.test_item_content;
+  const decodedString = decodeDiacritics(jsonString);
+  
+  // Parsează JSON-ul pentru a obține obiectul
+  const jsonObject = JSON.parse(decodedString);
+  
+  const task_en = jsonObject.en;
+  const task_ro = jsonObject.ro;
+  
+  console.log(task_en); 
+  console.log(task_ro); 
+  
+  const test_task = language === "ro" ? task_ro : task_en;
+
+  const textAdditionalArray = listItems[currentItemIndex].test_item_options
   .filter(option => option.correct === 1)
   .map(option => JSON.parse(option.text_additional));
 
@@ -686,7 +702,7 @@ const TestSnap = ({
               : " incorrect"
           }
         >
-        <div dangerouslySetInnerHTML={{ __html: listItems[currentItemIndex].test_item_task }} />
+        <div dangerouslySetInnerHTML={{ __html: test_task }} />
 
         <img
           className="img-subject"

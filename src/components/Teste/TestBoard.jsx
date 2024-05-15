@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { DragDropContext } from "react-beautiful-dnd";
 import Column from "../DragAndDrop/Column";
 import { v4 as uuidv4 } from "uuid";
+import { decodeDiacritics } from "../DragWords/TextConverter";
 import ItemAccordeon from "../Accordeon/ItemAccordeon";
 import ItemText from "../Accordeon/ItemText";
 
@@ -31,6 +32,7 @@ const TestBoard = forwardRef(
     const currentIndexTestObject = useSelector(state => state.currentIndexTest);
     const currentStudentObject = useSelector(state => state.currentStudent);
     const currentStudent = currentStudentObject ? currentStudentObject.currentStudent : 1;
+    const language = useSelector(state => state.language);
 
     let currentIndexTest;
 
@@ -127,6 +129,20 @@ const TestBoard = forwardRef(
       // console.log(answer.option)
       itemsFromBackend.push({ id: uuidv4(), content: answer.option });
     });
+
+    const jsonString = listItems[0]?.test_item_content;
+    const decodedString = decodeDiacritics(jsonString);
+    
+    // Parsează JSON-ul pentru a obține obiectul
+    const jsonObject = JSON.parse(decodedString);
+    
+    const task_en = jsonObject.en;
+    const task_ro = jsonObject.ro;
+    
+    console.log(task_en); 
+    console.log(task_ro); 
+    
+    const test_task = language === "ro" ? task_ro : task_en;
 
 
     // console.log(currentTests)
@@ -506,7 +522,7 @@ const TestBoard = forwardRef(
                 fontWeight: "500",
               }}>{listItems[currentItemIndex].test_item_task}</p> */}
 
-        <div dangerouslySetInnerHTML={{ __html: listItems[currentItemIndex].test_item_task }} />
+        <div dangerouslySetInnerHTML={{ __html: test_task }} />
 
         <img
           className="img-subject"

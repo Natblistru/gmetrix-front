@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useSelector } from 'react-redux';
-import CheckBox from "../CheckBox";
+import { decodeDiacritics } from "../DragWords/TextConverter";
 
+import CheckBox from "../CheckBox";
 import ItemAccordeon from "../Accordeon/ItemAccordeon";
 import ItemText from "../Accordeon/ItemText";
 import Puzzle from "../Puzzle";
@@ -21,6 +22,7 @@ const TestCheck = ({
   const currentIndexTestObject = useSelector(state => state.currentIndexTest);
   const currentStudentObject = useSelector(state => state.currentStudent);
   const currentStudent = currentStudentObject ? currentStudentObject.currentStudent : 1;
+  const language = useSelector(state => state.language);
 
   const [selectedValues, setSelectedValues] = useState([]);
 
@@ -58,6 +60,22 @@ const TestCheck = ({
 
   const listItems = currentTests[currentIndexTest].order_number_options;
 // console.log(listItems[currentItemIndex].test_item_options)
+
+  const jsonString = listItems[0]?.test_item_content;
+
+  const decodedString = decodeDiacritics(jsonString);
+
+  // Parsează JSON-ul pentru a obține obiectul
+  const jsonObject = JSON.parse(decodedString);
+
+  const task_en = jsonObject.en;
+
+  const task_ro = jsonObject.ro;
+
+  console.log(task_en); 
+  console.log(task_ro); 
+
+  const test_task = language === "ro" ? task_ro : task_en;
 
   const handleCheckBoxChange = (value) => {
     const updatedValues = [...selectedValues];
@@ -215,7 +233,7 @@ const TestCheck = ({
         </p> */}
           {/* <Puzzle /> */}
 
-          <div dangerouslySetInnerHTML={{ __html: listItems[currentItemIndex].test_item_task }} />
+          <div dangerouslySetInnerHTML={{ __html: test_task }} />
 
           <img
             className="img-subject"

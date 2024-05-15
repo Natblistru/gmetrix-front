@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { useSelector } from 'react-redux';
+import { decodeDiacritics } from "../DragWords/TextConverter";
 import RadioButton from "../RadioButton";
 import ItemAccordeon from "../Accordeon/ItemAccordeon";
 import ItemText from "../Accordeon/ItemText";
@@ -25,6 +26,7 @@ const TestQuiz = ({
   // console.log(currentIndexTestObject)
   const currentStudentObject = useSelector(state => state.currentStudent);
   const currentStudent = currentStudentObject ? currentStudentObject.currentStudent : 1;
+  const language = useSelector(state => state.language);
 
   const [selectedValue, setSelectedValue] = useState("");
   const [selectedOptions, setSelectedOptions] = useState([])
@@ -39,6 +41,20 @@ const TestQuiz = ({
 
   const listItems = currentTests[currentIndexTest].order_number_options;
   // console.log(currentTests[currentIndexTest])
+
+  const jsonString = listItems[0]?.test_item_content;
+  const decodedString = decodeDiacritics(jsonString);
+  
+  // Parsează JSON-ul pentru a obține obiectul
+  const jsonObject = JSON.parse(decodedString);
+  
+  const task_en = jsonObject.en;
+  const task_ro = jsonObject.ro;
+  
+  console.log(task_en); 
+  console.log(task_ro); 
+  
+  const test_task = language === "ro" ? task_ro : task_en;
 
   useEffect(()=>{
     setSelectedOptions([{ "option": "", 
@@ -168,7 +184,7 @@ const TestQuiz = ({
           } */}
         {/* </p> */}
 
-        <div dangerouslySetInnerHTML={{ __html: listItems[currentItemIndex].test_item_task }} />
+        <div dangerouslySetInnerHTML={{ __html: test_task }} />
 
         <img
               className="img-subject"

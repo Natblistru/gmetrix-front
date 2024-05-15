@@ -24,3 +24,18 @@ export const getAnswers = text => {
     return acc;
   }, []);
 };
+
+export function decodeDiacritics(jsonString) {
+  const diacriticsMap = {
+      '\\u0103': 'ă',
+      '\\u00E2': 'â',
+      '\\u0219': 'ș',
+      '\\u021B': 'ț',
+      '\\u00EE': 'î'
+  };
+
+  return jsonString.replace(/\\u(\w{4})/g, (match, grp) => {
+      const replacement = diacriticsMap[`\\u${grp}`];
+      return replacement ? replacement : match;
+  });
+}
