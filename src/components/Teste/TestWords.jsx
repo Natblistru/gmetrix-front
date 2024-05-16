@@ -32,17 +32,20 @@ const TestWords = ({
 }) => {
   const currentTests = useSelector(state => state.currentTests);
   const currentIndexTestObject = useSelector(state => state.currentIndexTest);
+
   const currentStudentObject = useSelector(state => state.currentStudent);
   const currentStudent = currentStudentObject ? currentStudentObject.currentStudent : 1;
   const language = useSelector(state => state.language);
 
   const [showResults, setShowResults] = useState(false);
   const [question, setQuestion] = useState("");
+
   const [answers, setAnswers] = useState([]);
   const [sentence, setSentence] = useState([]);
 
   const [selectedOptions, setSelectedOptions] = useState([])
 
+  let text;
   let currentIndexTest;
 
   if (typeof currentIndexTestObject === 'object') {
@@ -53,8 +56,50 @@ const TestWords = ({
 
   const [listItems, setListItems] = useState(currentTests[currentIndexTest].order_number_options)
 
+  const jsonString = listItems[currentItemIndex]?.test_item_content;
+  const decodedString = decodeDiacritics(jsonString);
+  
+  // Parsează JSON-ul pentru a obține obiectul
+  const jsonObject = JSON.parse(decodedString);
+  
+  let task_en = jsonObject.en;
+  let task_ro = jsonObject.ro;
+  
+  let test_task = language === "ro" ? jsonObject.ro : jsonObject.en;
+
+  const textAdditional = listItems[currentItemIndex].test_item_options[0].text_additional;
+
+  // din currentTests se ia al currentIndexTest-lea si se obtine listItems (formative_test)
+  console.log('currentTests', currentTests)
+  console.log('currentIndexTest', currentIndexTest)
+  console.log('listItems', listItems)
+
+  // din listItems se ia al currentItemIndex-lea si se obtine test_item
+  console.log('currentItemIndex', currentItemIndex)
+  console.log('listItems[currentItemIndex]', listItems[currentItemIndex])
+
+  console.log('textAdditional', textAdditional)
+
+  // Verificăm dacă textAdditional nu este null sau undefined
+  if (textAdditional) {
+      try {
+          text = JSON.parse(textAdditional).trim();
+      } catch (e) {
+          console.error("Invalid JSON format:", e);
+          text = '';
+      }
+  } else {
+      console.warn("text_additional is null or undefined");
+      text = ''; // sau orice valoare implicită doriți să folosiți
+  }
+  text = text.slice(1, -1);
+  console.log('text', text)
+
   useEffect(()=>{
     setListItems(currentTests[currentIndexTest].order_number_options);
+
+    console.log('currentIndexTest',currentIndexTest)
+    console.log('currentItemIndex',currentItemIndex)
 
     const initialSelectedOptions = [];
     listItems[currentItemIndex].test_item_options.forEach(element => {
@@ -69,28 +114,44 @@ const TestWords = ({
     });
     setSelectedOptions(initialSelectedOptions)
 
-  },[currentItemIndex])
+    const jsonString = listItems[currentItemIndex]?.test_item_content;
+    const decodedString = decodeDiacritics(jsonString);
+    
+    // Parsează JSON-ul pentru a obține obiectul
+    const jsonObject = JSON.parse(decodedString);
+    
+    task_en = jsonObject.en;
+    task_ro = jsonObject.ro;
+    
+    test_task = language === "ro" ? jsonObject.ro : jsonObject.en;
 
-  const jsonString = listItems[0]?.test_item_content;
-  const decodedString = decodeDiacritics(jsonString);
-  
-  // Parsează JSON-ul pentru a obține obiectul
-  const jsonObject = JSON.parse(decodedString);
-  
-  const task_en = jsonObject.en;
-  const task_ro = jsonObject.ro;
-  
-  // console.log(task_en); 
-  // console.log(task_ro); 
-  
-  const test_task = language === "ro" ? task_ro : task_en;
+    const textAdditional = listItems[currentItemIndex].test_item_options[0].text_additional;
 
-  // const listItems = currentTests[currentIndexTest].order_number_options;
+    console.log('currentItemIndex', currentItemIndex)
+    console.log('listItems[currentItemIndex]', listItems[currentItemIndex])
+    console.log('textAdditional', textAdditional)
 
-  let text = JSON.parse(listItems[currentItemIndex].test_item_options[0].text_additional).trim();
+    // Verificăm dacă textAdditional nu este null sau undefined
+    if (textAdditional) {
+        try {
+            text = JSON.parse(textAdditional).trim();
+        } catch (e) {
+            console.error("Invalid JSON format:", e);
+            text = '';
+        }
+    } else {
+        console.warn("text_additional is null or undefined");
+        text = ''; // sau orice valoare implicită doriți să folosiți
+    }
 
-  // Elimină ghilimelele de la început și sfârșit
-  text = text.slice(1, -1);
+    // Elimină ghilimelele de la început și sfârșit
+    text = text.slice(1, -1);
+    console.log('text', text)
+  },[currentItemIndex, currentIndexTest])
+
+  useEffect(()=>{
+    test_task = language === "ro" ? task_ro : task_en;
+  },[language])
 
    const filteredElements = listItems[currentItemIndex].test_item_options.filter(function(element) {
     return element.correct == 0;
@@ -290,7 +351,6 @@ const TestWords = ({
                       }%`,
                 }}
               />
-            {console.log(sentence)}
             <SentenceBox
               marked={showResults}
               onDrop={onDrop}
@@ -313,7 +373,9 @@ const TestWords = ({
           open={true}
         >
           <ItemText classNameChild="">
-           {listItems[currentItemIndex].test_item_options[0].explanation} 
+            {listItems[currentItemIndex].test_item_options[0].explanation.split('\n').map((paragraf, idx) => (
+                <p key={idx}>{paragraf}</p>
+              ))}
           </ItemText>
           {/* <button onClick={handleClick} className="btn-test">
             Încearcă din nou!

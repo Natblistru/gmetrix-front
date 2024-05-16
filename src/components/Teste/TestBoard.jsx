@@ -130,7 +130,7 @@ const TestBoard = forwardRef(
       itemsFromBackend.push({ id: uuidv4(), content: answer.option });
     });
 
-    const jsonString = listItems[0]?.test_item_content;
+    const jsonString = listItems[currentIndexTest]?.test_item_content;
     const decodedString = decodeDiacritics(jsonString);
     
     // Parsează JSON-ul pentru a obține obiectul

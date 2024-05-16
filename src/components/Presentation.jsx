@@ -6,7 +6,7 @@ const Presentation = ({ source, title }) => {
     <div>
       {/* <VideoPlayer ref={videoRef} video={video} title={title} />
       <VideoBreakpoints breakpoints={breakpoints} onBreakpointClick={handleBreakpointClick} /> */}
-      <iframe src={source} frameBorder="0" width="100%" height="500" allowFullScreen="true" mozallowfullscreen="true" webkitallowfullscreen="true" style={{marginBottom: '-4px'}}></iframe>
+      <iframe src={source} frameBorder="0" width="100%" height="500" allowFullScreen={true} mozallowfullscreen="true" webkitallowfullscreen="true" style={{marginBottom: '-4px'}}></iframe>
     
     </div>
   );

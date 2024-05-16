@@ -367,7 +367,7 @@ const TesteAll_beta = () => {
 
   const changeAdressIdTest = () => {
     const currentId = parseInt(window.location.pathname.split('/').pop(), 10);
-    // console.log(currentId)
+
     const newId = currentId + 1;
     setIndexAllItems(newId)
     const basePath = window.location.pathname.replace(`/${currentId}`, '');
@@ -377,26 +377,31 @@ const TesteAll_beta = () => {
 
   const handleNext = () => {
     const currentId = parseInt(window.location.pathname.split('/').pop(), 10);
-
-    const currentFormativeTest = allTeacherTests[currentId-1];
+    const path = window.location.pathname.split('/');
+    let penultimateSegment;
+    if (path.length < 2) {
+      console.error("Nu există suficiente segmente în path pentru a obține penultimul element.");
+    } else {
+      penultimateSegment = "/"+path[path.length - 2];
+    }
+    const index = allTeacherTests.findIndex(item => item.path === penultimateSegment);
+    const currentFormativeTest = allTeacherTests[index]
     const currentIdFormativeTest = currentFormativeTest.formative_test_id;
     handleClearTestBoard(currentIdFormativeTest);
 
-    let newId = currentId+1;
-    if (newId > allTeacherTests.length) {
-        newId = 1;
+    let newId = index+1;
+    if (newId > (allTeacherTests.length-1)) {
+        newId = 0;
     }
     // console.log("newId", newId, "ind", newId-1)
-    setIndexAllItems(newId - 1)
-    const basePath = window.location.pathname.replace(`/${currentId}`, '');
-    const newUrl = `${basePath}/${newId}?teacher=1&theme=52&level=1&disciplina=3`;
+    setIndexAllItems(newId)
+    const basePath = window.location.pathname.replace(`/${currentId}`, '').replace(`${penultimateSegment}`, '');
+    const nextFormativeTestPath = allTeacherTests[newId].path;
+    const newUrl = `${basePath}${nextFormativeTestPath}/1?teacher=1&theme=52&level=1&disciplina=3`;
     history.push(newUrl);
 
-    const nextFormativeTest = allTeacherTests[newId-1];
-    const nextIndexFormativeTest = nextFormativeTest.order_formative_test - 1;
-    dispatch(fetchCurrentIndexTest(nextIndexFormativeTest));
-    const nextIndexItemTest = nextFormativeTest.order_item_test - 1;
-    setCurrentItemIndex(nextIndexItemTest);
+    dispatch(fetchCurrentIndexTest(newId));
+    setCurrentItemIndex(0);
     setCorrectAnswer(null);
     if (wrapperRef.current) {
       const height = wrapperRef.current.scrollHeight;
@@ -406,26 +411,35 @@ const TesteAll_beta = () => {
 
   const handlePrevious = () => {
     const currentId = parseInt(window.location.pathname.split('/').pop(), 10);
+    const path = window.location.pathname.split('/');
+    let penultimateSegment;
+    if (path.length < 2) {
+      console.error("Nu există suficiente segmente în path pentru a obține penultimul element.");
+    } else {
+      penultimateSegment = "/"+path[path.length - 2];
+      console.log(penultimateSegment);
+    }
+    const index = allTeacherTests.findIndex(item => item.path === penultimateSegment);
+    const currentFormativeTest = allTeacherTests[index]
 
-    const currentFormativeTest = allTeacherTests[currentId-1];
     const currentIdFormativeTest = currentFormativeTest.formative_test_id;
     handleClearTestBoard(currentIdFormativeTest);
 
-    let newId = currentId - 1;
-    if (newId < 1) {
-      newId = allTeacherTests.length; // Setăm la ultimul element din array
-  }
+    let newId = index-1;
+    if (newId < 0) {
+        newId = allTeacherTests.length-1;
+    }
+
     // console.log("newId", newId, "ind", newId-1)
-    setIndexAllItems(newId-1)
-    const basePath = window.location.pathname.replace(`/${currentId}`, '');
-    const newUrl = `${basePath}/${newId}?teacher=1&theme=52&level=1&disciplina=3`;
+    setIndexAllItems(newId)
+    const basePath = window.location.pathname.replace(`/${currentId}`, '').replace(`${penultimateSegment}`, '');
+    const nextFormativeTestPath = allTeacherTests[newId].path;
+    console.log('nextFormativeTestPath',nextFormativeTestPath)
+    const newUrl = `${basePath}${nextFormativeTestPath}/1?teacher=1&theme=52&level=1&disciplina=3`;
     history.push(newUrl);
 
-    const previousFormativeTest = allTeacherTests[newId-1];
-    const previousIndexFormativeTest = previousFormativeTest.order_formative_test - 1;
-    dispatch(fetchCurrentIndexTest(previousIndexFormativeTest));
-    const previousIndexItemTest = previousFormativeTest.order_item_test - 1;
-    setCurrentItemIndex(previousIndexItemTest);
+    dispatch(fetchCurrentIndexTest(newId));
+    setCurrentItemIndex(0);
     setCorrectAnswer(null);
     
     if (wrapperRef.current) {

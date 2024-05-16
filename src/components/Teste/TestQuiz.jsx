@@ -20,10 +20,10 @@ const TestQuiz = ({
 }) => {
   const quizWrapperRef = useRef(null);
   const currentTests = useSelector(state => state.currentTests);
-  // console.log(currentTests)
+  console.log(currentTests)
 
   const currentIndexTestObject = useSelector(state => state.currentIndexTest);
-  // console.log(currentIndexTestObject)
+  console.log(currentIndexTestObject)
   const currentStudentObject = useSelector(state => state.currentStudent);
   const currentStudent = currentStudentObject ? currentStudentObject.currentStudent : 1;
   const language = useSelector(state => state.language);
@@ -42,7 +42,7 @@ const TestQuiz = ({
   const listItems = currentTests[currentIndexTest].order_number_options;
   // console.log(currentTests[currentIndexTest])
 
-  const jsonString = listItems[0]?.test_item_content;
+  const jsonString = listItems[currentIndexTest]?.test_item_content;
   const decodedString = decodeDiacritics(jsonString);
   
   // Parsează JSON-ul pentru a obține obiectul
@@ -233,7 +233,7 @@ const TestQuiz = ({
             {listItems[currentItemIndex].test_item_options.map((answer, idx) => (
               <RadioButton
                 key={idx}
-                value={answer.explanation}
+                value={language === "ro" ? answer.explanation_ro : answer.explanation}
                 checked={answer.option === correctAnswerText}
                 onChange={() => {}}
                 correctAnswer={correctAnswerText}

@@ -29,7 +29,30 @@ const TestCheck = ({
   const [selectedOptions, setSelectedOptions] = useState([])
   // console.log(currentItemIndex)
 
+  let currentIndexTest;
+
+  if (typeof currentIndexTestObject === 'object') {
+      currentIndexTest = currentIndexTestObject.currentIndexTest;
+  } else {
+      currentIndexTest = currentIndexTestObject;
+  }
+
+  const [listItems, setListItems] = useState(currentTests[currentIndexTest].order_number_options)
+
+  const jsonString = listItems[currentItemIndex]?.test_item_content;
+  const decodedString = decodeDiacritics(jsonString);
+  
+  // Parsează JSON-ul pentru a obține obiectul
+  const jsonObject = JSON.parse(decodedString);
+  
+  let task_en = jsonObject.en;
+  let task_ro = jsonObject.ro;
+  
+  let test_task = language === "ro" ? jsonObject.ro : jsonObject.en;
+
+
   useEffect(()=>{
+    setListItems(currentTests[currentIndexTest].order_number_options);
     const initialSelectedOptions = [];
 
     listItems[currentItemIndex].test_item_options.forEach(element => {
@@ -43,41 +66,31 @@ const TestCheck = ({
                                      "test_item_id": listItems[currentItemIndex].test_item_id});
     });
     setSelectedOptions(initialSelectedOptions)
+
+    const jsonString = listItems[currentItemIndex]?.test_item_content;
+    const decodedString = decodeDiacritics(jsonString);
+  
+    // Parsează JSON-ul pentru a obține obiectul
+    const jsonObject = JSON.parse(decodedString);
+  
+    task_en = jsonObject.en;
+    task_ro = jsonObject.ro;
+    
+    test_task = language === "ro" ? jsonObject.ro : jsonObject.en;
+
   },[currentItemIndex])
   
+  useEffect(()=>{
+    test_task = language === "ro" ? task_ro : task_en;
+  },[language])
+
   // console.log(currentTests)
   // console.log(currentTests[currentIndexTest].order_number_options);
 
   // console.log(currentIndexTest);
 
-  let currentIndexTest;
-
-  if (typeof currentIndexTestObject === 'object') {
-      currentIndexTest = currentIndexTestObject.currentIndexTest;
-  } else {
-      currentIndexTest = currentIndexTestObject;
-  }
-
-  const listItems = currentTests[currentIndexTest].order_number_options;
-// console.log(listItems[currentItemIndex].test_item_options)
-
-  const jsonString = listItems[0]?.test_item_content;
-
-  const decodedString = decodeDiacritics(jsonString);
-
-  // Parsează JSON-ul pentru a obține obiectul
-  const jsonObject = JSON.parse(decodedString);
-
-  const task_en = jsonObject.en;
-
-  const task_ro = jsonObject.ro;
-
-  // console.log(task_en); 
-  // console.log(task_ro); 
-
-  const test_task = language === "ro" ? task_ro : task_en;
-
   const handleCheckBoxChange = (value) => {
+    console.log(value)
     const updatedValues = [...selectedValues];
     if (updatedValues.includes(value)) {
       const index = updatedValues.indexOf(value);
@@ -109,7 +122,7 @@ const TestCheck = ({
   };
 
   const checkAnswer = () => {
-    // console.log(selectedOptions)
+    console.log(selectedOptions)
     const correctValues = listItems[currentItemIndex].test_item_options
       .filter((answer) => answer.correct==1)
       .map((answer) => answer.option);
@@ -134,6 +147,7 @@ const TestCheck = ({
       return { ...rest, student_id: currentStudent, type: 'check' };
     });
 
+    console.log(selectedOptionsToDB)
     for (const element of selectedOptionsToDB) {
       trimiteDateLaBackend(element);
     }
@@ -256,10 +270,10 @@ const TestCheck = ({
             return (
               <CheckBox
                 key={idx}
-                value={answer.option}
+                value={language === "ro" ? answer.option_ro : answer.option }
                 checked={selectedValues.includes(answer.option)}
                 onChange={
-                  correctAnswer === null ? handleCheckBoxChange : () => {}
+                  correctAnswer === null && language === "en" ? handleCheckBoxChange : () => {}
                 }
               />
             );
@@ -280,7 +294,7 @@ const TestCheck = ({
             {listItems[currentItemIndex].test_item_options.map((answer, idx) => (
               <CheckBox
                 key={idx}
-                value={answer.explanation}
+                value={language === "ro" ? answer.explanation_ro : answer.explanation }
                 checked={answer.correct==1}
                 onChange={() => {}}
               />

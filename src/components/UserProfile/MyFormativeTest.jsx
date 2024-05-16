@@ -17,7 +17,6 @@ import MyTestWords from './MyTestWords';
 function MyFormativeTest({title, userData, onBackToList, selectedType }) {
 
   const language = useSelector(state => state.language);
-  console.log(language)
 
   const [learningProgramList, setLearningProgramList] = useState([]);
   const [themeList, setThemeList] = useState([]);
@@ -737,6 +736,7 @@ function MyFormativeTest({title, userData, onBackToList, selectedType }) {
           });
 
           listItems = [...listItems, response.data.testItem];
+          console.log(listItems)
         } else {
           Swal.fire({
             title: "Error",
@@ -929,6 +929,7 @@ function MyFormativeTest({title, userData, onBackToList, selectedType }) {
 
    
           // formData.append('text_additional', JSON.stringify(textWithQuotes));
+          console.log(testItems)
           formData.append('test_item_id', testItems[index].id);
           formData.append('status', 0);
       
