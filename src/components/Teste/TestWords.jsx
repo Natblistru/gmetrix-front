@@ -54,9 +54,17 @@ const TestWords = ({
       currentIndexTest = currentIndexTestObject;
   }
 
+  //   console.log('currentTests', currentTests)
+  //   console.log('currentIndexTest', currentIndexTest);
+  // console.log('currentTests[currentIndexTest].order_number_options', currentTests[currentIndexTest].order_number_options);
+  // console.log('currentItemIndex', currentItemIndex);
+
+
   const [listItems, setListItems] = useState(currentTests[currentIndexTest].order_number_options)
 
   const jsonString = listItems[currentItemIndex]?.test_item_content;
+
+  // console.log('jsonString', jsonString);
   const decodedString = decodeDiacritics(jsonString);
   
   // Parsează JSON-ul pentru a obține obiectul

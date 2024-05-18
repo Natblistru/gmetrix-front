@@ -13,7 +13,7 @@ export const getSentence = text => {
 
 export const getAnswers = text => {
    const wordList = Array.from( new Set(text.split(';')));
-  //  console.log(wordList)
+
    return wordList.reduce((acc, cur) => {
     if (cur.startsWith('#')) {
       const m = cur.match(/#(.*?)#/);
@@ -34,6 +34,7 @@ export function decodeDiacritics(jsonString) {
       '\\u00EE': 'î'
   };
 
+  console.log(jsonString)
   return jsonString.replace(/\\u(\w{4})/g, (match, grp) => {
       const replacement = diacriticsMap[`\\u${grp}`];
       return replacement ? replacement : match;

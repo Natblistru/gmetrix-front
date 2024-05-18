@@ -39,22 +39,35 @@ const TestQuiz = ({
       currentIndexTest = currentIndexTestObject;
   }
 
-  const listItems = currentTests[currentIndexTest].order_number_options;
+  const [listItems, setListItems] = useState(currentTests[currentIndexTest].order_number_options)
   // console.log(currentTests[currentIndexTest])
 
-  const jsonString = listItems[currentIndexTest]?.test_item_content;
+  const jsonString = listItems[currentItemIndex]?.test_item_content;
   const decodedString = decodeDiacritics(jsonString);
   
   // Parsează JSON-ul pentru a obține obiectul
   const jsonObject = JSON.parse(decodedString);
   
-  const task_en = jsonObject.en;
-  const task_ro = jsonObject.ro;
+  let task_en = jsonObject.en;
+  let task_ro = jsonObject.ro;
   
-  // console.log(task_en); 
-  // console.log(task_ro); 
+  let test_task = language === "ro" ? jsonObject.ro : jsonObject.en;
+
+  useEffect(() => {
+    setListItems(currentTests[currentIndexTest].order_number_options);
+
+    const jsonString = listItems[currentItemIndex]?.test_item_content;
+    const decodedString = decodeDiacritics(jsonString);
   
-  const test_task = language === "ro" ? task_ro : task_en;
+    // Parsează JSON-ul pentru a obține obiectul
+    const jsonObject = JSON.parse(decodedString);
+  
+    task_en = jsonObject.en;
+    task_ro = jsonObject.ro;
+    
+    test_task = language === "ro" ? jsonObject.ro : jsonObject.en;
+  }, [currentItemIndex]);
+
 
   useEffect(()=>{
     setSelectedOptions([{ "option": "", 

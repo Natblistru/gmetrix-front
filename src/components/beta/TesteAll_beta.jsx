@@ -37,7 +37,7 @@ const TesteAll_beta = () => {
   const currentTests = useSelector((state) => state.currentTests);
   const allTeacherTests = useSelector((state) => state.allTeacherTests);
   // const [allTeacherTests, setAllTeacherTests] = useState(useSelector((state) => state.allTeacherTests));
-  // console.log(allTeacherTests)
+  console.log('allTeacherTests', allTeacherTests)
   const [indexAllItems, setIndexAllItems] = useState(0);
 
   const currentTopicObject = useSelector((state) => state.currentTopic);
@@ -376,32 +376,29 @@ const TesteAll_beta = () => {
   };
 
   const handleNext = () => {
-    const currentId = parseInt(window.location.pathname.split('/').pop(), 10);
-    const path = window.location.pathname.split('/');
-    let penultimateSegment;
-    if (path.length < 2) {
-      console.error("Nu există suficiente segmente în path pentru a obține penultimul element.");
-    } else {
-      penultimateSegment = "/"+path[path.length - 2];
-    }
-    const index = allTeacherTests.findIndex(item => item.path === penultimateSegment);
-    const currentFormativeTest = allTeacherTests[index]
-    const currentIdFormativeTest = currentFormativeTest.formative_test_id;
-    handleClearTestBoard(currentIdFormativeTest);
+    console.log('indexAllItems',indexAllItems);
 
-    let newId = index+1;
+    // Eliminam din adresa path la formative_test si nr_ord a test_item al acestuia
+    const pathname = window.location.pathname;
+    const segments = pathname.split('/');
+    const newPathname = segments.slice(0, -2).join('/');
+
+    let newId = indexAllItems+1;
     if (newId > (allTeacherTests.length-1)) {
         newId = 0;
     }
-    // console.log("newId", newId, "ind", newId-1)
-    setIndexAllItems(newId)
-    const basePath = window.location.pathname.replace(`/${currentId}`, '').replace(`${penultimateSegment}`, '');
-    const nextFormativeTestPath = allTeacherTests[newId].path;
-    const newUrl = `${basePath}${nextFormativeTestPath}/1?teacher=1&theme=52&level=1&disciplina=3`;
-    history.push(newUrl);
 
-    dispatch(fetchCurrentIndexTest(newId));
-    setCurrentItemIndex(0);
+    const nextAllTests = allTeacherTests[newId];
+    const currentIdFormativeTest = nextAllTests.formative_test_id;
+    handleClearTestBoard(currentIdFormativeTest);
+    setIndexAllItems(newId);
+
+    const newUrlTest = `${newPathname}${nextAllTests.path}/${nextAllTests.order_item_test}?teacher=1&theme=52&level=1&disciplina=3`;
+    console.log('newUrlTest', newUrlTest);
+    history.push(newUrlTest);
+
+    dispatch(fetchCurrentIndexTest(nextAllTests.order_formative_test-1));
+    setCurrentItemIndex(nextAllTests.order_item_test-1);
     setCorrectAnswer(null);
     if (wrapperRef.current) {
       const height = wrapperRef.current.scrollHeight;
@@ -410,38 +407,30 @@ const TesteAll_beta = () => {
   };
 
   const handlePrevious = () => {
-    const currentId = parseInt(window.location.pathname.split('/').pop(), 10);
-    const path = window.location.pathname.split('/');
-    let penultimateSegment;
-    if (path.length < 2) {
-      console.error("Nu există suficiente segmente în path pentru a obține penultimul element.");
-    } else {
-      penultimateSegment = "/"+path[path.length - 2];
-      console.log(penultimateSegment);
-    }
-    const index = allTeacherTests.findIndex(item => item.path === penultimateSegment);
-    const currentFormativeTest = allTeacherTests[index]
+    console.log('indexAllItems',indexAllItems);
 
-    const currentIdFormativeTest = currentFormativeTest.formative_test_id;
-    handleClearTestBoard(currentIdFormativeTest);
+    // Eliminam din adresa path la formative_test si nr_ord a test_item al acestuia
+    const pathname = window.location.pathname;
+    const segments = pathname.split('/');
+    const newPathname = segments.slice(0, -2).join('/');
 
-    let newId = index-1;
+    let newId = indexAllItems-1;
     if (newId < 0) {
         newId = allTeacherTests.length-1;
     }
 
-    // console.log("newId", newId, "ind", newId-1)
-    setIndexAllItems(newId)
-    const basePath = window.location.pathname.replace(`/${currentId}`, '').replace(`${penultimateSegment}`, '');
-    const nextFormativeTestPath = allTeacherTests[newId].path;
-    console.log('nextFormativeTestPath',nextFormativeTestPath)
-    const newUrl = `${basePath}${nextFormativeTestPath}/1?teacher=1&theme=52&level=1&disciplina=3`;
-    history.push(newUrl);
+    const previousAllTests = allTeacherTests[newId];
+    const currentIdFormativeTest = previousAllTests.formative_test_id;
+    handleClearTestBoard(currentIdFormativeTest);
+    setIndexAllItems(newId);
 
-    dispatch(fetchCurrentIndexTest(newId));
-    setCurrentItemIndex(0);
+    const newUrlTest = `${newPathname}${previousAllTests.path}/${previousAllTests.order_item_test}?teacher=1&theme=52&level=1&disciplina=3`;
+    console.log('newUrlTest', newUrlTest);
+    history.push(newUrlTest);
+
+    dispatch(fetchCurrentIndexTest(previousAllTests.order_formative_test-1));
+    setCurrentItemIndex(previousAllTests.order_item_test-1);
     setCorrectAnswer(null);
-    
     if (wrapperRef.current) {
       const height = wrapperRef.current.scrollHeight;
       setWrapperHeight(height);
