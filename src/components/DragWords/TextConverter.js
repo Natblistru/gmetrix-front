@@ -34,7 +34,7 @@ export function decodeDiacritics(jsonString) {
       '\\u00EE': 'î'
   };
 
-  console.log(jsonString)
+  // console.log(jsonString)
   return jsonString.replace(/\\u(\w{4})/g, (match, grp) => {
       const replacement = diacriticsMap[`\\u${grp}`];
       return replacement ? replacement : match;
