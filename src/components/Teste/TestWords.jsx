@@ -108,7 +108,7 @@ const TestWords = ({
 
     console.log('currentIndexTest',currentIndexTest)
     console.log('currentItemIndex',currentItemIndex)
-
+   
     const initialSelectedOptions = [];
     listItems[currentItemIndex].test_item_options.forEach(element => {
       initialSelectedOptions.push({ "option": element.option, 
@@ -120,6 +120,7 @@ const TestWords = ({
                                      "formative_test_id": listItems[currentItemIndex].formative_test_id,
                                      "test_item_id": listItems[currentItemIndex].test_item_id});
     });
+
     setSelectedOptions(initialSelectedOptions)
 
     const jsonString = listItems[currentItemIndex]?.test_item_content;
@@ -185,6 +186,9 @@ const TestWords = ({
 
     setSelectedOptions(prevOptions => {
       const updatedOptions = prevOptions.map(option => {
+        console.log('option',option)
+        console.log('dropId',dropId)
+        console.log('text',text)
           return option.option === text ? { ...option, user_column: Math.floor(dropId/2) } : option;
       });
       return updatedOptions;
@@ -218,6 +222,7 @@ const TestWords = ({
 
     const selectedOptionsCalculate = selectedOptions.map(item => {
       let score;
+      console.log(item)
       if (item.correct == item.user_column) {
         score = item.test_item_complexity;
       } else {
@@ -232,6 +237,7 @@ const TestWords = ({
       const { test_item_complexity, user_column, correct, explanation, ...rest } = item;
       return { ...rest, student_id: currentStudent, type: 'check' };
     });
+    console.log(selectedOptionsToDB)
     for (const element of selectedOptionsToDB) {
       trimiteDateLaBackend(element);
     }

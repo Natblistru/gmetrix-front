@@ -587,7 +587,7 @@ function MyFormativeTest({title, userData, onBackToList, selectedType }) {
 
         const htmlplainP = html.replace(/<p>/g, '').replace(/<\/p>/g, '\n');
 
-        const htmlSpec = htmlplainP.replace(/<span style="font-weight: bold; ">/g, ';#').replace(/<\/span>/g, '#;');
+        const htmlSpec = htmlplainP.replace(/<span style="font-weight: bold; ">/g, '`~#').replace(/<\/span>/g, '#~');
         const textWithQuotes = '"' + htmlSpec + '"';
 
         const htmlplain = htmlplainP.replace(/<span style="font-weight: bold; ">/g, '').replace(/<\/span>/g, '');

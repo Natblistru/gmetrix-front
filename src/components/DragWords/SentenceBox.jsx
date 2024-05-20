@@ -9,7 +9,7 @@ const SentenceBox = ({ marked, onDrop, sentence }) => {
   const renderSentence = () => {
     let correctAnswer = true;
     return sentence.map((w, i) => {
-      // console.log(w.text,w.id,w.displayed,w.placed);
+      console.log(w.text,w.id,w.displayed,w.placed);
       if (w.type === 'word') {
         const textWithBreaks = w.text.split('\n').map((line, index) => (
           <React.Fragment key={index}>
