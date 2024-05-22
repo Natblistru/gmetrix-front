@@ -9,7 +9,7 @@ function AdminPrivateRoute({...rest}) {
   const [loading, setLoading] = useState(true)  
   const history = useHistory();
   useEffect(()=>{
-    axios.get('http://localhost:8000/api/checkingAuthenticated').then( res => {
+    axios.get('/api/checkingAuthenticated').then( res => {
       if(res.status === 200) 
       {
         setAuthenticated(true)

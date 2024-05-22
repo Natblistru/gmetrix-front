@@ -15,25 +15,25 @@ function AddTeacherTopic() {
   
   useEffect(() => {
 
-    axios.get('http://localhost:8000/api/all-learningPrograms').then(res=>{
+    axios.get('/api/all-learningPrograms').then(res=>{
       if(res.data.status === 200){
         setLearningProgramList(res.data.learningProgram);
       }
     });
 
-    axios.get('http://localhost:8000/api/all-themeLearningPrograms').then(res=>{
+    axios.get('/api/all-themeLearningPrograms').then(res=>{
       if(res.data.status === 200){
         setThemeList(res.data.theme);
       }
     });
 
-    axios.get('http://localhost:8000/api/all-topics').then(res=>{
+    axios.get('/api/all-topics').then(res=>{
       if(res.data.status === 200){
         setTopicList(res.data.topics);
       }
     });
 
-    axios.get('http://localhost:8000/api/all-teachers').then(res=>{
+    axios.get('/api/all-teachers').then(res=>{
       if(res.data.status === 200){
         setTeacherList(res.data.teachers);
       }
@@ -167,7 +167,7 @@ function AddTeacherTopic() {
           });
           // console.log(formDataArray)
           // Trimitem fiecare set de date către server utilizând axios.all
-          axios.all(formDataArray.map(formData => axios.post('http://localhost:8000/api/store-teacherTopic', formData)))
+          axios.all(formDataArray.map(formData => axios.post('/api/store-teacherTopic', formData)))
               .then(axios.spread((...responses) => {
                 const successResponses = responses.filter(response => response.data.status === 201);
                 const errorResponses = responses.filter(response => response.data.status === 422);
@@ -276,7 +276,7 @@ function AddTeacherTopic() {
 
     // console.log(formData)
 
-    axios.post(`http://localhost:8000/api/store-teacherTopic`, formData).then(res => {
+    axios.post(`/api/store-teacherTopic`, formData).then(res => {
       if(res.data.status === 201)
       {
         Swal.fire({

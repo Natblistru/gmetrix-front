@@ -35,32 +35,32 @@ function EditEvaluationItem(props) {
 
   useEffect(() => {
 
-    axios.get('http://localhost:8000/api/all-subject-study-level').then(res=>{
+    axios.get('/api/all-subject-study-level').then(res=>{
       if(res.data.status === 200){
         setSubjectList(res.data.subject);
       }
     });
 
-    axios.get('http://localhost:8000/api/all-chapters').then(res=>{
+    axios.get('/api/all-chapters').then(res=>{
       if(res.data.status === 200){
         setChapterList(res.data.chapters);
       }
     });
 
-    axios.get('http://localhost:8000/api/all-themes').then(res=>{
+    axios.get('/api/all-themes').then(res=>{
       if(res.data.status === 200){
         setThemeList(res.data.themes);
       }
     });
 
-    axios.get('http://localhost:8000/api/all-evaluation-subjects').then(res=>{
+    axios.get('/api/all-evaluation-subjects').then(res=>{
       if(res.data.status === 200){
         setEvaluationSubjectList(res.data.evaluationSubjects);
       }
     });
 
     const evaluationItem_id = props.match.params.id;
-    axios.get(`http://localhost:8000/api/edit-evaluation-item/${evaluationItem_id}`).then(res=>{
+    axios.get(`/api/edit-evaluation-item/${evaluationItem_id}`).then(res=>{
     if(res.data.status === 200){
         const evaluationItemData = res.data.evaluationItem;
 
@@ -133,7 +133,7 @@ function EditEvaluationItem(props) {
     // console.log(formData)
 
     const evaluationItem_id = props.match.params.id;
-    axios.post(`http://localhost:8000/api/update-evaluation-item/${evaluationItem_id}`, formData, {
+    axios.post(`/api/update-evaluation-item/${evaluationItem_id}`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
@@ -334,7 +334,7 @@ function EditEvaluationItem(props) {
                 <label>Image</label>
                 <input type="file" accept="image/*" name="image" onChange={handleImage} className="form-control" />
                 <img
-                  src={`http://localhost:8000/${evaluationItemInput.image_path}`}
+                  src={`/${evaluationItemInput.image_path}`}
                   width='50px'
                   alt={evaluationItemInput.image_path || ''}
                 />
@@ -347,7 +347,7 @@ function EditEvaluationItem(props) {
                 <label>Editable Image</label>
                 <input type="file" accept="image/*" name="editableImage" onChange={handleEditableImage} className="form-control" />
                 <img
-                  src={`http://localhost:8000/${evaluationItemInput.editable_image_path}`}
+                  src={`/${evaluationItemInput.editable_image_path}`}
                   width='50px'
                   alt={evaluationItemInput.editable_image_path || ''}
                 />

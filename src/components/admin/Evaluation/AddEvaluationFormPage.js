@@ -16,31 +16,31 @@ function AddEvaluationFormPage() {
 
   useEffect(() => {
 
-    axios.get('http://localhost:8000/api/all-subject-study-level').then(res=>{
+    axios.get('/api/all-subject-study-level').then(res=>{
       if(res.data.status === 200){
         setSubjectList(res.data.subject);
       }
     });
 
-    axios.get('http://localhost:8000/api/all-chapters').then(res=>{
+    axios.get('/api/all-chapters').then(res=>{
       if(res.data.status === 200){
         setChapterList(res.data.chapters);
       }
     });
 
-    axios.get('http://localhost:8000/api/all-themes').then(res=>{
+    axios.get('/api/all-themes').then(res=>{
       if(res.data.status === 200){
         setThemeList(res.data.themes);
       }
     });
 
-    axios.get('http://localhost:8000/api/all-evaluation-subjects').then(res=>{
+    axios.get('/api/all-evaluation-subjects').then(res=>{
       if(res.data.status === 200){
         setEvaluationSubjectList(res.data.evaluationSubjects);
       }
     });
 
-    axios.get('http://localhost:8000/api/all-evaluation-items').then(res=>{
+    axios.get('/api/all-evaluation-items').then(res=>{
       if(res.data.status === 200){
         setEvaluationItemList(res.data.evaluationItems);
       }
@@ -189,7 +189,7 @@ function AddEvaluationFormPage() {
           });
           // console.log(formDataArray)
           // Trimitem fiecare set de date către server utilizând axios.all
-          axios.all(formDataArray.map(formData => axios.post('http://localhost:8000/api/store-evaluation-form-page', formData)))
+          axios.all(formDataArray.map(formData => axios.post('/api/store-evaluation-form-page', formData)))
               .then(axios.spread((...responses) => {
                 const successResponses = responses.filter(response => response.data.status === 201);
                 const errorResponses = responses.filter(response => response.data.status === 422);
@@ -296,7 +296,7 @@ function AddEvaluationFormPage() {
 
     // console.log(formData)
 
-    axios.post(`http://localhost:8000/api/store-evaluation-form-page`, formData).then(res => {
+    axios.post(`/api/store-evaluation-form-page`, formData).then(res => {
       // console.log(res)
       if(res.data.status === 201)
       {

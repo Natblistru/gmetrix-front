@@ -128,19 +128,19 @@ function Dashboard() {
 
     useEffect(() => {
 
-        axios.get('http://localhost:8000/api/all-themes').then(res=>{
+        axios.get('/api/all-themes').then(res=>{
           if(res.data.status === 200){
             setThemeList(res.data.themes);
           }
         });
 
-        axios.get('http://localhost:8000/api/all-tests').then(res=>{
+        axios.get('/api/all-tests').then(res=>{
             if(res.data.status === 200){
               setTestList(res.data.tests);
             }
           });
 
-        axios.get('http://localhost:8000/api/all-evaluation-items').then(res=>{
+        axios.get('/api/all-evaluation-items').then(res=>{
         if(res.data.status === 200){
             setEvaluationItemList(res.data.evaluationItems);
         }
@@ -158,7 +158,7 @@ function Dashboard() {
             perPage: perPage,
             page: currentPage,
         };
-        const response = await axios.get('http://localhost:8000/api/all-users', { params });
+        const response = await axios.get('/api/all-users', { params });
             if (response.data.status === 200) {
             // console.log(response.data)
             setUserList(response.data.users)

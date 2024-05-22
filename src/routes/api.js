@@ -9,7 +9,7 @@ import { FETCH_CAPITOLE,
 
 export const fetchCapitole = async (subject_id, level_id, dispatchData, student_id = 1) => {
     try {
-        const res = await axios.get(`http://localhost:8000/api/capitoleDisciplina?level=${level_id}&disciplina=${subject_id}&student=${student_id}`);
+        const res = await axios.get(`/api/capitoleDisciplina?level=${level_id}&disciplina=${subject_id}&student=${student_id}`);
 
         // console.log(res.data);
         dispatchData({
@@ -23,7 +23,7 @@ export const fetchCapitole = async (subject_id, level_id, dispatchData, student_
 
 export const fetchTheme = async (teacherVideo, theme, subject_id, level_id, dispatchData, student_id = 1) => {
     try {
-        const res = await axios.get(`http://localhost:8000/api/teachertheme?level=${level_id}&disciplina=${subject_id}&teacher=${teacherVideo}&student=${student_id}&theme=${theme}`);
+        const res = await axios.get(`/api/teachertheme?level=${level_id}&disciplina=${subject_id}&teacher=${teacherVideo}&student=${student_id}&theme=${theme}`);
 
         dispatchData({
             type: FETCH_TOPICS,
@@ -36,7 +36,7 @@ export const fetchTheme = async (teacherVideo, theme, subject_id, level_id, disp
 
 export const fetchEvaluation1 = async (theme, subject_id, level_id, dispatchData) => {
     try {
-        const res = await axios.get(`http://localhost:8000/api/themeevaluation1?level=${level_id}&disciplina=${subject_id}&theme=${theme}`);
+        const res = await axios.get(`/api/themeevaluation1?level=${level_id}&disciplina=${subject_id}&theme=${theme}`);
         dispatchData({
             type: FETCH_EVALUATIONS_1,
             payload: res.data
@@ -51,7 +51,7 @@ export const fetchEvaluation2 = async (theme, subject_id, level_id, dispatchData
 //   console.log(theme)
 //   console.log(subject_id)
 //   console.log(level_id)  
-        const res = await axios.get(`http://localhost:8000/api/themeevaluation2?level=${level_id}&disciplina=${subject_id}&theme=${theme}`);
+        const res = await axios.get(`/api/themeevaluation2?level=${level_id}&disciplina=${subject_id}&theme=${theme}`);
   
         dispatchData({
             type: FETCH_EVALUATIONS_2,
@@ -65,7 +65,7 @@ export const fetchEvaluation2 = async (theme, subject_id, level_id, dispatchData
 export const fetchEvaluation3 = async (theme, subject_id, level_id, dispatchData) => {
     try {
   
-        const res = await axios.get(`http://localhost:8000/api/themeevaluation3?level=${level_id}&disciplina=${subject_id}&theme=${theme}`);
+        const res = await axios.get(`/api/themeevaluation3?level=${level_id}&disciplina=${subject_id}&theme=${theme}`);
         dispatchData({
             type: FETCH_EVALUATIONS_3,
             payload: res.data
@@ -77,7 +77,7 @@ export const fetchEvaluation3 = async (theme, subject_id, level_id, dispatchData
 
 export const fetchEvaluation_all = async (theme, subject_id, level_id, dispatchData) => {
     try {
-        const res = await axios.get(`http://localhost:8000/api/themeEvaluation_all?level=${level_id}&disciplina=${subject_id}&theme=${theme}`);
+        const res = await axios.get(`/api/themeEvaluation_all?level=${level_id}&disciplina=${subject_id}&theme=${theme}`);
         // console.log(res.data)
         dispatchData({
             type: FETCH_EVALUATIONS_ALL,
@@ -90,7 +90,7 @@ export const fetchEvaluation_all = async (theme, subject_id, level_id, dispatchD
 
 export const fetchAllTeacherTestsSuccess = async (teacher_topic_id, currentStudent, dispatchData) => {
     try {
-        const res = await axios.get(`http://localhost:8000/api/teacherAllTests?teacher_topic=${teacher_topic_id}&student=${currentStudent}`);
+        const res = await axios.get(`/api/teacherAllTests?teacher_topic=${teacher_topic_id}&student=${currentStudent}`);
         // console.log(res.data);
         dispatchData({
             type: FETCH_ALL_TEACHER_TESTS,

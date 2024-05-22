@@ -111,25 +111,25 @@ function ViewEvaluationAnswerOption() {
 
   useEffect(() => {
 
-    axios.get('http://localhost:8000/api/all-subject-study-level').then(res=>{
+    axios.get('/api/all-subject-study-level').then(res=>{
       if(res.data.status === 200){
         setSubjectLevelList(res.data.subject);
       }
     });
 
-    axios.get('http://localhost:8000/api/all-themes').then(res=>{
+    axios.get('/api/all-themes').then(res=>{
       if(res.data.status === 200){
         setThemeList(res.data.themes);
       }
     });
 
-    axios.get(`http://localhost:8000/api/all-chapters`).then(res=> {
+    axios.get(`/api/all-chapters`).then(res=> {
       if(res.data.status === 200){
         setChapterList(res.data.chapters)
       }
     });
 
-    axios.get(`http://localhost:8000/api/all-evaluation-items`).then(res=> {
+    axios.get(`/api/all-evaluation-items`).then(res=> {
       if(res.data.status === 200){
         setEvaluationsItemList(res.data.evaluationItems)
       }
@@ -152,7 +152,7 @@ function ViewEvaluationAnswerOption() {
           filterChapter: filter.chapter_id,
           filterEvaluationItem: filter.evaluation_item_id,
         };
-        const response = await axios.get('http://localhost:8000/api/view-evaluation-answer-option', { params });
+        const response = await axios.get('/api/view-evaluation-answer-option', { params });
           if (response.data.status === 200) {
             // console.log(response.data)
             setTeacherTopicList(response.data.evaluationAnswerOption);

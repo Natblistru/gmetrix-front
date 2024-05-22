@@ -15,19 +15,19 @@ function AddEvaluationSource() {
 
   useEffect(() => {
 
-    axios.get('http://localhost:8000/api/all-subject-study-level').then(res=>{
+    axios.get('/api/all-subject-study-level').then(res=>{
       if(res.data.status === 200){
         setSubjectList(res.data.subject);
       }
     });
 
-    axios.get('http://localhost:8000/api/all-chapters').then(res=>{
+    axios.get('/api/all-chapters').then(res=>{
       if(res.data.status === 200){
         setChapterList(res.data.chapters);
       }
     });
 
-    axios.get('http://localhost:8000/api/all-themes').then(res=>{
+    axios.get('/api/all-themes').then(res=>{
       if(res.data.status === 200){
         setThemeList(res.data.themes);
       }
@@ -165,7 +165,7 @@ function AddEvaluationSource() {
           });
           // console.log(formDataArray)
           // Trimitem fiecare set de date către server utilizând axios.all
-          axios.all(formDataArray.map(formData => axios.post('http://localhost:8000/api/store-evaluation-source', formData)))
+          axios.all(formDataArray.map(formData => axios.post('/api/store-evaluation-source', formData)))
               .then(axios.spread((...responses) => {
                 const successResponses = responses.filter(response => response.data.status === 201);
                 const errorResponses = responses.filter(response => response.data.status === 422);
@@ -261,7 +261,7 @@ function AddEvaluationSource() {
 
     // console.log(formData)
 
-    axios.post(`http://localhost:8000/api/store-evaluation-source`, formData).then(res => {
+    axios.post(`/api/store-evaluation-source`, formData).then(res => {
       if(res.data.status === 201)
       {
         Swal.fire({

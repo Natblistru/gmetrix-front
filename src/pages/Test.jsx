@@ -114,7 +114,7 @@ const TestWrapper = () => {
           const studentId = 1;
           const promises = testItemObjects.map((testItem) =>
             axios.post(
-              "http://localhost:8000/api/student-formative-test-score",
+              "/api/student-formative-test-score",
               {
                 test_item_id: testItem.test_item_id,
                 formative_test_id: testItem.formative_test_id,
@@ -198,7 +198,7 @@ const TestWrapper = () => {
           .all(
             formDataArray.map((formData) =>
               axios.post(
-                "http://localhost:8000/api/update-student-formative-test-result",
+                "/api/update-student-formative-test-result",
                 formData
               )
             )
@@ -247,7 +247,7 @@ const TestWrapper = () => {
           .all(
             formDataArray.map((formData) =>
               axios.post(
-                "http://localhost:8000/api/update-student-formative-test-option",
+                "/api/update-student-formative-test-option",
                 formData
               )
             )

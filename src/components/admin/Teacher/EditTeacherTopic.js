@@ -31,32 +31,32 @@ function EditTeacherTopic(props) {
   
   useEffect(() => {
 
-    axios.get('http://localhost:8000/api/all-learningPrograms').then(res=>{
+    axios.get('/api/all-learningPrograms').then(res=>{
       if(res.data.status === 200){
         setLearningProgramList(res.data.learningProgram);
       }
     });
 
-    axios.get('http://localhost:8000/api/all-themeLearningPrograms').then(res=>{
+    axios.get('/api/all-themeLearningPrograms').then(res=>{
       if(res.data.status === 200){
         setThemeList(res.data.theme);
       }
     });
 
-    axios.get('http://localhost:8000/api/all-topics').then(res=>{
+    axios.get('/api/all-topics').then(res=>{
       if(res.data.status === 200){
         setTopicList(res.data.topics);
       }
     });
 
-    axios.get('http://localhost:8000/api/all-teachers').then(res=>{
+    axios.get('/api/all-teachers').then(res=>{
       if(res.data.status === 200){
         setTeacherList(res.data.teachers);
       }
     });
 
     const teacherTopic_id = props.match.params.id;
-    axios.get(`http://localhost:8000/api/edit-teacherTopic/${teacherTopic_id}`).then(res=>{
+    axios.get(`/api/edit-teacherTopic/${teacherTopic_id}`).then(res=>{
       if(res.data.status === 200){
         const teacherTopicData = res.data.teacherTopics;
         setTeacherTopicInput({
@@ -121,7 +121,7 @@ function EditTeacherTopic(props) {
     // console.log(formData)
 
     const teacherTopic_id = props.match.params.id;
-    axios.post(`http://localhost:8000/api/update-teacherTopic/${teacherTopic_id}`, formData).then(res => {
+    axios.post(`/api/update-teacherTopic/${teacherTopic_id}`, formData).then(res => {
       if(res.data.status === 200)
       {
         Swal.fire({

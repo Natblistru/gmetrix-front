@@ -136,7 +136,7 @@ const ExamenSubect_beta = () => {
   const fetchEvaluations = async (theme) => {
     try {
       const res = await axios.get(
-        `http://localhost:8000/api/themeevaluations?level=1&disciplina=${subject_id}&theme=${theme}`
+        `/api/themeevaluations?level=1&disciplina=${subject_id}&theme=${theme}`
       );
       dispatch(fetchEvaluationsSuccess(res.data));
       // console.log(res.data)
@@ -252,7 +252,7 @@ const ExamenSubect_beta = () => {
       let studentResults = [];
       try {
         const response = await axios.post(
-          "http://localhost:8000/api/student-evaluation-results",
+          "/api/student-evaluation-results",
           {
             theme_id: subject_tema_id,
             subject_id: subject_id,
@@ -287,7 +287,7 @@ const ExamenSubect_beta = () => {
           .all(
             formDataArray.map((formData) =>
               axios.post(
-                "http://localhost:8000/api/update-student-evaluation-answers",
+                "/api/update-student-evaluation-answers",
                 formData
               )
             )

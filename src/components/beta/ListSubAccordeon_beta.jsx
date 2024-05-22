@@ -61,7 +61,7 @@ const fetchTest = async () => {
 
   const teacher_topic_id = currentTopic.teacher_topic_id;
   try {
-      const res = await axios.get(`http://localhost:8000/api/formativetest?topic=${teacher_topic_id}`);
+      const res = await axios.get(`/api/formativetest?topic=${teacher_topic_id}`);
       // console.log(res.data);
       dispatch(fetchCurrentTestsSuccess(res.data));
       dispatch(fetchCurrentIndexTest(0));
@@ -69,7 +69,7 @@ const fetchTest = async () => {
       console.error(err);
   }
   // try {
-  //   const res = await axios.get(`http://localhost:8000/api/teacherAllTests?teacher_topic=${teacher_topic_id}&student=${currentStudent}`);
+  //   const res = await axios.get(`/api/teacherAllTests?teacher_topic=${teacher_topic_id}&student=${currentStudent}`);
   //   // console.log(res.data);
   //   dispatch(fetchAllTeacherTestsSuccess(res.data));
   // } catch (err) {

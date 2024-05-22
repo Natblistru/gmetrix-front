@@ -156,7 +156,7 @@ const ExamenSubect3 = () => {
 
       let studentResults = []
       try {
-        const response = await axios.post('http://localhost:8000/api/student-evaluation-results', {
+        const response = await axios.post('/api/student-evaluation-results', {
           theme_id: subject_tema_id,
           subject_id: subject_id,
           study_level_id: 1,
@@ -183,7 +183,7 @@ const ExamenSubect3 = () => {
       });
       // console.log(formDataArray)
 
-      axios.all(formDataArray.map(formData => axios.post('http://localhost:8000/api/update-student-evaluation-answers', formData)))
+      axios.all(formDataArray.map(formData => axios.post('/api/update-student-evaluation-answers', formData)))
       .then(axios.spread((...responses) => {
         const successResponses = responses.filter(response => response.data.status === 200);
         const errorResponses = responses.filter(response => response.data.status === 404);

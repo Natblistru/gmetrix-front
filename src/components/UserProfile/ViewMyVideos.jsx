@@ -8,7 +8,7 @@ function ViewMyVideos() {
   const [teacherVideoList, setTeacherVideoList] = useState([]);
 
   useEffect(()=>{
-    axios.get(`http://localhost:8000/api/view-myteacherVideos`).then(res=> {
+    axios.get(`/api/view-myteacherVideos`).then(res=> {
       if(res.data.status === 200){
         setTeacherVideoList(res.data.teacherVideos)
       } 

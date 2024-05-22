@@ -20,33 +20,33 @@ function AddMySubtopic({ onBackToList, userData }) {
   const [tags, setTags] = useState(["Unirea României"], ["Unirea Basarabiei"]);
 
   useEffect(() => {
-    axios.get("http://localhost:8000/api/all-learningPrograms").then((res) => {
+    axios.get("/api/all-learningPrograms").then((res) => {
       if (res.data.status === 200) {
         setLearningProgramList(res.data.learningProgram);
       }
     });
 
     axios
-      .get("http://localhost:8000/api/all-themeLearningPrograms")
+      .get("/api/all-themeLearningPrograms")
       .then((res) => {
         if (res.data.status === 200) {
           setThemeList(res.data.theme);
         }
       });
 
-    axios.get("http://localhost:8000/api/all-topics").then((res) => {
+    axios.get("/api/all-topics").then((res) => {
       if (res.data.status === 200) {
         setTopicList(res.data.topics);
       }
     });
 
-    axios.get("http://localhost:8000/api/all-myteachers").then((res) => {
+    axios.get("/api/all-myteachers").then((res) => {
       if (res.data.status === 200) {
         setTeacherList(res.data.teachers);
       }
     });
 
-    axios.get("http://localhost:8000/api/all-myteacher-topics").then((res) => {
+    axios.get("/api/all-myteacher-topics").then((res) => {
       if (res.data.status === 200) {
         setTeacherTopicList(res.data.teacherTopics);
       }
@@ -506,7 +506,7 @@ function AddMySubtopic({ onBackToList, userData }) {
         if (item.name_subtopic) {
           try {
             const response = await axios.get(
-              `http://localhost:8000/api/get-mysubtopic/${item.name_subtopic}`
+              `/api/get-mysubtopic/${item.name_subtopic}`
             );
             subtopicId = response.data.subtopic.id;
           } catch (error) {
@@ -533,7 +533,7 @@ function AddMySubtopic({ onBackToList, userData }) {
           formDataArray.map(async (formData) => {
             // console.log('FormData:', formData);
             return axios.post(
-              "http://localhost:8000/api/store-mysubtopic-image",
+              "/api/store-mysubtopic-image",
               formData,
               {
                 headers: {
@@ -609,7 +609,7 @@ function AddMySubtopic({ onBackToList, userData }) {
           formDataArray.map((formData) => {
             // console.log('FormData:', formData);
             return axios.post(
-              "http://localhost:8000/api/store-mysubtopic",
+              "/api/store-mysubtopic",
               formData,
               {
                 headers: {
@@ -677,7 +677,7 @@ function AddMySubtopic({ onBackToList, userData }) {
           formattedDataArray.map((formData) => {
             // console.log('FormData:', formData);
             return axios.post(
-              "http://localhost:8000/api/store-myflip-card",
+              "/api/store-myflip-card",
               formData
             );
           })
@@ -745,7 +745,7 @@ function AddMySubtopic({ onBackToList, userData }) {
       axios
         .all(
           formDataArray.map((formData) =>
-            axios.post("http://localhost:8000/api/store-mytag", formData)
+            axios.post("/api/store-mytag", formData)
           )
         )
         .then(

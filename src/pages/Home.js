@@ -35,7 +35,7 @@ const Home = () => {
   const fetchSubjects = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:8000/api/disciplineani?year=2022"
+        "/api/disciplineani?year=2022"
       );
       dispatch(fetchDiscipline(res.data));
     } catch (err) {
@@ -46,7 +46,7 @@ const Home = () => {
   const fetchInitialSubtitleTeachers = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:8000/api/teachers-with-themes`
+        `/api/teachers-with-themes`
       );
       dispatch(fetchSubtitleTeachers(res.data.groupedTeacherThemes));
     } catch (err) {

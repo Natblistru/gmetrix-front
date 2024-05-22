@@ -30,32 +30,32 @@ function EditTeacherVideo(props) {
   
   useEffect(() => {
 
-    axios.get('http://localhost:8000/api/all-learningPrograms').then(res=>{
+    axios.get('/api/all-learningPrograms').then(res=>{
       if(res.data.status === 200){
         setLearningProgramList(res.data.learningProgram);
       }
     });
 
-    axios.get('http://localhost:8000/api/all-themeLearningPrograms').then(res=>{
+    axios.get('/api/all-themeLearningPrograms').then(res=>{
       if(res.data.status === 200){
         setThemeList(res.data.theme);
       }
     });
 
-    axios.get('http://localhost:8000/api/all-videos').then(res=>{
+    axios.get('/api/all-videos').then(res=>{
       if(res.data.status === 200){
         setVideoList(res.data.video);
       }
     });
 
-    axios.get('http://localhost:8000/api/all-teachers').then(res=>{
+    axios.get('/api/all-teachers').then(res=>{
       if(res.data.status === 200){
         setTeacherList(res.data.teachers);
       }
     });
 
     const teacherVideo_id = props.match.params.id;
-    axios.get(`http://localhost:8000/api/edit-teacherVideo/${teacherVideo_id}`).then(res=>{
+    axios.get(`/api/edit-teacherVideo/${teacherVideo_id}`).then(res=>{
       if(res.data.status === 200){
         // console.log(res.data.teacherVideos)
         const teacherVideoData = res.data.teacherVideos;
@@ -126,7 +126,7 @@ function EditTeacherVideo(props) {
     // console.log(formData)
 
     const teacherVideo_id = props.match.params.id;
-    axios.post(`http://localhost:8000/api/update-teacherVideo/${teacherVideo_id}`, formData).then(res => {
+    axios.post(`/api/update-teacherVideo/${teacherVideo_id}`, formData).then(res => {
       if(res.data.status === 200)
       {
         Swal.fire({

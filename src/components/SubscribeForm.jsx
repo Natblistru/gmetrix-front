@@ -16,7 +16,7 @@ const SubscribeForm = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:8000/api/subscribe', { email });
+      const response = await axios.post('/api/subscribe', { email });
       setMessage(response.data.message);
       Swal.fire({
         title: "Success",

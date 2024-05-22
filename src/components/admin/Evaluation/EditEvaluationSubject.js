@@ -28,20 +28,20 @@ function EditEvaluationSubject(props) {
 
   useEffect(() => {
 
-    axios.get('http://localhost:8000/api/all-subject-study-level').then(res=>{
+    axios.get('/api/all-subject-study-level').then(res=>{
       if(res.data.status === 200){
         setSubjectList(res.data.subject);
       }
     });
 
-    axios.get('http://localhost:8000/api/all-evaluations').then(res=>{
+    axios.get('/api/all-evaluations').then(res=>{
       if(res.data.status === 200){
         setEvaluationList(res.data.evaluations);
       }
     });
 
     const evaluationSubject_id = props.match.params.id;
-    axios.get(`http://localhost:8000/api/edit-evaluation-subject/${evaluationSubject_id}`).then(res=>{
+    axios.get(`/api/edit-evaluation-subject/${evaluationSubject_id}`).then(res=>{
       if(res.data.status === 200){
         const evaluationSubjectData = res.data.evaluationSubjects;
         setEvaluationSubjectInput({
@@ -107,7 +107,7 @@ function EditEvaluationSubject(props) {
     // console.log(formData)
 
     const evaluationSubject_id = props.match.params.id;
-    axios.post(`http://localhost:8000/api/update-evaluation-subject/${evaluationSubject_id}`, formData).then(res => {
+    axios.post(`/api/update-evaluation-subject/${evaluationSubject_id}`, formData).then(res => {
       if(res.data.status === 200)
       {
         Swal.fire({

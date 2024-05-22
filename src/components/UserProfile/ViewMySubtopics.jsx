@@ -107,25 +107,25 @@ function ViewMySubtopics({ onAddSubtopic, onEditSubtopic }) {
 
   useEffect(() => {
 
-    axios.get('http://localhost:8000/api/all-learningPrograms').then(res=>{
+    axios.get('/api/all-learningPrograms').then(res=>{
       if(res.data.status === 200){
         setLearningProgramList(res.data.learningProgram);
       }
     });
 
-    axios.get('http://localhost:8000/api/all-themeLearningPrograms').then(res=>{
+    axios.get('/api/all-themeLearningPrograms').then(res=>{
       if(res.data.status === 200){
         setThemeList(res.data.theme);
       }
     });
 
-    axios.get('http://localhost:8000/api/all-teacher-topics').then(res=>{
+    axios.get('/api/all-teacher-topics').then(res=>{
       if(res.data.status === 200){
         setAllTeacherTopicList(res.data.teacherTopics);
       }
     });
 
-    axios.get('http://localhost:8000/api/all-topics').then(res=>{
+    axios.get('/api/all-topics').then(res=>{
       if(res.data.status === 200){
         setTopicList(res.data.topics);
       }
@@ -148,7 +148,7 @@ function ViewMySubtopics({ onAddSubtopic, onEditSubtopic }) {
           filterTopic: filter.teacher_topic_id,
           paramTeacher: localStorage.getItem('auth_roleId'),
         };
-        const response = await axios.get('http://localhost:8000/api/view-mySubtopics', { params });
+        const response = await axios.get('/api/view-mySubtopics', { params });
           if (response.data.status === 200) {
             // console.log(response.data)
             setTeacherTopicList(response.data.subtopics)
@@ -170,7 +170,7 @@ function ViewMySubtopics({ onAddSubtopic, onEditSubtopic }) {
     'audio_path': (item) => (item.audio_path && (
       item.audio_path.startsWith('uploads/audioSubtopic/') ? (
         <audio controls style={{ width: '100%', maxWidth: '200px' }}>
-          <source src={`http://localhost:8000/${item.audio_path}`} type="audio/mp3" />
+          <source src={`/${item.audio_path}`} type="audio/mp3" />
           Your browser does not support the audio element.
         </audio>
       ) : (

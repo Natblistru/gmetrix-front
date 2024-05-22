@@ -112,25 +112,25 @@ function ViewMyTopics({ onAddTopic, onEditTopic }) {
 
   useEffect(() => {
 
-    axios.get('http://localhost:8000/api/all-learningPrograms').then(res=>{
+    axios.get('/api/all-learningPrograms').then(res=>{
       if(res.data.status === 200){
         setLearningProgramList(res.data.learningProgram);
       }
     });
 
-    axios.get('http://localhost:8000/api/all-themeLearningPrograms').then(res=>{
+    axios.get('/api/all-themeLearningPrograms').then(res=>{
       if(res.data.status === 200){
         setThemeProgramList(res.data.theme);
       }
     });
 
-    axios.get('http://localhost:8000/api/all-themes').then(res=>{
+    axios.get('/api/all-themes').then(res=>{
       if(res.data.status === 200){
         setThemeList(res.data.themes);
       }
     });
 
-    axios.get('http://localhost:8000/api/all-chapters').then(res=>{
+    axios.get('/api/all-chapters').then(res=>{
       if(res.data.status === 200){
         setChapterList(res.data.chapters);
       }
@@ -153,7 +153,7 @@ function ViewMyTopics({ onAddTopic, onEditTopic }) {
           filterChapter: filter.chapter_id,
           paramTeacher: localStorage.getItem('auth_roleId'),
         };
-        const response = await axios.get('http://localhost:8000/api/view-myTopics', { params });
+        const response = await axios.get('/api/view-myTopics', { params });
           if (response.data.status === 200) {
             // console.log(response.data)
             setTeacherTopicList(response.data.teacherTopics)

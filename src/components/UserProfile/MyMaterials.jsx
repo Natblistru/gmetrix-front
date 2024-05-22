@@ -171,7 +171,7 @@ const ListDisciplineMateria = () => {
     disciplineAni.forEach((item) => {
       const level_id = 1;
   
-      axios.get(`http://localhost:8000/api/capitoleDisciplina?level=${level_id}&disciplina=${item.subject_id}&student=1`)
+      axios.get(`/api/capitoleDisciplina?level=${level_id}&disciplina=${item.subject_id}&student=1`)
         .then(res => {
           if (res.status === 200) {
             allMediaDisciplina.push(res.data[0].disciplina_media);
@@ -223,14 +223,14 @@ function MyMaterials(props) {
   }
   useEffect(() => {
 
-    axios.get('http://localhost:8000/api/all-learningPrograms').then(res=>{
+    axios.get('/api/all-learningPrograms').then(res=>{
       if(res.data.status === 200){
 
         setLearningProgramList(res.data.learningProgram);
       }
     });
 
-    axios.get('http://localhost:8000/api/all-themeLearningPrograms').then(res=>{
+    axios.get('/api/all-themeLearningPrograms').then(res=>{
       if(res.data.status === 200){
         setThemeList(res.data.theme);
       }

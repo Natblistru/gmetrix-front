@@ -8,7 +8,7 @@ function ViewSummativeTest() {
   const [teacherTopicList, setTeacherTopicList] = useState([]);
 
   useEffect(()=>{
-    axios.get(`http://localhost:8000/api/view-summative-test`).then(res=> {
+    axios.get(`/api/view-summative-test`).then(res=> {
       if(res.data.status === 200){
         setTeacherTopicList(res.data.summativeTest)
       } 

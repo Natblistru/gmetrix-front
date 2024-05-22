@@ -137,9 +137,7 @@ const EvaluationSubject2_beta = ({
             <ItemText classNameChild="">
               {quizArray[currentIndex].img && (
                 <img
-                  src={`http://localhost:8000/${
-                    process.env.PUBLIC_URL + quizArray[currentIndex]?.img
-                  }`}
+                  src={`${process.env.REACT_APP_API_BASE_URL}/${quizArray[currentIndex]?.img}`}
                 />
               )}
               {quizArray[currentIndex]?.answers.map((answer) => (

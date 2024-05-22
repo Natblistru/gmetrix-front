@@ -29,7 +29,7 @@ const ListDisciplineRezultat = ({selectedItem, setSelectedItem}) => {
     disciplineAni.forEach((item) => {
       const level_id = 1;
   
-      axios.get(`http://localhost:8000/api/capitoleDisciplina?level=${level_id}&disciplina=${item.subject_id}&student=${currentStudent}`)
+      axios.get(`/api/capitoleDisciplina?level=${level_id}&disciplina=${item.subject_id}&student=${currentStudent}`)
         .then(res => {
           if (res.status === 200) {
             // console.log(res.data)
@@ -103,7 +103,7 @@ function MyResults() {
      try {
       const studentId = 1;
       const level_id = 1;
-      const promises = teachersForSubtitles.map(teachertheme => axios.get(`http://localhost:8000/api/teachertheme?level=${level_id}&disciplina=${selectedItem.subject_id}&teacher=${teachertheme.teacher_id}&student=${currentStudent}&theme=${themeId}`));
+      const promises = teachersForSubtitles.map(teachertheme => axios.get(`/api/teachertheme?level=${level_id}&disciplina=${selectedItem.subject_id}&teacher=${teachertheme.teacher_id}&student=${currentStudent}&theme=${themeId}`));
       const responses = await axios.all(promises);
       const successResponses = responses.filter(response => response.status === 200);
       const errorResponses = responses.filter(response => response.status === 404);
@@ -180,14 +180,14 @@ function MyResults() {
 
   useEffect(() => {
 
-    axios.get('http://localhost:8000/api/all-learningPrograms').then(res=>{
+    axios.get('/api/all-learningPrograms').then(res=>{
       if(res.data.status === 200){
 
         setLearningProgramList(res.data.learningProgram);
       }
     });
 
-    axios.get('http://localhost:8000/api/all-themeLearningPrograms').then(res=>{
+    axios.get('/api/all-themeLearningPrograms').then(res=>{
       if(res.data.status === 200){
         setThemeList(res.data.theme);
       }
@@ -198,7 +198,7 @@ function MyResults() {
   const fetchStudentResults = async () => {
     const studentId = currentStudent;
     
-    const response = await axios.post('http://localhost:8000/api/student-evaluation-results-all-themes', {
+    const response = await axios.post('/api/student-evaluation-results-all-themes', {
       subject_id: selectedItem.subject_id,
       study_level_id: 1,
       studentId: studentId,
@@ -211,7 +211,7 @@ function MyResults() {
   const fetchStudentProgress = async () => {
     const studentId = currentStudent;
     
-    const response = await axios.post('http://localhost:8000/api/student-subtopic-progress-all-themes', {
+    const response = await axios.post('/api/student-subtopic-progress-all-themes', {
       subject_id: selectedItem.subject_id,
       study_level_id: 1,
       studentId: studentId,

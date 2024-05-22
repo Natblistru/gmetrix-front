@@ -100,19 +100,19 @@ function ViewEvaluationSource() {
 
   useEffect(() => {
 
-    axios.get('http://localhost:8000/api/all-subject-study-level').then(res=>{
+    axios.get('/api/all-subject-study-level').then(res=>{
       if(res.data.status === 200){
         setSubjectLevelList(res.data.subject);
       }
     });
 
-    axios.get('http://localhost:8000/api/all-themes').then(res=>{
+    axios.get('/api/all-themes').then(res=>{
       if(res.data.status === 200){
         setThemeList(res.data.themes);
       }
     });
 
-    axios.get(`http://localhost:8000/api/all-chapters`).then(res=> {
+    axios.get(`/api/all-chapters`).then(res=> {
       if(res.data.status === 200){
         setChapterList(res.data.chapters)
       }
@@ -134,7 +134,7 @@ function ViewEvaluationSource() {
           filterTheme: filter.theme_id,
           filterChapter: filter.chapter_id,
         };
-        const response = await axios.get('http://localhost:8000/api/view-evaluation-source', { params });
+        const response = await axios.get('/api/view-evaluation-source', { params });
           if (response.data.status === 200) {
             // console.log(response.data)
             setTeacherTopicList(response.data.evaluationSources);

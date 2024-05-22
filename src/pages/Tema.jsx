@@ -98,7 +98,7 @@ const Tema = () => {
     const fetchData = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:8000/api/teacherthemevideo?level=1&disciplina=${subject_id}&teacher=${teacherVideo}&theme=${theme}`
+          `/api/teacherthemevideo?level=1&disciplina=${subject_id}&teacher=${teacherVideo}&theme=${theme}`
         );
         dispatch(fetchThemeVideoSuccess(res.data));
       } catch (err) {
@@ -108,7 +108,7 @@ const Tema = () => {
 
       try {
         const res = await axios.get(
-          `http://localhost:8000/api/teacherThemePresentation?level=1&disciplina=${subject_id}&teacher=${teacherVideo}&theme=${theme}`
+          `/api/teacherThemePresentation?level=1&disciplina=${subject_id}&teacher=${teacherVideo}&theme=${theme}`
         );
         dispatch(fetchThemePresentationSuccess(res.data));
       } catch (err) {
@@ -122,7 +122,7 @@ const Tema = () => {
   const fetchEvaluations = async (theme) => {
     try {
       const res = await axios.get(
-        `http://localhost:8000/api/themeevaluations?level=1&disciplina=${subject_id}&theme=${theme}`
+        `/api/themeevaluations?level=1&disciplina=${subject_id}&theme=${theme}`
       );
       dispatch(fetchEvaluationsSuccess(res.data));
       // console.log(res.data)

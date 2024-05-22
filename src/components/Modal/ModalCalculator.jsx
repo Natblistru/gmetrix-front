@@ -164,7 +164,7 @@ const ModalCalculator = ({ subject, currentIndex, onClick, idRaspuns }) => {
     try {
       for (const element of selectedOptionsToDB) {
         const response = await axios.post(
-          "http://localhost:8000/api/student-evaluation-answers",
+          "/api/student-evaluation-answers",
           element
         );
 

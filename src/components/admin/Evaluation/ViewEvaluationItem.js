@@ -106,19 +106,19 @@ function ViewEvaluationItem() {
 
   useEffect(() => {
 
-    axios.get('http://localhost:8000/api/all-subject-study-level').then(res=>{
+    axios.get('/api/all-subject-study-level').then(res=>{
       if(res.data.status === 200){
         setSubjectLevelList(res.data.subject);
       }
     });
 
-    axios.get('http://localhost:8000/api/all-themes').then(res=>{
+    axios.get('/api/all-themes').then(res=>{
       if(res.data.status === 200){
         setThemeList(res.data.themes);
       }
     });
 
-    axios.get(`http://localhost:8000/api/all-chapters`).then(res=> {
+    axios.get(`/api/all-chapters`).then(res=> {
       if(res.data.status === 200){
         setChapterList(res.data.chapters)
       }
@@ -140,7 +140,7 @@ function ViewEvaluationItem() {
           filterTheme: filter.theme_id,
           filterChapter: filter.chapter_id,
         };
-        const response = await axios.get('http://localhost:8000/api/view-evaluation-item', { params });
+        const response = await axios.get('/api/view-evaluation-item', { params });
           if (response.data.status === 200) {
             // console.log(response.data)
             setTeacherTopicList(response.data.evaluationItem);
@@ -163,7 +163,7 @@ function ViewEvaluationItem() {
         <>
           {item.image_path && (
             item.image_path.startsWith('uploads/evaluationItem/') ? (
-              <img src={`http://localhost:8000/${item.image_path}`} width='50px' alt={item.image_path || ''} />
+              <img src={`/${item.image_path}`} width='50px' alt={item.image_path || ''} />
             ) : (
               <span>{item.image_path || ''}</span>
             )
@@ -175,7 +175,7 @@ function ViewEvaluationItem() {
       <>
         {item.editable_image_path && (
           item.editable_image_path.startsWith('uploads/evaluationItem/') ? (
-            <img src={`http://localhost:8000/${item.editable_image_path}`} width='50px' alt={item.editable_image_path || ''} />
+            <img src={`/${item.editable_image_path}`} width='50px' alt={item.editable_image_path || ''} />
           ) : (
             <span>{item.editable_image_path || ''}</span>
           )

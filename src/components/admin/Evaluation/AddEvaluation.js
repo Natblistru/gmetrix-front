@@ -13,7 +13,7 @@ function AddEvaluation() {
 
   useEffect(() => {
 
-    axios.get('http://localhost:8000/api/all-subject-study-level').then(res=>{
+    axios.get('/api/all-subject-study-level').then(res=>{
       if(res.data.status === 200){
         setSubjectList(res.data.subject);
       }
@@ -140,7 +140,7 @@ function AddEvaluation() {
           });
           // console.log(formDataArray)
           // Trimitem fiecare set de date către server utilizând axios.all
-          axios.all(formDataArray.map(formData => axios.post('http://localhost:8000/api/store-evaluation', formData)))
+          axios.all(formDataArray.map(formData => axios.post('/api/store-evaluation', formData)))
               .then(axios.spread((...responses) => {
                 const successResponses = responses.filter(response => response.data.status === 201);
                 const errorResponses = responses.filter(response => response.data.status === 422);
@@ -230,7 +230,7 @@ function AddEvaluation() {
 
     // console.log(formData)
 
-    axios.post(`http://localhost:8000/api/store-evaluation`, formData).then(res => {
+    axios.post(`/api/store-evaluation`, formData).then(res => {
       if(res.data.status === 201)
       {
         Swal.fire({

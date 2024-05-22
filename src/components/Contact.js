@@ -41,7 +41,7 @@ export const Contact = () => {
     setButtonText("Se trimite...");
 
     try {
-      const response = await axios.post("http://localhost:8000/api/contact", formDetails, {
+      const response = await axios.post("/api/contact", formDetails, {
         headers: {
           "Content-Type": "application/json;charset=utf-8",
         },

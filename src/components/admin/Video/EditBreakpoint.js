@@ -25,14 +25,14 @@ function EditBreakpoint(props) {
 
   useEffect(() => {
 
-    axios.get('http://localhost:8000/api/all-videos').then(res=>{
+    axios.get('/api/all-videos').then(res=>{
       if(res.data.status === 200){
         setVideoList(res.data.video);
       }
 
     });
     const breakpoint_id = props.match.params.id;
-    axios.get(`http://localhost:8000/api/edit-breakpoint/${breakpoint_id}`).then(res=>{
+    axios.get(`/api/edit-breakpoint/${breakpoint_id}`).then(res=>{
       // console.log(res.data.breakpoint)
       if(res.data.status === 200){
         setBreakpointInput(res.data.breakpoint)
@@ -73,7 +73,7 @@ function EditBreakpoint(props) {
     // console.log(formData)
 
     const breakpoint_id = props.match.params.id;
-    axios.post(`http://localhost:8000/api/update-breakpoint/${breakpoint_id}`, formData).then(res => {
+    axios.post(`/api/update-breakpoint/${breakpoint_id}`, formData).then(res => {
       if(res.data.status === 200)
       {
         Swal.fire({

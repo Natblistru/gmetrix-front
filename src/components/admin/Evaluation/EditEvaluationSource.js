@@ -34,26 +34,26 @@ function EditEvaluationSource(props) {
 
   useEffect(() => {
 
-    axios.get('http://localhost:8000/api/all-subject-study-level').then(res=>{
+    axios.get('/api/all-subject-study-level').then(res=>{
       if(res.data.status === 200){
         setSubjectList(res.data.subject);
       }
     });
 
-    axios.get('http://localhost:8000/api/all-chapters').then(res=>{
+    axios.get('/api/all-chapters').then(res=>{
       if(res.data.status === 200){
         setChapterList(res.data.chapters);
       }
     });
 
-    axios.get('http://localhost:8000/api/all-themes').then(res=>{
+    axios.get('/api/all-themes').then(res=>{
       if(res.data.status === 200){
         setThemeList(res.data.themes);
       }
     });
 
     const evaluation_source_id = props.match.params.id;
-    axios.get(`http://localhost:8000/api/edit-evaluation-source/${evaluation_source_id}`).then(res=>{
+    axios.get(`/api/edit-evaluation-source/${evaluation_source_id}`).then(res=>{
       if(res.data.status === 200){
         // console.log(res.data.evaluationSource)
         // console.log(res.data)
@@ -134,7 +134,7 @@ function EditEvaluationSource(props) {
     // console.log(formData)
 
     const evaluation_source_id = props.match.params.id;
-    axios.post(`http://localhost:8000/api/update-evaluation-source/${evaluation_source_id}`, formData).then(res => {
+    axios.post(`/api/update-evaluation-source/${evaluation_source_id}`, formData).then(res => {
       if(res.data.status === 200)
       {
         Swal.fire({

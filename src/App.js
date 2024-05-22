@@ -46,17 +46,13 @@ import FlipCards_beta_eval from "./components/beta/FlipCards_beta_eval.jsx";
 const FlipCardsWithRouter = withRouter(FlipCards);
 const TestWithRouter = withRouter(Test);
 
+axios.defaults.baseURL = process.env.REACT_APP_API_BASE_URL;
+console.log(axios.defaults.baseURL)
 axios.defaults.withCredentials = true;
 axios.defaults.withXSRFToken = true;
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 axios.defaults.headers.post['Accept'] = 'application/json';
 axios.interceptors.request.use((config) => {
-  // if (!config) {
-  //   config = {};
-  // }
-  // if (!config.headers) {
-  //     config.headers = {};
-  // }
   const token = localStorage.getItem('auth_token');
   config.headers.Authorization = token ? `Bearer ${token}` : '';
   return config;

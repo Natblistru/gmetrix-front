@@ -32,8 +32,8 @@ function ResetPassword() {
       const data = {
         password: resetInput.password,
       }
-      axios.get('http://localhost:8000/sanctum/csrf-cookie').then(response => {
-        axios.post(`http://localhost:8000/api/reset-password/${token}`, data).then(res => {
+      axios.get('/sanctum/csrf-cookie').then(response => {
+        axios.post(`/api/reset-password/${token}`, data).then(res => {
           if(res.data.status === 200)
           {
             history.push("/login");

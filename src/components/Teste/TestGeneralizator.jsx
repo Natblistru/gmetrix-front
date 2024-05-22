@@ -482,7 +482,7 @@ const TestGeneralizator = ({
     try {
       // console.log(element)
       const response = await axios.post(
-        "http://localhost:8000/api/student-summative-test-options",
+        "/api/student-summative-test-options",
         element
       );
 
@@ -504,7 +504,7 @@ const TestGeneralizator = ({
     try {
       // console.log(element)
       const response = await axios.post(
-        "http://localhost:8000/api/student-summative-test-results",
+        "/api/student-summative-test-results",
         element
       );
 

@@ -40,44 +40,44 @@ function EditTestItemOption(props) {
 
   useEffect(() => {
 
-    axios.get('http://localhost:8000/api/all-learningPrograms').then(res=>{
+    axios.get('/api/all-learningPrograms').then(res=>{
       if(res.data.status === 200){
         setLearningProgramList(res.data.learningProgram);
       }
     });
 
-    axios.get('http://localhost:8000/api/all-themeLearningPrograms').then(res=>{
+    axios.get('/api/all-themeLearningPrograms').then(res=>{
       if(res.data.status === 200){
         setThemeList(res.data.theme);
       }
     });
 
-    axios.get('http://localhost:8000/api/all-topics').then(res=>{
+    axios.get('/api/all-topics').then(res=>{
       if(res.data.status === 200){
         setTopicList(res.data.topics);
       }
     });
 
-    axios.get('http://localhost:8000/api/all-teachers').then(res=>{
+    axios.get('/api/all-teachers').then(res=>{
       if(res.data.status === 200){
         setTeacherList(res.data.teachers);
       }
     });
 
-    axios.get('http://localhost:8000/api/all-teacher-topics').then(res=>{
+    axios.get('/api/all-teacher-topics').then(res=>{
       if(res.data.status === 200){
         setTeacherTopicList(res.data.teacherTopics);
       }
     });
 
-    axios.get('http://localhost:8000/api/all-test-items').then(res=>{
+    axios.get('/api/all-test-items').then(res=>{
       if(res.data.status === 200){
         setTestItemList(res.data.testItems);
       }
     });
 
     const testItemOption_id = props.match.params.id;
-    axios.get(`http://localhost:8000/api/edit-test-item-option/${testItemOption_id}`).then(res=>{
+    axios.get(`/api/edit-test-item-option/${testItemOption_id}`).then(res=>{
       if(res.data.status === 200){
         const testItemOptionData = res.data.testItemOption;
         // console.log(testItemOptionData)
@@ -146,7 +146,7 @@ function EditTestItemOption(props) {
 
     // console.log(formData)
     const testItemOption_id = props.match.params.id;
-    axios.post(`http://localhost:8000/api/update-test-item-option/${testItemOption_id}`, formData).then(res => {
+    axios.post(`/api/update-test-item-option/${testItemOption_id}`, formData).then(res => {
       if(res.data.status === 200)
       {
         Swal.fire({

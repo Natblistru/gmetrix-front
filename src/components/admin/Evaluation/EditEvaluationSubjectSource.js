@@ -34,38 +34,38 @@ function EditEvaluationSubjectSource(props) {
 
   useEffect(() => {
 
-    axios.get('http://localhost:8000/api/all-subject-study-level').then(res=>{
+    axios.get('/api/all-subject-study-level').then(res=>{
       if(res.data.status === 200){
         setSubjectList(res.data.subject);
       }
     });
 
-    axios.get('http://localhost:8000/api/all-chapters').then(res=>{
+    axios.get('/api/all-chapters').then(res=>{
       if(res.data.status === 200){
         setChapterList(res.data.chapters);
       }
     });
 
-    axios.get('http://localhost:8000/api/all-themes').then(res=>{
+    axios.get('/api/all-themes').then(res=>{
       if(res.data.status === 200){
         setThemeList(res.data.themes);
       }
     });
 
-    axios.get('http://localhost:8000/api/all-evaluation-subjects').then(res=>{
+    axios.get('/api/all-evaluation-subjects').then(res=>{
       if(res.data.status === 200){
         setEvaluationSubjectList(res.data.evaluationSubjects);
       }
     });
 
-    axios.get('http://localhost:8000/api/all-evaluation-sources').then(res=>{
+    axios.get('/api/all-evaluation-sources').then(res=>{
       if(res.data.status === 200){
         setEvaluationSourceList(res.data.evaluationSources);
       }
     });
 
     const evaluationSubjectSource_id = props.match.params.id;
-    axios.get(`http://localhost:8000/api/edit-evaluation-subject-source/${evaluationSubjectSource_id}`).then(res=>{
+    axios.get(`/api/edit-evaluation-subject-source/${evaluationSubjectSource_id}`).then(res=>{
     if(res.data.status === 200){
         const evaluationSubjectSourceData = res.data.evaluationSubjectSources;
         // console.log(res.data);
@@ -115,7 +115,7 @@ function EditEvaluationSubjectSource(props) {
     // console.log(formData)
 
     const evaluationSubjectSource_id = props.match.params.id;
-    axios.post(`http://localhost:8000/api/update-evaluation-subject-source/${evaluationSubjectSource_id}`, formData).then(res => {
+    axios.post(`/api/update-evaluation-subject-source/${evaluationSubjectSource_id}`, formData).then(res => {
       if(res.data.status === 200)
       {
         Swal.fire({

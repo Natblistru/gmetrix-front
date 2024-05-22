@@ -22,7 +22,7 @@ const Notification = () => {
     setButtonText("Se trimite...");
 
     try {
-      const response = await axios.post("http://localhost:8000/api/notify-all-subscribers", {
+      const response = await axios.post("/api/notify-all-subscribers", {
         letterText: formDetails.message,
       });
 

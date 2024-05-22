@@ -25,27 +25,27 @@ function AddMyTopic({ onBackToList, userData }) {
   const [tags, setTags] = useState(["Unirea României"], ["Unirea Basarabiei"]);
 
   useEffect(() => {
-    axios.get("http://localhost:8000/api/all-learningPrograms").then((res) => {
+    axios.get("/api/all-learningPrograms").then((res) => {
       if (res.data.status === 200) {
         setLearningProgramList(res.data.learningProgram);
       }
     });
 
     axios
-      .get("http://localhost:8000/api/all-themeLearningPrograms")
+      .get("/api/all-themeLearningPrograms")
       .then((res) => {
         if (res.data.status === 200) {
           setThemeList(res.data.theme);
         }
       });
 
-    axios.get("http://localhost:8000/api/all-topics").then((res) => {
+    axios.get("/api/all-topics").then((res) => {
       if (res.data.status === 200) {
         setTopicList(res.data.topics);
       }
     });
 
-    axios.get("http://localhost:8000/api/all-myteachers").then((res) => {
+    axios.get("/api/all-myteachers").then((res) => {
       if (res.data.status === 200) {
         setTeacherList(res.data.teachers);
       }
@@ -56,7 +56,7 @@ function AddMyTopic({ onBackToList, userData }) {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8000/api/view-myvideos`
+          `/api/view-myvideos`
         );
         setVideoList(response.data.video);
         // console.log(response.data.video)
@@ -74,7 +74,7 @@ function AddMyTopic({ onBackToList, userData }) {
   // useEffect(() => {
   //   const fetchData = async () => {
   //     try {
-  //       const response = await axios.get(`http://localhost:8000/api/all-myvideo/${userData.teacher.id}`);
+  //       const response = await axios.get(`/api/all-myvideo/${userData.teacher.id}`);
   //       setVideoList(response.data.videos);
   //     } catch (error) {
   //       console.error('Error fetching data:', error);
@@ -221,7 +221,7 @@ function AddMyTopic({ onBackToList, userData }) {
         .all(
           formDataArray.map((formData) =>
             axios.post(
-              "http://localhost:8000/api/store-myteacherTopic",
+              "/api/store-myteacherTopic",
               formData
             )
           )
@@ -272,7 +272,7 @@ function AddMyTopic({ onBackToList, userData }) {
       formData.append("status", 0);
 
       axios
-        .post(`http://localhost:8000/api/store-myteacherPresentation`, formData)
+        .post(`/api/store-myteacherPresentation`, formData)
         .then((res) => {
           if (res.data.status === 201) {
             Swal.fire({
@@ -306,7 +306,7 @@ function AddMyTopic({ onBackToList, userData }) {
       formData.append("status", 0);
 
       axios
-        .post(`http://localhost:8000/api/store-myvideo`, formData)
+        .post(`/api/store-myvideo`, formData)
         .then((res) => {
           if (res.data.status === 201) {
             Swal.fire({
@@ -353,7 +353,7 @@ function AddMyTopic({ onBackToList, userData }) {
               // console.log(formData)
       
               axios
-                .post(`http://localhost:8000/api/store-myteacherVideo`, formData)
+                .post(`/api/store-myteacherVideo`, formData)
                 .then((res) => {
                   if (res.data.status === 201) {
                     Swal.fire({
@@ -394,7 +394,7 @@ function AddMyTopic({ onBackToList, userData }) {
                   .all(
                     formDataArray.map((formData) =>
                       axios.post(
-                        "http://localhost:8000/api/store-mybreakpoint",
+                        "/api/store-mybreakpoint",
                         formData
                       )
                     )
@@ -473,7 +473,7 @@ function AddMyTopic({ onBackToList, userData }) {
       axios
         .all(
           formDataArray.map((formData) =>
-            axios.post("http://localhost:8000/api/store-mytag", formData)
+            axios.post("/api/store-mytag", formData)
           )
         )
         .then(

@@ -30,7 +30,7 @@ const CustomVericalTestsSlide = (props) => {
             <img
                 className="toolPreviewImage"
                 style={img_slider}
-                src={process.env.PUBLIC_URL + imagePath}
+                src={`${process.env.REACT_APP_API_BASE_URL}/${imagePath}`}
                 alt=""
             />
             <div className="overlay_text">

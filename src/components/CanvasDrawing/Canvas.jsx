@@ -23,7 +23,7 @@ const Canvas = ({item, disable}) => {
     const canvas = canvasRef.current;
     canvas.width = 674;
     canvas.height = 500;
-    setImageBackground(`http://localhost:8000/${process.env.PUBLIC_URL +item.harta}`)
+    setImageBackground(`${process.env.REACT_APP_API_BASE_URL}/${item.harta}`)
     const context = canvas.getContext("2d");
     if(contextRef.current) {contextRef.current.clearRect(
       0,

@@ -26,7 +26,7 @@ const ChangePassword = ({ userData }) => {
     
         const user_id = userData.id;
         // const authToken = localStorage.getItem('auth_token');
-        axios.patch(`http://localhost:8000/api/change-password-user/${user_id}`, requestData)
+        axios.patch(`/api/change-password-user/${user_id}`, requestData)
           .then(res => {
             Swal.fire({
               title: "Succes",

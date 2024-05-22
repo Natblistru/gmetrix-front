@@ -18,7 +18,7 @@ function EditVideo(props) {
 
   useEffect(()=> {
     const video_id = props.match.params.id;
-    axios.get(`http://localhost:8000/api/edit-video/${video_id}`).then(res=>{
+    axios.get(`/api/edit-video/${video_id}`).then(res=>{
       // console.log(res.data.video)
       if(res.data.status === 200){
         setVideoInput(res.data.video)
@@ -59,7 +59,7 @@ function EditVideo(props) {
 
     const video_id = props.match.params.id;
     // console.log(video_id);
-    axios.post(`http://localhost:8000/api/update-video/${video_id}`, formData).then(res=>{
+    axios.post(`/api/update-video/${video_id}`, formData).then(res=>{
       // console.log(res)
       if(res.data.status === 200) {
         Swal.fire({

@@ -61,7 +61,7 @@ const SearchComponent = () => {
     if(itemInput.subject_study_level_id !==""){
       try {
         // console.log(itemInput)
-        const response = await axios.post('http://localhost:8000/api/all-tags', { subject_study_level_id: itemInput.subject_study_level_id });
+        const response = await axios.post('/api/all-tags', { subject_study_level_id: itemInput.subject_study_level_id });
         const { status, tags } = response.data;
 
         if (status === 200) {
@@ -80,7 +80,7 @@ const SearchComponent = () => {
     // console.log(details)
     // console.log(stateData.disciplineAni)
     try {
-        const res = await axios.get(`http://localhost:8000/api/capitoleDisciplina?level=${details.studyLevelId}&disciplina=${details.subjectId}&student=${student_id}`);
+        const res = await axios.get(`/api/capitoleDisciplina?level=${details.studyLevelId}&disciplina=${details.subjectId}&student=${student_id}`);
         dispatch(fetchCapitoleRedux(res.data));
         if (res.data.length > 0) {
           dispatch(updateCurrentSubject(res.data[0]))
@@ -170,7 +170,7 @@ const SearchComponent = () => {
       try {
         const selectedTagIds = selectedTags.map((tag) => tag.value);
         // console.log(selectedTagIds)
-        const response = await axios.post('http://localhost:8000/api/get-posts-by-tags', { tagIds: selectedTagIds });
+        const response = await axios.post('/api/get-posts-by-tags', { tagIds: selectedTagIds });
         // console.log(response.data)        
         if (response.data.status === 200) {
           setThemes(response.data.themes);

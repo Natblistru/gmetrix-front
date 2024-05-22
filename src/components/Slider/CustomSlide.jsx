@@ -9,7 +9,7 @@ const CustomSlide = (props) => {
       };
     return (
         <div {...props}>
-            <img src={`http://localhost:8000/${process.env.PUBLIC_URL + props.image}`} style= {img_slider}/>
+            <img src={`${process.env.REACT_APP_API_BASE_URL}/${props.image}`} style= {img_slider}/>
         </div>
     )
 }

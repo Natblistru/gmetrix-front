@@ -104,7 +104,7 @@ function AddEvaluationOption() {
         });
         // console.log(formDataArray)
         // Trimitem fiecare set de date către server utilizând axios.all
-        axios.all(formDataArray.map(formData => axios.post(`http://localhost:8000/api/store-evaluation-option`, formData)))
+        axios.all(formDataArray.map(formData => axios.post(`/api/store-evaluation-option`, formData)))
             .then(axios.spread((...responses) => {
               const successResponses = responses.filter(response => response.data.status === 201);
               const errorResponses = responses.filter(response => response.data.status === 422);
@@ -169,7 +169,7 @@ function AddEvaluationOption() {
     formData.append('points',evaluationOption.points );
     formData.append('status',allCheckboxes.status == true ? 1 : 0);
 
-    axios.post(`http://localhost:8000/api/store-evaluation-option`, formData).then(res => {
+    axios.post(`/api/store-evaluation-option`, formData).then(res => {
       if(res.data.status === 201)
       {
         Swal.fire({

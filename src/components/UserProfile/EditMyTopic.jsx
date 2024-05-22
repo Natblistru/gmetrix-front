@@ -32,32 +32,32 @@ function EditMyTopic({id, onBackToList}) {
   useEffect(() => {
 
 // console.log("ajuns")
-    axios.get('http://localhost:8000/api/all-learningPrograms').then(res=>{
+    axios.get('/api/all-learningPrograms').then(res=>{
       if(res.data.status === 200){
         setLearningProgramList(res.data.learningProgram);
       }
     });
 
-    axios.get('http://localhost:8000/api/all-themeLearningPrograms').then(res=>{
+    axios.get('/api/all-themeLearningPrograms').then(res=>{
       if(res.data.status === 200){
         setThemeList(res.data.theme);
       }
     });
 
-    axios.get('http://localhost:8000/api/all-topics').then(res=>{
+    axios.get('/api/all-topics').then(res=>{
       if(res.data.status === 200){
         setTopicList(res.data.topics);
       }
     });
 
-    axios.get('http://localhost:8000/api/all-teachers').then(res=>{
+    axios.get('/api/all-teachers').then(res=>{
       if(res.data.status === 200){
         setTeacherList(res.data.teachers);
       }
     });
 
     const teacherTopic_id = id;
-    axios.get(`http://localhost:8000/api/edit-myteacherTopic/${teacherTopic_id}`).then(res=>{
+    axios.get(`/api/edit-myteacherTopic/${teacherTopic_id}`).then(res=>{
       if(res.data.status === 200){
         const teacherTopicData = res.data.teacherTopics;
         setTeacherTopicInput({
@@ -123,7 +123,7 @@ function EditMyTopic({id, onBackToList}) {
     // console.log(formData)
 
     const teacherTopic_id = id;
-    axios.post(`http://localhost:8000/api/update-myteacherTopic/${teacherTopic_id}`, formData).then(res => {
+    axios.post(`/api/update-myteacherTopic/${teacherTopic_id}`, formData).then(res => {
       if(res.data.status === 200)
       {
         Swal.fire({

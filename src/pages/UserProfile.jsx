@@ -34,7 +34,7 @@ function UserProfile() {
 
       if (storedName) {
         try {
-          const response = await axios.get(`http://localhost:8000/api/get-user/${storedName}`);
+          const response = await axios.get(`/api/get-user/${storedName}`);
           const { first_name, last_name, email, id, student, teacher } = response.data.user;
           const  role  = response.data.role.toUpperCase();
           setUserData({ first_name, last_name, email, id, role, student, teacher });

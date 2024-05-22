@@ -22,7 +22,7 @@ const AccountSettings = ({ userData, setUserData }) => {
   };
 
     const user_id = userData.id;
-    axios.patch(`http://localhost:8000/api/update-user/${user_id}`, requestData).then(res => {
+    axios.patch(`/api/update-user/${user_id}`, requestData).then(res => {
       if(res.data.status === 200)
       {
         Swal.fire({

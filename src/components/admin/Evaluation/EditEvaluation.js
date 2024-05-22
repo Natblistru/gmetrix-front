@@ -26,7 +26,7 @@ function EditEvaluation(props) {
 
   useEffect(() => {
 
-    axios.get('http://localhost:8000/api/all-subject-study-level').then(res=>{
+    axios.get('/api/all-subject-study-level').then(res=>{
       if(res.data.status === 200){
         setSubjectList(res.data.subject);
       }
@@ -34,7 +34,7 @@ function EditEvaluation(props) {
     });
 
     const evaluation_id = props.match.params.id;
-    axios.get(`http://localhost:8000/api/edit-evaluation/${evaluation_id}`).then(res=>{
+    axios.get(`/api/edit-evaluation/${evaluation_id}`).then(res=>{
       if(res.data.status === 200){
         setEvaluationInput(res.data.evaluations)
         setAllCheckboxes(res.data.evaluations)
@@ -84,7 +84,7 @@ function EditEvaluation(props) {
     // console.log(formData)
 
     const evaluation_id = props.match.params.id;
-    axios.post(`http://localhost:8000/api/update-evaluation/${evaluation_id}`, formData).then(res => {
+    axios.post(`/api/update-evaluation/${evaluation_id}`, formData).then(res => {
       if(res.data.status === 200)
       {
         Swal.fire({

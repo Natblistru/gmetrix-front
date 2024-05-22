@@ -22,7 +22,7 @@ function EditEvaluationOption(props) {
 
   useEffect(()=> {
     const evaluationOption_id = props.match.params.id;
-    axios.get(`http://localhost:8000/api/edit-evaluation-option/${evaluationOption_id}`).then(res=>{
+    axios.get(`/api/edit-evaluation-option/${evaluationOption_id}`).then(res=>{
       // console.log(res.data.video)
       if(res.data.status === 200){
         setEvaluationOption(res.data.evaluationOption)
@@ -62,7 +62,7 @@ function EditEvaluationOption(props) {
     formData.append('status',allCheckboxes.status == true ? 1 : 0);
 
     const evaluationOption_id = props.match.params.id;
-    axios.post(`http://localhost:8000/api/update-evaluation-option/${evaluationOption_id}`, formData).then(res => {
+    axios.post(`/api/update-evaluation-option/${evaluationOption_id}`, formData).then(res => {
       if(res.data.status === 200) {
         Swal.fire({
           title: "Succes",

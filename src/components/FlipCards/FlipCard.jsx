@@ -29,7 +29,7 @@ const FlipCard = (props) => {
                   type="video/mp4"
                 />
               </video> */}
-              <img src={process.env.PUBLIC_URL +props.img} className="video__container"/>
+              <img src={`${process.env.REACT_APP_API_BASE_URL}/${props.img}`} className="video__container"/>
 
             </div>
           </div>

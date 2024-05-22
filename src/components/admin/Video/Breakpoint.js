@@ -13,7 +13,7 @@ function Breakpoint() {
 
   useEffect(() => {
 
-    axios.get('http://localhost:8000/api/all-videos').then(res=>{
+    axios.get('/api/all-videos').then(res=>{
       if(res.data.status === 200){
         setVideoList(res.data.video);
       }
@@ -139,7 +139,7 @@ function Breakpoint() {
           });
           // console.log(formDataArray)
           // Trimitem fiecare set de date către server utilizând axios.all
-          axios.all(formDataArray.map(formData => axios.post('http://localhost:8000/api/store-breakpoint', formData)))
+          axios.all(formDataArray.map(formData => axios.post('/api/store-breakpoint', formData)))
               .then(axios.spread((...responses) => {
                 const successResponses = responses.filter(response => response.data.status === 201);
                 const errorResponses = responses.filter(response => response.data.status === 422);
@@ -221,7 +221,7 @@ function Breakpoint() {
 
     // console.log(formData)
 
-    axios.post(`http://localhost:8000/api/store-breakpoint`, formData).then(res => {
+    axios.post(`/api/store-breakpoint`, formData).then(res => {
       if(res.data.status === 201)
       {
         Swal.fire({

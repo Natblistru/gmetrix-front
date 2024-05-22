@@ -15,7 +15,7 @@ const CustomVerticalSlide = (props) => {
             </div>
             {props?.evalitem.img !== null ? (
                 <img
-                    src={`http://localhost:8000/${process.env.PUBLIC_URL + props?.evalitem.img}`}
+                    src={`${process.env.REACT_APP_API_BASE_URL}/${props?.evalitem.img}`}
                     style={img_slider}
                 />
                 ) : (

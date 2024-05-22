@@ -98,13 +98,13 @@ function ViewEvaluationSubject() {
 
   useEffect(() => {
 
-    axios.get('http://localhost:8000/api/all-subject-study-level').then(res=>{
+    axios.get('/api/all-subject-study-level').then(res=>{
       if(res.data.status === 200){
         setLearningProgramList(res.data.subject);
       }
     });
 
-    axios.get(`http://localhost:8000/api/all-evaluations`).then(res=> {
+    axios.get(`/api/all-evaluations`).then(res=> {
       if(res.data.status === 200){
         setEvaluationList(res.data.evaluations)
         setYearsList(res.data.years);
@@ -131,7 +131,7 @@ function ViewEvaluationSubject() {
           filterYear: filter.year,
           filterType: filter.type,
         };
-        const response = await axios.get('http://localhost:8000/api/view-evaluation-subjects', { params });
+        const response = await axios.get('/api/view-evaluation-subjects', { params });
           if (response.data.status === 200) {
             // console.log(response.data)
             setTeacherTopicList(response.data.evaluationSubjects);

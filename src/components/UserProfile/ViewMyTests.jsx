@@ -108,25 +108,25 @@ function ViewMyTests({ onAddTest, onEditTest }) {
 
   useEffect(() => {
 
-    axios.get('http://localhost:8000/api/all-learningPrograms').then(res=>{
+    axios.get('/api/all-learningPrograms').then(res=>{
       if(res.data.status === 200){
         setLearningProgramList(res.data.learningProgram);
       }
     });
 
-    axios.get('http://localhost:8000/api/all-themeLearningPrograms').then(res=>{
+    axios.get('/api/all-themeLearningPrograms').then(res=>{
       if(res.data.status === 200){
         setThemeList(res.data.theme);
       }
     });
 
-    axios.get('http://localhost:8000/api/all-teacher-topics').then(res=>{
+    axios.get('/api/all-teacher-topics').then(res=>{
       if(res.data.status === 200){
         setAllTeacherTopicList(res.data.teacherTopics);
       }
     });
 
-    axios.get('http://localhost:8000/api/all-topics').then(res=>{
+    axios.get('/api/all-topics').then(res=>{
       if(res.data.status === 200){
         setTopicList(res.data.topics);
       }
@@ -149,7 +149,7 @@ function ViewMyTests({ onAddTest, onEditTest }) {
           filterTopic: filter.teacher_topic_id,
           paramTeacher: localStorage.getItem('auth_roleId'),
         };
-        const response = await axios.get('http://localhost:8000/api/view-myTests', { params });
+        const response = await axios.get('/api/view-myTests', { params });
           if (response.data.status === 200) {
             // console.log(response.data)
             setTeacherTopicList(response.data.formativeTest)

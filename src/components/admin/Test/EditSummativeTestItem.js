@@ -36,50 +36,50 @@ function EditSummativeTestItem(props) {
   
   useEffect(() => {
 
-    axios.get('http://localhost:8000/api/all-learningPrograms').then(res=>{
+    axios.get('/api/all-learningPrograms').then(res=>{
       if(res.data.status === 200){
         setLearningProgramList(res.data.learningProgram);
       }
     });
 
-    axios.get('http://localhost:8000/api/all-themeLearningPrograms').then(res=>{
+    axios.get('/api/all-themeLearningPrograms').then(res=>{
       if(res.data.status === 200){
         setThemeList(res.data.theme);
       }
     });
 
-    axios.get('http://localhost:8000/api/all-topics').then(res=>{
+    axios.get('/api/all-topics').then(res=>{
       if(res.data.status === 200){
         setTopicList(res.data.topics);
       }
     });
 
-    axios.get('http://localhost:8000/api/all-teachers').then(res=>{
+    axios.get('/api/all-teachers').then(res=>{
       if(res.data.status === 200){
         setTeacherList(res.data.teachers);
       }
     });
 
-    axios.get('http://localhost:8000/api/all-teacher-topics').then(res=>{
+    axios.get('/api/all-teacher-topics').then(res=>{
       if(res.data.status === 200){
         setTeacherTopicList(res.data.teacherTopics);
       }
     });
 
-    axios.get('http://localhost:8000/api/all-test-items').then(res=>{
+    axios.get('/api/all-test-items').then(res=>{
       if(res.data.status === 200){
         setTestItemList(res.data.testItems);
       }
     });
 
-    axios.get('http://localhost:8000/api/all-summative-tests').then(res=>{
+    axios.get('/api/all-summative-tests').then(res=>{
       if(res.data.status === 200){
         setSummativeTestList(res.data.summativeTests);
       }
     });
 
     const summativeTest_id = props.match.params.id;
-    axios.get(`http://localhost:8000/api/edit-summative-test-item/${summativeTest_id}`).then(res=>{
+    axios.get(`/api/edit-summative-test-item/${summativeTest_id}`).then(res=>{
       if(res.data.status === 200){
         const formativeTestItemData = res.data.summativeTests;
         // console.log(formativeTestItemData)
@@ -130,7 +130,7 @@ function EditSummativeTestItem(props) {
 
     // console.log(formData)
     const summativeTest_id = props.match.params.id;
-    axios.post(`http://localhost:8000/api/update-summative-test-item/${summativeTest_id}`, formData).then(res => {
+    axios.post(`/api/update-summative-test-item/${summativeTest_id}`, formData).then(res => {
       if(res.data.status === 200)
       {
         Swal.fire({

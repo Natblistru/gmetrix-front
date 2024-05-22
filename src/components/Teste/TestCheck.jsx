@@ -177,7 +177,7 @@ const TestCheck = ({
   const trimiteDateLaBackend = async (element) => {
     try {
         // console.log(element)
-        const response = await axios.post('http://localhost:8000/api/student-formative-test-options', element);
+        const response = await axios.post('/api/student-formative-test-options', element);
 
         if (response.status === 200) {
           console.log('Success:', response.data.message);
@@ -196,7 +196,7 @@ const TestCheck = ({
   const trimiteResultsLaBackend = async (element) => {
     try {
         // console.log(element)
-        const response = await axios.post('http://localhost:8000/api/student-formative-test-results', element);
+        const response = await axios.post('/api/student-formative-test-results', element);
 
         if (response.status === 200) {
           console.log('Success:', response.data.message);
@@ -251,9 +251,7 @@ const TestCheck = ({
 
           <img
             className="img-subject"
-            src={`http://localhost:8000/${
-              process.env.PUBLIC_URL + listItems[currentItemIndex]?.image_path
-            }`}
+            src={`${process.env.REACT_APP_API_BASE_URL}/${listItems[currentItemIndex]?.image_path}`}
             alt=""
             style={{
               width: isNaN(

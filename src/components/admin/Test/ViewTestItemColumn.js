@@ -140,49 +140,49 @@ function ViewTestItemColumn() {
 
   useEffect(() => {
 
-    axios.get('http://localhost:8000/api/all-learningPrograms').then(res=>{
+    axios.get('/api/all-learningPrograms').then(res=>{
       if(res.data.status === 200){
         setLearningProgramList(res.data.learningProgram);
       }
     });
 
-    axios.get('http://localhost:8000/api/all-themeLearningPrograms').then(res=>{
+    axios.get('/api/all-themeLearningPrograms').then(res=>{
       if(res.data.status === 200){
         setThemeProgramList(res.data.theme);
       }
     });
 
-    axios.get('http://localhost:8000/api/all-themes').then(res=>{
+    axios.get('/api/all-themes').then(res=>{
       if(res.data.status === 200){
         setThemeList(res.data.themes);
       }
     });
 
-    axios.get('http://localhost:8000/api/all-chapters').then(res=>{
+    axios.get('/api/all-chapters').then(res=>{
       if(res.data.status === 200){
         setChapterList(res.data.chapters);
       }
     });
 
-    axios.get('http://localhost:8000/api/all-teacher-topics').then(res=>{
+    axios.get('/api/all-teacher-topics').then(res=>{
       if(res.data.status === 200){
         setAllTeacherTopicList(res.data.teacherTopics);
       }
     });
 
-    axios.get('http://localhost:8000/api/all-topics').then(res=>{
+    axios.get('/api/all-topics').then(res=>{
       if(res.data.status === 200){
         setTopicList(res.data.topics);
       }
     });
 
-    axios.get('http://localhost:8000/api/all-teachers').then(res=>{
+    axios.get('/api/all-teachers').then(res=>{
       if(res.data.status === 200){
         setTeacherList(res.data.teachers);
       }
     });
 
-    axios.get('http://localhost:8000/api/all-test-items').then(res=>{
+    axios.get('/api/all-test-items').then(res=>{
       if(res.data.status === 200){
         setTestItemList(res.data.testItems);
       }
@@ -207,7 +207,7 @@ function ViewTestItemColumn() {
           filterTeacher: filter.teacher_id,
           filterTestItem: filter.test_item_id,
         };
-        const response = await axios.get('http://localhost:8000/api/view-test-item-column', { params });
+        const response = await axios.get('/api/view-test-item-column', { params });
           if (response.data.status === 200) {
             // console.log(response.data)
             setTeacherTopicList(response.data.testItemColumns)

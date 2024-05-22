@@ -132,43 +132,43 @@ function ViewSubtopic() {
 
   useEffect(() => {
 
-    axios.get('http://localhost:8000/api/all-learningPrograms').then(res=>{
+    axios.get('/api/all-learningPrograms').then(res=>{
       if(res.data.status === 200){
         setLearningProgramList(res.data.learningProgram);
       }
     });
 
-    axios.get('http://localhost:8000/api/all-themeLearningPrograms').then(res=>{
+    axios.get('/api/all-themeLearningPrograms').then(res=>{
       if(res.data.status === 200){
         setThemeProgramList(res.data.theme);
       }
     });
 
-    axios.get('http://localhost:8000/api/all-themes').then(res=>{
+    axios.get('/api/all-themes').then(res=>{
       if(res.data.status === 200){
         setThemeList(res.data.themes);
       }
     });
 
-    axios.get('http://localhost:8000/api/all-chapters').then(res=>{
+    axios.get('/api/all-chapters').then(res=>{
       if(res.data.status === 200){
         setChapterList(res.data.chapters);
       }
     });
 
-    axios.get('http://localhost:8000/api/all-teacher-topics').then(res=>{
+    axios.get('/api/all-teacher-topics').then(res=>{
       if(res.data.status === 200){
         setAllTeacherTopicList(res.data.teacherTopics);
       }
     });
 
-    axios.get('http://localhost:8000/api/all-topics').then(res=>{
+    axios.get('/api/all-topics').then(res=>{
       if(res.data.status === 200){
         setTopicList(res.data.topics);
       }
     });
 
-    axios.get('http://localhost:8000/api/all-teachers').then(res=>{
+    axios.get('/api/all-teachers').then(res=>{
       if(res.data.status === 200){
         setTeacherList(res.data.teachers);
       }
@@ -192,7 +192,7 @@ function ViewSubtopic() {
           filterTopic: filter.teacher_topic_id,
           filterTeacher: filter.teacher_id,
         };
-        const response = await axios.get('http://localhost:8000/api/view-subtopic', { params });
+        const response = await axios.get('/api/view-subtopic', { params });
           if (response.data.status === 200) {
             // console.log(response.data)
             setTeacherTopicList(response.data.subtopics)
@@ -216,7 +216,7 @@ function ViewSubtopic() {
     'audio_path': (item) => (item.audio_path && (
       item.audio_path.startsWith('uploads/audioSubtopic/') ? (
         <audio controls style={{ width: '100%', maxWidth: '200px' }}>
-          <source src={`http://localhost:8000/${item.audio_path}`} type="audio/mp3" />
+          <source src={`/${item.audio_path}`} type="audio/mp3" />
           Your browser does not support the audio element.
         </audio>
       ) : (

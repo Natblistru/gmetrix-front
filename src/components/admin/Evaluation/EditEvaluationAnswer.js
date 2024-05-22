@@ -36,38 +36,38 @@ function EditEvaluationAnswer(props) {
 
   useEffect(() => {
 
-    axios.get('http://localhost:8000/api/all-subject-study-level').then(res=>{
+    axios.get('/api/all-subject-study-level').then(res=>{
       if(res.data.status === 200){
         setSubjectList(res.data.subject);
       }
     });
 
-    axios.get('http://localhost:8000/api/all-chapters').then(res=>{
+    axios.get('/api/all-chapters').then(res=>{
       if(res.data.status === 200){
         setChapterList(res.data.chapters);
       }
     });
 
-    axios.get('http://localhost:8000/api/all-themes').then(res=>{
+    axios.get('/api/all-themes').then(res=>{
       if(res.data.status === 200){
         setThemeList(res.data.themes);
       }
     });
 
-    axios.get('http://localhost:8000/api/all-evaluation-subjects').then(res=>{
+    axios.get('/api/all-evaluation-subjects').then(res=>{
       if(res.data.status === 200){
         setEvaluationSubjectList(res.data.evaluationSubjects);
       }
     });
 
-    axios.get('http://localhost:8000/api/all-evaluation-items').then(res=>{
+    axios.get('/api/all-evaluation-items').then(res=>{
       if(res.data.status === 200){
         setEvaluationItemList(res.data.evaluationItems);
       }
     });
 
     const evaluationAnswer_id = props.match.params.id;
-    axios.get(`http://localhost:8000/api/edit-evaluation-answer/${evaluationAnswer_id}`).then(res=>{
+    axios.get(`/api/edit-evaluation-answer/${evaluationAnswer_id}`).then(res=>{
     if(res.data.status === 200){
         const evaluationItemData = res.data.evaluationAnswer;
 
@@ -119,7 +119,7 @@ function EditEvaluationAnswer(props) {
     // console.log(formData)
 
     const evaluationAnswer_id = props.match.params.id;
-    axios.post(`http://localhost:8000/api/update-evaluation-answer/${evaluationAnswer_id}`, formData).then(res => {
+    axios.post(`/api/update-evaluation-answer/${evaluationAnswer_id}`, formData).then(res => {
       // console.log(res)
       if(res.data.status === 200)
       {

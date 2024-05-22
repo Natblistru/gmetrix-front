@@ -19,7 +19,7 @@ const AudioPlayer = ({currentSubject, arraySubtitles, path, onProgressRecorded})
     if (currentSubtitle && currentSubtitle.audio_path && audioRef.current) {
       // Setăm proprietatea currentSrc a elementului audio folosind calea audio asociată
      
-      audioRef.current.src = `http://localhost:8000/${currentSubtitle.audio_path}` ;
+      audioRef.current.src = `${process.env.REACT_APP_API_BASE_URL}/${currentSubtitle.audio_path}` ;
       // console.log(currentSubtitle.audio_path)
       // console.log(audioRef.current.src)
       // console.log(audioRef.current) 
@@ -44,7 +44,7 @@ const AudioPlayer = ({currentSubject, arraySubtitles, path, onProgressRecorded})
     // console.log(currentStudent)
     // console.log(currentSubtitle.subtopic_id)
     try {
-      const response = await axios.post('http://localhost:8000/api/student-subtopic-progress', {
+      const response = await axios.post('/api/student-subtopic-progress', {
         student_id: currentStudent,
         subtopic_id: currentSubtitle.subtopic_id,
         progress_percentage: 100
@@ -68,12 +68,12 @@ const AudioPlayer = ({currentSubject, arraySubtitles, path, onProgressRecorded})
       console.error('Eroare la înregistrarea progresului în baza de date:', error);
     }
   };
-// console.log(`http://localhost:8000/${path}`)
+// console.log(`/${path}`)
 // console.log(audioRef)
   return (
     <div className="audio">
       <audio ref={audioRef} onTimeUpdate={handleTimeUpdate} controls preload="auto">
-        <source src={`http://localhost:8000/${path}`} type="audio/mpeg" />
+        <source src={`${process.env.REACT_APP_API_BASE_URL}/${path}`} type="audio/mpeg" />
       </audio>
     </div>
   );

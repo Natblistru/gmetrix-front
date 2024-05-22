@@ -59,7 +59,7 @@ function Navbar() {
 
   const logoutSubmit = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:8000/api/logout').then(res => {
+    axios.post('/api/logout').then(res => {
       if(res.data.status === 200)
       {
         const keysToRemove = [

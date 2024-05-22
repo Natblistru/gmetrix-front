@@ -161,7 +161,7 @@ const ExamenSubect1 = () => {
       let studentResults = [];
       try {
         const response = await axios.post(
-          "http://localhost:8000/api/student-evaluation-results",
+          "/api/student-evaluation-results",
           {
             theme_id: subject_tema_id,
             subject_id: subject_id,
@@ -196,7 +196,7 @@ const ExamenSubect1 = () => {
           .all(
             formDataArray.map((formData) =>
               axios.post(
-                "http://localhost:8000/api/update-student-evaluation-answers",
+                "/api/update-student-evaluation-answers",
                 formData
               )
             )
@@ -433,9 +433,7 @@ const ExamenSubect1 = () => {
                   </div>
                   <img
                     className="img-subject"
-                    src={`http://localhost:8000/${
-                      process.env.PUBLIC_URL + quizArray[currentIndex]?.img
-                    }`}
+                    src={`${process.env.REACT_APP_API_BASE_URL}/${quizArray[currentIndex]?.img}`}
                     alt=""
                     style={{
                       width: isNaN(

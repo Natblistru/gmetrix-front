@@ -26,8 +26,8 @@ function ForgotPassword() {
         email: forgotInput.email,
       }
 
-      axios.get('http://localhost:8000/sanctum/csrf-cookie').then(response => {
-        axios.post('http://localhost:8000/api/forgot-password', data).then(res => {
+      axios.get('/sanctum/csrf-cookie').then(response => {
+        axios.post('/api/forgot-password', data).then(res => {
             // console.log(res);
           if(res.data.status === 200){
             // console.log(res.data.message);

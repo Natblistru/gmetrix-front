@@ -15,7 +15,7 @@ export default class CustomArrows extends React.Component {
       customPaging: function(i) {
         return (
           <a>
-            <img src={`http://localhost:8000/${process.env.PUBLIC_URL +images[i]}`}  
+            <img src={`${process.env.REACT_APP_API_BASE_URL}/${images[i]}`}  
                 width="56" height="37" 
                  />
           </a>

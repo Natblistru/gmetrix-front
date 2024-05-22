@@ -94,14 +94,14 @@ const ProgressPagination_evaluation = ({ cards }) => {
                       <>
                         <img
                           className="image"
-                          src={`http://localhost:8000/${process.env.PUBLIC_URL + subject.img}`}
+                          src={`${process.env.REACT_APP_API_BASE_URL}/${subject.img}`}
                           alt=""
                           onClick={showModal}
                           style={{ width: "50%" }}
                         />
                         {isOpen && (
                           <Modal
-                            src={`http://localhost:8000/${process.env.PUBLIC_URL + subject.img}`}
+                            src={`${process.env.REACT_APP_API_BASE_URL}/${subject.img}`}
                             alt=""
                             // caption="caption"
                             onClose={() => setIsOpen(false)}
