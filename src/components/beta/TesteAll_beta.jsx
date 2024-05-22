@@ -371,7 +371,7 @@ const TesteAll_beta = () => {
     const newId = currentId + 1;
     setIndexAllItems(newId)
     const basePath = window.location.pathname.replace(`/${currentId}`, '');
-    const newUrl = `${basePath}/${newId}?teacher=1&theme=52&level=1&disciplina=3`;
+    const newUrl = `${basePath}/${newId}?teacher=1&theme=${currentTheme.tema_id}&level=1&disciplina=${subject_id}`;
     history.push(newUrl);
   };
 
@@ -393,7 +393,7 @@ const TesteAll_beta = () => {
     handleClearTestBoard(currentIdFormativeTest);
     setIndexAllItems(newId);
 
-    const newUrlTest = `${newPathname}${nextAllTests.path}/${nextAllTests.order_item_test}?teacher=1&theme=52&level=1&disciplina=3`;
+    const newUrlTest = `${newPathname}${nextAllTests.path}/${nextAllTests.order_item_test}?teacher=1&theme=${currentTheme.tema_id}&level=1&disciplina=${subject_id}`;
     console.log('newUrlTest', newUrlTest);
     history.push(newUrlTest);
 
@@ -424,7 +424,7 @@ const TesteAll_beta = () => {
     handleClearTestBoard(currentIdFormativeTest);
     setIndexAllItems(newId);
 
-    const newUrlTest = `${newPathname}${previousAllTests.path}/${previousAllTests.order_item_test}?teacher=1&theme=52&level=1&disciplina=3`;
+    const newUrlTest = `${newPathname}${previousAllTests.path}/${previousAllTests.order_item_test}?teacher=1&theme=${currentTheme.tema_id}&level=1&disciplina=${subject_id}`;
     console.log('newUrlTest', newUrlTest);
     history.push(newUrlTest);
 
@@ -450,7 +450,7 @@ const TesteAll_beta = () => {
     // console.log("newId", newId, "ind", newId-1)
     setIndexAllItems(newId-1)
     const basePath = window.location.pathname.replace(`/${currentId}`, '');
-    const newUrl = `${basePath}/${newId}?teacher=1&theme=52&level=1&disciplina=3`;
+    const newUrl = `${basePath}/${newId}?teacher=1&theme=${currentTheme.tema_id}&level=1&disciplina=${subject_id}`;
     history.push(newUrl);
 
     const previousFormativeTest = allTeacherTests[newId-1];
