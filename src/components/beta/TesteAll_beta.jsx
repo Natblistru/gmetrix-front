@@ -106,10 +106,14 @@ const TesteAll_beta = () => {
       // dispatch(fetchCurrentIndexTest(indexElementCautat));
     }
     
-    // const wrapperElement = wrapperRef.current;
-    // if (wrapperElement) {
-    //   const rect = wrapperElement.getBoundingClientRect();
-    //   console.log('Înălțimea elementului:', rect.height);
+    const wrapperElement = wrapperRef.current;
+    if (wrapperElement) {
+      const rect = wrapperElement.getBoundingClientRect();
+      console.log('Înălțimea elementului:', rect.height);
+      setWrapperHeight(rect.height);
+    }
+    // if (wrapperRef.current) {
+    //   const height = wrapperRef.current.scrollHeight;
     //   setWrapperHeight(height);
     // }
   }, [addressTest, history]);
@@ -607,7 +611,8 @@ const TesteAll_beta = () => {
       <VerticalSlider quizArray={allTeacherTests} 
                       currentIndex={indexAllItems} 
                       setCurrentIndex={setIndexAllItems}
-                      slidesToShow={Math.ceil(wrapperHeight/80)}
+                      slidesToShow={Math.min(Math.ceil(wrapperHeight/80),allTeacherTests.length)}
+                      // slidesToShow={2}
                       destination="test" 
                       handleSliderClick={handleSliderClick}
                       // setShowResponse={setShowResponse}
