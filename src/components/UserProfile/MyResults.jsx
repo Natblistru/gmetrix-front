@@ -399,8 +399,6 @@ function MyResults() {
       <h1>Însușirea disciplinelor:</h1>
       <ListDisciplineRezultat selectedItem={selectedItem} setSelectedItem={setSelectedItem}/>
       <TreeTable list={discipline}/>
-      <h1 style={{ marginTop: '20px'}}>Rezultatele evaluărilor:</h1>
-      <TreeTable list={evaluari}/>
       <h1 style={{ marginTop: '20px'}}>Rezultatele testelor:</h1>
       <div className="rowBts mx-4 mt-2">
         <div className="col-md-12">          

@@ -106,10 +106,11 @@ const Capitole = (props) => {
         <Breadcrumb step={0} />
         <Card>
           <Titlu className="titlu-card">
-            {name} - pregătire pentru {nivel} ({year})
+            {/* {name} - pregătire pentru {nivel} ({year}) */}
+            {name} - pregătire pentru BAC (2024)
           </Titlu>
           <TitleBox className="teme-container" proc={proc}>
-            {clasa}
+            {name}
           </TitleBox>
           {currentSubject !== null && <TopicsList />}
         </Card>

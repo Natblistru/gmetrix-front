@@ -104,11 +104,6 @@ const Subtema = ()  => {
             <div className="nav-container d-flex align-items-center justify-content-center">
               <div className="d-flex align-items-center justify-content-center">
                 <button className="btn">
-                  <Link className="small" to={linkToEvaluari}>PRACTICĂ EVALUARILE</Link>
-                </button>
-              </div>
-              <div className="d-flex align-items-center justify-content-center">
-                <button className="btn">
                   <Link className="small" to={linkToMemo}>CARDURI PENTRU MEMORARE</Link>
                 </button>
               </div>

@@ -125,7 +125,6 @@ function Navbar() {
                 <li><Link className="dropdown-item" to="/user/accountsettings">Profile</Link></li>
                 <li><hr className="dropdown-divider" /></li>
                 <button type="link" onClick={logoutSubmit} style={{color: '#2bbbf1', fontSize: '1rem'}} className="dropdown-item">Logout</button>
-                <li><Link className="dropdown-item" to={`/capitole_beta/${subject_id}?level=1&year=2022&name=${name}&nivel=${nivelStudiu}&clasa=${clasa}`}>Beta Version</Link></li>            
             </ul>
         </li>
       </ul>
@@ -135,7 +134,7 @@ function Navbar() {
   return (
     <nav ref={navbarRef} id="navbar" className="navbar navbar-expand-lg shadow sticky-top" style={{backgroundColor: '#e3f2fd'}}>
       <div className="containerBts">
-        <Link className="navbar-brand" to="#">GMetrix.md</Link>
+        <Link className="navbar-brand" to="#">gmetrixlab.com</Link>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>

@@ -158,14 +158,6 @@ const Tema = () => {
             <ListAccordeon
               onProgressThemaRecorded={handleProgressThemaRecorded}
             />
-            <div className="nav-container d-flex align-items-center justify-content-center">
-              <div className="d-flex align-items-center justify-content-center">
-                <button className="btn">
-                  <Link className="small" to={linkTo}>PRACTICĂ EVALUARILE</Link>
-                </button>
-              </div>
-            </div>
-            
           </>
         )}
       </Wrapper>

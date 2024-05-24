@@ -63,7 +63,7 @@ const Home = () => {
       <Navbar />
       <Banner />
       <Wrapper className="skill">
-        <Titlu>Disciplinele de absolvire a cursului gimnazial</Titlu>
+        <Titlu>Discipline pentru certificarea competențelor informatice</Titlu>
         <ListDiscipline />
       </Wrapper>
       <Projects />

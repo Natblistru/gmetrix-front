@@ -109,7 +109,7 @@ function Register() {
                                     <select name="role" onChange={handleInput} value={registerInput.name} className="form-control" style={{color: '#4e4e3f', paddingTop: '2px'}}>  
                                       <option>Select role</option>
                                       <option value="student">Student</option>
-                                      <option value="teacher">Teacher</option>
+                                      <option value="teacher" disabled>Teacher</option>
                                     </select> 
                                       <span style={{ color: 'red', fontSize: '0.8rem' }}>{registerInput.error_list.role}</span>
                                   </div>

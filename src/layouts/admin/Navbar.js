@@ -27,7 +27,7 @@ const Navbar = () => {
 
     return (
         <nav className="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-          <Link to="/admin" className="navbar-brand ps-3">GMEtrix.md</Link>
+          <Link to="/admin" className="navbar-brand ps-3">gmetrixlab.com</Link>
           <ul className="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
             <li className="nav-item dropdown">
                 <Link to="#" className="nav-linkSide dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i className="fas fa-user fa-fw"></i></Link>
