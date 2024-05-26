@@ -59,7 +59,7 @@ const TestSnap = ({
 
   // let list1 = temeIstoriArray[0].subtitles[0].subjects[0].teste[4];
 
-  const jsonString = listItems[currentIndexTest]?.test_item_content;
+  const jsonString = listItems[currentItemIndex]?.test_item_content;
   const decodedString = decodeDiacritics(jsonString);
   
   // Parsează JSON-ul pentru a obține obiectul
