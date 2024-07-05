@@ -40,6 +40,8 @@ const TesteAll_beta = () => {
   console.log('allTeacherTests', allTeacherTests)
   const [indexAllItems, setIndexAllItems] = useState(0);
 
+  const [clearAll, setClearAll] = useState(false);
+
   const currentTopicObject = useSelector((state) => state.currentTopic);
   const currentTopic = currentTopicObject.currentTopic;
 
@@ -381,7 +383,8 @@ const TesteAll_beta = () => {
 
   const handleNext = () => {
     console.log('indexAllItems',indexAllItems);
-
+    setCorrectAnswer(null);
+    setClearAll(true);
     // Eliminam din adresa path la formative_test si nr_ord a test_item al acestuia
     const pathname = window.location.pathname;
     const segments = pathname.split('/');
@@ -403,7 +406,7 @@ const TesteAll_beta = () => {
 
     dispatch(fetchCurrentIndexTest(nextAllTests.order_formative_test-1));
     setCurrentItemIndex(nextAllTests.order_item_test-1);
-    setCorrectAnswer(null);
+    // setCorrectAnswer(null);
     if (wrapperRef.current) {
       const height = wrapperRef.current.scrollHeight;
       setWrapperHeight(height);
@@ -412,7 +415,8 @@ const TesteAll_beta = () => {
 
   const handlePrevious = () => {
     console.log('indexAllItems',indexAllItems);
-
+    setCorrectAnswer(null);
+    setClearAll(true);
     // Eliminam din adresa path la formative_test si nr_ord a test_item al acestuia
     const pathname = window.location.pathname;
     const segments = pathname.split('/');
@@ -434,7 +438,7 @@ const TesteAll_beta = () => {
 
     dispatch(fetchCurrentIndexTest(previousAllTests.order_formative_test-1));
     setCurrentItemIndex(previousAllTests.order_item_test-1);
-    setCorrectAnswer(null);
+    // setCorrectAnswer(null);
     if (wrapperRef.current) {
       const height = wrapperRef.current.scrollHeight;
       setWrapperHeight(height);
@@ -513,6 +517,8 @@ const TesteAll_beta = () => {
                   setCorrectAnswer={setCorrectAnswer}
                   additionalContent={additionalContent}
                   handleTryAgain={handleTryAgain}
+                  clearAll = {clearAll}
+                  setClearAll = {setClearAll}
                   currentItemIndex={currentItemIndex}
                   setResponseReceived={setResponseReceived}
                   setWrapperHeight={setWrapperHeight}
@@ -608,7 +614,7 @@ const TesteAll_beta = () => {
         )}
 
       </Wrapper>
-      <VerticalSlider quizArray={allTeacherTests} 
+      {/* <VerticalSlider quizArray={allTeacherTests} 
                       currentIndex={indexAllItems} 
                       setCurrentIndex={setIndexAllItems}
                       slidesToShow={Math.min(Math.ceil(wrapperHeight/80),allTeacherTests.length)}
@@ -619,7 +625,7 @@ const TesteAll_beta = () => {
                       // setShowCards={setShowCards}
                       // setIdRaspuns={setIdRaspuns}
                       // setIsAnswered={setIsAnswered}
-                       />
+                       /> */}
     </>
   );
 };

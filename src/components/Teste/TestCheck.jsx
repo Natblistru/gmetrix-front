@@ -15,6 +15,8 @@ const TestCheck = ({
   setCorrectAnswer,
   additionalContent,
   handleTryAgain,
+  clearAll,
+  setClearAll,
   currentItemIndex,
   setResponseReceived
 }) => {
@@ -217,6 +219,13 @@ const TestCheck = ({
     setSelectedValues([]); 
     handleTryAgain();
   };
+
+  useEffect(()=>{
+    if(clearAll) {
+      setSelectedValues([]);
+    }
+    setClearAll(false);
+  },[clearAll])
 
   return (
     <>
