@@ -15,9 +15,10 @@ import TestSnap from "../Snap/TestSnap";
 import { fetchTheme, fetchAllTeacherTestsSuccess } from "../../routes/api";
 import { fetchCurrentIndexTest } from "../ReduxComp/actions";
 import "../../index.css";
-import VerticalSlider from "../Slider/VerticalSlider";
 
-const TesteAll_beta = () => {
+const ExamenFinal = (props) => {
+
+  const { id } = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
   const wrapperRef = useRef(null);
@@ -41,10 +42,13 @@ const TesteAll_beta = () => {
   console.log('currentTests', currentTests)
   const [indexAllItems, setIndexAllItems] = useState(0);
 
+  const currentIndexTestObject = useSelector(state => state.currentIndexTest);
+  console.log(currentIndexTestObject)
+
   const [clearAll, setClearAll] = useState(false);
 
-  const currentTopicObject = useSelector((state) => state.currentTopic);
-  const currentTopic = currentTopicObject.currentTopic;
+  // const currentTopicObject = useSelector((state) => state.currentTopic);
+  // const currentTopic = currentTopicObject.currentTopic;
 
   const currentStudentObject = useSelector(state => state.currentStudent);
   const currentStudent = currentStudentObject ? currentStudentObject.currentStudent : 1; 
@@ -62,13 +66,6 @@ const TesteAll_beta = () => {
     // console.log(currentTopic)
     // console.log(currentTheme)
     // console.log(currentTests)
-    if (currentTheme) {
-      const teacher = 1;
-      const theme = currentTheme?.tema_id;
-      const level_id = 1;
-
-      fetchTheme(teacher, theme, subject_id, level_id, dispatch, student_id);
-    }
 
     const handleBeforeUnload = (event) => {
       event.preventDefault();
@@ -87,27 +84,7 @@ const TesteAll_beta = () => {
   useEffect(() => {
     const pathCautat = "/" + addressTest;
     // console.log("schimbat adrs", addressTest)
-    if (currentTopic) {
-      const indexElementCautat = currentTopic.tests.findIndex(
-        (element) => element.addressTest === pathCautat
-      );
-      // console.log(currentTopic)
-      // console.log(indexElementCautat)
-      // console.log(addressTest)      
-      setCurrentTestIndex(indexElementCautat);
-      setCurrentList1(currentTopic.tests[indexElementCautat]);
-      if (loading) {
-        // setProc(currentTopic.tests[indexElementCautat].testResult*100/currentTopic.tests[indexElementCautat].complexityNumber);
-        // console.log(currentTopic.tests[indexElementCautat].testResult * 100)
-        // console.log(allTeacherTests)
-        setProc(currentTopic.tests[indexElementCautat].testResult * 100);
-        // console.log(currentTopic.tests[indexElementCautat])
-        setLoading(false);
-      }
-      setLoading(false);
-      // setCurrentItemIndex(0);
-      // dispatch(fetchCurrentIndexTest(indexElementCautat));
-    }
+
     
     const wrapperElement = wrapperRef.current;
     if (wrapperElement) {
@@ -187,10 +164,8 @@ const TesteAll_beta = () => {
     };
     const fetchAllTeacherTests = async () => {
       try {
-        const teacher_topic_id = currentTopic.teacher_topic_id;
-
     
-        const res = await fetchAllTeacherTestsSuccess(teacher_topic_id, currentStudent, dispatch);
+        const res = await fetchAllTeacherTestsSuccess(0, currentStudent, dispatch);
       } catch (error) {
         console.error("Eroare la preluarea datelor:", error);
       }
@@ -389,7 +364,7 @@ const TesteAll_beta = () => {
     // Eliminam din adresa path la formative_test si nr_ord a test_item al acestuia
     const pathname = window.location.pathname;
     const segments = pathname.split('/');
-    const newPathname = segments.slice(0, -2).join('/');
+    const newPathname = segments.slice(0, -1).join('/');
 
     let newId = indexAllItems+1;
     if (newId > (allTeacherTests.length-1)) {
@@ -401,7 +376,7 @@ const TesteAll_beta = () => {
     handleClearTestBoard(currentIdFormativeTest);
     setIndexAllItems(newId);
 
-    const newUrlTest = `${newPathname}${nextAllTests.path}/${nextAllTests.order_item_test}?teacher=1&theme=${currentTheme.tema_id}&level=1&disciplina=${subject_id}`;
+    const newUrlTest = `${newPathname}/${nextAllTests.order_item_test}?level=1&disciplina=${subject_id}`;
     console.log('newUrlTest', newUrlTest);
     history.push(newUrlTest);
 
@@ -421,7 +396,7 @@ const TesteAll_beta = () => {
     // Eliminam din adresa path la formative_test si nr_ord a test_item al acestuia
     const pathname = window.location.pathname;
     const segments = pathname.split('/');
-    const newPathname = segments.slice(0, -2).join('/');
+    const newPathname = segments.slice(0, -1).join('/');
 
     let newId = indexAllItems-1;
     if (newId < 0) {
@@ -433,7 +408,7 @@ const TesteAll_beta = () => {
     handleClearTestBoard(currentIdFormativeTest);
     setIndexAllItems(newId);
 
-    const newUrlTest = `${newPathname}${previousAllTests.path}/${previousAllTests.order_item_test}?teacher=1&theme=${currentTheme.tema_id}&level=1&disciplina=${subject_id}`;
+    const newUrlTest = `${newPathname}/${previousAllTests.order_item_test}?level=1&disciplina=${subject_id}`;
     console.log('newUrlTest', newUrlTest);
     history.push(newUrlTest);
 
@@ -482,9 +457,10 @@ const TesteAll_beta = () => {
     <>
       <Navbar />
       <Wrapper>
-        {currentList1 && allTeacherTests && allTeacherTests.length > 0 && (
+
+        {allTeacherTests && allTeacherTests.length > 0 && (
           <>
-            <Breadcrumb step={3} />
+            <Breadcrumb step={1} />
             <TitleBox
               className="teme-container"
               proc={proc}
@@ -492,7 +468,7 @@ const TesteAll_beta = () => {
               {allTeacherTests[indexAllItems].type === "testGeneralizator"
                 ? allTeacherTests[indexAllItems].name +
                   "  " +
-                  `  ${currentItemIndex + 1} / ${currentList1.length / 4}`
+                  `  ${currentItemIndex + 1} / ${allTeacherTests.length}`
                 : allTeacherTests[indexAllItems].name}
             </TitleBox>
             <div ref={wrapperRef}>
@@ -631,6 +607,6 @@ const TesteAll_beta = () => {
   );
 };
 
-const withRouterWrapper = withRouter(TesteAll_beta);
+const withRouterWrapper = withRouter(ExamenFinal);
 
 export default withRouterWrapper;

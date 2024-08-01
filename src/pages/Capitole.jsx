@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useParams, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,7 +9,8 @@ import {
   fetchThemeVideoSuccess,
   fetchThemePresentationSuccess,
   updateCurrentSubject,
-} from "../components/ReduxComp/actions";
+  fetchCurrentTestsSuccess, 
+  fetchCurrentIndexTest } from "../components/ReduxComp/actions";
 import AOS from "aos";
 
 // import temeMatem from '../data/temeMatem';
@@ -19,7 +21,7 @@ import Wrapper from "../components/Wrapper";
 import TitleBox from "../components/TitleBox";
 import TopicsList from "../components/TopicsList";
 import Card from "../components/Card";
-import { fetchCapitole } from "../routes/api";
+import { fetchCapitole, fetchSummativeTests, fetchAllTeacherTestsSuccess } from "../routes/api";
 import "../index.css";
 
 const Capitole = (props) => {
@@ -41,6 +43,8 @@ const Capitole = (props) => {
   const currentStudentObject = useSelector(state => state.currentStudent);
   const currentStudent = currentStudentObject ? currentStudentObject.currentStudent : 1;  
 
+  const currentSubject_name = currentSubject.currentSubject.subject_name.toLowerCase();
+
   const student_id = localStorage.getItem('auth_role') == 'student' ? currentStudent : 1;
 
 
@@ -51,6 +55,7 @@ const Capitole = (props) => {
         const level_id = 1;
 
         const res = await fetchCapitole(subject_id, level_id, dispatch, student_id);
+        const tests = await fetchSummativeTests(subject_id, level_id, dispatch);
         setLoading(false);
         AOS.refresh();
       } catch (error) {
@@ -88,15 +93,29 @@ const Capitole = (props) => {
   }, [capitole, id, name, nivel, clasa]);
 
   useEffect(() => {
-    // console.log(stateData.breadcrumb)
-    // updateBreadcrumb();
-    // const handleBeforeUnload = (event) => {
-    //   event.preventDefault();
-    //   event.returnValue = "";
-    // };
-    // window.addEventListener("beforeunload", handleBeforeUnload);
-    // return () => window.removeEventListener("beforeunload", handleBeforeUnload);
+    fetchAllTeacherTests();
+    fetchTest();
   }, []);
+
+  const fetchTest = async () => {
+
+    try {
+        const res = await axios.get(`/api/summativetest_exam`);
+        console.log(res.data);
+        dispatch(fetchCurrentTestsSuccess(res.data));
+        dispatch(fetchCurrentIndexTest(0));
+    } catch (err) {
+        console.error(err);
+    }
+  }
+
+  const fetchAllTeacherTests = async () => {
+    try {
+      const res = await fetchAllTeacherTestsSuccess(0, currentStudent, dispatch);
+    } catch (error) {
+      console.error("Eroare la preluarea datelor:", error);
+    }
+  };
 
   return (
     <>
@@ -114,6 +133,11 @@ const Capitole = (props) => {
           </TitleBox>
           {currentSubject !== null && <TopicsList />}
         </Card>
+        
+        <Link to="/examen-final/1" style={{color: 'white'}}>
+        <Card className="titlu titlu-card title-examen">Examen final</Card>
+         
+        </Link>
       </Wrapper>
     </>
   );

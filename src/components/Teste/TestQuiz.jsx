@@ -39,8 +39,10 @@ const TestQuiz = ({
       currentIndexTest = currentIndexTestObject;
   }
 
+  console.log(currentIndexTest)
+  console.log(currentTests[0])
   const [listItems, setListItems] = useState(currentTests[currentIndexTest].order_number_options)
-  // console.log(currentTests[currentIndexTest])
+
 
   const jsonString = listItems[currentItemIndex]?.test_item_content;
   const decodedString = decodeDiacritics(jsonString);

@@ -5,6 +5,7 @@ import { FETCH_CAPITOLE,
          FETCH_EVALUATIONS_2, 
          FETCH_EVALUATIONS_3,
          FETCH_EVALUATIONS_ALL,
+         FETCH_SUMMATIVE_TESTS,
          FETCH_ALL_TEACHER_TESTS } from '../components/ReduxComp/actions';
 
 export const fetchCapitole = async (subject_id, level_id, dispatchData, student_id = 1) => {
@@ -88,15 +89,43 @@ export const fetchEvaluation_all = async (theme, subject_id, level_id, dispatchD
     }
 };
 
-export const fetchAllTeacherTestsSuccess = async (teacher_topic_id, currentStudent, dispatchData) => {
+export const fetchSummativeTests = async (subject_id, level_id, dispatchData) => {
     try {
-        const res = await axios.get(`/api/teacherAllTests?teacher_topic=${teacher_topic_id}&student=${currentStudent}`);
-        // console.log(res.data);
+        const res = await axios.get(`/api/all-tests-summative?level=${level_id}&disciplina=${subject_id}`);
+        // console.log(res.data)
         dispatchData({
-            type: FETCH_ALL_TEACHER_TESTS,
+            type: FETCH_SUMMATIVE_TESTS,
             payload: res.data
         });
-      } catch (err) {
-          console.error(err);
-      }
+    } catch (err) {
+        console.error(err);
+    }
+};
+
+export const fetchAllTeacherTestsSuccess = async (teacher_topic_id, currentStudent, dispatchData) => {
+    if (teacher_topic_id == 0) {
+        try {
+            const res = await axios.get(`/api/allSummativeTestItems?student=${currentStudent}`);
+            // console.log(res.data);
+            dispatchData({
+                type: FETCH_ALL_TEACHER_TESTS,
+                payload: res.data
+            });
+          } catch (err) {
+              console.error(err);
+          }
+    } else {
+    
+        try {
+            const res = await axios.get(`/api/teacherAllTests?teacher_topic=${teacher_topic_id}&student=${currentStudent}`);
+            // console.log(res.data);
+            dispatchData({
+                type: FETCH_ALL_TEACHER_TESTS,
+                payload: res.data
+            });
+        } catch (err) {
+            console.error(err);
+        }
+
+    }
 };

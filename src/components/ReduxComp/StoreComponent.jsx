@@ -23,6 +23,7 @@ import studentReducer from "./studentReducer";
 import raspunsuriReducer from './raspunsuriReducer';
 import evaluationAllReducer from "./evaluationAllReducer";
 import languageReducer from './languageReducer';
+import summativeTestsReducer from "./summativeTestsReducer";
 
 const combinedReducers = combineReducers({
   raspunsuri: raspunsuriReducer,
@@ -38,6 +39,7 @@ const combinedReducers = combineReducers({
   evaluations2: evaluation2Reducer,
   evaluations3: evaluation3Reducer,
   evaluations_all: evaluationAllReducer,
+  summativeTests: summativeTestsReducer,
   currentSubject: currentSubjectReducer,
   topics: topicsReducer,
   currentTopic: currentTopicReducer,

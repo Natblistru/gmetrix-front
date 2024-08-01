@@ -2783,3 +2783,8 @@ filter: brightness(0) saturate(100%) invert(0%) sepia(7%) saturate(98%) hue-rota
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   appearance: none;
 }
+
+.wrapper .title-examen {
+    height: 120px;
+    padding: 50px;
+}
