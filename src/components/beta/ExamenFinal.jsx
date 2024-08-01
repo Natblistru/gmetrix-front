@@ -13,6 +13,7 @@ import TestBoard from "../Teste/TestBoard";
 import TestWords from "../Teste/TestWords";
 import TestSnap from "../Snap/TestSnap";
 import Timer from "./Timer";
+import VerticalTestMenu from './VerticalTestMenu';
 import { fetchTheme, fetchAllTeacherTestsSuccess } from "../../routes/api";
 import { fetchCurrentIndexTest } from "../ReduxComp/actions";
 import "../../index.css";
@@ -435,7 +436,7 @@ const ExamenFinal = (props) => {
     // console.log("newId", newId, "ind", newId-1)
     setIndexAllItems(newId-1)
     const basePath = window.location.pathname.replace(`/${currentId}`, '');
-    const newUrl = `${basePath}/${newId}?teacher=1&theme=${currentTheme.tema_id}&level=1&disciplina=${subject_id}`;
+    const newUrl = `${basePath}/${newId}?level=1&disciplina=${subject_id}`;
     history.push(newUrl);
 
     const previousFormativeTest = allTeacherTests[newId-1];
@@ -444,11 +445,7 @@ const ExamenFinal = (props) => {
     const previousIndexItemTest = previousFormativeTest.order_item_test - 1;
     setCurrentItemIndex(previousIndexItemTest);
     setCorrectAnswer(null);
-    if (wrapperRef.current) {
-      const height = wrapperRef.current.scrollHeight;
-      setWrapperHeight(height);
-    }
-  };
+   };
 
 
   // console.log('wrapperHeight', wrapperHeight)
@@ -593,6 +590,11 @@ const ExamenFinal = (props) => {
         )}
 
       </Wrapper>
+      <VerticalTestMenu quizArray={allTeacherTests}
+                        indexAllItems={indexAllItems} 
+                        setIndexAllItems={setIndexAllItems}
+                        handleSliderClick={handleSliderClick}
+      />
       {/* <VerticalSlider quizArray={allTeacherTests} 
                       currentIndex={indexAllItems} 
                       setCurrentIndex={setIndexAllItems}
