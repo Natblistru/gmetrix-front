@@ -177,28 +177,45 @@ const TestCheck = ({
   };
 
   const trimiteDateLaBackend = async (element) => {
-    try {
-        // console.log(element)
-        const response = await axios.post('/api/student-formative-test-options', element);
+    if (currentTests[0].path == "/test-de-totalizare") {
+      try {
+        const response = await axios.post('/api/student-summative-test-options', element);
 
         if (response.status === 200) {
           console.log('Success:', response.data.message);
         } else {
           console.error('Error');
         }
-    } catch (error) {
-      if (error.response && error.response.status === 422) {
-        console.log('Validation Errors:', error.response.data.errors);
-      } else {
-        console.error('Error:', error);
+      } catch (error) {
+        if (error.response && error.response.status === 422) {
+          console.log('Validation Errors:', error.response.data.errors);
+        } else {
+          console.error('Error:', error);
+        }
+      }
+    } else {
+      try {
+          const response = await axios.post('/api/student-formative-test-options', element);
+
+          if (response.status === 200) {
+            console.log('Success:', response.data.message);
+          } else {
+            console.error('Error');
+          }
+      } catch (error) {
+        if (error.response && error.response.status === 422) {
+          console.log('Validation Errors:', error.response.data.errors);
+        } else {
+          console.error('Error:', error);
+        }
       }
     }
   };
 
   const trimiteResultsLaBackend = async (element) => {
-    try {
-        // console.log(element)
-        const response = await axios.post('/api/student-formative-test-results', element);
+    if (currentTests[0].path == "/test-de-totalizare") {
+      try {
+        const response = await axios.post('/api/student-summative-test-results', element);
 
         if (response.status === 200) {
           console.log('Success:', response.data.message);
@@ -213,6 +230,25 @@ const TestCheck = ({
         console.error('Error:', error);
       }
     }
+    } else {
+      try {
+        const response = await axios.post('/api/student-formative-test-results', element);
+
+        if (response.status === 200) {
+          console.log('Success:', response.data.message);
+          setResponseReceived(true);
+        } else {
+          console.error('Error');
+        }
+      } catch (error) {
+        if (error.response && error.response.status === 422) {
+          console.log('Validation Errors:', error.response.data.errors);
+        } else {
+          console.error('Error:', error);
+        }
+      }
+    }
+
   };
 
   const handleTryAgainClearCheck = () => {
