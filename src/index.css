@@ -2788,3 +2788,17 @@ filter: brightness(0) saturate(100%) invert(0%) sepia(7%) saturate(98%) hue-rota
     height: 120px;
     padding: 50px;
 }
+
+.timer {
+  position: fixed;
+  top: 83px;
+  left: 23px;
+  background-color: rgba(0, 0, 0, 0.7); /* Background semitransparent */
+  color: white; /* Text alb */
+  padding: 10px 20px; /* Padding interior */
+  border-radius: 5px; /* Colțuri rotunjite */
+  font-family: 'Courier New', Courier, monospace; /* Font monospace pentru aspect de cronometru */
+  font-size: 24px; /* Mărimea fontului */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Umbră pentru un aspect de înălțare */
+  z-index: 1000; /* Asigură-te că este deasupra altor elemente */
+}

@@ -12,6 +12,7 @@ import ListNavigatie from "../ListNavigatie";
 import TestBoard from "../Teste/TestBoard";
 import TestWords from "../Teste/TestWords";
 import TestSnap from "../Snap/TestSnap";
+import Timer from "./Timer";
 import { fetchTheme, fetchAllTeacherTestsSuccess } from "../../routes/api";
 import { fetchCurrentIndexTest } from "../ReduxComp/actions";
 import "../../index.css";
@@ -461,6 +462,7 @@ const ExamenFinal = (props) => {
         {allTeacherTests && allTeacherTests.length > 0 && (
           <>
             <Breadcrumb step={1} />
+            <Timer />
             <TitleBox
               className="teme-container"
               proc={proc}
