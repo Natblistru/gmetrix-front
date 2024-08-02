@@ -49,6 +49,8 @@ const ExamenFinal = (props) => {
 
   const [clearAll, setClearAll] = useState(false);
   const [resetTimer, setResetTimer] = useState(false);
+  const [forceStopTimer, setForceStopTimer] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   // const currentTopicObject = useSelector((state) => state.currentTopic);
   // const currentTopic = currentTopicObject.currentTopic;
@@ -458,6 +460,19 @@ const ExamenFinal = (props) => {
     setCorrectAnswer(null);
    };
 
+   const handleTimerFinish = () => {
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+    history.push('/home');
+  };
+
+  const finishExam = () => {
+    setForceStopTimer(true); // Setează flag-ul pentru a forța oprirea timerului
+    handleTimerFinish(); // Deschide forma modală
+  };
 
   // console.log('wrapperHeight', wrapperHeight)
   // console.log(wrapperRef.current && wrapperRef.current.getBoundingClientRect().height)
@@ -470,7 +485,11 @@ const ExamenFinal = (props) => {
         {allTeacherTests && allTeacherTests.length > 0 && (
           <>
             <Breadcrumb step={1} />
-            <Timer reset={resetTimer} setResetTimer={setResetTimer} />
+            <Timer 
+              reset={resetTimer} 
+              setResetTimer={setResetTimer} 
+              onFinish={handleTimerFinish}
+              forceStop={forceStopTimer} />
             <TitleBox
               className="teme-container"
               proc={proc}
@@ -606,7 +625,17 @@ const ExamenFinal = (props) => {
                         setIndexAllItems={setIndexAllItems}
                         handleSliderClick={handleSliderClick}
                         handleTryAgain={handleTryAgain}
+                        finishExam = {finishExam}
       />
+      {showModal && (
+        <div className="examen-modal-overlay">
+          <div className="examen-modal-content">
+            <h2>Test finisat</h2>
+            <p>{`Ai realizat ${Math.round(proc)}%`}</p>
+            <button onClick={handleCloseModal}>Închide</button>
+          </div>
+        </div>
+      )}
       {/* <VerticalSlider quizArray={allTeacherTests} 
                       currentIndex={indexAllItems} 
                       setCurrentIndex={setIndexAllItems}

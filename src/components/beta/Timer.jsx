@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const Timer = ({ reset, setResetTimer }) => {
+const Timer = ({ reset, setResetTimer, onFinish, forceStop }) => {
   const initialTime = 3000; // 50 minutes in seconds (50 * 60 = 3000 seconds)
   const [time, setTime] = useState(() => {
     const savedTime = localStorage.getItem('timer');
@@ -8,8 +8,22 @@ const Timer = ({ reset, setResetTimer }) => {
   });
 
   useEffect(() => {
+    if (forceStop) {
+      setTime(0);
+      localStorage.removeItem('timer');
+      onFinish();
+    }
+  }, [forceStop]);
+
+  useEffect(() => {
     const countdown = setInterval(() => {
       setTime(prevTime => {
+        if (prevTime <= 1) {
+          clearInterval(countdown);
+          localStorage.removeItem('timer');
+          onFinish();
+          return 0;
+        }
         const newTime = prevTime - 1;
         localStorage.setItem('timer', newTime); // Save the remaining time in localStorage
         return newTime;
@@ -17,7 +31,7 @@ const Timer = ({ reset, setResetTimer }) => {
     }, 1000);
 
     return () => clearInterval(countdown);
-  }, []);
+  }, [onFinish]);
 
   useEffect(() => {
     return () => {

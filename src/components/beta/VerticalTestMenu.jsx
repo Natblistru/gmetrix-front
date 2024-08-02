@@ -12,7 +12,8 @@ const VerticalTestMenu = ({
   // setIsAnswered,
   // destination,
   handleSliderClick,
-  handleTryAgain
+  handleTryAgain,
+  finishExam
 }) => {
   const [menuWidth, setMenuWidth] = useState('0');
 
@@ -73,7 +74,10 @@ const VerticalTestMenu = ({
             <br/>
           </React.Fragment>
         ))}
+        <div className="button-container">
         <button onClick={resetState} className="reset-button">Reset</button>
+        <button onClick={finishExam}className="reset-button finish">Finish</button>
+        </div>
       </div>
 
       <span style={{ fontSize: '30px', cursor: 'pointer', position: 'fixed', top: '97px', right: '50px' }} onClick={openNav}>&#9776; Lista teste</span>

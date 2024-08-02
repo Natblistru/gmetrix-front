@@ -2866,7 +2866,62 @@ filter: brightness(0) saturate(100%) invert(0%) sepia(7%) saturate(98%) hue-rota
   cursor: pointer;
   font-size: 16px;
 }
+.reset-button.finish {
+  background-color: #9a031e;
+}
 
 .reset-button:hover {
   background-color: #d32f2f;
 }
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px; /* Adaugă spațiu între butoane */
+}
+
+.examen-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.examen-modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.examen-modal-content h2 {
+  margin-bottom: 20px;
+}
+
+.examen-modal-content p {
+  margin: 20px 0;
+  font-size: 18px;
+  color: #333;
+}
+
+.examen-modal-content button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.examen-modal-content button:hover {
+  background-color: #0056b3;
+}
+
