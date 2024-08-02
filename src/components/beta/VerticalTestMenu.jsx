@@ -11,8 +11,8 @@ const VerticalTestMenu = ({
   // setIdRaspuns,
   // setIsAnswered,
   // destination,
-  handleSliderClick
-
+  handleSliderClick,
+  handleTryAgain
 }) => {
   const [menuWidth, setMenuWidth] = useState('0');
 
@@ -35,18 +35,45 @@ const VerticalTestMenu = ({
     handleSliderClick(index+1);
   };
 
+  const resetState = () => {
+    setActiveSlide(null);
+    handleTryAgain();
+    handleClick(0);
+    closeNav();
+  };
+
   return (
     <div>
       <div id="mySidenav" className="verticalSidenav" style={{ width: menuWidth }} onMouseLeave={closeNav}>
         <a href="javascript:void(0)" className="closebtn" onClick={closeNav}>&times;</a>
         {quizArray.map((quiz, index) => (
-          <>
-            <a  key={quiz.order_item_test} onClick={() => handleClick(index)} href="#" className={index === 0 ? 'firstTest' : ''}>
-              <span  className={activeSlide === index ? "active-test" : ""} style={{ marginRight: '12px' }}>Test</span>  <span className={activeSlide === index ? "active-test" : ""}>{quiz.order_item_test}</span></a> 
-              <input type="checkbox" class="option-input" style={{ marginLeft: activeSlide === index ? '24px' : '28px' }}></input>
+          <React.Fragment key={quiz.order_item_test}>
+            <a 
+              onClick={() => handleClick(index)} 
+              href="#" 
+              className={index === 0 ? 'firstTest' : ''}
+            >
+              <span 
+                className={activeSlide === index ? "active-test" : ""} 
+                style={{ marginRight: '12px' }}
+              >
+                Test
+              </span>
+              <span className={activeSlide === index ? "active-test" : ""}>
+                {quiz.order_item_test}
+              </span>
+            </a>
+            <input 
+              type="checkbox" 
+              className="option-input" 
+              style={{ marginLeft: activeSlide === index ? '24px' : '28px' }} 
+              checked={Math.round(quiz.student_procent) === 100}
+              readOnly
+            />
             <br/>
-          </>
+          </React.Fragment>
         ))}
+        <button onClick={resetState} className="reset-button">Reset</button>
       </div>
 
       <span style={{ fontSize: '30px', cursor: 'pointer', position: 'fixed', top: '97px', right: '50px' }} onClick={openNav}>&#9776; Lista teste</span>

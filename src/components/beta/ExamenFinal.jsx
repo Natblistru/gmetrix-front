@@ -48,6 +48,7 @@ const ExamenFinal = (props) => {
   console.log(currentIndexTestObject)
 
   const [clearAll, setClearAll] = useState(false);
+  const [resetTimer, setResetTimer] = useState(false);
 
   // const currentTopicObject = useSelector((state) => state.currentTopic);
   // const currentTopic = currentTopicObject.currentTopic;
@@ -211,21 +212,23 @@ const ExamenFinal = (props) => {
   );
 
   const handleTryAgain = () => {
+    console.log("ajuns handle try again")
     setResponseReceived(false);
-    let itemQuantity = allTeacherTests.length;
-    if (itemQuantity - 1 === currentItemIndex) {
+    setResetTimer(prev => !prev);
+    // let itemQuantity = allTeacherTests.length;
+    // if (itemQuantity - 1 === currentItemIndex) {
       // setCurrentItemIndex(0);
       const testItems = currentTests[currentTestIndex].order_number_options.map(
         (option) => option
       );
-      // console.log(testItems)
+      console.log(testItems)
       try {
         const formDataArray = testItems.map((item) => {
           const formData = new FormData();
           formData.append("student_id", 1);
           formData.append("order_number", item.order_number);
           formData.append("test_item_id", item.test_item_id);
-          formData.append("formative_test_id", item.formative_test_id);
+          formData.append("summative_test_id", item.formative_test_id);
           formData.append("score", 0);
           formData.append("status", 0);
           return formData;
@@ -235,7 +238,7 @@ const ExamenFinal = (props) => {
           .all(
             formDataArray.map((formData) =>
               axios.post(
-                "/api/update-student-formative-test-result",
+                "/api/update-student-summative-test-result",
                 formData
               )
             )
@@ -274,7 +277,7 @@ const ExamenFinal = (props) => {
           formData.append("student_id", 1);
           formData.append("order_number", item.order_number);
           formData.append("test_item_id", item.test_item_id);
-          formData.append("formative_test_id", item.formative_test_id);
+          formData.append("summative_test_id", item.formative_test_id);
           formData.append("score", 0);
           formData.append("status", 0);
           return formData;
@@ -284,7 +287,7 @@ const ExamenFinal = (props) => {
           .all(
             formDataArray.map((formData) =>
               axios.post(
-                "/api/update-student-formative-test-option",
+                "/api/update-student-summative-test-option",
                 formData
               )
             )
@@ -315,11 +318,19 @@ const ExamenFinal = (props) => {
       } catch (error) {
         console.error(error);
       }
-    } else {
-      // setCurrentItemIndex(currentItemIndex + 1);
-    }
-
+    // } else {
+    //   // setCurrentItemIndex(currentItemIndex + 1);
+    // }
+    fetchAllTeacherTests()
     setCorrectAnswer(null);
+  };
+
+  const fetchAllTeacherTests = async () => {
+    try {
+      const res = await fetchAllTeacherTestsSuccess(0, currentStudent, dispatch);
+    } catch (error) {
+      console.error("Eroare la preluarea datelor:", error);
+    }
   };
 
   const handleClearTestBoard = (testId) => {
@@ -459,7 +470,7 @@ const ExamenFinal = (props) => {
         {allTeacherTests && allTeacherTests.length > 0 && (
           <>
             <Breadcrumb step={1} />
-            <Timer />
+            <Timer reset={resetTimer} setResetTimer={setResetTimer} />
             <TitleBox
               className="teme-container"
               proc={proc}
@@ -594,6 +605,7 @@ const ExamenFinal = (props) => {
                         indexAllItems={indexAllItems} 
                         setIndexAllItems={setIndexAllItems}
                         handleSliderClick={handleSliderClick}
+                        handleTryAgain={handleTryAgain}
       />
       {/* <VerticalSlider quizArray={allTeacherTests} 
                       currentIndex={indexAllItems} 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const Timer = () => {
+const Timer = ({ reset, setResetTimer }) => {
   const initialTime = 3000; // 50 minutes in seconds (50 * 60 = 3000 seconds)
   const [time, setTime] = useState(() => {
     const savedTime = localStorage.getItem('timer');
@@ -24,6 +24,13 @@ const Timer = () => {
       localStorage.removeItem('timer'); // Clean up localStorage when the component is unmounted
     };
   }, []);
+
+  useEffect(() => {
+    if (reset) {
+      setTime(initialTime);
+      setResetTimer(prev => !prev)
+    }
+  }, [reset]);
 
   const formatTime = (time) => {
     const minutes = Math.floor(time / 60);
