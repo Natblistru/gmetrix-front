@@ -37,6 +37,9 @@ const ExamenFinal = (props) => {
   const currentThemeObject = useSelector(state => state.currentTheme);
   const currentTheme = currentThemeObject.currentTheme || JSON.parse(localStorage.getItem('currentTheme'));
   const currentSubject = useSelector((state) => state.currentSubject);
+
+  const currentSubject_name = currentSubject.currentSubject.subject_name.toLowerCase();
+
   const currentTests = useSelector((state) => state.currentTests);
   const allTeacherTests = useSelector((state) => state.allTeacherTests);
   // const [allTeacherTests, setAllTeacherTests] = useState(useSelector((state) => state.allTeacherTests));
@@ -170,7 +173,7 @@ const ExamenFinal = (props) => {
     const fetchAllTeacherTests = async () => {
       try {
     
-        const res = await fetchAllTeacherTestsSuccess(0, currentStudent, dispatch);
+        const res = await fetchAllTeacherTestsSuccess(0, currentStudent, dispatch, currentSubject_name);
       } catch (error) {
         console.error("Eroare la preluarea datelor:", error);
       }
@@ -329,7 +332,7 @@ const ExamenFinal = (props) => {
 
   const fetchAllTeacherTests = async () => {
     try {
-      const res = await fetchAllTeacherTestsSuccess(0, currentStudent, dispatch);
+      const res = await fetchAllTeacherTestsSuccess(0, currentStudent, dispatch, currentSubject_name);
     } catch (error) {
       console.error("Eroare la preluarea datelor:", error);
     }

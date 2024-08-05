@@ -111,7 +111,7 @@ const Capitole = (props) => {
 
   const fetchAllTeacherTests = async () => {
     try {
-      const res = await fetchAllTeacherTestsSuccess(0, currentStudent, dispatch);
+      const res = await fetchAllTeacherTestsSuccess(0, currentStudent, dispatch, currentSubject_name);
     } catch (error) {
       console.error("Eroare la preluarea datelor:", error);
     }
