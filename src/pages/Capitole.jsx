@@ -43,8 +43,6 @@ const Capitole = (props) => {
   const currentStudentObject = useSelector(state => state.currentStudent);
   const currentStudent = currentStudentObject ? currentStudentObject.currentStudent : 1;  
 
-  const currentSubject_name = currentSubject.currentSubject.subject_name.toLowerCase();
-
   const student_id = localStorage.getItem('auth_role') == 'student' ? currentStudent : 1;
 
 
@@ -94,13 +92,18 @@ const Capitole = (props) => {
 
   useEffect(() => {
     fetchAllTeacherTests();
-    fetchTest();
+    fetchTest(currentStudent);
   }, []);
 
-  const fetchTest = async () => {
+  const fetchTest = async (student, disciplina) => {
 
     try {
-        const res = await axios.get(`/api/summativetest_exam`);
+        const res = await axios.get(`/api/summativetest_exam`, {
+          params: {
+            student: student,
+            disciplina: name
+          }
+        });
         console.log(res.data);
         dispatch(fetchCurrentTestsSuccess(res.data));
         dispatch(fetchCurrentIndexTest(0));
@@ -111,7 +114,7 @@ const Capitole = (props) => {
 
   const fetchAllTeacherTests = async () => {
     try {
-      const res = await fetchAllTeacherTestsSuccess(0, currentStudent, dispatch, currentSubject_name);
+      const res = await fetchAllTeacherTestsSuccess(0, currentStudent, dispatch, name);
     } catch (error) {
       console.error("Eroare la preluarea datelor:", error);
     }
