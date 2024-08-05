@@ -53,7 +53,8 @@ const Capitole = (props) => {
         const level_id = 1;
 
         const res = await fetchCapitole(subject_id, level_id, dispatch, student_id);
-        const tests = await fetchSummativeTests(subject_id, level_id, dispatch);
+//        const tests = await fetchSummativeTests(subject_id, level_id, dispatch);
+        fetchTest();
         setLoading(false);
         AOS.refresh();
       } catch (error) {
@@ -92,18 +93,13 @@ const Capitole = (props) => {
 
   useEffect(() => {
     fetchAllTeacherTests();
-    fetchTest(currentStudent);
+    fetchTest();
   }, []);
 
-  const fetchTest = async (student, disciplina) => {
+  const fetchTest = async () => {
 
     try {
-        const res = await axios.get(`/api/summativetest_exam`, {
-          params: {
-            student: student,
-            disciplina: name
-          }
-        });
+        const res = await axios.get('/api/summativetest_exam');
         console.log(res.data);
         dispatch(fetchCurrentTestsSuccess(res.data));
         dispatch(fetchCurrentIndexTest(0));

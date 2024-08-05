@@ -34,8 +34,6 @@ const ExamenFinal = (props) => {
   const [currentItemIndex, setCurrentItemIndex] = useState(0);
   const [loading, setLoading] = useState(true);
   const [responseReceived, setResponseReceived] = useState(false);
-  const currentThemeObject = useSelector(state => state.currentTheme);
-  const currentTheme = currentThemeObject.currentTheme || JSON.parse(localStorage.getItem('currentTheme'));
   const currentSubject = useSelector((state) => state.currentSubject);
 
   const currentSubject_name = currentSubject.currentSubject.subject_name.toLowerCase();
@@ -344,16 +342,16 @@ const ExamenFinal = (props) => {
     }
   };
 
-  useEffect(() => {
-    if (currentTheme) {
-      const teacher = 1;
-      const theme = currentTheme?.tema_id;
-      const level_id = 1;
+  // useEffect(() => {
+  //   if (currentTheme) {
+  //     const teacher = 1;
+  //     const theme = currentTheme?.tema_id;
+  //     const level_id = 1;
 
-      fetchTheme(teacher, theme, subject_id, level_id, dispatch, student_id);
-      // console.log("Valoarea lui proc a fost actualizată:", proc);
-    }
-  }, [proc]);
+  //     fetchTheme(teacher, theme, subject_id, level_id, dispatch, student_id);
+  //     // console.log("Valoarea lui proc a fost actualizată:", proc);
+  //   }
+  // }, [proc]);
 
   // console.log("currentTheme", currentTheme.tema_id)
   // console.log("currentTests", currentTests)
@@ -365,15 +363,15 @@ const ExamenFinal = (props) => {
   // console.log("currentTestIndex",currentTestIndex)
   // console.log(currentTopic.tests)
 
-  const changeAdressIdTest = () => {
-    const currentId = parseInt(window.location.pathname.split('/').pop(), 10);
+  // const changeAdressIdTest = () => {
+  //   const currentId = parseInt(window.location.pathname.split('/').pop(), 10);
 
-    const newId = currentId + 1;
-    setIndexAllItems(newId)
-    const basePath = window.location.pathname.replace(`/${currentId}`, '');
-    const newUrl = `${basePath}/${newId}?teacher=1&theme=${currentTheme.tema_id}&level=1&disciplina=${subject_id}`;
-    history.push(newUrl);
-  };
+  //   const newId = currentId + 1;
+  //   setIndexAllItems(newId)
+  //   const basePath = window.location.pathname.replace(`/${currentId}`, '');
+  //   const newUrl = `${basePath}/${newId}?teacher=1&theme=${currentTheme.tema_id}&level=1&disciplina=${subject_id}`;
+  //   history.push(newUrl);
+  // };
 
   const handleNext = () => {
     console.log('indexAllItems',indexAllItems);
