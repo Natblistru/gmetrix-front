@@ -20,10 +20,10 @@ const TestQuiz = ({
 }) => {
   const quizWrapperRef = useRef(null);
   const currentTests = useSelector(state => state.currentTests);
-  console.log(currentTests)
+  //console.log(currentTests)
 
   const currentIndexTestObject = useSelector(state => state.currentIndexTest);
-  console.log(currentIndexTestObject)
+  //console.log(currentIndexTestObject)
   const currentStudentObject = useSelector(state => state.currentStudent);
   const currentStudent = currentStudentObject ? currentStudentObject.currentStudent : 1;
   const language = useSelector(state => state.language);
@@ -39,8 +39,8 @@ const TestQuiz = ({
       currentIndexTest = currentIndexTestObject;
   }
 
-  console.log(currentIndexTest)
-  console.log(currentTests[0])
+  //console.log(currentIndexTest)
+  //console.log(currentTests[0])
   const [listItems, setListItems] = useState(currentTests[currentIndexTest].order_number_options)
 
 

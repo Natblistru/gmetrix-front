@@ -78,15 +78,15 @@ const TestWords = ({
   const textAdditional = listItems[currentItemIndex].test_item_options[0].text_additional;
 
   // din currentTests se ia al currentIndexTest-lea si se obtine listItems (formative_test)
-  console.log('currentTests', currentTests)
-  console.log('currentIndexTest', currentIndexTest)
-  console.log('listItems', listItems)
+  // console.log('currentTests', currentTests)
+  // console.log('currentIndexTest', currentIndexTest)
+  // console.log('listItems', listItems)
 
   // din listItems se ia al currentItemIndex-lea si se obtine test_item
-  console.log('currentItemIndex', currentItemIndex)
-  console.log('listItems[currentItemIndex]', listItems[currentItemIndex])
+  // console.log('currentItemIndex', currentItemIndex)
+  // console.log('listItems[currentItemIndex]', listItems[currentItemIndex])
 
-  console.log('textAdditional', textAdditional)
+  // console.log('textAdditional', textAdditional)
 
   // Verificăm dacă textAdditional nu este null sau undefined
   if (textAdditional) {
@@ -101,13 +101,13 @@ const TestWords = ({
       text = ''; // sau orice valoare implicită doriți să folosiți
   }
   text = text.slice(1, -1);
-  console.log('text', text)
+  // console.log('text', text)
 
   useEffect(()=>{
     setListItems(currentTests[currentIndexTest].order_number_options);
 
-    console.log('currentIndexTest',currentIndexTest)
-    console.log('currentItemIndex',currentItemIndex)
+    // console.log('currentIndexTest',currentIndexTest)
+    // console.log('currentItemIndex',currentItemIndex)
    
     const initialSelectedOptions = [];
     listItems[currentItemIndex].test_item_options.forEach(element => {
@@ -122,6 +122,7 @@ const TestWords = ({
     });
 
     setSelectedOptions(initialSelectedOptions)
+    console.log("initialSelectedOptions", initialSelectedOptions)
 
     const jsonString = listItems[currentItemIndex]?.test_item_content;
     const decodedString = decodeDiacritics(jsonString);
@@ -136,9 +137,9 @@ const TestWords = ({
 
     const textAdditional = listItems[currentItemIndex].test_item_options[0].text_additional;
 
-    console.log('currentItemIndex', currentItemIndex)
-    console.log('listItems[currentItemIndex]', listItems[currentItemIndex])
-    console.log('textAdditional', textAdditional)
+    // console.log('currentItemIndex', currentItemIndex)
+    // console.log('listItems[currentItemIndex]', listItems[currentItemIndex])
+    // console.log('textAdditional', textAdditional)
 
     // Verificăm dacă textAdditional nu este null sau undefined
     if (textAdditional) {
@@ -155,7 +156,7 @@ const TestWords = ({
 
     // Elimină ghilimelele de la început și sfârșit
     text = text.slice(1, -1);
-    console.log('text', text)
+    // console.log('text', text)
   },[currentItemIndex, currentIndexTest])
 
   useEffect(()=>{
@@ -186,9 +187,9 @@ const TestWords = ({
 
     setSelectedOptions(prevOptions => {
       const updatedOptions = prevOptions.map(option => {
-        console.log('option',option)
-        console.log('dropId',dropId)
-        console.log('text',text)
+        // console.log('option',option)
+        // console.log('dropId',dropId)
+        // console.log('text',text)
           return option.option === text ? { ...option, user_column: Math.floor(dropId/2) } : option;
       });
       return updatedOptions;
@@ -219,10 +220,10 @@ const TestWords = ({
 
   const checkAnswer = () => {
     setShowResults(true);
-
+    console.log("selectedOptions", selectedOptions)
     const selectedOptionsCalculate = selectedOptions.map(item => {
       let score;
-      console.log(item)
+      // console.log(item)
       if (item.correct == item.user_column) {
         score = item.test_item_complexity;
       } else {
@@ -237,7 +238,7 @@ const TestWords = ({
       const { test_item_complexity, user_column, correct, explanation, ...rest } = item;
       return { ...rest, student_id: currentStudent, type: 'check' };
     });
-    console.log(selectedOptionsToDB)
+    console.log("selectedOptionsToDB", selectedOptionsToDB)
     for (const element of selectedOptionsToDB) {
       trimiteDateLaBackend(element);
     }
@@ -273,11 +274,11 @@ const TestWords = ({
   const trimiteDateLaBackend = async (element) => {
     if (currentTests[0].path == "/test-de-totalizare") {
       try {
-        // console.log(element)
+        console.log("element", element)
         const response = await axios.post('/api/student-summative-test-options', element);
 
         if (response.status === 200) {
-          console.log('Success:', response.data.message);
+          // console.log('Success:', response.data.message);
         } else {
           console.error('Error');
         }
@@ -294,7 +295,7 @@ const TestWords = ({
         const response = await axios.post('/api/student-formative-test-options', element);
 
         if (response.status === 200) {
-          console.log('Success:', response.data.message);
+          // console.log('Success:', response.data.message);
         } else {
           console.error('Error');
         }
@@ -316,7 +317,7 @@ const TestWords = ({
         const response = await axios.post('/api/student-summative-test-results', element);
 
         if (response.status === 200) {
-          console.log('Success:', response.data.message);
+          // console.log('Success:', response.data.message);
           setResponseReceived(true);
         } else {
           console.error('Error');
@@ -334,7 +335,7 @@ const TestWords = ({
         const response = await axios.post('/api/student-formative-test-results', element);
 
         if (response.status === 200) {
-          console.log('Success:', response.data.message);
+          // console.log('Success:', response.data.message);
           setResponseReceived(true);
         } else {
           console.error('Error');
@@ -356,6 +357,7 @@ const TestWords = ({
     setSentence(getSentence(text));    
     handleTryAgain();
   };
+  // console.log("additionalContent (TestWords)", additionalContent)
 
   return (
     <>

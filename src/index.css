@@ -851,6 +851,12 @@ button.slick-next::before {
   user-select: none;
   margin: 0 2em 2em;
 }
+
+.word_select .btn-test {
+  margin: 0px;
+  max-width: 200px; 
+} 
+
 .btn-test:hover {
   background: #0582ca;
 }
@@ -2923,5 +2929,15 @@ filter: brightness(0) saturate(100%) invert(0%) sepia(7%) saturate(98%) hue-rota
 
 .examen-modal-content button:hover {
   background-color: #0056b3;
+}
+
+.word_select select {
+  font-size: 16px;
+  padding: 5px 10px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  color: #333;
+  appearance: none; 
 }
 

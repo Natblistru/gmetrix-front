@@ -11,6 +11,7 @@ import TestCheck from "../Teste/TestCheck";
 import ListNavigatie from "../ListNavigatie";
 import TestBoard from "../Teste/TestBoard";
 import TestWords from "../Teste/TestWords";
+import TestWordsSelect from "../Teste/TestWordsSelect";
 import TestSnap from "../Snap/TestSnap";
 import Timer from "./Timer";
 import VerticalTestMenu from './VerticalTestMenu';
@@ -41,12 +42,12 @@ const ExamenFinal = (props) => {
   const currentTests = useSelector((state) => state.currentTests);
   const allTeacherTests = useSelector((state) => state.allTeacherTests);
   // const [allTeacherTests, setAllTeacherTests] = useState(useSelector((state) => state.allTeacherTests));
-  console.log('allTeacherTests', allTeacherTests)
-  console.log('currentTests', currentTests)
+  //console.log('allTeacherTests', allTeacherTests)
+  //console.log('currentTests', currentTests)
   const [indexAllItems, setIndexAllItems] = useState(0);
 
   const currentIndexTestObject = useSelector(state => state.currentIndexTest);
-  console.log(currentIndexTestObject)
+  //console.log(currentIndexTestObject)
 
   const [clearAll, setClearAll] = useState(false);
   const [resetTimer, setResetTimer] = useState(false);
@@ -109,8 +110,9 @@ const ExamenFinal = (props) => {
   useEffect(() => {
     const fetchData = async () => {
       if (correctAnswer !== null && responseReceived) {
-        // console.log(currentTests)
-        // console.log(currentTestIndex)
+        console.log("currentTests[currentTestIndex]",currentTests[currentTestIndex])
+        // console.log("correctAnswer",correctAnswer)
+        // console.log("currentTestIndex", currentTestIndex)
         // console.log(testBoardRef.current)
         let firstTestItemComplexity =
           currentTests[currentTestIndex].order_number_options[0]
@@ -215,7 +217,7 @@ const ExamenFinal = (props) => {
   );
 
   const handleTryAgain = () => {
-    console.log("ajuns handle try again")
+    //console.log("ajuns handle try again")
     setResponseReceived(false);
     setResetTimer(prev => !prev);
     // let itemQuantity = allTeacherTests.length;
@@ -224,7 +226,7 @@ const ExamenFinal = (props) => {
       const testItems = currentTests[currentTestIndex].order_number_options.map(
         (option) => option
       );
-      console.log(testItems)
+      //console.log(testItems)
       try {
         const formDataArray = testItems.map((item) => {
           const formData = new FormData();
@@ -358,7 +360,7 @@ const ExamenFinal = (props) => {
   // console.log("stateData.currentSummativeTests",stateData.currentSummativeTests)
   // console.log("currentTests[currentTestIndex]",currentTests[currentTestIndex])
   // console.log("currentTopic.tests[currentTestIndex]", currentTopic.tests[currentTestIndex])
-  // console.log("allTeacherTests", allTeacherTests)
+  //console.log("allTeacherTests", allTeacherTests)
   // console.log("currentItemIndex",currentItemIndex)
   // console.log("currentTestIndex",currentTestIndex)
   // console.log(currentTopic.tests)
@@ -374,7 +376,7 @@ const ExamenFinal = (props) => {
   // };
 
   const handleNext = () => {
-    console.log('indexAllItems',indexAllItems);
+    //console.log('indexAllItems',indexAllItems);
     setCorrectAnswer(null);
     setClearAll(true);
     // Eliminam din adresa path la formative_test si nr_ord a test_item al acestuia
@@ -393,7 +395,7 @@ const ExamenFinal = (props) => {
     setIndexAllItems(newId);
 
     const newUrlTest = `${newPathname}/${nextAllTests.order_item_test}?level=1&disciplina=${subject_id}`;
-    console.log('newUrlTest', newUrlTest);
+    //console.log('newUrlTest', newUrlTest);
     history.push(newUrlTest);
 
     dispatch(fetchCurrentIndexTest(nextAllTests.order_formative_test-1));
@@ -406,7 +408,7 @@ const ExamenFinal = (props) => {
   };
 
   const handlePrevious = () => {
-    console.log('indexAllItems',indexAllItems);
+    //console.log('indexAllItems',indexAllItems);
     setCorrectAnswer(null);
     setClearAll(true);
     // Eliminam din adresa path la formative_test si nr_ord a test_item al acestuia
@@ -425,7 +427,7 @@ const ExamenFinal = (props) => {
     setIndexAllItems(newId);
 
     const newUrlTest = `${newPathname}/${previousAllTests.order_item_test}?level=1&disciplina=${subject_id}`;
-    console.log('newUrlTest', newUrlTest);
+    //console.log('newUrlTest', newUrlTest);
     history.push(newUrlTest);
 
     dispatch(fetchCurrentIndexTest(previousAllTests.order_formative_test-1));
@@ -478,6 +480,18 @@ const ExamenFinal = (props) => {
   // console.log('wrapperHeight', wrapperHeight)
   // console.log(wrapperRef.current && wrapperRef.current.getBoundingClientRect().height)
   // console.log('count', Math.round(wrapperHeight/80))
+  // console.log("allTeacherTests",allTeacherTests)
+  // console.log("indexAllItems", indexAllItems)
+  // console.log("correctAnswer", correctAnswer)
+  // console.log("setCorrectAnswer", setCorrectAnswer)
+  // console.log("additionalContent",additionalContent)
+  // console.log("handleTryAgain", handleTryAgain)
+  // console.log("clearAll", clearAll)
+  // console.log("setClearAll", setClearAll)
+  // console.log("currentItemIndex", currentItemIndex)
+  // console.log("setResponseReceived", setResponseReceived)
+  // console.log("setWrapperHeight", setWrapperHeight)
+
   return (
     <>
       <Navbar />
@@ -533,6 +547,19 @@ const ExamenFinal = (props) => {
               )}
               {allTeacherTests[indexAllItems].type === "words" && (
                 <TestWords
+                  list={allTeacherTests}
+                  currentIndex={indexAllItems}
+                  correctAnswer={correctAnswer}
+                  setCorrectAnswer={setCorrectAnswer}
+                  additionalContent={additionalContent}
+                  handleTryAgain={handleTryAgain}
+                  currentItemIndex={currentItemIndex}
+                  setResponseReceived={setResponseReceived}
+                  setWrapperHeight={setWrapperHeight}
+                />
+              )}
+              {allTeacherTests[indexAllItems].type === "words_select" && (
+                <TestWordsSelect
                   list={allTeacherTests}
                   currentIndex={indexAllItems}
                   correctAnswer={correctAnswer}
