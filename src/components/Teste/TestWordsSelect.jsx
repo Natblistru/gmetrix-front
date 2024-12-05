@@ -315,6 +315,21 @@ const TestWordsSelect = ({
             <div dangerouslySetInnerHTML={{ __html: question }} />
             {/* <div dangerouslySetInnerHTML={{ __html: listItems[currentItemIndex]?.test_item_options[0].text_additional}} /> */}
 
+              <img
+              className="img-subject"
+              src={`${process.env.REACT_APP_API_BASE_URL}/${listItems[currentItemIndex]?.image_path}`}
+              alt=""
+              style={{
+                width: isNaN(
+                  parseInt(listItems[currentItemIndex]?.procent_paper, 10)
+                )
+                  ? "40%"
+                  : `${
+                      100 - parseInt(listItems[currentItemIndex]?.procent_paper, 10)
+                    }%`,
+              }}
+            />
+
             {correctAnswer === null && (
               <>
               <div dangerouslySetInnerHTML={{ __html: listItems[currentItemIndex]?.test_item_options[0].text_additional}} />
