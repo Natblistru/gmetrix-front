@@ -318,6 +318,7 @@ const TestCheck = ({
                 onChange={
                   correctAnswer === null && language === "en" ? handleCheckBoxChange : () => {}
                 }
+                text_additional={answer.text_additional}
               />
             );
           })}

@@ -43,6 +43,10 @@ const TestQuiz = ({
   //console.log(currentTests[0])
   const [listItems, setListItems] = useState(currentTests[currentIndexTest].order_number_options)
 
+  console.log("currentTests",currentTests)
+  console.log("currentIndexTest", currentIndexTest)
+  console.log("currentTests[currentIndexTest]",currentTests[currentIndexTest])
+
 
   const jsonString = listItems[currentItemIndex]?.test_item_content;
   const decodedString = decodeDiacritics(jsonString);
@@ -193,7 +197,6 @@ const TestQuiz = ({
 
   };
 
-
   return (
     <div ref={quizWrapperRef}>
     <ItemAccordeon
@@ -249,6 +252,7 @@ const TestQuiz = ({
                 correctAnswer === null ? handleRadioButtonChange : () => {}
               }
               correctAnswer={correctAnswerText}  
+              text_additional={answer.text_additional}
             />
           );
         })}
