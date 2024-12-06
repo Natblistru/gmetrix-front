@@ -17,7 +17,7 @@ const SentenceBox = ({ marked, onDrop, sentence }) => {
             {line}
           </React.Fragment>
         ));
-        return <div className="word-box-inline" data-testid={'word'} key={i}>{textWithBreaks}</div>;
+        return <div className="word-box-inline" style={{ whiteSpace: "pre" }} data-testid={'word'} key={i}>{textWithBreaks}</div>;
       }
       
       let bgcolor;
