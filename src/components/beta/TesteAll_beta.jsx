@@ -124,6 +124,22 @@ const TesteAll_beta = () => {
   const [correctAnswer, setCorrectAnswer] = useState(null);
 
   useEffect(() => {
+    const fetchWithRetry = async (url, data, config, retries = 3, delay = 1000) => {
+      for (let attempt = 0; attempt < retries; attempt++) {
+        try {
+          const response = await axios.post(url, data, config);
+          return response;
+        } catch (error) {
+          if (error.response && error.response.status === 429 && attempt < retries - 1) {
+            console.warn(`Retrying request... (${attempt + 1})`);
+            await new Promise(res => setTimeout(res, delay));
+          } else {
+            throw error;
+          }
+        }
+      }
+    };
+
     const fetchData = async () => {
       if (correctAnswer !== null && responseReceived) {
         // console.log(currentTests)
@@ -147,7 +163,7 @@ const TesteAll_beta = () => {
           const studentId = 1;
           const token = localStorage.getItem('auth_token');
           const promises = testItemObjects.map((testItem) =>
-            axios.post(
+            fetchWithRetry(
               "/api/student-formative-test-score",
               {
                 test_item_id: testItem.test_item_id,
