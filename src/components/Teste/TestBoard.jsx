@@ -442,12 +442,14 @@ const TestBoard = forwardRef(
 
   const trimiteDateLaBackend = async (element) => {
     if (currentTests[0].path == "/test-de-totalizare") {
+      const token = localStorage.getItem('auth_token');
       try {
         // console.log(element)
         const response = await axios.post('/api/student-summative-test-options', element,
           {
             headers: {
-              "Content-Type": "application/json", 
+              "Content-Type": "application/json",       
+              "Authorization": token ? `Bearer ${token}` : '' 
             },
           });
 

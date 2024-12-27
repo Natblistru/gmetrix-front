@@ -145,6 +145,7 @@ const TesteAll_beta = () => {
 
         try {
           const studentId = 1;
+          const token = localStorage.getItem('auth_token');
           const promises = testItemObjects.map((testItem) =>
             axios.post(
               "/api/student-formative-test-score",
@@ -156,7 +157,8 @@ const TesteAll_beta = () => {
               ,
               {
                 headers: {
-                  "Content-Type": "application/json",      
+                  "Content-Type": "application/json",       
+                  "Authorization": token ? `Bearer ${token}` : ''      
                 },
               }
             )

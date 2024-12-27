@@ -130,6 +130,7 @@ const ExamenFinal = (props) => {
 
         try {
           const studentId = 1;
+          const token = localStorage.getItem('auth_token');
           const promises = testItemObjects.map((testItem) =>
             axios.post(
               "/api/student-formative-test-score",
@@ -141,7 +142,8 @@ const ExamenFinal = (props) => {
               ,
               {
                 headers: {
-                  "Content-Type": "application/json",      
+                  "Content-Type": "application/json",       
+                  "Authorization": token ? `Bearer ${token}` : ''      
                 },
               }
             )
@@ -244,7 +246,7 @@ const ExamenFinal = (props) => {
           formData.append("status", 0);
           return formData;
         });
-
+        const token = localStorage.getItem('auth_token');
         axios
           .all(
             formDataArray.map((formData) =>
@@ -253,7 +255,8 @@ const ExamenFinal = (props) => {
                 formData,
                 {
                   headers: {
-                    'Content-Type': 'application/json',
+                    "Content-Type": "application/json",       
+                    "Authorization": token ? `Bearer ${token}` : '' 
                   },
                 }
               )
@@ -298,7 +301,8 @@ const ExamenFinal = (props) => {
           formData.append("status", 0);
           return formData;
         });
-
+        
+        const token = localStorage.getItem('auth_token');
         axios
           .all(
             formDataArray.map((formData) =>
@@ -307,7 +311,8 @@ const ExamenFinal = (props) => {
                 formData,
                 {
                   headers: {
-                    'Content-Type': 'application/json',
+                    "Content-Type": "application/json",       
+                    "Authorization": token ? `Bearer ${token}` : '' 
                   },
                 }
               )

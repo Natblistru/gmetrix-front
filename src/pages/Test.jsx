@@ -112,6 +112,7 @@ const TestWrapper = () => {
 
         try {
           const studentId = 1;
+          const token = localStorage.getItem('auth_token');
           const promises = testItemObjects.map((testItem) =>
             axios.post(
               "/api/student-formative-test-score",
@@ -123,7 +124,8 @@ const TestWrapper = () => {
               ,
               {
                 headers: {
-                  "Content-Type": "application/json",      
+                  "Content-Type": "application/json",       
+                  "Authorization": token ? `Bearer ${token}` : ''    
                 },
               }
             )
@@ -199,13 +201,19 @@ const TestWrapper = () => {
           formData.append("status", 0);
           return formData;
         });
-
+        const token = localStorage.getItem('auth_token');
         axios
           .all(
             formDataArray.map((formData) =>
               axios.post(
                 "/api/update-student-formative-test-result",
-                formData
+                formData,
+                {
+                  headers: {
+                    "Content-Type": "application/json",       
+                    "Authorization": token ? `Bearer ${token}` : ''    
+                  },
+                }
               )
             )
           )
@@ -248,13 +256,20 @@ const TestWrapper = () => {
           formData.append("status", 0);
           return formData;
         });
-
+        
+        const token = localStorage.getItem('auth_token');
         axios
           .all(
             formDataArray.map((formData) =>
               axios.post(
                 "/api/update-student-formative-test-option",
-                formData
+                formData,
+                {
+                  headers: {
+                    "Content-Type": "application/json",       
+                    "Authorization": token ? `Bearer ${token}` : ''    
+                  },
+                }
               )
             )
           )
