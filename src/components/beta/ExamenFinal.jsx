@@ -293,7 +293,12 @@ const ExamenFinal = (props) => {
             formDataArray.map((formData) =>
               axios.post(
                 "/api/update-student-summative-test-option",
-                formData
+                formData,
+                {
+                  headers: {
+                    'Content-Type': 'application/json',
+                  },
+                }
               )
             )
           )
