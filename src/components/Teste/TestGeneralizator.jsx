@@ -483,7 +483,12 @@ const TestGeneralizator = ({
       // console.log(element)
       const response = await axios.post(
         "/api/student-summative-test-options",
-        element
+        element,
+        {
+          headers: {
+            "Content-Type": "application/json", 
+          },
+        }
       );
 
       if (response.status === 200) {

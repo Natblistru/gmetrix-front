@@ -444,7 +444,12 @@ const TestBoard = forwardRef(
     if (currentTests[0].path == "/test-de-totalizare") {
       try {
         // console.log(element)
-        const response = await axios.post('/api/student-summative-test-options', element);
+        const response = await axios.post('/api/student-summative-test-options', element,
+          {
+            headers: {
+              "Content-Type": "application/json", 
+            },
+          });
 
         if (response.status === 200) {
           console.log('Success:', response.data.message);
