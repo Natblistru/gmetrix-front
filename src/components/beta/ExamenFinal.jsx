@@ -138,6 +138,12 @@ const ExamenFinal = (props) => {
                 formative_test_id: testItem.formative_test_id,
                 studentId: studentId,
               }
+              ,
+              {
+                headers: {
+                  "Content-Type": "application/json",      
+                },
+              }
             )
           );
           const responses = await axios.all(promises);
