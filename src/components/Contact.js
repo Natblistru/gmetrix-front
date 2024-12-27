@@ -83,7 +83,7 @@ export const Contact = () => {
               {({ isVisible }) =>
                 <img className={isVisible ? "animate__animated animate__zoomIn" : ""} src={contactImg} alt="Contact Us"/>
                }
-            </TrackVisibility> }
+            </TrackVisibility> 
           </div>
           <div className="col-md-6">
             {/* <TrackVisibility>
