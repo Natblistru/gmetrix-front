@@ -108,110 +108,80 @@ const ExamenFinal = (props) => {
   const [correctAnswer, setCorrectAnswer] = useState(null);
 
   useEffect(() => {
-    const fetchWithRetry = async (url, data, config, retries = 3, delay = 1000) => {
-      for (let attempt = 0; attempt < retries; attempt++) {
-        try {
-          const response = await axios.post(url, data, config);
-          return response;
-        } catch (error) {
-          if (error.response && error.response.status === 429 && attempt < retries - 1) {
-            console.warn(`Retrying request... (${attempt + 1})`);
-            await new Promise(res => setTimeout(res, delay));
-          } else {
-            throw error;
-          }
-        }
-      }
-    };
-    const sendWithDelay = async (items, delay, callback) => {
-      const responses = [];
-      for (const item of items) {
-        try {
-          const response = await callback(item);
-          responses.push(response);
-        } catch (error) {
-          console.error("Error:", error);
-        }
-        await new Promise(res => setTimeout(res, delay)); // Delay între cereri
-      }
-      return responses;
-    };
-
     const fetchData = async () => {
       if (correctAnswer !== null && responseReceived) {
-        console.log("currentTests[currentTestIndex]",currentTests[currentTestIndex])
-        // console.log("correctAnswer",correctAnswer)
-        // console.log("currentTestIndex", currentTestIndex)
-        // console.log(testBoardRef.current)
+        console.log("currentTests[currentTestIndex]", currentTests[currentTestIndex]);
+    
         let firstTestItemComplexity =
-          currentTests[currentTestIndex].order_number_options[0]
-            ?.test_item_complexity;
-
+          currentTests[currentTestIndex].order_number_options[0]?.test_item_complexity;
+    
         if (firstTestItemComplexity === undefined) {
           firstTestItemComplexity = 1;
         }
+    
         const testItemObjects = currentTests[
           currentTestIndex
         ].order_number_options.map((option) => ({
           test_item_id: option.test_item_id,
           formative_test_id: currentTests[currentTestIndex].formative_test_id,
         }));
-
+    
         try {
           const studentId = 1;
           const token = localStorage.getItem('auth_token');
-          // const promises = testItemObjects.map((testItem) =>
-
-          const responses = await sendWithDelay(testItemObjects, 1000, (testItem) => 
-            fetchWithRetry(
-              "/api/student-formative-test-score",
-              {
-                test_item_id: testItem.test_item_id,
-                formative_test_id: testItem.formative_test_id,
-                studentId: studentId,
-              }
-              ,
-              {
-                headers: {
-                  "Content-Type": "application/json",       
-                  "Authorization": token ? `Bearer ${token}` : ''      
+    
+          const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+    
+          const responses = [];
+    
+          for (const testItem of testItemObjects) {
+            try {
+              const response = await axios.post(
+                "/api/student-formative-test-score",
+                {
+                  test_item_id: testItem.test_item_id,
+                  formative_test_id: testItem.formative_test_id,
+                  studentId: studentId,
                 },
-              }
-            )
+                {
+                  headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": token ? `Bearer ${token}` : ''
+                  },
+                }
+              );
+              responses.push(response);
+            } catch (error) {
+              console.error("Error processing request:", error);
+              responses.push(error.response || { data: {}, status: error.code });
+            }
+            await delay(500); // Adaugă o pauză între cereri
+          }
+    
+          const successResponses = responses.filter(
+            (response) => response.data?.status === 200
           );
-          // const responses = await axios.all(promises);
-          // const successResponses = responses.filter(
-          //   (response) => response.data.status === 200
-          // );
-
-          const successResponses = responses.filter(response => response && response.data.status === 200);
-
           const errorResponses = responses.filter(
-            (response) => response.data.status === 404
+            (response) => response.data?.status === 404
           );
-          // console.log(responses)
-          // console.log(successResponses)
-          // console.log(errorResponses)
+    
           if (successResponses.length > 0) {
-            const totalScore = successResponses.reduce(
-              (accumulator, response) => {
-                const score = parseFloat(response.data.score);
-
-                return accumulator + score;
-              },
-              0
-            );
-
-            // const averageScore = totalScore * 100 / (successResponses.length*firstTestItemComplexity);
+            const totalScore = successResponses.reduce((accumulator, response) => {
+              const score = parseFloat(response.data.score);
+              return accumulator + score;
+            }, 0);
+    
             const averageScore = (totalScore * 100) / successResponses.length;
             // console.log(averageScore)
             // setProc(averageScore);
           }
         } catch (error) {
-          console.error(error);
+          console.error("Unexpected error in fetchData:", error);
         }
       }
     };
+    
+
     const fetchAllTeacherTests = async () => {
       try {
     
