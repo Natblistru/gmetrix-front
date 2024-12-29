@@ -220,7 +220,7 @@ const TesteAll_beta = () => {
       }
     };
 
-    fetchData();
+  //  fetchData();
     fetchAllTeacherTests();
     if (wrapperRef.current) {
       const height = wrapperRef.current.scrollHeight;

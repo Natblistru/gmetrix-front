@@ -191,7 +191,7 @@ const ExamenFinal = (props) => {
       }
     };
 
-    fetchData();
+  //  fetchData();
     fetchAllTeacherTests();
     if (wrapperRef.current) {
       const height = wrapperRef.current.scrollHeight;
