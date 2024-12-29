@@ -197,7 +197,7 @@ const TestWrapper = () => {
     </div>
   );
 
-  const handleTryAgain = () => {
+  const handleTryAgain = async () => {
     setResponseReceived(false);
     let itemQuantity = currentList1.length;
     if (itemQuantity - 1 === currentItemIndex) {
@@ -205,7 +205,7 @@ const TestWrapper = () => {
       const testItems = currentTests[currentTestIndex].order_number_options.map(
         (option) => option
       );
-      // console.log(testItems)
+  
       try {
         const formDataArray = testItems.map((item) => {
           const formData = new FormData();
@@ -217,48 +217,56 @@ const TestWrapper = () => {
           formData.append("status", 0);
           return formData;
         });
+  
         const token = localStorage.getItem('auth_token');
-        axios
-          .all(
-            formDataArray.map((formData) =>
-              axios.post(
-                "/api/update-student-formative-test-result",
-                formData,
-                {
-                  headers: {
-                    "Content-Type": "application/json",       
-                    "Authorization": token ? `Bearer ${token}` : ''    
-                  },
-                }
-              )
-            )
-          )
-          .then(
-            axios.spread((...responses) => {
-              const successResponses = responses.filter(
-                (response) => response.data.status === 200
-              );
-              const errorResponses = responses.filter(
-                (response) => response.data.status === 404
-              );
-              // console.log(responses)
-              if (successResponses.length > 0) {
-                console.log(
-                  "Successfully processed ",
-                  successResponses.lengt,
-                  " out of ",
-                  responses.length,
-                  " requests"
-                );
-                setProc(0);
+  
+        const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+  
+        const responses = [];
+  
+        for (const formData of formDataArray) {
+          try {
+            const response = await axios.post(
+              "/api/update-student-formative-test-result",
+              formData,
+              {
+                headers: {
+                  "Content-Type": "application/json",
+                  "Authorization": token ? `Bearer ${token}` : ''
+                },
               }
-              errorResponses.forEach((response) => {
-                // console.log(response.data.errors)
-              });
-            })
+            );
+            responses.push(response);
+          } catch (error) {
+            console.error("Error processing request:", error);
+            responses.push(error.response || { data: {}, status: error.code });
+          }
+          await delay(500); // Adaugă o pauză între cereri
+        }
+  
+        const successResponses = responses.filter(
+          (response) => response.data?.status === 200
+        );
+        const errorResponses = responses.filter(
+          (response) => response.data?.status === 404
+        );
+  
+        if (successResponses.length > 0) {
+          console.log(
+            "Successfully processed ",
+            successResponses.length,
+            " out of ",
+            responses.length,
+            " requests"
           );
+          setProc(0);
+        }
+  
+        errorResponses.forEach((response) => {
+          console.error("Error response:", response);
+        });
       } catch (error) {
-        console.error(error);
+        console.error("Unexpected error in handleTryAgain:", error);
       }
 
       try {
@@ -272,49 +280,57 @@ const TestWrapper = () => {
           formData.append("status", 0);
           return formData;
         });
-
+      
         const token = localStorage.getItem('auth_token');
-        axios
-          .all(
-            formDataArray.map((formData) =>
-              axios.post(
-                "/api/update-student-formative-test-option",
-                formData,
-                {
-                  headers: {
-                    "Content-Type": "application/json",       
-                    "Authorization": token ? `Bearer ${token}` : ''    
-                  },
-                }
-              )
-            )
-          )
-          .then(
-            axios.spread((...responses) => {
-              const successResponses = responses.filter(
-                (response) => response.data.status === 200
-              );
-              const errorResponses = responses.filter(
-                (response) => response.data.status === 404
-              );
-              // console.log(responses)
-              if (successResponses.length > 0) {
-                console.log(
-                  "Successfully processed ",
-                  successResponses.lengt,
-                  " out of ",
-                  responses.length,
-                  " requests"
-                );
+      
+        const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+      
+        const responses = [];
+      
+        for (const formData of formDataArray) {
+          try {
+            const response = await axios.post(
+              "/api/update-student-formative-test-option",
+              formData,
+              {
+                headers: {
+                  "Content-Type": "application/json",
+                  "Authorization": token ? `Bearer ${token}` : ''
+                },
               }
-              errorResponses.forEach((response) => {
-                // console.log(response.data.errors)
-              });
-            })
+            );
+            responses.push(response);
+          } catch (error) {
+            console.error("Error processing request:", error);
+            responses.push(error.response || { data: {}, status: error.code });
+          }
+          await delay(500); // Adaugă o pauză între cereri
+        }
+      
+        const successResponses = responses.filter(
+          (response) => response.data?.status === 200
+        );
+        const errorResponses = responses.filter(
+          (response) => response.data?.status === 404
+        );
+      
+        if (successResponses.length > 0) {
+          console.log(
+            "Successfully processed ",
+            successResponses.length,
+            " out of ",
+            responses.length,
+            " requests"
           );
+        }
+      
+        errorResponses.forEach((response) => {
+          console.error("Error response:", response);
+        });
       } catch (error) {
-        console.error(error);
+        console.error("Unexpected error:", error);
       }
+      
     } else {
       setCurrentItemIndex(currentItemIndex + 1);
     }

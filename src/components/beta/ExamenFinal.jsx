@@ -123,7 +123,20 @@ const ExamenFinal = (props) => {
         }
       }
     };
-    
+    const sendWithDelay = async (items, delay, callback) => {
+      const responses = [];
+      for (const item of items) {
+        try {
+          const response = await callback(item);
+          responses.push(response);
+        } catch (error) {
+          console.error("Error:", error);
+        }
+        await new Promise(res => setTimeout(res, delay)); // Delay între cereri
+      }
+      return responses;
+    };
+
     const fetchData = async () => {
       if (correctAnswer !== null && responseReceived) {
         console.log("currentTests[currentTestIndex]",currentTests[currentTestIndex])
@@ -147,7 +160,9 @@ const ExamenFinal = (props) => {
         try {
           const studentId = 1;
           const token = localStorage.getItem('auth_token');
-          const promises = testItemObjects.map((testItem) =>
+          // const promises = testItemObjects.map((testItem) =>
+
+          const responses = await sendWithDelay(testItemObjects, 1000, (testItem) => 
             fetchWithRetry(
               "/api/student-formative-test-score",
               {
@@ -164,10 +179,13 @@ const ExamenFinal = (props) => {
               }
             )
           );
-          const responses = await axios.all(promises);
-          const successResponses = responses.filter(
-            (response) => response.data.status === 200
-          );
+          // const responses = await axios.all(promises);
+          // const successResponses = responses.filter(
+          //   (response) => response.data.status === 200
+          // );
+
+          const successResponses = responses.filter(response => response && response.data.status === 200);
+
           const errorResponses = responses.filter(
             (response) => response.data.status === 404
           );
@@ -209,6 +227,10 @@ const ExamenFinal = (props) => {
       const height = wrapperRef.current.scrollHeight;
       setWrapperHeight(height);
     }
+    console.log(correctAnswer)
+    console.log(responseReceived)
+    console.log(currentTests)
+    console.log(currentTestIndex)
   }, [correctAnswer, responseReceived, currentTests, currentTestIndex]);
 
   useEffect(()=>{
@@ -240,126 +262,140 @@ const ExamenFinal = (props) => {
     </div>
   );
 
-  const handleTryAgain = () => {
+  const handleTryAgain = async () => {
     //console.log("ajuns handle try again")
     setResponseReceived(false);
     setResetTimer(prev => !prev);
-    // let itemQuantity = allTeacherTests.length;
-    // if (itemQuantity - 1 === currentItemIndex) {
-      // setCurrentItemIndex(0);
-      const testItems = currentTests[currentTestIndex].order_number_options.map(
-        (option) => option
+  
+    const testItems = currentTests[currentTestIndex].order_number_options.map(
+      (option) => option
+    );
+  
+    try {
+      const formDataArray = testItems.map((item) => {
+        const formData = new FormData();
+        formData.append("student_id", 1);
+        formData.append("order_number", item.order_number);
+        formData.append("test_item_id", item.test_item_id);
+        formData.append("summative_test_id", item.formative_test_id);
+        formData.append("score", 0);
+        formData.append("status", 0);
+        return formData;
+      });
+  
+      const token = localStorage.getItem('auth_token');
+  
+      const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+  
+      const responses = [];
+  
+      for (const formData of formDataArray) {
+        try {
+          const response = await axios.post(
+            "/api/update-student-summative-test-result",
+            formData,
+            {
+              headers: {
+                "Content-Type": "application/json",
+                "Authorization": token ? `Bearer ${token}` : ''
+              },
+            }
+          );
+          responses.push(response);
+        } catch (error) {
+          console.error("Error processing request:", error);
+          responses.push(error.response || { data: {}, status: error.code });
+        }
+        await delay(500); // Adaugă o pauză între cereri
+      }
+  
+      const successResponses = responses.filter(
+        (response) => response.data?.status === 200
       );
-      //console.log(testItems)
-      try {
-        const formDataArray = testItems.map((item) => {
-          const formData = new FormData();
-          formData.append("student_id", 1);
-          formData.append("order_number", item.order_number);
-          formData.append("test_item_id", item.test_item_id);
-          formData.append("summative_test_id", item.formative_test_id);
-          formData.append("score", 0);
-          formData.append("status", 0);
-          return formData;
-        });
-        const token = localStorage.getItem('auth_token');
-        axios
-          .all(
-            formDataArray.map((formData) =>
-              axios.post(
-                "/api/update-student-summative-test-result",
-                formData,
-                {
-                  headers: {
-                    "Content-Type": "application/json",       
-                    "Authorization": token ? `Bearer ${token}` : '' 
-                  },
-                }
-              )
-            )
-          )
-          .then(
-            axios.spread((...responses) => {
-              const successResponses = responses.filter(
-                (response) => response.data.status === 200
-              );
-              const errorResponses = responses.filter(
-                (response) => response.data.status === 404
-              );
-              // console.log(responses)
-              if (successResponses.length > 0) {
-                console.log(
-                  "Successfully processed ",
-                  successResponses.lengt,
-                  " out of ",
-                  responses.length,
-                  " requests"
-                );
-                setProc(0);
-              }
-              errorResponses.forEach((response) => {
-                // console.log(response.data.errors)
-              });
-            })
-          );
-      } catch (error) {
-        console.error(error);
+      const errorResponses = responses.filter(
+        (response) => response.data?.status === 404
+      );
+  
+      if (successResponses.length > 0) {
+        console.log(
+          "Successfully processed ",
+          successResponses.length,
+          " out of ",
+          responses.length,
+          " requests"
+        );
+        setProc(0);
       }
+  
+      errorResponses.forEach((response) => {
+        console.error("Error response:", response);
+      });
+    } catch (error) {
+      console.error("Unexpected error in handleTryAgain:", error);
+    }
 
-      try {
-        const formDataArray = testItems.map((item) => {
-          const formData = new FormData();
-          formData.append("student_id", 1);
-          formData.append("order_number", item.order_number);
-          formData.append("test_item_id", item.test_item_id);
-          formData.append("summative_test_id", item.formative_test_id);
-          formData.append("score", 0);
-          formData.append("status", 0);
-          return formData;
-        });
-
-        const token = localStorage.getItem('auth_token');
-        axios
-          .all(
-            formDataArray.map((formData) =>
-              axios.post(
-                "/api/update-student-summative-test-option",
-                formData,
-                {
-                  headers: {
-                    "Content-Type": "application/json",       
-                    "Authorization": token ? `Bearer ${token}` : '' 
-                  },
-                }
-              )
-            )
-          )
-          .then(
-            axios.spread((...responses) => {
-              const successResponses = responses.filter(
-                (response) => response.data.status === 200
-              );
-              const errorResponses = responses.filter(
-                (response) => response.data.status === 404
-              );
-              // console.log(responses)
-              if (successResponses.length > 0) {
-                console.log(
-                  "Successfully processed ",
-                  successResponses.lengt,
-                  " out of ",
-                  responses.length,
-                  " requests"
-                );
-              }
-              errorResponses.forEach((response) => {
-                // console.log(response.data.errors)
-              });
-            })
+    try {
+      const formDataArray = testItems.map((item) => {
+        const formData = new FormData();
+        formData.append("student_id", 1);
+        formData.append("order_number", item.order_number);
+        formData.append("test_item_id", item.test_item_id);
+        formData.append("summative_test_id", item.formative_test_id);
+        formData.append("score", 0);
+        formData.append("status", 0);
+        return formData;
+      });
+    
+      const token = localStorage.getItem('auth_token');
+    
+      const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+    
+      const responses = [];
+    
+      for (const formData of formDataArray) {
+        try {
+          const response = await axios.post(
+            "/api/update-student-summative-test-option",
+            formData,
+            {
+              headers: {
+                "Content-Type": "application/json",
+                "Authorization": token ? `Bearer ${token}` : ''
+              },
+            }
           );
-      } catch (error) {
-        console.error(error);
+          responses.push(response);
+        } catch (error) {
+          console.error("Error processing request:", error);
+          responses.push(error.response || { data: {}, status: error.code });
+        }
+        await delay(500); // Adaugă o pauză între cereri
       }
+    
+      const successResponses = responses.filter(
+        (response) => response.data?.status === 200
+      );
+      const errorResponses = responses.filter(
+        (response) => response.data?.status === 404
+      );
+    
+      if (successResponses.length > 0) {
+        console.log(
+          "Successfully processed ",
+          successResponses.length,
+          " out of ",
+          responses.length,
+          " requests"
+        );
+      }
+    
+      errorResponses.forEach((response) => {
+        console.error("Error response:", response);
+      });
+    } catch (error) {
+      console.error("Unexpected error:", error);
+    }
+    
     // } else {
     //   // setCurrentItemIndex(currentItemIndex + 1);
     // }
