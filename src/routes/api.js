@@ -102,22 +102,22 @@ export const fetchSummativeTests = async (subject_id, level_id, dispatchData) =>
     }
 };
 
-// Funcție reutilizabilă pentru reîncercare
-const fetchWithRetry = async (url, config, retries = 3, delay = 1000) => {
-    for (let attempt = 0; attempt < retries; attempt++) {
-      try {
-        const response = await axios.get(url, config);
-        return response;
-      } catch (error) {
-        if (attempt < retries - 1) {
-          console.warn(`Retrying request... (${attempt + 1})`);
-          await new Promise(res => setTimeout(res, delay));
-        } else {
-          throw error;
-        }
-      }
-    }
-  };
+
+// const fetchWithRetry = async (url, config, retries = 3, delay = 1000) => {
+//     for (let attempt = 0; attempt < retries; attempt++) {
+//       try {
+//         const response = await axios.get(url, config);
+//         return response;
+//       } catch (error) {
+//         if (attempt < retries - 1) {
+//           console.warn(`Retrying request... (${attempt + 1})`);
+//           await new Promise(res => setTimeout(res, delay));
+//         } else {
+//           throw error;
+//         }
+//       }
+//     }
+//   };
   
   export const fetchAllTeacherTestsSuccess = async (teacher_topic_id, currentStudent, dispatchData, disciplina="javascript") => {
     if (teacher_topic_id == 0) {
