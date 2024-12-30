@@ -183,11 +183,12 @@ const ExamenFinal = (props) => {
     
 
     const fetchAllTeacherTests = async () => {
-      try {
-    
-        const res = await fetchAllTeacherTestsSuccess(0, currentStudent, dispatch, currentSubject_name);
-      } catch (error) {
-        console.error("Eroare la preluarea datelor:", error);
+      if (correctAnswer !== null && responseReceived) {
+        try {
+          const res = await fetchAllTeacherTestsSuccess(0, currentStudent, dispatch, currentSubject_name);
+        } catch (error) {
+          console.error("Eroare la preluarea datelor:", error);
+        }
       }
     };
 
@@ -197,10 +198,6 @@ const ExamenFinal = (props) => {
       const height = wrapperRef.current.scrollHeight;
       setWrapperHeight(height);
     }
-    console.log(correctAnswer)
-    console.log(responseReceived)
-    console.log(currentTests)
-    console.log(currentTestIndex)
   }, [correctAnswer, responseReceived, currentTests, currentTestIndex]);
 
   useEffect(()=>{
@@ -213,6 +210,9 @@ const ExamenFinal = (props) => {
     const averageScore = sum / totalItems;
     // console.log(averageScore)
     setProc(averageScore);
+    console.log("allTeacherTests", allTeacherTests);
+    console.log("indexAllItems", indexAllItems);
+    console.log("allTeacherTests[indexAllItems]", allTeacherTests[indexAllItems]);
   },[allTeacherTests])
 
   const testBoardRef = useRef(null);

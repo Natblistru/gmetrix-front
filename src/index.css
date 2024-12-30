@@ -2809,7 +2809,7 @@ filter: brightness(0) saturate(100%) invert(0%) sepia(7%) saturate(98%) hue-rota
   z-index: 1000; /* Asigură-te că este deasupra altor elemente */
 }
 
-.verticalSidenav {
+.vertical-sidenav {
   height: 100%;
   width: 0;
   position: fixed;
@@ -2822,7 +2822,7 @@ filter: brightness(0) saturate(100%) invert(0%) sepia(7%) saturate(98%) hue-rota
   padding-top: 60px;
 }
 
-.verticalSidenav a {
+.vertical-sidenav a {
   padding: 8px 8px 8px 32px;
   text-decoration: none;
   font-size: 25px;
@@ -2831,15 +2831,15 @@ filter: brightness(0) saturate(100%) invert(0%) sepia(7%) saturate(98%) hue-rota
   transition: 0.3s;
 }
 
-.verticalSidenav a.firstTest {
+.vertical-sidenav a.firstTest {
   padding-top: 62px;
 }
 
-.verticalSidenav a:hover {
+.vertical-sidenav a:hover {
   color: #f1f1f1;
 }
 
-.verticalSidenav .closebtn {
+.vertical-sidenav .closebtn {
   position: absolute;
   top: 66px;
   left: -53px;
@@ -2848,10 +2848,10 @@ filter: brightness(0) saturate(100%) invert(0%) sepia(7%) saturate(98%) hue-rota
 }
 
 @media screen and (max-height: 450px) {
-  .verticalSidenav {
+  .vertical-sidenav {
     padding-top: 15px;
   }
-  .verticalSidenav a {
+  .vertical-sidenav a {
     font-size: 18px;
   }
 }
