@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from "react-redux";
+import { updateStudentProcent } from "../ReduxComp/actions";
 import { decodeDiacritics } from "../DragWords/TextConverter";
 
 import CheckBox from "../CheckBox";
@@ -25,6 +26,9 @@ const TestCheck = ({
   const currentStudentObject = useSelector(state => state.currentStudent);
   const currentStudent = currentStudentObject ? currentStudentObject.currentStudent : 1;
   const language = useSelector(state => state.language);
+  const dispatch = useDispatch();
+  const allTeacherTests = useSelector((state) => state.allTeacherTests);
+
 
   const [selectedValues, setSelectedValues] = useState([]);
 
@@ -131,6 +135,14 @@ const TestCheck = ({
     const selectedValuesString = selectedValues.sort().join(",");
     const correctValuesString = correctValues.sort().join(","); 
     setCorrectAnswer(selectedValuesString === correctValuesString);
+    const index = allTeacherTests.findIndex(
+      (item) => item.test_item_id === listItems[currentItemIndex].test_item_id
+    );
+    
+    if (index !== -1) {
+      const newProcent = selectedValuesString === correctValuesString ? "100.000000" : "0.000000";
+      dispatch(updateStudentProcent(index, newProcent));
+    }
 
     const selectedOptionsCalculate = selectedOptions.map(item => {
       let score;

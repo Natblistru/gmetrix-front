@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState, useLayoutEffect } from "react";
 import axios from "axios";
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from "react-redux";
+import { updateStudentProcent } from "../ReduxComp/actions";
 import { decodeDiacritics } from "../DragWords/TextConverter";
 import Snap from "snapsvg-cjs";
 import "./TestSnap.css";
@@ -41,6 +42,9 @@ const TestSnap = ({
   const currentStudentObject = useSelector(state => state.currentStudent);
   const currentStudent = currentStudentObject ? currentStudentObject.currentStudent : 1;
   const language = useSelector(state => state.language);
+
+  const dispatch = useDispatch();
+  const allTeacherTests = useSelector((state) => state.allTeacherTests);
 
   let currentIndexTest;
 
@@ -620,10 +624,14 @@ const TestSnap = ({
         )
     );
 
-    if (isAnswersCorrect) {
-      setCorrectAnswer(true);
-    } else {
-      setCorrectAnswer(false);
+    setCorrectAnswer(isAnswersCorrect);
+    const index = allTeacherTests.findIndex(
+      (item) => item.test_item_id === listItems[currentItemIndex].test_item_id
+    );
+    
+    if (index !== -1) {
+      const newProcent = isAnswersCorrect ? "100.000000" : "0.000000";
+      dispatch(updateStudentProcent(index, newProcent));
     }
   };
 

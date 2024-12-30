@@ -1,6 +1,7 @@
 import React, { useState, useEffect, forwardRef, useImperativeHandle } from "react";
 import axios from "axios";
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from "react-redux";
+import { updateStudentProcent } from "../ReduxComp/actions";
 import { DragDropContext } from "react-beautiful-dnd";
 import Column from "../DragAndDrop/Column";
 import { v4 as uuidv4 } from "uuid";
@@ -33,6 +34,9 @@ const TestBoard = forwardRef(
     const currentStudentObject = useSelector(state => state.currentStudent);
     const currentStudent = currentStudentObject ? currentStudentObject.currentStudent : 1;
     const language = useSelector(state => state.language);
+
+    const dispatch = useDispatch();
+    const allTeacherTests = useSelector((state) => state.allTeacherTests);
 
     let currentIndexTest;
 
@@ -433,8 +437,24 @@ const TestBoard = forwardRef(
     // correctValuesString = correctValues.sort().join(","); 
     if(currentTest.type ==="dnd_group") {
       setCorrectAnswer(selectedValuesString === correctValuesString && selectedValues1String === correctValues1String);
+      const index = allTeacherTests.findIndex(
+        (item) => item.test_item_id === listItems[currentItemIndex].test_item_id
+      );
+      
+      if (index !== -1) {
+        const newProcent = (selectedValuesString === correctValuesString && selectedValues1String === correctValues1String) ? "100.000000" : "0.000000";
+        dispatch(updateStudentProcent(index, newProcent));
+      }
     } else {
       setCorrectAnswer(selectedValuesString === correctValuesString);
+      const index = allTeacherTests.findIndex(
+        (item) => item.test_item_id === listItems[currentItemIndex].test_item_id
+      );
+      
+      if (index !== -1) {
+        const newProcent = selectedValuesString === correctValuesString ? "100.000000" : "0.000000";
+        dispatch(updateStudentProcent(index, newProcent));
+      }
     }
 
     setIsDragDisabled(true);

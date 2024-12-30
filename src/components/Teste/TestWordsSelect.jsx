@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { updateStudentProcent } from "../ReduxComp/actions";
 import ItemAccordeon from "../Accordeon/ItemAccordeon";
 import ItemText from "../Accordeon/ItemText";
 import { decodeDiacritics } from "../DragWords/TextConverter";
@@ -18,6 +19,8 @@ const TestWordsSelect = ({
   const currentTests = useSelector((state) => state.currentTests);
   const currentIndexTestObject = useSelector((state) => state.currentIndexTest);
   const language = useSelector((state) => state.language);
+  const dispatch = useDispatch();
+  const allTeacherTests = useSelector((state) => state.allTeacherTests);
 
   const currentStudentObject = useSelector(state => state.currentStudent);
   const currentStudent = currentStudentObject ? currentStudentObject.currentStudent : 1;
@@ -180,6 +183,14 @@ const TestWordsSelect = ({
     );
 
     setCorrectAnswer(isCorrect);
+    const index = allTeacherTests.findIndex(
+      (item) => item.test_item_id === listItems[currentItemIndex].test_item_id
+    );
+    
+    if (index !== -1) {
+      const newProcent = isCorrect === true ? "100.000000" : "0.000000";
+      dispatch(updateStudentProcent(index, newProcent));
+    }
     setResponseReceived(true);
 
 

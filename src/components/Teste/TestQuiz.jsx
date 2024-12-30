@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from "react-redux";
+import { updateStudentProcent } from "../ReduxComp/actions";
 import { decodeDiacritics } from "../DragWords/TextConverter";
 import RadioButton from "../RadioButton";
 import ItemAccordeon from "../Accordeon/ItemAccordeon";
@@ -27,6 +28,8 @@ const TestQuiz = ({
   const currentStudentObject = useSelector(state => state.currentStudent);
   const currentStudent = currentStudentObject ? currentStudentObject.currentStudent : 1;
   const language = useSelector(state => state.language);
+  const dispatch = useDispatch();
+  const allTeacherTests = useSelector((state) => state.allTeacherTests);
 
   const [selectedValue, setSelectedValue] = useState("");
   const [selectedOptions, setSelectedOptions] = useState([])
@@ -137,10 +140,28 @@ const TestQuiz = ({
 
     trimiteDateLaBackend([...selectedOptionsToDB]);
 
-    if (selectedValue === correctAnswerText) {
-      setCorrectAnswer(true);
-    } else {
-      setCorrectAnswer(false);
+    // if (selectedValue === correctAnswerText) {
+    //   setCorrectAnswer(true);
+    //   const index = allTeacherTests.findIndex(
+    //     (item) => item.test_item_id === listItems[currentItemIndex].test_item_id
+    //   );
+
+    //   if (index !== -1) {
+    //     dispatch(updateStudentProcent(index, "100.000000"));
+    //   }
+    // } else {
+    //   setCorrectAnswer(false);
+      
+    // }
+    
+    setCorrectAnswer(selectedValue === correctAnswerText);
+    const index = allTeacherTests.findIndex(
+      (item) => item.test_item_id === listItems[currentItemIndex].test_item_id
+    );
+    
+    if (index !== -1) {
+      const newProcent = selectedValue === correctAnswerText ? "100.000000" : "0.000000";
+      dispatch(updateStudentProcent(index, newProcent));
     }
     // console.log("ckeck")
     // const wrapperElement = quizWrapperRef.current;
@@ -152,12 +173,14 @@ const TestQuiz = ({
 
   };
 
-  const trimiteDateLaBackend = async (selectedOptionsToDB) => {
+  // const trimiteDateLaBackend = async (selectedOptionsToDB) => {
+  const trimiteDateLaBackend =  (selectedOptionsToDB) => {
     if (currentTests[0].path == "/test-de-totalizare") {
       const token = localStorage.getItem('auth_token');
       try {
         for (const element of selectedOptionsToDB) {
-          const response = await axios.post('/api/student-summative-test-options', element
+          const response = axios.post('/api/student-summative-test-options', element
+          // const response = await axios.post('/api/student-summative-test-options', element
             // ,
             // {
             //   headers: {
@@ -185,8 +208,8 @@ const TestQuiz = ({
     } else {
       try {
         for (const element of selectedOptionsToDB) {
-          const response = await axios.post('/api/student-formative-test-options', element);
-  
+//          const response = await axios.post('/api/student-formative-test-options', element);
+          const response = axios.post('/api/student-formative-test-options', element);
           if (response.status === 200) {
             // console.log('Success:', response.data.message);
             // console.log(responseReceived)

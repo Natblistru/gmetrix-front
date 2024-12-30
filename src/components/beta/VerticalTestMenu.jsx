@@ -18,7 +18,6 @@ const VerticalTestMenu = ({
   finishExam
 }) => {
   const [menuWidth, setMenuWidth] = useState('0');
- const allTeacherTests = useSelector((state) => state.allTeacherTests);
   let currentId = parseInt(window.location.pathname.split('/').pop(), 10);
   const [activeSlide, setActiveSlide] = useState(currentId-1);
 
@@ -49,9 +48,8 @@ const VerticalTestMenu = ({
     <div>
       <div id="mySidenav" className="vertical-sidenav" style={{ width: menuWidth }} onMouseLeave={closeNav}>
         <a href="javascript:void(0)" className="closebtn" onClick={closeNav}>&times;</a>
-        {
-        //  quizArray.map((quiz, index) => (       
-        allTeacherTests.map((quiz, index) => (
+        {console.log("quizArray", quizArray)}
+        {quizArray.map((quiz, index) => (   
           <React.Fragment key={quiz.order_item_test}>
             <a 
               onClick={() => handleClick(index)} 

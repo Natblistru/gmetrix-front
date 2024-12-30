@@ -123,7 +123,7 @@ export const fetchSummativeTests = async (subject_id, level_id, dispatchData) =>
     if (teacher_topic_id == 0) {
         try {
             const res = await axios.get(`/api/allSummativeTestItems?student=${currentStudent}&disciplina=${disciplina}`);
-            // console.log(res.data);
+            console.log(res.data);
             dispatchData({
                 type: FETCH_ALL_TEACHER_TESTS,
                 payload: res.data

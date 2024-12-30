@@ -27,6 +27,7 @@ export const UPDATE_CURRENT_STUDENT = 'UPDATE_CURRENT_STUDENT';
 export const ADD_RASPUNS = 'ADD_RASPUNS';
 export const UPDATE_RASPUNS = 'UPDATE_RASPUNS';
 export const DELETE_RASPUNS = 'DELETE_RASPUNS';
+export const UPDATE_STUDENT_PROCENT = 'UPDATE_STUDENT_PROCENT';
 
 
 export const addBreadcrumb = (breadcrumb) => ({
@@ -139,4 +140,9 @@ export const updateRaspuns = (raspuns) => ({
 export const deleteRaspuns = (id) => ({
   type: DELETE_RASPUNS,
   payload: id
+});
+
+export const updateStudentProcent = (index, newProcent) => ({
+  type: UPDATE_STUDENT_PROCENT,
+  payload: { index, newProcent },
 });
