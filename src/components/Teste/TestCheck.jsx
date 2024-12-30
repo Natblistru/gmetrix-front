@@ -188,11 +188,12 @@ const TestCheck = ({
     }
   };
 
-  const trimiteDateLaBackend = async (element) => {
+  const trimiteDateLaBackend = (element) => {
     if (currentTests[0].path == "/test-de-totalizare") {
       const token = localStorage.getItem('auth_token');
       try {
-        const response = await axios.post('/api/student-summative-test-options', element
+        const response = axios.post('/api/student-summative-test-options', element
+//        const response = await axios.post('/api/student-summative-test-options', element
           // ,
           // {
           //   headers: {
@@ -216,7 +217,8 @@ const TestCheck = ({
       }
     } else {
       try {
-          const response = await axios.post('/api/student-formative-test-options', element);
+//          const response = await axios.post('/api/student-formative-test-options', element);
+          const response = axios.post('/api/student-formative-test-options', element);
 
           if (response.status === 200) {
             console.log('Success:', response.data.message);
@@ -233,10 +235,11 @@ const TestCheck = ({
     }
   };
 
-  const trimiteResultsLaBackend = async (element) => {
+  const trimiteResultsLaBackend = (element) => {
     if (currentTests[0].path == "/test-de-totalizare") {
       try {
-        const response = await axios.post('/api/student-summative-test-results', element);
+//        const response = await axios.post('/api/student-summative-test-results', element);
+        const response = axios.post('/api/student-summative-test-results', element);
 
         if (response.status === 200) {
           console.log('Success:', response.data.message);
@@ -253,7 +256,8 @@ const TestCheck = ({
     }
     } else {
       try {
-        const response = await axios.post('/api/student-formative-test-results', element);
+//        const response = await axios.post('/api/student-formative-test-results', element);
+        const response = axios.post('/api/student-formative-test-results', element);
 
         if (response.status === 200) {
           console.log('Success:', response.data.message);

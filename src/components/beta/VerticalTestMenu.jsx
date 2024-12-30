@@ -48,36 +48,40 @@ const VerticalTestMenu = ({
   return (
     <div>
       <div id="mySidenav" className="vertical-sidenav" style={{ width: menuWidth }} onMouseLeave={closeNav}>
-        <a href="javascript:void(0)" className="closebtn" onClick={closeNav}>&times;</a>
+        <span className="closebtn" onClick={closeNav}>&times;</span>
         {console.log("quizArray", quizArray)}
         {console.log("allTeacherTests", allTeacherTests)}
-        {quizArray.map((quiz, index) => (   
-          <React.Fragment key={quiz.order_item_test}>
-            <a 
-              onClick={() => handleClick(index)} 
-              href="#" 
-              className={index === 0 ? 'firstTest' : ''}
-            >
-              <span 
-                className={activeSlide === index ? "active-test" : ""} 
-                style={{ marginRight: '12px' }}
+        {quizArray
+          .slice() // Creează o copie a array-ului pentru a evita modificarea originalului
+          .sort((a, b) => a.order_item_test - b.order_item_test) // Ordonează după order_item_test
+          .map((quiz, index) => (
+            <React.Fragment key={quiz.order_item_test}>
+              <a 
+                onClick={() => handleClick(index)} 
+                href="#" 
+                className={index === 0 ? 'firstTest' : ''}
               >
-                Test
-              </span>
-              <span className={activeSlide === index ? "active-test" : ""}>
-                {quiz.order_item_test}
-              </span>
-            </a>
-            <input 
-              type="checkbox" 
-              className="option-input" 
-              style={{ marginLeft: activeSlide === index ? '24px' : '28px' }} 
-              checked={Math.round(quiz.student_procent) === 100}
-              readOnly
-            />
-            <br/>
-          </React.Fragment>
-        ))}
+                <span 
+                  className={activeSlide === index ? "active-test" : ""} 
+                  style={{ marginRight: '12px' }}
+                >
+                  Test
+                </span>
+                <span className={activeSlide === index ? "active-test" : ""}>
+                  {quiz.order_item_test}
+                </span>
+              </a>
+              <input 
+                type="checkbox" 
+                className="option-input" 
+                style={{ marginLeft: activeSlide === index ? '24px' : '28px' }} 
+                checked={Math.round(quiz.student_procent) === 100}
+                readOnly
+              />
+              <br />
+            </React.Fragment>
+          ))}
+
         <div className="button-container">
         <button onClick={resetState} className="reset-button">Reset</button>
         <button onClick={finishExam}className="reset-button finish">Finish</button>

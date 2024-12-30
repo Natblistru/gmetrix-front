@@ -372,7 +372,7 @@ const ExamenFinal = (props) => {
     // } else {
     //   // setCurrentItemIndex(currentItemIndex + 1);
     // }
-    fetchAllTeacherTests()
+    //fetchAllTeacherTests()
     setCorrectAnswer(null);
   };
 

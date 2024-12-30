@@ -2841,10 +2841,11 @@ filter: brightness(0) saturate(100%) invert(0%) sepia(7%) saturate(98%) hue-rota
 
 .vertical-sidenav .closebtn {
   position: absolute;
-  top: 66px;
-  left: -53px;
+  top: 77px;
+  left: -17px;
   font-size: 36px;
   margin-left: 50px;
+  color: lightgray;
 }
 
 @media screen and (max-height: 450px) {
