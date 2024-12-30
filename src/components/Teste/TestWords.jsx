@@ -415,8 +415,11 @@ const TestWords = ({
 
           <img
               className="img-subject"
-              src={`${process.env.REACT_APP_API_BASE_URL}/${listItems[currentItemIndex]?.image_path}`}
-              alt=""
+              src={
+                listItems[currentItemIndex]?.image_path === null 
+                  ? "" 
+                  : `${process.env.REACT_APP_API_BASE_URL}/${listItems[currentItemIndex]?.image_path}`
+              }              alt=""
               style={{
                 width: isNaN(
                   parseInt(listItems[currentItemIndex]?.procent_paper, 10)
