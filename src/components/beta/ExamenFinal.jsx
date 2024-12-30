@@ -240,6 +240,7 @@ const ExamenFinal = (props) => {
     const testItems = currentTests[currentTestIndex].order_number_options.map(
       (option) => option
     );
+    console.log("testItems", testItems)
   
     try {
       const formDataArray = testItems.map((item) => {
@@ -263,13 +264,14 @@ const ExamenFinal = (props) => {
         try {
           const response = await axios.post(
             "/api/update-student-summative-test-result",
-            formData,
-            {
-              headers: {
-                "Content-Type": "application/json",
-                "Authorization": token ? `Bearer ${token}` : ''
-              },
-            }
+            formData
+            // ,
+            // {
+            //   headers: {
+            //     "Content-Type": "application/json",
+            //     "Authorization": token ? `Bearer ${token}` : ''
+            //   },
+            // }
           );
           responses.push(response);
         } catch (error) {
@@ -326,13 +328,14 @@ const ExamenFinal = (props) => {
         try {
           const response = await axios.post(
             "/api/update-student-summative-test-option",
-            formData,
-            {
-              headers: {
-                "Content-Type": "application/json",
-                "Authorization": token ? `Bearer ${token}` : ''
-              },
-            }
+            formData
+            // ,
+            // {
+            //   headers: {
+            //     "Content-Type": "application/json",
+            //     "Authorization": token ? `Bearer ${token}` : ''
+            //   },
+            // }
           );
           responses.push(response);
         } catch (error) {

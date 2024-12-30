@@ -213,13 +213,15 @@ const TestWordsSelect = ({
       const token = localStorage.getItem('auth_token');
       try {
         console.log("element", element)
-        const response = await axios.post('/api/student-summative-test-options', element,
-          {
-            headers: {
-              "Content-Type": "application/json",       
-              "Authorization": token ? `Bearer ${token}` : '' 
-            },
-          });
+        const response = await axios.post('/api/student-summative-test-options', element
+          // ,
+          // {
+          //   headers: {
+          //     "Content-Type": "application/json",       
+          //     "Authorization": token ? `Bearer ${token}` : '' 
+          //   },
+          // }
+        );
 
         if (response.status === 200) {
           // console.log('Success:', response.data.message);
