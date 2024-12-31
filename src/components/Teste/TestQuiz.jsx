@@ -173,14 +173,14 @@ const TestQuiz = ({
 
   };
 
-  // const trimiteDateLaBackend = async (selectedOptionsToDB) => {
-  const trimiteDateLaBackend =  (selectedOptionsToDB) => {
+   const trimiteDateLaBackend = async (selectedOptionsToDB) => {
+//  const trimiteDateLaBackend =  (selectedOptionsToDB) => {
     if (currentTests[0].path == "/test-de-totalizare") {
       const token = localStorage.getItem('auth_token');
       try {
         for (const element of selectedOptionsToDB) {
-          const response = axios.post('/api/student-summative-test-options', element
-          // const response = await axios.post('/api/student-summative-test-options', element
+//          const response = axios.post('/api/student-summative-test-options', element
+           const response = await axios.post('/api/student-summative-test-options', element
             // ,
             // {
             //   headers: {
@@ -258,7 +258,6 @@ const TestQuiz = ({
         {/* </p> */}
 
         <div dangerouslySetInnerHTML={{ __html: test_task }} />
-{console.log('process.env.REACT_APP_API_BASE_URL',process.env.REACT_APP_API_BASE_URL)}
         <img
               className="img-subject"
               src={

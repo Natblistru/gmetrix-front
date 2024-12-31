@@ -104,6 +104,7 @@ const TestCheck = ({
     } else {
       updatedValues.push(value);
     }
+    console.log(updatedValues)
     setSelectedValues(updatedValues);
 
     setSelectedOptions((prevOptions) =>
@@ -129,12 +130,16 @@ const TestCheck = ({
 
   const checkAnswer = () => {
     console.log(selectedOptions)
+    console.log(selectedValues)
     const correctValues = listItems[currentItemIndex].test_item_options
       .filter((answer) => answer.correct==1)
       .map((answer) => answer.option);
     const selectedValuesString = selectedValues.sort().join(",");
     const correctValuesString = correctValues.sort().join(","); 
     setCorrectAnswer(selectedValuesString === correctValuesString);
+    console.log(selectedValuesString)
+    console.log(correctValuesString)
+    console.log(selectedValuesString === correctValuesString)
     const index = allTeacherTests.findIndex(
       (item) => item.test_item_id === listItems[currentItemIndex].test_item_id
     );
@@ -186,14 +191,16 @@ const TestCheck = ({
     for (const element of selectedResultsToDB) {
       trimiteResultsLaBackend(element);
     }
+    setSelectedValues([]); 
   };
 
-  const trimiteDateLaBackend = (element) => {
+  const trimiteDateLaBackend = async (element) => {
+//  const trimiteDateLaBackend = (element) => {
     if (currentTests[0].path == "/test-de-totalizare") {
       const token = localStorage.getItem('auth_token');
       try {
-        const response = axios.post('/api/student-summative-test-options', element
-//        const response = await axios.post('/api/student-summative-test-options', element
+//        const response = axios.post('/api/student-summative-test-options', element
+        const response = await axios.post('/api/student-summative-test-options', element
           // ,
           // {
           //   headers: {
@@ -217,8 +224,8 @@ const TestCheck = ({
       }
     } else {
       try {
-//          const response = await axios.post('/api/student-formative-test-options', element);
-          const response = axios.post('/api/student-formative-test-options', element);
+          const response = await axios.post('/api/student-formative-test-options', element);
+//          const response = axios.post('/api/student-formative-test-options', element);
 
           if (response.status === 200) {
             console.log('Success:', response.data.message);
@@ -235,11 +242,12 @@ const TestCheck = ({
     }
   };
 
-  const trimiteResultsLaBackend = (element) => {
+  const trimiteResultsLaBackend = async (element) => {
+//  const trimiteResultsLaBackend = (element) => {
     if (currentTests[0].path == "/test-de-totalizare") {
       try {
-//        const response = await axios.post('/api/student-summative-test-results', element);
-        const response = axios.post('/api/student-summative-test-results', element);
+        const response = await axios.post('/api/student-summative-test-results', element);
+//        const response = axios.post('/api/student-summative-test-results', element);
 
         if (response.status === 200) {
           console.log('Success:', response.data.message);
