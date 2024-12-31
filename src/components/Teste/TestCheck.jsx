@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
-import { updateStudentProcent } from "../ReduxComp/actions";
+import { updateStudentProcent, updateStudentAnswer } from "../ReduxComp/actions";
 import { decodeDiacritics } from "../DragWords/TextConverter";
 
 import CheckBox from "../CheckBox";
@@ -60,8 +60,25 @@ const TestCheck = ({
   useEffect(()=>{
     setListItems(currentTests[currentIndexTest].order_number_options);
     const initialSelectedOptions = [];
+    const updatedValues = [];
 
-    listItems[currentItemIndex].test_item_options.forEach(element => {
+    const index = allTeacherTests.findIndex(
+      (item) => item.test_item_id === listItems[currentItemIndex]?.test_item_id
+    );
+    let studentOptions = []
+    if (index !== -1) {
+      studentOptions = allTeacherTests[index]?.student_options || [];
+      // console.log("studentOptions",studentOptions);
+    }
+
+    const sourceOptions = studentOptions.length > 0 
+    ? studentOptions 
+    : listItems[currentItemIndex].test_item_options;
+
+    sourceOptions.forEach(element => {
+      if (element.selected) {
+        updatedValues.push(element.option);
+      }
       initialSelectedOptions.push({ "option": element.option, 
                                      "score": 0,
                                      "correct": element.correct,
@@ -71,7 +88,9 @@ const TestCheck = ({
                                      "formative_test_id": listItems[currentItemIndex].formative_test_id,
                                      "test_item_id": listItems[currentItemIndex].test_item_id});
     });
-    setSelectedOptions(initialSelectedOptions)
+    // console.log("initialSelectedOptions", initialSelectedOptions)
+    setSelectedOptions([...initialSelectedOptions])
+    setSelectedValues([...updatedValues]);
 
     const jsonString = listItems[currentItemIndex]?.test_item_content;
     const decodedString = decodeDiacritics(jsonString);
@@ -96,7 +115,7 @@ const TestCheck = ({
   // console.log(currentIndexTest);
 
   const handleCheckBoxChange = (value) => {
-    console.log(value)
+    // console.log(value)
     const updatedValues = [...selectedValues];
     if (updatedValues.includes(value)) {
       const index = updatedValues.indexOf(value);
@@ -104,7 +123,7 @@ const TestCheck = ({
     } else {
       updatedValues.push(value);
     }
-    console.log(updatedValues)
+    // console.log(updatedValues)
     setSelectedValues(updatedValues);
 
     setSelectedOptions((prevOptions) =>
@@ -129,17 +148,23 @@ const TestCheck = ({
   };
 
   const checkAnswer = () => {
-    console.log(selectedOptions)
-    console.log(selectedValues)
+    // console.log(selectedOptions)
+    // console.log(selectedValues)
+
+    const updatedselectedOptions = selectedOptions.map(item => ({
+      ...item,
+      selected: selectedValues.includes(item.option)
+    }));
+    
     const correctValues = listItems[currentItemIndex].test_item_options
       .filter((answer) => answer.correct==1)
       .map((answer) => answer.option);
     const selectedValuesString = selectedValues.sort().join(",");
     const correctValuesString = correctValues.sort().join(","); 
     setCorrectAnswer(selectedValuesString === correctValuesString);
-    console.log(selectedValuesString)
-    console.log(correctValuesString)
-    console.log(selectedValuesString === correctValuesString)
+    // console.log(selectedValuesString)
+    // console.log(correctValuesString)
+    // console.log(selectedValuesString === correctValuesString)
     const index = allTeacherTests.findIndex(
       (item) => item.test_item_id === listItems[currentItemIndex].test_item_id
     );
@@ -147,9 +172,10 @@ const TestCheck = ({
     if (index !== -1) {
       const newProcent = selectedValuesString === correctValuesString ? "100.000000" : "0.000000";
       dispatch(updateStudentProcent(index, newProcent));
+      dispatch(updateStudentAnswer(index, updatedselectedOptions));    
     }
 
-    const selectedOptionsCalculate = selectedOptions.map(item => {
+    const selectedOptionsCalculate = updatedselectedOptions.map(item => {
       let score;
       if (item.correct == item.selected) {
         score = item.test_item_complexity;
@@ -161,12 +187,18 @@ const TestCheck = ({
         score: score
       };
     });
+
+    // console.log("selectedOptions",selectedOptions)
+    // console.log("selectedValues",selectedValues)
+    // console.log("selectedValuesString",selectedValuesString)
+    
+
     const selectedOptionsToDB = selectedOptionsCalculate.map(item => {
       const { test_item_complexity, selected, correct, ...rest } = item;
       return { ...rest, student_id: currentStudent, type: 'check' };
     });
 
-    console.log(selectedOptionsToDB)
+    // console.log(selectedOptionsToDB)
     for (const element of selectedOptionsToDB) {
       trimiteDateLaBackend(element);
     }
@@ -191,7 +223,7 @@ const TestCheck = ({
     for (const element of selectedResultsToDB) {
       trimiteResultsLaBackend(element);
     }
-    setSelectedValues([]); 
+    // setSelectedValues([]); 
   };
 
   const trimiteDateLaBackend = async (element) => {

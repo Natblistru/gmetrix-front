@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
-import { updateStudentProcent } from "../ReduxComp/actions";
+import { updateStudentProcent, updateStudentAnswer } from "../ReduxComp/actions";
 import { decodeDiacritics } from "../DragWords/TextConverter";
 import RadioButton from "../RadioButton";
 import ItemAccordeon from "../Accordeon/ItemAccordeon";
@@ -46,9 +46,9 @@ const TestQuiz = ({
   //console.log(currentTests[0])
   const [listItems, setListItems] = useState(currentTests[currentIndexTest].order_number_options)
 
-  console.log("currentTests",currentTests)
-  console.log("currentIndexTest", currentIndexTest)
-  console.log("currentTests[currentIndexTest]",currentTests[currentIndexTest])
+  // console.log("currentTests",currentTests)
+  // console.log("currentIndexTest", currentIndexTest)
+  // console.log("currentTests[currentIndexTest]",currentTests[currentIndexTest])
 
 
   const jsonString = listItems[currentItemIndex]?.test_item_content;
@@ -79,7 +79,18 @@ const TestQuiz = ({
 
 
   useEffect(()=>{
-    setSelectedOptions([{ "option": "", 
+    const index = allTeacherTests.findIndex(
+      (item) => item.test_item_id === listItems[currentItemIndex]?.test_item_id
+    );
+    let studentOptions = ""
+    if (index !== -1) {
+      studentOptions = allTeacherTests[index]?.student_options?.[0]?.option || "";
+      // setSelectedOptions(studentOptions);
+      // console.log("studentOptions[]",studentOptions)
+      setSelectedValue(studentOptions);
+    }
+
+    setSelectedOptions([{ "option": studentOptions, 
         "score": 0,
         "explanation": "explanation",
         "test_item_complexity": listItems[currentItemIndex].test_item_complexity,
@@ -92,6 +103,27 @@ const TestQuiz = ({
       setWrapperHeight(rect.height);
     }
   },[])
+
+  useEffect(() => {
+    const index = allTeacherTests.findIndex(
+      (item) => item.test_item_id === listItems[currentItemIndex]?.test_item_id
+    );
+    let studentOptions = ""
+    if (index !== -1) {
+      studentOptions = allTeacherTests[index]?.student_options?.[0]?.option || "";
+      // setSelectedOptions(studentOptions);
+      // console.log("studentOptions[modif]",studentOptions)
+      setSelectedValue(studentOptions);
+    }
+
+    setSelectedOptions([{ "option": studentOptions, 
+        "score": 0,
+        "explanation": "explanation",
+        "test_item_complexity": listItems[currentItemIndex].test_item_complexity,
+        "formative_test_id": listItems[currentItemIndex].formative_test_id,
+        "test_item_id": listItems[currentItemIndex].test_item_id}])
+
+  }, [allTeacherTests, listItems, currentItemIndex]);
 
   // console.log(currentTests)
   // console.log(currentTests[currentIndexTest].order_number_options);
@@ -132,6 +164,8 @@ const TestQuiz = ({
         score: score
       };
     });
+    // console.log("selectedOptions",selectedOptions)
+    // console.log("selectedValue", selectedValue)
 
     const selectedOptionsToDB = selectedOptionsCalculate.map(item => {
       const { test_item_complexity, ...rest } = item;
@@ -140,19 +174,9 @@ const TestQuiz = ({
 
     trimiteDateLaBackend([...selectedOptionsToDB]);
 
-    // if (selectedValue === correctAnswerText) {
-    //   setCorrectAnswer(true);
-    //   const index = allTeacherTests.findIndex(
-    //     (item) => item.test_item_id === listItems[currentItemIndex].test_item_id
-    //   );
-
-    //   if (index !== -1) {
-    //     dispatch(updateStudentProcent(index, "100.000000"));
-    //   }
-    // } else {
-    //   setCorrectAnswer(false);
-      
-    // }
+    // console.log("selectedValue",selectedValue)
+    // console.log("correctAnswerText", correctAnswerText)
+    // console.log("selectedValue === correctAnswerText", selectedValue === correctAnswerText)
 
     setCorrectAnswer(selectedValue === correctAnswerText);
     const index = allTeacherTests.findIndex(
@@ -162,6 +186,7 @@ const TestQuiz = ({
     if (index !== -1) {
       const newProcent = selectedValue === correctAnswerText ? "100.000000" : "0.000000";
       dispatch(updateStudentProcent(index, newProcent));
+      dispatch(updateStudentAnswer(index, selectedOptions));      
     }
     // console.log("ckeck")
     // const wrapperElement = quizWrapperRef.current;

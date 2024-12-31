@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
-import { updateStudentProcent } from "../ReduxComp/actions";
+import { updateStudentProcent, updateStudentAnswer } from "../ReduxComp/actions";
 import ItemAccordeon from "../Accordeon/ItemAccordeon";
 import ItemText from "../Accordeon/ItemText";
 import { decodeDiacritics } from "../DragWords/TextConverter";
@@ -52,13 +52,26 @@ const TestWordsSelect = ({
     const testItem = listItems[currentItemIndex];
     if (!testItem) return;
 
+    const index = allTeacherTests.findIndex(
+      (item) => item.test_item_id === listItems[currentItemIndex]?.test_item_id
+    );
+    let studentOptions = []
+    if (index !== -1) {
+      studentOptions = allTeacherTests[index]?.student_options || [];
+      // console.log("studentOptions",studentOptions);
+    }
+
+    const sourceOptions = studentOptions.length > 0 
+    ? studentOptions 
+    : listItems[currentItemIndex].test_item_options;
+
     const initialSelectedOptions = [];
-    listItems[currentItemIndex].test_item_options.forEach((element, index) => {
+    sourceOptions.forEach((element, index) => {
       initialSelectedOptions.push({ "option": element.option, 
-                                     "user_option": `default${index}`,
+                                     "user_option": studentOptions.length > 0 ? element.user_option : `default${index}`,
                                      "score": 0,
                                      "correct": element.correct,
-                                     "user_column": -1,
+                                     "user_column": studentOptions.length > 0 ? element.user_column : -1,
                                      "explanation": element.explanation,
                                      "test_item_complexity": listItems[currentItemIndex].test_item_complexity,
                                      "formative_test_id": listItems[currentItemIndex].formative_test_id,
@@ -88,12 +101,136 @@ const TestWordsSelect = ({
       const index = parseInt(select.getAttribute("data-index"), 10);
       select.onchange = (e) => handleChange(e, index);
     });
-    //console.log("selects",selects)
+    // console.log("selects",selects)
     // Inițializează răspunsurile utilizatorului
     const initialAnswers = (jsonObject.sentenceWithBlanks || []).map(() => "");
     // setUserAnswers(initialAnswers);
-    setUserAnswers(Array(testItem?.test_item_options.length).fill("default"))
+    // console.log(allTeacherTests[currentIndex])
+    if (!allTeacherTests[currentIndex].student_options || allTeacherTests[currentIndex].student_options.length === 0) {
+      setUserAnswers(Array(testItem?.test_item_options.length).fill("default"))
+    } else {
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(listItems[currentItemIndex]?.test_item_options[0].text_additional, "text/html");
+
+      let studentOptionsArray = [];
+
+      allTeacherTests[currentIndex].student_options.forEach((item) => {
+        const select = doc.querySelector(`select[data-index="${item.correct}"]`);
+    
+        if (select) {
+          Array.from(select.options).forEach((option) => option.removeAttribute("selected"));
+  
+          const studentOption = Array.from(select.options).find((option) => option.value === item.user_option);
+          // console.log("studentOption [listItems..]",studentOption)
+          if (studentOption) {
+            studentOptionsArray.push(studentOption.value);
+            studentOption.setAttribute("selected", "selected");
+          }
+          const index = parseInt(select.getAttribute("data-index"), 10);
+          select.onchange = (e) => handleChange(e, index);
+        }
+      });
+      setUserAnswers(studentOptionsArray)
+
+      // Salvează HTML-ul actualizat pentru afișare
+      setRenderedHtml(doc.body.innerHTML);
+      // console.log(doc.body.innerHTML)
+      // console.log("useEffect - listItems, currentIndexTest, currentItemIndex, language")
+    }
   }, [listItems, currentIndexTest, currentItemIndex, language]);
+
+  useEffect(() => {
+    setListItems(currentTests[currentIndexTest]?.order_number_options || []);
+
+    const testItem = listItems[currentItemIndex];
+    if (!testItem) return;
+
+    const index = allTeacherTests.findIndex(
+      (item) => item.test_item_id === listItems[currentItemIndex]?.test_item_id
+    );
+    let studentOptions = []
+    if (index !== -1) {
+      studentOptions = allTeacherTests[index]?.student_options || [];
+      // console.log("studentOptions",studentOptions);
+    }
+
+    const sourceOptions = studentOptions.length > 0 
+    ? studentOptions 
+    : listItems[currentItemIndex].test_item_options;
+
+    const initialSelectedOptions = [];
+    sourceOptions.forEach((element, index) => {
+      initialSelectedOptions.push({ "option": element.option, 
+                                     "user_option": studentOptions.length > 0 ? element.user_option : `default${index}`,
+                                     "score": 0,
+                                     "correct": element.correct,
+                                     "user_column": studentOptions.length > 0 ? element.user_column : -1,
+                                     "explanation": element.explanation,
+                                     "test_item_complexity": listItems[currentItemIndex].test_item_complexity,
+                                     "formative_test_id": listItems[currentItemIndex].formative_test_id,
+                                     "test_item_id": listItems[currentItemIndex].test_item_id});
+    });
+
+    setSelectedOptions(initialSelectedOptions);
+    setUserAnswersText(listItems[currentItemIndex]?.test_item_options[0].text_additional || "");
+
+    const jsonString = testItem?.test_item_content;
+    //console.log("testItem (TestWordsSelect)", testItem)
+    const decodedString = decodeDiacritics(jsonString);
+    const jsonObject = JSON.parse(decodedString);
+
+    const task = language === "ro" ? jsonObject.ro : jsonObject.en;
+
+    setQuestion(task);
+
+    //console.log("jsonString",jsonString)
+
+    // Pregătește propoziția și opțiunile pentru select
+    setSentenceWithBlanks(jsonObject.sentenceWithBlanks || []);
+    setOptions(jsonObject.options || []);
+
+    const selects = document.querySelectorAll('select[data-index]');
+    selects.forEach((select) => {
+      const index = parseInt(select.getAttribute("data-index"), 10);
+      select.onchange = (e) => handleChange(e, index);
+    });
+    // console.log("selects",selects)
+    // Inițializează răspunsurile utilizatorului
+    const initialAnswers = (jsonObject.sentenceWithBlanks || []).map(() => "");
+    // setUserAnswers(initialAnswers);
+    if (!allTeacherTests[currentIndex].student_options || allTeacherTests[currentIndex].student_options.length === 0) {
+      setUserAnswers(Array(testItem?.test_item_options.length).fill("default"))
+    } else {
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(listItems[currentItemIndex]?.test_item_options[0].text_additional, "text/html");
+      let studentOptionsArray = [];
+      allTeacherTests[currentIndex].student_options.forEach((item) => {
+        const select = doc.querySelector(`select[data-index="${item.correct}"]`);
+    
+        if (select) {
+          Array.from(select.options).forEach((option) => option.removeAttribute("selected"));
+  
+          const studentOption = Array.from(select.options).find((option) => option.value === item.user_option);
+          // console.log("studentOption la []", studentOption)
+          if (studentOption) {
+            studentOptionsArray.push(studentOption.value);
+            studentOption.setAttribute("selected", "selected");
+          }
+          const index = parseInt(select.getAttribute("data-index"), 10);
+          select.onchange = (e) => handleChange(e, index);
+        }
+      });
+      setUserAnswers(studentOptionsArray)
+
+      // Salvează HTML-ul actualizat pentru afișare
+      setRenderedHtml(doc.body.innerHTML);
+      // console.log(doc.body.innerHTML)
+      // console.log("useEffect []")
+
+    }
+  }, []);
+
+
 
   const handleChange = (e, index) => {
 
@@ -102,9 +239,12 @@ const TestWordsSelect = ({
 
       updatedOptions[index].user_option = e.target.value;
       updatedOptions[index].user_column = index;
-  
+
+      // console.log("updatedOptions",updatedOptions)
+
       return updatedOptions; 
     });
+
 
 
     setUserAnswers((prevUserAnswers) => {
@@ -140,7 +280,7 @@ const TestWordsSelect = ({
       const { test_item_complexity, user_column, user_option, correct, explanation, ...rest } = item;
       return { ...rest, student_id: currentStudent, type: 'check' };
     });
-    console.log("selectedOptionsToDB", selectedOptionsToDB)
+    // console.log("selectedOptionsToDB", selectedOptionsToDB)
     for (const element of selectedOptionsToDB) {
       trimiteDateLaBackend(element);
     }
@@ -173,9 +313,9 @@ const TestWordsSelect = ({
       correctAnswers[item.correct] = item.option;
     });
     
-    console.log("correctAnswers", correctAnswers);
-    console.log("userAnswers", userAnswers);
-    console.log("selectedOptions", selectedOptions);
+    // console.log("correctAnswers", correctAnswers);
+    // console.log("userAnswers", userAnswers);
+    // console.log("selectedOptions", selectedOptions);
     
     // console.log("sentenceWithBlanks", sentenceWithBlanks);
     const isCorrect = correctAnswers.every(
@@ -190,6 +330,7 @@ const TestWordsSelect = ({
     if (index !== -1) {
       const newProcent = isCorrect === true ? "100.000000" : "0.000000";
       dispatch(updateStudentProcent(index, newProcent));
+      dispatch(updateStudentAnswer(index, selectedOptions));  
     }
     setResponseReceived(true);
 
@@ -203,18 +344,23 @@ const TestWordsSelect = ({
         Array.from(select.options).forEach((option) => option.removeAttribute("selected"));
 
         const selectedOption = Array.from(select.options).find((option) => option.value === item.user_option);
+        // console.log("selectedOption la sf",selectedOption)
         if (selectedOption) {
           selectedOption.setAttribute("selected", "selected");
         }
+        const index = parseInt(select.getAttribute("data-index"), 10);
+        select.onchange = (e) => handleChange(e, index);
       }
     });
 
     // Salvează HTML-ul actualizat pentru afișare
     setRenderedHtml(doc.body.innerHTML);
+    // console.log("renderCheckAnswer")
+    // console.log(doc.body.innerHTML)
 
   };
 
-  console.log("sentenceWithBlanks (TestWordsSelect)", sentenceWithBlanks)
+  // console.log("sentenceWithBlanks (TestWordsSelect)", sentenceWithBlanks)
   //console.log("correctAnswers (TestWordsSelect)", userAnswers)
   //console.log("userAnswers (TestWordsSelect)", userAnswers)
 //  console.log("listItems[currentItemIndex]?.test_item_options[0] (TestWordsSelect)", listItems[currentItemIndex]?.test_item_options[0])
@@ -223,7 +369,7 @@ const TestWordsSelect = ({
     if (currentTests[0].path == "/test-de-totalizare") {
       const token = localStorage.getItem('auth_token');
       try {
-        console.log("element", element)
+        // console.log("element", element)
         const response = await axios.post('/api/student-summative-test-options', element
           // ,
           // {
@@ -307,6 +453,17 @@ const TestWordsSelect = ({
     }
 
   };
+
+  useEffect(() => {
+    // Setează evenimentele după ce renderedHtml este setat
+    if (renderedHtml) {
+      const selects = document.querySelectorAll('select[data-index]');
+      selects.forEach((select) => {
+        const index = parseInt(select.getAttribute("data-index"), 10);
+        select.onchange = (e) => handleChange(e, index);
+      });
+    }
+  }, [renderedHtml]);
   
   return (
     <>
@@ -354,20 +511,28 @@ const TestWordsSelect = ({
               }}
             />
 
-            {correctAnswer === null && (
+            {correctAnswer === null && (!allTeacherTests[currentIndex]?.student_options || allTeacherTests[currentIndex]?.student_options?.length === 0) && (
               <>
-              <div dangerouslySetInnerHTML={{ __html: listItems[currentItemIndex]?.test_item_options[0].text_additional}} />
-
-              <button onClick={checkAnswer} className="btn-test">
-                Verifică răspunsul
-              </button>
+                <div dangerouslySetInnerHTML={{ __html: listItems[currentItemIndex]?.test_item_options[0].text_additional }} />
+                <button onClick={checkAnswer} className="btn-test">
+                  Verifică răspunsul
+                </button>
               </>
             )}
-            {correctAnswer !== null && (
-              
-              <div dangerouslySetInnerHTML={{ __html: renderedHtml }} />
 
+            {correctAnswer === null && allTeacherTests[currentIndex]?.student_options?.length > 0 && (
+              <>
+                <div dangerouslySetInnerHTML={{ __html: renderedHtml }} />
+                <button onClick={checkAnswer} className="btn-test">
+                  Verifică răspunsul
+                </button>
+              </>
             )}
+
+            {correctAnswer !== null && (
+              <div dangerouslySetInnerHTML={{ __html: renderedHtml }} />
+            )}
+
           </div>
         </ItemText>
       </ItemAccordeon>

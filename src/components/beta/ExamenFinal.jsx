@@ -96,7 +96,7 @@ const ExamenFinal = (props) => {
     const wrapperElement = wrapperRef.current;
     if (wrapperElement) {
       const rect = wrapperElement.getBoundingClientRect();
-      console.log('Înălțimea elementului:', rect.height);
+      // console.log('Înălțimea elementului:', rect.height);
       setWrapperHeight(rect.height);
     }
     // if (wrapperRef.current) {
@@ -210,9 +210,9 @@ const ExamenFinal = (props) => {
     const averageScore = sum / totalItems;
     // console.log(averageScore)
     setProc(averageScore);
-    console.log("allTeacherTests", allTeacherTests);
-    console.log("indexAllItems", indexAllItems);
-    console.log("allTeacherTests[indexAllItems]", allTeacherTests[indexAllItems]);
+    // console.log("allTeacherTests", allTeacherTests);
+    // console.log("indexAllItems", indexAllItems);
+    // console.log("allTeacherTests[indexAllItems]", allTeacherTests[indexAllItems]);
   },[allTeacherTests])
 
   const testBoardRef = useRef(null);
@@ -240,7 +240,7 @@ const ExamenFinal = (props) => {
     const testItems = currentTests[currentTestIndex].order_number_options.map(
       (option) => option
     );
-    console.log("testItems", testItems)
+    // console.log("testItems", testItems)
   
     try {
       const formDataArray = testItems.map((item) => {
@@ -526,9 +526,9 @@ const ExamenFinal = (props) => {
   // console.log('wrapperHeight', wrapperHeight)
   // console.log(wrapperRef.current && wrapperRef.current.getBoundingClientRect().height)
   // console.log('count', Math.round(wrapperHeight/80))
-  console.log("allTeacherTests",allTeacherTests)
-  console.log("indexAllItems", indexAllItems)
-  console.log("allTeacherTests[indexAllItems]",allTeacherTests[indexAllItems])
+  // console.log("allTeacherTests",allTeacherTests)
+  // console.log("indexAllItems", indexAllItems)
+  // console.log("allTeacherTests[indexAllItems]",allTeacherTests[indexAllItems])
   // console.log("correctAnswer", correctAnswer)
   // console.log("setCorrectAnswer", setCorrectAnswer)
   // console.log("additionalContent",additionalContent)

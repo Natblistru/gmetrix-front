@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
-import { updateStudentProcent } from "../ReduxComp/actions";
+import { updateStudentProcent, updateStudentAnswer } from "../ReduxComp/actions";
 import SentenceBox from "../DragWords/SentenceBox";
 import AnswerBox from "../DragWords/AnswerBox";
 import { getSentence, getAnswers, decodeDiacritics } from "../DragWords/TextConverter";
@@ -112,6 +112,16 @@ const TestWords = ({
 
     // console.log('currentIndexTest',currentIndexTest)
     // console.log('currentItemIndex',currentItemIndex)
+
+    const index = allTeacherTests.findIndex(
+      (item) => item.test_item_id === listItems[currentItemIndex]?.test_item_id
+    );
+    let studentOptions = []
+    if (index !== -1) {
+      studentOptions = allTeacherTests[index]?.student_options || [];
+      // console.log("studentOptions",studentOptions);
+      setSentence(studentOptions);
+    }
    
     const initialSelectedOptions = [];
     listItems[currentItemIndex].test_item_options.forEach(element => {
@@ -126,7 +136,7 @@ const TestWords = ({
     });
 
     setSelectedOptions(initialSelectedOptions)
-    console.log("initialSelectedOptions", initialSelectedOptions)
+    // console.log("initialSelectedOptions", initialSelectedOptions)
 
     const jsonString = listItems[currentItemIndex]?.test_item_content;
     const decodedString = decodeDiacritics(jsonString);
@@ -179,7 +189,17 @@ const TestWords = ({
   useEffect(() => {
     setShowResults(false);
     setAnswers(shuffleArray(getAnswers(text).concat(textAdd)));
-    setSentence(getSentence(text));
+    // console.log("getSentence(text)",getSentence(text))
+    const index = allTeacherTests.findIndex(
+      (item) => item.test_item_id === listItems[currentItemIndex]?.test_item_id
+    );
+    let studentOptions = []
+    if (index !== -1) {
+      studentOptions = allTeacherTests[index]?.student_options || [];
+    }
+    if(studentOptions.length==0){
+     setSentence(getSentence(text));
+    }
   }, [text]);
 
   useEffect(() => {
@@ -205,6 +225,7 @@ const TestWords = ({
       }
       return w;
     });
+    // console.log("updatedSentence",updatedSentence)
     setSentence(updatedSentence);
   };
 
@@ -224,7 +245,7 @@ const TestWords = ({
 
   const checkAnswer = () => {
     setShowResults(true);
-    console.log("selectedOptions", selectedOptions)
+    // console.log("selectedOptions", selectedOptions)
     const selectedOptionsCalculate = selectedOptions.map(item => {
       let score;
       // console.log(item)
@@ -242,7 +263,7 @@ const TestWords = ({
       const { test_item_complexity, user_column, correct, explanation, ...rest } = item;
       return { ...rest, student_id: currentStudent, type: 'check' };
     });
-    console.log("selectedOptionsToDB", selectedOptionsToDB)
+    // console.log("selectedOptionsToDB", selectedOptionsToDB)
     for (const element of selectedOptionsToDB) {
       trimiteDateLaBackend(element);
     }
@@ -268,7 +289,7 @@ const TestWords = ({
       trimiteResultsLaBackend(element);
     }
 
-    // console.log(sentence)
+    //  console.log(sentence)
     const correct = sentence
       .map((w) => (w.type === "answer" ? w.text === w.displayed : true))
       .every(Boolean);
@@ -280,6 +301,7 @@ const TestWords = ({
     if (index !== -1) {
       const newProcent = correct === true ? "100.000000" : "0.000000";
       dispatch(updateStudentProcent(index, newProcent));
+      dispatch(updateStudentAnswer(index, sentence));
     }
   };
 
@@ -287,7 +309,7 @@ const TestWords = ({
     if (currentTests[0].path == "/test-de-totalizare") {
       const token = localStorage.getItem('auth_token');  
       try {
-        console.log("element", element)
+        // console.log("element", element)
         const response = await axios.post('/api/student-summative-test-options', element
           // ,
           // {
@@ -430,7 +452,9 @@ const TestWords = ({
                     }%`,
               }}
             />
-
+            {/* {console.log("sentence",sentence)}
+            {console.log("answers",answers)}
+            {console.log("additionalContent",additionalContent)} */}
             <SentenceBox
               marked={showResults}
               onDrop={onDrop}

@@ -49,11 +49,11 @@ const VerticalTestMenu = ({
     <div>
       <div id="mySidenav" className="vertical-sidenav" style={{ width: menuWidth }} onMouseLeave={closeNav}>
         <span className="closebtn" onClick={closeNav}>&times;</span>
-        {console.log("quizArray", quizArray)}
-        {console.log("allTeacherTests", allTeacherTests)}
+        {/* {console.log("quizArray", quizArray)}
+        {console.log("allTeacherTests", allTeacherTests)} */}
         {quizArray
-          .slice() // Creează o copie a array-ului pentru a evita modificarea originalului
-          .sort((a, b) => a.order_item_test - b.order_item_test) // Ordonează după order_item_test
+          // .slice() // Creează o copie a array-ului pentru a evita modificarea originalului
+          // .sort((a, b) => a.order_item_test - b.order_item_test) // Ordonează după order_item_test
           .map((quiz, index) => (
             <React.Fragment key={quiz.order_item_test}>
               <a 
@@ -68,19 +68,21 @@ const VerticalTestMenu = ({
                   Test
                 </span>
                 <span className={activeSlide === index ? "active-test" : ""}>
-                  {quiz.order_item_test}
+                  {index+1}
                 </span>
               </a>
+              {/* {console.log(index, quiz.task, Math.round(quiz.student_procent))} */}
               <input 
                 type="checkbox" 
                 className="option-input" 
-                style={{ marginLeft: activeSlide === index ? '24px' : '28px' }} 
+                style={{ marginLeft: activeSlide === index ? '24px' : '28px' }}
                 checked={Math.round(quiz.student_procent) === 100}
                 readOnly
               />
               <br />
             </React.Fragment>
           ))}
+
 
         <div className="button-container">
         <button onClick={resetState} className="reset-button">Reset</button>
