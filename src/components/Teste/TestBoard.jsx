@@ -1,7 +1,7 @@
 import React, { useState, useEffect, forwardRef, useImperativeHandle } from "react";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
-import { updateStudentProcent } from "../ReduxComp/actions";
+import { updateStudentProcent, updateStudentAnswer } from "../ReduxComp/actions";
 import { DragDropContext } from "react-beautiful-dnd";
 import Column from "../DragAndDrop/Column";
 import { v4 as uuidv4 } from "uuid";
@@ -72,21 +72,36 @@ const TestBoard = forwardRef(
       //   columnDBArray = array;
       // }
       // setColumnArray(columnDBArray)
+
+      // console.log("allTeacherTests[currentIndex]",allTeacherTests[currentIndex])
       setColumnArray(listItems[currentItemIndex].column_title.split(", "))
       // columnArray = listItems[currentItemIndex].column_title.split(", ")
+
+      const index = allTeacherTests.findIndex(
+        (item) => item.test_item_id === listItems[currentItemIndex]?.test_item_id
+      );
+      let studentOptions = []
+      if (index !== -1) {
+        studentOptions = allTeacherTests[index]?.student_options || [];
+        // console.log("studentOptions",studentOptions);
+      }
+  
+      const sourceOptions = studentOptions.length > 0 
+      ? studentOptions 
+      : listItems[currentItemIndex].test_item_options;
+
       const initialSelectedOptions = [];
-      listItems[currentItemIndex].test_item_options.forEach(element => {
+      sourceOptions.forEach(element => {
         initialSelectedOptions.push({ "option": element.option, 
                                        "score": 0,
                                        "correct": element.correct,
-                                       "user_column": 0,
-                                       "explanation": (element.explanation !== "") ? element.explanation : "explanation",
+                                       "user_column": studentOptions.length > 0 ? element.user_column : 0,
+                                       "explanation": studentOptions.length > 0 ? element.explanation : (element.explanation !== "") ? element.explanation : "explanation",
                                        "test_item_complexity": listItems[currentItemIndex].test_item_complexity,
                                        "formative_test_id": listItems[currentItemIndex].formative_test_id,
                                        "test_item_id": listItems[currentItemIndex].test_item_id});
       });
       setSelectedOptions(initialSelectedOptions)
-      // console.log(initialSelectedOptions)
       setColumns(getColumnsFromBackend());
     },[currentItemIndex, listItems ])
 
@@ -107,10 +122,44 @@ const TestBoard = forwardRef(
       //   if(test.id==testID&&test.coloane.length) {
     
           const itemsFromBackendNext = [];
-          listItems[currentItemIndex].test_item_options.forEach((answer) => {
+          const itemsFromBackendNext0 = [];
+
+          if (!allTeacherTests[currentIndex].student_options || allTeacherTests[currentIndex].student_options.length === 0) {
+      
+            listItems[currentItemIndex].test_item_options.forEach((answer) => {
+                itemsFromBackendNext.push({ id: uuidv4(), content: answer.option });
+              });
+          
+              columnsFromBackendNext = colArray.reduce((columns, name) => {
+                columns[uuidv4()] = {
+                  name: name,
+                  items: []
+                };
+                return columns;
+              }, {});
+          
+              const columnIds = Object.keys(columnsFromBackendNext);
+              columnsFromBackendNext[columnIds[0]].items = itemsFromBackendNext;
+
+          } else {
+
+            // Creează o copie cu elementele unde user_column = 0
+            const filteredOptionsUserColumnZero = allTeacherTests[currentIndex].student_options.filter(
+              (item) => item.user_column === 0
+            );
+            
+            // Creează o copie fără elementele unde user_column = 0 și sortează după user_column
+            const sortedOptionsByUserColumn = allTeacherTests[currentIndex].student_options
+              .filter((item) => item.user_column !== 0)
+              .sort((a, b) => parseInt(a.user_column, 10) - parseInt(b.user_column, 10));
+
+            sortedOptionsByUserColumn.forEach((answer) => {
               itemsFromBackendNext.push({ id: uuidv4(), content: answer.option });
             });
-        
+            filteredOptionsUserColumnZero.forEach((answer) => {
+              itemsFromBackendNext0.push({ id: uuidv4(), content: answer.option });
+            });
+
             columnsFromBackendNext = colArray.reduce((columns, name) => {
               columns[uuidv4()] = {
                 name: name,
@@ -120,9 +169,10 @@ const TestBoard = forwardRef(
             }, {});
         
             const columnIds = Object.keys(columnsFromBackendNext);
-            columnsFromBackendNext[columnIds[0]].items = itemsFromBackendNext;
-            
+            columnsFromBackendNext[columnIds[0]].items = itemsFromBackendNext0; 
+            columnsFromBackendNext[columnIds[1]].items = itemsFromBackendNext;            
             // console.log(columnsFromBackendNext);
+          }
         // }
       // })
       return columnsFromBackendNext;
@@ -170,12 +220,16 @@ const TestBoard = forwardRef(
 
     // console.log(currentTests)
 
-    const currentTest = currentTests[currentIndexTest];
+    // const currentTest = currentTests[currentIndexTest];
+    const currentTest = allTeacherTests[currentItemIndex];
+    
 
     // console.log(columnArray)
     // console.log(currentTests[currentIndexTest].column_title)
 
-    // console.log(currentTests[currentIndexTest])
+    // console.log("currentTests",currentTests)
+    // console.log("currentIndexTest",currentIndexTest)
+    // console.log("currentTests[currentIndexTest]",currentTests[currentIndexTest])
     // console.log(currentTests[currentIndexTest].order_number_options[currentItemIndex]);
   
   
@@ -226,8 +280,8 @@ const TestBoard = forwardRef(
       if (!result.destination) return;
       const { source, destination } = result;
 
-      // console.log(selectedOptions);
-      // console.log(destination);      
+      // console.log(result);
+      // console.log(columns);      
 
       if (source.droppableId !== destination.droppableId) {
         const sourceColumn = columns[source.droppableId];
@@ -236,10 +290,12 @@ const TestBoard = forwardRef(
         const destItems = [...destColumn.items];
         const [removed] = sourceItems.splice(source.index, 1);
         destItems.splice(destination.index, 0, removed);
-        // console.log(sourceItems);
-        // console.log(destItems); 
-        // console.log(destColumn.name);     
-        // console.log(columnArray);     
+        // console.log("sourceItems",sourceItems);
+        // console.log("destItems",destItems); 
+        // console.log("sourceColumn",sourceColumn);    
+        // console.log("sourceColumnName",sourceColumn.name);     
+        // console.log("destColumn",destColumn);     
+        // console.log("columnArray", columnArray);     
         setColumns({
           ...columns,
           [source.droppableId]: {
@@ -257,7 +313,7 @@ const TestBoard = forwardRef(
           if (selectedOption) {
             setSelectedOptions(prevOptions => {
               const updatedOptions = prevOptions.map(option =>
-                option.option === selectedOption.option ? { ...option, user_column: 0 } : option
+                option.option === selectedOption.option ? { ...option, user_column: sourceColumn.name === coloanaRaspuns ? 1 : 0 } : option
               );
               return updatedOptions;
             });
@@ -273,9 +329,13 @@ const TestBoard = forwardRef(
           if (selectedOption) {
             setSelectedOptions(prevOptions => {
               const updatedOptions = prevOptions.map(option => {
+                // if (isChronoDubleTest) {
+                //   return option.option === selectedOption.option ? { ...option, user_column: index + 1 } : option;
+                // } 
                 if (isChronoDubleTest) {
-                  return option.option === selectedOption.option ? { ...option, user_column: index + 1 } : option;
-                } else {
+                  return option.option === selectedOption.option ? { ...option, user_column: destColumn.name === coloanaRaspuns ? 1 : 0 } : option;
+                } 
+                else {
                   return option.option === selectedOption.option ? { ...option, user_column: columnIndex } : option;
                 }
               });
@@ -304,7 +364,7 @@ const TestBoard = forwardRef(
           if (selectedOption) {
             setSelectedOptions(prevOptions => {
               const updatedOptions = prevOptions.map(option =>
-                option.option === selectedOption.option ? { ...option, user_column: index + 1 } : option
+                option.option === selectedOption.option ? { ...option, user_column: column.name === coloanaRaspuns ? 1 : 0 } : option
               );
               return updatedOptions;
             });
@@ -391,16 +451,14 @@ const TestBoard = forwardRef(
       .sort((a, b) => parseInt(a.explanation) - parseInt(b.explanation))
       .map(item => item.option);
       correctAnswers.sort((a, b) => parseInt(a.explanation) - parseInt(b.explanation));
-      console.log('correctAnswers',correctAnswers)
     }
-    console.log('correctValues',correctValues)
+    // console.log("currentTest.type",currentTest.type)
     if(currentTest.type == "dnd_chrono") {
       correctValues = correctAnswers
       .sort((a, b) => parseInt(a.explanation) - parseInt(b.explanation))
       .map(item => item.option);
     }
     correctAnswers.sort((a, b) => parseInt(a.explanation) - parseInt(b.explanation));
-    // console.log(correctValues)
     let selValues = Object.values(columns)
       .filter(column => column.name === coloanaRaspuns)
       .map(column => column.items.map(item => item.content))
@@ -427,8 +485,6 @@ const TestBoard = forwardRef(
     } else {
       selectedValuesString = selValues.join(",");
       correctValuesString = correctValues.join(",");     
-      console.log('selectedValuesString',selectedValuesString);  
-      console.log('correctValuesString',correctValuesString);  
     }
     setSelectedValues(selValues);
 
@@ -444,6 +500,7 @@ const TestBoard = forwardRef(
       if (index !== -1) {
         const newProcent = (selectedValuesString === correctValuesString && selectedValues1String === correctValues1String) ? "100.000000" : "0.000000";
         dispatch(updateStudentProcent(index, newProcent));
+        dispatch(updateStudentAnswer(index, selectedOptions));   
       }
     } else {
       setCorrectAnswer(selectedValuesString === correctValuesString);
@@ -454,6 +511,7 @@ const TestBoard = forwardRef(
       if (index !== -1) {
         const newProcent = selectedValuesString === correctValuesString ? "100.000000" : "0.000000";
         dispatch(updateStudentProcent(index, newProcent));
+        dispatch(updateStudentAnswer(index, selectedOptions));   
       }
     }
 
@@ -667,7 +725,6 @@ const TestBoard = forwardRef(
           className="non_animation"
         >
           <ItemText classNameChild="">
-             {console.log(correctAnswers)} 
             {currentTest.type !== "dnd_group" ? (
                 (currentTest.type === "dnd_chrono" || currentTest.type === "dnd_chrono_double"
                   ? correctAnswers.slice().sort((a, b) => parseInt(a.explanation) - parseInt(b.explanation))

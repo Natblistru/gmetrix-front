@@ -240,139 +240,120 @@ const ExamenFinal = (props) => {
     const testItems = currentTests[currentTestIndex].order_number_options.map(
       (option) => option
     );
-    // console.log("testItems", testItems)
   
-    try {
-      const formDataArray = testItems.map((item) => {
-        const formData = new FormData();
-        formData.append("student_id", 1);
-        formData.append("order_number", item.order_number);
-        formData.append("test_item_id", item.test_item_id);
-        formData.append("summative_test_id", item.formative_test_id);
-        formData.append("score", 0);
-        formData.append("status", 0);
-        return formData;
-      });
+    // try {
+    //   const formDataArray = testItems.map((item) => {
+    //     const formData = new FormData();
+    //     formData.append("student_id", 1);
+    //     formData.append("order_number", item.order_number);
+    //     formData.append("test_item_id", item.test_item_id);
+    //     formData.append("summative_test_id", item.formative_test_id);
+    //     formData.append("score", 0);
+    //     formData.append("status", 0);
+    //     return formData;
+    //   });
   
-      const token = localStorage.getItem('auth_token');
+    //   const token = localStorage.getItem('auth_token');
   
-      const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+    //   const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
   
-      const responses = [];
+    //   const responses = [];
   
-      for (const formData of formDataArray) {
-        try {
-          const response = await axios.post(
-            "/api/update-student-summative-test-result",
-            formData
-            // ,
-            // {
-            //   headers: {
-            //     "Content-Type": "application/json",
-            //     "Authorization": token ? `Bearer ${token}` : ''
-            //   },
-            // }
-          );
-          responses.push(response);
-        } catch (error) {
-          console.error("Error processing request:", error);
-          responses.push(error.response || { data: {}, status: error.code });
-        }
-        await delay(500); // Adaugă o pauză între cereri
-      }
+    //   for (const formData of formDataArray) {
+    //     try {
+    //       const response = await axios.post(
+    //         "/api/update-student-summative-test-result",
+    //         formData
+    //       );
+    //       responses.push(response);
+    //     } catch (error) {
+    //       console.error("Error processing request:", error);
+    //       responses.push(error.response || { data: {}, status: error.code });
+    //     }
+    //     await delay(500); // Adaugă o pauză între cereri
+    //   }
   
-      const successResponses = responses.filter(
-        (response) => response.data?.status === 200
-      );
-      const errorResponses = responses.filter(
-        (response) => response.data?.status === 404
-      );
+    //   const successResponses = responses.filter(
+    //     (response) => response.data?.status === 200
+    //   );
+    //   const errorResponses = responses.filter(
+    //     (response) => response.data?.status === 404
+    //   );
   
-      if (successResponses.length > 0) {
-        console.log(
-          "Successfully processed ",
-          successResponses.length,
-          " out of ",
-          responses.length,
-          " requests"
-        );
-        setProc(0);
-      }
+    //   if (successResponses.length > 0) {
+    //     console.log(
+    //       "Successfully processed ",
+    //       successResponses.length,
+    //       " out of ",
+    //       responses.length,
+    //       " requests"
+    //     );
+    //     setProc(0);
+    //   }
   
-      errorResponses.forEach((response) => {
-        console.error("Error response:", response);
-      });
-    } catch (error) {
-      console.error("Unexpected error in handleTryAgain:", error);
-    }
-
-    try {
-      const formDataArray = testItems.map((item) => {
-        const formData = new FormData();
-        formData.append("student_id", 1);
-        formData.append("order_number", item.order_number);
-        formData.append("test_item_id", item.test_item_id);
-        formData.append("summative_test_id", item.formative_test_id);
-        formData.append("score", 0);
-        formData.append("status", 0);
-        return formData;
-      });
-    
-      const token = localStorage.getItem('auth_token');
-    
-      const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-    
-      const responses = [];
-    
-      for (const formData of formDataArray) {
-        try {
-          const response = await axios.post(
-            "/api/update-student-summative-test-option",
-            formData
-            // ,
-            // {
-            //   headers: {
-            //     "Content-Type": "application/json",
-            //     "Authorization": token ? `Bearer ${token}` : ''
-            //   },
-            // }
-          );
-          responses.push(response);
-        } catch (error) {
-          console.error("Error processing request:", error);
-          responses.push(error.response || { data: {}, status: error.code });
-        }
-        await delay(500); // Adaugă o pauză între cereri
-      }
-    
-      const successResponses = responses.filter(
-        (response) => response.data?.status === 200
-      );
-      const errorResponses = responses.filter(
-        (response) => response.data?.status === 404
-      );
-    
-      if (successResponses.length > 0) {
-        console.log(
-          "Successfully processed ",
-          successResponses.length,
-          " out of ",
-          responses.length,
-          " requests"
-        );
-      }
-    
-      errorResponses.forEach((response) => {
-        console.error("Error response:", response);
-      });
-    } catch (error) {
-      console.error("Unexpected error:", error);
-    }
-    
-    // } else {
-    //   // setCurrentItemIndex(currentItemIndex + 1);
+    //   errorResponses.forEach((response) => {
+    //     console.error("Error response:", response);
+    //   });
+    // } catch (error) {
+    //   console.error("Unexpected error in handleTryAgain:", error);
     // }
-    //fetchAllTeacherTests()
+
+    // try {
+    //   const formDataArray = testItems.map((item) => {
+    //     const formData = new FormData();
+    //     formData.append("student_id", 1);
+    //     formData.append("order_number", item.order_number);
+    //     formData.append("test_item_id", item.test_item_id);
+    //     formData.append("summative_test_id", item.formative_test_id);
+    //     formData.append("score", 0);
+    //     formData.append("status", 0);
+    //     return formData;
+    //   });
+    
+    //   const token = localStorage.getItem('auth_token');
+    
+    //   const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+    
+    //   const responses = [];
+    
+    //   for (const formData of formDataArray) {
+    //     try {
+    //       const response = await axios.post(
+    //         "/api/update-student-summative-test-option",
+    //         formData
+    //       );
+    //       responses.push(response);
+    //     } catch (error) {
+    //       console.error("Error processing request:", error);
+    //       responses.push(error.response || { data: {}, status: error.code });
+    //     }
+    //     await delay(500); // Adaugă o pauză între cereri
+    //   }
+    
+    //   const successResponses = responses.filter(
+    //     (response) => response.data?.status === 200
+    //   );
+    //   const errorResponses = responses.filter(
+    //     (response) => response.data?.status === 404
+    //   );
+    
+    //   if (successResponses.length > 0) {
+    //     console.log(
+    //       "Successfully processed ",
+    //       successResponses.length,
+    //       " out of ",
+    //       responses.length,
+    //       " requests"
+    //     );
+    //   }
+    
+    //   errorResponses.forEach((response) => {
+    //     console.error("Error response:", response);
+    //   });
+    // } catch (error) {
+    //   console.error("Unexpected error:", error);
+    // }
+    
     setCorrectAnswer(null);
   };
 
