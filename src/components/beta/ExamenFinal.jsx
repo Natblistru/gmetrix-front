@@ -16,7 +16,7 @@ import TestSnap from "../Snap/TestSnap";
 import Timer from "./Timer";
 import VerticalTestMenu from './VerticalTestMenu';
 import { fetchTheme, fetchAllTeacherTestsSuccess } from "../../routes/api";
-import { fetchCurrentIndexTest } from "../ReduxComp/actions";
+import { fetchCurrentIndexTest, resetStudentOptions } from "../ReduxComp/actions";
 import "../../index.css";
 
 const ExamenFinal = (props) => {
@@ -42,7 +42,7 @@ const ExamenFinal = (props) => {
   const currentTests = useSelector((state) => state.currentTests);
   const allTeacherTests = useSelector((state) => state.allTeacherTests);
   // const [allTeacherTests, setAllTeacherTests] = useState(useSelector((state) => state.allTeacherTests));
-  //console.log('allTeacherTests', allTeacherTests)
+  console.log('allTeacherTests', allTeacherTests)
   //console.log('currentTests', currentTests)
   const [indexAllItems, setIndexAllItems] = useState(0);
 
@@ -234,12 +234,44 @@ const ExamenFinal = (props) => {
 
   const handleTryAgain = async () => {
     //console.log("ajuns handle try again")
+
+    dispatch(resetStudentOptions());
     setResponseReceived(false);
     setResetTimer(prev => !prev);
+    setCorrectAnswer(null);
+
+
+    const currentStudentId = localStorage.getItem("auth_roleId");
+
+    console.log("currentStudentId",currentStudentId)
+    if (!currentStudentId) {
+      alert("Nu există un ID de student valid!");
+      return;
+    }
   
-    const testItems = currentTests[currentTestIndex].order_number_options.map(
-      (option) => option
-    );
+    try {
+      const response = await axios.post("/api/reset-student-summative-test-results", { student_id: currentStudentId });
+
+      if (response.status === 200) {
+        console.log("Rezultate testelor sumative au fost șterse cu succes.");
+      }
+    } catch (error) {
+      console.error("Eroare la resetarea rezultatelor testelor sumative:", error);
+    }
+
+    try {
+      const response = await axios.post("/api/reset-student-summative-test-options", { student_id: currentStudentId });
+
+      if (response.status === 200) {
+        console.log("Optiunile testelor sumative au fost șterse cu succes.");
+      }
+    } catch (error) {
+      console.error("Eroare la resetarea optiunilor testelor sumative:", error);
+    }
+  
+    // const testItems = currentTests[currentTestIndex].order_number_options.map(
+    //   (option) => option
+    // );
   
     // try {
     //   const formDataArray = testItems.map((item) => {
@@ -354,7 +386,7 @@ const ExamenFinal = (props) => {
     //   console.error("Unexpected error:", error);
     // }
     
-    setCorrectAnswer(null);
+
   };
 
   const fetchAllTeacherTests = async () => {

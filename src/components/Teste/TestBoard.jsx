@@ -614,7 +614,7 @@ const TestBoard = forwardRef(
     setCorrectAnswer(null);
     setIsDragDisabled(false);
     // console.log(testId)
-    handleTryAgain();
+    // handleTryAgain();
     setColumns(getColumnsFromBackend())
     // setColumns(getColumnsFromBackend(testId));
   };

@@ -1,4 +1,4 @@
-import { FETCH_ALL_TEACHER_TESTS, UPDATE_STUDENT_PROCENT, UPDATE_STUDENT_ANSWER } from './actions';
+import { FETCH_ALL_TEACHER_TESTS, UPDATE_STUDENT_PROCENT, UPDATE_STUDENT_ANSWER, RESET_STUDENT_OPTIONS } from './actions';
 
 const initialState = JSON.parse(localStorage.getItem('allTeacherTests')) || [];
 
@@ -31,6 +31,17 @@ const allTeacherTestsReducer = (state = initialState, action) => {
 
       localStorage.setItem('allTeacherTests', JSON.stringify(updatedAnswerTests));
       return updatedAnswerTests;
+
+    case RESET_STUDENT_OPTIONS:
+      const resetTests = state.map(item => {
+        const { student_options, ...rest } = item; // Elimină proprietatea student_options
+        return {
+          ...rest,
+          student_procent: "0.000000", // Resetează student_procent
+        };
+      });
+      localStorage.setItem('allTeacherTests', JSON.stringify(resetTests));
+      return resetTests;
 
     default:
       return state;

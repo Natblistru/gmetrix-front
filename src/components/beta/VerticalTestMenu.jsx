@@ -6,13 +6,6 @@ const VerticalTestMenu = ({
   quizArray,
   indexAllItems, 
   setIndexAllItems,
-  // slidesToShow,
-  // setShowResponse,
-  // setShowCards,
-  // setCurrentTextIndex,
-  // setIdRaspuns,
-  // setIsAnswered,
-  // destination,
   handleSliderClick,
   handleTryAgain,
   finishExam
@@ -45,15 +38,21 @@ const VerticalTestMenu = ({
     closeNav();
   };
 
+  const handleReset = () => {
+    const confirmation = window.confirm(
+      "Intradevar doriti sa resetati? Toate rezultatele vor fi sterse!"
+    );
+    if (confirmation) {
+      resetState(); // Apelează funcția de resetare doar dacă utilizatorul confirmă
+    }
+  };
+  
+
   return (
     <div>
       <div id="mySidenav" className="vertical-sidenav" style={{ width: menuWidth }} onMouseLeave={closeNav}>
         <span className="closebtn" onClick={closeNav}>&times;</span>
-        {/* {console.log("quizArray", quizArray)}
-        {console.log("allTeacherTests", allTeacherTests)} */}
         {quizArray
-          // .slice() // Creează o copie a array-ului pentru a evita modificarea originalului
-          // .sort((a, b) => a.order_item_test - b.order_item_test) // Ordonează după order_item_test
           .map((quiz, index) => (
             <React.Fragment key={quiz.order_item_test}>
               <a 
@@ -71,7 +70,6 @@ const VerticalTestMenu = ({
                   {index+1}
                 </span>
               </a>
-              {/* {console.log(index, quiz.task, Math.round(quiz.student_procent))} */}
               <input 
                 type="checkbox" 
                 className="option-input" 
@@ -85,7 +83,7 @@ const VerticalTestMenu = ({
 
 
         <div className="button-container">
-        <button onClick={resetState} className="reset-button">Reset</button>
+        <button onClick={handleReset} className="reset-button">Reset</button>
         <button onClick={finishExam}className="reset-button finish">Finish</button>
         </div>
       </div>
