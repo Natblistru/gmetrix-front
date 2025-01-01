@@ -101,7 +101,7 @@ function MyResults() {
     // console.log(teachersForSubtitles)
 
      try {
-      const studentId = 1;
+      // const studentId = 1;
       const level_id = 1;
       const promises = teachersForSubtitles.map(teachertheme => axios.get(`/api/teachertheme?level=${level_id}&disciplina=${selectedItem.subject_id}&teacher=${teachertheme.teacher_id}&student=${currentStudent}&theme=${themeId}`));
       const responses = await axios.all(promises);

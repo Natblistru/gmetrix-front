@@ -127,7 +127,7 @@ const TestWrapper = () => {
         }));
 
         try {
-          const studentId = 1;
+          // const studentId = 1;
           const token = localStorage.getItem('auth_token');
           const promises = testItemObjects.map((testItem) =>
             fetchWithRetry(
@@ -135,7 +135,7 @@ const TestWrapper = () => {
               {
                 test_item_id: testItem.test_item_id,
                 formative_test_id: testItem.formative_test_id,
-                studentId: studentId,
+                studentId: student_id,
               }
               ,
               {
@@ -209,7 +209,7 @@ const TestWrapper = () => {
       try {
         const formDataArray = testItems.map((item) => {
           const formData = new FormData();
-          formData.append("student_id", 1);
+          formData.append("student_id", student_id);
           formData.append("order_number", item.order_number);
           formData.append("test_item_id", item.test_item_id);
           formData.append("formative_test_id", item.formative_test_id);
@@ -272,7 +272,7 @@ const TestWrapper = () => {
       try {
         const formDataArray = testItems.map((item) => {
           const formData = new FormData();
-          formData.append("student_id", 1);
+          formData.append("student_id", student_id);
           formData.append("order_number", item.order_number);
           formData.append("test_item_id", item.test_item_id);
           formData.append("formative_test_id", item.formative_test_id);

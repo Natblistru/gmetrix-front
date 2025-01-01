@@ -157,11 +157,16 @@ const ListDisciplineMateria = () => {
   const disciplineAni = useSelector(state => state.disciplineAni);
   const dispatch = useDispatch();
 
+  const currentStudentObject = useSelector(state => state.currentStudent);
+  const currentStudent = currentStudentObject ? currentStudentObject.currentStudent : 1; 
+
+  const student_id = localStorage.getItem('auth_role') == 'student' ? currentStudent : 1;
+
   const handleItemClick = (item) => {
     const { subject_id } = item;
     const level_id = 1;
 
-    fetchCapitole(subject_id, level_id, dispatch);
+    fetchCapitole(subject_id, level_id, dispatch, student_id);
 
   };
 
@@ -171,7 +176,7 @@ const ListDisciplineMateria = () => {
     disciplineAni.forEach((item) => {
       const level_id = 1;
   
-      axios.get(`/api/capitoleDisciplina?level=${level_id}&disciplina=${item.subject_id}&student=1`)
+      axios.get(`/api/capitoleDisciplina?level=${level_id}&disciplina=${item.subject_id}&student=${student_id}`)
         .then(res => {
           if (res.status === 200) {
             allMediaDisciplina.push(res.data[0].disciplina_media);

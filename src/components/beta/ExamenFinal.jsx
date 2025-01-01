@@ -127,7 +127,7 @@ const ExamenFinal = (props) => {
         }));
     
         try {
-          const studentId = 1;
+          // const studentId = 1;
           const token = localStorage.getItem('auth_token');
     
           const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -141,7 +141,7 @@ const ExamenFinal = (props) => {
                 {
                   test_item_id: testItem.test_item_id,
                   formative_test_id: testItem.formative_test_id,
-                  studentId: studentId,
+                  studentId: student_id,
                 },
                 {
                   headers: {
@@ -241,16 +241,16 @@ const ExamenFinal = (props) => {
     setCorrectAnswer(null);
 
 
-    const currentStudentId = localStorage.getItem("auth_roleId");
+    // const currentStudentId = localStorage.getItem("auth_roleId");
 
-    console.log("currentStudentId",currentStudentId)
-    if (!currentStudentId) {
-      alert("Nu există un ID de student valid!");
-      return;
-    }
+    // console.log("currentStudentId",currentStudentId)
+    // if (!currentStudentId) {
+    //   alert("Nu există un ID de student valid!");
+    //   return;
+    // }
   
     try {
-      const response = await axios.post("/api/reset-student-summative-test-results", { student_id: currentStudentId });
+      const response = await axios.post("/api/reset-student-summative-test-results", { student_id: student_id });
 
       if (response.status === 200) {
         console.log("Rezultate testelor sumative au fost șterse cu succes.");
@@ -260,7 +260,7 @@ const ExamenFinal = (props) => {
     }
 
     try {
-      const response = await axios.post("/api/reset-student-summative-test-options", { student_id: currentStudentId });
+      const response = await axios.post("/api/reset-student-summative-test-options", { student_id: student_id });
 
       if (response.status === 200) {
         console.log("Optiunile testelor sumative au fost șterse cu succes.");
