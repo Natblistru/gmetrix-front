@@ -53,6 +53,7 @@ const ExamenFinal = (props) => {
   const [resetTimer, setResetTimer] = useState(false);
   const [forceStopTimer, setForceStopTimer] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [timpCheltuit, setTimpCheltuit] = useState(3000);
 
   // const currentTopicObject = useSelector((state) => state.currentTopic);
   // const currentTopic = currentTopicObject.currentTopic;
@@ -410,6 +411,7 @@ const ExamenFinal = (props) => {
 
   const handleCloseModal = () => {
     setShowModal(false);
+    handleSubmitFinish(timpCheltuit);
     handleTryAgain(); // Sterge rezultatele si optiunile din state si din BD
     setForceStopTimer(false);
     history.push('/home');
@@ -422,7 +424,8 @@ const ExamenFinal = (props) => {
 
   const handleTimeUpdate = (cheltuit) => {
     if(forceStopTimer) {
-      handleSubmitFinish(cheltuit);
+      setTimpCheltuit(cheltuit)
+      // handleSubmitFinish(cheltuit);
     }
   };
 
