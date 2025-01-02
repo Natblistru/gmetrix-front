@@ -201,7 +201,7 @@ const ExamenFinal = (props) => {
   }, [correctAnswer, responseReceived, currentTests, currentTestIndex]);
 
   useEffect(()=>{
-    // console.log(allTeacherTests);
+    // console.log(forceStopTimer);
     let sum = 0;
     const totalItems = allTeacherTests.length;
     allTeacherTests.forEach(obj => {
@@ -410,6 +410,8 @@ const ExamenFinal = (props) => {
 
   const handleCloseModal = () => {
     setShowModal(false);
+    handleTryAgain(); // Sterge rezultatele si optiunile din state si din BD
+    setForceStopTimer(false);
     history.push('/home');
   };
 
@@ -421,8 +423,6 @@ const ExamenFinal = (props) => {
   const handleTimeUpdate = (cheltuit) => {
     if(forceStopTimer) {
       handleSubmitFinish(cheltuit);
-      handleTryAgain(); // Sterge rezultatele si optiunile din state si din BD
-      setForceStopTimer(false);
     }
   };
 
