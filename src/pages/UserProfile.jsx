@@ -5,6 +5,7 @@ import Navbar from '../components/layouts/Navbar';
 import Wrapper from '../components/Wrapper';
 import UserSidebar from '../components/UserProfile/UserSidebar';
 import AccountSettings from '../components/UserProfile/AccountSettings';
+import StudentRanking from '../components/UserProfile/StudentRanking';
 import ChangePassword from '../components/UserProfile/ChangePassword';
 import MyResults from '../components/UserProfile/MyResults';
 import MyMaterials from '../components/UserProfile/MyMaterials';
@@ -68,6 +69,7 @@ function UserProfile() {
         </div>
         <div className='right'>
           {activepage === 'accountsettings' && <AccountSettings userData={userData} setUserData={setUserData} />}
+          {activepage === 'rankings' && <StudentRanking userData={userData} setUserData={setUserData} />}
           {activepage === 'changepassword' && <ChangePassword userData={userData} />}
           {activepage === 'yourResults' && <MyResults/>}
           {activepage === 'yourMaterials' && <MyMaterials userData={userData}/>}

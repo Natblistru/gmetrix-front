@@ -42,7 +42,7 @@ const ExamenFinal = (props) => {
   const currentTests = useSelector((state) => state.currentTests);
   const allTeacherTests = useSelector((state) => state.allTeacherTests);
   // const [allTeacherTests, setAllTeacherTests] = useState(useSelector((state) => state.allTeacherTests));
-  console.log('allTeacherTests', allTeacherTests)
+  // console.log('allTeacherTests', allTeacherTests)
   //console.log('currentTests', currentTests)
   const [indexAllItems, setIndexAllItems] = useState(0);
 
@@ -536,6 +536,34 @@ const ExamenFinal = (props) => {
     handleTimerFinish(); // Deschide forma modală
   };
 
+  const handleTimeUpdate = (cheltuit) => {
+    if(forceStopTimer) {
+      handleSubmitFinish(cheltuit);
+      setForceStopTimer(false);
+    }
+  };
+
+  const handleSubmitFinish = async (cheltuit) => {
+    console.log(`Timp cheltuit in BD: ${cheltuit} secunde`);
+    const data = {
+      student_id: 1, 
+      summative_test_id: 1, 
+      time: cheltuit, 
+      score: Math.round(proc * 100) / 100
+    };
+
+    try {
+      const response = await axios.post("/api/student-rankings", data);
+      console.log("Răspuns de la server:", response.data);
+    } catch (error) {
+      if (error.response && error.response.data.errors) {
+        console.error("Erori de validare:", error.response.data.errors);
+      } else {
+        console.error("Eroare la trimiterea datelor:", error);
+      }
+    }
+  };
+
   // console.log('wrapperHeight', wrapperHeight)
   // console.log(wrapperRef.current && wrapperRef.current.getBoundingClientRect().height)
   // console.log('count', Math.round(wrapperHeight/80))
@@ -564,7 +592,9 @@ const ExamenFinal = (props) => {
               reset={resetTimer} 
               setResetTimer={setResetTimer} 
               onFinish={handleTimerFinish}
-              forceStop={forceStopTimer} />
+              forceStop={forceStopTimer}
+              onTimeUpdate={handleTimeUpdate} 
+              />
             <TitleBox
               className="teme-container"
               proc={proc}
@@ -719,7 +749,7 @@ const ExamenFinal = (props) => {
         <div className="examen-modal-overlay">
           <div className="examen-modal-content">
             <h2>Test finisat</h2>
-            <p>{`Ai realizat ${Math.round(proc)}%`}</p>
+            <p>{`Ai realizat ${Math.round(proc * 100) / 100}%`}</p>
             <button onClick={handleCloseModal}>Închide</button>
           </div>
         </div>

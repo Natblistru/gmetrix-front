@@ -123,6 +123,7 @@ function Navbar() {
             <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                 <li><Link className="dropdown-item" to="/">Home</Link></li>                    
                 <li><Link className="dropdown-item" to="/user/accountsettings">Profile</Link></li>
+                <li><Link className="dropdown-item" to="/user/rankings">Classament</Link></li>
                 <li><hr className="dropdown-divider" /></li>
                 <button type="link" onClick={logoutSubmit} style={{color: '#2bbbf1', fontSize: '1rem'}} className="dropdown-item">Logout</button>
             </ul>

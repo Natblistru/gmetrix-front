@@ -2942,3 +2942,156 @@ filter: brightness(0) saturate(100%) invert(0%) sepia(7%) saturate(98%) hue-rota
   appearance: none; 
 }
 
+
+.ranking-container {
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.ranking-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.ranking-header h1 {
+  font-size: 24px;
+  color: #333;
+}
+
+.ranking-header p {
+  font-size: 14px;
+  color: #777;
+}
+
+.ranking-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.ranking-table th,
+.ranking-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+.ranking-table th {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.ranking-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.ranking-actions {
+  text-align: center;
+}
+
+.ranking-actions button {
+  padding: 10px 20px;
+  margin: 17px 10px 0;
+  height: 40px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.refresh-button {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.refresh-button:hover {
+  background-color: #45a049;
+}
+
+.export-button {
+  background-color: #008CBA;
+  color: white;
+}
+
+.export-button:hover {
+  background-color: #007bb5;
+}
+
+
+/* Containerul select */
+.select-container {
+  margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.select-container label {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+/* Stilurile pentru select */
+.select-container select {
+  width: 100%;
+  max-width: 300px;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  color: #333;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.select-container select:hover {
+  border-color: #888;
+}
+
+.select-container select:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
+}
+
+/* Stiluri opționale pentru opțiunile select */
+.select-container option {
+  font-size: 14px;
+  padding: 10px;
+}
+
+/* Butoane de acțiune */
+.ranking-actions {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.refresh-button {
+  padding: 10px 20px;
+  font-size: 14px;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.refresh-button:hover,
+.export-button:hover {
+  background-color: #0056b3;
+}
+
+.refresh-button:focus,
+.export-button:focus {
+  outline: none;
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
+}

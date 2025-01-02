@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const Timer = ({ reset, setResetTimer, onFinish, forceStop }) => {
+const Timer = ({ reset, setResetTimer, onFinish, forceStop, onTimeUpdate }) => {
   const initialTime = 3000; // 50 minutes in seconds (50 * 60 = 3000 seconds)
   const [time, setTime] = useState(() => {
     const savedTime = localStorage.getItem('timer');
@@ -9,6 +9,8 @@ const Timer = ({ reset, setResetTimer, onFinish, forceStop }) => {
 
   useEffect(() => {
     if (forceStop) {
+      const cheltuit = initialTime - time; // Calculează timpul cheltuit
+      onTimeUpdate && onTimeUpdate(cheltuit); // Trimite timpul cheltuit în callback
       setTime(0);
       localStorage.removeItem('timer');
       onFinish();
@@ -44,7 +46,8 @@ const Timer = ({ reset, setResetTimer, onFinish, forceStop }) => {
       setTime(initialTime);
       setResetTimer(prev => !prev)
     }
-  }, [reset]);
+  // }, [reset]);
+  }, [reset, initialTime, setResetTimer]);
 
   const formatTime = (time) => {
     const minutes = Math.floor(time / 60);
