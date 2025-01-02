@@ -13,6 +13,8 @@ function Banner() {
   const toRotate = [ "vizionare video", "ascultare audio", "slide-uri imagini", "carduri memo" ];
   const period = 1000;
 
+  const isAuthenticated = localStorage.getItem('auth_log') !== null;
+
   useEffect(() => {
     AOS.init(); 
   }, []);
@@ -56,7 +58,7 @@ function Banner() {
           <span className="tagline">Bun venit pe Platformă</span>
           <h1>{`Examen pe 10 - usor, prin `} <span className="txt-rotate"><span className="wrap">{text}</span></span></h1>
           <p>O platformă educațională pentru certificarea competențelor informatice, oferind materiale diverse pentru o pregătire completă și obținerea unei note de 10 la examenul de bacalaureat.</p>
-          <Link className="btn" to="/register"> Inregistrează-te </Link>
+          <Link className="btn" to="/register">{isAuthenticated ? "Hai la învățare!" : "Înregistrează-te"}</Link>
         </div>
 
         <div className="col-md-5" data-aos="fade-left" data-aos-delay="400">
