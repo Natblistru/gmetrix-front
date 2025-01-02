@@ -429,8 +429,8 @@ const ExamenFinal = (props) => {
   const handleSubmitFinish = async (cheltuit) => {
     console.log(`Timp cheltuit in BD: ${cheltuit} secunde`);
     const data = {
-      student_id: 1, 
-      summative_test_id: 1, 
+      student_id: student_id, 
+      summative_test_id: currentTests[currentIndexTestObject]?.formative_test_id || 1, 
       time: cheltuit, 
       score: Math.round(proc * 100) / 100
     };
