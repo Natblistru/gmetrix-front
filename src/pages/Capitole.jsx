@@ -45,6 +45,8 @@ const Capitole = (props) => {
 
   const student_id = localStorage.getItem('auth_role') == 'student' ? currentStudent : 1;
 
+  const currentStudentId = localStorage.getItem("auth_roleId");
+  const redirectPath = currentStudentId ? "/examen-final/1" : "/login";
 
   useEffect(() => {
     const fetchData = async () => {
@@ -133,7 +135,7 @@ const Capitole = (props) => {
           {currentSubject !== null && <TopicsList />}
         </Card>
         
-        <Link to="/examen-final/1" style={{color: 'white'}}>
+        <Link to={redirectPath} style={{color: 'white'}}>
         <Card className="titlu titlu-card title-examen">Examen final</Card>
          
         </Link>
