@@ -38,6 +38,7 @@ const Capitole = (props) => {
   const [loading, setLoading] = useState(true);
 
   const [proc, setProc] = useState(0);
+  const [programId, setProgramId] = useState(1);
   const capitole = useSelector((state) => state.capitole);
   const currentSubject = useSelector(state => state.currentSubject);
   const currentStudentObject = useSelector(state => state.currentStudent);
@@ -46,7 +47,11 @@ const Capitole = (props) => {
   const student_id = localStorage.getItem('auth_role') == 'student' ? currentStudent : 1;
 
   const currentStudentId = localStorage.getItem("auth_roleId");
-  const redirectPath = currentStudentId ? "/examen-final/1" : "/login";
+  const redirectPath = currentStudentId ? "/examen-final/"+programId : "/login";
+
+  useEffect(() => {
+    setProgramId(currentSubject?.currentSubject?.program_id || 1)
+  },[currentSubject]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -64,7 +69,7 @@ const Capitole = (props) => {
         setLoading(false);
       }
     };
-
+    
     fetchData();
   }, [id]);
 
