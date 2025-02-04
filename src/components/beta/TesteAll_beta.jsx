@@ -429,7 +429,7 @@ const TesteAll_beta = () => {
     console.log('newUrlTest', newUrlTest);
     history.push(newUrlTest);
 
-    dispatch(fetchCurrentIndexTest(nextAllTests.order_formative_test-1));
+    //dispatch(fetchCurrentIndexTest(nextAllTests.order_formative_test-1));
     setCurrentItemIndex(nextAllTests.order_item_test-1);
     // setCorrectAnswer(null);
     if (wrapperRef.current) {
@@ -461,7 +461,7 @@ const TesteAll_beta = () => {
     console.log('newUrlTest', newUrlTest);
     history.push(newUrlTest);
 
-    dispatch(fetchCurrentIndexTest(previousAllTests.order_formative_test-1));
+    //dispatch(fetchCurrentIndexTest(previousAllTests.order_formative_test-1));
     setCurrentItemIndex(previousAllTests.order_item_test-1);
     // setCorrectAnswer(null);
     if (wrapperRef.current) {
@@ -488,7 +488,7 @@ const TesteAll_beta = () => {
 
     const previousFormativeTest = allTeacherTests[newId-1];
     const previousIndexFormativeTest = previousFormativeTest.order_formative_test - 1;
-    dispatch(fetchCurrentIndexTest(previousIndexFormativeTest));
+    //dispatch(fetchCurrentIndexTest(previousIndexFormativeTest));
     const previousIndexItemTest = previousFormativeTest.order_item_test - 1;
     setCurrentItemIndex(previousIndexItemTest);
     setCorrectAnswer(null);
