@@ -47,8 +47,8 @@ const Capitole = (props) => {
   const student_id = localStorage.getItem('auth_role') == 'student' ? currentStudent : 1;
 
   const currentStudentId = localStorage.getItem("auth_roleId");
-  const redirectPath = currentStudentId ? "/examen-final/"+programId : "/login";
-
+ // const redirectPath = currentStudentId ? "/examen-final/"+programId : "/login";
+  const redirectPath = currentStudentId ? "/examen-final/1" : "/login";
   useEffect(() => {
     setProgramId(currentSubject?.currentSubject?.program_id || 1)
   },[currentSubject]);
