@@ -104,12 +104,18 @@ const Capitole = (props) => {
   }, []);
 
   const fetchTest = async () => {
-
+    let indexSubject;
+    if (id == 2) indexSubject = 1
+    else if(id == 1) indexSubject = 3
+    else if(id == 3) indexSubject = 2
+    else indexSubject = id;
+    console.log(id)
+    console.log(currentSubject.currentSubject.program_id)
     try {
         const res = await axios.get('/api/summativetest_exam');
         console.log(res.data);
         dispatch(fetchCurrentTestsSuccess(res.data));
-        dispatch(fetchCurrentIndexTest(0));
+        dispatch(fetchCurrentIndexTest(indexSubject-1));
     } catch (err) {
         console.error(err);
     }
