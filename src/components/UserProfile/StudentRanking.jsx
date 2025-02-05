@@ -13,8 +13,9 @@ const StudentRanking = () => {
         const response = await axios.get('/api/all-summative-tests');
         if (response.data.status === 200) {
           setSummativeTests(response.data.summativeTests);
+          console.log(response.data.summativeTests)
           if (response.data.summativeTests.length > 0) {
-            setSelectedTest(response.data.summativeTests[0].id);
+            setSelectedTest(response.data.summativeTests[response.data.summativeTests.length-1].id);
           }
         }
       } catch (error) {
@@ -33,6 +34,8 @@ const StudentRanking = () => {
       try {
         const response = await axios.get(`/api/student-rankings?summative_test_id=${selectedTest}`);
         setStudentRankings(response.data);
+        console.log(response.data)
+        console.log(selectedTest)
       } catch (error) {
         console.error('Error fetching student rankings:', error);
       }
@@ -46,6 +49,7 @@ const StudentRanking = () => {
       try {
         const response = await axios.get(`/api/student-rankings?summative_test_id=${selectedTest}`);
         setStudentRankings(response.data);
+        console.log(response.data)
       } catch (error) {
         console.error('Error refreshing student rankings:', error);
       }
