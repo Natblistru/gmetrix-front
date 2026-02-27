@@ -42,6 +42,7 @@ import Capitole_beta from "./components/beta/Capitole_beta.jsx";
 import ExamenSubect_beta from "./components/beta/ExamenSubect_beta.jsx";
 import FlipCards_beta_eval from "./components/beta/FlipCards_beta_eval.jsx";
 import ExamenFinal from "./components/beta/ExamenFinal.jsx";
+import GoogleCallback from "./components/auth/GoogleCallback";
 
 
 const FlipCardsWithRouter = withRouter(FlipCards);
@@ -83,6 +84,7 @@ function App() {
               <Route path="/user/:activepage" component={UserProfile} /> 
               <AdminPrivateRoute path="/admin" name="Admin" />
               <Route path="/examen-final/:id" component={ExamenFinal} />
+              <Route path="/auth/google/callback" component={GoogleCallback} />
               <Route path="/:disciplina/:address/examen-subiect1" component={ExamenSubect1} />
               <Route path="/:disciplina/:address/examen-subiect2" component={ExamenSubect2} />
               <Route path="/:disciplina/:address/examen-subiect3" component={ExamenSubect3} />

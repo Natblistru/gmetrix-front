@@ -10,11 +10,11 @@ const TableRow = (props) => {
   const searchParams = new URLSearchParams(location.search);
   const teacherVideo = searchParams.get("teacher");
   const currentThemeObject = useSelector(state => state.currentTheme);
-  const currentTheme = currentThemeObject.currentTheme || JSON.parse(localStorage.getItem('currentTheme'));
+  const currentTheme = currentThemeObject?.currentTheme || JSON.parse(localStorage.getItem('currentTheme'));
   const currentSubject = useSelector((state) => state.currentSubject);
 
   const subject_id =
-    currentSubject.subject_id || currentSubject.currentSubject.subject_id;
+    currentSubject?.subject_id || currentSubject?.currentSubject?.subject_id;
 
   const rowData = props.rowData;
   const idx = props.ind;

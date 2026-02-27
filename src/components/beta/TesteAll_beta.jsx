@@ -32,7 +32,7 @@ const TesteAll_beta = () => {
   const [loading, setLoading] = useState(true);
   const [responseReceived, setResponseReceived] = useState(false);
   const currentThemeObject = useSelector(state => state.currentTheme);
-  const currentTheme = currentThemeObject.currentTheme || JSON.parse(localStorage.getItem('currentTheme'));
+  const currentTheme = currentThemeObject?.currentTheme || JSON.parse(localStorage.getItem('currentTheme'));
   const currentSubject = useSelector((state) => state.currentSubject);
   const currentTests = useSelector((state) => state.currentTests);
   const allTeacherTests = useSelector((state) => state.allTeacherTests);
@@ -54,7 +54,7 @@ const TesteAll_beta = () => {
   // console.log(currentTopic);
 
   const subject_id =
-    currentSubject.subject_id || currentSubject.currentSubject.subject_id;
+    currentSubject?.subject_id || currentSubject?.currentSubject?.subject_id;
 
   // console.log(currentTopic)
 

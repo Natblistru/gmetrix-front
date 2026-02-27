@@ -64,7 +64,7 @@ const ExamenSubect_beta = () => {
 
 
   const subject_id =
-    currentSubject.subject_id || currentSubject.currentSubject.subject_id;
+    currentSubject?.subject_id || currentSubject?.currentSubject?.subject_id;
   let subject_tema_id = 1
 
   const [linkTo, setLinkTo] = useState("");

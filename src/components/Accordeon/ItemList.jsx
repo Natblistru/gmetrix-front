@@ -7,7 +7,7 @@ const ItemList = ({ list, className, type, onItemClick }) => {
   const searchParams = new URLSearchParams(location.search);
   const teacherVideo = searchParams.get('teacher');
   const currentThemeObject = useSelector(state => state.currentTheme);
-  const currentTheme = currentThemeObject.currentTheme || JSON.parse(localStorage.getItem('currentTheme'));
+  const currentTheme = currentThemeObject?.currentTheme || JSON.parse(localStorage.getItem('currentTheme'));
   const language = useSelector(state => state.language);
 
   const currentSubject = useSelector(state => state.currentSubject);
@@ -18,7 +18,7 @@ const ItemList = ({ list, className, type, onItemClick }) => {
     state.evaluations3
   ]);
 
-  const subject_id = currentSubject.subject_id || currentSubject.currentSubject.subject_id;
+  const subject_id = currentSubject?.subject_id || currentSubject?.currentSubject?.subject_id;
 
   let listItems = [...list];
   // console.log(listItems)

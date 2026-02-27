@@ -34,14 +34,14 @@ const ExamenSubect3 = () => {
   const speed = 50;
   let theme;
   const currentThemeObject = useSelector(state => state.currentTheme);
-  const currentTheme = currentThemeObject.currentTheme || JSON.parse(localStorage.getItem('currentTheme'));
+  const currentTheme = currentThemeObject?.currentTheme || JSON.parse(localStorage.getItem('currentTheme'));
   const evaluations3 = useSelector(state => state.evaluations3);
   const currentSubject = useSelector(state => state.currentSubject);
   const currentStudentObject = useSelector(state => state.currentStudent);
   const currentStudent = currentStudentObject ? currentStudentObject.currentStudent : 1;
 
-  const subject_id = currentSubject.subject_id || currentSubject.currentSubject.subject_id;
-  const subject_tema_id = currentSubject.tema_id || currentSubject.currentSubject.tema_id;
+  const subject_id = currentSubject?.subject_id || currentSubject?.currentSubject?.subject_id;
+  const subject_tema_id = currentSubject?.tema_id || currentSubject?.currentSubject?.tema_id;
 
   let quizArray = evaluations3;
   // console.log(quizArray[currentIndex])

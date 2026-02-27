@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { updateCurrentStudent } from '../ReduxComp/actions';
+import googleImg from "../../assets/img/google.png";
+import "../../index.css";
 
 function Login() {
 
@@ -70,6 +72,10 @@ function Login() {
     });
   }
 
+  const googleLogin = () => {
+    window.location.href = `${process.env.REACT_APP_API_BASE_URL}/auth/google/redirect`;
+  };
+
   return (
     <div>
       <Navbar />
@@ -79,7 +85,7 @@ function Login() {
                   <div className="cardBts shadow-lg border-0 rounded-lg mt-5">
                       <div className="card-header"><h3 className="text-center font-weight-light my-4">Login</h3></div>
                       <div className="card-body">
-                          <form onSubmit={loginSubmit}>
+                          {/* <form onSubmit={loginSubmit}>
                               <div className="form-floating mb-3">
                                   <input type="email" name="email" onChange={handleInput} value={loginInput.email} className="form-control" id="inputEmail"  placeholder="name@example.com" />
                                   <label htmlFor="inputEmail">Email address</label>
@@ -90,19 +96,32 @@ function Login() {
                                   <label htmlFor="inputPassword">Password</label>
                                   <span>{loginInput.error_list.password}</span>
                               </div>
-                              {/* <div className="form-check mb-3">
-                                  <input className="form-check-input" id="inputRememberPassword" type="checkbox" value="" />
-                                  <label className="form-check-label" htmlFor="inputRememberPassword">Remember Password</label>
-                              </div> */}
                               <div className="d-flex align-items-center justify-content-between mt-4 mb-0">
                                   <Link className="small" to="/forgot-password">Forgot Password?</Link>
                                   <button type="submit" className="btnBts btn-primary" >Login</button>
                               </div>
-                          </form>
+                          </form>  */}
+
+                            {/* AICI pui butonul Google */}
+                            <div className="mt-3">
+                              <button
+                                type="button"
+                                onClick={googleLogin}
+                                className="btnBts google-btn w-100"
+
+                              >
+                                <img
+                                  src={googleImg}
+                                  alt="Google"
+                                  style={{ width: 18, height: 18 }}
+                                />
+                                Log in with Google
+                              </button>
+                            </div>
                       </div>
-                      <div className="card-footer text-center py-3">
+                      {/* <div className="card-footer text-center py-3">
                           <div className="small"><Link to="/register">Need an account? Sign up!</Link></div>
-                      </div>
+                      </div> */}
                   </div>
               </div>
           </div>

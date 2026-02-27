@@ -36,16 +36,16 @@ const ExamenSubect1 = () => {
 
   let theme;
   const currentThemeObject = useSelector(state => state.currentTheme);
-  const currentTheme = currentThemeObject.currentTheme || JSON.parse(localStorage.getItem('currentTheme'));
+  const currentTheme = currentThemeObject?.currentTheme || JSON.parse(localStorage.getItem('currentTheme'));
   const evaluations1 = useSelector((state) => state.evaluations1);
   const currentSubject = useSelector((state) => state.currentSubject);
   const currentStudentObject = useSelector((state) => state.currentStudent);
   const currentStudent = currentStudentObject ? currentStudentObject.currentStudent : 1;
 
   const subject_id =
-    currentSubject.subject_id || currentSubject.currentSubject.subject_id;
+    currentSubject?.subject_id || currentSubject?.currentSubject?.subject_id;
   const subject_tema_id =
-    currentSubject.tema_id || currentSubject.currentSubject.tema_id;
+    currentSubject?.tema_id || currentSubject?.currentSubject?.tema_id;
 
   let quizArray = evaluations1;
   useEffect(() => {

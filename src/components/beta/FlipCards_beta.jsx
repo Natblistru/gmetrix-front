@@ -19,10 +19,10 @@ const FlipCards_beta = (props) => {
 const currentTopicObject = useSelector(state => state.currentTopic);
 const currentTopic = currentTopicObject.currentTopic;
 const currentThemeObject = useSelector(state => state.currentTheme);
-const currentTheme = currentThemeObject.currentTheme || JSON.parse(localStorage.getItem('currentTheme'));
+const currentTheme = currentThemeObject?.currentTheme || JSON.parse(localStorage.getItem('currentTheme'));
 
 const currentSubject = useSelector(state => state.currentSubject);
-const subject_id = currentSubject.subject_id || currentSubject.currentSubject.subject_id;
+const subject_id = currentSubject?.subject_id || currentSubject?.currentSubject?.subject_id;
 
 const [linkToTeorie, setLinkToTeorie] = useState("");
 // console.log(currentTopic)

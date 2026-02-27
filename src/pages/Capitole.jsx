@@ -49,9 +49,10 @@ const Capitole = (props) => {
   const currentStudentId = localStorage.getItem("auth_roleId");
  // const redirectPath = currentStudentId ? "/examen-final/"+programId : "/login";
   const redirectPath = currentStudentId ? "/examen-final/1" : "/login";
-  useEffect(() => {
-    setProgramId(currentSubject?.currentSubject?.program_id || 1)
-  },[currentSubject]);
+useEffect(() => {
+  const pid = currentSubject?.currentSubject?.program_id;
+  if (pid) setProgramId(pid);
+}, [currentSubject]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -110,7 +111,7 @@ const Capitole = (props) => {
     else if(id == 3) indexSubject = 2
     else indexSubject = id;
     console.log(id)
-    console.log(currentSubject.currentSubject.program_id)
+    console.log(currentSubject?.currentSubject?.program_id)
     try {
         const res = await axios.get('/api/summativetest_exam');
         console.log(res.data);

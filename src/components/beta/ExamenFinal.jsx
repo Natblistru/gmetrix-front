@@ -37,7 +37,7 @@ const ExamenFinal = (props) => {
   const [responseReceived, setResponseReceived] = useState(false);
   const currentSubject = useSelector((state) => state.currentSubject);
 
-  const currentSubject_name = currentSubject.currentSubject.subject_name.toLowerCase();
+  const currentSubject_name = currentSubject?.currentSubject?.subject_name.toLowerCase();
 
   const currentTests = useSelector((state) => state.currentTests);
   const allTeacherTests = useSelector((state) => state.allTeacherTests);
@@ -66,7 +66,7 @@ const ExamenFinal = (props) => {
   // console.log(currentTopic);
 
   const subject_id =
-    currentSubject.subject_id || currentSubject.currentSubject.subject_id;
+    currentSubject?.subject_id || currentSubject?.currentSubject?.subject_id;
 
   // console.log(currentTopic)
 

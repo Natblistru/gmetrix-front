@@ -8,7 +8,7 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 const PdfDownloadButton = ({ generateText }) => {
   const currentThemeObject = useSelector(state => state.currentTheme);
-  const currentTheme = currentThemeObject.currentTheme || JSON.parse(localStorage.getItem('currentTheme'));
+  const currentTheme = currentThemeObject?.currentTheme || JSON.parse(localStorage.getItem('currentTheme'));
 
   useEffect(() => {
     // console.log(generateText());

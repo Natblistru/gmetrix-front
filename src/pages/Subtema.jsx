@@ -29,13 +29,13 @@ const Subtema = ()  => {
   const history = useHistory();
   let subElement = null;
   const currentThemeObject = useSelector(state => state.currentTheme);
-  const currentTheme = currentThemeObject.currentTheme || JSON.parse(localStorage.getItem('currentTheme'));
+  const currentTheme = currentThemeObject?.currentTheme || JSON.parse(localStorage.getItem('currentTheme'));
 
   const currentSubject = useSelector(state => state.currentSubject);
   const topics = useSelector(state => state.topics);
 // console.log(topics)
 
-  const subject_id = currentSubject.subject_id || currentSubject.currentSubject.subject_id;
+  const subject_id = currentSubject?.subject_id || currentSubject?.currentSubject?.subject_id;
 
   useEffect(() => {
     const temaCurrenta = topics;

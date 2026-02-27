@@ -36,15 +36,15 @@ const ExamenSubect2 = () => {
   const evaluations2 = useSelector((state) => state.evaluations2);
   const currentSubject = useSelector((state) => state.currentSubject);
   const currentThemeObject = useSelector(state => state.currentTheme);
-  const currentTheme = currentThemeObject.currentTheme || JSON.parse(localStorage.getItem('currentTheme'));
+  const currentTheme = currentThemeObject?.currentTheme || JSON.parse(localStorage.getItem('currentTheme'));
   const currentStudentObject = useSelector((state) => state.currentStudent);
   const currentStudent = currentStudentObject ? currentStudentObject.currentStudent : 1;
   const speed = 50;
 
   const subject_id =
-    currentSubject.subject_id || currentSubject.currentSubject.subject_id;
+    currentSubject?.subject_id || currentSubject?.currentSubject?.subject_id;
   const subject_tema_id =
-    currentSubject.tema_id || currentSubject.currentSubject.tema_id;
+    currentSubject?.tema_id || currentSubject?.currentSubject?.tema_id;
 
   const quizArray = evaluations2;
   // console.log(quizArray)

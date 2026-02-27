@@ -14,7 +14,7 @@ const SubTopicItem = ({ subTit, idx, teachers }) => {
   // console.log(currentSubject.currentSubject)
 
   const subject_id =
-    currentSubject.subject_id || currentSubject.currentSubject?.subject_id;
+    currentSubject?.subject_id || currentSubject?.currentSubject?.subject_id;
     // console.log(subject_id)
   const [selectedTeacher, setSelectedTeacher] = useState({
     id: teachers && teachers[0] ? teachers[0].teacher_id : "",

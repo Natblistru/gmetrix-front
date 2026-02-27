@@ -46,7 +46,7 @@ const Tema = () => {
   const capitole = useSelector((state) => state.capitole);
   const currentSubject = useSelector(state => state.currentSubject);
 
-  const subject_id = currentSubject.subject_id || currentSubject.currentSubject.subject_id;
+  const subject_id = currentSubject?.subject_id || currentSubject?.currentSubject?.subject_id;
 
   const currentStudentObject = useSelector(state => state.currentStudent);
   const currentStudent = currentStudentObject ? currentStudentObject.currentStudent : 1; 

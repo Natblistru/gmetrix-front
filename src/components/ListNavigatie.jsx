@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 const ListNavigatie = (props) => {
   const { list, handleClearTestBoard } = props
   const currentThemeObject = useSelector(state => state.currentTheme);
-  const currentTheme = currentThemeObject.currentTheme || JSON.parse(localStorage.getItem('currentTheme'));
+  const currentTheme = currentThemeObject?.currentTheme || JSON.parse(localStorage.getItem('currentTheme'));
 
   const currentSubject = useSelector(state => state.currentSubject);
   const currentTests = useSelector(state => state.currentTests);
@@ -15,7 +15,7 @@ const ListNavigatie = (props) => {
   const currentTopicObject = useSelector(state => state.currentTopic);
   const currentTopic = currentTopicObject.currentTopic;
 
-  const subject_id = currentSubject.subject_id || currentSubject.currentSubject.subject_id;
+  const subject_id = currentSubject?.subject_id || currentSubject?.currentSubject?.subject_id;
 
   const parts = currentTheme.path_tema.split("/");
   const addressDisciplina = "/" + parts[1];
