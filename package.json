@@ -15,7 +15,6 @@
     "axios": "^1.6.2",
     "draft-js": "^0.11.7",
     "lodash": "^4.17.21",
-    "node-sass": "^7.0.3",
     "pdfmake": "^0.2.9",
     "react": "^18.2.0",
     "react-beautiful-dnd": "^13.1.1",
@@ -64,5 +63,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "sass": "^1.97.3"
   }
 }
