@@ -11,7 +11,7 @@ import {
   fetchCurrentTestsSuccess, 
   fetchCurrentIndexTest } from "../ReduxComp/actions";
 
-import { fetchCapitole, fetchSummativeTests, fetchAllTeacherTestsSuccess } from "../../routes/api";
+import { fetchCapitole, fetchVideoLessons, fetchAllTeacherTestsSuccess } from "../../routes/api";
 import AOS from "aos";
 
 import Navbar from "../layouts/Navbar";
@@ -20,7 +20,7 @@ import Titlu from "../Titlu";
 import Wrapper from "../Wrapper";
 import TitleBox from "../TitleBox";
 import Card from "../Card";
-import { FaLock } from "react-icons/fa";
+import VideoLessonsList from "./VideoLessonsList";
 
 const Capitole_gama = (props) => {
   const dispatch = useDispatch();
@@ -89,6 +89,8 @@ const Capitole_gama = (props) => {
         const level_id = 1;
 
         await fetchCapitole(subject_id, level_id, dispatch, student_id);
+
+        await fetchVideoLessons(subject_id, dispatch);
 
         setLoading(false);
         AOS.refresh();
@@ -197,35 +199,7 @@ const Capitole_gama = (props) => {
             Temele disciplinei {name}
           </TitleBox>
 
-          <div className="lectii-fixe-container">
-            {lectiiFixe.map((lectie, index) => (
-              <div className="lectie-fixa-item" key={index}>
-                <div className="lectie-fixa-title">
-                  <span className="lectie-numar">{index + 1}.</span>
-                  <span>{lectie}</span>
-                </div>
-
-                <div className="lectie-fixa-actions">
-                  <button
-                    type="button"
-                    className="btn-lectie btn-acces-materiale-blocat"
-                    onClick={() => accesMateriale(lectie)}
-                    title="Acces blocat până la achitare"
-                  >
-                    Acces materiale <FaLock className="lock-icon" />
-                  </button>
-
-                  <button
-                    type="button"
-                    className="btn-lectie btn-cere-consultatie"
-                    onClick={() => cereConsultatie(lectie)}
-                  >
-                    Solicită consultație
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
+          <VideoLessonsList />
         </Card>
         <Link to={redirectPath} style={{ color: "white" }}>
           <Card className="titlu titlu-card title-examen">Examen final</Card>

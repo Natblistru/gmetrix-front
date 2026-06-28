@@ -6,6 +6,7 @@ import { FETCH_CAPITOLE,
          FETCH_EVALUATIONS_3,
          FETCH_EVALUATIONS_ALL,
          FETCH_SUMMATIVE_TESTS,
+         FETCH_VIDEO_LESSONS,
          FETCH_ALL_TEACHER_TESTS } from '../components/ReduxComp/actions';
 
 export const fetchCapitole = async (subject_id, level_id, dispatchData, student_id = 1) => {
@@ -21,6 +22,24 @@ export const fetchCapitole = async (subject_id, level_id, dispatchData, student_
         console.error(err);
     }
 }
+
+export const fetchVideoLessons = async (subject_id, dispatchData) => {
+  try {
+    const res = await axios.get(`/api/video-lessons?subject_id=${subject_id}`);
+
+    dispatchData({
+      type: FETCH_VIDEO_LESSONS,
+      payload: res.data,
+    });
+  } catch (err) {
+    console.error("Eroare la preluarea lecțiilor video:", err);
+
+    dispatchData({
+      type: FETCH_VIDEO_LESSONS,
+      payload: [],
+    });
+  }
+};
 
 export const fetchTheme = async (teacherVideo, theme, subject_id, level_id, dispatchData, student_id = 1) => {
     try {
