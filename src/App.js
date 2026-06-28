@@ -39,6 +39,7 @@ import Page404 from "./components/errors/Page404.js";
 import ResetPassword from "./components/auth/ResetPassword.js";
 import UserProfile from "./pages/UserProfile.jsx";
 import Capitole_beta from "./components/beta/Capitole_beta.jsx";
+import Capitole_gama from "./components/gama/Capitole_gama.jsx";
 import ExamenSubect_beta from "./components/beta/ExamenSubect_beta.jsx";
 import FlipCards_beta_eval from "./components/beta/FlipCards_beta_eval.jsx";
 import ExamenFinal from "./components/beta/ExamenFinal.jsx";
@@ -94,6 +95,7 @@ function App() {
               <Route path="/:disciplina/:address/memo" component={FlipCards_beta_eval} /> 
               <Route path="/capitole/:id" component={Capitole} />
               <Route path="/capitole_beta/:id" component={Capitole_beta} />
+              <Route path="/capitole_gama/:id" component={Capitole_gama} />
               <Route path="/:disciplina/:address/:address1" component={Subtema} />
               <Route path="/:disciplina/:address" component={Tema} />
 

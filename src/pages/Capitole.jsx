@@ -49,10 +49,10 @@ const Capitole = (props) => {
   const currentStudentId = localStorage.getItem("auth_roleId");
  // const redirectPath = currentStudentId ? "/examen-final/"+programId : "/login";
   const redirectPath = currentStudentId ? "/examen-final/1" : "/login";
-useEffect(() => {
-  const pid = currentSubject?.currentSubject?.program_id;
-  if (pid) setProgramId(pid);
-}, [currentSubject]);
+  useEffect(() => {
+    const pid = currentSubject?.currentSubject?.program_id;
+    if (pid) setProgramId(pid);
+  }, [currentSubject]);
 
   useEffect(() => {
     const fetchData = async () => {

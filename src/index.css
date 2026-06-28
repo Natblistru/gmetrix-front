@@ -252,6 +252,116 @@ div.manual-item > a > img:nth-child(2) {
   /* animation: fadeInRight; 
   animation-duration: 1s;  */
 }
+
+.lock-icon {
+  margin-left: 6px;
+  vertical-align: middle;
+}
+
+.lectii-fixe-container {
+  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.lectie-fixa-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 14px 18px;
+  border: 1px solid #e0e6ef;
+  border-radius: 12px;
+  background: #ffffff;
+
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.04);
+  transition: 0.2s ease;
+}
+
+.lectie-fixa-item:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+}
+
+.lectie-fixa-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  font-size: 18px;
+  font-weight: 600;
+  color: #2d3748;
+}
+
+.lectie-numar {
+  color: #4a90d9;
+  font-weight: 700;
+}
+
+.lectie-fixa-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-lectie {
+  border: none;
+  border-radius: 8px;
+  padding: 9px 16px;
+
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.btn-acces-materiale-blocat {
+  background: #e5e7eb;
+  color: #6b7280;
+  border: 1px solid #cbd5e1;
+}
+
+.btn-acces-materiale-blocat:hover {
+  background: #d1d5db;
+  color: #4b5563;
+}
+
+.btn-cere-consultatie {
+  background: #4a90d9;
+  color: white;
+  border: 1px solid #4a90d9;
+}
+
+.btn-cere-consultatie:hover {
+  background: #3478bd;
+  border-color: #3478bd;
+}
+
+.lock-icon {
+  margin-left: 5px;
+  font-size: 13px;
+}
+
+@media (max-width: 768px) {
+  .lectie-fixa-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .lectie-fixa-actions {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btn-lectie {
+    width: 100%;
+  }
+}
+
 .topic-item h3,
 header h3 {
   font-size: 1.5rem;

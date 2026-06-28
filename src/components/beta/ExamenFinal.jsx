@@ -14,13 +14,15 @@ import TestWords from "../Teste/TestWords";
 import TestWordsSelect from "../Teste/TestWordsSelect";
 import TestSnap from "../Snap/TestSnap";
 import Timer from "./Timer";
-import VerticalTestMenu from './VerticalTestMenu';
+import VerticalTestMenu from "./VerticalTestMenu";
 import { fetchTheme, fetchAllTeacherTestsSuccess } from "../../routes/api";
-import { fetchCurrentIndexTest, resetStudentOptions } from "../ReduxComp/actions";
+import {
+  fetchCurrentIndexTest,
+  resetStudentOptions,
+} from "../ReduxComp/actions";
 import "../../index.css";
 
 const ExamenFinal = (props) => {
-
   const { id } = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
@@ -37,7 +39,8 @@ const ExamenFinal = (props) => {
   const [responseReceived, setResponseReceived] = useState(false);
   const currentSubject = useSelector((state) => state.currentSubject);
 
-  const currentSubject_name = currentSubject?.currentSubject?.subject_name.toLowerCase();
+  const currentSubject_name =
+    currentSubject?.currentSubject?.subject_name.toLowerCase();
 
   const currentTests = useSelector((state) => state.currentTests);
   const allTeacherTests = useSelector((state) => state.allTeacherTests);
@@ -46,7 +49,7 @@ const ExamenFinal = (props) => {
   //console.log('currentTests', currentTests)
   const [indexAllItems, setIndexAllItems] = useState(0);
 
-  const currentIndexTestObject = useSelector(state => state.currentIndexTest);
+  const currentIndexTestObject = useSelector((state) => state.currentIndexTest);
   //console.log(currentIndexTestObject)
 
   const [clearAll, setClearAll] = useState(false);
@@ -58,10 +61,13 @@ const ExamenFinal = (props) => {
   // const currentTopicObject = useSelector((state) => state.currentTopic);
   // const currentTopic = currentTopicObject.currentTopic;
 
-  const currentStudentObject = useSelector(state => state.currentStudent);
-  const currentStudent = currentStudentObject ? currentStudentObject.currentStudent : 1; 
+  const currentStudentObject = useSelector((state) => state.currentStudent);
+  const currentStudent = currentStudentObject
+    ? currentStudentObject.currentStudent
+    : 1;
 
-  const student_id = localStorage.getItem('auth_role') == 'student' ? currentStudent : 1;
+  const student_id =
+    localStorage.getItem("auth_role") == "student" ? currentStudent : 1;
 
   // console.log(currentTopic);
 
@@ -93,7 +99,6 @@ const ExamenFinal = (props) => {
     const pathCautat = "/" + addressTest;
     // console.log("schimbat adrs", addressTest)
 
-    
     const wrapperElement = wrapperRef.current;
     if (wrapperElement) {
       const rect = wrapperElement.getBoundingClientRect();
@@ -111,30 +116,35 @@ const ExamenFinal = (props) => {
   useEffect(() => {
     const fetchData = async () => {
       if (correctAnswer !== null && responseReceived) {
-        console.log("currentTests[currentTestIndex]", currentTests[currentTestIndex]);
-    
+        console.log(
+          "currentTests[currentTestIndex]",
+          currentTests[currentTestIndex],
+        );
+
         let firstTestItemComplexity =
-          currentTests[currentTestIndex].order_number_options[0]?.test_item_complexity;
-    
+          currentTests[currentTestIndex].order_number_options[0]
+            ?.test_item_complexity;
+
         if (firstTestItemComplexity === undefined) {
           firstTestItemComplexity = 1;
         }
-    
+
         const testItemObjects = currentTests[
           currentTestIndex
         ].order_number_options.map((option) => ({
           test_item_id: option.test_item_id,
           formative_test_id: currentTests[currentTestIndex].formative_test_id,
         }));
-    
+
         try {
           // const studentId = 1;
-          const token = localStorage.getItem('auth_token');
-    
-          const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-    
+          const token = localStorage.getItem("auth_token");
+
+          const delay = (ms) =>
+            new Promise((resolve) => setTimeout(resolve, ms));
+
           const responses = [];
-    
+
           for (const testItem of testItemObjects) {
             try {
               const response = await axios.post(
@@ -147,31 +157,36 @@ const ExamenFinal = (props) => {
                 {
                   headers: {
                     "Content-Type": "application/json",
-                    "Authorization": token ? `Bearer ${token}` : ''
+                    Authorization: token ? `Bearer ${token}` : "",
                   },
-                }
+                },
               );
               responses.push(response);
             } catch (error) {
               console.error("Error processing request:", error);
-              responses.push(error.response || { data: {}, status: error.code });
+              responses.push(
+                error.response || { data: {}, status: error.code },
+              );
             }
             await delay(500); // Adaugă o pauză între cereri
           }
-    
+
           const successResponses = responses.filter(
-            (response) => response.data?.status === 200
+            (response) => response.data?.status === 200,
           );
           const errorResponses = responses.filter(
-            (response) => response.data?.status === 404
+            (response) => response.data?.status === 404,
           );
-    
+
           if (successResponses.length > 0) {
-            const totalScore = successResponses.reduce((accumulator, response) => {
-              const score = parseFloat(response.data.score);
-              return accumulator + score;
-            }, 0);
-    
+            const totalScore = successResponses.reduce(
+              (accumulator, response) => {
+                const score = parseFloat(response.data.score);
+                return accumulator + score;
+              },
+              0,
+            );
+
             const averageScore = (totalScore * 100) / successResponses.length;
             // console.log(averageScore)
             // setProc(averageScore);
@@ -181,32 +196,36 @@ const ExamenFinal = (props) => {
         }
       }
     };
-    
 
     const fetchAllTeacherTests = async () => {
       if (correctAnswer !== null && responseReceived) {
         try {
-          const res = await fetchAllTeacherTestsSuccess(0, currentStudent, dispatch, currentSubject_name);
+          const res = await fetchAllTeacherTestsSuccess(
+            0,
+            currentStudent,
+            dispatch,
+            currentSubject_name,
+          );
         } catch (error) {
           console.error("Eroare la preluarea datelor:", error);
         }
       }
     };
 
-  //  fetchData();
-  //  fetchAllTeacherTests();
+    //  fetchData();
+    //  fetchAllTeacherTests();
     if (wrapperRef.current) {
       const height = wrapperRef.current.scrollHeight;
       setWrapperHeight(height);
     }
   }, [correctAnswer, responseReceived, currentTests, currentTestIndex]);
 
-  useEffect(()=>{
+  useEffect(() => {
     // console.log(forceStopTimer);
     let sum = 0;
     const totalItems = allTeacherTests.length;
-    allTeacherTests.forEach(obj => {
-      sum += parseFloat(obj.student_procent); 
+    allTeacherTests.forEach((obj) => {
+      sum += parseFloat(obj.student_procent);
     });
     const averageScore = sum / totalItems;
     // console.log(averageScore)
@@ -214,7 +233,7 @@ const ExamenFinal = (props) => {
     // console.log("allTeacherTests", allTeacherTests);
     // console.log("indexAllItems", indexAllItems);
     // console.log("allTeacherTests[indexAllItems]", allTeacherTests[indexAllItems]);
-  },[allTeacherTests])
+  }, [allTeacherTests]);
 
   const testBoardRef = useRef(null);
 
@@ -238,9 +257,8 @@ const ExamenFinal = (props) => {
 
     dispatch(resetStudentOptions());
     setResponseReceived(false);
-    setResetTimer(prev => !prev);
+    setResetTimer((prev) => !prev);
     setCorrectAnswer(null);
-
 
     // const currentStudentId = localStorage.getItem("auth_roleId");
 
@@ -249,19 +267,28 @@ const ExamenFinal = (props) => {
     //   alert("Nu există un ID de student valid!");
     //   return;
     // }
-  
+
     try {
-      const response = await axios.post("/api/reset-student-summative-test-results", { student_id: student_id });
+      const response = await axios.post(
+        "/api/reset-student-summative-test-results",
+        { student_id: student_id },
+      );
 
       if (response.status === 200) {
         console.log("Rezultate testelor sumative au fost șterse cu succes.");
       }
     } catch (error) {
-      console.error("Eroare la resetarea rezultatelor testelor sumative:", error);
+      console.error(
+        "Eroare la resetarea rezultatelor testelor sumative:",
+        error,
+      );
     }
 
     try {
-      const response = await axios.post("/api/reset-student-summative-test-options", { student_id: student_id });
+      const response = await axios.post(
+        "/api/reset-student-summative-test-options",
+        { student_id: student_id },
+      );
 
       if (response.status === 200) {
         console.log("Optiunile testelor sumative au fost șterse cu succes.");
@@ -269,12 +296,16 @@ const ExamenFinal = (props) => {
     } catch (error) {
       console.error("Eroare la resetarea optiunilor testelor sumative:", error);
     }
-  
-   };
+  };
 
   const fetchAllTeacherTests = async () => {
     try {
-      const res = await fetchAllTeacherTestsSuccess(0, currentStudent, dispatch, currentSubject_name);
+      const res = await fetchAllTeacherTestsSuccess(
+        0,
+        currentStudent,
+        dispatch,
+        currentSubject_name,
+      );
     } catch (error) {
       console.error("Eroare la preluarea datelor:", error);
     }
@@ -323,15 +354,15 @@ const ExamenFinal = (props) => {
     setClearAll(true);
     // Eliminam din adresa path la formative_test si nr_ord a test_item al acestuia
     const pathname = window.location.pathname;
-    const segments = pathname.split('/');
-    const newPathname = segments.slice(0, -1).join('/');
+    const segments = pathname.split("/");
+    const newPathname = segments.slice(0, -1).join("/");
 
-    let newId = indexAllItems+1;
-    if (newId > (allTeacherTests.length-1)) {
-        newId = 0;
+    let newId = indexAllItems + 1;
+    if (newId > allTeacherTests.length - 1) {
+      newId = 0;
     }
-    console.log(allTeacherTests)
-    console.log(newId)
+    console.log(allTeacherTests);
+    console.log(newId);
 
     const nextAllTests = allTeacherTests[newId];
     const currentIdFormativeTest = nextAllTests.formative_test_id;
@@ -342,11 +373,14 @@ const ExamenFinal = (props) => {
     //console.log('newUrlTest', newUrlTest);
     history.push(newUrlTest);
 
-    console.log('nextAllTests', nextAllTests);
-    console.log('nextAllTests.order_formative_test-1', nextAllTests.order_formative_test-1);
+    console.log("nextAllTests", nextAllTests);
+    console.log(
+      "nextAllTests.order_formative_test-1",
+      nextAllTests.order_formative_test - 1,
+    );
 
     //dispatch(fetchCurrentIndexTest(nextAllTests.order_formative_test-1));
-    setCurrentItemIndex(nextAllTests.order_item_test-1);
+    setCurrentItemIndex(nextAllTests.order_item_test - 1);
     // setCorrectAnswer(null);
     if (wrapperRef.current) {
       const height = wrapperRef.current.scrollHeight;
@@ -360,12 +394,12 @@ const ExamenFinal = (props) => {
     setClearAll(true);
     // Eliminam din adresa path la formative_test si nr_ord a test_item al acestuia
     const pathname = window.location.pathname;
-    const segments = pathname.split('/');
-    const newPathname = segments.slice(0, -1).join('/');
+    const segments = pathname.split("/");
+    const newPathname = segments.slice(0, -1).join("/");
 
-    let newId = indexAllItems-1;
+    let newId = indexAllItems - 1;
     if (newId < 0) {
-        newId = allTeacherTests.length-1;
+      newId = allTeacherTests.length - 1;
     }
 
     const previousAllTests = allTeacherTests[newId];
@@ -378,7 +412,7 @@ const ExamenFinal = (props) => {
     history.push(newUrlTest);
 
     //dispatch(fetchCurrentIndexTest(previousAllTests.order_formative_test-1));
-    setCurrentItemIndex(previousAllTests.order_item_test-1);
+    setCurrentItemIndex(previousAllTests.order_item_test - 1);
     // setCorrectAnswer(null);
     if (wrapperRef.current) {
       const height = wrapperRef.current.scrollHeight;
@@ -387,10 +421,10 @@ const ExamenFinal = (props) => {
   };
 
   const handleSliderClick = (newId) => {
-    const currentId = parseInt(window.location.pathname.split('/').pop(), 10);
-console.log("currentId",currentId)
-console.log("allTeacherTests",allTeacherTests)
-    const currentFormativeTest = allTeacherTests[currentId-1];
+    const currentId = parseInt(window.location.pathname.split("/").pop(), 10);
+    console.log("currentId", currentId);
+    console.log("allTeacherTests", allTeacherTests);
+    const currentFormativeTest = allTeacherTests[currentId - 1];
     // console.log(newId)
     // console.log(currentId)
     // console.log(allTeacherTests[currentId-1])
@@ -398,20 +432,21 @@ console.log("allTeacherTests",allTeacherTests)
     handleClearTestBoard(currentIdFormativeTest);
 
     // console.log("newId", newId, "ind", newId-1)
-    setIndexAllItems(newId-1)
-    const basePath = window.location.pathname.replace(`/${currentId}`, '');
+    setIndexAllItems(newId - 1);
+    const basePath = window.location.pathname.replace(`/${currentId}`, "");
     const newUrl = `${basePath}/${newId}?level=1&disciplina=${subject_id}`;
     history.push(newUrl);
 
-    const previousFormativeTest = allTeacherTests[newId-1];
-    const previousIndexFormativeTest = previousFormativeTest.order_formative_test - 1;
+    const previousFormativeTest = allTeacherTests[newId - 1];
+    const previousIndexFormativeTest =
+      previousFormativeTest.order_formative_test - 1;
     //dispatch(fetchCurrentIndexTest(previousIndexFormativeTest));
     const previousIndexItemTest = previousFormativeTest.order_item_test - 1;
     setCurrentItemIndex(previousIndexItemTest);
     setCorrectAnswer(null);
-   };
+  };
 
-   const handleTimerFinish = () => {
+  const handleTimerFinish = () => {
     setShowModal(true);
   };
 
@@ -420,7 +455,7 @@ console.log("allTeacherTests",allTeacherTests)
     handleSubmitFinish(timpCheltuit);
     handleTryAgain(); // Sterge rezultatele si optiunile din state si din BD
     setForceStopTimer(false);
-    history.push('/home');
+    history.push("/home");
   };
 
   const finishExam = () => {
@@ -429,8 +464,8 @@ console.log("allTeacherTests",allTeacherTests)
   };
 
   const handleTimeUpdate = (cheltuit) => {
-    if(forceStopTimer) {
-      setTimpCheltuit(cheltuit)
+    if (forceStopTimer) {
+      setTimpCheltuit(cheltuit);
       // handleSubmitFinish(cheltuit);
     }
   };
@@ -438,10 +473,11 @@ console.log("allTeacherTests",allTeacherTests)
   const handleSubmitFinish = async (cheltuit) => {
     console.log(`Timp cheltuit in BD: ${cheltuit} secunde`);
     const data = {
-      student_id: student_id, 
-      summative_test_id: currentTests[currentIndexTestObject]?.formative_test_id || 1, 
-      time: cheltuit, 
-      score: Math.round(proc * 100) / 100
+      student_id: student_id,
+      summative_test_id:
+        currentTests[currentIndexTestObject]?.formative_test_id || 1,
+      time: cheltuit,
+      score: Math.round(proc * 100) / 100,
     };
 
     try {
@@ -459,16 +495,16 @@ console.log("allTeacherTests",allTeacherTests)
   // console.log('wrapperHeight', wrapperHeight)
   // console.log(wrapperRef.current && wrapperRef.current.getBoundingClientRect().height)
   // console.log('count', Math.round(wrapperHeight/80))
-  // console.log("allTeacherTests",allTeacherTests)
-  // console.log("indexAllItems", indexAllItems)
-  // console.log("allTeacherTests[indexAllItems]",allTeacherTests[indexAllItems])
+  console.log("allTeacherTests",allTeacherTests)
+  console.log("indexAllItems", indexAllItems)
+  console.log("allTeacherTests[indexAllItems]",allTeacherTests[indexAllItems])
   // console.log("correctAnswer", correctAnswer)
   // console.log("setCorrectAnswer", setCorrectAnswer)
   // console.log("additionalContent",additionalContent)
   // console.log("handleTryAgain", handleTryAgain)
   // console.log("clearAll", clearAll)
   // console.log("setClearAll", setClearAll)
-  // console.log("currentItemIndex", currentItemIndex)
+  console.log("currentItemIndex", currentItemIndex)
   // console.log("setResponseReceived", setResponseReceived)
   // console.log("setWrapperHeight", setWrapperHeight)
 
@@ -476,21 +512,17 @@ console.log("allTeacherTests",allTeacherTests)
     <>
       <Navbar />
       <Wrapper>
-
         {allTeacherTests && allTeacherTests.length > 0 && (
           <>
             <Breadcrumb step={1} />
-            <Timer 
-              reset={resetTimer} 
-              setResetTimer={setResetTimer} 
+            <Timer
+              reset={resetTimer}
+              setResetTimer={setResetTimer}
               onFinish={handleTimerFinish}
               forceStop={forceStopTimer}
-              onTimeUpdate={handleTimeUpdate} 
-              />
-            <TitleBox
-              className="teme-container"
-              proc={proc}
-            >
+              onTimeUpdate={handleTimeUpdate}
+            />
+            <TitleBox className="teme-container" proc={proc}>
               {allTeacherTests[indexAllItems].type === "testGeneralizator"
                 ? allTeacherTests[indexAllItems].name +
                   "  " +
@@ -520,8 +552,8 @@ console.log("allTeacherTests",allTeacherTests)
                   setCorrectAnswer={setCorrectAnswer}
                   additionalContent={additionalContent}
                   handleTryAgain={handleTryAgain}
-                  clearAll = {clearAll}
-                  setClearAll = {setClearAll}
+                  clearAll={clearAll}
+                  setClearAll={setClearAll}
                   currentItemIndex={currentItemIndex}
                   setResponseReceived={setResponseReceived}
                   setWrapperHeight={setWrapperHeight}
@@ -628,14 +660,14 @@ console.log("allTeacherTests",allTeacherTests)
             </div>
           </>
         )}
-
       </Wrapper>
-      <VerticalTestMenu quizArray={allTeacherTests}
-                        indexAllItems={indexAllItems} 
-                        setIndexAllItems={setIndexAllItems}
-                        handleSliderClick={handleSliderClick}
-                        handleTryAgain={handleTryAgain}
-                        finishExam = {finishExam}
+      <VerticalTestMenu
+        quizArray={allTeacherTests}
+        indexAllItems={indexAllItems}
+        setIndexAllItems={setIndexAllItems}
+        handleSliderClick={handleSliderClick}
+        handleTryAgain={handleTryAgain}
+        finishExam={finishExam}
       />
       {showModal && (
         <div className="examen-modal-overlay">
