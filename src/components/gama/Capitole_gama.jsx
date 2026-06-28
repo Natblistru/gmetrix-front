@@ -56,24 +56,6 @@ const Capitole_gama = (props) => {
     if (pid) setProgramId(pid);
   }, [currentSubject]);
 
-
-  const lectiiFixe = [
-    "Lecția 1: Introducere în baza de date",
-    "Lecția 2: Model relațional",
-    "Lecția 3: Selectarea datelor",
-    "Lecția 4: Agregarea datelor",
-    "Lecția 5: Combinarea datelor",
-    "Lecția 6: Proiectarea BD, crearea tabelelor",
-    "Lecția 7: Normalizarea BD, modificarea tabelelor",
-    "Lecția 8: Modificarea datelor - INSERT, UPDATE, DELETE",
-    "Lecția 9: Indecșii",
-    "Lecția 10: Vederi",
-    "Lecția 11: Proceduri și funcții",
-    "Lecția 12: Utilizatorii SQL",
-    "Lecția 13: Backup și restaurare",
-    "Lecția 14: Securitatea datelor",
-  ];
-
   const accesMateriale = (lectie) => {
     alert(`${lectie}: accesul la materiale este blocat până la achitare.`);
   };
@@ -90,7 +72,9 @@ const Capitole_gama = (props) => {
 
         await fetchCapitole(subject_id, level_id, dispatch, student_id);
 
-        await fetchVideoLessons(subject_id, dispatch);
+        console.log("student_id", student_id)
+
+        await fetchVideoLessons(subject_id, student_id, dispatch);
 
         setLoading(false);
         AOS.refresh();

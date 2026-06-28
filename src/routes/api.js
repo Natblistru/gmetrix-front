@@ -23,9 +23,12 @@ export const fetchCapitole = async (subject_id, level_id, dispatchData, student_
     }
 }
 
-export const fetchVideoLessons = async (subject_id, dispatchData) => {
+export const fetchVideoLessons = async (subject_id, student_id, dispatchData) => {
   try {
-    const res = await axios.get(`/api/video-lessons?subject_id=${subject_id}`);
+    
+    const res = await axios.get(
+      `/api/video-lessons?subject_id=${subject_id}&student_id=${student_id}`
+    );
 
     dispatchData({
       type: FETCH_VIDEO_LESSONS,
