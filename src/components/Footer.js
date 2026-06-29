@@ -10,7 +10,7 @@ import SubscribeForm from "./SubscribeForm";
 const Footer = () => {
   return (
     <footer className="footer">
-      <div  style={{width: '1140px', paddingRight: '.75rem', paddingLeft: '.75rem', marginRight: 'auto', marginLeft: 'auto'}}>
+      <div  style={{maxWidth: '1140px', paddingRight: '.75rem', paddingLeft: '.75rem', marginRight: 'auto', marginLeft: 'auto'}}>
         <div className="rowBts  align-items-center">
           <SubscribeForm />
           <div className="col-md-6 logo">

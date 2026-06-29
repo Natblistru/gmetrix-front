@@ -9,7 +9,7 @@ import { useHistory } from 'react-router-dom';
 
 import './../../assets/admin/css/stylesBootstrap.css';
 import './../../assets/admin/js/scripts.js'
-import SearchComponent from './SearchComponent.js';
+// import SearchComponent from './SearchComponent.js';
 
 function Navbar() {
 
@@ -140,7 +140,7 @@ function Navbar() {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <SearchComponent />
+          {/* <SearchComponent /> */}
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0 lh-lg gap-3">
             <li className="nav-item">
             {isAuthenticated && <span>Bine ai venit, {authName}!</span>}
@@ -152,10 +152,10 @@ function Navbar() {
               <Link className="nav-link" to="#">Collection</Link>
             </li> */}
             {AuthButtons}
-            <select className="form-select-little" value={language} onChange={handleLanguageChange}>
+            {/* <select className="form-select-little" value={language} onChange={handleLanguageChange}>
               <option value="en">EN</option>
               <option value="ro">RO</option>
-            </select>
+            </select> */}
           </ul>
         </div>
       </div>

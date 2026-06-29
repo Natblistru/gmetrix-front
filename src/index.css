@@ -51,6 +51,7 @@ body {
   text-align: center;
   color: white;
   margin-top: 10px;
+  line-height: 1.5;
 }
 .skill .titlu {
   font-size: 29px;
@@ -83,6 +84,7 @@ body {
   display: flex;
   gap: 20px;
   padding: 40px 45px;
+  flex-wrap: wrap;
 }
 
 .manuale-container-result {
@@ -93,8 +95,28 @@ body {
 
 div.manual-item {
   text-align: center;
-  width: 33%;
+  width: 23%;
   cursor: pointer;
+}
+
+
+@media (max-width: 1190px) {
+  div.manual-item {
+    width: 30%;
+  }
+}
+
+@media (max-width: 940px) {
+  div.manual-item {
+    width: 48%;
+  }
+}
+
+@media (max-width: 840px) {
+  div.manual-item {
+    width: 100%;
+    padding-bottom: 50px;
+  }
 }
 
 div.manual-item-result {
@@ -2528,12 +2550,32 @@ a .subject-total-percent {
   border-right: 0.08em solid #666;
 }
 
+
+.header-img {
+  width: 500px;
+  height: 375px;
+}
+
+@media (max-width: 840px) {
+  .header-img {
+    width: 381px;
+    height: 375px;
+  }
+}
+
 /************ Skills Css ************/
 .skill {
   padding: 0 0 50px 0;
   position: relative;
-  width: 1100px;
+  width: 73%;
 }
+
+@media (max-width: 840px) {
+  .skill {
+    width: 100%;
+  }
+}
+
 .skill .manual-item p {
   padding-top: 30px;
   color: #fff;
@@ -2546,6 +2588,13 @@ a .subject-total-percent {
   padding: 180px 50px 50px;
   margin-top: -110px;
 
+}
+
+@media (max-width: 840px) {
+  .skill-bx {
+    padding: 318px 50px 50px;
+    margin-top: -264px;
+  }
 }
 .skill h2 {
 	font-weight: 700;
@@ -2649,6 +2698,17 @@ a .subject-total-percent {
   border: 1px solid rgba(255, 255, 255, 0.5);
   border-radius: 0 55px 55px 0;
 }
+
+#projects {
+  display: block;
+}
+
+@media (max-width: 840px) {
+  #projects {
+    display: none;
+  }
+}
+
 #slideInUp {
   width: 1100px;
   margin: 0 auto;
@@ -2870,7 +2930,7 @@ a .subject-total-percent {
 }
 .new-email-bx button {
   background: linear-gradient(90.21deg, #AA367C -5.91%, #4A2FBD 111.58%);
-  padding: 20px 65px;
+  padding: 20px 25px;
   color: #fff;
   font-weight: 500;
   letter-spacing: 0.5px;

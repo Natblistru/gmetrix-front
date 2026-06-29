@@ -53,7 +53,7 @@ function Banner() {
   }
   return (
     <section className="banner" id="home">
-      <div className="rowBts align-items-center" style={{ width: '1200px', margin: '10px auto'}}>
+      <div className="rowBts align-items-center" style={{ maxWidth: '1200px', width: '100%', margin: '10px auto'}}>
         <div className="col-md-7" data-aos="fade-right" data-aos-delay="400">
           <span className="tagline">Bun venit pe Platformă</span>
           <h1>{`Examen pe 10 - usor, prin `} <span className="txt-rotate"><span className="wrap">{text}</span></span></h1>
@@ -63,7 +63,7 @@ function Banner() {
 
         <div className="col-md-5" data-aos="fade-left" data-aos-delay="400">
             <div > 
-              <img src={headerImg} alt="Header Img" style={{width: '500px', height: '375px'}}/>
+              <img src={headerImg} alt="Header Img" className="header-img"/>
             </div>
         </div>
       </div>
