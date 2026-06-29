@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { FaLock, FaUnlock } from "react-icons/fa";
 import VideoLumiModal from "./VideoLumiModal";
+import ConsultatieModal from "./ConsultatieModal";
 
 const VideoLessonsList = () => {
   const videoLessonsState = useSelector((state) => state.videoLessons);
@@ -12,6 +13,15 @@ const VideoLessonsList = () => {
 
   const [isModalOpen, setModalOpen] = useState(false);
   const [selectedLesson, setSelectedLesson] = useState(null);
+  const [isConsultatieModalOpen, setConsultatieModalOpen] = useState(false);
+  const [selectedConsultatieLesson, setSelectedConsultatieLesson] = useState(null);
+  const [consultatiiProgramate, setConsultatiiProgramate] = useState({});
+  const [consultatiiAnulate, setConsultatiiAnulate] = useState({});
+
+  const currentStudentId = localStorage.getItem("auth_roleId");
+
+  const student_id =
+    localStorage.getItem("auth_role") === "student" ? currentStudentId : 1;
 
   const accesMateriale = (lectie) => {
     if (Number(lectie.acces) === 1) {
@@ -29,7 +39,27 @@ const VideoLessonsList = () => {
   };
 
   const cereConsultatie = (lectie) => {
-    alert(`Ai solicitat consultație pentru ${lectie.title}.`);
+    setSelectedConsultatieLesson(lectie);
+    setConsultatieModalOpen(true);
+  };
+
+  const handleConsultatieSuccess = (lectieId) => {
+    setConsultatiiProgramate((prev) => ({
+      ...prev,
+      [lectieId]: true,
+    }));
+  };
+
+  const handleConsultatieCancelSuccess = (lectieId) => {
+    setConsultatiiAnulate((prev) => ({
+      ...prev,
+      [lectieId]: true,
+    }));
+
+    setConsultatiiProgramate((prev) => ({
+      ...prev,
+      [lectieId]: false,
+    }));
   };
 
   return (
@@ -41,6 +71,12 @@ const VideoLessonsList = () => {
 
         {videoLessons.map((lectie, index) => {
           const areAcces = Number(lectie.acces) === 1;
+          const esteProgramata =
+            (
+              Number(lectie.consultatie_programata) === 1 ||
+              consultatiiProgramate[lectie.id]
+            ) &&
+            !consultatiiAnulate[lectie.id];
 
           return (
             <div className="lectie-fixa-item" key={lectie.id}>
@@ -74,10 +110,14 @@ const VideoLessonsList = () => {
 
                 <button
                   type="button"
-                  className="btn-lectie btn-cere-consultatie"
+                  className={
+                    esteProgramata
+                      ? "btn-lectie btn-consultatie-programata"
+                      : "btn-lectie btn-cere-consultatie"
+                  }
                   onClick={() => cereConsultatie(lectie)}
                 >
-                  Cere consultație
+                  {esteProgramata ? "Consultație programată" : "Solicită consultație"}
                 </button>
               </div>
             </div>
@@ -92,6 +132,14 @@ const VideoLessonsList = () => {
           lectie={selectedLesson}
         />
       )}
+      <ConsultatieModal
+        isOpen={isConsultatieModalOpen}
+        onClose={() => setConsultatieModalOpen(false)}
+        lectie={selectedConsultatieLesson}
+        student_id={student_id}
+        onSuccess={handleConsultatieSuccess}
+        onCancelSuccess={handleConsultatieCancelSuccess}
+      />
     </>
   );
 };
