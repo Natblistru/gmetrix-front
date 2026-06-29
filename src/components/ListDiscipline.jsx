@@ -14,7 +14,7 @@ const ListDiscipline = () => {
 
   return (
     <div className="manuale-container skill-bx">
-      {disciplineAni.map((item) => {
+      {/* {disciplineAni.map((item) => {
         const nivelStudiu = item.study_level_id === 1 ? "examen clasa 9" : "BAC";
         const clasa = item.study_level_id === 1 ? "clasa 9" : "clasa 12";
         const name = item.name ? item.name.split(",")[0] : "";
@@ -30,16 +30,40 @@ const ListDiscipline = () => {
             </Link>
           </div>
         );
-      })}
+      })} */}
 
-      {authName === "Bernavschi Natalia" && (
-        <div className="manual-item">
-          <Link to="/capitole_gama/1?level=1&year=2022&name=Database&nivel=examen clasa 9&clasa=clasa 9">
-            <img src={process.env.PUBLIC_URL + "/images/istoria.jpg"} alt="" />
-            <img src={meter1} alt="Image" className="img-svg" />
-            <p>BD pregătire (în lucru)</p>
-          </Link>
-        </div>
+      {true && (
+        <>
+          <div className="manual-item">
+            <Link to="/capitole_gama/1?level=1&year=2022&name=Database&nivel=examen clasa 9&clasa=clasa 9">
+              <img src={process.env.PUBLIC_URL + "/images/database.jpg"} alt="" />
+              <img src={meter1} alt="Image" className="img-svg" />
+              <p>Database, <br /><br />MTA 98-364 Exam</p>
+            </Link>
+          </div>
+
+          <div className="manual-item">
+            <Link to="/capitole_gama/2?level=1&year=2022&name=Javascript&nivel=examen clasa 9&clasa=clasa 9">
+              <img src={process.env.PUBLIC_URL + "/images/javascript.jpg"} alt="" />
+              <img src={meter1} alt="Image" className="img-svg" />
+              <p>JavaScript, <br /><br />MTA 98-382 Exam</p>
+            </Link>
+          </div>
+          <div className="manual-item">
+            <Link to="/capitole_gama/3?level=1&year=2022&name=Networking&nivel=examen clasa 9&clasa=clasa 9">
+              <img src={process.env.PUBLIC_URL + "/images/networking.jpg"} alt="" />
+              <img src={meter1} alt="Image" className="img-svg" />
+              <p>Networking, <br /><br />MTA 98-366 Exam</p>
+            </Link>
+          </div>
+          <div className="manual-item">
+            <Link to="/capitole_gama/4?level=1&year=2022&name=Device&nivel=examen clasa 9&clasa=clasa 9">
+              <img src={process.env.PUBLIC_URL + "/images/device.jpg"} alt="" />
+              <img src={meter1} alt="Image" className="img-svg" />
+              <p>Device, <br /><br />MTA 98-368 Exam</p>
+            </Link>
+          </div>
+        </>
       )}
     </div>
   );
