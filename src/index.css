@@ -2547,6 +2547,14 @@ a .subject-total-percent {
         transform: translateY(-20px);
     }
 }
+
+@media (max-width: 840px) {
+  .banner img {
+    animation: none;
+    transform: none;
+  }
+}
+
 .txt-rotate > .wrap {
   border-right: 0.08em solid #666;
 }
