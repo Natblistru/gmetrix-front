@@ -2559,6 +2559,15 @@ a .subject-total-percent {
   border-right: 0.08em solid #666;
 }
 
+.desktop-only {
+  display: inline;
+}
+
+@media (max-width: 840px) {
+  .desktop-only {
+    display: none;
+  }
+}
 
 .header-img {
   width: 500px;

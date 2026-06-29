@@ -56,7 +56,15 @@ function Banner() {
       <div className="rowBts align-items-center" style={{ maxWidth: '1200px', width: '100%', margin: '10px auto'}}>
         <div className="col-md-7" data-aos="fade-right" data-aos-delay="400">
           <span className="tagline">Bun venit pe Platformă</span>
-          <h1>{`Examen pe 10 - usor, prin `} <span className="txt-rotate"><span className="wrap">{text}</span></span></h1>
+          <h1>
+            Examen pe 10 - usor
+            <span className="desktop-only">
+              {" prin "}
+              <span className="txt-rotate">
+                <span className="wrap">{text}</span>
+              </span>
+            </span>
+          </h1>
           <p>O platformă educațională pentru certificarea competențelor informatice, oferind materiale diverse pentru o pregătire completă și obținerea unei note de 10 la examenul de bacalaureat.</p>
           <Link className="btn" to="/register">{isAuthenticated ? "Hai la învățare!" : "Înregistrează-te"}</Link>
         </div>
